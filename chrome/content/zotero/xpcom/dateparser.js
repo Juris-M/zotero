@@ -305,6 +305,7 @@ Zotero.DateParser = function () {
 			thedate["date-parts"][1].push(thedate[part]);
 			delete thedate[part];
 		}
+		return thedate;
 	}
 
 	function parse (txt) {
