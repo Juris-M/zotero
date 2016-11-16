@@ -2,8 +2,8 @@
     ***** BEGIN LICENSE BLOCK *****
     
     Copyright © 2009 Center for History and New Media
-                     George Mason University, Fairfax, Virginia, USA
-                     http://zotero.org
+		     George Mason University, Fairfax, Virginia, USA
+		     http://zotero.org
     
     This file is part of Zotero.
     
@@ -34,11 +34,11 @@ var Zotero_Bibliography_Dialog = new function () {
 	var _suppressAllSelectEvents = false;
 	
 	/**
-	 * Initializes add citation dialog
+	 * Initializes edit bibliography dialog
 	 */
 	this.load = function() {
 		bibEditInterface = window.arguments[0].wrappedJSObject;
-		
+
 		_revertAllButton = document.documentElement.getButton("extra2");
 		_revertButton = document.documentElement.getButton("extra1");
 		_addButton = document.getElementById("add");
@@ -52,14 +52,68 @@ var Zotero_Bibliography_Dialog = new function () {
 		_revertButton.disabled = true;
 
 		document.getElementById('editor').format = "RTF";
-		
+
 		// load (from selectItemsDialog.js)
 		doLoad();
 		
 		// load bibliography entires
 		_loadItems();
+
+		this.unserializePersist(); // Why doesn't this work?
 	}
-	
+
+	/**
+	 * Unserializes zotero-persist elements from preferences
+	 */
+	this.unserializePersist = function() {
+		var serializedValues = Zotero.Prefs.get("edit-bibliography-dialog.persist");
+		if(!serializedValues) return;
+		serializedValues = JSON.parse(serializedValues);
+		for(var id in serializedValues) {
+			var el = document.getElementById(id);
+			if(!el) return;
+			var elValues = serializedValues[id];
+			for(var attr in elValues) {
+				// TEMP: For now, ignore persisted collapsed state for item pane splitter
+				//if (el.id == 'zotero-items-splitter') continue;
+				// And don't restore to min-width if splitter was collapsed
+				//if (el.id == 'zotero-item-pane' && attr == 'width' && elValues[attr] == 250
+				//		&& 'zotero-items-splitter' in serializedValues
+				//		&& serializedValues['zotero-items-splitter'].state == 'collapsed') {
+				//	continue;
+				//}
+				el.setAttribute(attr, elValues[attr]);
+			}
+		}
+
+		if(this._itemTree) {
+			// may not yet be initialized
+			try {
+				this._itemTree.sort();
+			} catch(e) {};
+		}
+	}
+
+	/**
+	 * Serializes zotero-persist elements to preferences
+	 */
+	this.serializePersist = function() {
+		var serializedValues = {};
+		for (let el of document.getElementsByAttribute("zotero-persist", "*")) {
+			if(!el.getAttribute) continue;
+			var id = el.getAttribute("id");
+			if(!id) continue;
+			var elValues = {};
+			for (let attr of el.getAttribute("zotero-persist").split(/[\s,]+/)) {
+				var attrValue = el.getAttribute(attr);
+				elValues[attr] = attrValue;
+			}
+			serializedValues[id] = elValues;
+		}
+		Zotero.Prefs.set("edit-bibliography-dialog.persist", JSON.stringify(serializedValues));
+	}
+
+
 	/**
 	 * Called when an item in the item selection tree is clicked
 	 */
@@ -238,6 +292,7 @@ var Zotero_Bibliography_Dialog = new function () {
 		if(_accepted) return;
 		_updatePreview(true);
 		_accepted = true;
+		this.serializePersist();
 	}
 	
 	/**
@@ -247,6 +302,7 @@ var Zotero_Bibliography_Dialog = new function () {
 		if(_accepted) return;
 		bibEditInterface.cancel();
 		_accepted = true;
+		this.serializePersist();
 	}
 	
 	/**

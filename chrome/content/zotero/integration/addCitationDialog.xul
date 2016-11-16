@@ -3,8 +3,8 @@
     ***** BEGIN LICENSE BLOCK *****
     
     Copyright © 2009 Center for History and New Media
-                     George Mason University, Fairfax, Virginia, USA
-                     http://zotero.org
+		     George Mason University, Fairfax, Virginia, USA
+		     http://zotero.org
     
     This file is part of Zotero.
     
@@ -36,7 +36,7 @@
 	windowtype="zotero:item-selector"
 	orient="vertical"
 	title="&zotero.integration.addEditCitation.title;"
-	width="600" height="450"
+	width="750" height="450"
 	onload="Zotero_Citation_Dialog.load();"
 	onunload="doUnload();"
 	ondialogaccept="return Zotero_Citation_Dialog.accept();"
@@ -58,12 +58,13 @@
 			<hbox flex="1">
 				<vbox align="stretch" flex="1">
 					<hbox align="center" pack="end">
-						<textbox id="zotero-tb-search" type="search" timeout="250" oncommand="onSearch()" tabindex="1"
+						<textbox id="zotero-tb-search" type="search" style="width: 400px;" timeout="250" oncommand="onSearch()" tabindex="1"
 								onkeypress="if(event.keyCode == event.DOM_VK_ESCAPE) { if (this.value == '') { cancelDialog(); return false; } this.value = ''; onSearch(); return false; } return true;"/>
 					</hbox>
 					<hbox flex="1" style="margin-top: 5px">
-						<tree id="zotero-collections-tree"
-							style="width: 200px;" hidecolumnpicker="true" seltype="cell"
+					  <vbox id="zotero-add-citation-collections-pane" zotero-persist="width">
+						<tree id="zotero-collections-tree" flex="1"
+							style="width: 300px;" hidecolumnpicker="true" seltype="cell"
 							onselect="onCollectionSelected();">
 							<treecols>
 								<treecol
@@ -74,7 +75,14 @@
 							</treecols>
 							<treechildren/>
 						</tree>
-					
+					  </vbox>
+
+					  <splitter id="zotero-collections-splitter" resizebefore="closest" resizeafter="closest" collapse="before"
+						    zotero-persist="state">
+					    <grippy id="zotero-collections-grippy"/>
+					  </splitter>
+
+					  <vbox id="zotero-items-pane" zotero-persist="width" flex="1">
 						<tree id="zotero-items-tree"
 								enableColumnDrag="true" flex="1" seltype="single"
 								onselect="Zotero_Citation_Dialog.treeItemSelected();">
@@ -121,7 +129,7 @@
 									flex="1" persist="width ordinal hidden sortActive sortDirection"/>
 								<splitter class="tree-splitter"/>
 								<treecol
-                                    id="zotero-items-column-reporter" hidden="true"
+								    id="zotero-items-column-reporter" hidden="true"
 									label="&zotero.items.reporter_column;"
 									flex="1" persist="width ordinal hidden sortActive sortDirection"/>
 								<splitter class="tree-splitter"/>
@@ -246,25 +254,26 @@
 									flex="1" zotero-persist="width ordinal hidden sortActive sortDirection"/>
 							</treecols>	
 							<treechildren/>
-						</tree>
+						      </tree>
+					       </vbox>
 					</hbox>
 				</vbox>
-						
-				<hbox hidden="true" id="multiple-sources" align="stretch">
+
+				<hbox hidden="true" id="multiple-sources" align="stretch" flex="1">
 					<vbox align="center" pack="center" id="citation-buttons">
 						<toolbarbutton id="up" oncommand="Zotero_Citation_Dialog.up()" disabled="true"/>
 						<toolbarbutton id="add" oncommand="Zotero_Citation_Dialog.add()" disabled="true"/>
 						<toolbarbutton id="remove" oncommand="Zotero_Citation_Dialog.remove()" disabled="true"/>
 						<toolbarbutton id="down" oncommand="Zotero_Citation_Dialog.down()" disabled="true"/>
 					</vbox>
-					<vbox align="left">
+					<vbox id="zotero-add-citation-multiple-sources-items-pane" flex="1" align="left">
 						<checkbox id="keepSorted" hidden="true" checked="false" oncommand="Zotero_Citation_Dialog.citationSortUnsort()" label="&zotero.citation.keepSorted.label;"/>
-						<listbox id="citation-list" flex="1" align="stretch" seltype="single"
+						<listbox id="citation-list" style="width: 300px;" flex="1" align="stretch" seltype="single"
 							onselect="Zotero_Citation_Dialog.listItemSelected();"/>
 					</vbox>
 				</hbox>
 			</hbox>
-			
+
 			<hbox align="stretch" style="margin-top: 8px">
 				<vbox flex="1">
 					<hbox align="center">

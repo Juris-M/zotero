@@ -8,7 +8,7 @@ set -e
 PRODUCT="Juris-M: reference manager with legal and multilingual support"
 IS_BETA="false"
 FORK="zotero"
-BRANCH="jurism"
+BRANCH="jurism-KarlHegbloom-fix-classic-citation-and-biblio-dialogs"
 CLIENT="jurism"
 VERSION_ROOT="4.0.29.12m"
 SIGNED_STUB="juris_m-"
