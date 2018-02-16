@@ -57,11 +57,18 @@ The test suite was added to the upstream Zotero source repository at the thresho
 
 To run tests, you will need a compatible version of Firefox on your system. The version that you need depends on your operating system.
 
-- **Mac:** Use an [unbranded build of version 54.0](http://archive.mozilla.org/pub/firefox/tinderbox-builds/mozilla-release-macosx64-add-on-devel/1496944705/firefox-54.0.en-US.mac-add-on-devel.dmg)
-- **Linux:** Use [version 52.0.1esr](https://ftp.mozilla.org/pub/firefox/releases/52.0esr/linux-i686/en-US/firefox-52.0esr.tar.bz2)
-- **Windows:** Use [version 52.0.1esr](https://ftp.mozilla.org/pub/firefox/releases/52.0esr/win64/en-US/Firefox%20Setup%2052.0esr.exe)
+-   **Mac:** Use an [unbranded build of version 54.0](http://archive.mozilla.org/pub/firefox/tinderbox-builds/mozilla-release-macosx64-add-on-devel/1496944705/firefox-54.0.en-US.mac-add-on-devel.dmg)
+-   **Linux:** Use [version 52.0.1esr](https://ftp.mozilla.org/pub/firefox/releases/52.0esr/linux-i686/en-US/firefox-52.0esr.tar.bz2)
+-   **Windows:** Use [version 52.0.1esr](https://ftp.mozilla.org/pub/firefox/releases/52.0esr/win64/en-US/Firefox%20Setup%2052.0esr.exe)
 
 (I *think* that these are right. If you have trouble working with any of them, let me know.)
+
+To avoid profile corruption you should set up a separate profile for this *nightly* version that is separate from your regular Firefox profile, see the [mozilla instructions](https://support.mozilla.org/en-US/kb/using-dedicated-profile-firefox-nightly).
+
+macOS users will also need to allow the nightly build to run as an unsigned application. After you start the client for the first time, you will see a SIP warning, then go to:
+-   System Preferences -> Security and Privacy
+-   click on "open anyway"
+-   start nightly again and click open
 
 Once you have a suitable Firefox in place, create a file at ``./test/runtests-custom.sh`` with the following line, adjusting the path to point at the appropriate Firefox in your filesystem:
 ```txt
