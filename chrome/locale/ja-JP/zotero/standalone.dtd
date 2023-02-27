@@ -17,6 +17,7 @@
 <!ENTITY copyCmd.accesskey "C">
 <!ENTITY copyCmd.key "C">
 <!ENTITY copyCmd.label "コピー">
+<!ENTITY copyNoteCmd.label "Copy Note">
 <!ENTITY cutCmd.accesskey "t">
 <!ENTITY cutCmd.key "X">
 <!ENTITY cutCmd.label "カット">
@@ -62,6 +63,7 @@
 <!ENTITY fullZoomResetCmd.label "Reset">
 <!ENTITY fullZoomToggleCmd.accesskey "T">
 <!ENTITY fullZoomToggleCmd.label "Zoom Text Only">
+<!ENTITY goMenu.label "Go">
 <!ENTITY helpCheckForUpdates.accesskey "U">
 <!ENTITY helpCheckForUpdates.label "更新を確認...">
 <!ENTITY helpFeedbackPage.accesskey "F">
@@ -132,6 +134,7 @@
 <!ENTITY undoCmd.accesskey "U">
 <!ENTITY undoCmd.key "Z">
 <!ENTITY undoCmd.label "取り消す">
+<!ENTITY viewMenu.accesskey "V">
 <!ENTITY viewMenu.label "表示">
 <!ENTITY windowMenu.label "ウインドウ">
 <!ENTITY zoomWindow.label "拡大">

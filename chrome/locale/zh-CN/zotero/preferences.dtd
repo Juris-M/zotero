@@ -72,6 +72,7 @@
 <!ENTITY zotero.preferences.fulltext.pdfMaxPages "单个文件索引的最多页数:">
 <!ENTITY zotero.preferences.fulltext.textMaxLength "单个文件索引的最多字符数:">
 <!ENTITY zotero.preferences.groups "群组">
+<!ENTITY zotero.preferences.groups.annotations "annotations">
 <!ENTITY zotero.preferences.groups.childFiles "子网页截图和导入的文件">
 <!ENTITY zotero.preferences.groups.childLinks "子链接">
 <!ENTITY zotero.preferences.groups.childNotes "子笔记">
@@ -181,9 +182,11 @@
 <!ENTITY zotero.preferences.quickCopy.defaultFormat "默认格式：">
 <!ENTITY zotero.preferences.quickCopy.defaultOutputFormat "默认输出格式:">
 <!ENTITY zotero.preferences.quickCopy.dragLimit "禁用便捷复制, 当拖动项超过">
+<!ENTITY zotero.preferences.quickCopy.itemFormat "Item Format:">
 <!ENTITY zotero.preferences.quickCopy.linkCitationFormReverse "Use citation form as default">
 <!ENTITY zotero.preferences.quickCopy.linkOption "Include Juris-M link wrappers in QuickCopy citations">
 <!ENTITY zotero.preferences.quickCopy.macWarning "提示: 在Mac OS X 下富文本格式将丢失.">
+<!ENTITY zotero.preferences.quickCopy.noteFormat "Note Format:">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.domainPath "域/路径">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.domainPath.example "(比如 wikipedia.org)">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.format "格式">

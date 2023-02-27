@@ -34,6 +34,11 @@
 <!ENTITY zotero.citation.suppressTrailingPunctuation.label "Suppress Trailing Punctuation">
 <!ENTITY zotero.collections.showRetractedItems "Rodyti atšauktus įrašus">
 <!ENTITY zotero.collections.showUnfiledItems "Rodyti neužpildytus">
+<!ENTITY zotero.context.addChildNote "Add Item Note">
+<!ENTITY zotero.context.addChildNoteFromAnnotations "Add Item Note from Annotations">
+<!ENTITY zotero.context.addStandaloneNote "Add Standalone Note">
+<!ENTITY zotero.context.addStandaloneNoteFromAnnotations "Add Standalone Note from Annotations">
+<!ENTITY zotero.context.editInWindow "Edit in a Separate Window">
 <!ENTITY zotero.contextMenu.addTextToCurrentNote "Iš pažymėto teksto sukurti Juris-M pastabą">
 <!ENTITY zotero.contextMenu.addTextToNewNote "Sukurti Juris-M įrašą ir pastabą jam iš pažymėto teksto">
 <!ENTITY zotero.contextMenu.saveImageAsItem "Paveikslėlį įrašyti kaip Juris-M elementą">
@@ -79,6 +84,8 @@
 <!ENTITY zotero.general.loading "Įkeliama...">
 <!ENTITY zotero.general.minimize "Suskleisti">
 <!ENTITY zotero.general.more "Daugiau">
+<!ENTITY zotero.general.moreInformation "More Information">
+<!ENTITY zotero.general.moveToTrash "Move to Trash">
 <!ENTITY zotero.general.no "Ne">
 <!ENTITY zotero.general.note "Pastaba:">
 <!ENTITY zotero.general.ok "Gerai">
@@ -98,6 +105,8 @@
 <!ENTITY zotero.import.fileHandling "Rinkmenų tvarkymas">
 <!ENTITY zotero.import.importing "Importuojama...">
 <!ENTITY zotero.import.lastModified "Paskiausiai pakeista">
+<!ENTITY zotero.import.online.newItemsOnly "Download new items only; don’t update previously imported items">
+<!ENTITY zotero.import.online.relinkOnly "Relink Mendeley Desktop citations">
 <!ENTITY zotero.import.size "Dydis">
 <!ENTITY zotero.import.source.file "iš rinkmenos (BibTeX, RIS, Jurism RDF ar kt.)">
 <!ENTITY zotero.import.whereToImportFrom "Iš kur norėtumėte importuoti?">
@@ -212,6 +221,28 @@
 <!ENTITY zotero.merge.title "Konflikto sprendimas">
 <!ENTITY zotero.moreEncodings.label "Daugiau koduočių">
 <!ENTITY zotero.notes.separate "Redaguoti atskirame lange">
+<!ENTITY zotero.pdfReader.back "Back">
+<!ENTITY zotero.pdfReader.evenSpreads "Even Spreads">
+<!ENTITY zotero.pdfReader.firstPage "First Page">
+<!ENTITY zotero.pdfReader.forward "Forward">
+<!ENTITY zotero.pdfReader.handTool "Hand Tool">
+<!ENTITY zotero.pdfReader.horizontalScrolling "Horizontal Scrolling">
+<!ENTITY zotero.pdfReader.lastPage "Last Page">
+<!ENTITY zotero.pdfReader.noSpreads "No Spreads">
+<!ENTITY zotero.pdfReader.oddSpreads "Odd Spreads">
+<!ENTITY zotero.pdfReader.rotatePage180 "Rotate Page 180°">
+<!ENTITY zotero.pdfReader.rotatePageLeft "Rotate Page Left">
+<!ENTITY zotero.pdfReader.rotatePageRight "Rotate Page Right">
+<!ENTITY zotero.pdfReader.splitHorizontally "Split Horizontally">
+<!ENTITY zotero.pdfReader.splitVertically "Split Vertically">
+<!ENTITY zotero.pdfReader.transferFromPDF "Import Annotations…">
+<!ENTITY zotero.pdfReader.verticalScrolling "Vertical Scrolling">
+<!ENTITY zotero.pdfReader.wrappedScrolling "Wrapped Scrolling">
+<!ENTITY zotero.pdfReader.zoomAuto "Automatically Resize">
+<!ENTITY zotero.pdfReader.zoomIn "Zoom In">
+<!ENTITY zotero.pdfReader.zoomOut "Zoom Out">
+<!ENTITY zotero.pdfReader.zoomPageHeight "Zoom to Page Height">
+<!ENTITY zotero.pdfReader.zoomPageWidth "Zoom to Page Width">
 <!ENTITY zotero.progress.title "Eiga">
 <!ENTITY zotero.proxy.recognized.disable.label "Automatiškai nenukreipinėti užklausų per anksčiau aptiktus įgaliotuosius serverius">
 <!ENTITY zotero.proxy.recognized.ignore.label "Nepaisyti">
@@ -301,6 +332,8 @@
 <!ENTITY zotero.toolbar.attachment.weblink "Įrašyti nuorodą į šį puslapį">
 <!ENTITY zotero.toolbar.cancelDuplicatesView.label "Cancel duplicates view">
 <!ENTITY zotero.toolbar.cancelOrphansView.label "Cancel orphans view">
+<!ENTITY zotero.toolbar.context.item "Item">
+<!ENTITY zotero.toolbar.context.notes "Notes">
 <!ENTITY zotero.toolbar.duplicate.label "Rodyti besidubliuojančius">
 <!ENTITY zotero.toolbar.duplicatesView.label "Duplicates view">
 <!ENTITY zotero.toolbar.emptyTrash.label "Išvalyti šiukšlinę">

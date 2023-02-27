@@ -1,35 +1,31 @@
-<!-- This Source Code Form is subject to the terms of the Mozilla Public
-   - License, v. 2.0. If a copy of the MPL was not distributed with this
-   - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
-
-<!ENTITY editMenu.label             "Muokkaa">
-<!ENTITY editMenu.accesskey         "M">
-<!ENTITY undoCmd.label              "Kumoa">
-<!ENTITY undoCmd.key                "Z">
-<!ENTITY undoCmd.accesskey          "m">
-<!ENTITY redoCmd.label              "Tee uudelleen">
-<!ENTITY redoCmd.key                "Y">
-<!ENTITY redoCmd.accesskey          "T">
-<!ENTITY cutCmd.label               "Leikkaa">
-<!ENTITY cutCmd.key                 "X">
-<!ENTITY cutCmd.accesskey           "L">
-<!ENTITY copyCmd.label              "Kopioi">
-<!ENTITY copyCmd.key                "C">
-<!ENTITY copyCmd.accesskey          "K">
-<!ENTITY pasteCmd.label             "Liitä">
-<!ENTITY pasteCmd.key               "V">
-<!ENTITY pasteCmd.accesskey         "i">
-<!ENTITY deleteCmd.label            "Poista">
-<!ENTITY deleteCmd.accesskey        "o">
-<!ENTITY selectAllCmd.label         "Valitse kaikki">
-<!ENTITY selectAllCmd.key           "A">
-<!ENTITY selectAllCmd.accesskey     "V">
-<!ENTITY findCmd.label              "Etsi">
-<!ENTITY findCmd.key                "F">
-<!ENTITY findCmd.accesskey          "E">
-<!ENTITY findAgainCmd.label         "Etsi seuraava">
-<!ENTITY findAgainCmd.key           "G">
-<!ENTITY findAgainCmd.key2          "VK_F3">
-<!ENTITY findAgainCmd.accesskey     "s">
-<!ENTITY findPreviousCmd.label      "Etsi edellinen">
-<!ENTITY findPreviousCmd.accesskey  "d">
+<!ENTITY copyCmd.accesskey "K">
+<!ENTITY copyCmd.key "C">
+<!ENTITY copyCmd.label "Kopioi">
+<!ENTITY cutCmd.accesskey "L">
+<!ENTITY cutCmd.key "X">
+<!ENTITY cutCmd.label "Leikkaa">
+<!ENTITY deleteCmd.accesskey "o">
+<!ENTITY deleteCmd.label "Poista">
+<!ENTITY editMenu.accesskey "M">
+<!ENTITY editMenu.label "Muokkaa">
+<!ENTITY findAgainCmd.accesskey "s">
+<!ENTITY findAgainCmd.key "G">
+<!ENTITY findAgainCmd.key2 "VK_F3">
+<!ENTITY findAgainCmd.label "Etsi seuraava">
+<!ENTITY findCmd.accesskey "E">
+<!ENTITY findCmd.key "F">
+<!ENTITY findCmd.label "Etsi">
+<!ENTITY findPreviousCmd.accesskey "d">
+<!ENTITY findPreviousCmd.label "Etsi edellinen">
+<!ENTITY pasteCmd.accesskey "i">
+<!ENTITY pasteCmd.key "V">
+<!ENTITY pasteCmd.label "Liitä">
+<!ENTITY redoCmd.accesskey "T">
+<!ENTITY redoCmd.key "Y">
+<!ENTITY redoCmd.label "Tee uudelleen">
+<!ENTITY selectAllCmd.accesskey "V">
+<!ENTITY selectAllCmd.key "A">
+<!ENTITY selectAllCmd.label "Valitse kaikki">
+<!ENTITY undoCmd.accesskey "m">
+<!ENTITY undoCmd.key "Z">
+<!ENTITY undoCmd.label "Kumoa">

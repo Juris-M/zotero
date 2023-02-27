@@ -17,6 +17,7 @@
 <!ENTITY copyCmd.accesskey "K">
 <!ENTITY copyCmd.key "C">
 <!ENTITY copyCmd.label "Kopiëren">
+<!ENTITY copyNoteCmd.label "Copy Note">
 <!ENTITY cutCmd.accesskey "n">
 <!ENTITY cutCmd.key "X">
 <!ENTITY cutCmd.label "Knippen">
@@ -62,6 +63,7 @@
 <!ENTITY fullZoomResetCmd.label "Reset">
 <!ENTITY fullZoomToggleCmd.accesskey "T">
 <!ENTITY fullZoomToggleCmd.label "Zoom Text Only">
+<!ENTITY goMenu.label "Go">
 <!ENTITY helpCheckForUpdates.accesskey "u">
 <!ENTITY helpCheckForUpdates.label "Controleren op updates…">
 <!ENTITY helpFeedbackPage.accesskey "F">
@@ -132,6 +134,7 @@
 <!ENTITY undoCmd.accesskey "O">
 <!ENTITY undoCmd.key "Z">
 <!ENTITY undoCmd.label "Ongedaan maken">
+<!ENTITY viewMenu.accesskey "V">
 <!ENTITY viewMenu.label "Beeld">
 <!ENTITY windowMenu.label "Venster">
 <!ENTITY zoomWindow.label "Zoom">

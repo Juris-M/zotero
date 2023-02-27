@@ -17,6 +17,7 @@
 <!ENTITY copyCmd.accesskey "K">
 <!ENTITY copyCmd.key "C">
 <!ENTITY copyCmd.label "Kopier">
+<!ENTITY copyNoteCmd.label "Copy Note">
 <!ENTITY cutCmd.accesskey "t">
 <!ENTITY cutCmd.key "X">
 <!ENTITY cutCmd.label "Klipp ut">
@@ -62,6 +63,7 @@
 <!ENTITY fullZoomResetCmd.label "Reset">
 <!ENTITY fullZoomToggleCmd.accesskey "T">
 <!ENTITY fullZoomToggleCmd.label "Zoom Text Only">
+<!ENTITY goMenu.label "Go">
 <!ENTITY helpCheckForUpdates.accesskey "O">
 <!ENTITY helpCheckForUpdates.label "Sjå etter oppdateringar …">
 <!ENTITY helpFeedbackPage.accesskey "F">
@@ -132,6 +134,7 @@
 <!ENTITY undoCmd.accesskey "A">
 <!ENTITY undoCmd.key "Z">
 <!ENTITY undoCmd.label "Angra">
+<!ENTITY viewMenu.accesskey "V">
 <!ENTITY viewMenu.label "View">
 <!ENTITY windowMenu.label "Vindauge">
 <!ENTITY zoomWindow.label "Zoom">

@@ -34,6 +34,11 @@
 <!ENTITY zotero.citation.suppressTrailingPunctuation.label "Suppress Trailing Punctuation">
 <!ENTITY zotero.collections.showRetractedItems "Mostra els elements retractats">
 <!ENTITY zotero.collections.showUnfiledItems "Mostra els elements no arxivats">
+<!ENTITY zotero.context.addChildNote "Add Item Note">
+<!ENTITY zotero.context.addChildNoteFromAnnotations "Add Item Note from Annotations">
+<!ENTITY zotero.context.addStandaloneNote "Add Standalone Note">
+<!ENTITY zotero.context.addStandaloneNoteFromAnnotations "Add Standalone Note from Annotations">
+<!ENTITY zotero.context.editInWindow "Edit in a Separate Window">
 <!ENTITY zotero.contextMenu.addTextToCurrentNote "Afegeix la selecció a una nota del Juris-M">
 <!ENTITY zotero.contextMenu.addTextToNewNote "Crea un element del Juris-M i una nota amb la selecció">
 <!ENTITY zotero.contextMenu.saveImageAsItem "Desa la imatge com un element del Juris-M">
@@ -79,6 +84,8 @@
 <!ENTITY zotero.general.loading "S'està carregant…">
 <!ENTITY zotero.general.minimize "Minimitza">
 <!ENTITY zotero.general.more "Més">
+<!ENTITY zotero.general.moreInformation "More Information">
+<!ENTITY zotero.general.moveToTrash "Move to Trash">
 <!ENTITY zotero.general.no "No">
 <!ENTITY zotero.general.note "Nota:">
 <!ENTITY zotero.general.ok "D'acord">
@@ -98,6 +105,8 @@
 <!ENTITY zotero.import.fileHandling "Gestió de fitxers">
 <!ENTITY zotero.import.importing "S'està important…">
 <!ENTITY zotero.import.lastModified "Darrera modificació">
+<!ENTITY zotero.import.online.newItemsOnly "Download new items only; don’t update previously imported items">
+<!ENTITY zotero.import.online.relinkOnly "Relink Mendeley Desktop citations">
 <!ENTITY zotero.import.size "Mida">
 <!ENTITY zotero.import.source.file "Un fitxer (BibTex, RIS, Jurism RDF, etc.)">
 <!ENTITY zotero.import.whereToImportFrom "D'on voldríeu importar?">
@@ -212,6 +221,28 @@
 <!ENTITY zotero.merge.title "Resolució de conflictes">
 <!ENTITY zotero.moreEncodings.label "Més codificacions">
 <!ENTITY zotero.notes.separate "Edita en una finestra separada">
+<!ENTITY zotero.pdfReader.back "Back">
+<!ENTITY zotero.pdfReader.evenSpreads "Even Spreads">
+<!ENTITY zotero.pdfReader.firstPage "First Page">
+<!ENTITY zotero.pdfReader.forward "Forward">
+<!ENTITY zotero.pdfReader.handTool "Hand Tool">
+<!ENTITY zotero.pdfReader.horizontalScrolling "Horizontal Scrolling">
+<!ENTITY zotero.pdfReader.lastPage "Last Page">
+<!ENTITY zotero.pdfReader.noSpreads "No Spreads">
+<!ENTITY zotero.pdfReader.oddSpreads "Odd Spreads">
+<!ENTITY zotero.pdfReader.rotatePage180 "Rotate Page 180°">
+<!ENTITY zotero.pdfReader.rotatePageLeft "Rotate Page Left">
+<!ENTITY zotero.pdfReader.rotatePageRight "Rotate Page Right">
+<!ENTITY zotero.pdfReader.splitHorizontally "Split Horizontally">
+<!ENTITY zotero.pdfReader.splitVertically "Split Vertically">
+<!ENTITY zotero.pdfReader.transferFromPDF "Import Annotations…">
+<!ENTITY zotero.pdfReader.verticalScrolling "Vertical Scrolling">
+<!ENTITY zotero.pdfReader.wrappedScrolling "Wrapped Scrolling">
+<!ENTITY zotero.pdfReader.zoomAuto "Automatically Resize">
+<!ENTITY zotero.pdfReader.zoomIn "Zoom In">
+<!ENTITY zotero.pdfReader.zoomOut "Zoom Out">
+<!ENTITY zotero.pdfReader.zoomPageHeight "Zoom to Page Height">
+<!ENTITY zotero.pdfReader.zoomPageWidth "Zoom to Page Width">
 <!ENTITY zotero.progress.title "Progrés">
 <!ENTITY zotero.proxy.recognized.disable.label "No redirigeixis automàticament les peticions a través de servidors intermediaris reconeguts prèviament ">
 <!ENTITY zotero.proxy.recognized.ignore.label "Ignora">
@@ -301,6 +332,8 @@
 <!ENTITY zotero.toolbar.attachment.weblink "Desa l'enllaç a la pàgina actual">
 <!ENTITY zotero.toolbar.cancelDuplicatesView.label "Cancel duplicates view">
 <!ENTITY zotero.toolbar.cancelOrphansView.label "Cancel orphans view">
+<!ENTITY zotero.toolbar.context.item "Item">
+<!ENTITY zotero.toolbar.context.notes "Notes">
 <!ENTITY zotero.toolbar.duplicate.label "Mostra els duplicats">
 <!ENTITY zotero.toolbar.duplicatesView.label "Duplicates view">
 <!ENTITY zotero.toolbar.emptyTrash.label "Buida la paperera">

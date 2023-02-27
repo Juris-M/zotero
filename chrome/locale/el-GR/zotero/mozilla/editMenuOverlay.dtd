@@ -1,35 +1,31 @@
-<!-- This Source Code Form is subject to the terms of the Mozilla Public
-   - License, v. 2.0. If a copy of the MPL was not distributed with this
-   - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
-
-<!ENTITY editMenu.label            "Επεξεργασία">
-<!ENTITY editMenu.accesskey        "ε">
-<!ENTITY undoCmd.label             "Αναίρεση">
-<!ENTITY undoCmd.key               "Z">
-<!ENTITY undoCmd.accesskey         "α">
-<!ENTITY redoCmd.label             "Επανάληψη">
-<!ENTITY redoCmd.key               "Y">
-<!ENTITY redoCmd.accesskey         "π">
-<!ENTITY cutCmd.label              "Αποκοπή">
-<!ENTITY cutCmd.key                "X">
-<!ENTITY cutCmd.accesskey          "κ">
-<!ENTITY copyCmd.label             "Αντιγραφή">
-<!ENTITY copyCmd.key               "C">
-<!ENTITY copyCmd.accesskey         "τ">
-<!ENTITY pasteCmd.label            "Επικόλληση">
-<!ENTITY pasteCmd.key              "V">
-<!ENTITY pasteCmd.accesskey        "λ">
-<!ENTITY deleteCmd.label           "Διαγραφή">
-<!ENTITY deleteCmd.accesskey       "Δ">
-<!ENTITY selectAllCmd.label        "Επιλογή όλων">
-<!ENTITY selectAllCmd.key          "A">
-<!ENTITY selectAllCmd.accesskey    "ο">
-<!ENTITY findCmd.label             "Εύρεση">
-<!ENTITY findCmd.key               "F">
-<!ENTITY findCmd.accesskey         "ρ">
-<!ENTITY findAgainCmd.label        "Εύρεση ξανά">
-<!ENTITY findAgainCmd.key          "G">
-<!ENTITY findAgainCmd.key2         "VK_F3">
-<!ENTITY findAgainCmd.accesskey    "ξ">
-<!ENTITY findPreviousCmd.label     "Εύρεση Προηγουμένου">
+<!ENTITY copyCmd.accesskey "τ">
+<!ENTITY copyCmd.key "C">
+<!ENTITY copyCmd.label "Αντιγραφή">
+<!ENTITY cutCmd.accesskey "κ">
+<!ENTITY cutCmd.key "X">
+<!ENTITY cutCmd.label "Αποκοπή">
+<!ENTITY deleteCmd.accesskey "Δ">
+<!ENTITY deleteCmd.label "Διαγραφή">
+<!ENTITY editMenu.accesskey "ε">
+<!ENTITY editMenu.label "Επεξεργασία">
+<!ENTITY findAgainCmd.accesskey "ξ">
+<!ENTITY findAgainCmd.key "G">
+<!ENTITY findAgainCmd.key2 "VK_F3">
+<!ENTITY findAgainCmd.label "Εύρεση ξανά">
+<!ENTITY findCmd.accesskey "ρ">
+<!ENTITY findCmd.key "F">
+<!ENTITY findCmd.label "Εύρεση">
 <!ENTITY findPreviousCmd.accesskey "γ">
+<!ENTITY findPreviousCmd.label "Εύρεση Προηγουμένου">
+<!ENTITY pasteCmd.accesskey "λ">
+<!ENTITY pasteCmd.key "V">
+<!ENTITY pasteCmd.label "Επικόλληση">
+<!ENTITY redoCmd.accesskey "π">
+<!ENTITY redoCmd.key "Y">
+<!ENTITY redoCmd.label "Επανάληψη">
+<!ENTITY selectAllCmd.accesskey "ο">
+<!ENTITY selectAllCmd.key "A">
+<!ENTITY selectAllCmd.label "Επιλογή όλων">
+<!ENTITY undoCmd.accesskey "α">
+<!ENTITY undoCmd.key "Z">
+<!ENTITY undoCmd.label "Αναίρεση">

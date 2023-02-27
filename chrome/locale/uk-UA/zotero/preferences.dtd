@@ -72,6 +72,7 @@
 <!ENTITY zotero.preferences.fulltext.pdfMaxPages "Максимальна кількість сторінок для індексування на файл:">
 <!ENTITY zotero.preferences.fulltext.textMaxLength "Максимальна кількість символів для індексування на файл:">
 <!ENTITY zotero.preferences.groups "Групи">
+<!ENTITY zotero.preferences.groups.annotations "annotations">
 <!ENTITY zotero.preferences.groups.childFiles "дочірні знімки та імпортовані файли">
 <!ENTITY zotero.preferences.groups.childLinks "дочірні посилання">
 <!ENTITY zotero.preferences.groups.childNotes "дочірні примітки">
@@ -181,9 +182,11 @@
 <!ENTITY zotero.preferences.quickCopy.defaultFormat "Формат за замовчуванням:">
 <!ENTITY zotero.preferences.quickCopy.defaultOutputFormat "Формат виводу за замовчуванням:">
 <!ENTITY zotero.preferences.quickCopy.dragLimit "Включити швидке копіювання при перетаскуванні більш ніж">
+<!ENTITY zotero.preferences.quickCopy.itemFormat "Item Format:">
 <!ENTITY zotero.preferences.quickCopy.linkCitationFormReverse "Use citation form as default">
 <!ENTITY zotero.preferences.quickCopy.linkOption "Include Juris-M link wrappers in QuickCopy citations">
 <!ENTITY zotero.preferences.quickCopy.macWarning "Примітка: форматування RTF буде втрачене в Mac OS X.">
+<!ENTITY zotero.preferences.quickCopy.noteFormat "Note Format:">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.domainPath "Домен/шлях">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.domainPath.example "(наприклад, wikipedia.org)">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.format "Формат">

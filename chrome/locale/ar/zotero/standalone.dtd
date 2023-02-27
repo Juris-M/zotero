@@ -17,6 +17,7 @@
 <!ENTITY copyCmd.accesskey "س">
 <!ENTITY copyCmd.key "C">
 <!ENTITY copyCmd.label "نسخ">
+<!ENTITY copyNoteCmd.label "Copy Note">
 <!ENTITY cutCmd.accesskey "ص">
 <!ENTITY cutCmd.key "X">
 <!ENTITY cutCmd.label "قص">
@@ -62,6 +63,7 @@
 <!ENTITY fullZoomResetCmd.label "اعادة تعيين التكبير">
 <!ENTITY fullZoomToggleCmd.accesskey "ط">
 <!ENTITY fullZoomToggleCmd.label "تكبير النص فقط">
+<!ENTITY goMenu.label "Go">
 <!ENTITY helpCheckForUpdates.accesskey "U">
 <!ENTITY helpCheckForUpdates.label "تحقق من التحديثات">
 <!ENTITY helpFeedbackPage.accesskey "F">
@@ -132,6 +134,7 @@
 <!ENTITY undoCmd.accesskey "ر">
 <!ENTITY undoCmd.key "Z">
 <!ENTITY undoCmd.label "تراجع">
+<!ENTITY viewMenu.accesskey "V">
 <!ENTITY viewMenu.label "عرض">
 <!ENTITY windowMenu.label "نافذة">
 <!ENTITY zoomWindow.label "تقريب">

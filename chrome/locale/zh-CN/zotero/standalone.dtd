@@ -17,6 +17,7 @@
 <!ENTITY copyCmd.accesskey "C">
 <!ENTITY copyCmd.key "C">
 <!ENTITY copyCmd.label "复制">
+<!ENTITY copyNoteCmd.label "Copy Note">
 <!ENTITY cutCmd.accesskey "t">
 <!ENTITY cutCmd.key "X">
 <!ENTITY cutCmd.label "剪切">
@@ -62,6 +63,7 @@
 <!ENTITY fullZoomResetCmd.label "Reset">
 <!ENTITY fullZoomToggleCmd.accesskey "T">
 <!ENTITY fullZoomToggleCmd.label "Zoom Text Only">
+<!ENTITY goMenu.label "Go">
 <!ENTITY helpCheckForUpdates.accesskey "U">
 <!ENTITY helpCheckForUpdates.label "检查更新…">
 <!ENTITY helpFeedbackPage.accesskey "F">
@@ -132,6 +134,7 @@
 <!ENTITY undoCmd.accesskey "U">
 <!ENTITY undoCmd.key "Z">
 <!ENTITY undoCmd.label "撤销">
+<!ENTITY viewMenu.accesskey "V">
 <!ENTITY viewMenu.label "查看">
 <!ENTITY windowMenu.label "窗口">
 <!ENTITY zoomWindow.label "缩放">

@@ -72,6 +72,7 @@
 <!ENTITY zotero.preferences.fulltext.pdfMaxPages "Số trang tối đa trong mỗi tập tin dùng để tạo chỉ mục:">
 <!ENTITY zotero.preferences.fulltext.textMaxLength "Số ký tự tối đa trong mỗi tập tin được dùng để tạo chỉ mục:">
 <!ENTITY zotero.preferences.groups "Các nhóm">
+<!ENTITY zotero.preferences.groups.annotations "annotations">
 <!ENTITY zotero.preferences.groups.childFiles "các ảnh chụp và tập tin được nhập khẩu">
 <!ENTITY zotero.preferences.groups.childLinks "các liên kết con">
 <!ENTITY zotero.preferences.groups.childNotes "các ghi chú con">
@@ -181,9 +182,11 @@
 <!ENTITY zotero.preferences.quickCopy.defaultFormat "Định dạng mặc định:">
 <!ENTITY zotero.preferences.quickCopy.defaultOutputFormat "Định dạng mặc định của dữ liệu đầu ra:">
 <!ENTITY zotero.preferences.quickCopy.dragLimit "Tắt copy nhanh khi kéo nhiều hơn">
+<!ENTITY zotero.preferences.quickCopy.itemFormat "Item Format:">
 <!ENTITY zotero.preferences.quickCopy.linkCitationFormReverse "Use citation form as default">
 <!ENTITY zotero.preferences.quickCopy.linkOption "Include Juris-M link wrappers in QuickCopy citations">
 <!ENTITY zotero.preferences.quickCopy.macWarning "Chú ý: Định dạng rich-text sẽ bị mất khi dùng trên Mac OS X.">
+<!ENTITY zotero.preferences.quickCopy.noteFormat "Note Format:">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.domainPath "Tên miền/Đường dẫn">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.domainPath.example "(ví dụ wikipedia.org)">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.format "Định dạng">

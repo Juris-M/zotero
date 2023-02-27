@@ -1,5 +1,4 @@
 <!ENTITY styles.preview "預覽Juris-M文獻格式">
-
 <!ENTITY styles.preview.citationFormat "引用文獻格式：">
 <!ENTITY styles.preview.citationFormat.all "全部">
 <!ENTITY styles.preview.citationFormat.author "作者">

@@ -34,6 +34,11 @@
 <!ENTITY zotero.citation.suppressTrailingPunctuation.label "Suppress Trailing Punctuation">
 <!ENTITY zotero.collections.showRetractedItems "Mostra elementi ritirati dalla pubblicazione">
 <!ENTITY zotero.collections.showUnfiledItems "Mostra gli oggetti non classificati">
+<!ENTITY zotero.context.addChildNote "Add Item Note">
+<!ENTITY zotero.context.addChildNoteFromAnnotations "Add Item Note from Annotations">
+<!ENTITY zotero.context.addStandaloneNote "Add Standalone Note">
+<!ENTITY zotero.context.addStandaloneNoteFromAnnotations "Add Standalone Note from Annotations">
+<!ENTITY zotero.context.editInWindow "Edit in a Separate Window">
 <!ENTITY zotero.contextMenu.addTextToCurrentNote "Aggiungi la selezione alla nota di Juris-M">
 <!ENTITY zotero.contextMenu.addTextToNewNote "Crea elemento e nota in base alla selezione">
 <!ENTITY zotero.contextMenu.saveImageAsItem "Salva l'immagine in Juris-M">
@@ -79,6 +84,8 @@
 <!ENTITY zotero.general.loading "Caricamento…">
 <!ENTITY zotero.general.minimize "Riduci a icona">
 <!ENTITY zotero.general.more "Altri">
+<!ENTITY zotero.general.moreInformation "More Information">
+<!ENTITY zotero.general.moveToTrash "Move to Trash">
 <!ENTITY zotero.general.no "No">
 <!ENTITY zotero.general.note "Nota:">
 <!ENTITY zotero.general.ok "OK">
@@ -98,6 +105,8 @@
 <!ENTITY zotero.import.fileHandling "Gestione dei file">
 <!ENTITY zotero.import.importing "Importazione...">
 <!ENTITY zotero.import.lastModified "Ultimo File Modificato">
+<!ENTITY zotero.import.online.newItemsOnly "Download new items only; don’t update previously imported items">
+<!ENTITY zotero.import.online.relinkOnly "Relink Mendeley Desktop citations">
 <!ENTITY zotero.import.size "Dimensione">
 <!ENTITY zotero.import.source.file "File (BibTeX, RIS, Jurism RDF, etc.)">
 <!ENTITY zotero.import.whereToImportFrom "Importa da">
@@ -212,6 +221,28 @@
 <!ENTITY zotero.merge.title "Risoluzione dei conflitti">
 <!ENTITY zotero.moreEncodings.label "Altre codifiche">
 <!ENTITY zotero.notes.separate "Modifica in una nuova finestra">
+<!ENTITY zotero.pdfReader.back "Back">
+<!ENTITY zotero.pdfReader.evenSpreads "Even Spreads">
+<!ENTITY zotero.pdfReader.firstPage "First Page">
+<!ENTITY zotero.pdfReader.forward "Forward">
+<!ENTITY zotero.pdfReader.handTool "Hand Tool">
+<!ENTITY zotero.pdfReader.horizontalScrolling "Horizontal Scrolling">
+<!ENTITY zotero.pdfReader.lastPage "Last Page">
+<!ENTITY zotero.pdfReader.noSpreads "No Spreads">
+<!ENTITY zotero.pdfReader.oddSpreads "Odd Spreads">
+<!ENTITY zotero.pdfReader.rotatePage180 "Rotate Page 180°">
+<!ENTITY zotero.pdfReader.rotatePageLeft "Rotate Page Left">
+<!ENTITY zotero.pdfReader.rotatePageRight "Rotate Page Right">
+<!ENTITY zotero.pdfReader.splitHorizontally "Split Horizontally">
+<!ENTITY zotero.pdfReader.splitVertically "Split Vertically">
+<!ENTITY zotero.pdfReader.transferFromPDF "Import Annotations…">
+<!ENTITY zotero.pdfReader.verticalScrolling "Vertical Scrolling">
+<!ENTITY zotero.pdfReader.wrappedScrolling "Wrapped Scrolling">
+<!ENTITY zotero.pdfReader.zoomAuto "Automatically Resize">
+<!ENTITY zotero.pdfReader.zoomIn "Zoom In">
+<!ENTITY zotero.pdfReader.zoomOut "Zoom Out">
+<!ENTITY zotero.pdfReader.zoomPageHeight "Zoom to Page Height">
+<!ENTITY zotero.pdfReader.zoomPageWidth "Zoom to Page Width">
 <!ENTITY zotero.progress.title "Avanzamento">
 <!ENTITY zotero.proxy.recognized.disable.label "Non reindirizzare automaticamente le richieste attraverso proxy riconosciuti in precedenza.">
 <!ENTITY zotero.proxy.recognized.ignore.label "Ignora">
@@ -301,6 +332,8 @@
 <!ENTITY zotero.toolbar.attachment.weblink "Salva collegamento alla pagina attuale">
 <!ENTITY zotero.toolbar.cancelDuplicatesView.label "Cancel duplicates view">
 <!ENTITY zotero.toolbar.cancelOrphansView.label "Cancel orphans view">
+<!ENTITY zotero.toolbar.context.item "Item">
+<!ENTITY zotero.toolbar.context.notes "Notes">
 <!ENTITY zotero.toolbar.duplicate.label "Mostra i duplicati">
 <!ENTITY zotero.toolbar.duplicatesView.label "Duplicates view">
 <!ENTITY zotero.toolbar.emptyTrash.label "Svuota il cestino">

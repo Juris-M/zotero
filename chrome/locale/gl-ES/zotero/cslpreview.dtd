@@ -1,5 +1,4 @@
 <!ENTITY styles.preview "Visor de estilos de Juris-M">
-
 <!ENTITY styles.preview.citationFormat "Formato de citas:">
 <!ENTITY styles.preview.citationFormat.all "todo">
 <!ENTITY styles.preview.citationFormat.author "autor">

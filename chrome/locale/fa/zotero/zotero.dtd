@@ -34,6 +34,11 @@
 <!ENTITY zotero.citation.suppressTrailingPunctuation.label "Suppress Trailing Punctuation">
 <!ENTITY zotero.collections.showRetractedItems "Show Retracted Items">
 <!ENTITY zotero.collections.showUnfiledItems "نمایش آیتم‌های دسته‌بندی نشده">
+<!ENTITY zotero.context.addChildNote "Add Item Note">
+<!ENTITY zotero.context.addChildNoteFromAnnotations "Add Item Note from Annotations">
+<!ENTITY zotero.context.addStandaloneNote "Add Standalone Note">
+<!ENTITY zotero.context.addStandaloneNoteFromAnnotations "Add Standalone Note from Annotations">
+<!ENTITY zotero.context.editInWindow "Edit in a Separate Window">
 <!ENTITY zotero.contextMenu.addTextToCurrentNote "افزودن قسمت انتخاب شده به یادداشت زوترو">
 <!ENTITY zotero.contextMenu.addTextToNewNote " ساخت آیتم‌ و یادداشت از قسمت انتخاب شده">
 <!ENTITY zotero.contextMenu.saveImageAsItem "ذخیره تصویر به صورت یک آیتم‌ زوترو">
@@ -79,6 +84,8 @@
 <!ENTITY zotero.general.loading "Loading…">
 <!ENTITY zotero.general.minimize "Minimize">
 <!ENTITY zotero.general.more "More">
+<!ENTITY zotero.general.moreInformation "More Information">
+<!ENTITY zotero.general.moveToTrash "Move to Trash">
 <!ENTITY zotero.general.no "No">
 <!ENTITY zotero.general.note "یادداشت:">
 <!ENTITY zotero.general.ok "تایید">
@@ -98,6 +105,8 @@
 <!ENTITY zotero.import.fileHandling "File Handling">
 <!ENTITY zotero.import.importing "Importing…">
 <!ENTITY zotero.import.lastModified "Last Modified">
+<!ENTITY zotero.import.online.newItemsOnly "Download new items only; don’t update previously imported items">
+<!ENTITY zotero.import.online.relinkOnly "Relink Mendeley Desktop citations">
 <!ENTITY zotero.import.size "Size">
 <!ENTITY zotero.import.source.file "A file (BibTeX, RIS, Jurism RDF, etc.)">
 <!ENTITY zotero.import.whereToImportFrom "Where do you want to import from?">
@@ -212,6 +221,28 @@
 <!ENTITY zotero.merge.title "Conflict Resolution">
 <!ENTITY zotero.moreEncodings.label "کدبندی‌های بیشتر">
 <!ENTITY zotero.notes.separate "ویرایش در پنجره مستقل">
+<!ENTITY zotero.pdfReader.back "Back">
+<!ENTITY zotero.pdfReader.evenSpreads "Even Spreads">
+<!ENTITY zotero.pdfReader.firstPage "First Page">
+<!ENTITY zotero.pdfReader.forward "Forward">
+<!ENTITY zotero.pdfReader.handTool "Hand Tool">
+<!ENTITY zotero.pdfReader.horizontalScrolling "Horizontal Scrolling">
+<!ENTITY zotero.pdfReader.lastPage "Last Page">
+<!ENTITY zotero.pdfReader.noSpreads "No Spreads">
+<!ENTITY zotero.pdfReader.oddSpreads "Odd Spreads">
+<!ENTITY zotero.pdfReader.rotatePage180 "Rotate Page 180°">
+<!ENTITY zotero.pdfReader.rotatePageLeft "Rotate Page Left">
+<!ENTITY zotero.pdfReader.rotatePageRight "Rotate Page Right">
+<!ENTITY zotero.pdfReader.splitHorizontally "Split Horizontally">
+<!ENTITY zotero.pdfReader.splitVertically "Split Vertically">
+<!ENTITY zotero.pdfReader.transferFromPDF "Import Annotations…">
+<!ENTITY zotero.pdfReader.verticalScrolling "Vertical Scrolling">
+<!ENTITY zotero.pdfReader.wrappedScrolling "Wrapped Scrolling">
+<!ENTITY zotero.pdfReader.zoomAuto "Automatically Resize">
+<!ENTITY zotero.pdfReader.zoomIn "Zoom In">
+<!ENTITY zotero.pdfReader.zoomOut "Zoom Out">
+<!ENTITY zotero.pdfReader.zoomPageHeight "Zoom to Page Height">
+<!ENTITY zotero.pdfReader.zoomPageWidth "Zoom to Page Width">
 <!ENTITY zotero.progress.title "پیشرفت">
 <!ENTITY zotero.proxy.recognized.disable.label "عدم هدایت خودکار درخواست‌ها از طریق پیشکارهای شناسایی شده قبلی">
 <!ENTITY zotero.proxy.recognized.ignore.label "نادیده گرفتن">
@@ -301,6 +332,8 @@
 <!ENTITY zotero.toolbar.attachment.weblink "ذخیره پیوند به صفحه جاری">
 <!ENTITY zotero.toolbar.cancelDuplicatesView.label "Cancel duplicates view">
 <!ENTITY zotero.toolbar.cancelOrphansView.label "Cancel orphans view">
+<!ENTITY zotero.toolbar.context.item "Item">
+<!ENTITY zotero.toolbar.context.notes "Notes">
 <!ENTITY zotero.toolbar.duplicate.label "نمایش آیتم‌‌های تکراری">
 <!ENTITY zotero.toolbar.duplicatesView.label "Duplicates view">
 <!ENTITY zotero.toolbar.emptyTrash.label "خالی کردن سطل بازیافت">

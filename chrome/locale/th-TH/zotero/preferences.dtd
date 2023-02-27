@@ -72,6 +72,7 @@
 <!ENTITY zotero.preferences.fulltext.pdfMaxPages "จำนวนหน้าสูงสุดที่จะทำดัชนีต่อแฟ้ม:">
 <!ENTITY zotero.preferences.fulltext.textMaxLength "จำนวนอักขระสูงสุดที่จะทำดัชนีต่อแฟ้ม:">
 <!ENTITY zotero.preferences.groups "กลุ่ม">
+<!ENTITY zotero.preferences.groups.annotations "annotations">
 <!ENTITY zotero.preferences.groups.childFiles "ภาพหน้าจอและแฟ้มที่นำเข้าของรายการลูก">
 <!ENTITY zotero.preferences.groups.childLinks "ลิงค์ลูก">
 <!ENTITY zotero.preferences.groups.childNotes "ข้อความรายการลูก">
@@ -181,9 +182,11 @@
 <!ENTITY zotero.preferences.quickCopy.defaultFormat "Default Format:">
 <!ENTITY zotero.preferences.quickCopy.defaultOutputFormat "รูปแบบส่งออกโดยปริยาย">
 <!ENTITY zotero.preferences.quickCopy.dragLimit "ไม่ใช้การสำเนาแบบเร็วเมื่อลากรายการมากกว่า ">
+<!ENTITY zotero.preferences.quickCopy.itemFormat "Item Format:">
 <!ENTITY zotero.preferences.quickCopy.linkCitationFormReverse "Use citation form as default">
 <!ENTITY zotero.preferences.quickCopy.linkOption "Include Juris-M link wrappers in QuickCopy citations">
 <!ENTITY zotero.preferences.quickCopy.macWarning "หมายเหตุ: การจัดรูปแบบจะสูญหายไปบน Mac OS X">
+<!ENTITY zotero.preferences.quickCopy.noteFormat "Note Format:">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.domainPath "โดเมน/พาธ">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.domainPath.example "(e.g., wikipedia.org)">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.format "Format">

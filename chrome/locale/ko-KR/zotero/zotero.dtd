@@ -34,6 +34,11 @@
 <!ENTITY zotero.citation.suppressTrailingPunctuation.label "Suppress Trailing Punctuation">
 <!ENTITY zotero.collections.showRetractedItems "철회된 항목 표시">
 <!ENTITY zotero.collections.showUnfiledItems "미분류 항목 보기">
+<!ENTITY zotero.context.addChildNote "Add Item Note">
+<!ENTITY zotero.context.addChildNoteFromAnnotations "Add Item Note from Annotations">
+<!ENTITY zotero.context.addStandaloneNote "Add Standalone Note">
+<!ENTITY zotero.context.addStandaloneNoteFromAnnotations "Add Standalone Note from Annotations">
+<!ENTITY zotero.context.editInWindow "Edit in a Separate Window">
 <!ENTITY zotero.contextMenu.addTextToCurrentNote "Juris-M 노트에 선택 내용 추가">
 <!ENTITY zotero.contextMenu.addTextToNewNote "선택한 내용으로 Juris-M 노트 생성">
 <!ENTITY zotero.contextMenu.saveImageAsItem "Juris-M 항목으로 이미지 저장">
@@ -79,6 +84,8 @@
 <!ENTITY zotero.general.loading "불러오는 중...">
 <!ENTITY zotero.general.minimize "최소화">
 <!ENTITY zotero.general.more "더 보기">
+<!ENTITY zotero.general.moreInformation "More Information">
+<!ENTITY zotero.general.moveToTrash "Move to Trash">
 <!ENTITY zotero.general.no "아니오">
 <!ENTITY zotero.general.note "노트:">
 <!ENTITY zotero.general.ok "확인">
@@ -98,6 +105,8 @@
 <!ENTITY zotero.import.fileHandling "파일 처리 방법">
 <!ENTITY zotero.import.importing "불러오는 중...">
 <!ENTITY zotero.import.lastModified "마지막 수정 시간">
+<!ENTITY zotero.import.online.newItemsOnly "Download new items only; don’t update previously imported items">
+<!ENTITY zotero.import.online.relinkOnly "Relink Mendeley Desktop citations">
 <!ENTITY zotero.import.size "크기">
 <!ENTITY zotero.import.source.file "파일 (BiBTeX, RIS, Jurism RDF 등)">
 <!ENTITY zotero.import.whereToImportFrom "어디서 불러올까요?">
@@ -212,6 +221,28 @@
 <!ENTITY zotero.merge.title "충돌 해결">
 <!ENTITY zotero.moreEncodings.label "추가 인코딩">
 <!ENTITY zotero.notes.separate "새 창에서 편집">
+<!ENTITY zotero.pdfReader.back "Back">
+<!ENTITY zotero.pdfReader.evenSpreads "Even Spreads">
+<!ENTITY zotero.pdfReader.firstPage "First Page">
+<!ENTITY zotero.pdfReader.forward "Forward">
+<!ENTITY zotero.pdfReader.handTool "Hand Tool">
+<!ENTITY zotero.pdfReader.horizontalScrolling "Horizontal Scrolling">
+<!ENTITY zotero.pdfReader.lastPage "Last Page">
+<!ENTITY zotero.pdfReader.noSpreads "No Spreads">
+<!ENTITY zotero.pdfReader.oddSpreads "Odd Spreads">
+<!ENTITY zotero.pdfReader.rotatePage180 "Rotate Page 180°">
+<!ENTITY zotero.pdfReader.rotatePageLeft "Rotate Page Left">
+<!ENTITY zotero.pdfReader.rotatePageRight "Rotate Page Right">
+<!ENTITY zotero.pdfReader.splitHorizontally "Split Horizontally">
+<!ENTITY zotero.pdfReader.splitVertically "Split Vertically">
+<!ENTITY zotero.pdfReader.transferFromPDF "Import Annotations…">
+<!ENTITY zotero.pdfReader.verticalScrolling "Vertical Scrolling">
+<!ENTITY zotero.pdfReader.wrappedScrolling "Wrapped Scrolling">
+<!ENTITY zotero.pdfReader.zoomAuto "Automatically Resize">
+<!ENTITY zotero.pdfReader.zoomIn "Zoom In">
+<!ENTITY zotero.pdfReader.zoomOut "Zoom Out">
+<!ENTITY zotero.pdfReader.zoomPageHeight "Zoom to Page Height">
+<!ENTITY zotero.pdfReader.zoomPageWidth "Zoom to Page Width">
 <!ENTITY zotero.progress.title "진행">
 <!ENTITY zotero.proxy.recognized.disable.label "이전에 인식된 프록시를 통해 요청을 자동으로 재송신하지 마십시오.">
 <!ENTITY zotero.proxy.recognized.ignore.label "무시">
@@ -301,6 +332,8 @@
 <!ENTITY zotero.toolbar.attachment.weblink "현재 페이지로 링크 저장">
 <!ENTITY zotero.toolbar.cancelDuplicatesView.label "Cancel duplicates view">
 <!ENTITY zotero.toolbar.cancelOrphansView.label "Cancel orphans view">
+<!ENTITY zotero.toolbar.context.item "Item">
+<!ENTITY zotero.toolbar.context.notes "Notes">
 <!ENTITY zotero.toolbar.duplicate.label "중복 보기">
 <!ENTITY zotero.toolbar.duplicatesView.label "Duplicates view">
 <!ENTITY zotero.toolbar.emptyTrash.label "휴지통 비우기">

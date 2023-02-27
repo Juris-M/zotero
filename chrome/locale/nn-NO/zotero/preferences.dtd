@@ -72,6 +72,7 @@
 <!ENTITY zotero.preferences.fulltext.pdfMaxPages "Maksimalt tal sider som skal indekserast per fil:">
 <!ENTITY zotero.preferences.fulltext.textMaxLength "Maksimalt tal teikn som skal indekserast per fil:">
 <!ENTITY zotero.preferences.groups "Grupper">
+<!ENTITY zotero.preferences.groups.annotations "annotations">
 <!ENTITY zotero.preferences.groups.childFiles "undernotat og importerte filer">
 <!ENTITY zotero.preferences.groups.childLinks "underlenkjer">
 <!ENTITY zotero.preferences.groups.childNotes "undernotat">
@@ -181,9 +182,11 @@
 <!ENTITY zotero.preferences.quickCopy.defaultFormat "Default Format:">
 <!ENTITY zotero.preferences.quickCopy.defaultOutputFormat "Standard utdata-format:">
 <!ENTITY zotero.preferences.quickCopy.dragLimit "Slå av rask kopiering når du drar fleire enn">
+<!ENTITY zotero.preferences.quickCopy.itemFormat "Item Format:">
 <!ENTITY zotero.preferences.quickCopy.linkCitationFormReverse "Use citation form as default">
 <!ENTITY zotero.preferences.quickCopy.linkOption "Include Juris-M link wrappers in QuickCopy citations">
 <!ENTITY zotero.preferences.quickCopy.macWarning "Obs: Riktekst-formatering vert borte i Mac OS X.">
+<!ENTITY zotero.preferences.quickCopy.noteFormat "Note Format:">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.domainPath "Domene/stig">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.domainPath.example "(e.g., wikipedia.org)">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.format "Format">

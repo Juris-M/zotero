@@ -34,6 +34,11 @@
 <!ENTITY zotero.citation.suppressTrailingPunctuation.label "Suppress Trailing Punctuation">
 <!ENTITY zotero.collections.showRetractedItems "Zobrazit položky s odvolaným publikováním">
 <!ENTITY zotero.collections.showUnfiledItems "Zobrazit sjednocené položky">
+<!ENTITY zotero.context.addChildNote "Add Item Note">
+<!ENTITY zotero.context.addChildNoteFromAnnotations "Add Item Note from Annotations">
+<!ENTITY zotero.context.addStandaloneNote "Add Standalone Note">
+<!ENTITY zotero.context.addStandaloneNoteFromAnnotations "Add Standalone Note from Annotations">
+<!ENTITY zotero.context.editInWindow "Edit in a Separate Window">
 <!ENTITY zotero.contextMenu.addTextToCurrentNote "Přidat výběr do Juris-M poznámky">
 <!ENTITY zotero.contextMenu.addTextToNewNote "Vytvořit Juris-M položku a poznámku z výběru">
 <!ENTITY zotero.contextMenu.saveImageAsItem "Uložit obrázek jako položku Zotera">
@@ -79,6 +84,8 @@
 <!ENTITY zotero.general.loading "Nahrává se...">
 <!ENTITY zotero.general.minimize "Minimalizovat">
 <!ENTITY zotero.general.more "Více">
+<!ENTITY zotero.general.moreInformation "More Information">
+<!ENTITY zotero.general.moveToTrash "Move to Trash">
 <!ENTITY zotero.general.no "Ne">
 <!ENTITY zotero.general.note "Poznámka:">
 <!ENTITY zotero.general.ok "OK">
@@ -98,6 +105,8 @@
 <!ENTITY zotero.import.fileHandling "Zpracování souborů">
 <!ENTITY zotero.import.importing "Importuje...">
 <!ENTITY zotero.import.lastModified "Naposledy změněno">
+<!ENTITY zotero.import.online.newItemsOnly "Download new items only; don’t update previously imported items">
+<!ENTITY zotero.import.online.relinkOnly "Relink Mendeley Desktop citations">
 <!ENTITY zotero.import.size "Velikost">
 <!ENTITY zotero.import.source.file "Soubor (BibTeX, RIS, Jurism RDF, atd.)">
 <!ENTITY zotero.import.whereToImportFrom "Odkud chcete importovat?">
@@ -212,6 +221,28 @@
 <!ENTITY zotero.merge.title "Řešení konfliktů">
 <!ENTITY zotero.moreEncodings.label "Další kódování">
 <!ENTITY zotero.notes.separate "Upravit v samostatném okně">
+<!ENTITY zotero.pdfReader.back "Back">
+<!ENTITY zotero.pdfReader.evenSpreads "Even Spreads">
+<!ENTITY zotero.pdfReader.firstPage "First Page">
+<!ENTITY zotero.pdfReader.forward "Forward">
+<!ENTITY zotero.pdfReader.handTool "Hand Tool">
+<!ENTITY zotero.pdfReader.horizontalScrolling "Horizontal Scrolling">
+<!ENTITY zotero.pdfReader.lastPage "Last Page">
+<!ENTITY zotero.pdfReader.noSpreads "No Spreads">
+<!ENTITY zotero.pdfReader.oddSpreads "Odd Spreads">
+<!ENTITY zotero.pdfReader.rotatePage180 "Rotate Page 180°">
+<!ENTITY zotero.pdfReader.rotatePageLeft "Rotate Page Left">
+<!ENTITY zotero.pdfReader.rotatePageRight "Rotate Page Right">
+<!ENTITY zotero.pdfReader.splitHorizontally "Split Horizontally">
+<!ENTITY zotero.pdfReader.splitVertically "Split Vertically">
+<!ENTITY zotero.pdfReader.transferFromPDF "Import Annotations…">
+<!ENTITY zotero.pdfReader.verticalScrolling "Vertical Scrolling">
+<!ENTITY zotero.pdfReader.wrappedScrolling "Wrapped Scrolling">
+<!ENTITY zotero.pdfReader.zoomAuto "Automatically Resize">
+<!ENTITY zotero.pdfReader.zoomIn "Zoom In">
+<!ENTITY zotero.pdfReader.zoomOut "Zoom Out">
+<!ENTITY zotero.pdfReader.zoomPageHeight "Zoom to Page Height">
+<!ENTITY zotero.pdfReader.zoomPageWidth "Zoom to Page Width">
 <!ENTITY zotero.progress.title "Postup">
 <!ENTITY zotero.proxy.recognized.disable.label "Nepřesměrovávat požadavky skrze dříve rozpoznané proxy servery">
 <!ENTITY zotero.proxy.recognized.ignore.label "Ignorovat">
@@ -301,6 +332,8 @@
 <!ENTITY zotero.toolbar.attachment.weblink "Uložit odkaz na aktuální stránku">
 <!ENTITY zotero.toolbar.cancelDuplicatesView.label "Cancel duplicates view">
 <!ENTITY zotero.toolbar.cancelOrphansView.label "Cancel orphans view">
+<!ENTITY zotero.toolbar.context.item "Item">
+<!ENTITY zotero.toolbar.context.notes "Notes">
 <!ENTITY zotero.toolbar.duplicate.label "Ukázat duplikáty">
 <!ENTITY zotero.toolbar.duplicatesView.label "Duplicates view">
 <!ENTITY zotero.toolbar.emptyTrash.label "Vysypat koš">

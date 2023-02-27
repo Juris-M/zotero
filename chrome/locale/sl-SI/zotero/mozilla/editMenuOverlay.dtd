@@ -1,35 +1,31 @@
-<!-- This Source Code Form is subject to the terms of the Mozilla Public
-   - License, v. 2.0. If a copy of the MPL was not distributed with this
-   - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
-
-<!ENTITY editMenu.label            "Urejanje">
-<!ENTITY editMenu.accesskey        "e">
-<!ENTITY undoCmd.label             "Razveljavi">
-<!ENTITY undoCmd.key               "Z">
-<!ENTITY undoCmd.accesskey         "z">
-<!ENTITY redoCmd.label             "Ponovi">
-<!ENTITY redoCmd.key               "Y">
-<!ENTITY redoCmd.accesskey         "o">
-<!ENTITY cutCmd.label              "Izreži">
-<!ENTITY cutCmd.key                "X">
-<!ENTITY cutCmd.accesskey          "z">
-<!ENTITY copyCmd.label             "Kopiraj">
-<!ENTITY copyCmd.key               "C">
-<!ENTITY copyCmd.accesskey         "k">
-<!ENTITY pasteCmd.label            "Prilepi">
-<!ENTITY pasteCmd.key              "V">
-<!ENTITY pasteCmd.accesskey        "p">
-<!ENTITY deleteCmd.label           "Izbriši">
-<!ENTITY deleteCmd.accesskey       "b">
-<!ENTITY selectAllCmd.label        "Izberi vse">
-<!ENTITY selectAllCmd.key          "A">
-<!ENTITY selectAllCmd.accesskey    "v">
-<!ENTITY findCmd.label             "Najdi">
-<!ENTITY findCmd.key               "F">
-<!ENTITY findCmd.accesskey         "N">
-<!ENTITY findAgainCmd.label        "Ponovno najdi">
-<!ENTITY findAgainCmd.key          "G">
-<!ENTITY findAgainCmd.key2         "VK_F3">
-<!ENTITY findAgainCmd.accesskey    "v">
-<!ENTITY findPreviousCmd.label     "Najdi prejšnje">
+<!ENTITY copyCmd.accesskey "k">
+<!ENTITY copyCmd.key "C">
+<!ENTITY copyCmd.label "Kopiraj">
+<!ENTITY cutCmd.accesskey "z">
+<!ENTITY cutCmd.key "X">
+<!ENTITY cutCmd.label "Izreži">
+<!ENTITY deleteCmd.accesskey "b">
+<!ENTITY deleteCmd.label "Izbriši">
+<!ENTITY editMenu.accesskey "e">
+<!ENTITY editMenu.label "Urejanje">
+<!ENTITY findAgainCmd.accesskey "v">
+<!ENTITY findAgainCmd.key "G">
+<!ENTITY findAgainCmd.key2 "VK_F3">
+<!ENTITY findAgainCmd.label "Ponovno najdi">
+<!ENTITY findCmd.accesskey "N">
+<!ENTITY findCmd.key "F">
+<!ENTITY findCmd.label "Najdi">
 <!ENTITY findPreviousCmd.accesskey "p">
+<!ENTITY findPreviousCmd.label "Najdi prejšnje">
+<!ENTITY pasteCmd.accesskey "p">
+<!ENTITY pasteCmd.key "V">
+<!ENTITY pasteCmd.label "Prilepi">
+<!ENTITY redoCmd.accesskey "o">
+<!ENTITY redoCmd.key "Y">
+<!ENTITY redoCmd.label "Ponovi">
+<!ENTITY selectAllCmd.accesskey "v">
+<!ENTITY selectAllCmd.key "A">
+<!ENTITY selectAllCmd.label "Izberi vse">
+<!ENTITY undoCmd.accesskey "z">
+<!ENTITY undoCmd.key "Z">
+<!ENTITY undoCmd.label "Razveljavi">

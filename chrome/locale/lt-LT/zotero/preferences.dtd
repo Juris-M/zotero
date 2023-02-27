@@ -72,6 +72,7 @@
 <!ENTITY zotero.preferences.fulltext.pdfMaxPages "Didžiausias puslapių kiekis, kurį indeksuoti viename faile:">
 <!ENTITY zotero.preferences.fulltext.textMaxLength "Didžiausias rašmenų kiekis, kurį indeksuoti viename faile:">
 <!ENTITY zotero.preferences.groups "Grupės">
+<!ENTITY zotero.preferences.groups.annotations "annotations">
 <!ENTITY zotero.preferences.groups.childFiles "įrašams priklausančias tinklalapių momentines kopijas ir importuotus failus">
 <!ENTITY zotero.preferences.groups.childLinks "įrašams priklausančias nuorodas">
 <!ENTITY zotero.preferences.groups.childNotes "įrašams priklausančias pastabas">
@@ -181,9 +182,11 @@
 <!ENTITY zotero.preferences.quickCopy.defaultFormat "Numatytasis formatas:">
 <!ENTITY zotero.preferences.quickCopy.defaultOutputFormat "Numatytasis išvedimo formatas:">
 <!ENTITY zotero.preferences.quickCopy.dragLimit "Neleisti greitai kopijuoti, jei tempiama daugiau kaip">
+<!ENTITY zotero.preferences.quickCopy.itemFormat "Item Format:">
 <!ENTITY zotero.preferences.quickCopy.linkCitationFormReverse "Use citation form as default">
 <!ENTITY zotero.preferences.quickCopy.linkOption "Include Juris-M link wrappers in QuickCopy citations">
 <!ENTITY zotero.preferences.quickCopy.macWarning "Pastaba: raiškiojo teksto formatavimas nebus išlaikomas Mac OS X sistemoje.">
+<!ENTITY zotero.preferences.quickCopy.noteFormat "Note Format:">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.domainPath "Sritis/kelias">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.domainPath.example "(pvz., wikipedia.org)">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.format "Formatas">

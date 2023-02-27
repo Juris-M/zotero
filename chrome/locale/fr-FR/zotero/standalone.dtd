@@ -17,6 +17,7 @@
 <!ENTITY copyCmd.accesskey "p">
 <!ENTITY copyCmd.key "C">
 <!ENTITY copyCmd.label "Copier">
+<!ENTITY copyNoteCmd.label "Copy Note">
 <!ENTITY cutCmd.accesskey "C">
 <!ENTITY cutCmd.key "X">
 <!ENTITY cutCmd.label "Couper">
@@ -62,6 +63,7 @@
 <!ENTITY fullZoomResetCmd.label "Reset">
 <!ENTITY fullZoomToggleCmd.accesskey "T">
 <!ENTITY fullZoomToggleCmd.label "Zoom Text Only">
+<!ENTITY goMenu.label "Go">
 <!ENTITY helpCheckForUpdates.accesskey "V">
 <!ENTITY helpCheckForUpdates.label "Vérifier les mises à jour…">
 <!ENTITY helpFeedbackPage.accesskey "F">
@@ -132,6 +134,7 @@
 <!ENTITY undoCmd.accesskey "u">
 <!ENTITY undoCmd.key "Z">
 <!ENTITY undoCmd.label "Annuler">
+<!ENTITY viewMenu.accesskey "V">
 <!ENTITY viewMenu.label "Affichage">
 <!ENTITY windowMenu.label "Fenêtre">
 <!ENTITY zoomWindow.label "Zoom">

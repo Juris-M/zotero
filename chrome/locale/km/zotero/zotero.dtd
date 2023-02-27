@@ -34,6 +34,11 @@
 <!ENTITY zotero.citation.suppressTrailingPunctuation.label "Suppress Trailing Punctuation">
 <!ENTITY zotero.collections.showRetractedItems "Show Retracted Items">
 <!ENTITY zotero.collections.showUnfiledItems "បង្ហាញឯកសារមិនទាន់បានតម្កល់ទុក">
+<!ENTITY zotero.context.addChildNote "Add Item Note">
+<!ENTITY zotero.context.addChildNoteFromAnnotations "Add Item Note from Annotations">
+<!ENTITY zotero.context.addStandaloneNote "Add Standalone Note">
+<!ENTITY zotero.context.addStandaloneNoteFromAnnotations "Add Standalone Note from Annotations">
+<!ENTITY zotero.context.editInWindow "Edit in a Separate Window">
 <!ENTITY zotero.contextMenu.addTextToCurrentNote "បន្ថែមជម្រើសទៅកាន់កំណត់ចំណាំហ្ស៊ូតេរ៉ូ">
 <!ENTITY zotero.contextMenu.addTextToNewNote "បង្កើតបញ្ជីឯកសារហ្ស៊ូតេរ៉ូ និង កំណត់ចំណាំចេញពីជម្រើស">
 <!ENTITY zotero.contextMenu.saveImageAsItem "ទាញរក្សារូបភាពទុកជាឯកសារហ្ស៊ូតេរ៉ូ">
@@ -79,6 +84,8 @@
 <!ENTITY zotero.general.loading "Loading…">
 <!ENTITY zotero.general.minimize "Minimize">
 <!ENTITY zotero.general.more "More">
+<!ENTITY zotero.general.moreInformation "More Information">
+<!ENTITY zotero.general.moveToTrash "Move to Trash">
 <!ENTITY zotero.general.no "No">
 <!ENTITY zotero.general.note "កំណត់ចំណាំ:">
 <!ENTITY zotero.general.ok "OK">
@@ -98,6 +105,8 @@
 <!ENTITY zotero.import.fileHandling "File Handling">
 <!ENTITY zotero.import.importing "Importing…">
 <!ENTITY zotero.import.lastModified "Last Modified">
+<!ENTITY zotero.import.online.newItemsOnly "Download new items only; don’t update previously imported items">
+<!ENTITY zotero.import.online.relinkOnly "Relink Mendeley Desktop citations">
 <!ENTITY zotero.import.size "Size">
 <!ENTITY zotero.import.source.file "A file (BibTeX, RIS, Jurism RDF, etc.)">
 <!ENTITY zotero.import.whereToImportFrom "Where do you want to import from?">
@@ -212,6 +221,28 @@
 <!ENTITY zotero.merge.title "Conflict Resolution">
 <!ENTITY zotero.moreEncodings.label "បញ្ចូលកូដបន្ថែម">
 <!ENTITY zotero.notes.separate "កែតម្រូវនៅក្នុងវីនដូយ៍ដោយឡែក">
+<!ENTITY zotero.pdfReader.back "Back">
+<!ENTITY zotero.pdfReader.evenSpreads "Even Spreads">
+<!ENTITY zotero.pdfReader.firstPage "First Page">
+<!ENTITY zotero.pdfReader.forward "Forward">
+<!ENTITY zotero.pdfReader.handTool "Hand Tool">
+<!ENTITY zotero.pdfReader.horizontalScrolling "Horizontal Scrolling">
+<!ENTITY zotero.pdfReader.lastPage "Last Page">
+<!ENTITY zotero.pdfReader.noSpreads "No Spreads">
+<!ENTITY zotero.pdfReader.oddSpreads "Odd Spreads">
+<!ENTITY zotero.pdfReader.rotatePage180 "Rotate Page 180°">
+<!ENTITY zotero.pdfReader.rotatePageLeft "Rotate Page Left">
+<!ENTITY zotero.pdfReader.rotatePageRight "Rotate Page Right">
+<!ENTITY zotero.pdfReader.splitHorizontally "Split Horizontally">
+<!ENTITY zotero.pdfReader.splitVertically "Split Vertically">
+<!ENTITY zotero.pdfReader.transferFromPDF "Import Annotations…">
+<!ENTITY zotero.pdfReader.verticalScrolling "Vertical Scrolling">
+<!ENTITY zotero.pdfReader.wrappedScrolling "Wrapped Scrolling">
+<!ENTITY zotero.pdfReader.zoomAuto "Automatically Resize">
+<!ENTITY zotero.pdfReader.zoomIn "Zoom In">
+<!ENTITY zotero.pdfReader.zoomOut "Zoom Out">
+<!ENTITY zotero.pdfReader.zoomPageHeight "Zoom to Page Height">
+<!ENTITY zotero.pdfReader.zoomPageWidth "Zoom to Page Width">
 <!ENTITY zotero.progress.title "កំពុងដំណើរ">
 <!ENTITY zotero.proxy.recognized.disable.label "កុំប្តូរទិសសំណើដោយស្វ័យប្រវត្តិតាមរយៈសិទិ្ធប្រទានដែលបានស្គាល់ពីមុន">
 <!ENTITY zotero.proxy.recognized.ignore.label "មិនអើពើ">
@@ -301,6 +332,8 @@
 <!ENTITY zotero.toolbar.attachment.weblink "ទាញរក្សាទុកកម្ជាប់គេហទំព័រនេះ">
 <!ENTITY zotero.toolbar.cancelDuplicatesView.label "Cancel duplicates view">
 <!ENTITY zotero.toolbar.cancelOrphansView.label "Cancel orphans view">
+<!ENTITY zotero.toolbar.context.item "Item">
+<!ENTITY zotero.toolbar.context.notes "Notes">
 <!ENTITY zotero.toolbar.duplicate.label "បង្ហាញឯកសារត្រួត">
 <!ENTITY zotero.toolbar.duplicatesView.label "Duplicates view">
 <!ENTITY zotero.toolbar.emptyTrash.label "សម្អាតធុងសំរាម">

@@ -1,5 +1,4 @@
 <!ENTITY styles.preview "Sitaattityylin esikatselu">
-
 <!ENTITY styles.preview.citationFormat "Sitaatin muoto:">
 <!ENTITY styles.preview.citationFormat.all "kaikki">
 <!ENTITY styles.preview.citationFormat.author "tekijä">

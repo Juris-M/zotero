@@ -17,6 +17,7 @@
 <!ENTITY copyCmd.accesskey "K">
 <!ENTITY copyCmd.key "C">
 <!ENTITY copyCmd.label "Kopijuoti">
+<!ENTITY copyNoteCmd.label "Copy Note">
 <!ENTITY cutCmd.accesskey "r">
 <!ENTITY cutCmd.key "X">
 <!ENTITY cutCmd.label "Iškirpti">
@@ -62,6 +63,7 @@
 <!ENTITY fullZoomResetCmd.label "Reset">
 <!ENTITY fullZoomToggleCmd.accesskey "T">
 <!ENTITY fullZoomToggleCmd.label "Zoom Text Only">
+<!ENTITY goMenu.label "Go">
 <!ENTITY helpCheckForUpdates.accesskey "T">
 <!ENTITY helpCheckForUpdates.label "Tikrinti, ar yra atnaujinimų...">
 <!ENTITY helpFeedbackPage.accesskey "F">
@@ -132,6 +134,7 @@
 <!ENTITY undoCmd.accesskey "A">
 <!ENTITY undoCmd.key "Z">
 <!ENTITY undoCmd.label "Atšaukti">
+<!ENTITY viewMenu.accesskey "V">
 <!ENTITY viewMenu.label "Rodymas">
 <!ENTITY windowMenu.label "Langas">
 <!ENTITY zoomWindow.label "Mastelis">

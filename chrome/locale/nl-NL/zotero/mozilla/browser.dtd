@@ -1,4 +1,4 @@
-﻿<!ENTITY preferencesCmd2.label       "Opties">
-<!ENTITY preferencesCmd2.accesskey     "O"> 
-<!ENTITY preferencesCmdUnix.label       "Voorkeuren">
-<!ENTITY preferencesCmdUnix.accesskey     "V">
+<!ENTITY preferencesCmd2.accesskey "O">
+<!ENTITY preferencesCmd2.label "Opties">
+<!ENTITY preferencesCmdUnix.accesskey "V">
+<!ENTITY preferencesCmdUnix.label "Voorkeuren">

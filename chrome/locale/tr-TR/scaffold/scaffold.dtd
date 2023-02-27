@@ -3,6 +3,13 @@
 <!ENTITY scaffold.load.label.label "Label">
 <!ENTITY scaffold.load.title "Load Translator">
 <!ENTITY scaffold.menu.help "Help">
+<!ENTITY scaffold.menu.linter "Linter">
+<!ENTITY scaffold.menu.new "New Translator">
+<!ENTITY scaffold.menu.open "Open…">
+<!ENTITY scaffold.menu.runDetect "Run detect*">
+<!ENTITY scaffold.menu.runDo "Run Selected Tests or do*">
+<!ENTITY scaffold.menu.setTranslatorsDirectory "Set Translators Directory…">
+<!ENTITY scaffold.menu.template "Insert Template">
 <!ENTITY scaffold.metadata.browserSupport.bookmarklet "Bookmarklet">
 <!ENTITY scaffold.metadata.browserSupport.chrome "Chrome">
 <!ENTITY scaffold.metadata.browserSupport.gecko "Gecko (Firefox)">
@@ -38,25 +45,35 @@
 <!ENTITY scaffold.tabs.tests.label "Tests">
 <!ENTITY scaffold.testFrame.label "Test Frame:">
 <!ENTITY scaffold.testing.copyToClipboard "Copy to Clipboard">
+<!ENTITY scaffold.testing.create.import "Create Import Test">
+<!ENTITY scaffold.testing.create.search "Create Search Test">
+<!ENTITY scaffold.testing.create.web "Create Web Test">
+<!ENTITY scaffold.testing.defer.label "Defer">
 <!ENTITY scaffold.testing.delete "Delete">
 <!ENTITY scaffold.testing.description "Select a test to run">
+<!ENTITY scaffold.testing.edit "Edit Input">
 <!ENTITY scaffold.testing.edit.import "Edit Import">
 <!ENTITY scaffold.testing.input.label "Input">
 <!ENTITY scaffold.testing.new "New Web">
 <!ENTITY scaffold.testing.new.import "New Import">
 <!ENTITY scaffold.testing.openUrl "Open URL">
+<!ENTITY scaffold.testing.openUrl.externally "In External Browser">
+<!ENTITY scaffold.testing.openUrl.internally "In Browser Tab">
 <!ENTITY scaffold.testing.populate "Populate">
 <!ENTITY scaffold.testing.run "Run">
 <!ENTITY scaffold.testing.save "Save">
 <!ENTITY scaffold.testing.status.label "Status">
 <!ENTITY scaffold.testing.update "Update">
+<!ENTITY scaffold.toolbar.detect.label "Run detect*">
 <!ENTITY scaffold.toolbar.detectImport.label "Run detectImport">
 <!ENTITY scaffold.toolbar.detectWeb.label "Run detectWeb">
+<!ENTITY scaffold.toolbar.do.label "Run do*">
 <!ENTITY scaffold.toolbar.doImport.label "Run doImport">
 <!ENTITY scaffold.toolbar.doWeb.label "Run doWeb">
 <!ENTITY scaffold.toolbar.export.label "Export">
 <!ENTITY scaffold.toolbar.help.shortcuts "Keyboard Shortcuts">
 <!ENTITY scaffold.toolbar.load.label "Load">
+<!ENTITY scaffold.toolbar.new.label "New Translator">
 <!ENTITY scaffold.toolbar.save.label "Save">
 <!ENTITY scaffold.toolbar.saveToZotero.label "Save to Zotero">
 <!ENTITY scaffold.toolbar.setTranslatorsDir.label "Set translators directory">

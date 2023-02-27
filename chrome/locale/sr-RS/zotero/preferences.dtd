@@ -72,6 +72,7 @@
 <!ENTITY zotero.preferences.fulltext.pdfMaxPages "Број страница индексираних по датотеци:">
 <!ENTITY zotero.preferences.fulltext.textMaxLength "Број знакова индексираних по датотеци:">
 <!ENTITY zotero.preferences.groups "Групе">
+<!ENTITY zotero.preferences.groups.annotations "annotations">
 <!ENTITY zotero.preferences.groups.childFiles "приложене фотке и увезене датотеке">
 <!ENTITY zotero.preferences.groups.childLinks "приложене везе">
 <!ENTITY zotero.preferences.groups.childNotes "подбелешке">
@@ -181,9 +182,11 @@
 <!ENTITY zotero.preferences.quickCopy.defaultFormat "Подразумевани формат:">
 <!ENTITY zotero.preferences.quickCopy.defaultOutputFormat "Подразумевани излазни формат:">
 <!ENTITY zotero.preferences.quickCopy.dragLimit "Онемогући Брзо копирање када се превуче више од">
+<!ENTITY zotero.preferences.quickCopy.itemFormat "Item Format:">
 <!ENTITY zotero.preferences.quickCopy.linkCitationFormReverse "Use citation form as default">
 <!ENTITY zotero.preferences.quickCopy.linkOption "Include Juris-M link wrappers in QuickCopy citations">
 <!ENTITY zotero.preferences.quickCopy.macWarning "Белешка: Rich-text формат ће бити изгубљен на Mac OS X.">
+<!ENTITY zotero.preferences.quickCopy.noteFormat "Note Format:">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.domainPath "Домен/путања">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.domainPath.example "(нпр. wikipedia.rs)">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.format "Формат">

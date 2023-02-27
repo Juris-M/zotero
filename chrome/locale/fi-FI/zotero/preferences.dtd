@@ -72,6 +72,7 @@
 <!ENTITY zotero.preferences.fulltext.pdfMaxPages "Indeksoitavien sivujen enimmäismäärä tiedostoa kohden:">
 <!ENTITY zotero.preferences.fulltext.textMaxLength "Indeksoitavien merkkien enimmäismäärä tiedostoa kohden:">
 <!ENTITY zotero.preferences.groups "Ryhmät">
+<!ENTITY zotero.preferences.groups.annotations "annotations">
 <!ENTITY zotero.preferences.groups.childFiles "niiden alaiset tilannekuvat ja tuodut tiedostot">
 <!ENTITY zotero.preferences.groups.childLinks "niiden alaiset linkit">
 <!ENTITY zotero.preferences.groups.childNotes "niiden alaiset muistiinpanot">
@@ -181,9 +182,11 @@
 <!ENTITY zotero.preferences.quickCopy.defaultFormat "Oletusmuoto:">
 <!ENTITY zotero.preferences.quickCopy.defaultOutputFormat "Oletusarvoinen kohdemuoto:">
 <!ENTITY zotero.preferences.quickCopy.dragLimit "Estä pikakopiointi raahattaessa yli ">
+<!ENTITY zotero.preferences.quickCopy.itemFormat "Item Format:">
 <!ENTITY zotero.preferences.quickCopy.linkCitationFormReverse "Use citation form as default">
 <!ENTITY zotero.preferences.quickCopy.linkOption "Include Juris-M link wrappers in QuickCopy citations">
 <!ENTITY zotero.preferences.quickCopy.macWarning "Huom.: Rikastetun tekstin muotoilut menetetään Mac OS X:llä.">
+<!ENTITY zotero.preferences.quickCopy.noteFormat "Note Format:">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.domainPath "Verkkotunnus/polku">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.domainPath.example "(esim. wikipedia.org)">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.format "Format">

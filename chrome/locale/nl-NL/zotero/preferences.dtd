@@ -72,6 +72,7 @@
 <!ENTITY zotero.preferences.fulltext.pdfMaxPages "Maximaal aantal pagina's dat per bestand wordt geïndexeerd:">
 <!ENTITY zotero.preferences.fulltext.textMaxLength "Maximaal aantal tekens dat per bestand wordt geïndexeerd:">
 <!ENTITY zotero.preferences.groups "Groepen">
+<!ENTITY zotero.preferences.groups.annotations "annotations">
 <!ENTITY zotero.preferences.groups.childFiles "bijbehorende snapshots en geïmporteerde bestanden">
 <!ENTITY zotero.preferences.groups.childLinks "bijbehorende koppelingen">
 <!ENTITY zotero.preferences.groups.childNotes "bijbehorende aantekeningen">
@@ -181,9 +182,11 @@
 <!ENTITY zotero.preferences.quickCopy.defaultFormat "Standaardformaat:">
 <!ENTITY zotero.preferences.quickCopy.defaultOutputFormat "Standaard uitvoerformaat:">
 <!ENTITY zotero.preferences.quickCopy.dragLimit "Snelle kopie uitzetten bij het verslepen van meer dan">
+<!ENTITY zotero.preferences.quickCopy.itemFormat "Item Format:">
 <!ENTITY zotero.preferences.quickCopy.linkCitationFormReverse "Use citation form as default">
 <!ENTITY zotero.preferences.quickCopy.linkOption "Include Juris-M link wrappers in QuickCopy citations">
 <!ENTITY zotero.preferences.quickCopy.macWarning "Let op: uitgebreide tekstopmaak gaat verloren onder Mac OS X.">
+<!ENTITY zotero.preferences.quickCopy.noteFormat "Note Format:">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.domainPath "Domein/Pad">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.domainPath.example "(bv. wikipedia.org)">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.format "Formaat">

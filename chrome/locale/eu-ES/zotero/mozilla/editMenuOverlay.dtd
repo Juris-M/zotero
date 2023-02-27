@@ -1,35 +1,31 @@
-<!-- This Source Code Form is subject to the terms of the Mozilla Public
-   - License, v. 2.0. If a copy of the MPL was not distributed with this
-   - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
-
-<!ENTITY editMenu.label            "Editatu">
-<!ENTITY editMenu.accesskey        "E">
-<!ENTITY undoCmd.label             "Desegin">
-<!ENTITY undoCmd.key               "Z">
-<!ENTITY undoCmd.accesskey         "D">
-<!ENTITY redoCmd.label             "Berregin">
-<!ENTITY redoCmd.key               "Y">
-<!ENTITY redoCmd.accesskey         "r">
-<!ENTITY cutCmd.label              "Ebaki">
-<!ENTITY cutCmd.key                "X">
-<!ENTITY cutCmd.accesskey          "E">
-<!ENTITY copyCmd.label             "Kopiatu">
-<!ENTITY copyCmd.key               "C">
-<!ENTITY copyCmd.accesskey         "K">
-<!ENTITY pasteCmd.label            "Itsatsi">
-<!ENTITY pasteCmd.key              "V">
-<!ENTITY pasteCmd.accesskey        "I">
-<!ENTITY deleteCmd.label           "Ezabatu">
-<!ENTITY deleteCmd.accesskey       "E">
-<!ENTITY selectAllCmd.label        "Hautatu dena">
-<!ENTITY selectAllCmd.key          "A">
-<!ENTITY selectAllCmd.accesskey    "a">
-<!ENTITY findCmd.label             "Bilatu">
-<!ENTITY findCmd.key               "F">
-<!ENTITY findCmd.accesskey         "B">
-<!ENTITY findAgainCmd.label        "Bilatu berriro">
-<!ENTITY findAgainCmd.key          "G">
-<!ENTITY findAgainCmd.key2         "VK_F3">
-<!ENTITY findAgainCmd.accesskey    "r">
-<!ENTITY findPreviousCmd.label     "Bilatu aurrekoa">
+<!ENTITY copyCmd.accesskey "K">
+<!ENTITY copyCmd.key "C">
+<!ENTITY copyCmd.label "Kopiatu">
+<!ENTITY cutCmd.accesskey "E">
+<!ENTITY cutCmd.key "X">
+<!ENTITY cutCmd.label "Ebaki">
+<!ENTITY deleteCmd.accesskey "E">
+<!ENTITY deleteCmd.label "Ezabatu">
+<!ENTITY editMenu.accesskey "E">
+<!ENTITY editMenu.label "Editatu">
+<!ENTITY findAgainCmd.accesskey "r">
+<!ENTITY findAgainCmd.key "G">
+<!ENTITY findAgainCmd.key2 "VK_F3">
+<!ENTITY findAgainCmd.label "Bilatu berriro">
+<!ENTITY findCmd.accesskey "B">
+<!ENTITY findCmd.key "F">
+<!ENTITY findCmd.label "Bilatu">
 <!ENTITY findPreviousCmd.accesskey "a">
+<!ENTITY findPreviousCmd.label "Bilatu aurrekoa">
+<!ENTITY pasteCmd.accesskey "I">
+<!ENTITY pasteCmd.key "V">
+<!ENTITY pasteCmd.label "Itsatsi">
+<!ENTITY redoCmd.accesskey "r">
+<!ENTITY redoCmd.key "Y">
+<!ENTITY redoCmd.label "Berregin">
+<!ENTITY selectAllCmd.accesskey "a">
+<!ENTITY selectAllCmd.key "A">
+<!ENTITY selectAllCmd.label "Hautatu dena">
+<!ENTITY undoCmd.accesskey "D">
+<!ENTITY undoCmd.key "Z">
+<!ENTITY undoCmd.label "Desegin">

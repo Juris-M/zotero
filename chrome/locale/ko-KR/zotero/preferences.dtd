@@ -72,6 +72,7 @@
 <!ENTITY zotero.preferences.fulltext.pdfMaxPages "파일당 색인의 최대 페이지수:">
 <!ENTITY zotero.preferences.fulltext.textMaxLength "파일당 색인의 최대 문자수:">
 <!ENTITY zotero.preferences.groups "그룹">
+<!ENTITY zotero.preferences.groups.annotations "annotations">
 <!ENTITY zotero.preferences.groups.childFiles "하위 스냅샷 및 들여온 파일들">
 <!ENTITY zotero.preferences.groups.childLinks "하위 링크들">
 <!ENTITY zotero.preferences.groups.childNotes "하위 노트들">
@@ -181,9 +182,11 @@
 <!ENTITY zotero.preferences.quickCopy.defaultFormat "기본 형식:">
 <!ENTITY zotero.preferences.quickCopy.defaultOutputFormat "기본 출력 형식:">
 <!ENTITY zotero.preferences.quickCopy.dragLimit "다음 항목 이상을 끌어넣을 경우 빠른 복사 동작 안함:">
+<!ENTITY zotero.preferences.quickCopy.itemFormat "Item Format:">
 <!ENTITY zotero.preferences.quickCopy.linkCitationFormReverse "Use citation form as default">
 <!ENTITY zotero.preferences.quickCopy.linkOption "Include Juris-M link wrappers in QuickCopy citations">
 <!ENTITY zotero.preferences.quickCopy.macWarning "주: Rich-text 형식은 Mac OS X 에서는 손실됩니다.">
+<!ENTITY zotero.preferences.quickCopy.noteFormat "Note Format:">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.domainPath "도메인/경로">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.domainPath.example "(예. wikipedia.org)">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.format "형식">

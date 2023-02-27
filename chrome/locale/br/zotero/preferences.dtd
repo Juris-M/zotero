@@ -72,6 +72,7 @@
 <!ENTITY zotero.preferences.fulltext.pdfMaxPages "Niver a bajennoù brasañ da indeksiñ dre restr:">
 <!ENTITY zotero.preferences.fulltext.textMaxLength "Niver a arouezoù brasañ da indeksiñ dre restr:">
 <!ENTITY zotero.preferences.groups "Strolladoù">
+<!ENTITY zotero.preferences.groups.annotations "annotations">
 <!ENTITY zotero.preferences.groups.childFiles "an tapadennoù-skramm ha restroù emporzhiet bugel">
 <!ENTITY zotero.preferences.groups.childLinks "liammoù bugel">
 <!ENTITY zotero.preferences.groups.childNotes "notennoù bugel">
@@ -181,9 +182,11 @@
 <!ENTITY zotero.preferences.quickCopy.defaultFormat "Stumm dre-ziouer:">
 <!ENTITY zotero.preferences.quickCopy.defaultOutputFormat "Default Output Format:">
 <!ENTITY zotero.preferences.quickCopy.dragLimit "Lazhañ an Eilañ prim pa lakaer rinklañ muioc'h evit">
+<!ENTITY zotero.preferences.quickCopy.itemFormat "Item Format:">
 <!ENTITY zotero.preferences.quickCopy.linkCitationFormReverse "Use citation form as default">
 <!ENTITY zotero.preferences.quickCopy.linkOption "Include Juris-M link wrappers in QuickCopy citations">
 <!ENTITY zotero.preferences.quickCopy.macWarning "Note: Rich-text formatting will be lost on Mac OS X.">
+<!ENTITY zotero.preferences.quickCopy.noteFormat "Note Format:">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.domainPath "Domani/Hent">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.domainPath.example "(d.sk wikipedia.org)">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.format "Stumm">

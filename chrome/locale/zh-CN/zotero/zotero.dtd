@@ -34,6 +34,11 @@
 <!ENTITY zotero.citation.suppressTrailingPunctuation.label "Suppress Trailing Punctuation">
 <!ENTITY zotero.collections.showRetractedItems "显示已撤稿的条目">
 <!ENTITY zotero.collections.showUnfiledItems "显示未分类条目">
+<!ENTITY zotero.context.addChildNote "Add Item Note">
+<!ENTITY zotero.context.addChildNoteFromAnnotations "Add Item Note from Annotations">
+<!ENTITY zotero.context.addStandaloneNote "Add Standalone Note">
+<!ENTITY zotero.context.addStandaloneNoteFromAnnotations "Add Standalone Note from Annotations">
+<!ENTITY zotero.context.editInWindow "Edit in a Separate Window">
 <!ENTITY zotero.contextMenu.addTextToCurrentNote "将所选内容添加到 Juris-M 笔记">
 <!ENTITY zotero.contextMenu.addTextToNewNote "由所选内容创建 Juris-M 条目及笔记">
 <!ENTITY zotero.contextMenu.saveImageAsItem "将图片保存为 Juris-M 条目">
@@ -79,6 +84,8 @@
 <!ENTITY zotero.general.loading "加载…">
 <!ENTITY zotero.general.minimize "最小化">
 <!ENTITY zotero.general.more "更多">
+<!ENTITY zotero.general.moreInformation "More Information">
+<!ENTITY zotero.general.moveToTrash "Move to Trash">
 <!ENTITY zotero.general.no "否">
 <!ENTITY zotero.general.note "笔记:">
 <!ENTITY zotero.general.ok "确定">
@@ -98,6 +105,8 @@
 <!ENTITY zotero.import.fileHandling "处理文件">
 <!ENTITY zotero.import.importing "导入…">
 <!ENTITY zotero.import.lastModified "上一次更改">
+<!ENTITY zotero.import.online.newItemsOnly "Download new items only; don’t update previously imported items">
+<!ENTITY zotero.import.online.relinkOnly "Relink Mendeley Desktop citations">
 <!ENTITY zotero.import.size "大小">
 <!ENTITY zotero.import.source.file "文件（BibTeX，RIS，Jurism RDF等）">
 <!ENTITY zotero.import.whereToImportFrom "您想从哪里导入？">
@@ -212,6 +221,28 @@
 <!ENTITY zotero.merge.title "冲突解决">
 <!ENTITY zotero.moreEncodings.label "更多编码">
 <!ENTITY zotero.notes.separate "打开浮动编辑窗口">
+<!ENTITY zotero.pdfReader.back "Back">
+<!ENTITY zotero.pdfReader.evenSpreads "Even Spreads">
+<!ENTITY zotero.pdfReader.firstPage "First Page">
+<!ENTITY zotero.pdfReader.forward "Forward">
+<!ENTITY zotero.pdfReader.handTool "Hand Tool">
+<!ENTITY zotero.pdfReader.horizontalScrolling "Horizontal Scrolling">
+<!ENTITY zotero.pdfReader.lastPage "Last Page">
+<!ENTITY zotero.pdfReader.noSpreads "No Spreads">
+<!ENTITY zotero.pdfReader.oddSpreads "Odd Spreads">
+<!ENTITY zotero.pdfReader.rotatePage180 "Rotate Page 180°">
+<!ENTITY zotero.pdfReader.rotatePageLeft "Rotate Page Left">
+<!ENTITY zotero.pdfReader.rotatePageRight "Rotate Page Right">
+<!ENTITY zotero.pdfReader.splitHorizontally "Split Horizontally">
+<!ENTITY zotero.pdfReader.splitVertically "Split Vertically">
+<!ENTITY zotero.pdfReader.transferFromPDF "Import Annotations…">
+<!ENTITY zotero.pdfReader.verticalScrolling "Vertical Scrolling">
+<!ENTITY zotero.pdfReader.wrappedScrolling "Wrapped Scrolling">
+<!ENTITY zotero.pdfReader.zoomAuto "Automatically Resize">
+<!ENTITY zotero.pdfReader.zoomIn "Zoom In">
+<!ENTITY zotero.pdfReader.zoomOut "Zoom Out">
+<!ENTITY zotero.pdfReader.zoomPageHeight "Zoom to Page Height">
+<!ENTITY zotero.pdfReader.zoomPageWidth "Zoom to Page Width">
 <!ENTITY zotero.progress.title "进度">
 <!ENTITY zotero.proxy.recognized.disable.label "请不要通过之前确认过的代理自动转接.">
 <!ENTITY zotero.proxy.recognized.ignore.label "忽略">
@@ -301,6 +332,8 @@
 <!ENTITY zotero.toolbar.attachment.weblink "保存当前页链接">
 <!ENTITY zotero.toolbar.cancelDuplicatesView.label "Cancel duplicates view">
 <!ENTITY zotero.toolbar.cancelOrphansView.label "Cancel orphans view">
+<!ENTITY zotero.toolbar.context.item "Item">
+<!ENTITY zotero.toolbar.context.notes "Notes">
 <!ENTITY zotero.toolbar.duplicate.label "显示重复条目">
 <!ENTITY zotero.toolbar.duplicatesView.label "Duplicates view">
 <!ENTITY zotero.toolbar.emptyTrash.label "清空回收站">

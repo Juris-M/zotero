@@ -1,35 +1,31 @@
-<!-- This Source Code Form is subject to the terms of the Mozilla Public
-   - License, v. 2.0. If a copy of the MPL was not distributed with this
-   - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
-
-<!ENTITY editMenu.label            "Düzenle">
-<!ENTITY editMenu.accesskey        "e">
-<!ENTITY undoCmd.label             "Geri al">
-<!ENTITY undoCmd.key               "z">
-<!ENTITY undoCmd.accesskey         "G">
-<!ENTITY redoCmd.label             "Yinele">
-<!ENTITY redoCmd.key               "Y">
-<!ENTITY redoCmd.accesskey         "Y">
-<!ENTITY cutCmd.label              "Kes">
-<!ENTITY cutCmd.key                "X">
-<!ENTITY cutCmd.accesskey          "K">
-<!ENTITY copyCmd.label             "Kopyala">
-<!ENTITY copyCmd.key               "C">
-<!ENTITY copyCmd.accesskey         "o">
-<!ENTITY pasteCmd.label            "Yapıştır">
-<!ENTITY pasteCmd.key              "V">
-<!ENTITY pasteCmd.accesskey        "a">
-<!ENTITY deleteCmd.label           "Sil">
-<!ENTITY deleteCmd.accesskey       "S">
-<!ENTITY selectAllCmd.label        "Tümünü seç">
-<!ENTITY selectAllCmd.key          "A">
-<!ENTITY selectAllCmd.accesskey    "T">
-<!ENTITY findCmd.label             "Bul">
-<!ENTITY findCmd.key               "F">
-<!ENTITY findCmd.accesskey         "B">
-<!ENTITY findAgainCmd.label        "Sonrakini bul">
-<!ENTITY findAgainCmd.key          "G">
-<!ENTITY findAgainCmd.key2         "VK_F3">
-<!ENTITY findAgainCmd.accesskey    "n">
-<!ENTITY findPreviousCmd.label     "Öncekini bul">
+<!ENTITY copyCmd.accesskey "o">
+<!ENTITY copyCmd.key "C">
+<!ENTITY copyCmd.label "Kopyala">
+<!ENTITY cutCmd.accesskey "K">
+<!ENTITY cutCmd.key "X">
+<!ENTITY cutCmd.label "Kes">
+<!ENTITY deleteCmd.accesskey "S">
+<!ENTITY deleteCmd.label "Sil">
+<!ENTITY editMenu.accesskey "e">
+<!ENTITY editMenu.label "Düzenle">
+<!ENTITY findAgainCmd.accesskey "n">
+<!ENTITY findAgainCmd.key "G">
+<!ENTITY findAgainCmd.key2 "VK_F3">
+<!ENTITY findAgainCmd.label "Sonrakini bul">
+<!ENTITY findCmd.accesskey "B">
+<!ENTITY findCmd.key "F">
+<!ENTITY findCmd.label "Bul">
 <!ENTITY findPreviousCmd.accesskey "n">
+<!ENTITY findPreviousCmd.label "Öncekini bul">
+<!ENTITY pasteCmd.accesskey "a">
+<!ENTITY pasteCmd.key "V">
+<!ENTITY pasteCmd.label "Yapıştır">
+<!ENTITY redoCmd.accesskey "Y">
+<!ENTITY redoCmd.key "Y">
+<!ENTITY redoCmd.label "Yinele">
+<!ENTITY selectAllCmd.accesskey "T">
+<!ENTITY selectAllCmd.key "A">
+<!ENTITY selectAllCmd.label "Tümünü seç">
+<!ENTITY undoCmd.accesskey "G">
+<!ENTITY undoCmd.key "z">
+<!ENTITY undoCmd.label "Geri al">

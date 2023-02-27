@@ -1,35 +1,31 @@
-<!-- This Source Code Form is subject to the terms of the Mozilla Public
-   - License, v. 2.0. If a copy of the MPL was not distributed with this
-   - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
-
-<!ENTITY editMenu.label            "Уређивање">
-<!ENTITY editMenu.accesskey        "У">
-<!ENTITY undoCmd.label             "Опозови">
-<!ENTITY undoCmd.key               "Z">
-<!ENTITY undoCmd.accesskey         "О">
-<!ENTITY redoCmd.label             "Понови">
-<!ENTITY redoCmd.key               "Y">
-<!ENTITY redoCmd.accesskey         "П">
-<!ENTITY cutCmd.label              "Исеци">
-<!ENTITY cutCmd.key                "X">
-<!ENTITY cutCmd.accesskey          "И">
-<!ENTITY copyCmd.label             "Копирај">
-<!ENTITY copyCmd.key               "C">
-<!ENTITY copyCmd.accesskey         "К">
-<!ENTITY pasteCmd.label            "Налепи">
-<!ENTITY pasteCmd.key              "V">
-<!ENTITY pasteCmd.accesskey        "л">
-<!ENTITY deleteCmd.label           "Уклони ставку">
-<!ENTITY deleteCmd.accesskey       "в">
-<!ENTITY selectAllCmd.label        "Изабери све">
-<!ENTITY selectAllCmd.key          "A">
-<!ENTITY selectAllCmd.accesskey    "е">
-<!ENTITY findCmd.label             "Тражење">
-<!ENTITY findCmd.key               "F">
-<!ENTITY findCmd.accesskey         "Т">
-<!ENTITY findAgainCmd.label        "Нађи поново">
-<!ENTITY findAgainCmd.key          "G">
-<!ENTITY findAgainCmd.key2         "VK_F3">
-<!ENTITY findAgainCmd.accesskey    "Н">
-<!ENTITY findPreviousCmd.label     "Нађи претходно">
+<!ENTITY copyCmd.accesskey "К">
+<!ENTITY copyCmd.key "C">
+<!ENTITY copyCmd.label "Копирај">
+<!ENTITY cutCmd.accesskey "И">
+<!ENTITY cutCmd.key "X">
+<!ENTITY cutCmd.label "Исеци">
+<!ENTITY deleteCmd.accesskey "в">
+<!ENTITY deleteCmd.label "Уклони ставку">
+<!ENTITY editMenu.accesskey "У">
+<!ENTITY editMenu.label "Уређивање">
+<!ENTITY findAgainCmd.accesskey "Н">
+<!ENTITY findAgainCmd.key "G">
+<!ENTITY findAgainCmd.key2 "VK_F3">
+<!ENTITY findAgainCmd.label "Нађи поново">
+<!ENTITY findCmd.accesskey "Т">
+<!ENTITY findCmd.key "F">
+<!ENTITY findCmd.label "Тражење">
 <!ENTITY findPreviousCmd.accesskey "п">
+<!ENTITY findPreviousCmd.label "Нађи претходно">
+<!ENTITY pasteCmd.accesskey "л">
+<!ENTITY pasteCmd.key "V">
+<!ENTITY pasteCmd.label "Налепи">
+<!ENTITY redoCmd.accesskey "П">
+<!ENTITY redoCmd.key "Y">
+<!ENTITY redoCmd.label "Понови">
+<!ENTITY selectAllCmd.accesskey "е">
+<!ENTITY selectAllCmd.key "A">
+<!ENTITY selectAllCmd.label "Изабери све">
+<!ENTITY undoCmd.accesskey "О">
+<!ENTITY undoCmd.key "Z">
+<!ENTITY undoCmd.label "Опозови">

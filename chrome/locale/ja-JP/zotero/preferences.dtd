@@ -72,6 +72,7 @@
 <!ENTITY zotero.preferences.fulltext.pdfMaxPages "各ファイル毎の索引化するページ数の上限:">
 <!ENTITY zotero.preferences.fulltext.textMaxLength "各ファイルの索引の最大字数:">
 <!ENTITY zotero.preferences.groups "グループ">
+<!ENTITY zotero.preferences.groups.annotations "annotations">
 <!ENTITY zotero.preferences.groups.childFiles "子スナップショットおよびインポートされたファイル">
 <!ENTITY zotero.preferences.groups.childLinks "子リンク">
 <!ENTITY zotero.preferences.groups.childNotes "子メモ">
@@ -181,9 +182,11 @@
 <!ENTITY zotero.preferences.quickCopy.defaultFormat "デフォルトのフォーマット:">
 <!ENTITY zotero.preferences.quickCopy.defaultOutputFormat "標準出力形式:">
 <!ENTITY zotero.preferences.quickCopy.dragLimit "アイテム数が右の値より大きい時はドラッグ時のクイックコピーを無効化する:">
+<!ENTITY zotero.preferences.quickCopy.itemFormat "Item Format:">
 <!ENTITY zotero.preferences.quickCopy.linkCitationFormReverse "Use citation form as default">
 <!ENTITY zotero.preferences.quickCopy.linkOption "Include Juris-M link wrappers in QuickCopy citations">
 <!ENTITY zotero.preferences.quickCopy.macWarning "注意: Mac OS X 上ではリッチテキスト形式の書式設定は失われます。">
+<!ENTITY zotero.preferences.quickCopy.noteFormat "Note Format:">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.domainPath "ドメイン／パス">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.domainPath.example "(例: wikipedia.org)">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.format "フォーマット">

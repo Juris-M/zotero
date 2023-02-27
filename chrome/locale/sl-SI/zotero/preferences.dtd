@@ -72,6 +72,7 @@
 <!ENTITY zotero.preferences.fulltext.pdfMaxPages "Največ strani na kazalo na datoteko:">
 <!ENTITY zotero.preferences.fulltext.textMaxLength "Največ znakov na kazalo na datoteko:">
 <!ENTITY zotero.preferences.groups "Skupine">
+<!ENTITY zotero.preferences.groups.annotations "annotations">
 <!ENTITY zotero.preferences.groups.childFiles "podrejene slike stanj in uvožene datoteke">
 <!ENTITY zotero.preferences.groups.childLinks "otroške povezave">
 <!ENTITY zotero.preferences.groups.childNotes "podrejene opombe">
@@ -181,9 +182,11 @@
 <!ENTITY zotero.preferences.quickCopy.defaultFormat "Privzeta oblika:">
 <!ENTITY zotero.preferences.quickCopy.defaultOutputFormat "Privzeta izhodna oblika:">
 <!ENTITY zotero.preferences.quickCopy.dragLimit "Onemogoči Hitro kopiranje ob vleki več kot">
+<!ENTITY zotero.preferences.quickCopy.itemFormat "Item Format:">
 <!ENTITY zotero.preferences.quickCopy.linkCitationFormReverse "Use citation form as default">
 <!ENTITY zotero.preferences.quickCopy.linkOption "Include Juris-M link wrappers in QuickCopy citations">
 <!ENTITY zotero.preferences.quickCopy.macWarning "Opomba: Oblikovanje besedila bo na Mac OS X izgubljeno.">
+<!ENTITY zotero.preferences.quickCopy.noteFormat "Note Format:">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.domainPath "Domena/pot">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.domainPath.example "(npr. wikipedia.org)">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.format "Oblika">

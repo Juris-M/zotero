@@ -34,6 +34,11 @@
 <!ENTITY zotero.citation.suppressTrailingPunctuation.label "Suppress Trailing Punctuation">
 <!ENTITY zotero.collections.showRetractedItems "Vis elementer som er trukket tilbake">
 <!ENTITY zotero.collections.showUnfiledItems "Vis ikke arkiverte elementer">
+<!ENTITY zotero.context.addChildNote "Add Item Note">
+<!ENTITY zotero.context.addChildNoteFromAnnotations "Add Item Note from Annotations">
+<!ENTITY zotero.context.addStandaloneNote "Add Standalone Note">
+<!ENTITY zotero.context.addStandaloneNoteFromAnnotations "Add Standalone Note from Annotations">
+<!ENTITY zotero.context.editInWindow "Edit in a Separate Window">
 <!ENTITY zotero.contextMenu.addTextToCurrentNote "Legg utvalg til Juris-M-notat">
 <!ENTITY zotero.contextMenu.addTextToNewNote "Lag notat og element i Juris-M fra utvalget">
 <!ENTITY zotero.contextMenu.saveImageAsItem "Lagre bilde som Juris-M-element">
@@ -79,6 +84,8 @@
 <!ENTITY zotero.general.loading "Laster inn...">
 <!ENTITY zotero.general.minimize "Minimer">
 <!ENTITY zotero.general.more "Mer">
+<!ENTITY zotero.general.moreInformation "More Information">
+<!ENTITY zotero.general.moveToTrash "Move to Trash">
 <!ENTITY zotero.general.no "Nei">
 <!ENTITY zotero.general.note "Notat:">
 <!ENTITY zotero.general.ok "OK">
@@ -98,6 +105,8 @@
 <!ENTITY zotero.import.fileHandling "Filbehandling">
 <!ENTITY zotero.import.importing "Importerer…">
 <!ENTITY zotero.import.lastModified "Sist endret">
+<!ENTITY zotero.import.online.newItemsOnly "Download new items only; don’t update previously imported items">
+<!ENTITY zotero.import.online.relinkOnly "Relink Mendeley Desktop citations">
 <!ENTITY zotero.import.size "Størrelse">
 <!ENTITY zotero.import.source.file "En fil (BibTeX, RIS, Jurism RDF, etc.)">
 <!ENTITY zotero.import.whereToImportFrom "Hvor ønsker du å importere fra?">
@@ -212,6 +221,28 @@
 <!ENTITY zotero.merge.title "Konflikthåndtering">
 <!ENTITY zotero.moreEncodings.label "Flere tegnkodinger">
 <!ENTITY zotero.notes.separate "Rediger i separat vindu">
+<!ENTITY zotero.pdfReader.back "Back">
+<!ENTITY zotero.pdfReader.evenSpreads "Even Spreads">
+<!ENTITY zotero.pdfReader.firstPage "First Page">
+<!ENTITY zotero.pdfReader.forward "Forward">
+<!ENTITY zotero.pdfReader.handTool "Hand Tool">
+<!ENTITY zotero.pdfReader.horizontalScrolling "Horizontal Scrolling">
+<!ENTITY zotero.pdfReader.lastPage "Last Page">
+<!ENTITY zotero.pdfReader.noSpreads "No Spreads">
+<!ENTITY zotero.pdfReader.oddSpreads "Odd Spreads">
+<!ENTITY zotero.pdfReader.rotatePage180 "Rotate Page 180°">
+<!ENTITY zotero.pdfReader.rotatePageLeft "Rotate Page Left">
+<!ENTITY zotero.pdfReader.rotatePageRight "Rotate Page Right">
+<!ENTITY zotero.pdfReader.splitHorizontally "Split Horizontally">
+<!ENTITY zotero.pdfReader.splitVertically "Split Vertically">
+<!ENTITY zotero.pdfReader.transferFromPDF "Import Annotations…">
+<!ENTITY zotero.pdfReader.verticalScrolling "Vertical Scrolling">
+<!ENTITY zotero.pdfReader.wrappedScrolling "Wrapped Scrolling">
+<!ENTITY zotero.pdfReader.zoomAuto "Automatically Resize">
+<!ENTITY zotero.pdfReader.zoomIn "Zoom In">
+<!ENTITY zotero.pdfReader.zoomOut "Zoom Out">
+<!ENTITY zotero.pdfReader.zoomPageHeight "Zoom to Page Height">
+<!ENTITY zotero.pdfReader.zoomPageWidth "Zoom to Page Width">
 <!ENTITY zotero.progress.title "Framgang">
 <!ENTITY zotero.proxy.recognized.disable.label "Ikke automatisk omdiriger forespørsler gjennom tidligere kjente proxier">
 <!ENTITY zotero.proxy.recognized.ignore.label "Ignorer">
@@ -301,6 +332,8 @@
 <!ENTITY zotero.toolbar.attachment.weblink "Lagre kobling til gjeldende side">
 <!ENTITY zotero.toolbar.cancelDuplicatesView.label "Cancel duplicates view">
 <!ENTITY zotero.toolbar.cancelOrphansView.label "Cancel orphans view">
+<!ENTITY zotero.toolbar.context.item "Item">
+<!ENTITY zotero.toolbar.context.notes "Notes">
 <!ENTITY zotero.toolbar.duplicate.label "Vis duplikater">
 <!ENTITY zotero.toolbar.duplicatesView.label "Duplicates view">
 <!ENTITY zotero.toolbar.emptyTrash.label "Tøm søppelkorg">

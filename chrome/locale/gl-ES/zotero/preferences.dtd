@@ -72,6 +72,7 @@
 <!ENTITY zotero.preferences.fulltext.pdfMaxPages "Número máximo de páxinas a indexar por ficheiro:">
 <!ENTITY zotero.preferences.fulltext.textMaxLength "Número máximo de caracteres a indexar por ficheiro:">
 <!ENTITY zotero.preferences.groups "Grupos">
+<!ENTITY zotero.preferences.groups.annotations "annotations">
 <!ENTITY zotero.preferences.groups.childFiles "capturas de imaxe fillas e ficheiros importados">
 <!ENTITY zotero.preferences.groups.childLinks "ligazóns fillas">
 <!ENTITY zotero.preferences.groups.childNotes "notas fillas">
@@ -181,9 +182,11 @@
 <!ENTITY zotero.preferences.quickCopy.defaultFormat "Formato predefinido:">
 <!ENTITY zotero.preferences.quickCopy.defaultOutputFormat "Formato de saída por defecto:">
 <!ENTITY zotero.preferences.quickCopy.dragLimit "Desactivar a copia rápida cando se arrastran máis de">
+<!ENTITY zotero.preferences.quickCopy.itemFormat "Item Format:">
 <!ENTITY zotero.preferences.quickCopy.linkCitationFormReverse "Use citation form as default">
 <!ENTITY zotero.preferences.quickCopy.linkOption "Include Juris-M link wrappers in QuickCopy citations">
 <!ENTITY zotero.preferences.quickCopy.macWarning "Nota: o formato de texto enriquecido perderase en Mac OS X.">
+<!ENTITY zotero.preferences.quickCopy.noteFormat "Note Format:">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.domainPath "Dominio/Ruta">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.domainPath.example "(p.ex. trasno.gal)">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.format "Formato">

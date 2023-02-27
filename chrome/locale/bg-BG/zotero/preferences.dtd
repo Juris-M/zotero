@@ -72,6 +72,7 @@
 <!ENTITY zotero.preferences.fulltext.pdfMaxPages "Максимален брой страници за индексиране на файл:">
 <!ENTITY zotero.preferences.fulltext.textMaxLength "Максимален брой символи за индексиране на файл:">
 <!ENTITY zotero.preferences.groups "Групи">
+<!ENTITY zotero.preferences.groups.annotations "annotations">
 <!ENTITY zotero.preferences.groups.childFiles "Дъщерни &quot;моментни снимки&quot; и внесени файлове">
 <!ENTITY zotero.preferences.groups.childLinks "Дъщерни връзки">
 <!ENTITY zotero.preferences.groups.childNotes "Дъщерни бележки">
@@ -181,9 +182,11 @@
 <!ENTITY zotero.preferences.quickCopy.defaultFormat "Формат по подразбиране:">
 <!ENTITY zotero.preferences.quickCopy.defaultOutputFormat "Изходящ формат по подразбиране:">
 <!ENTITY zotero.preferences.quickCopy.dragLimit "Изключване на бързото копиране при влачене на повече от">
+<!ENTITY zotero.preferences.quickCopy.itemFormat "Item Format:">
 <!ENTITY zotero.preferences.quickCopy.linkCitationFormReverse "Use citation form as default">
 <!ENTITY zotero.preferences.quickCopy.linkOption "Include Juris-M link wrappers in QuickCopy citations">
 <!ENTITY zotero.preferences.quickCopy.macWarning "Внимание: Богатото форматиране на текста ще бъде загубен при Mac OS X.">
+<!ENTITY zotero.preferences.quickCopy.noteFormat "Note Format:">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.domainPath "Домейн/Пътека">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.domainPath.example "(напр. wikipedia.org)">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.format "Формат">

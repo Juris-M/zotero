@@ -72,6 +72,7 @@
 <!ENTITY zotero.preferences.fulltext.pdfMaxPages "Máximo de páginas a indexar por arquivo:">
 <!ENTITY zotero.preferences.fulltext.textMaxLength "Máximo de caracteres a indexar por arquivo:">
 <!ENTITY zotero.preferences.groups "Grupos">
+<!ENTITY zotero.preferences.groups.annotations "annotations">
 <!ENTITY zotero.preferences.groups.childFiles "instantâneos e arquivos importados associados">
 <!ENTITY zotero.preferences.groups.childLinks "links associados">
 <!ENTITY zotero.preferences.groups.childNotes "notas associadas">
@@ -181,9 +182,11 @@
 <!ENTITY zotero.preferences.quickCopy.defaultFormat "Formato padrão:">
 <!ENTITY zotero.preferences.quickCopy.defaultOutputFormat "Formato de saída padrão:">
 <!ENTITY zotero.preferences.quickCopy.dragLimit "Desabilitar cópia rápida ao arrastar mais do que">
+<!ENTITY zotero.preferences.quickCopy.itemFormat "Item Format:">
 <!ENTITY zotero.preferences.quickCopy.linkCitationFormReverse "Use citation form as default">
 <!ENTITY zotero.preferences.quickCopy.linkOption "Include Juris-M link wrappers in QuickCopy citations">
 <!ENTITY zotero.preferences.quickCopy.macWarning "Nota: a formatação Rich-text será perdida no Mac OS X.">
+<!ENTITY zotero.preferences.quickCopy.noteFormat "Note Format:">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.domainPath "Domínio/Caminho">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.domainPath.example "(ex. wikipedia.org)">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.format "Formato">

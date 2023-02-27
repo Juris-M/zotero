@@ -72,6 +72,7 @@
 <!ENTITY zotero.preferences.fulltext.pdfMaxPages "Μέγιστος αριθμός σελίδων καταλογοποίησης ανά αρχείο: ">
 <!ENTITY zotero.preferences.fulltext.textMaxLength "Μέγιστος αριθμός χαρακτήρων καταλογοποίησης ανά αρχείο:">
 <!ENTITY zotero.preferences.groups "Ομάδες">
+<!ENTITY zotero.preferences.groups.annotations "annotations">
 <!ENTITY zotero.preferences.groups.childFiles "θυγατρικά φωτογραφικά στιγμιότυπα και εισαγόμενα αρχεία">
 <!ENTITY zotero.preferences.groups.childLinks "θυγατρικοί σύνδεσμοι">
 <!ENTITY zotero.preferences.groups.childNotes "θυγατρικές σημειώσεις">
@@ -181,9 +182,11 @@
 <!ENTITY zotero.preferences.quickCopy.defaultFormat "Αρχική Μορφή:">
 <!ENTITY zotero.preferences.quickCopy.defaultOutputFormat "Αρχική μορφή προϊόντος/εξόδου:">
 <!ENTITY zotero.preferences.quickCopy.dragLimit "Απενεργοποίηση της Γρήγορης αντιγραφής όταν σύρονται περισσότερα από">
+<!ENTITY zotero.preferences.quickCopy.itemFormat "Item Format:">
 <!ENTITY zotero.preferences.quickCopy.linkCitationFormReverse "Use citation form as default">
 <!ENTITY zotero.preferences.quickCopy.linkOption "Include Juris-M link wrappers in QuickCopy citations">
 <!ENTITY zotero.preferences.quickCopy.macWarning "Σημείωση: η μορφοποίηση εμπλουτισμένου κειμένου θα χαθεί στο Mac OS X.">
+<!ENTITY zotero.preferences.quickCopy.noteFormat "Note Format:">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.domainPath "Περιοχή/Διαδρομή">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.domainPath.example "(π.χ. wikipedia.org)">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.format "Μορφή">

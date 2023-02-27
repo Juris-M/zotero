@@ -72,6 +72,7 @@
 <!ENTITY zotero.preferences.fulltext.pdfMaxPages "Indexelendő oldalak maximális száma egy fájlban:">
 <!ENTITY zotero.preferences.fulltext.textMaxLength "Indexelendő karakterek maximális száma egy fájlban:">
 <!ENTITY zotero.preferences.groups "Csoportok">
+<!ENTITY zotero.preferences.groups.annotations "annotations">
 <!ENTITY zotero.preferences.groups.childFiles "kapcsolódó pillanatfelvételek és importált fájlok">
 <!ENTITY zotero.preferences.groups.childLinks "kapcsolódó hivatkozások">
 <!ENTITY zotero.preferences.groups.childNotes "kapcsolódó jegyzetek">
@@ -181,9 +182,11 @@
 <!ENTITY zotero.preferences.quickCopy.defaultFormat "Alapértelmezett formátum:">
 <!ENTITY zotero.preferences.quickCopy.defaultOutputFormat "Alapértelmezett kimeneti formátum">
 <!ENTITY zotero.preferences.quickCopy.dragLimit "A gyorsmásolás kikapcsolása, amikor az elemek száma több, mint">
+<!ENTITY zotero.preferences.quickCopy.itemFormat "Item Format:">
 <!ENTITY zotero.preferences.quickCopy.linkCitationFormReverse "Use citation form as default">
 <!ENTITY zotero.preferences.quickCopy.linkOption "Include Juris-M link wrappers in QuickCopy citations">
 <!ENTITY zotero.preferences.quickCopy.macWarning "Megjegyzés: A formázás Mac OS X alatt elveszik.">
+<!ENTITY zotero.preferences.quickCopy.noteFormat "Note Format:">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.domainPath "Domén/Útvonal">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.domainPath.example "(pl: wikipedia.org)">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.format "Formátum">

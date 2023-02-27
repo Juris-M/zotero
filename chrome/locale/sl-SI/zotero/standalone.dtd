@@ -17,6 +17,7 @@
 <!ENTITY copyCmd.accesskey "K">
 <!ENTITY copyCmd.key "C">
 <!ENTITY copyCmd.label "Kopiraj">
+<!ENTITY copyNoteCmd.label "Copy Note">
 <!ENTITY cutCmd.accesskey "z">
 <!ENTITY cutCmd.key "X">
 <!ENTITY cutCmd.label "Izreži">
@@ -62,6 +63,7 @@
 <!ENTITY fullZoomResetCmd.label "Reset">
 <!ENTITY fullZoomToggleCmd.accesskey "T">
 <!ENTITY fullZoomToggleCmd.label "Zoom Text Only">
+<!ENTITY goMenu.label "Go">
 <!ENTITY helpCheckForUpdates.accesskey "s">
 <!ENTITY helpCheckForUpdates.label "Poišči posodobitve ...">
 <!ENTITY helpFeedbackPage.accesskey "F">
@@ -132,6 +134,7 @@
 <!ENTITY undoCmd.accesskey "R">
 <!ENTITY undoCmd.key "Z">
 <!ENTITY undoCmd.label "Razveljavi">
+<!ENTITY viewMenu.accesskey "V">
 <!ENTITY viewMenu.label "Pogled">
 <!ENTITY windowMenu.label "Okno">
 <!ENTITY zoomWindow.label "Povečava">
