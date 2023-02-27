@@ -357,7 +357,7 @@ Zotero.DataObjectUtilities = {
 		var pred2 = Object.keys(data2);
 		pred2.sort();
 		if (!Zotero.Utilities.arrayEquals(pred1, pred2)) return true;
-		for (let pred in pred1) {
+		for (let pred of pred1) {
 			let vals1 = typeof data1[pred] == 'string' ? [data1[pred]] : data1[pred];
 			let vals2 = (!data2[pred] || data2[pred] === '')
 				? []
@@ -618,11 +618,16 @@ Zotero.DataObjectUtilities = {
 	},
 	
 	_tagsDiff: function (data1, data2 = []) {
+		var equals = Zotero.Tags.equals.bind(Zotero.Tags);
+		
+		var cleanedData1 = data1.map(x => Zotero.Tags.cleanData(x));
+		var cleanedData2 = data2.map(x => Zotero.Tags.cleanData(x));
+		
 		var changeset = [];
 		outer:
 		for (let i = 0; i < data1.length; i++) {
 			for (let j = 0; j < data2.length; j++) {
-				if (Zotero.Tags.equals(data1[i], data2[j])) {
+				if (equals(cleanedData1[i], cleanedData2[j], { skipClean: true })) {
 					continue outer;
 				}
 			}
@@ -635,7 +640,7 @@ Zotero.DataObjectUtilities = {
 		outer:
 		for (let i = 0; i < data2.length; i++) {
 			for (let j = 0; j < data1.length; j++) {
-				if (Zotero.Tags.equals(data2[i], data1[j])) {
+				if (equals(cleanedData2[i], cleanedData1[j], { skipClean: true })) {
 					continue outer;
 				}
 			}

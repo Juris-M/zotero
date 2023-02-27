@@ -21,7 +21,11 @@ describe("Zotero.Integration", function () {
 		this.primaryFieldType = "Field";
 		this.secondaryFieldType = "Bookmark";
 		this.supportedNotes = ['footnotes', 'endnotes'];
+		// Will display an option to switch word processors in the Doc Prefs
 		this.supportsImportExport = true;
+		// Will allow inserting notes
+		this.supportsTextInsertion = true;
+		this.supportsCitationMerging = false;
 		this.fields = [];
 	};
 	DocumentPluginDummy.Application.prototype = {
@@ -41,7 +45,7 @@ describe("Zotero.Integration", function () {
 	/**
 	 * The Document class corresponds to a single word processing document.
 	 */
-	DocumentPluginDummy.Document = function() {this.fields = []};
+	DocumentPluginDummy.Document = function() {this.fields = [], this.fieldIdx = 0};
 	DocumentPluginDummy.Document.prototype = {
 		/**
 		 * Displays a dialog in the word processing application
@@ -82,25 +86,50 @@ describe("Zotero.Integration", function () {
 		 */
 		setDocumentData: function(data) {this.data = data},
 		/**
-		 * Inserts a field at the given position and initializes the field object.
+		 * Inserts a field at cursor position and initializes the field object.
+		 * If Document.insertText() was called previously inserts the field
+		 * directly after the inserted text.
 		 * @param {String} fieldType
 		 * @param {Integer} noteType
 		 * @returns {DocumentPluginDummy.Field}
 		 */
-		insertField: function(fieldType, noteType) { 
+		insertField: function(fieldType, noteType) {
 			if (typeof noteType != "number") {
 				throw new Error("noteType must be an integer");
 			}
-			var field = new DocumentPluginDummy.Field(this); 
+			var field = new DocumentPluginDummy.Field(this, this.fieldIdx++);
 			this.fields.push(field);
 			return field;
+		},
+		/**
+		 * Inserts rich text at cursor position. If Document.insertField() was called
+		 * previously inserts the text directly after the inserted field.
+		 * @param {String} text
+		 */
+		insertText: function (text) { return; },
+		/**
+		 * Converts placeholders (which are text with links to https://www.zotero.org/?[placeholderID])
+		 * to fields and sets their field codes to strings in `codes` in the reverse order of their appearance
+		 * @param {String[]} codes
+		 * @param {String[]} placeholderIDs - the order of placeholders to be replaced
+		 * @param {Number} noteType - controls whether citations should be in-text or in footnotes/endnotes
+		 * @param {Number} fieldType
+		 * @return {Field[]}
+		 */
+		convertPlaceholdersToFields: function (codes, noteType, fieldType) {
+			return codes.map(code => {
+				let field = new DocumentPluginDummy.Field(this);
+				field.code = code;
+				this.fields.push(field);
+				return field;
+			});
 		},
 		/**
 		 * Gets all fields present in the document.
 		 * @param {String} fieldType
 		 * @returns {DocumentPluginDummy.Field[]}
 		 */
-		getFields: function(fieldType) {return Array.from(this.fields)},
+		getFields: function (fieldType) {return Array.from(this.fields)},
 		/**
 		 * Sets the bibliography style, overwriting the current values for this document
 		 */
@@ -151,12 +180,14 @@ describe("Zotero.Integration", function () {
 	 * The Field class corresponds to a field containing an individual citation
 	 * or bibliography
 	 */
-	DocumentPluginDummy.Field = function(doc) {
+	DocumentPluginDummy.Field = function(doc, idx) {
 		this.doc = doc;
 		this.code = '';
 		// This is actually required and current integration code depends on text being non-empty upon insertion.
 		// insertBibliography will fail if there is no placeholder text.
 		this.text = '{Placeholder}';
+		this.idx = idx;
+		this.adjacent = false;
 		this.wrappedJSObject = this;
 	};
 	DocumentPluginDummy.Field.noteIndex = 0;
@@ -206,6 +237,12 @@ describe("Zotero.Integration", function () {
 		 * @returns {Number}
 		 */
 		getNoteIndex: () => 0,
+		
+		/**
+		 * Whether this field is adjacent to the next field (meaning they can be merged).
+		 * @returns {boolean}
+		 */
+		isAdjacentToNextField: function() { return this.adjacent },
 	};
 
 	// Processing functions for logging and promisification
@@ -215,7 +252,12 @@ describe("Zotero.Integration", function () {
 				let method = DocumentPluginDummy[cls].prototype[methodName];
 				DocumentPluginDummy[cls].prototype[methodName] = async function() {
 					try {
-						Zotero.debug(`DocumentPluginDummy: ${cls}.${methodName} invoked with args ${JSON.stringify(arguments)}`, 2);
+						if (cls == 'Field') {
+							Zotero.debug(`DocumentPluginDummy: ${cls}[${this.idx}].${methodName} invoked with args ${JSON.stringify(arguments)}`, 2);
+						}
+						else {
+							Zotero.debug(`DocumentPluginDummy: ${cls}.${methodName} invoked with args ${JSON.stringify(arguments)}`, 2);
+						}
 					} catch (e) {
 						Zotero.debug(`DocumentPluginDummy: ${cls}.${methodName} invoked with args ${arguments}`, 2);
 					}
@@ -234,8 +276,8 @@ describe("Zotero.Integration", function () {
 	var testItems;
 	var applications = {};
 	var addEditCitationSpy, displayDialogStub;
-	var styleID = "http://www.zotero.org/styles/cell";
-	var stylePath = OS.Path.join(getTestDataDirectory().path, 'cell.csl');
+	var styleID = "http://www.zotero.org/styles/apa";
+	var stylePath = OS.Path.join(getTestDataDirectory().path, 'apa.csl');
 
 	var commandList = [
 		'addCitation', 'editCitation', 'addEditCitation',
@@ -278,7 +320,7 @@ describe("Zotero.Integration", function () {
 	
 	function setDefaultIntegrationDocPrefs() {
 		dialogResults.integrationDocPrefs = {
-			style: "http://www.zotero.org/styles/cell",
+			style: styleID,
 			locale: 'en-US',
 			fieldType: 'Field',
 			automaticJournalAbbreviations: false,
@@ -301,6 +343,28 @@ describe("Zotero.Integration", function () {
 			io._acceptDeferred.resolve(() => {});
 		};
 	}
+	
+	async function insertMultipleCitations() {
+		var docID = this.test.fullTitle();
+		if (!(docID in applications)) await initDoc(docID);
+		var doc = applications[docID].doc;
+
+		setAddEditItems(testItems[0]);
+		await execCommand('addEditCitation', docID);
+		assert.equal(doc.fields.length, 1);
+		var citation = await (new Zotero.Integration.CitationField(doc.fields[0], doc.fields[0].code)).unserialize();
+		assert.equal(citation.citationItems.length, 1);
+		assert.equal(citation.citationItems[0].id, testItems[0].id);
+
+		setAddEditItems(testItems.slice(1, 3));
+		await execCommand('addEditCitation', docID);
+		assert.equal(doc.fields.length, 2);
+		citation = await (new Zotero.Integration.CitationField(doc.fields[1], doc.fields[1].code)).unserialize();
+		assert.equal(citation.citationItems.length, 2);
+		for (let i = 1; i < 3; i++) {
+			assert.equal(citation.citationItems[i-1].id, testItems[i].id);
+		}
+	};
 	
 	before(function* () {
 		yield Zotero.Styles.init();
@@ -455,27 +519,6 @@ describe("Zotero.Integration", function () {
 		});
 		
 		describe('#addEditCitation', function() {
-			var insertMultipleCitations = Zotero.Promise.coroutine(function *() {
-				var docID = this.test.fullTitle();
-				if (!(docID in applications)) yield initDoc(docID);
-				var doc = applications[docID].doc;
-
-				setAddEditItems(testItems[0]);
-				yield execCommand('addEditCitation', docID);
-				assert.equal(doc.fields.length, 1);
-				var citation = yield (new Zotero.Integration.CitationField(doc.fields[0], doc.fields[0].code)).unserialize();
-				assert.equal(citation.citationItems.length, 1);
-				assert.equal(citation.citationItems[0].id, testItems[0].id);
-
-				setAddEditItems(testItems.slice(1, 3));
-				yield execCommand('addEditCitation', docID);
-				assert.equal(doc.fields.length, 2);
-				citation = yield (new Zotero.Integration.CitationField(doc.fields[1], doc.fields[1].code)).unserialize();
-				assert.equal(citation.citationItems.length, 2);
-				for (let i = 1; i < 3; i++) {
-					assert.equal(citation.citationItems[i-1].id, testItems[i].id);
-				}
-			});
 			it('should insert citation if not in field', insertMultipleCitations);
 
 			it('should edit citation if in citation field', function* () {
@@ -500,7 +543,7 @@ describe("Zotero.Integration", function () {
 				var doc = applications[docID].doc;
 
 				testItems[3].setCreator(0, {creatorType: 'author', lastName: 'Smith', firstName: 'Robert', multi:{_key: {}}});
-				testItems[3].setField('date', '2019-01-01');
+				testItems[3].setField('date', '2019-01-02');
 
 				setAddEditItems(testItems[3]);
 				yield execCommand('addEditCitation', docID);
@@ -525,7 +568,7 @@ describe("Zotero.Integration", function () {
 				var doc = applications[docID].doc;
 
 				testItems[3].setCreator(0, {creatorType: 'author', lastName: 'Smith', firstName: 'Robert', multi:{_key: {}}});
-				testItems[3].setField('date', '2019-01-01');
+				testItems[3].setField('date', '2019-01-02');
 
 				setAddEditItems(testItems[3]);
 				yield execCommand('addEditCitation', docID);
@@ -592,7 +635,7 @@ describe("Zotero.Integration", function () {
 				yield execCommand('addEditCitation', docID);
 
 				assert.equal(getCiteprocBibliographySpy.lastCall.returnValue[0].entry_ids.length, 3);
-				assert.equal(getCiteprocBibliographySpy.lastCall.returnValue[1][0], "Aaaaa Bbbbb.");
+				assert.equal(getCiteprocBibliographySpy.lastCall.returnValue[1][0], "Aaaaa. (n.d.). {\\i{}Bbbbb}.");
 
 				getCiteprocBibliographySpy.restore();
 			});
@@ -677,11 +720,35 @@ describe("Zotero.Integration", function () {
 					assert.isNotOk(citation.properties.dontUpdate);
 				});
 			});
+
+			it('should detect items cited with Mendeley if they are imported into Zotero', async function() {
+				var docID = this.test.fullTitle();
+				if (!(docID in applications)) await initDoc(docID);
+				var doc = applications[docID].doc;
+
+				let testItem = await createDataObject('item', {libraryID: Zotero.Libraries.userLibraryID});
+				testItem.setField('title', `Mendeley imported`);
+				testItem.setCreator(0, {creatorType: 'author', name: `Mendeleev, Dmitri `});
+				testItem.addRelation('mendeleyDB:documentUUID', 'e213167f-af42-4ff1-95e8-a9aa6b0b3e1b');
+				await testItem.saveTx();
+
+				setAddEditItems(testItem);
+				await execCommand('addEditCitation', docID);
+
+				let uri = doc.fields[0].code.match(/"uris":\[([^\]]*)]/)[1];
+				doc.fields[0].code = doc.fields[0].code.replace(/"uris":\[[^\]]*]/, `"uris":["http://www.mendeley.com/documents/?uuid=e213167f-af42-4ff1-95e8-a9aa6b0b3e1b"]`);
+
+				sinon.stub(doc, 'canInsertField').resolves(false);
+				sinon.stub(doc, 'cursorInField').resolves(doc.fields[0]);
+				await execCommand('addEditCitation', docID);
+				assert.include(doc.fields[0].code, 'http://www.mendeley.com/documents/?uuid=e213167f-af42-4ff1-95e8-a9aa6b0b3e1b');
+				assert.include(doc.fields[0].code, Zotero.URI.getItemURI(testItem));
+			});
 			
 			describe('when there are copy-pasted citations', function() {
 				it('should resolve duplicate citationIDs and mark both as new citations', async function() {
 					var docID = this.test.fullTitle();
-					if (!(docID in applications)) initDoc(docID);
+					if (!(docID in applications)) await initDoc(docID);
 					var doc = applications[docID].doc;
 
 					setAddEditItems(testItems[0]);
@@ -692,12 +759,12 @@ describe("Zotero.Integration", function () {
 					doc.fields[1].code = doc.fields[0].code;
 					doc.fields[1].text = doc.fields[0].text;
 					
-					var originalUpdateDocument = Zotero.Integration.Fields.prototype.updateDocument;
-					var stubUpdateDocument = sinon.stub(Zotero.Integration.Fields.prototype, 'updateDocument');
+					var originalUpdateDocument = Zotero.Integration.Session.prototype.updateDocument;
+					var stubUpdateDocument = sinon.stub(Zotero.Integration.Session.prototype, 'updateDocument');
 					try {
 						var indicesLength;
 						stubUpdateDocument.callsFake(function() {
-							indicesLength = Object.keys(Zotero.Integration.currentSession.newIndices).length;
+							indicesLength = Object.keys(this.newIndices).length;
 							return originalUpdateDocument.apply(this, arguments);
 						});
 
@@ -711,7 +778,7 @@ describe("Zotero.Integration", function () {
 				
 				it('should successfully process citations copied in from another doc', async function() {
 					var docID = this.test.fullTitle();
-					if (!(docID in applications)) initDoc(docID);
+					if (!(docID in applications)) await initDoc(docID);
 					var doc = applications[docID].doc;
 
 					setAddEditItems(testItems[0]);
@@ -726,12 +793,12 @@ describe("Zotero.Integration", function () {
 						`"citationID":"${newCitationID}"`);
 					doc.fields[1].text = doc.fields[0].text;
 					
-					var originalUpdateDocument = Zotero.Integration.Fields.prototype.updateDocument;
-					var stubUpdateDocument = sinon.stub(Zotero.Integration.Fields.prototype, 'updateDocument');
+					var originalUpdateDocument = Zotero.Integration.Session.prototype.updateDocument;
+					var stubUpdateDocument = sinon.stub(Zotero.Integration.Session.prototype, 'updateDocument');
 					try {
 						var indices;
 						stubUpdateDocument.callsFake(function() {
-							indices = Object.keys(Zotero.Integration.currentSession.newIndices);
+							indices = Object.keys(this.newIndices);
 							return originalUpdateDocument.apply(this, arguments);
 						});
 
@@ -747,7 +814,7 @@ describe("Zotero.Integration", function () {
 				
 				it('should successfully insert a citation after canceled citation insert', async function () {
 					var docID = this.test.fullTitle();
-					if (!(docID in applications)) initDoc(docID);
+					if (!(docID in applications)) await initDoc(docID);
 					var doc = applications[docID].doc;
 
 					setAddEditItems(testItems[0]);
@@ -904,15 +971,51 @@ describe("Zotero.Integration", function () {
 				assert.isTrue(displayDialogStub.lastCall.args[0].includes('editBibliographyDialog'));
 			});
 		});
+		
+		describe('#refresh', function() {
+			it ('should properly disambiguate author after editing in the database', async function () {
+				var docID = this.test.fullTitle();
+				let testItem1 = await createDataObject('item', {libraryID: Zotero.Libraries.userLibraryID});
+				testItem1.setField('title', `title1`);
+				testItem1.setCreator(0, {creatorType: 'author', firstName: "Foo", lastName: "Bar"});
+				testItem1.setField('date', '2022-01-01');
+				let testItem2 = await createDataObject('item', {libraryID: Zotero.Libraries.userLibraryID});
+				testItem2.setField('title', `title2`);
+				testItem2.setCreator(0, {creatorType: 'author', firstName: "Foo", lastName: "Bar"});
+				testItem2.setField('date', '2022-01-01');
+				setAddEditItems([testItem1, testItem2]);
+				await initDoc(docID);
+				await execCommand('addEditCitation', docID);
+				assert.equal(applications[docID].doc.fields[0].text, '(Bar, 2022a, 2022b)');
+				
+				testItem2.setCreator(0, {creatorType: 'author', firstName: "Foo F", lastName: "Bar"});
+				await execCommand('refresh', docID);
+				assert.equal(applications[docID].doc.fields[0].text, '(F. Bar, 2022; F. F. Bar, 2022)');
+				
+				testItem2.setCreator(0, {creatorType: 'author', firstName: "Foo", lastName: "Bar"});
+				await execCommand('refresh', docID);
+				assert.equal(applications[docID].doc.fields[0].text, '(Bar, 2022a, 2022b)');
+			});
+			
+			it ('should merge adjacent fields', async function () {
+				await insertMultipleCitations.call(this);
+				var docID = this.test.fullTitle();
+				assert.equal(applications[docID].doc.fields.length, 2);
+				
+				applications[docID].doc.fields[0].adjacent = true;
+				await execCommand('refresh', docID);
+				assert.equal(applications[docID].doc.fields.length, 1);
+			});
+		});
 	});
 	
 	describe("DocumentData", function() {
 		it('should properly unserialize old XML document data', function() {
-			var serializedXMLData = "<data data-version=\"3\" zotero-version=\"5.0.SOURCE\"><session id=\"F0NFmZ32\"/><style id=\"http://www.zotero.org/styles/cell\" hasBibliography=\"1\" bibliographyStyleHasBeenSet=\"1\"/><prefs><pref name=\"fieldType\" value=\"ReferenceMark\"/><pref name=\"automaticJournalAbbreviations\" value=\"true\"/><pref name=\"noteType\" value=\"0\"/></prefs></data>";
+			var serializedXMLData = `<data data-version="3" zotero-version="5.0.SOURCE"><session id="F0NFmZ32"/><style id="${styleID}" hasBibliography="1" bibliographyStyleHasBeenSet="1"/><prefs><pref name="fieldType" value="ReferenceMark"/><pref name="automaticJournalAbbreviations" value="true"/><pref name="noteType" value="0"/></prefs></data>`;
 			var data = new Zotero.Integration.DocumentData(serializedXMLData);
 			var expectedData = {
 				style: {
-					styleID: 'http://www.zotero.org/styles/cell',
+					styleID,
 					locale: null,
 					hasBibliography: true,
 					bibliographyStyleHasBeenSet: true
@@ -936,7 +1039,7 @@ describe("Zotero.Integration", function () {
 		it('should properly unserialize JSON document data', function() {
 			var expectedData = JSON.stringify({
 				style: {
-					styleID: 'http://www.zotero.org/styles/cell',
+					styleID,
 					locale: 'en-US',
 					hasBibliography: true,
 					bibliographyStyleHasBeenSet: true
@@ -962,7 +1065,7 @@ describe("Zotero.Integration", function () {
 			data.zoteroVersion = Zotero.version;
 			data.dataVersion = 3;
 			data.style = {
-				styleID: 'http://www.zotero.org/styles/cell',
+				styleID,
 				locale: 'en-US',
 				hasBibliography: false,
 				bibliographyStyleHasBeenSet: true
@@ -1001,7 +1104,7 @@ describe("Zotero.Integration", function () {
 			data.dataVersion = 4;
 			data.sessionID = "owl-sesh";
 			data.style = {
-				styleID: 'http://www.zotero.org/styles/cell',
+				styleID,
 				locale: 'en-US',
 				hasBibliography: false,
 				bibliographyStyleHasBeenSet: true

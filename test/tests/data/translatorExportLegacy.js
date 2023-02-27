@@ -1,4159 +1,3677 @@
 {
-  "artwork": {
-    "itemType": "artwork",
-    "multi": {
-      "main": {},
-      "_keys": {}
-    },
-    "url": "http://www.example.com",
-    "rights": "Rights",
-    "date": "1999-12-31",
-    "callNumber": "Call number",
-    "archiveLocation": "Archive location",
-    "extra": "Extra",
-    "accessDate": "1997-06-13 23:59:58",
-    "artworkMedium": "Medium",
-    "artworkSize": "Artwork size",
-    "libraryCatalog": "Library catalog",
-    "language": "en-US",
-    "abstractNote": "Abstract note",
-    "websiteTitle": "Publication title",
-    "title": "Title",
-    "shortTitle": "Short title",
-    "archive": "Archive",
-    "creators": [
-      {
-        "firstName": "artistFirst",
-        "lastName": "artistLast",
-        "creatorType": "artist",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "contributorFirst",
-        "lastName": "contributorLast",
-        "creatorType": "contributor",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "creatorType": "artist",
-        "multi": {
-          "_key": {}
-        },
-        "fieldMode": 1,
-        "lastName": "Institutional Author"
-      }
-    ],
-    "tags": [],
-    "collections": [],
-    "relations": {},
-    "dateAdded": "2016-10-09 21:24:50",
-    "dateModified": "2016-10-09 21:24:50",
-    "uri": "http://zotero.org/users/local/nya4mXQL/items/CLNAMVS5",
-    "attachments": [],
-    "notes": [],
-    "uniqueFields": {
-      "url": "http://www.example.com",
-      "rights": "Rights",
-      "date": "1999-12-31",
-      "callNumber": "Call number",
-      "archiveLocation": "Archive location",
-      "extra": "Extra",
-      "accessDate": "1997-06-13 23:59:58",
-      "medium": "Medium",
-      "artworkSize": "Artwork size",
-      "libraryCatalog": "Library catalog",
-      "language": "en-US",
-      "abstractNote": "Abstract note",
-      "publicationTitle": "Publication title",
-      "title": "Title",
-      "shortTitle": "Short title",
-      "archive": "Archive"
-    },
-    "itemID": 2,
-    "key": "CLNAMVS5",
-    "medium": "Medium",
-    "publicationTitle": "Publication title",
-    "libraryID": null,
-    "seeAlso": []
-  },
-  "audioRecording": {
-    "itemType": "audioRecording",
-    "multi": {
-      "main": {},
-      "_keys": {}
-    },
-    "url": "http://www.example.com",
-    "rights": "Rights",
-    "volume": "6",
-    "place": "Place",
-    "ISBN": "978-1-234-56789-7",
-    "date": "1999-12-31",
-    "callNumber": "Call number",
-    "archiveLocation": "Archive location",
-    "extra": "Extra",
-    "accessDate": "1997-06-13 23:59:58",
-    "seriesTitle": "Series title",
-    "numberOfVolumes": "7",
-    "libraryCatalog": "Library catalog",
-    "audioRecordingFormat": "Medium",
-    "label": "Publisher",
-    "runningTime": "1:22:33",
-    "language": "en-US",
-    "abstractNote": "Abstract note",
-    "title": "Title",
-    "shortTitle": "Short title",
-    "archive": "Archive",
-    "originalDate": "Original date",
-    "album": "Publication title",
-    "opus": "Opus",
-    "release": "8",
-    "creators": [
-      {
-        "firstName": "performerFirst",
-        "lastName": "performerLast",
-        "creatorType": "performer",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "composerFirst",
-        "lastName": "composerLast",
-        "creatorType": "composer",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "contributorFirst",
-        "lastName": "contributorLast",
-        "creatorType": "contributor",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "wordsByFirst",
-        "lastName": "wordsByLast",
-        "creatorType": "wordsBy",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "creatorType": "performer",
-        "multi": {
-          "_key": {}
-        },
-        "fieldMode": 1,
-        "lastName": "Institutional Author"
-      }
-    ],
-    "tags": [],
-    "collections": [],
-    "relations": {},
-    "dateAdded": "2016-10-09 21:24:50",
-    "dateModified": "2016-10-09 21:24:50",
-    "uri": "http://zotero.org/users/local/nya4mXQL/items/HUF3NSP6",
-    "attachments": [],
-    "notes": [],
-    "uniqueFields": {
-      "url": "http://www.example.com",
-      "rights": "Rights",
-      "volume": "6",
-      "place": "Place",
-      "ISBN": "978-1-234-56789-7",
-      "date": "1999-12-31",
-      "callNumber": "Call number",
-      "archiveLocation": "Archive location",
-      "extra": "Extra",
-      "accessDate": "1997-06-13 23:59:58",
-      "seriesTitle": "Series title",
-      "numberOfVolumes": "7",
-      "libraryCatalog": "Library catalog",
-      "medium": "Medium",
-      "publisher": "Publisher",
-      "runningTime": "1:22:33",
-      "language": "en-US",
-      "abstractNote": "Abstract note",
-      "title": "Title",
-      "shortTitle": "Short title",
-      "archive": "Archive",
-      "originalDate": "Original date",
-      "publicationTitle": "Publication title",
-      "opus": "Opus",
-      "edition": "8"
-    },
-    "itemID": 3,
-    "key": "HUF3NSP6",
-    "medium": "Medium",
-    "publisher": "Publisher",
-    "publicationTitle": "Publication title",
-    "edition": "8",
-    "libraryID": null,
-    "seeAlso": []
-  },
-  "bill": {
-    "itemType": "bill",
-    "multi": {
-      "main": {},
-      "_keys": {}
-    },
-    "url": "http://www.example.com",
-    "rights": "Rights",
-    "date": "1999-12-31",
-    "section": "Section",
-    "archiveLocation": "Archive location",
-    "extra": "Extra",
-    "accessDate": "1997-06-13 23:59:58",
-    "code": "Code",
-    "session": "Session",
-    "legislativeBody": "Legislative body",
-    "history": "History",
-    "language": "en-US",
-    "abstractNote": "Abstract note",
-    "billNumber": "3",
-    "codeVolume": "6",
-    "codePages": "1-10",
-    "title": "Title",
-    "shortTitle": "Short title",
-    "jurisdiction": "Jurisdiction",
-    "assemblyNumber": "9",
-    "resolutionLabel": "Resolution label",
-    "sessionType": "Type",
-    "reporter": "Publication title",  
-    "publicationTitle": "Publication title",  
-    "creators": [
-      {
-        "firstName": "sponsorFirst",
-        "lastName": "sponsorLast",
-        "creatorType": "sponsor",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "contributorFirst",
-        "lastName": "contributorLast",
-        "creatorType": "contributor",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "cosponsorFirst",
-        "lastName": "cosponsorLast",
-        "creatorType": "cosponsor",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "translatorFirst",
-        "lastName": "translatorLast",
-        "creatorType": "translator",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "creatorType": "sponsor",
-        "multi": {
-          "_key": {}
-        },
-        "fieldMode": 1,
-        "lastName": "Institutional Author"
-      }
-    ],
-    "tags": [],
-    "collections": [],
-    "relations": {},
-    "dateAdded": "2016-10-09 21:24:50",
-    "dateModified": "2016-10-09 21:24:50",
-    "uri": "http://zotero.org/users/local/nya4mXQL/items/KTCGXA6P",
-    "attachments": [],
-    "notes": [],
-    "uniqueFields": {
-      "url": "http://www.example.com",
-      "rights": "Rights",
-      "date": "1999-12-31",
-      "section": "Section",
-      "archiveLocation": "Archive location",
-      "extra": "Extra",
-      "accessDate": "1997-06-13 23:59:58",
-      "code": "Code",
-      "session": "Session",
-      "legislativeBody": "Legislative body",
-      "history": "History",
-      "language": "en-US",
-      "abstractNote": "Abstract note",
-      "number": "3",
-      "volume": "6",
-      "pages": "1-10",
-      "title": "Title",
-      "shortTitle": "Short title",
-      "jurisdiction": "Jurisdiction",
-      "seriesNumber": "9",
-      "resolutionLabel": "Resolution label",
-      "type": "Type",
-      "publicationTitle": "Publication title"
-    },
-    "itemID": 4,
-    "key": "KTCGXA6P",
-    "number": "3",
-    "volume": "6",
-    "pages": "1-10",
-    "seriesNumber": "9",
-    "type": "Type",
-    "libraryID": null,
-    "seeAlso": []
-  },
-  "blogPost": {
-    "itemType": "blogPost",
-    "multi": {
-      "main": {},
-      "_keys": {}
-    },
-    "url": "http://www.example.com",
-    "rights": "Rights",
-    "date": "1999-12-31",
-    "extra": "Extra",
-    "accessDate": "1997-06-13 23:59:58",
-    "websiteType": "Type",
-    "language": "en-US",
-    "abstractNote": "Abstract note",
-    "blogTitle": "Publication title",
-    "title": "Title",
-    "shortTitle": "Short title",
-    "creators": [
-      {
-        "firstName": "authorFirst",
-        "lastName": "authorLast",
-        "creatorType": "author",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "commenterFirst",
-        "lastName": "commenterLast",
-        "creatorType": "commenter",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "contributorFirst",
-        "lastName": "contributorLast",
-        "creatorType": "contributor",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "creatorType": "author",
-        "multi": {
-          "_key": {}
-        },
-        "fieldMode": 1,
-        "lastName": "Institutional Author"
-      }
-    ],
-    "tags": [],
-    "collections": [],
-    "relations": {},
-    "dateAdded": "2016-10-09 21:24:50",
-    "dateModified": "2016-10-09 21:24:50",
-    "uri": "http://zotero.org/users/local/nya4mXQL/items/HT78CVMU",
-    "attachments": [],
-    "notes": [],
-    "uniqueFields": {
-      "url": "http://www.example.com",
-      "rights": "Rights",
-      "date": "1999-12-31",
-      "extra": "Extra",
-      "accessDate": "1997-06-13 23:59:58",
-      "type": "Type",
-      "language": "en-US",
-      "abstractNote": "Abstract note",
-      "publicationTitle": "Publication title",
-      "title": "Title",
-      "shortTitle": "Short title"
-    },
-    "itemID": 5,
-    "key": "HT78CVMU",
-    "type": "Type",
-    "publicationTitle": "Publication title",
-    "libraryID": null,
-    "seeAlso": []
-  },
-  "book": {
-    "itemType": "book",
-    "multi": {
-      "main": {},
-      "_keys": {}
-    },
-    "url": "http://www.example.com",
-    "rights": "Rights",
-    "series": "Series",
-    "volume": "6",
-    "edition": "8",
-    "place": "Place",
-    "publisher": "Publisher",
-    "ISBN": "978-1-234-56789-7",
-    "date": "1999-12-31",
-    "callNumber": "Call number",
-    "archiveLocation": "Archive location",
-    "extra": "Extra",
-    "accessDate": "1997-06-13 23:59:58",
-    "seriesNumber": "9",
-    "numberOfVolumes": "7",
-    "libraryCatalog": "Library catalog",
-    "language": "en-US",
-    "abstractNote": "Abstract note",
-    "medium": "Medium",
-    "title": "Title",
-    "shortTitle": "Short title",
-    "numPages": "4",
-    "archive": "Archive",
-    "volumeTitle": "Volume title",
-    "creators": [
-      {
-        "firstName": "authorFirst",
-        "lastName": "authorLast",
-        "creatorType": "author",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "contributorFirst",
-        "lastName": "contributorLast",
-        "creatorType": "contributor",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "editorFirst",
-        "lastName": "editorLast",
-        "creatorType": "editor",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "recipientFirst",
-        "lastName": "recipientLast",
-        "creatorType": "recipient",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "seriesEditorFirst",
-        "lastName": "seriesEditorLast",
-        "creatorType": "seriesEditor",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "translatorFirst",
-        "lastName": "translatorLast",
-        "creatorType": "translator",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "creatorType": "author",
-        "multi": {
-          "_key": {}
-        },
-        "fieldMode": 1,
-        "lastName": "Institutional Author"
-      }
-    ],
-    "tags": [],
-    "collections": [],
-    "relations": {},
-    "dateAdded": "2016-10-09 21:24:50",
-    "dateModified": "2016-10-09 21:24:50",
-    "uri": "http://zotero.org/users/local/nya4mXQL/items/Y872EJRG",
-    "attachments": [],
-    "notes": [],
-    "uniqueFields": {
-      "url": "http://www.example.com",
-      "rights": "Rights",
-      "series": "Series",
-      "volume": "6",
-      "edition": "8",
-      "place": "Place",
-      "publisher": "Publisher",
-      "ISBN": "978-1-234-56789-7",
-      "date": "1999-12-31",
-      "callNumber": "Call number",
-      "archiveLocation": "Archive location",
-      "extra": "Extra",
-      "accessDate": "1997-06-13 23:59:58",
-      "seriesNumber": "9",
-      "numberOfVolumes": "7",
-      "libraryCatalog": "Library catalog",
-      "language": "en-US",
-      "abstractNote": "Abstract note",
-      "medium": "Medium",
-      "title": "Title",
-      "shortTitle": "Short title",
-      "numPages": "4",
-      "archive": "Archive",
-      "volumeTitle": "Volume title"
-    },
-    "itemID": 6,
-    "key": "Y872EJRG",
-    "libraryID": null,
-    "seeAlso": []
-  },
-  "bookSection": {
-    "itemType": "bookSection",
-    "multi": {
-      "main": {},
-      "_keys": {}
-    },
-    "url": "http://www.example.com",
-    "rights": "Rights",
-    "series": "Series",
-    "volume": "6",
-    "edition": "8",
-    "place": "Place",
-    "publisher": "Publisher",
-    "pages": "1-10",
-    "ISBN": "978-1-234-56789-7",
-    "date": "1999-12-31",
-    "callNumber": "Call number",
-    "archiveLocation": "Archive location",
-    "extra": "Extra",
-    "accessDate": "1997-06-13 23:59:58",
-    "seriesNumber": "9",
-    "numberOfVolumes": "7",
-    "libraryCatalog": "Library catalog",
-    "language": "en-US",
-    "abstractNote": "Abstract note",
-    "title": "Title",
-    "bookTitle": "Publication title",
-	"bookAbbreviation": "Journal abbreviation",  
-    "shortTitle": "Short title",
-    "archive": "Archive",
-    "volumeTitle": "Volume title",
-    "creators": [
-      {
-        "firstName": "authorFirst",
-        "lastName": "authorLast",
-        "creatorType": "author",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "bookAuthorFirst",
-        "lastName": "bookAuthorLast",
-        "creatorType": "bookAuthor",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "contributorFirst",
-        "lastName": "contributorLast",
-        "creatorType": "contributor",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "editorFirst",
-        "lastName": "editorLast",
-        "creatorType": "editor",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "recipientFirst",
-        "lastName": "recipientLast",
-        "creatorType": "recipient",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "seriesEditorFirst",
-        "lastName": "seriesEditorLast",
-        "creatorType": "seriesEditor",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "translatorFirst",
-        "lastName": "translatorLast",
-        "creatorType": "translator",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "creatorType": "author",
-        "multi": {
-          "_key": {}
-        },
-        "fieldMode": 1,
-        "lastName": "Institutional Author"
-      }
-    ],
-    "tags": [],
-    "collections": [],
-    "relations": {},
-    "dateAdded": "2016-10-09 21:24:50",
-    "dateModified": "2016-10-09 21:24:50",
-    "uri": "http://zotero.org/users/local/nya4mXQL/items/U8Z2X7TH",
-    "attachments": [],
-    "notes": [],
-    "uniqueFields": {
-      "url": "http://www.example.com",
-      "rights": "Rights",
-      "series": "Series",
-      "volume": "6",
-      "edition": "8",
-      "place": "Place",
-      "publisher": "Publisher",
-      "pages": "1-10",
-      "ISBN": "978-1-234-56789-7",
-      "date": "1999-12-31",
-      "callNumber": "Call number",
-      "archiveLocation": "Archive location",
-      "extra": "Extra",
-      "accessDate": "1997-06-13 23:59:58",
-      "seriesNumber": "9",
-      "numberOfVolumes": "7",
-      "libraryCatalog": "Library catalog",
-      "language": "en-US",
-      "abstractNote": "Abstract note",
-      "title": "Title",
-      "publicationTitle": "Publication title",
-	  "journalAbbreviation": "Journal abbreviation",  
-      "shortTitle": "Short title",
-      "archive": "Archive",
-      "volumeTitle": "Volume title"
-    },
-    "itemID": 7,
-    "key": "U8Z2X7TH",
-    "publicationTitle": "Publication title",
-	"journalAbbreviation": "Journal abbreviation",  
-    "libraryID": null,
-    "seeAlso": []
-  },
-  "legalCommentary": {
-    "itemType": "legalCommentary",
-    "multi": {
-      "main": {},
-      "_keys": {}
-    },
-    "url": "http://www.example.com",
-    "version": "Version number",
-    "rights": "Rights",
-    "series": "Series",
-    "volume": "6",
-    "edition": "8",
-    "place": "Place",
-    "publisher": "Publisher",
-    "pages": "1-10",
-    "ISBN": "978-1-234-56789-7",
-    "date": "1999-12-31",
-    "callNumber": "Call number",
-    "archiveLocation": "Archive location",
-    "extra": "Extra",
-    "accessDate": "1997-06-13 23:59:58",
-    "seriesNumber": "9",
-    "numberOfVolumes": "7",
-    "libraryCatalog": "Library catalog",
-    "language": "en-US",
-    "abstractNote": "Abstract note",
-    "title": "Title",
-    "bookTitle": "Publication title",
-	"bookAbbreviation": "Journal abbreviation",  
-    "shortTitle": "Short title",
-    "archive": "Archive",
-    "volumeTitle": "Volume title",
-    "creators": [
-      {
-        "firstName": "authorFirst",
-        "lastName": "authorLast",
-        "creatorType": "author",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "bookAuthorFirst",
-        "lastName": "bookAuthorLast",
-        "creatorType": "bookAuthor",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "contributorFirst",
-        "lastName": "contributorLast",
-        "creatorType": "contributor",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "editorFirst",
-        "lastName": "editorLast",
-        "creatorType": "editor",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "recipientFirst",
-        "lastName": "recipientLast",
-        "creatorType": "recipient",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "seriesEditorFirst",
-        "lastName": "seriesEditorLast",
-        "creatorType": "seriesEditor",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "translatorFirst",
-        "lastName": "translatorLast",
-        "creatorType": "translator",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "creatorType": "author",
-        "multi": {
-          "_key": {}
-        },
-        "fieldMode": 1,
-        "lastName": "Institutional Author"
-      }
-    ],
-    "tags": [],
-    "collections": [],
-    "relations": {},
-    "dateAdded": "2016-10-09 21:24:50",
-    "dateModified": "2016-10-09 21:24:50",
-    "uri": "http://zotero.org/users/local/nya4mXQL/items/U8Z2X7TH",
-    "attachments": [],
-    "notes": [],
-    "uniqueFields": {
-      "url": "http://www.example.com",
-      "version": "Version number",
-      "rights": "Rights",
-      "series": "Series",
-      "volume": "6",
-      "edition": "8",
-      "place": "Place",
-      "publisher": "Publisher",
-      "pages": "1-10",
-      "ISBN": "978-1-234-56789-7",
-      "date": "1999-12-31",
-      "callNumber": "Call number",
-      "archiveLocation": "Archive location",
-      "extra": "Extra",
-      "accessDate": "1997-06-13 23:59:58",
-      "seriesNumber": "9",
-      "numberOfVolumes": "7",
-      "libraryCatalog": "Library catalog",
-      "language": "en-US",
-      "abstractNote": "Abstract note",
-      "title": "Title",
-      "publicationTitle": "Publication title",
-      "journalAbbreviation": "Journal abbreviation",  
-      "shortTitle": "Short title",
-      "archive": "Archive",
-      "volumeTitle": "Volume title"
-    },
-    "itemID": 7,
-    "key": "U8Z2X7TH",
-    "publicationTitle": "Publication title",
-	"journalAbbreviation": "Journal abbreviation",  
-    "libraryID": null,
-    "seeAlso": []
-  },
-  "case": {
-    "itemType": "case",
-    "multi": {
-      "main": {},
-      "_keys": {}
-    },
-    "url": "http://www.example.com",
-    "DOI": "10.1234/example.doi",
-    "rights": "Rights",
-    "issue": "5",
-    "place": "Place",
-    "publisher": "Publisher",
-    "callNumber": "Call number",
-    "archiveLocation": "Archive location",
-    "adminFlag": "Admin flag",
-    "extra": "Extra",
-    "accessDate": "1997-06-13 23:59:58",
-    "history": "History",
-    "reporter": "Publication title",
-    "court": "Court",
-    "division": "Division",
-    "language": "en-US",
-    "abstractNote": "Abstract note",
-    "dateDecided": "1999-12-31",
-    "reporterVolume": "6",
-    "firstPage": "1-10",
-    "caseName": "Title",
-    "shortTitle": "Short title",
-    "docketNumber": "3",
-    "filingDate": "2000-01-02",
-    "archive": "Archive",
-    "jurisdiction": "Jurisdiction",
-    "yearAsVolume": "Year as volume",
-    "publicationDate": "Publication date",
-    "reign": "Reign",
-    "supplementName": "Supplement name",
-    "documentName": "Document name",
-    "documentNumber": "Document number",
-    "creators": [
-      {
-        "firstName": "authorFirst",
-        "lastName": "authorLast",
-        "creatorType": "author",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "commenterFirst",
-        "lastName": "commenterLast",
-        "creatorType": "commenter",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "contributorFirst",
-        "lastName": "contributorLast",
-        "creatorType": "contributor",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "counselFirst",
-        "lastName": "counselLast",
-        "creatorType": "counsel",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "translatorFirst",
-        "lastName": "translatorLast",
-        "creatorType": "translator",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "creatorType": "author",
-        "multi": {
-          "_key": {}
-        },
-        "fieldMode": 1,
-        "lastName": "Institutional Author"
-      }
-    ],
-    "tags": [],
-    "collections": [],
-    "relations": {},
-    "dateAdded": "2016-10-09 21:24:50",
-    "dateModified": "2016-10-09 21:24:50",
-    "uri": "http://zotero.org/users/local/nya4mXQL/items/E4ZH4SEY",
-    "attachments": [],
-    "notes": [],
-    "uniqueFields": {
-      "url": "http://www.example.com",
-      "DOI": "10.1234/example.doi",
-      "rights": "Rights",
-      "issue": "5",
-      "place": "Place",
-      "publisher": "Publisher",
-      "callNumber": "Call number",
-      "archiveLocation": "Archive location",
-      "adminFlag": "Admin flag",
-      "extra": "Extra",
-      "accessDate": "1997-06-13 23:59:58",
-      "history": "History",
-      "publicationTitle": "Publication title",
-      "court": "Court",
-      "division": "Division",
-      "language": "en-US",
-      "abstractNote": "Abstract note",
-      "date": "1999-12-31",
-      "volume": "6",
-      "pages": "1-10",
-      "title": "Title",
-      "shortTitle": "Short title",
-      "number": "3",
-      "filingDate": "2000-01-02",
-      "archive": "Archive",
-      "jurisdiction": "Jurisdiction",
-      "yearAsVolume": "Year as volume",
-      "publicationDate": "Publication date",
-      "reign": "Reign",
-      "supplementName": "Supplement name",
-	  "documentName": "Document name",
-      "documentNumber": "Document number"
-    },
-    "itemID": 8,
-    "key": "E4ZH4SEY",
-    "publicationTitle": "Publication title",
-    "date": "1999-12-31",
-    "volume": "6",
-    "pages": "1-10",
-    "title": "Title",
-    "number": "3",
-    "libraryID": null,
-    "seeAlso": []
-  },
-  "computerProgram": {
-    "itemType": "computerProgram",
-    "multi": {
-      "main": {},
-      "_keys": {}
-    },
-    "url": "http://www.example.com",
-    "rights": "Rights",
-    "place": "Place",
-    "ISBN": "978-1-234-56789-7",
-    "date": "1999-12-31",
-    "callNumber": "Call number",
-    "archiveLocation": "Archive location",
-    "extra": "Extra",
-    "accessDate": "1997-06-13 23:59:58",
-    "seriesTitle": "Series title",
-    "libraryCatalog": "Library catalog",
-    "system": "System",
-    "company": "Publisher",
-    "programmingLanguage": "Programming language",
-    "abstractNote": "Abstract note",
-    "title": "Title",
-    "shortTitle": "Short title",
-    "archive": "Archive",
-    "creators": [
-      {
-        "firstName": "programmerFirst",
-        "lastName": "programmerLast",
-        "creatorType": "programmer",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "contributorFirst",
-        "lastName": "contributorLast",
-        "creatorType": "contributor",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "creatorType": "programmer",
-        "multi": {
-          "_key": {}
-        },
-        "fieldMode": 1,
-        "lastName": "Institutional Author"
-      }
-    ],
-    "tags": [],
-    "collections": [],
-    "relations": {},
-    "dateAdded": "2016-10-09 21:24:50",
-    "dateModified": "2016-10-09 21:24:50",
-    "uri": "http://zotero.org/users/local/nya4mXQL/items/M4YKY47C",
-    "attachments": [],
-    "notes": [],
-    "uniqueFields": {
-      "url": "http://www.example.com",
-      "version": "Version number",
-      "rights": "Rights",
-      "place": "Place",
-      "ISBN": "978-1-234-56789-7",
-      "date": "1999-12-31",
-      "callNumber": "Call number",
-      "archiveLocation": "Archive location",
-      "extra": "Extra",
-      "accessDate": "1997-06-13 23:59:58",
-      "seriesTitle": "Series title",
-      "libraryCatalog": "Library catalog",
-      "system": "System",
-      "publisher": "Publisher",
-      "programmingLanguage": "Programming language",
-      "abstractNote": "Abstract note",
-      "title": "Title",
-      "shortTitle": "Short title",
-      "archive": "Archive"
-    },
-    "itemID": 9,
-    "key": "M4YKY47C",
-    "version": "Version number",
-    "publisher": "Publisher",
-    "libraryID": null,
-    "seeAlso": []
-  },
-  "conferencePaper": {
-    "itemType": "conferencePaper",
-    "multi": {
-      "main": {},
-      "_keys": {}
-    },
-    "url": "http://www.example.com",
-    "rights": "Rights",
-    "series": "Series",
-    "volume": "6",
-    "issue": "5",
-    "place": "Place",
-    "publisher": "Publisher",
-    "pages": "1-10",
-    "ISBN": "978-1-234-56789-7",
-    "date": "1999-12-31",
-    "callNumber": "Call number",
-    "archiveLocation": "Archive location",
-    "extra": "Extra",
-    "DOI": "10.1234/example.doi",
-    "accessDate": "1997-06-13 23:59:58",
-    "institution": "Institution",
-    "libraryCatalog": "Library catalog",
-    "conferenceName": "Conference name",
-    "language": "en-US",
-    "abstractNote": "Abstract note",
-    "title": "Title",
-    "proceedingsTitle": "Publication title",
-    "shortTitle": "Short title",
-    "archive": "Archive",
-    "conferenceDate": "Conference date",
-    "creators": [
-      {
-        "firstName": "authorFirst",
-        "lastName": "authorLast",
-        "creatorType": "author",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "contributorFirst",
-        "lastName": "contributorLast",
-        "creatorType": "contributor",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "editorFirst",
-        "lastName": "editorLast",
-        "creatorType": "editor",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "seriesEditorFirst",
-        "lastName": "seriesEditorLast",
-        "creatorType": "seriesEditor",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "translatorFirst",
-        "lastName": "translatorLast",
-        "creatorType": "translator",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "creatorType": "author",
-        "multi": {
-          "_key": {}
-        },
-        "fieldMode": 1,
-        "lastName": "Institutional Author"
-      }
-    ],
-    "tags": [],
-    "collections": [],
-    "relations": {},
-    "dateAdded": "2016-10-09 21:24:50",
-    "dateModified": "2016-10-09 21:24:50",
-    "uri": "http://zotero.org/users/local/nya4mXQL/items/MLL5EBBP",
-    "attachments": [],
-    "notes": [],
-    "uniqueFields": {
-      "url": "http://www.example.com",
-      "rights": "Rights",
-      "series": "Series",
-      "volume": "6",
-      "issue": "5",
-      "place": "Place",
-      "publisher": "Publisher",
-      "pages": "1-10",
-      "ISBN": "978-1-234-56789-7",
-      "date": "1999-12-31",
-      "callNumber": "Call number",
-      "archiveLocation": "Archive location",
-      "extra": "Extra",
-      "DOI": "10.1234/example.doi",
-      "accessDate": "1997-06-13 23:59:58",
-      "institution": "Institution",
-      "libraryCatalog": "Library catalog",
-      "conferenceName": "Conference name",
-      "language": "en-US",
-      "abstractNote": "Abstract note",
-      "title": "Title",
-      "publicationTitle": "Publication title",
-      "shortTitle": "Short title",
-      "archive": "Archive",
-      "conferenceDate": "Conference date"
-    },
-    "itemID": 10,
-    "key": "MLL5EBBP",
-    "publicationTitle": "Publication title",
-    "libraryID": null,
-    "seeAlso": []
-  },
-  "dictionaryEntry": {
-    "itemType": "dictionaryEntry",
-    "multi": {
-      "main": {},
-      "_keys": {}
-    },
-    "url": "http://www.example.com",
-    "rights": "Rights",
-    "series": "Series",
-    "volume": "6",
-    "edition": "8",
-    "place": "Place",
-    "publisher": "Publisher",
-    "pages": "1-10",
-    "ISBN": "978-1-234-56789-7",
-    "date": "1999-12-31",
-    "callNumber": "Call number",
-    "archiveLocation": "Archive location",
-    "extra": "Extra",
-    "accessDate": "1997-06-13 23:59:58",
-    "seriesNumber": "9",
-    "numberOfVolumes": "7",
-    "libraryCatalog": "Library catalog",
-    "dictionaryTitle": "Publication title",
-    "language": "en-US",
-    "abstractNote": "Abstract note",
-    "title": "Title",
-    "shortTitle": "Short title",
-    "archive": "Archive",
-    "creators": [
-      {
-        "firstName": "authorFirst",
-        "lastName": "authorLast",
-        "creatorType": "author",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "contributorFirst",
-        "lastName": "contributorLast",
-        "creatorType": "contributor",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "editorFirst",
-        "lastName": "editorLast",
-        "creatorType": "editor",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "seriesEditorFirst",
-        "lastName": "seriesEditorLast",
-        "creatorType": "seriesEditor",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "translatorFirst",
-        "lastName": "translatorLast",
-        "creatorType": "translator",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "creatorType": "author",
-        "multi": {
-          "_key": {}
-        },
-        "fieldMode": 1,
-        "lastName": "Institutional Author"
-      }
-    ],
-    "tags": [],
-    "collections": [],
-    "relations": {},
-    "dateAdded": "2016-10-09 21:24:50",
-    "dateModified": "2016-10-09 21:24:50",
-    "uri": "http://zotero.org/users/local/nya4mXQL/items/AHCZ547C",
-    "attachments": [],
-    "notes": [],
-    "uniqueFields": {
-      "url": "http://www.example.com",
-      "rights": "Rights",
-      "series": "Series",
-      "volume": "6",
-      "edition": "8",
-      "place": "Place",
-      "publisher": "Publisher",
-      "pages": "1-10",
-      "ISBN": "978-1-234-56789-7",
-      "date": "1999-12-31",
-      "callNumber": "Call number",
-      "archiveLocation": "Archive location",
-      "extra": "Extra",
-      "accessDate": "1997-06-13 23:59:58",
-      "seriesNumber": "9",
-      "numberOfVolumes": "7",
-      "libraryCatalog": "Library catalog",
-      "publicationTitle": "Publication title",
-      "language": "en-US",
-      "abstractNote": "Abstract note",
-      "title": "Title",
-      "shortTitle": "Short title",
-      "archive": "Archive"
-    },
-    "itemID": 11,
-    "key": "AHCZ547C",
-    "publicationTitle": "Publication title",
-    "libraryID": null,
-    "seeAlso": []
-  },
-  "document": {
-    "itemType": "document",
-    "multi": {
-      "main": {},
-      "_keys": {}
-    },
-    "url": "http://www.example.com",
-    "rights": "Rights",
-    "publisher": "Publisher",
-    "date": "1999-12-31",
-    "callNumber": "Call number",
-    "archiveLocation": "Archive location",
-    "extra": "Extra",
-    "accessDate": "1997-06-13 23:59:58",
-    "libraryCatalog": "Library catalog",
-    "language": "en-US",
-    "abstractNote": "Abstract note",
-    "title": "Title",
-    "shortTitle": "Short title",
-    "archive": "Archive",
-    "creators": [
-      {
-        "firstName": "authorFirst",
-        "lastName": "authorLast",
-        "creatorType": "author",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "contributorFirst",
-        "lastName": "contributorLast",
-        "creatorType": "contributor",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "editorFirst",
-        "lastName": "editorLast",
-        "creatorType": "editor",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "reviewedAuthorFirst",
-        "lastName": "reviewedAuthorLast",
-        "creatorType": "reviewedAuthor",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "translatorFirst",
-        "lastName": "translatorLast",
-        "creatorType": "translator",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "creatorType": "author",
-        "multi": {
-          "_key": {}
-        },
-        "fieldMode": 1,
-        "lastName": "Institutional Author"
-      }
-    ],
-    "tags": [],
-    "collections": [],
-    "relations": {},
-    "dateAdded": "2016-10-09 21:24:50",
-    "dateModified": "2016-10-09 21:24:50",
-    "uri": "http://zotero.org/users/local/nya4mXQL/items/PABSP2HZ",
-    "attachments": [],
-    "notes": [],
-    "uniqueFields": {
-      "version": "Version number",
-      "url": "http://www.example.com",
-      "rights": "Rights",
-      "publisher": "Publisher",
-      "date": "1999-12-31",
-      "callNumber": "Call number",
-      "archiveLocation": "Archive location",
-      "extra": "Extra",
-      "accessDate": "1997-06-13 23:59:58",
-      "libraryCatalog": "Library catalog",
-      "language": "en-US",
-      "abstractNote": "Abstract note",
-      "title": "Title",
-      "shortTitle": "Short title",
-      "archive": "Archive"
-    },
-    "itemID": 12,
-    "key": "PABSP2HZ",
-    "version": "Version number",
-    "libraryID": null,
-    "seeAlso": []
-  },
-  "email": {
-    "itemType": "email",
-    "multi": {
-      "main": {},
-      "_keys": {}
-    },
-    "url": "http://www.example.com",
-    "rights": "Rights",
-    "date": "1999-12-31",
-    "extra": "Extra",
-    "accessDate": "1997-06-13 23:59:58",
-    "language": "en-US",
-    "abstractNote": "Abstract note",
-    "subject": "Title",
-    "shortTitle": "Short title",
-    "creators": [
-      {
-        "firstName": "authorFirst",
-        "lastName": "authorLast",
-        "creatorType": "author",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "contributorFirst",
-        "lastName": "contributorLast",
-        "creatorType": "contributor",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "recipientFirst",
-        "lastName": "recipientLast",
-        "creatorType": "recipient",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "creatorType": "author",
-        "multi": {
-          "_key": {}
-        },
-        "fieldMode": 1,
-        "lastName": "Institutional Author"
-      }
-    ],
-    "tags": [],
-    "collections": [],
-    "relations": {},
-    "dateAdded": "2016-10-09 21:24:50",
-    "dateModified": "2016-10-09 21:24:50",
-    "uri": "http://zotero.org/users/local/nya4mXQL/items/Y67N9N5T",
-    "attachments": [],
-    "notes": [],
-    "uniqueFields": {
-      "url": "http://www.example.com",
-      "rights": "Rights",
-      "date": "1999-12-31",
-      "extra": "Extra",
-      "accessDate": "1997-06-13 23:59:58",
-      "language": "en-US",
-      "abstractNote": "Abstract note",
-      "title": "Title",
-      "shortTitle": "Short title"
-    },
-    "itemID": 13,
-    "key": "Y67N9N5T",
-    "title": "Title",
-    "libraryID": null,
-    "seeAlso": []
-  },
-  "encyclopediaArticle": {
-    "itemType": "encyclopediaArticle",
-    "multi": {
-      "main": {},
-      "_keys": {}
-    },
-    "url": "http://www.example.com",
-    "rights": "Rights",
-    "series": "Series",
-    "volume": "6",
-    "edition": "8",
-    "place": "Place",
-    "publisher": "Publisher",
-    "pages": "1-10",
-    "ISBN": "978-1-234-56789-7",
-    "date": "1999-12-31",
-    "callNumber": "Call number",
-    "archiveLocation": "Archive location",
-    "extra": "Extra",
-    "accessDate": "1997-06-13 23:59:58",
-    "seriesNumber": "9",
-    "numberOfVolumes": "7",
-    "libraryCatalog": "Library catalog",
-    "encyclopediaTitle": "Publication title",
-    "language": "en-US",
-    "abstractNote": "Abstract note",
-    "title": "Title",
-    "shortTitle": "Short title",
-    "archive": "Archive",
-    "creators": [
-      {
-        "firstName": "authorFirst",
-        "lastName": "authorLast",
-        "creatorType": "author",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "contributorFirst",
-        "lastName": "contributorLast",
-        "creatorType": "contributor",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "editorFirst",
-        "lastName": "editorLast",
-        "creatorType": "editor",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "seriesEditorFirst",
-        "lastName": "seriesEditorLast",
-        "creatorType": "seriesEditor",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "translatorFirst",
-        "lastName": "translatorLast",
-        "creatorType": "translator",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "creatorType": "author",
-        "multi": {
-          "_key": {}
-        },
-        "fieldMode": 1,
-        "lastName": "Institutional Author"
-      }
-    ],
-    "tags": [],
-    "collections": [],
-    "relations": {},
-    "dateAdded": "2016-10-09 21:24:50",
-    "dateModified": "2016-10-09 21:24:50",
-    "uri": "http://zotero.org/users/local/nya4mXQL/items/5Z6R4XEJ",
-    "attachments": [],
-    "notes": [],
-    "uniqueFields": {
-      "url": "http://www.example.com",
-      "rights": "Rights",
-      "series": "Series",
-      "volume": "6",
-      "edition": "8",
-      "place": "Place",
-      "publisher": "Publisher",
-      "pages": "1-10",
-      "ISBN": "978-1-234-56789-7",
-      "date": "1999-12-31",
-      "callNumber": "Call number",
-      "archiveLocation": "Archive location",
-      "extra": "Extra",
-      "accessDate": "1997-06-13 23:59:58",
-      "seriesNumber": "9",
-      "numberOfVolumes": "7",
-      "libraryCatalog": "Library catalog",
-      "publicationTitle": "Publication title",
-      "language": "en-US",
-      "abstractNote": "Abstract note",
-      "title": "Title",
-      "shortTitle": "Short title",
-      "archive": "Archive"
-    },
-    "itemID": 14,
-    "key": "5Z6R4XEJ",
-    "publicationTitle": "Publication title",
-    "libraryID": null,
-    "seeAlso": []
-  },
-  "film": {
-    "itemType": "film",
-    "multi": {
-      "main": {},
-      "_keys": {}
-    },
-    "url": "http://www.example.com",
-    "rights": "Rights",
-    "date": "1999-12-31",
-    "callNumber": "Call number",
-    "archiveLocation": "Archive location",
-    "distributor": "Publisher",
-    "extra": "Extra",
-    "accessDate": "1997-06-13 23:59:58",
-    "libraryCatalog": "Library catalog",
-    "videoRecordingFormat": "Medium",
-    "runningTime": "1:22:33",
-    "language": "en-US",
-    "abstractNote": "Abstract note",
-    "title": "Title",
-    "shortTitle": "Short title",
-    "genre": "Type",
-    "archive": "Archive",
-    "creators": [
-      {
-        "firstName": "directorFirst",
-        "lastName": "directorLast",
-        "creatorType": "director",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "contributorFirst",
-        "lastName": "contributorLast",
-        "creatorType": "contributor",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "producerFirst",
-        "lastName": "producerLast",
-        "creatorType": "producer",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "scriptwriterFirst",
-        "lastName": "scriptwriterLast",
-        "creatorType": "scriptwriter",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "creatorType": "director",
-        "multi": {
-          "_key": {}
-        },
-        "fieldMode": 1,
-        "lastName": "Institutional Author"
-      }
-    ],
-    "tags": [],
-    "collections": [],
-    "relations": {},
-    "dateAdded": "2016-10-09 21:24:50",
-    "dateModified": "2016-10-09 21:24:50",
-    "uri": "http://zotero.org/users/local/nya4mXQL/items/NHWF6KU7",
-    "attachments": [],
-    "notes": [],
-    "uniqueFields": {
-      "url": "http://www.example.com",
-      "rights": "Rights",
-      "date": "1999-12-31",
-      "callNumber": "Call number",
-      "archiveLocation": "Archive location",
-      "publisher": "Publisher",
-      "extra": "Extra",
-      "accessDate": "1997-06-13 23:59:58",
-      "libraryCatalog": "Library catalog",
-      "medium": "Medium",
-      "runningTime": "1:22:33",
-      "language": "en-US",
-      "abstractNote": "Abstract note",
-      "title": "Title",
-      "shortTitle": "Short title",
-      "type": "Type",
-      "archive": "Archive"
-    },
-    "itemID": 15,
-    "key": "NHWF6KU7",
-    "publisher": "Publisher",
-    "medium": "Medium",
-    "type": "Type",
-    "libraryID": null,
-    "seeAlso": []
-  },
-  "forumPost": {
-    "itemType": "forumPost",
-    "multi": {
-      "main": {},
-      "_keys": {}
-    },
-    "url": "http://www.example.com",
-    "rights": "Rights",
-    "date": "1999-12-31",
-    "extra": "Extra",
-    "accessDate": "1997-06-13 23:59:58",
-    "postType": "Type",
-    "language": "en-US",
-    "abstractNote": "Abstract note",
-    "forumTitle": "Publication title",
-    "title": "Title",
-    "shortTitle": "Short title",
-    "creators": [
-      {
-        "firstName": "authorFirst",
-        "lastName": "authorLast",
-        "creatorType": "author",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "contributorFirst",
-        "lastName": "contributorLast",
-        "creatorType": "contributor",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "creatorType": "author",
-        "multi": {
-          "_key": {}
-        },
-        "fieldMode": 1,
-        "lastName": "Institutional Author"
-      }
-    ],
-    "tags": [],
-    "collections": [],
-    "relations": {},
-    "dateAdded": "2016-10-09 21:24:50",
-    "dateModified": "2016-10-09 21:24:50",
-    "uri": "http://zotero.org/users/local/nya4mXQL/items/7WDQ8XN5",
-    "attachments": [],
-    "notes": [],
-    "uniqueFields": {
-      "url": "http://www.example.com",
-      "rights": "Rights",
-      "date": "1999-12-31",
-      "extra": "Extra",
-      "accessDate": "1997-06-13 23:59:58",
-      "type": "Type",
-      "language": "en-US",
-      "abstractNote": "Abstract note",
-      "publicationTitle": "Publication title",
-      "title": "Title",
-      "shortTitle": "Short title"
-    },
-    "itemID": 16,
-    "key": "7WDQ8XN5",
-    "type": "Type",
-    "publicationTitle": "Publication title",
-    "libraryID": null,
-    "seeAlso": []
-  },
-  "hearing": {
-    "itemType": "hearing",
-    "multi": {
-      "main": {},
-      "_keys": {}
-    },
-    "url": "http://www.example.com",
-    "rights": "Rights",
-    "volume": "6",
-    "place": "Place",
-    "publisher": "Publisher",
-    "pages": "1-10",
-    "date": "1999-12-31",
-    "archiveLocation": "Archive location",
-    "extra": "Extra",
-    "accessDate": "1997-06-13 23:59:58",
-    "session": "Session",
-    "legislativeBody": "Legislative body",
-    "history": "History",
-    "reporter": "Publication title",
-    "numberOfVolumes": "7",
-    "committee": "Committee",
-    "language": "en-US",
-    "abstractNote": "Abstract note",
-    "documentNumber": "Document number",
-    "title": "Title",
-    "shortTitle": "Short title",
-    "jurisdiction": "Jurisdiction",
-    "assemblyNumber": "Assembly number",
-    "resolutionLabel": "Resolution label",
-    "sessionType": "Type",
-    "meetingNumber": "Meeting number",
-    "meetingName": "Meeting name",
-    "creators": [
-      {
-        "firstName": "testimonyByFirst",
-        "lastName": "testimonyByLast",
-        "creatorType": "testimonyBy",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "contributorFirst",
-        "lastName": "contributorLast",
-        "creatorType": "contributor",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "translatorFirst",
-        "lastName": "translatorLast",
-        "creatorType": "translator",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "creatorType": "testimonyBy",
-        "multi": {
-          "_key": {}
-        },
-        "fieldMode": 1,
-        "lastName": "Institutional Author"
-      }
-    ],
-    "tags": [],
-    "collections": [],
-    "relations": {},
-    "dateAdded": "2016-10-09 21:24:50",
-    "dateModified": "2016-10-09 21:24:50",
-    "uri": "http://zotero.org/users/local/nya4mXQL/items/IMZANEM6",
-    "attachments": [],
-    "notes": [],
-    "uniqueFields": {
-      "url": "http://www.example.com",
-      "rights": "Rights",
-      "volume": "6",
-      "place": "Place",
-      "publisher": "Publisher",
-      "pages": "1-10",
-      "date": "1999-12-31",
-      "archiveLocation": "Archive location",
-      "extra": "Extra",
-      "accessDate": "1997-06-13 23:59:58",
-      "session": "Session",
-      "legislativeBody": "Legislative body",
-      "history": "History",
-      "publicationTitle": "Publication title",
-      "numberOfVolumes": "7",
-      "committee": "Committee",
-      "language": "en-US",
-      "abstractNote": "Abstract note",
-      "documentNumber": "Document number",
-      "title": "Title",
-      "shortTitle": "Short title",
-      "jurisdiction": "Jurisdiction",
-      "assemblyNumber": "Assembly number",
-      "resolutionLabel": "Resolution label",
-      "type": "Type",
-      "meetingNumber": "Meeting number",
-      "meetingName": "Meeting name"
-    },
-    "itemID": 17,
-    "key": "IMZANEM6",
-    "publicationTitle": "Publication title",
-    "type": "Type",
-    "libraryID": null,
-    "seeAlso": []
-  },
-  "instantMessage": {
-    "itemType": "instantMessage",
-    "multi": {
-      "main": {},
-      "_keys": {}
-    },
-    "url": "http://www.example.com",
-    "rights": "Rights",
-    "date": "1999-12-31",
-    "extra": "Extra",
-    "accessDate": "1997-06-13 23:59:58",
-    "language": "en-US",
-    "abstractNote": "Abstract note",
-    "title": "Title",
-    "shortTitle": "Short title",
-    "creators": [
-      {
-        "firstName": "authorFirst",
-        "lastName": "authorLast",
-        "creatorType": "author",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "contributorFirst",
-        "lastName": "contributorLast",
-        "creatorType": "contributor",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "recipientFirst",
-        "lastName": "recipientLast",
-        "creatorType": "recipient",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "creatorType": "author",
-        "multi": {
-          "_key": {}
-        },
-        "fieldMode": 1,
-        "lastName": "Institutional Author"
-      }
-    ],
-    "tags": [],
-    "collections": [],
-    "relations": {},
-    "dateAdded": "2016-10-09 21:24:50",
-    "dateModified": "2016-10-09 21:24:50",
-    "uri": "http://zotero.org/users/local/nya4mXQL/items/E4WHY6VB",
-    "attachments": [],
-    "notes": [],
-    "uniqueFields": {
-      "url": "http://www.example.com",
-      "rights": "Rights",
-      "date": "1999-12-31",
-      "extra": "Extra",
-      "accessDate": "1997-06-13 23:59:58",
-      "language": "en-US",
-      "abstractNote": "Abstract note",
-      "title": "Title",
-      "shortTitle": "Short title"
-    },
-    "itemID": 18,
-    "key": "E4WHY6VB",
-    "libraryID": null,
-    "seeAlso": []
-  },
-  "interview": {
-    "itemType": "interview",
-    "multi": {
-      "main": {},
-      "_keys": {}
-    },
-    "url": "http://www.example.com",
-    "rights": "Rights",
-    "place": "Place",
-    "date": "1999-12-31",
-    "callNumber": "Call number",
-    "archiveLocation": "Archive location",
-    "extra": "Extra",
-    "accessDate": "1997-06-13 23:59:58",
-    "libraryCatalog": "Library catalog",
-    "interviewMedium": "Medium",
-    "language": "en-US",
-    "abstractNote": "Abstract note",
-    "title": "Title",
-    "shortTitle": "Short title",
-    "archive": "Archive",
-    "creators": [
-      {
-        "firstName": "intervieweeFirst",
-        "lastName": "intervieweeLast",
-        "creatorType": "interviewee",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "contributorFirst",
-        "lastName": "contributorLast",
-        "creatorType": "contributor",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "interviewerFirst",
-        "lastName": "interviewerLast",
-        "creatorType": "interviewer",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "translatorFirst",
-        "lastName": "translatorLast",
-        "creatorType": "translator",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "creatorType": "interviewee",
-        "multi": {
-          "_key": {}
-        },
-        "fieldMode": 1,
-        "lastName": "Institutional Author"
-      }
-    ],
-    "tags": [],
-    "collections": [],
-    "relations": {},
-    "dateAdded": "2016-10-09 21:24:50",
-    "dateModified": "2016-10-09 21:24:50",
-    "uri": "http://zotero.org/users/local/nya4mXQL/items/ZRAIPB69",
-    "attachments": [],
-    "notes": [],
-    "uniqueFields": {
-      "url": "http://www.example.com",
-      "rights": "Rights",
-      "place": "Place",
-      "date": "1999-12-31",
-      "callNumber": "Call number",
-      "archiveLocation": "Archive location",
-      "extra": "Extra",
-      "accessDate": "1997-06-13 23:59:58",
-      "libraryCatalog": "Library catalog",
-      "medium": "Medium",
-      "language": "en-US",
-      "abstractNote": "Abstract note",
-      "title": "Title",
-      "shortTitle": "Short title",
-      "archive": "Archive"
-    },
-    "itemID": 19,
-    "key": "ZRAIPB69",
-    "medium": "Medium",
-    "libraryID": null,
-    "seeAlso": []
-  },
-  "journalArticle": {
-    "itemType": "journalArticle",
-    "multi": {
-      "main": {},
-      "_keys": {}
-    },
-    "url": "http://www.example.com",
-    "rights": "Rights",
-    "series": "Series",
-    "volume": "6",
-    "issue": "5",
-    "pages": "1-10",
-    "publicationTitle": "Publication title",
-    "place": "Place",
-    "publisher": "Publisher",
-    "ISSN": "1234-5679",
-    "date": "1999-12-31",
-    "callNumber": "Call number",
-    "archiveLocation": "Archive location",
-    "extra": "Extra",
-    "journalAbbreviation": "Journal abbreviation",
-    "DOI": "10.1234/example.doi",
-    "accessDate": "1997-06-13 23:59:58",
-    "seriesTitle": "Series title",
-    "seriesText": "Series text",
-    "libraryCatalog": "Library catalog",
-    "language": "en-US",
-    "abstractNote": "Abstract note",
-    "title": "Title",
-    "shortTitle": "Short title",
-    "archive": "Archive",
-    "jurisdiction": "Jurisdiction",
-    "status": "Status",
-    "creators": [
-      {
-        "firstName": "authorFirst",
-        "lastName": "authorLast",
-        "creatorType": "author",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "contributorFirst",
-        "lastName": "contributorLast",
-        "creatorType": "contributor",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "editorFirst",
-        "lastName": "editorLast",
-        "creatorType": "editor",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "reviewedAuthorFirst",
-        "lastName": "reviewedAuthorLast",
-        "creatorType": "reviewedAuthor",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "translatorFirst",
-        "lastName": "translatorLast",
-        "creatorType": "translator",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "creatorType": "author",
-        "multi": {
-          "_key": {}
-        },
-        "fieldMode": 1,
-        "lastName": "Institutional Author"
-      }
-    ],
-    "tags": [],
-    "collections": [],
-    "relations": {},
-    "dateAdded": "2016-10-09 21:24:50",
-    "dateModified": "2016-10-09 21:24:50",
-    "uri": "http://zotero.org/users/local/nya4mXQL/items/3MNKUDCK",
-    "attachments": [],
-    "notes": [],
-    "uniqueFields": {
-      "url": "http://www.example.com",
-      "rights": "Rights",
-      "series": "Series",
-      "volume": "6",
-      "issue": "5",
-      "pages": "1-10",
-      "publicationTitle": "Publication title",
-      "place": "Place",
-      "publisher": "Publisher",
-      "ISSN": "1234-5679",
-      "date": "1999-12-31",
-      "callNumber": "Call number",
-      "archiveLocation": "Archive location",
-      "extra": "Extra",
-      "journalAbbreviation": "Journal abbreviation",
-      "DOI": "10.1234/example.doi",
-      "accessDate": "1997-06-13 23:59:58",
-      "seriesTitle": "Series title",
-      "seriesText": "Series text",
-      "libraryCatalog": "Library catalog",
-      "language": "en-US",
-      "abstractNote": "Abstract note",
-      "title": "Title",
-      "shortTitle": "Short title",
-      "archive": "Archive",
-      "jurisdiction": "Jurisdiction",
-      "status": "Status"
-    },
-    "itemID": 20,
-    "key": "3MNKUDCK",
-    "libraryID": null,
-    "seeAlso": []
-  },
-  "letter": {
-    "itemType": "letter",
-    "multi": {
-      "main": {},
-      "_keys": {}
-    },
-    "url": "http://www.example.com",
-    "rights": "Rights",
-    "date": "1999-12-31",
-    "callNumber": "Call number",
-    "archiveLocation": "Archive location",
-    "extra": "Extra",
-    "accessDate": "1997-06-13 23:59:58",
-    "libraryCatalog": "Library catalog",
-    "letterType": "Type",
-    "language": "en-US",
-    "abstractNote": "Abstract note",
-    "title": "Title",
-    "shortTitle": "Short title",
-    "archive": "Archive",
-    "creators": [
-      {
-        "firstName": "authorFirst",
-        "lastName": "authorLast",
-        "creatorType": "author",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "contributorFirst",
-        "lastName": "contributorLast",
-        "creatorType": "contributor",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "recipientFirst",
-        "lastName": "recipientLast",
-        "creatorType": "recipient",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "creatorType": "author",
-        "multi": {
-          "_key": {}
-        },
-        "fieldMode": 1,
-        "lastName": "Institutional Author"
-      }
-    ],
-    "tags": [],
-    "collections": [],
-    "relations": {},
-    "dateAdded": "2016-10-09 21:24:50",
-    "dateModified": "2016-10-09 21:24:50",
-    "uri": "http://zotero.org/users/local/nya4mXQL/items/SY9WHXR9",
-    "attachments": [],
-    "notes": [],
-    "uniqueFields": {
-      "url": "http://www.example.com",
-      "rights": "Rights",
-      "date": "1999-12-31",
-      "callNumber": "Call number",
-      "archiveLocation": "Archive location",
-      "extra": "Extra",
-      "accessDate": "1997-06-13 23:59:58",
-      "libraryCatalog": "Library catalog",
-      "type": "Type",
-      "language": "en-US",
-      "abstractNote": "Abstract note",
-      "title": "Title",
-      "shortTitle": "Short title",
-      "archive": "Archive"
-    },
-    "itemID": 21,
-    "key": "SY9WHXR9",
-    "type": "Type",
-    "libraryID": null,
-    "seeAlso": []
-  },
-  "magazineArticle": {
-    "itemType": "magazineArticle",
-    "multi": {
-      "main": {},
-      "_keys": {}
-    },
-    "url": "http://www.example.com",
-    "rights": "Rights",
-    "volume": "6",
-    "issue": "5",
-    "place": "Place",
-    "publisher": "Publisher",
-    "pages": "1-10",
-    "publicationTitle": "Publication title",
-    "ISSN": "1234-5679",
-    "date": "1999-12-31",
-    "callNumber": "Call number",
-    "archiveLocation": "Archive location",
-    "extra": "Extra",
-    "accessDate": "1997-06-13 23:59:58",
-    "libraryCatalog": "Library catalog",
-    "language": "en-US",
-    "abstractNote": "Abstract note",
-    "title": "Title",
-    "shortTitle": "Short title",
-    "archive": "Archive",
-    "creators": [
-      {
-        "firstName": "authorFirst",
-        "lastName": "authorLast",
-        "creatorType": "author",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "contributorFirst",
-        "lastName": "contributorLast",
-        "creatorType": "contributor",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "reviewedAuthorFirst",
-        "lastName": "reviewedAuthorLast",
-        "creatorType": "reviewedAuthor",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "translatorFirst",
-        "lastName": "translatorLast",
-        "creatorType": "translator",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "creatorType": "author",
-        "multi": {
-          "_key": {}
-        },
-        "fieldMode": 1,
-        "lastName": "Institutional Author"
-      }
-    ],
-    "tags": [],
-    "collections": [],
-    "relations": {},
-    "dateAdded": "2016-10-09 21:24:50",
-    "dateModified": "2016-10-09 21:24:50",
-    "uri": "http://zotero.org/users/local/nya4mXQL/items/ERH8TEU5",
-    "attachments": [],
-    "notes": [],
-    "uniqueFields": {
-      "url": "http://www.example.com",
-      "rights": "Rights",
-      "volume": "6",
-      "issue": "5",
-      "place": "Place",
-      "publisher": "Publisher",
-      "pages": "1-10",
-      "publicationTitle": "Publication title",
-      "ISSN": "1234-5679",
-      "date": "1999-12-31",
-      "callNumber": "Call number",
-      "archiveLocation": "Archive location",
-      "extra": "Extra",
-      "accessDate": "1997-06-13 23:59:58",
-      "libraryCatalog": "Library catalog",
-      "language": "en-US",
-      "abstractNote": "Abstract note",
-      "title": "Title",
-      "shortTitle": "Short title",
-      "archive": "Archive"
-    },
-    "itemID": 22,
-    "key": "ERH8TEU5",
-    "libraryID": null,
-    "seeAlso": []
-  },
-  "manuscript": {
-    "itemType": "manuscript",
-    "multi": {
-      "main": {},
-      "_keys": {}
-    },
-    "url": "http://www.example.com",
-    "rights": "Rights",
-    "place": "Place",
-    "date": "1999-12-31",
-    "callNumber": "Call number",
-    "archiveLocation": "Archive location",
-    "extra": "Extra",
-    "accessDate": "1997-06-13 23:59:58",
-    "libraryCatalog": "Library catalog",
-    "manuscriptType": "Type",
-    "language": "en-US",
-    "abstractNote": "Abstract note",
-    "title": "Title",
-    "shortTitle": "Short title",
-    "numPages": "4",
-    "archive": "Archive",
-    "creators": [
-      {
-        "firstName": "authorFirst",
-        "lastName": "authorLast",
-        "creatorType": "author",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "contributorFirst",
-        "lastName": "contributorLast",
-        "creatorType": "contributor",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "translatorFirst",
-        "lastName": "translatorLast",
-        "creatorType": "translator",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "creatorType": "author",
-        "multi": {
-          "_key": {}
-        },
-        "fieldMode": 1,
-        "lastName": "Institutional Author"
-      }
-    ],
-    "tags": [],
-    "collections": [],
-    "relations": {},
-    "dateAdded": "2016-10-09 21:24:50",
-    "dateModified": "2016-10-09 21:24:50",
-    "uri": "http://zotero.org/users/local/nya4mXQL/items/72YHUBN9",
-    "attachments": [],
-    "notes": [],
-    "uniqueFields": {
-      "url": "http://www.example.com",
-      "rights": "Rights",
-      "place": "Place",
-      "date": "1999-12-31",
-      "callNumber": "Call number",
-      "archiveLocation": "Archive location",
-      "extra": "Extra",
-      "accessDate": "1997-06-13 23:59:58",
-      "libraryCatalog": "Library catalog",
-      "type": "Type",
-      "language": "en-US",
-      "abstractNote": "Abstract note",
-      "title": "Title",
-      "shortTitle": "Short title",
-      "numPages": "4",
-      "archive": "Archive"
-    },
-    "itemID": 23,
-    "key": "72YHUBN9",
-    "type": "Type",
-    "libraryID": null,
-    "seeAlso": []
-  },
-  "map": {
-    "itemType": "map",
-    "multi": {
-      "main": {},
-      "_keys": {}
-    },
-    "url": "http://www.example.com",
-    "rights": "Rights",
-    "edition": "8",
-    "place": "Place",
-    "publisher": "Publisher",
-    "ISBN": "978-1-234-56789-7",
-    "date": "1999-12-31",
-    "callNumber": "Call number",
-    "archiveLocation": "Archive location",
-    "extra": "Extra",
-    "accessDate": "1997-06-13 23:59:58",
-    "seriesTitle": "Series title",
-    "libraryCatalog": "Library catalog",
-    "mapType": "Type",
-    "scale": "Scale",
-    "language": "en-US",
-    "abstractNote": "Abstract note",
-    "title": "Title",
-    "shortTitle": "Short title",
-    "archive": "Archive",
-    "creators": [
-      {
-        "firstName": "cartographerFirst",
-        "lastName": "cartographerLast",
-        "creatorType": "cartographer",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "contributorFirst",
-        "lastName": "contributorLast",
-        "creatorType": "contributor",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "seriesEditorFirst",
-        "lastName": "seriesEditorLast",
-        "creatorType": "seriesEditor",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "creatorType": "cartographer",
-        "multi": {
-          "_key": {}
-        },
-        "fieldMode": 1,
-        "lastName": "Institutional Author"
-      }
-    ],
-    "tags": [],
-    "collections": [],
-    "relations": {},
-    "dateAdded": "2016-10-09 21:24:50",
-    "dateModified": "2016-10-09 21:24:50",
-    "uri": "http://zotero.org/users/local/nya4mXQL/items/ZT3EMY48",
-    "attachments": [],
-    "notes": [],
-    "uniqueFields": {
-      "url": "http://www.example.com",
-      "rights": "Rights",
-      "edition": "8",
-      "place": "Place",
-      "publisher": "Publisher",
-      "ISBN": "978-1-234-56789-7",
-      "date": "1999-12-31",
-      "callNumber": "Call number",
-      "archiveLocation": "Archive location",
-      "extra": "Extra",
-      "accessDate": "1997-06-13 23:59:58",
-      "seriesTitle": "Series title",
-      "libraryCatalog": "Library catalog",
-      "type": "Type",
-      "scale": "Scale",
-      "language": "en-US",
-      "abstractNote": "Abstract note",
-      "title": "Title",
-      "shortTitle": "Short title",
-      "archive": "Archive"
-    },
-    "itemID": 24,
-    "key": "ZT3EMY48",
-    "type": "Type",
-    "libraryID": null,
-    "seeAlso": []
-  },
-  "newspaperArticle": {
-    "itemType": "newspaperArticle",
-    "multi": {
-      "main": {},
-      "_keys": {}
-    },
-    "url": "http://www.example.com",
-    "rights": "Rights",
-    "edition": "8",
-    "place": "Place",
-    "pages": "1-10",
-    "publicationTitle": "Publication title",
-    "ISSN": "1234-5679",
-    "date": "1999-12-31",
-    "section": "Section",
-    "callNumber": "Call number",
-    "archiveLocation": "Archive location",
-    "extra": "Extra",
-    "accessDate": "1997-06-13 23:59:58",
-    "court": "Court",
-    "libraryCatalog": "Library catalog",
-    "language": "en-US",
-    "abstractNote": "Abstract note",
-    "title": "Title",
-    "shortTitle": "Short title",
-    "archive": "Archive",
-    "jurisdiction": "Jurisdiction",
-    "newsCaseDate": "News case date",
-    "creators": [
-      {
-        "firstName": "authorFirst",
-        "lastName": "authorLast",
-        "creatorType": "author",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "contributorFirst",
-        "lastName": "contributorLast",
-        "creatorType": "contributor",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "reviewedAuthorFirst",
-        "lastName": "reviewedAuthorLast",
-        "creatorType": "reviewedAuthor",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "translatorFirst",
-        "lastName": "translatorLast",
-        "creatorType": "translator",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "creatorType": "author",
-        "multi": {
-          "_key": {}
-        },
-        "fieldMode": 1,
-        "lastName": "Institutional Author"
-      }
-    ],
-    "tags": [],
-    "collections": [],
-    "relations": {},
-    "dateAdded": "2016-10-09 21:24:50",
-    "dateModified": "2016-10-09 21:24:50",
-    "uri": "http://zotero.org/users/local/nya4mXQL/items/PWKKA9QN",
-    "attachments": [],
-    "notes": [],
-    "uniqueFields": {
-      "url": "http://www.example.com",
-      "rights": "Rights",
-      "edition": "8",
-      "place": "Place",
-      "pages": "1-10",
-      "publicationTitle": "Publication title",
-      "ISSN": "1234-5679",
-      "date": "1999-12-31",
-      "section": "Section",
-      "callNumber": "Call number",
-      "archiveLocation": "Archive location",
-      "extra": "Extra",
-      "accessDate": "1997-06-13 23:59:58",
-      "court": "Court",
-      "libraryCatalog": "Library catalog",
-      "language": "en-US",
-      "abstractNote": "Abstract note",
-      "title": "Title",
-      "shortTitle": "Short title",
-      "archive": "Archive",
-      "jurisdiction": "Jurisdiction",
-      "newsCaseDate": "News case date"
-    },
-    "itemID": 25,
-    "key": "PWKKA9QN",
-    "libraryID": null,
-    "seeAlso": []
-  },
-  "patent": {
-    "itemType": "patent",
-    "multi": {
-      "main": {},
-      "_keys": {}
-    },
-    "url": "http://www.example.com",
-    "rights": "Rights",
-    "place": "Place",
-    "pages": "1-10",
-    "extra": "Extra",
-    "accessDate": "1997-06-13 23:59:58",
-    "assignee": "Assignee",
-    "patentNumber": "3",
-    "priorityNumbers": "Priority numbers",
-    "issueDate": "1999-12-31",
-    "references": "References",
-    "legalStatus": "Legal status",
-    "language": "en-US",
-    "abstractNote": "Abstract note",
-    "country": "Country",
-    "applicationNumber": "Application number",
-    "title": "Title",
-    "shortTitle": "Short title",
-    "issuingAuthority": "Issuing authority",
-    "filingDate": "2000-01-02",
-    "genre": "Genre",
-    "jurisdiction": "Jurisdiction",
-    "priorityDate": "Priority date",
-    "publicationDate": "Publication date",
-    "publicationNumber": "Publication number",
-    "creators": [
-      {
-        "firstName": "inventorFirst",
-        "lastName": "inventorLast",
-        "creatorType": "inventor",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "attorneyAgentFirst",
-        "lastName": "attorneyAgentLast",
-        "creatorType": "attorneyAgent",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "contributorFirst",
-        "lastName": "contributorLast",
-        "creatorType": "contributor",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "recipientFirst",
-        "lastName": "recipientLast",
-        "creatorType": "recipient",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "creatorType": "inventor",
-        "multi": {
-          "_key": {}
-        },
-        "fieldMode": 1,
-        "lastName": "Institutional Author"
-      }
-    ],
-    "tags": [],
-    "collections": [],
-    "relations": {},
-    "dateAdded": "2016-10-09 21:24:50",
-    "dateModified": "2016-10-09 21:24:50",
-    "uri": "http://zotero.org/users/local/nya4mXQL/items/9BDPL9HD",
-    "attachments": [],
-    "notes": [],
-    "uniqueFields": {
-      "url": "http://www.example.com",
-      "rights": "Rights",
-      "place": "Place",
-      "pages": "1-10",
-      "extra": "Extra",
-      "accessDate": "1997-06-13 23:59:58",
-      "assignee": "Assignee",
-      "number": "3",
-      "priorityNumbers": "Priority numbers",
-      "date": "1999-12-31",
-      "references": "References",
-      "legalStatus": "Legal status",
-      "language": "en-US",
-      "abstractNote": "Abstract note",
-      "country": "Country",
-      "applicationNumber": "Application number",
-      "title": "Title",
-      "shortTitle": "Short title",
-      "issuingAuthority": "Issuing authority",
-      "filingDate": "2000-01-02",
-      "genre": "Genre",
-      "jurisdiction": "Jurisdiction",
-      "priorityDate": "Priority date",
-      "publicationDate": "Publication date",
-      "publicationNumber": "Publication number"
-    },
-    "itemID": 26,
-    "key": "9BDPL9HD",
-    "number": "3",
-    "date": "1999-12-31",
-    "libraryID": null,
-    "seeAlso": []
-  },
-  "podcast": {
-    "itemType": "podcast",
-    "multi": {
-      "main": {},
-      "_keys": {}
-    },
-    "url": "http://www.example.com",
-    "rights": "Rights",
-    "publisher": "Publisher",
-    "date": "1999-12-31",
-    "extra": "Extra",
-    "accessDate": "1997-06-13 23:59:58",
-    "seriesTitle": "Series title",
-    "runningTime": "1:22:33",
-    "audioFileType": "Medium",
-    "language": "en-US",
-    "abstractNote": "Abstract note",
-    "episodeNumber": "3",
-    "title": "Title",
-    "shortTitle": "Short title",
-    "creators": [
-      {
-        "firstName": "podcasterFirst",
-        "lastName": "podcasterLast",
-        "creatorType": "podcaster",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "contributorFirst",
-        "lastName": "contributorLast",
-        "creatorType": "contributor",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "guestFirst",
-        "lastName": "guestLast",
-        "creatorType": "guest",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "creatorType": "podcaster",
-        "multi": {
-          "_key": {}
-        },
-        "fieldMode": 1,
-        "lastName": "Institutional Author"
-      }
-    ],
-    "tags": [],
-    "collections": [],
-    "relations": {},
-    "dateAdded": "2016-10-09 21:24:50",
-    "dateModified": "2016-10-09 21:24:50",
-    "uri": "http://zotero.org/users/local/nya4mXQL/items/DLBELGZ3",
-    "attachments": [],
-    "notes": [],
-    "uniqueFields": {
-      "url": "http://www.example.com",
-      "rights": "Rights",
-      "publisher": "Publisher",
-      "date": "1999-12-31",
-      "extra": "Extra",
-      "accessDate": "1997-06-13 23:59:58",
-      "seriesTitle": "Series title",
-      "runningTime": "1:22:33",
-      "medium": "Medium",
-      "language": "en-US",
-      "abstractNote": "Abstract note",
-      "number": "3",
-      "title": "Title",
-      "shortTitle": "Short title"
-    },
-    "itemID": 27,
-    "key": "DLBELGZ3",
-    "medium": "Medium",
-    "number": "3",
-    "libraryID": null,
-    "seeAlso": []
-  },
-  "presentation": {
-    "itemType": "presentation",
-    "multi": {
-      "main": {},
-      "_keys": {}
-    },
-    "url": "http://www.example.com",
-    "rights": "Rights",
-    "place": "Place",
-    "date": "1999-12-31",
-    "extra": "Extra",
-      "accessDate": "1997-06-13 23:59:58",
-    "archive": "Archive",
-    "archiveLocation": "Archive location",
-    "archiveCollection": "Archive collection",
-    "presentationType": "Type",
-    "meetingName": "Meeting name",
-    "language": "en-US",
-    "abstractNote": "Abstract note",
-    "title": "Title",
-    "shortTitle": "Short title",
-    "creators": [
-      {
-        "firstName": "presenterFirst",
-        "lastName": "presenterLast",
-        "creatorType": "presenter",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "contributorFirst",
-        "lastName": "contributorLast",
-        "creatorType": "contributor",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "creatorType": "presenter",
-        "multi": {
-          "_key": {}
-        },
-        "fieldMode": 1,
-        "lastName": "Institutional Author"
-      }
-    ],
-    "tags": [],
-    "collections": [],
-    "relations": {},
-    "dateAdded": "2016-10-09 21:24:50",
-    "dateModified": "2016-10-09 21:24:50",
-    "uri": "http://zotero.org/users/local/nya4mXQL/items/C7NZUDZ4",
-    "attachments": [],
-    "notes": [],
-    "uniqueFields": {
-      "url": "http://www.example.com",
-      "rights": "Rights",
-      "place": "Place",
-      "date": "1999-12-31",
-      "extra": "Extra",
-      "accessDate": "1997-06-13 23:59:58",
-      "type": "Type",
-      "meetingName": "Meeting name",
-      "language": "en-US",
-      "abstractNote": "Abstract note",
-      "archive": "Archive",
-	  "archiveLocation": "Archive location",
-      "archiveCollection": "Archive collection",
-      "title": "Title",
-      "shortTitle": "Short title"
-    },
-    "itemID": 28,
-    "key": "C7NZUDZ4",
-    "type": "Type",
-    "libraryID": null,
-    "seeAlso": []
-  },
-  "radioBroadcast": {
-    "itemType": "radioBroadcast",
-    "multi": {
-      "main": {},
-      "_keys": {}
-    },
-    "url": "http://www.example.com",
-    "rights": "Rights",
-    "place": "Place",
-    "date": "1999-12-31",
-    "callNumber": "Call number",
-    "archiveLocation": "Archive location",
-    "extra": "Extra",
-    "accessDate": "1997-06-13 23:59:58",
-    "libraryCatalog": "Library catalog",
-    "audioRecordingFormat": "Medium",
-    "runningTime": "1:22:33",
-    "network": "Publisher",
-    "language": "en-US",
-    "abstractNote": "Abstract note",
-    "episodeNumber": "3",
-    "title": "Title",
-    "shortTitle": "Short title",
-    "programTitle": "Publication title",
-    "archive": "Archive",
-    "creators": [
-      {
-        "firstName": "directorFirst",
-        "lastName": "directorLast",
-        "creatorType": "director",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "castMemberFirst",
-        "lastName": "castMemberLast",
-        "creatorType": "castMember",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "contributorFirst",
-        "lastName": "contributorLast",
-        "creatorType": "contributor",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "guestFirst",
-        "lastName": "guestLast",
-        "creatorType": "guest",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "producerFirst",
-        "lastName": "producerLast",
-        "creatorType": "producer",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "scriptwriterFirst",
-        "lastName": "scriptwriterLast",
-        "creatorType": "scriptwriter",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "creatorType": "director",
-        "multi": {
-          "_key": {}
-        },
-        "fieldMode": 1,
-        "lastName": "Institutional Author"
-      }
-    ],
-    "tags": [],
-    "collections": [],
-    "relations": {},
-    "dateAdded": "2016-10-09 21:24:50",
-    "dateModified": "2016-10-09 21:24:50",
-    "uri": "http://zotero.org/users/local/nya4mXQL/items/44N8ZHPH",
-    "attachments": [],
-    "notes": [],
-    "uniqueFields": {
-      "url": "http://www.example.com",
-      "rights": "Rights",
-      "place": "Place",
-      "date": "1999-12-31",
-      "callNumber": "Call number",
-      "archiveLocation": "Archive location",
-      "extra": "Extra",
-      "accessDate": "1997-06-13 23:59:58",
-      "libraryCatalog": "Library catalog",
-      "medium": "Medium",
-      "runningTime": "1:22:33",
-      "publisher": "Publisher",
-      "language": "en-US",
-      "abstractNote": "Abstract note",
-      "number": "3",
-      "title": "Title",
-      "shortTitle": "Short title",
-      "publicationTitle": "Publication title",
-      "archive": "Archive"
-    },
-    "itemID": 29,
-    "key": "44N8ZHPH",
-    "medium": "Medium",
-    "publisher": "Publisher",
-    "number": "3",
-    "publicationTitle": "Publication title",
-    "libraryID": null,
-    "seeAlso": []
-  },
-  "report": {
-    "itemType": "report",
-    "multi": {
-      "main": {},
-      "_keys": {}
-    },
-    "url": "http://www.example.com",
-    "rights": "Rights",
-    "place": "Place",
-    "publisher": "Publisher",
-    "pages": "1-10",
-    "date": "1999-12-31",
-    "callNumber": "Call number",
-    "archiveLocation": "Archive location",
-    "extra": "Extra",
-    "accessDate": "1997-06-13 23:59:58",
-    "seriesTitle": "Series title",
-    "institution": "Institution",
-    "reportType": "Type",
-    "committee": "Committee",
-    "libraryCatalog": "Library catalog",
-    "language": "en-US",
-    "abstractNote": "Abstract note",
-    "reportNumber": "3",
-    "medium": "Medium",
-    "title": "Title",
-    "bookTitle": "Publication title",
-    "shortTitle": "Short title",
-    "archive": "Archive",
-    "jurisdiction": "Jurisdiction",
-    "assemblyNumber": "Assembly number",
-    "status": "Status",
-    "creators": [
-      {
-        "firstName": "authorFirst",
-        "lastName": "authorLast",
-        "creatorType": "author",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "contributorFirst",
-        "lastName": "contributorLast",
-        "creatorType": "contributor",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "seriesEditorFirst",
-        "lastName": "seriesEditorLast",
-        "creatorType": "seriesEditor",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "translatorFirst",
-        "lastName": "translatorLast",
-        "creatorType": "translator",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "creatorType": "author",
-        "multi": {
-          "_key": {}
-        },
-        "fieldMode": 1,
-        "lastName": "Institutional Author"
-      }
-    ],
-    "tags": [],
-    "collections": [],
-    "relations": {},
-    "dateAdded": "2016-10-09 21:24:50",
-    "dateModified": "2016-10-09 21:24:50",
-    "uri": "http://zotero.org/users/local/nya4mXQL/items/UAIJW3T9",
-    "attachments": [],
-    "notes": [],
-    "uniqueFields": {
-      "url": "http://www.example.com",
-      "rights": "Rights",
-      "place": "Place",
-      "publisher": "Publisher",
-      "pages": "1-10",
-      "date": "1999-12-31",
-      "callNumber": "Call number",
-      "archiveLocation": "Archive location",
-      "extra": "Extra",
-      "accessDate": "1997-06-13 23:59:58",
-      "seriesTitle": "Series title",
-      "institution": "Institution",
-      "type": "Type",
-      "committee": "Committee",
-      "libraryCatalog": "Library catalog",
-      "language": "en-US",
-      "abstractNote": "Abstract note",
-      "number": "3",
-      "medium": "Medium",
-      "title": "Title",
-      "publicationTitle": "Publication title",
-      "shortTitle": "Short title",
-      "archive": "Archive",
-      "jurisdiction": "Jurisdiction",
-      "assemblyNumber": "Assembly number",
-      "status": "Status"
-    },
-    "itemID": 30,
-    "key": "UAIJW3T9",
-    "type": "Type",
-    "number": "3",
-    "publicationTitle": "Publication title",
-    "libraryID": null,
-    "seeAlso": []
-  },
-  "statute": {
-    "itemType": "statute",
-    "multi": {
-      "main": {},
-      "_keys": {}
-    },
-    "url": "http://www.example.com",
-    "rights": "Rights",
-    "publisher": "Publisher",
-    "pages": "1-10",
-    "section": "Section",
-    "extra": "Extra",
-    "accessDate": "1997-06-13 23:59:58",
-    "code": "Code",
-    "session": "Session",
-    "history": "History",
-    "codeNumber": "Code number",
-    "language": "en-US",
-    "abstractNote": "Abstract note",
-    "dateEnacted": "1999-12-31",
-    "publicLawNumber": "3",
-    "nameOfAct": "Title",
-    "shortTitle": "Short title",
-    "jurisdiction": "Jurisdiction",
-    "publicationDate": "Publication date",
-    "reign": "Reign",
-    "regnalYear": "Regnal year",
-    "originalDate": "Original date",
-    "dateAmended": "Date amended",
-    "gazetteFlag": "Gazette flag",
-    "creators": [
-      {
-        "firstName": "authorFirst",
-        "lastName": "authorLast",
-        "creatorType": "author",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "contributorFirst",
-        "lastName": "contributorLast",
-        "creatorType": "contributor",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "translatorFirst",
-        "lastName": "translatorLast",
-        "creatorType": "translator",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "creatorType": "author",
-        "multi": {
-          "_key": {}
-        },
-        "fieldMode": 1,
-        "lastName": "Institutional Author"
-      }
-    ],
-    "tags": [],
-    "collections": [],
-    "relations": {},
-    "dateAdded": "2016-10-09 21:24:50",
-    "dateModified": "2016-10-09 21:24:50",
-    "uri": "http://zotero.org/users/local/nya4mXQL/items/H66LZHEJ",
-    "attachments": [],
-    "notes": [],
-    "uniqueFields": {
-      "url": "http://www.example.com",
-      "rights": "Rights",
-      "publisher": "Publisher",
-      "pages": "1-10",
-      "section": "Section",
-      "extra": "Extra",
-      "accessDate": "1997-06-13 23:59:58",
-      "code": "Code",
-      "session": "Session",
-      "history": "History",
-      "codeNumber": "Code number",
-      "language": "en-US",
-      "abstractNote": "Abstract note",
-      "date": "1999-12-31",
-      "number": "3",
-      "title": "Title",
-      "shortTitle": "Short title",
-      "jurisdiction": "Jurisdiction",
-      "publicationDate": "Publication date",
-      "reign": "Reign",
-      "regnalYear": "Regnal year",
-      "originalDate": "Original date",
-      "dateAmended": "Date amended",
-      "gazetteFlag": "Gazette flag"
-    },
-    "itemID": 31,
-    "key": "H66LZHEJ",
-    "date": "1999-12-31",
-    "number": "3",
-    "title": "Title",
-    "libraryID": null,
-    "seeAlso": []
-  },
-  "thesis": {
-    "itemType": "thesis",
-    "multi": {
-      "main": {},
-      "_keys": {}
-    },
-    "url": "http://www.example.com",
-    "rights": "Rights",
-    "place": "Place",
-    "date": "1999-12-31",
-    "callNumber": "Call number",
-    "archiveLocation": "Archive location",
-    "extra": "Extra",
-    "accessDate": "1997-06-13 23:59:58",
-    "libraryCatalog": "Library catalog",
-    "thesisType": "Type",
-    "language": "en-US",
-    "university": "Publisher",
-    "abstractNote": "Abstract note",
-    "title": "Title",
-    "shortTitle": "Short title",
-    "numPages": "4",
-    "archive": "Archive",
-    "creators": [
-      {
-        "firstName": "authorFirst",
-        "lastName": "authorLast",
-        "creatorType": "author",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "contributorFirst",
-        "lastName": "contributorLast",
-        "creatorType": "contributor",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "creatorType": "author",
-        "multi": {
-          "_key": {}
-        },
-        "fieldMode": 1,
-        "lastName": "Institutional Author"
-      }
-    ],
-    "tags": [],
-    "collections": [],
-    "relations": {},
-    "dateAdded": "2016-10-09 21:24:50",
-    "dateModified": "2016-10-09 21:24:50",
-    "uri": "http://zotero.org/users/local/nya4mXQL/items/2CIE9P7N",
-    "attachments": [],
-    "notes": [],
-    "uniqueFields": {
-      "url": "http://www.example.com",
-      "rights": "Rights",
-      "place": "Place",
-      "date": "1999-12-31",
-      "callNumber": "Call number",
-      "archiveLocation": "Archive location",
-      "extra": "Extra",
-      "accessDate": "1997-06-13 23:59:58",
-      "libraryCatalog": "Library catalog",
-      "type": "Type",
-      "language": "en-US",
-      "publisher": "Publisher",
-      "abstractNote": "Abstract note",
-      "title": "Title",
-      "shortTitle": "Short title",
-      "numPages": "4",
-      "archive": "Archive"
-    },
-    "itemID": 32,
-    "key": "2CIE9P7N",
-    "type": "Type",
-    "publisher": "Publisher",
-    "libraryID": null,
-    "seeAlso": []
-  },
-  "tvBroadcast": {
-    "itemType": "tvBroadcast",
-    "multi": {
-      "main": {},
-      "_keys": {}
-    },
-    "url": "http://www.example.com",
-    "rights": "Rights",
-    "place": "Place",
-    "date": "1999-12-31",
-    "callNumber": "Call number",
-    "archiveLocation": "Archive location",
-    "extra": "Extra",
-    "accessDate": "1997-06-13 23:59:58",
-    "libraryCatalog": "Library catalog",
-    "videoRecordingFormat": "Medium",
-    "runningTime": "1:22:33",
-    "network": "Publisher",
-    "language": "en-US",
-    "abstractNote": "Abstract note",
-    "episodeNumber": "3",
-    "title": "Title",
-    "shortTitle": "Short title",
-    "programTitle": "Publication title",
-    "archive": "Archive",
-    "creators": [
-      {
-        "firstName": "directorFirst",
-        "lastName": "directorLast",
-        "creatorType": "director",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "castMemberFirst",
-        "lastName": "castMemberLast",
-        "creatorType": "castMember",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "contributorFirst",
-        "lastName": "contributorLast",
-        "creatorType": "contributor",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "guestFirst",
-        "lastName": "guestLast",
-        "creatorType": "guest",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "producerFirst",
-        "lastName": "producerLast",
-        "creatorType": "producer",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "scriptwriterFirst",
-        "lastName": "scriptwriterLast",
-        "creatorType": "scriptwriter",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "creatorType": "director",
-        "multi": {
-          "_key": {}
-        },
-        "fieldMode": 1,
-        "lastName": "Institutional Author"
-      }
-    ],
-    "tags": [],
-    "collections": [],
-    "relations": {},
-    "dateAdded": "2016-10-09 21:24:50",
-    "dateModified": "2016-10-09 21:24:50",
-    "uri": "http://zotero.org/users/local/nya4mXQL/items/UMWGL7CE",
-    "attachments": [],
-    "notes": [],
-    "uniqueFields": {
-      "url": "http://www.example.com",
-      "rights": "Rights",
-      "place": "Place",
-      "date": "1999-12-31",
-      "callNumber": "Call number",
-      "archiveLocation": "Archive location",
-      "extra": "Extra",
-      "accessDate": "1997-06-13 23:59:58",
-      "libraryCatalog": "Library catalog",
-      "medium": "Medium",
-      "runningTime": "1:22:33",
-      "publisher": "Publisher",
-      "language": "en-US",
-      "abstractNote": "Abstract note",
-      "number": "3",
-      "title": "Title",
-      "shortTitle": "Short title",
-      "publicationTitle": "Publication title",
-      "archive": "Archive"
-    },
-    "itemID": 33,
-    "key": "UMWGL7CE",
-    "medium": "Medium",
-    "publisher": "Publisher",
-    "number": "3",
-    "publicationTitle": "Publication title",
-    "libraryID": null,
-    "seeAlso": []
-  },
-  "videoRecording": {
-    "itemType": "videoRecording",
-    "multi": {
-      "main": {},
-      "_keys": {}
-    },
-    "url": "http://www.example.com",
-    "rights": "Rights",
-    "volume": "6",
-    "place": "Place",
-    "ISBN": "978-1-234-56789-7",
-    "date": "1999-12-31",
-    "callNumber": "Call number",
-    "archiveLocation": "Archive location",
-    "extra": "Extra",
-    "accessDate": "1997-06-13 23:59:58",
-    "seriesTitle": "Series title",
-    "numberOfVolumes": "7",
-    "libraryCatalog": "Library catalog",
-    "videoRecordingFormat": "Medium",
-    "studio": "Publisher",
-    "runningTime": "1:22:33",
-    "language": "en-US",
-    "abstractNote": "Abstract note",
-    "websiteTitle": "Publication title",
-    "publicationTitle": "Publication title",
-    "title": "Title",
-    "shortTitle": "Short title",
-    "archive": "Archive",
-    "creators": [
-      {
-        "firstName": "directorFirst",
-        "lastName": "directorLast",
-        "creatorType": "director",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "castMemberFirst",
-        "lastName": "castMemberLast",
-        "creatorType": "castMember",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "contributorFirst",
-        "lastName": "contributorLast",
-        "creatorType": "contributor",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "producerFirst",
-        "lastName": "producerLast",
-        "creatorType": "producer",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "scriptwriterFirst",
-        "lastName": "scriptwriterLast",
-        "creatorType": "scriptwriter",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "creatorType": "director",
-        "multi": {
-          "_key": {}
-        },
-        "fieldMode": 1,
-        "lastName": "Institutional Author"
-      }
-    ],
-    "tags": [],
-    "collections": [],
-    "relations": {},
-    "dateAdded": "2016-10-09 21:24:50",
-    "dateModified": "2016-10-09 21:24:50",
-    "uri": "http://zotero.org/users/local/nya4mXQL/items/6HJFGK9D",
-    "attachments": [],
-    "notes": [],
-    "uniqueFields": {
-      "url": "http://www.example.com",
-      "rights": "Rights",
-      "volume": "6",
-      "place": "Place",
-      "ISBN": "978-1-234-56789-7",
-      "date": "1999-12-31",
-      "callNumber": "Call number",
-      "archiveLocation": "Archive location",
-      "extra": "Extra",
-      "accessDate": "1997-06-13 23:59:58",
-      "seriesTitle": "Series title",
-      "numberOfVolumes": "7",
-      "libraryCatalog": "Library catalog",
-      "medium": "Medium",
-      "publisher": "Publisher",
-      "runningTime": "1:22:33",
-      "language": "en-US",
-      "abstractNote": "Abstract note",
-      "publicationTitle": "Publication title",
-      "title": "Title",
-      "shortTitle": "Short title",
-      "archive": "Archive"
-    },
-    "itemID": 34,
-    "key": "6HJFGK9D",
-    "medium": "Medium",
-    "publisher": "Publisher",
-    "libraryID": null,
-    "seeAlso": []
-  },
-  "webpage": {
-    "itemType": "webpage",
-    "multi": {
-      "main": {},
-      "_keys": {}
-    },
-    "url": "http://www.example.com",
-    "rights": "Rights",
-    "date": "1999-12-31",
-    "extra": "Extra",
-    "accessDate": "1997-06-13 23:59:58",
-    "websiteType": "Type",
-    "language": "en-US",
-    "abstractNote": "Abstract note",
-    "websiteTitle": "Publication title",
-    "title": "Title",
-    "shortTitle": "Short title",
-    "creators": [
-      {
-        "firstName": "authorFirst",
-        "lastName": "authorLast",
-        "creatorType": "author",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "contributorFirst",
-        "lastName": "contributorLast",
-        "creatorType": "contributor",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "translatorFirst",
-        "lastName": "translatorLast",
-        "creatorType": "translator",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "creatorType": "author",
-        "multi": {
-          "_key": {}
-        },
-        "fieldMode": 1,
-        "lastName": "Institutional Author"
-      }
-    ],
-    "tags": [],
-    "collections": [],
-    "relations": {},
-    "dateAdded": "2016-10-09 21:24:50",
-    "dateModified": "2016-10-09 21:24:50",
-    "uri": "http://zotero.org/users/local/nya4mXQL/items/CGH68QXW",
-    "attachments": [],
-    "notes": [],
-    "uniqueFields": {
-      "url": "http://www.example.com",
-      "rights": "Rights",
-      "date": "1999-12-31",
-      "extra": "Extra",
-      "accessDate": "1997-06-13 23:59:58",
-      "type": "Type",
-      "language": "en-US",
-      "abstractNote": "Abstract note",
-      "publicationTitle": "Publication title",
-      "title": "Title",
-      "shortTitle": "Short title"
-    },
-    "itemID": 35,
-    "key": "CGH68QXW",
-    "type": "Type",
-    "publicationTitle": "Publication title",
-    "libraryID": null,
-    "seeAlso": []
-  },
-  "gazette": {
-    "itemType": "gazette",
-    "multi": {
-      "main": {},
-      "_keys": {}
-    },
-    "url": "http://www.example.com",
-    "rights": "Rights",
-    "publisher": "Publisher",
-    "pages": "1-10",
-    "section": "Section",
-    "extra": "Extra",
-    "accessDate": "1997-06-13 23:59:58",
-    "code": "Code",
-    "session": "Session",
-    "history": "History",
-    "codeNumber": "Code number",
-    "language": "en-US",
-    "abstractNote": "Abstract note",
-    "dateEnacted": "1999-12-31",
-    "publicLawNumber": "3",
-    "nameOfAct": "Title",
-    "shortTitle": "Short title",
-    "jurisdiction": "Jurisdiction",
-    "publicationDate": "Publication date",
-    "reign": "Reign",
-    "regnalYear": "Regnal year",
-    "creators": [
-      {
-        "firstName": "authorFirst",
-        "lastName": "authorLast",
-        "creatorType": "author",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "contributorFirst",
-        "lastName": "contributorLast",
-        "creatorType": "contributor",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "translatorFirst",
-        "lastName": "translatorLast",
-        "creatorType": "translator",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "creatorType": "author",
-        "multi": {
-          "_key": {}
-        },
-        "fieldMode": 1,
-        "lastName": "Institutional Author"
-      }
-    ],
-    "tags": [],
-    "collections": [],
-    "relations": {},
-    "dateAdded": "2016-10-09 21:24:50",
-    "dateModified": "2016-10-09 21:24:50",
-    "uri": "http://zotero.org/users/local/nya4mXQL/items/D79P623X",
-    "attachments": [],
-    "notes": [],
-    "uniqueFields": {
-      "url": "http://www.example.com",
-      "rights": "Rights",
-      "publisher": "Publisher",
-      "pages": "1-10",
-      "section": "Section",
-      "extra": "Extra",
-      "accessDate": "1997-06-13 23:59:58",
-      "code": "Code",
-      "session": "Session",
-      "history": "History",
-      "codeNumber": "Code number",
-      "language": "en-US",
-      "abstractNote": "Abstract note",
-      "date": "1999-12-31",
-      "number": "3",
-      "title": "Title",
-      "shortTitle": "Short title",
-      "jurisdiction": "Jurisdiction",
-      "publicationDate": "Publication date",
-      "reign": "Reign",
-      "regnalYear": "Regnal year"
-    },
-    "itemID": 36,
-    "key": "D79P623X",
-    "date": "1999-12-31",
-    "number": "3",
-    "title": "Title",
-    "libraryID": null,
-    "seeAlso": []
-  },
-  "regulation": {
-    "itemType": "regulation",
-    "multi": {
-      "main": {},
-      "_keys": {}
-    },
-    "url": "http://www.example.com",
-    "rights": "Rights",
-    "publisher": "Publisher",
-    "pages": "1-10",
-    "section": "Section",
-    "extra": "Extra",
-    "accessDate": "1997-06-13 23:59:58",
-    "code": "Code",
-    "session": "Session",
-    "history": "History",
-    "codeNumber": "Code number",
-    "language": "en-US",
-    "abstractNote": "Abstract note",
-    "dateEnacted": "1999-12-31",
-    "publicLawNumber": "3",
-    "nameOfAct": "Title",
-    "shortTitle": "Short title",
-    "jurisdiction": "Jurisdiction",
-    "publicationDate": "Publication date",
-    "regulationType": "Type",
-    "regulatoryBody": "Legislative body",
-    "gazetteFlag": "Gazette flag",
-    "creators": [
-      {
-        "firstName": "authorFirst",
-        "lastName": "authorLast",
-        "creatorType": "author",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "contributorFirst",
-        "lastName": "contributorLast",
-        "creatorType": "contributor",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "translatorFirst",
-        "lastName": "translatorLast",
-        "creatorType": "translator",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "creatorType": "author",
-        "multi": {
-          "_key": {}
-        },
-        "fieldMode": 1,
-        "lastName": "Institutional Author"
-      }
-    ],
-    "tags": [],
-    "collections": [],
-    "relations": {},
-    "dateAdded": "2016-10-09 21:24:50",
-    "dateModified": "2016-10-09 21:24:50",
-    "uri": "http://zotero.org/users/local/nya4mXQL/items/DLKKYDV3",
-    "attachments": [],
-    "notes": [],
-    "uniqueFields": {
-      "url": "http://www.example.com",
-      "rights": "Rights",
-      "publisher": "Publisher",
-      "pages": "1-10",
-      "section": "Section",
-      "extra": "Extra",
-      "accessDate": "1997-06-13 23:59:58",
-      "code": "Code",
-      "session": "Session",
-      "history": "History",
-      "codeNumber": "Code number",
-      "language": "en-US",
-      "abstractNote": "Abstract note",
-      "date": "1999-12-31",
-      "number": "3",
-      "title": "Title",
-      "shortTitle": "Short title",
-      "jurisdiction": "Jurisdiction",
-      "publicationDate": "Publication date",
-      "type": "Type",
-      "legislativeBody": "Legislative body",
-      "gazetteFlag": "Gazette flag"
-    },
-    "itemID": 37,
-    "key": "DLKKYDV3",
-    "date": "1999-12-31",
-    "number": "3",
-    "title": "Title",
-    "type": "Type",
-    "legislativeBody": "Legislative body",
-    "libraryID": null,
-    "seeAlso": []
-  },
-  "classic": {
-    "itemType": "classic",
-    "multi": {
-      "main": {},
-      "_keys": {}
-    },
-    "url": "http://www.example.com",
-    "rights": "Rights",
-    "volume": "6",
-    "place": "Place",
-    "date": "1999-12-31",
-    "callNumber": "Call number",
-    "archiveLocation": "Archive location",
-    "extra": "Extra",
-    "accessDate": "1997-06-13 23:59:58",
-    "libraryCatalog": "Library catalog",
-    "manuscriptType": "Type",
-    "language": "en-US",
-    "abstractNote": "Abstract note",
-    "title": "Title",
-    "shortTitle": "Short title",
-    "numPages": "4",
-    "archive": "Archive",
-    "creators": [
-      {
-        "firstName": "authorFirst",
-        "lastName": "authorLast",
-        "creatorType": "author",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "contributorFirst",
-        "lastName": "contributorLast",
-        "creatorType": "contributor",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "translatorFirst",
-        "lastName": "translatorLast",
-        "creatorType": "translator",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "creatorType": "author",
-        "multi": {
-          "_key": {}
-        },
-        "fieldMode": 1,
-        "lastName": "Institutional Author"
-      }
-    ],
-    "tags": [],
-    "collections": [],
-    "relations": {},
-    "dateAdded": "2016-10-09 21:24:50",
-    "dateModified": "2016-10-09 21:24:50",
-    "uri": "http://zotero.org/users/local/nya4mXQL/items/NVV36ZK5",
-    "attachments": [],
-    "notes": [],
-    "uniqueFields": {
-      "url": "http://www.example.com",
-      "rights": "Rights",
-      "volume": "6",
-      "place": "Place",
-      "date": "1999-12-31",
-      "callNumber": "Call number",
-      "archiveLocation": "Archive location",
-      "extra": "Extra",
-      "accessDate": "1997-06-13 23:59:58",
-      "libraryCatalog": "Library catalog",
-      "type": "Type",
-      "language": "en-US",
-      "abstractNote": "Abstract note",
-      "title": "Title",
-      "shortTitle": "Short title",
-      "numPages": "4",
-      "archive": "Archive"
-    },
-    "itemID": 38,
-    "key": "NVV36ZK5",
-    "type": "Type",
-    "libraryID": null,
-    "seeAlso": []
-  },
-  "treaty": {
-    "itemType": "treaty",
-    "multi": {
-      "main": {},
-      "_keys": {}
-    },
-    "url": "http://www.example.com",
-    "rights": "Rights",
-    "volume": "6",
-    "publisher": "Publisher",
-    "pages": "1-10",
-    "date": "1999-12-31",
-    "section": "Section",
-    "callNumber": "Call number",
-    "archiveLocation": "Archive location",
-    "extra": "Extra",
-    "accessDate": "1997-06-13 23:59:58",
-    "reporter": "Publication title",
-    "publicationTitle": "Publication title",
-    "libraryCatalog": "Library catalog",
-    "language": "en-US",
-    "treatyNumber": "3",
-    "number": "3",
-    "abstractNote": "Abstract note",
-    "title": "Title",
-    "shortTitle": "Short title",
-    "archive": "Archive",
-    "supplementName": "Supplement name",
-    "version": "Version number",
-    "signingDate": "Signing date",
-    "openingDate": "Opening date",
-    "adoptionDate": "Adoption date",
-    "parentTreaty": "Parent treaty",
-    "creators": [
-      {
-        "firstName": "authorFirst",
-        "lastName": "authorLast",
-        "creatorType": "author",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "contributorFirst",
-        "lastName": "contributorLast",
-        "creatorType": "contributor",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "editorFirst",
-        "lastName": "editorLast",
-        "creatorType": "editor",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "reviewedAuthorFirst",
-        "lastName": "reviewedAuthorLast",
-        "creatorType": "reviewedAuthor",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "translatorFirst",
-        "lastName": "translatorLast",
-        "creatorType": "translator",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "creatorType": "author",
-        "multi": {
-          "_key": {}
-        },
-        "fieldMode": 1,
-        "lastName": "Institutional Author"
-      }
-    ],
-    "tags": [],
-    "collections": [],
-    "relations": {},
-    "dateAdded": "2016-10-09 21:24:50",
-    "dateModified": "2016-10-09 21:24:50",
-    "uri": "http://zotero.org/users/local/nya4mXQL/items/RKSCLQWM",
-    "attachments": [],
-    "notes": [],
-    "uniqueFields": {
-      "url": "http://www.example.com",
-      "rights": "Rights",
-      "volume": "6",
-      "publisher": "Publisher",
-      "pages": "1-10",
-      "date": "1999-12-31",
-      "section": "Section",
-      "callNumber": "Call number",
-      "archiveLocation": "Archive location",
-      "extra": "Extra",
-      "accessDate": "1997-06-13 23:59:58",
-      "publicationTitle": "Publication title",
-      "libraryCatalog": "Library catalog",
-      "language": "en-US",
-      "abstractNote": "Abstract note",
-      "title": "Title",
-      "shortTitle": "Short title",
-      "archive": "Archive",
-      "supplementName": "Supplement name",
-      "version": "Version number",
-      "signingDate": "Signing date",
-      "openingDate": "Opening date",
-      "adoptionDate": "Adoption date",
-      "parentTreaty": "Parent treaty",
-      "number": "3"
-    },
-    "itemID": 39,
-    "key": "RKSCLQWM",
-    "libraryID": null,
-    "seeAlso": []
-  },
-  "standard": {
-    "itemType": "standard",
-    "multi": {
-      "main": {},
-      "_keys": {}
-    },
-    "url": "http://www.example.com",
-    "rights": "Rights",
-    "publisher": "Publisher",
-    "date": "1999-12-31",
-    "callNumber": "Call number",
-    "archiveLocation": "Archive location",
-    "extra": "Extra",
-    "accessDate": "1997-06-13 23:59:58",
-    "number": "3",
-    "jurisdiction": "Jurisdiction",
-    "libraryCatalog": "Library catalog",
-    "language": "en-US",
-    "abstractNote": "Abstract note",
-    "title": "Title",
-    "shortTitle": "Short title",
-    "archive": "Archive",
-    "creators": [
-      {
-        "firstName": "authorFirst",
-        "lastName": "authorLast",
-        "creatorType": "author",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "contributorFirst",
-        "lastName": "contributorLast",
-        "creatorType": "contributor",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "editorFirst",
-        "lastName": "editorLast",
-        "creatorType": "editor",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "reviewedAuthorFirst",
-        "lastName": "reviewedAuthorLast",
-        "creatorType": "reviewedAuthor",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "firstName": "translatorFirst",
-        "lastName": "translatorLast",
-        "creatorType": "translator",
-        "multi": {
-          "_key": {}
-        }
-      },
-      {
-        "creatorType": "author",
-        "multi": {
-          "_key": {}
-        },
-        "fieldMode": 1,
-        "lastName": "Institutional Author"
-      }
-    ],
-    "tags": [],
-    "collections": [],
-    "relations": {},
-    "dateAdded": "2016-10-09 21:24:50",
-    "dateModified": "2016-10-09 21:24:50",
-    "uri": "http://zotero.org/users/local/nya4mXQL/items/UK2V2BZC",
-    "attachments": [],
-    "notes": [],
-    "uniqueFields": {
-      "version": "Version number",
-      "url": "http://www.example.com",
-      "rights": "Rights",
-      "publisher": "Publisher",
-      "date": "1999-12-31",
-      "callNumber": "Call number",
-      "archiveLocation": "Archive location",
-      "extra": "Extra",
-      "accessDate": "1997-06-13 23:59:58",
-      "number": "3",
-      "jurisdiction": "Jurisdiction",
-      "libraryCatalog": "Library catalog",
-      "language": "en-US",
-      "abstractNote": "Abstract note",
-      "title": "Title",
-      "shortTitle": "Short title",
-      "archive": "Archive"
-    },
-    "itemID": 40,
-    "key": "UK2V2BZC",
-    "version": "Version number",
-    "libraryID": null,
-    "seeAlso": []
-  }
+	"artwork": {
+		"abstractNote": "Abstract note",
+		"accessDate": "1997-06-13 23:59:58",
+		"archive": "Archive",
+		"archiveLocation": "Archive location",
+		"artworkMedium": "Medium",
+		"artworkSize": "Artwork size",
+		"attachments": [],
+		"callNumber": "Call number",
+		"collections": [],
+		"creators": [
+			{
+				"creatorType": "artist",
+				"firstName": "artistFirst",
+				"lastName": "artistLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "contributor",
+				"firstName": "contributorFirst",
+				"lastName": "contributorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "artist",
+				"fieldMode": 1,
+				"lastName": "Institutional Author",
+				"multi": {
+					"_key": {}
+				}
+			}
+		],
+		"date": "1999-12-31",
+		"dateAdded": "2015-04-26 06:40:48",
+		"dateModified": "2015-04-26 06:40:48",
+		"extra": "Extra",
+		"itemID": 71,
+		"itemType": "artwork",
+		"key": "URG4NG9K",
+		"language": "en-US",
+		"libraryCatalog": "Library catalog",
+		"libraryID": null,
+		"medium": "Medium",
+		"notes": [],
+		"relations": {},
+		"rights": "Rights",
+		"seeAlso": [],
+		"shortTitle": "Short title",
+		"tags": [],
+		"title": "Title",
+		"uniqueFields": {
+			"abstractNote": "Abstract note",
+			"accessDate": "1997-06-13 23:59:58",
+			"archive": "Archive",
+			"archiveLocation": "Archive location",
+			"artworkMedium": "Medium",
+			"artworkSize": "Artwork size",
+			"callNumber": "Call number",
+			"date": "1999-12-31",
+			"extra": "Extra",
+			"language": "en-US",
+			"libraryCatalog": "Library catalog",
+			"medium": "Medium",
+			"rights": "Rights",
+			"shortTitle": "Short title",
+			"title": "Title",
+			"url": "http://www.example.com",
+			"websiteTitle": "Publication title",
+			"publicationTitle": "Publication title"
+		},
+		"uri": "http://zotero.org/users/local/GtG6GoZj/items/URG4NG9K",
+		"url": "http://www.example.com",
+		"multi": {
+			"main": {},
+			"_keys": {}
+		},
+		"websiteTitle": "Publication title",
+		"publicationTitle": "Publication title"
+	},
+	"audioRecording": {
+		"ISBN": "978-1-234-56789-7",
+		"abstractNote": "Abstract note",
+		"accessDate": "1997-06-13 23:59:58",
+		"archive": "Archive",
+		"archiveLocation": "Archive location",
+		"attachments": [],
+		"audioRecordingFormat": "Medium",
+		"callNumber": "Call number",
+		"collections": [],
+		"creators": [
+			{
+				"creatorType": "performer",
+				"firstName": "performerFirst",
+				"lastName": "performerLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "composer",
+				"firstName": "composerFirst",
+				"lastName": "composerLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "contributor",
+				"firstName": "contributorFirst",
+				"lastName": "contributorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "wordsBy",
+				"firstName": "wordsByFirst",
+				"lastName": "wordsByLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "performer",
+				"fieldMode": 1,
+				"lastName": "Institutional Author",
+				"multi": {
+					"_key": {}
+				}
+			}
+		],
+		"date": "1999-12-31",
+		"dateAdded": "2015-04-26 06:40:48",
+		"dateModified": "2015-04-26 06:40:48",
+		"extra": "Extra",
+		"itemID": 72,
+		"itemType": "audioRecording",
+		"key": "K3JPBCZP",
+		"label": "Publisher",
+		"language": "en-US",
+		"libraryCatalog": "Library catalog",
+		"libraryID": null,
+		"medium": "Medium",
+		"notes": [],
+		"numberOfVolumes": "7",
+		"place": "Place",
+		"publisher": "Publisher",
+		"relations": {},
+		"rights": "Rights",
+		"runningTime": "1:22:33",
+		"seeAlso": [],
+		"seriesTitle": "Series title",
+		"shortTitle": "Short title",
+		"tags": [],
+		"title": "Title",
+		"uniqueFields": {
+			"ISBN": "978-1-234-56789-7",
+			"abstractNote": "Abstract note",
+			"accessDate": "1997-06-13 23:59:58",
+			"archive": "Archive",
+			"archiveLocation": "Archive location",
+			"audioRecordingFormat": "Medium",
+			"callNumber": "Call number",
+			"date": "1999-12-31",
+			"extra": "Extra",
+			"label": "Publisher",
+			"language": "en-US",
+			"libraryCatalog": "Library catalog",
+			"medium": "Medium",
+			"numberOfVolumes": "7",
+			"place": "Place",
+			"publisher": "Publisher",
+			"rights": "Rights",
+			"runningTime": "1:22:33",
+			"seriesTitle": "Series title",
+			"shortTitle": "Short title",
+			"title": "Title",
+			"url": "http://www.example.com",
+			"volume": "6",
+			"originalDate": "Original date",
+			"album": "Publication title",
+			"opus": "Opus",
+			"release": "8",
+			"publicationTitle": "Publication title",
+			"edition": "8"
+		},
+		"uri": "http://zotero.org/users/local/GtG6GoZj/items/K3JPBCZP",
+		"url": "http://www.example.com",
+		"volume": "6",
+		"multi": {
+			"main": {},
+			"_keys": {}
+		},
+		"originalDate": "Original date",
+		"album": "Publication title",
+		"opus": "Opus",
+		"release": "8",
+		"publicationTitle": "Publication title",
+		"edition": "8"
+	},
+	"bill": {
+		"abstractNote": "Abstract note",
+		"accessDate": "1997-06-13 23:59:58",
+		"attachments": [],
+		"billNumber": "3",
+		"code": "Code",
+		"codePages": "1-10",
+		"codeVolume": "6",
+		"collections": [],
+		"creators": [
+			{
+				"creatorType": "sponsor",
+				"firstName": "sponsorFirst",
+				"lastName": "sponsorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "contributor",
+				"firstName": "contributorFirst",
+				"lastName": "contributorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "cosponsor",
+				"firstName": "cosponsorFirst",
+				"lastName": "cosponsorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "sponsor",
+				"fieldMode": 1,
+				"lastName": "Institutional Author",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"firstName": "translatorFirst",
+				"lastName": "translatorLast",
+				"creatorType": "translator",
+				"multi": {
+					"_key": {}
+				}
+			}
+		],
+		"date": "1999-12-31",
+		"dateAdded": "2015-04-26 06:40:48",
+		"dateModified": "2015-04-26 06:40:48",
+		"extra": "Extra",
+		"history": "History",
+		"itemID": 73,
+		"itemType": "bill",
+		"key": "XHEAETDQ",
+		"language": "en-US",
+		"legislativeBody": "Legislative body",
+		"libraryID": null,
+		"notes": [],
+		"number": "3",
+		"pages": "1-10",
+		"relations": {},
+		"rights": "Rights",
+		"section": "Section",
+		"seeAlso": [],
+		"session": "Session",
+		"shortTitle": "Short title",
+		"tags": [],
+		"title": "Title",
+		"uniqueFields": {
+			"abstractNote": "Abstract note",
+			"accessDate": "1997-06-13 23:59:58",
+			"billNumber": "3",
+			"code": "Code",
+			"codePages": "1-10",
+			"codeVolume": "6",
+			"date": "1999-12-31",
+			"extra": "Extra",
+			"history": "History",
+			"language": "en-US",
+			"legislativeBody": "Legislative body",
+			"number": "3",
+			"pages": "1-10",
+			"rights": "Rights",
+			"section": "Section",
+			"session": "Session",
+			"shortTitle": "Short title",
+			"title": "Title",
+			"url": "http://www.example.com",
+			"volume": "6",
+			"archiveLocation": "Archive location",
+			"jurisdiction": "Jurisdiction",
+			"assemblyNumber": "9",
+			"resolutionLabel": "Resolution label",
+			"sessionType": "Type",
+			"reporter": "Publication title",
+			"publicationTitle": "Publication title",
+			"seriesNumber": "9",
+			"type": "Type"
+		},
+		"uri": "http://zotero.org/users/local/GtG6GoZj/items/XHEAETDQ",
+		"url": "http://www.example.com",
+		"volume": "6",
+		"multi": {
+			"main": {},
+			"_keys": {}
+		},
+		"archiveLocation": "Archive location",
+		"jurisdiction": "Jurisdiction",
+		"assemblyNumber": "9",
+		"resolutionLabel": "Resolution label",
+		"sessionType": "Type",
+		"reporter": "Publication title",
+		"publicationTitle": "Publication title",
+		"seriesNumber": "9",
+		"type": "Type"
+	},
+	"blogPost": {
+		"abstractNote": "Abstract note",
+		"accessDate": "1997-06-13 23:59:58",
+		"attachments": [],
+		"blogTitle": "Publication title",
+		"collections": [],
+		"creators": [
+			{
+				"creatorType": "author",
+				"firstName": "authorFirst",
+				"lastName": "authorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "commenter",
+				"firstName": "commenterFirst",
+				"lastName": "commenterLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "contributor",
+				"firstName": "contributorFirst",
+				"lastName": "contributorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "author",
+				"fieldMode": 1,
+				"lastName": "Institutional Author",
+				"multi": {
+					"_key": {}
+				}
+			}
+		],
+		"date": "1999-12-31",
+		"dateAdded": "2015-04-26 06:40:48",
+		"dateModified": "2015-04-26 06:40:48",
+		"extra": "Extra",
+		"itemID": 74,
+		"itemType": "blogPost",
+		"key": "P5CEI9PJ",
+		"language": "en-US",
+		"libraryID": null,
+		"notes": [],
+		"publicationTitle": "Publication title",
+		"relations": {},
+		"rights": "Rights",
+		"seeAlso": [],
+		"shortTitle": "Short title",
+		"tags": [],
+		"title": "Title",
+		"type": "Type",
+		"uniqueFields": {
+			"abstractNote": "Abstract note",
+			"accessDate": "1997-06-13 23:59:58",
+			"blogTitle": "Publication title",
+			"date": "1999-12-31",
+			"extra": "Extra",
+			"language": "en-US",
+			"publicationTitle": "Publication title",
+			"rights": "Rights",
+			"shortTitle": "Short title",
+			"title": "Title",
+			"type": "Type",
+			"url": "http://www.example.com",
+			"websiteType": "Type"
+		},
+		"uri": "http://zotero.org/users/local/GtG6GoZj/items/P5CEI9PJ",
+		"url": "http://www.example.com",
+		"websiteType": "Type",
+		"multi": {
+			"main": {},
+			"_keys": {}
+		}
+	},
+	"book": {
+		"ISBN": "978-1-234-56789-7",
+		"abstractNote": "Abstract note",
+		"accessDate": "1997-06-13 23:59:58",
+		"archive": "Archive",
+		"archiveLocation": "Archive location",
+		"attachments": [],
+		"callNumber": "Call number",
+		"collections": [],
+		"creators": [
+			{
+				"creatorType": "author",
+				"firstName": "authorFirst",
+				"lastName": "authorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "contributor",
+				"firstName": "contributorFirst",
+				"lastName": "contributorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "editor",
+				"firstName": "editorFirst",
+				"lastName": "editorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "seriesEditor",
+				"firstName": "seriesEditorFirst",
+				"lastName": "seriesEditorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "translator",
+				"firstName": "translatorFirst",
+				"lastName": "translatorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "author",
+				"fieldMode": 1,
+				"lastName": "Institutional Author",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"firstName": "recipientFirst",
+				"lastName": "recipientLast",
+				"creatorType": "recipient",
+				"multi": {
+					"_key": {}
+				}
+			}
+		],
+		"date": "1999-12-31",
+		"dateAdded": "2015-04-26 06:40:48",
+		"dateModified": "2015-04-26 06:40:48",
+		"edition": "8",
+		"extra": "Extra",
+		"itemID": 75,
+		"itemType": "book",
+		"key": "SQW3USEX",
+		"language": "en-US",
+		"libraryCatalog": "Library catalog",
+		"libraryID": null,
+		"notes": [],
+		"numPages": "4",
+		"numberOfVolumes": "7",
+		"place": "Place",
+		"publisher": "Publisher",
+		"relations": {},
+		"rights": "Rights",
+		"seeAlso": [],
+		"series": "Series",
+		"seriesNumber": "9",
+		"shortTitle": "Short title",
+		"tags": [],
+		"title": "Title",
+		"uniqueFields": {
+			"ISBN": "978-1-234-56789-7",
+			"abstractNote": "Abstract note",
+			"accessDate": "1997-06-13 23:59:58",
+			"archive": "Archive",
+			"archiveLocation": "Archive location",
+			"callNumber": "Call number",
+			"date": "1999-12-31",
+			"edition": "8",
+			"extra": "Extra",
+			"language": "en-US",
+			"libraryCatalog": "Library catalog",
+			"numPages": "4",
+			"numberOfVolumes": "7",
+			"place": "Place",
+			"publisher": "Publisher",
+			"rights": "Rights",
+			"series": "Series",
+			"seriesNumber": "9",
+			"shortTitle": "Short title",
+			"title": "Title",
+			"url": "http://www.example.com",
+			"volume": "6",
+			"medium": "Medium",
+			"volumeTitle": "Volume title"
+		},
+		"uri": "http://zotero.org/users/local/GtG6GoZj/items/SQW3USEX",
+		"url": "http://www.example.com",
+		"volume": "6",
+		"multi": {
+			"main": {},
+			"_keys": {}
+		},
+		"medium": "Medium",
+		"volumeTitle": "Volume title"
+	},
+	"bookSection": {
+		"ISBN": "978-1-234-56789-7",
+		"abstractNote": "Abstract note",
+		"accessDate": "1997-06-13 23:59:58",
+		"archive": "Archive",
+		"archiveLocation": "Archive location",
+		"attachments": [],
+		"bookTitle": "Publication title",
+		"callNumber": "Call number",
+		"collections": [],
+		"creators": [
+			{
+				"creatorType": "author",
+				"firstName": "authorFirst",
+				"lastName": "authorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "bookAuthor",
+				"firstName": "bookAuthorFirst",
+				"lastName": "bookAuthorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "contributor",
+				"firstName": "contributorFirst",
+				"lastName": "contributorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "editor",
+				"firstName": "editorFirst",
+				"lastName": "editorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "seriesEditor",
+				"firstName": "seriesEditorFirst",
+				"lastName": "seriesEditorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "translator",
+				"firstName": "translatorFirst",
+				"lastName": "translatorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "author",
+				"fieldMode": 1,
+				"lastName": "Institutional Author",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"firstName": "recipientFirst",
+				"lastName": "recipientLast",
+				"creatorType": "recipient",
+				"multi": {
+					"_key": {}
+				}
+			}
+		],
+		"date": "1999-12-31",
+		"dateAdded": "2015-04-26 06:40:48",
+		"dateModified": "2015-04-26 06:40:48",
+		"edition": "8",
+		"extra": "Extra",
+		"itemID": 76,
+		"itemType": "bookSection",
+		"key": "I3R2EZA4",
+		"language": "en-US",
+		"libraryCatalog": "Library catalog",
+		"libraryID": null,
+		"notes": [],
+		"numberOfVolumes": "7",
+		"pages": "1-10",
+		"place": "Place",
+		"publicationTitle": "Publication title",
+		"publisher": "Publisher",
+		"relations": {},
+		"rights": "Rights",
+		"seeAlso": [],
+		"series": "Series",
+		"seriesNumber": "9",
+		"shortTitle": "Short title",
+		"tags": [],
+		"title": "Title",
+		"uniqueFields": {
+			"ISBN": "978-1-234-56789-7",
+			"abstractNote": "Abstract note",
+			"accessDate": "1997-06-13 23:59:58",
+			"archive": "Archive",
+			"archiveLocation": "Archive location",
+			"bookTitle": "Publication title",
+			"callNumber": "Call number",
+			"date": "1999-12-31",
+			"edition": "8",
+			"extra": "Extra",
+			"language": "en-US",
+			"libraryCatalog": "Library catalog",
+			"numberOfVolumes": "7",
+			"pages": "1-10",
+			"place": "Place",
+			"publicationTitle": "Publication title",
+			"publisher": "Publisher",
+			"rights": "Rights",
+			"series": "Series",
+			"seriesNumber": "9",
+			"shortTitle": "Short title",
+			"title": "Title",
+			"url": "http://www.example.com",
+			"volume": "6",
+			"bookAbbreviation": "Journal abbreviation",
+			"volumeTitle": "Volume title",
+			"journalAbbreviation": "Journal abbreviation"
+		},
+		"uri": "http://zotero.org/users/local/GtG6GoZj/items/I3R2EZA4",
+		"url": "http://www.example.com",
+		"volume": "6",
+		"multi": {
+			"main": {},
+			"_keys": {}
+		},
+		"bookAbbreviation": "Journal abbreviation",
+		"volumeTitle": "Volume title",
+		"journalAbbreviation": "Journal abbreviation"
+	},
+	"case": {
+		"abstractNote": "Abstract note",
+		"accessDate": "1997-06-13 23:59:58",
+		"attachments": [],
+		"caseName": "Title",
+		"collections": [],
+		"court": "Court",
+		"creators": [
+			{
+				"creatorType": "author",
+				"firstName": "authorFirst",
+				"lastName": "authorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "contributor",
+				"firstName": "contributorFirst",
+				"lastName": "contributorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "counsel",
+				"firstName": "counselFirst",
+				"lastName": "counselLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "author",
+				"fieldMode": 1,
+				"lastName": "Institutional Author",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"firstName": "commenterFirst",
+				"lastName": "commenterLast",
+				"creatorType": "commenter",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"firstName": "translatorFirst",
+				"lastName": "translatorLast",
+				"creatorType": "translator",
+				"multi": {
+					"_key": {}
+				}
+			}
+		],
+		"date": "1999-12-31",
+		"dateAdded": "2015-04-26 06:40:48",
+		"dateDecided": "1999-12-31",
+		"dateModified": "2015-04-26 06:40:48",
+		"docketNumber": "3",
+		"extra": "Extra",
+		"firstPage": "1-10",
+		"history": "History",
+		"itemID": 77,
+		"itemType": "case",
+		"key": "27FBK7IW",
+		"language": "en-US",
+		"libraryID": null,
+		"notes": [],
+		"number": "3",
+		"pages": "1-10",
+		"relations": {},
+		"reporter": "Reporter",
+		"reporterVolume": "6",
+		"rights": "Rights",
+		"seeAlso": [],
+		"shortTitle": "Short title",
+		"tags": [],
+		"title": "Title",
+		"uniqueFields": {
+			"abstractNote": "Abstract note",
+			"accessDate": "1997-06-13 23:59:58",
+			"caseName": "Title",
+			"court": "Court",
+			"date": "1999-12-31",
+			"dateDecided": "1999-12-31",
+			"docketNumber": "3",
+			"extra": "Extra",
+			"firstPage": "1-10",
+			"history": "History",
+			"language": "en-US",
+			"number": "3",
+			"pages": "1-10",
+			"reporter": "Reporter",
+			"reporterVolume": "6",
+			"rights": "Rights",
+			"shortTitle": "Short title",
+			"title": "Title",
+			"url": "http://www.example.com",
+			"volume": "6",
+			"DOI": "10.1234/example.doi",
+			"issue": "5",
+			"place": "Place",
+			"publisher": "Publisher",
+			"callNumber": "Call number",
+			"archiveLocation": "Archive location",
+			"adminFlag": "Admin flag",
+			"division": "Division",
+			"filingDate": "2000-01-02",
+			"archive": "Archive",
+			"jurisdiction": "Jurisdiction",
+			"yearAsVolume": "Year as volume",
+			"publicationDate": "Publication date",
+			"reign": "Reign",
+			"supplementName": "Supplement name",
+			"documentName": "Document name",
+			"documentNumber": "Document number",
+			"publicationTitle": "Publication title"
+		},
+		"uri": "http://zotero.org/users/local/GtG6GoZj/items/27FBK7IW",
+		"url": "http://www.example.com",
+		"volume": "6",
+		"multi": {
+			"main": {},
+			"_keys": {}
+		},
+		"DOI": "10.1234/example.doi",
+		"issue": "5",
+		"place": "Place",
+		"publisher": "Publisher",
+		"callNumber": "Call number",
+		"archiveLocation": "Archive location",
+		"adminFlag": "Admin flag",
+		"division": "Division",
+		"filingDate": "2000-01-02",
+		"archive": "Archive",
+		"jurisdiction": "Jurisdiction",
+		"yearAsVolume": "Year as volume",
+		"publicationDate": "Publication date",
+		"reign": "Reign",
+		"supplementName": "Supplement name",
+		"documentName": "Document name",
+		"documentNumber": "Document number",
+		"publicationTitle": "Publication title"
+	},
+	"computerProgram": {
+		"ISBN": "978-1-234-56789-7",
+		"abstractNote": "Abstract note",
+		"accessDate": "1997-06-13 23:59:58",
+		"archive": "Archive",
+		"archiveLocation": "Archive location",
+		"attachments": [],
+		"callNumber": "Call number",
+		"collections": [],
+		"company": "Publisher",
+		"creators": [
+			{
+				"creatorType": "programmer",
+				"firstName": "programmerFirst",
+				"lastName": "programmerLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "contributor",
+				"firstName": "contributorFirst",
+				"lastName": "contributorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "programmer",
+				"fieldMode": 1,
+				"lastName": "Institutional Author",
+				"multi": {
+					"_key": {}
+				}
+			}
+		],
+		"date": "1999-12-31",
+		"dateAdded": "2015-04-26 06:40:48",
+		"dateModified": "2015-04-26 06:40:48",
+		"extra": "Extra",
+		"itemID": 78,
+		"itemType": "computerProgram",
+		"key": "ZVFQ59AJ",
+		"libraryCatalog": "Library catalog",
+		"libraryID": null,
+		"notes": [],
+		"place": "Place",
+		"programmingLanguage": "Programming language",
+		"publisher": "Publisher",
+		"relations": {},
+		"rights": "Rights",
+		"seeAlso": [],
+		"seriesTitle": "Series title",
+		"shortTitle": "Short title",
+		"system": "System",
+		"tags": [],
+		"title": "Title",
+		"uniqueFields": {
+			"ISBN": "978-1-234-56789-7",
+			"abstractNote": "Abstract note",
+			"accessDate": "1997-06-13 23:59:58",
+			"archive": "Archive",
+			"archiveLocation": "Archive location",
+			"callNumber": "Call number",
+			"company": "Publisher",
+			"date": "1999-12-31",
+			"extra": "Extra",
+			"libraryCatalog": "Library catalog",
+			"place": "Place",
+			"programmingLanguage": "Programming language",
+			"publisher": "Publisher",
+			"rights": "Rights",
+			"seriesTitle": "Series title",
+			"shortTitle": "Short title",
+			"system": "System",
+			"title": "Title",
+			"url": "http://www.example.com",
+			"version": "Version number"
+		},
+		"uri": "http://zotero.org/users/local/GtG6GoZj/items/ZVFQ59AJ",
+		"url": "http://www.example.com",
+		"version": "Version number",
+		"multi": {
+			"main": {},
+			"_keys": {}
+		}
+	},
+	"conferencePaper": {
+		"DOI": "10.1234/example.doi",
+		"ISBN": "978-1-234-56789-7",
+		"abstractNote": "Abstract note",
+		"accessDate": "1997-06-13 23:59:58",
+		"archive": "Archive",
+		"archiveLocation": "Archive location",
+		"attachments": [],
+		"callNumber": "Call number",
+		"collections": [],
+		"conferenceName": "Conference name",
+		"creators": [
+			{
+				"creatorType": "author",
+				"firstName": "authorFirst",
+				"lastName": "authorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "contributor",
+				"firstName": "contributorFirst",
+				"lastName": "contributorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "editor",
+				"firstName": "editorFirst",
+				"lastName": "editorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "seriesEditor",
+				"firstName": "seriesEditorFirst",
+				"lastName": "seriesEditorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "translator",
+				"firstName": "translatorFirst",
+				"lastName": "translatorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "author",
+				"fieldMode": 1,
+				"lastName": "Institutional Author",
+				"multi": {
+					"_key": {}
+				}
+			}
+		],
+		"date": "1999-12-31",
+		"dateAdded": "2015-04-26 06:40:48",
+		"dateModified": "2015-04-26 06:40:48",
+		"extra": "Extra",
+		"itemID": 79,
+		"itemType": "conferencePaper",
+		"key": "4X4JGKAA",
+		"language": "en-US",
+		"libraryCatalog": "Library catalog",
+		"libraryID": null,
+		"notes": [],
+		"pages": "1-10",
+		"place": "Place",
+		"proceedingsTitle": "Publication title",
+		"publicationTitle": "Publication title",
+		"publisher": "Publisher",
+		"relations": {},
+		"rights": "Rights",
+		"seeAlso": [],
+		"series": "Series",
+		"shortTitle": "Short title",
+		"tags": [],
+		"title": "Title",
+		"uniqueFields": {
+			"DOI": "10.1234/example.doi",
+			"ISBN": "978-1-234-56789-7",
+			"abstractNote": "Abstract note",
+			"accessDate": "1997-06-13 23:59:58",
+			"archive": "Archive",
+			"archiveLocation": "Archive location",
+			"callNumber": "Call number",
+			"conferenceName": "Conference name",
+			"date": "1999-12-31",
+			"extra": "Extra",
+			"language": "en-US",
+			"libraryCatalog": "Library catalog",
+			"pages": "1-10",
+			"place": "Place",
+			"proceedingsTitle": "Publication title",
+			"publicationTitle": "Publication title",
+			"publisher": "Publisher",
+			"rights": "Rights",
+			"series": "Series",
+			"shortTitle": "Short title",
+			"title": "Title",
+			"url": "http://www.example.com",
+			"volume": "6",
+			"issue": "5",
+			"institution": "Institution",
+			"conferenceDate": "Conference date"
+		},
+		"uri": "http://zotero.org/users/local/GtG6GoZj/items/4X4JGKAA",
+		"url": "http://www.example.com",
+		"volume": "6",
+		"multi": {
+			"main": {},
+			"_keys": {}
+		},
+		"issue": "5",
+		"institution": "Institution",
+		"conferenceDate": "Conference date"
+	},
+	"dictionaryEntry": {
+		"ISBN": "978-1-234-56789-7",
+		"abstractNote": "Abstract note",
+		"accessDate": "1997-06-13 23:59:58",
+		"archive": "Archive",
+		"archiveLocation": "Archive location",
+		"attachments": [],
+		"callNumber": "Call number",
+		"collections": [],
+		"creators": [
+			{
+				"creatorType": "author",
+				"firstName": "authorFirst",
+				"lastName": "authorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "contributor",
+				"firstName": "contributorFirst",
+				"lastName": "contributorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "editor",
+				"firstName": "editorFirst",
+				"lastName": "editorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "seriesEditor",
+				"firstName": "seriesEditorFirst",
+				"lastName": "seriesEditorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "translator",
+				"firstName": "translatorFirst",
+				"lastName": "translatorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "author",
+				"fieldMode": 1,
+				"lastName": "Institutional Author",
+				"multi": {
+					"_key": {}
+				}
+			}
+		],
+		"date": "1999-12-31",
+		"dateAdded": "2015-04-26 06:40:48",
+		"dateModified": "2015-04-26 06:40:48",
+		"dictionaryTitle": "Publication title",
+		"edition": "8",
+		"extra": "Extra",
+		"itemID": 80,
+		"itemType": "dictionaryEntry",
+		"key": "8MFTU597",
+		"language": "en-US",
+		"libraryCatalog": "Library catalog",
+		"libraryID": null,
+		"notes": [],
+		"numberOfVolumes": "7",
+		"pages": "1-10",
+		"place": "Place",
+		"publicationTitle": "Publication title",
+		"publisher": "Publisher",
+		"relations": {},
+		"rights": "Rights",
+		"seeAlso": [],
+		"series": "Series",
+		"seriesNumber": "9",
+		"shortTitle": "Short title",
+		"tags": [],
+		"title": "Title",
+		"uniqueFields": {
+			"ISBN": "978-1-234-56789-7",
+			"abstractNote": "Abstract note",
+			"accessDate": "1997-06-13 23:59:58",
+			"archive": "Archive",
+			"archiveLocation": "Archive location",
+			"callNumber": "Call number",
+			"date": "1999-12-31",
+			"dictionaryTitle": "Publication title",
+			"edition": "8",
+			"extra": "Extra",
+			"language": "en-US",
+			"libraryCatalog": "Library catalog",
+			"numberOfVolumes": "7",
+			"pages": "1-10",
+			"place": "Place",
+			"publicationTitle": "Publication title",
+			"publisher": "Publisher",
+			"rights": "Rights",
+			"series": "Series",
+			"seriesNumber": "9",
+			"shortTitle": "Short title",
+			"title": "Title",
+			"url": "http://www.example.com",
+			"volume": "6"
+		},
+		"uri": "http://zotero.org/users/local/GtG6GoZj/items/8MFTU597",
+		"url": "http://www.example.com",
+		"volume": "6",
+		"multi": {
+			"main": {},
+			"_keys": {}
+		}
+	},
+	"document": {
+		"abstractNote": "Abstract note",
+		"accessDate": "1997-06-13 23:59:58",
+		"archive": "Archive",
+		"archiveLocation": "Archive location",
+		"attachments": [],
+		"callNumber": "Call number",
+		"collections": [],
+		"creators": [
+			{
+				"creatorType": "author",
+				"firstName": "authorFirst",
+				"lastName": "authorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "contributor",
+				"firstName": "contributorFirst",
+				"lastName": "contributorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "editor",
+				"firstName": "editorFirst",
+				"lastName": "editorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "reviewedAuthor",
+				"firstName": "reviewedAuthorFirst",
+				"lastName": "reviewedAuthorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "translator",
+				"firstName": "translatorFirst",
+				"lastName": "translatorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "author",
+				"fieldMode": 1,
+				"lastName": "Institutional Author",
+				"multi": {
+					"_key": {}
+				}
+			}
+		],
+		"date": "1999-12-31",
+		"dateAdded": "2015-04-26 06:40:48",
+		"dateModified": "2015-04-26 06:40:48",
+		"extra": "Extra",
+		"itemID": 81,
+		"itemType": "document",
+		"key": "TRVQD4MU",
+		"language": "en-US",
+		"libraryCatalog": "Library catalog",
+		"libraryID": null,
+		"notes": [],
+		"publisher": "Publisher",
+		"relations": {},
+		"rights": "Rights",
+		"seeAlso": [],
+		"shortTitle": "Short title",
+		"tags": [],
+		"title": "Title",
+		"uniqueFields": {
+			"abstractNote": "Abstract note",
+			"accessDate": "1997-06-13 23:59:58",
+			"archive": "Archive",
+			"archiveLocation": "Archive location",
+			"callNumber": "Call number",
+			"date": "1999-12-31",
+			"extra": "Extra",
+			"language": "en-US",
+			"libraryCatalog": "Library catalog",
+			"publisher": "Publisher",
+			"rights": "Rights",
+			"shortTitle": "Short title",
+			"title": "Title",
+			"url": "http://www.example.com",
+			"version": "Version number"
+		},
+		"uri": "http://zotero.org/users/local/GtG6GoZj/items/TRVQD4MU",
+		"url": "http://www.example.com",
+		"multi": {
+			"main": {},
+			"_keys": {}
+		},
+		"version": "Version number"
+	},
+	"email": {
+		"abstractNote": "Abstract note",
+		"accessDate": "1997-06-13 23:59:58",
+		"attachments": [],
+		"collections": [],
+		"creators": [
+			{
+				"creatorType": "author",
+				"firstName": "authorFirst",
+				"lastName": "authorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "contributor",
+				"firstName": "contributorFirst",
+				"lastName": "contributorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "recipient",
+				"firstName": "recipientFirst",
+				"lastName": "recipientLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "author",
+				"fieldMode": 1,
+				"lastName": "Institutional Author",
+				"multi": {
+					"_key": {}
+				}
+			}
+		],
+		"date": "1999-12-31",
+		"dateAdded": "2015-04-26 06:40:48",
+		"dateModified": "2015-04-26 06:40:48",
+		"extra": "Extra",
+		"itemID": 82,
+		"itemType": "email",
+		"key": "B972FZG7",
+		"language": "en-US",
+		"libraryID": null,
+		"notes": [],
+		"relations": {},
+		"rights": "Rights",
+		"seeAlso": [],
+		"shortTitle": "Short title",
+		"subject": "Title",
+		"tags": [],
+		"title": "Title",
+		"uniqueFields": {
+			"abstractNote": "Abstract note",
+			"accessDate": "1997-06-13 23:59:58",
+			"date": "1999-12-31",
+			"extra": "Extra",
+			"language": "en-US",
+			"rights": "Rights",
+			"shortTitle": "Short title",
+			"subject": "Title",
+			"title": "Title",
+			"url": "http://www.example.com"
+		},
+		"uri": "http://zotero.org/users/local/GtG6GoZj/items/B972FZG7",
+		"url": "http://www.example.com",
+		"multi": {
+			"main": {},
+			"_keys": {}
+		}
+	},
+	"encyclopediaArticle": {
+		"ISBN": "978-1-234-56789-7",
+		"abstractNote": "Abstract note",
+		"accessDate": "1997-06-13 23:59:58",
+		"archive": "Archive",
+		"archiveLocation": "Archive location",
+		"attachments": [],
+		"callNumber": "Call number",
+		"collections": [],
+		"creators": [
+			{
+				"creatorType": "author",
+				"firstName": "authorFirst",
+				"lastName": "authorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "contributor",
+				"firstName": "contributorFirst",
+				"lastName": "contributorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "editor",
+				"firstName": "editorFirst",
+				"lastName": "editorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "seriesEditor",
+				"firstName": "seriesEditorFirst",
+				"lastName": "seriesEditorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "translator",
+				"firstName": "translatorFirst",
+				"lastName": "translatorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "author",
+				"fieldMode": 1,
+				"lastName": "Institutional Author",
+				"multi": {
+					"_key": {}
+				}
+			}
+		],
+		"date": "1999-12-31",
+		"dateAdded": "2015-04-26 06:40:48",
+		"dateModified": "2015-04-26 06:40:48",
+		"edition": "8",
+		"encyclopediaTitle": "Publication title",
+		"extra": "Extra",
+		"itemID": 83,
+		"itemType": "encyclopediaArticle",
+		"key": "QS8M3X6Q",
+		"language": "en-US",
+		"libraryCatalog": "Library catalog",
+		"libraryID": null,
+		"notes": [],
+		"numberOfVolumes": "7",
+		"pages": "1-10",
+		"place": "Place",
+		"publicationTitle": "Publication title",
+		"publisher": "Publisher",
+		"relations": {},
+		"rights": "Rights",
+		"seeAlso": [],
+		"series": "Series",
+		"seriesNumber": "9",
+		"shortTitle": "Short title",
+		"tags": [],
+		"title": "Title",
+		"uniqueFields": {
+			"ISBN": "978-1-234-56789-7",
+			"abstractNote": "Abstract note",
+			"accessDate": "1997-06-13 23:59:58",
+			"archive": "Archive",
+			"archiveLocation": "Archive location",
+			"callNumber": "Call number",
+			"date": "1999-12-31",
+			"edition": "8",
+			"encyclopediaTitle": "Publication title",
+			"extra": "Extra",
+			"language": "en-US",
+			"libraryCatalog": "Library catalog",
+			"numberOfVolumes": "7",
+			"pages": "1-10",
+			"place": "Place",
+			"publicationTitle": "Publication title",
+			"publisher": "Publisher",
+			"rights": "Rights",
+			"series": "Series",
+			"seriesNumber": "9",
+			"shortTitle": "Short title",
+			"title": "Title",
+			"url": "http://www.example.com",
+			"volume": "6"
+		},
+		"uri": "http://zotero.org/users/local/GtG6GoZj/items/QS8M3X6Q",
+		"url": "http://www.example.com",
+		"volume": "6",
+		"multi": {
+			"main": {},
+			"_keys": {}
+		}
+	},
+	"film": {
+		"abstractNote": "Abstract note",
+		"accessDate": "1997-06-13 23:59:58",
+		"archive": "Archive",
+		"archiveLocation": "Archive location",
+		"attachments": [],
+		"callNumber": "Call number",
+		"collections": [],
+		"creators": [
+			{
+				"creatorType": "director",
+				"firstName": "directorFirst",
+				"lastName": "directorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "contributor",
+				"firstName": "contributorFirst",
+				"lastName": "contributorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "producer",
+				"firstName": "producerFirst",
+				"lastName": "producerLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "scriptwriter",
+				"firstName": "scriptwriterFirst",
+				"lastName": "scriptwriterLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "director",
+				"fieldMode": 1,
+				"lastName": "Institutional Author",
+				"multi": {
+					"_key": {}
+				}
+			}
+		],
+		"date": "1999-12-31",
+		"dateAdded": "2015-04-26 06:40:48",
+		"dateModified": "2015-04-26 06:40:48",
+		"distributor": "Publisher",
+		"extra": "Extra",
+		"genre": "Type",
+		"itemID": 84,
+		"itemType": "film",
+		"key": "CJAAM7US",
+		"language": "en-US",
+		"libraryCatalog": "Library catalog",
+		"libraryID": null,
+		"medium": "Medium",
+		"notes": [],
+		"publisher": "Publisher",
+		"relations": {},
+		"rights": "Rights",
+		"runningTime": "1:22:33",
+		"seeAlso": [],
+		"shortTitle": "Short title",
+		"tags": [],
+		"title": "Title",
+		"type": "Type",
+		"uniqueFields": {
+			"abstractNote": "Abstract note",
+			"accessDate": "1997-06-13 23:59:58",
+			"archive": "Archive",
+			"archiveLocation": "Archive location",
+			"callNumber": "Call number",
+			"date": "1999-12-31",
+			"distributor": "Publisher",
+			"extra": "Extra",
+			"genre": "Type",
+			"language": "en-US",
+			"libraryCatalog": "Library catalog",
+			"medium": "Medium",
+			"publisher": "Publisher",
+			"rights": "Rights",
+			"runningTime": "1:22:33",
+			"shortTitle": "Short title",
+			"title": "Title",
+			"type": "Type",
+			"url": "http://www.example.com",
+			"videoRecordingFormat": "Medium"
+		},
+		"uri": "http://zotero.org/users/local/GtG6GoZj/items/CJAAM7US",
+		"url": "http://www.example.com",
+		"videoRecordingFormat": "Medium",
+		"multi": {
+			"main": {},
+			"_keys": {}
+		}
+	},
+	"forumPost": {
+		"abstractNote": "Abstract note",
+		"accessDate": "1997-06-13 23:59:58",
+		"attachments": [],
+		"collections": [],
+		"creators": [
+			{
+				"creatorType": "author",
+				"firstName": "authorFirst",
+				"lastName": "authorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "contributor",
+				"firstName": "contributorFirst",
+				"lastName": "contributorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "author",
+				"fieldMode": 1,
+				"lastName": "Institutional Author",
+				"multi": {
+					"_key": {}
+				}
+			}
+		],
+		"date": "1999-12-31",
+		"dateAdded": "2015-04-26 06:40:48",
+		"dateModified": "2015-04-26 06:40:48",
+		"extra": "Extra",
+		"forumTitle": "Publication title",
+		"itemID": 85,
+		"itemType": "forumPost",
+		"key": "4HQTXH7A",
+		"language": "en-US",
+		"libraryID": null,
+		"notes": [],
+		"postType": "Type",
+		"publicationTitle": "Publication title",
+		"relations": {},
+		"rights": "Rights",
+		"seeAlso": [],
+		"shortTitle": "Short title",
+		"tags": [],
+		"title": "Title",
+		"type": "Type",
+		"uniqueFields": {
+			"abstractNote": "Abstract note",
+			"accessDate": "1997-06-13 23:59:58",
+			"date": "1999-12-31",
+			"extra": "Extra",
+			"forumTitle": "Publication title",
+			"language": "en-US",
+			"postType": "Type",
+			"publicationTitle": "Publication title",
+			"rights": "Rights",
+			"shortTitle": "Short title",
+			"title": "Title",
+			"type": "Type",
+			"url": "http://www.example.com"
+		},
+		"uri": "http://zotero.org/users/local/GtG6GoZj/items/4HQTXH7A",
+		"url": "http://www.example.com",
+		"multi": {
+			"main": {},
+			"_keys": {}
+		}
+	},
+	"hearing": {
+		"abstractNote": "Abstract note",
+		"accessDate": "1997-06-13 23:59:58",
+		"attachments": [],
+		"collections": [],
+		"committee": "Committee",
+		"creators": [
+			{
+				"creatorType": "contributor",
+				"firstName": "contributorFirst",
+				"lastName": "contributorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "contributor",
+				"fieldMode": 1,
+				"lastName": "Institutional Author",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "testimonyBy",
+				"fieldMode": 1,
+				"lastName": "Institutional Author",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"firstName": "translatorFirst",
+				"lastName": "translatorLast",
+				"creatorType": "translator",
+				"multi": {
+					"_key": {}
+				}
+			}
+		],
+		"date": "1999-12-31",
+		"dateAdded": "2015-04-26 06:40:48",
+		"dateModified": "2015-04-26 06:40:48",
+		"documentNumber": "3",
+		"extra": "Extra",
+		"history": "History",
+		"itemID": 86,
+		"itemType": "hearing",
+		"key": "ZFDSUNIK",
+		"language": "en-US",
+		"legislativeBody": "Legislative body",
+		"libraryID": null,
+		"notes": [],
+		"number": "3",
+		"numberOfVolumes": "7",
+		"pages": "1-10",
+		"place": "Place",
+		"publisher": "Publisher",
+		"relations": {},
+		"rights": "Rights",
+		"seeAlso": [],
+		"session": "Session",
+		"shortTitle": "Short title",
+		"tags": [],
+		"title": "Title",
+		"uniqueFields": {
+			"abstractNote": "Abstract note",
+			"accessDate": "1997-06-13 23:59:58",
+			"committee": "Committee",
+			"date": "1999-12-31",
+			"documentNumber": "3",
+			"extra": "Extra",
+			"history": "History",
+			"language": "en-US",
+			"legislativeBody": "Legislative body",
+			"number": "3",
+			"numberOfVolumes": "7",
+			"pages": "1-10",
+			"place": "Place",
+			"publisher": "Publisher",
+			"rights": "Rights",
+			"session": "Session",
+			"shortTitle": "Short title",
+			"title": "Title",
+			"url": "http://www.example.com",
+			"volume": "6",
+			"archiveLocation": "Archive location",
+			"reporter": "Publication title",
+			"jurisdiction": "Jurisdiction",
+			"assemblyNumber": "Assembly number",
+			"resolutionLabel": "Resolution label",
+			"sessionType": "Type",
+			"meetingNumber": "Meeting number",
+			"meetingName": "Meeting name",
+			"publicationTitle": "Publication title",
+			"type": "Type"
+		},
+		"uri": "http://zotero.org/users/local/GtG6GoZj/items/ZFDSUNIK",
+		"url": "http://www.example.com",
+		"multi": {
+			"main": {},
+			"_keys": {}
+		},
+		"volume": "6",
+		"archiveLocation": "Archive location",
+		"reporter": "Publication title",
+		"jurisdiction": "Jurisdiction",
+		"assemblyNumber": "Assembly number",
+		"resolutionLabel": "Resolution label",
+		"sessionType": "Type",
+		"meetingNumber": "Meeting number",
+		"meetingName": "Meeting name",
+		"publicationTitle": "Publication title",
+		"type": "Type"
+	},
+	"instantMessage": {
+		"abstractNote": "Abstract note",
+		"accessDate": "1997-06-13 23:59:58",
+		"attachments": [],
+		"collections": [],
+		"creators": [
+			{
+				"creatorType": "author",
+				"firstName": "authorFirst",
+				"lastName": "authorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "contributor",
+				"firstName": "contributorFirst",
+				"lastName": "contributorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "recipient",
+				"firstName": "recipientFirst",
+				"lastName": "recipientLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "author",
+				"fieldMode": 1,
+				"lastName": "Institutional Author",
+				"multi": {
+					"_key": {}
+				}
+			}
+		],
+		"date": "1999-12-31",
+		"dateAdded": "2015-04-26 06:40:48",
+		"dateModified": "2015-04-26 06:40:48",
+		"extra": "Extra",
+		"itemID": 87,
+		"itemType": "instantMessage",
+		"key": "XJ3877Z8",
+		"language": "en-US",
+		"libraryID": null,
+		"notes": [],
+		"relations": {},
+		"rights": "Rights",
+		"seeAlso": [],
+		"shortTitle": "Short title",
+		"tags": [],
+		"title": "Title",
+		"uniqueFields": {
+			"abstractNote": "Abstract note",
+			"accessDate": "1997-06-13 23:59:58",
+			"date": "1999-12-31",
+			"extra": "Extra",
+			"language": "en-US",
+			"rights": "Rights",
+			"shortTitle": "Short title",
+			"title": "Title",
+			"url": "http://www.example.com"
+		},
+		"uri": "http://zotero.org/users/local/GtG6GoZj/items/XJ3877Z8",
+		"url": "http://www.example.com",
+		"multi": {
+			"main": {},
+			"_keys": {}
+		}
+	},
+	"interview": {
+		"abstractNote": "Abstract note",
+		"accessDate": "1997-06-13 23:59:58",
+		"archive": "Archive",
+		"archiveLocation": "Archive location",
+		"attachments": [],
+		"callNumber": "Call number",
+		"collections": [],
+		"creators": [
+			{
+				"creatorType": "interviewee",
+				"firstName": "intervieweeFirst",
+				"lastName": "intervieweeLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "contributor",
+				"firstName": "contributorFirst",
+				"lastName": "contributorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "interviewer",
+				"firstName": "interviewerFirst",
+				"lastName": "interviewerLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "translator",
+				"firstName": "translatorFirst",
+				"lastName": "translatorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "interviewee",
+				"fieldMode": 1,
+				"lastName": "Institutional Author",
+				"multi": {
+					"_key": {}
+				}
+			}
+		],
+		"date": "1999-12-31",
+		"dateAdded": "2015-04-26 06:40:48",
+		"dateModified": "2015-04-26 06:40:48",
+		"extra": "Extra",
+		"interviewMedium": "Medium",
+		"itemID": 88,
+		"itemType": "interview",
+		"key": "KW98WHF4",
+		"language": "en-US",
+		"libraryCatalog": "Library catalog",
+		"libraryID": null,
+		"medium": "Medium",
+		"notes": [],
+		"relations": {},
+		"rights": "Rights",
+		"seeAlso": [],
+		"shortTitle": "Short title",
+		"tags": [],
+		"title": "Title",
+		"uniqueFields": {
+			"abstractNote": "Abstract note",
+			"accessDate": "1997-06-13 23:59:58",
+			"archive": "Archive",
+			"archiveLocation": "Archive location",
+			"callNumber": "Call number",
+			"date": "1999-12-31",
+			"extra": "Extra",
+			"interviewMedium": "Medium",
+			"language": "en-US",
+			"libraryCatalog": "Library catalog",
+			"medium": "Medium",
+			"rights": "Rights",
+			"shortTitle": "Short title",
+			"title": "Title",
+			"url": "http://www.example.com",
+			"place": "Place"
+		},
+		"uri": "http://zotero.org/users/local/GtG6GoZj/items/KW98WHF4",
+		"url": "http://www.example.com",
+		"multi": {
+			"main": {},
+			"_keys": {}
+		},
+		"place": "Place"
+	},
+	"journalArticle": {
+		"DOI": "10.1234/example.doi",
+		"ISSN": "1234-5679",
+		"abstractNote": "Abstract note",
+		"accessDate": "1997-06-13 23:59:58",
+		"archive": "Archive",
+		"archiveLocation": "Archive location",
+		"attachments": [],
+		"callNumber": "Call number",
+		"collections": [],
+		"creators": [
+			{
+				"creatorType": "author",
+				"firstName": "authorFirst",
+				"lastName": "authorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "contributor",
+				"firstName": "contributorFirst",
+				"lastName": "contributorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "editor",
+				"firstName": "editorFirst",
+				"lastName": "editorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "reviewedAuthor",
+				"firstName": "reviewedAuthorFirst",
+				"lastName": "reviewedAuthorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "translator",
+				"firstName": "translatorFirst",
+				"lastName": "translatorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "author",
+				"fieldMode": 1,
+				"lastName": "Institutional Author",
+				"multi": {
+					"_key": {}
+				}
+			}
+		],
+		"date": "1999-12-31",
+		"dateAdded": "2015-04-26 06:40:48",
+		"dateModified": "2015-04-26 06:40:48",
+		"extra": "Extra",
+		"issue": "5",
+		"itemID": 89,
+		"itemType": "journalArticle",
+		"journalAbbreviation": "Journal abbreviation",
+		"key": "B4GITB3Z",
+		"language": "en-US",
+		"libraryCatalog": "Library catalog",
+		"libraryID": null,
+		"notes": [],
+		"pages": "1-10",
+		"publicationTitle": "Publication title",
+		"relations": {},
+		"rights": "Rights",
+		"seeAlso": [],
+		"series": "Series",
+		"seriesText": "Series text",
+		"seriesTitle": "Series title",
+		"shortTitle": "Short title",
+		"tags": [],
+		"title": "Title",
+		"uniqueFields": {
+			"DOI": "10.1234/example.doi",
+			"ISSN": "1234-5679",
+			"abstractNote": "Abstract note",
+			"accessDate": "1997-06-13 23:59:58",
+			"archive": "Archive",
+			"archiveLocation": "Archive location",
+			"callNumber": "Call number",
+			"date": "1999-12-31",
+			"extra": "Extra",
+			"issue": "5",
+			"journalAbbreviation": "Journal abbreviation",
+			"language": "en-US",
+			"libraryCatalog": "Library catalog",
+			"pages": "1-10",
+			"publicationTitle": "Publication title",
+			"rights": "Rights",
+			"series": "Series",
+			"seriesText": "Series text",
+			"seriesTitle": "Series title",
+			"shortTitle": "Short title",
+			"title": "Title",
+			"url": "http://www.example.com",
+			"volume": "6",
+			"place": "Place",
+			"publisher": "Publisher",
+			"jurisdiction": "Jurisdiction",
+			"status": "Status"
+		},
+		"uri": "http://zotero.org/users/local/GtG6GoZj/items/B4GITB3Z",
+		"url": "http://www.example.com",
+		"volume": "6",
+		"multi": {
+			"main": {},
+			"_keys": {}
+		},
+		"place": "Place",
+		"publisher": "Publisher",
+		"jurisdiction": "Jurisdiction",
+		"status": "Status"
+	},
+	"letter": {
+		"abstractNote": "Abstract note",
+		"accessDate": "1997-06-13 23:59:58",
+		"archive": "Archive",
+		"archiveLocation": "Archive location",
+		"attachments": [],
+		"callNumber": "Call number",
+		"collections": [],
+		"creators": [
+			{
+				"creatorType": "author",
+				"firstName": "authorFirst",
+				"lastName": "authorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "contributor",
+				"firstName": "contributorFirst",
+				"lastName": "contributorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "recipient",
+				"firstName": "recipientFirst",
+				"lastName": "recipientLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "author",
+				"fieldMode": 1,
+				"lastName": "Institutional Author",
+				"multi": {
+					"_key": {}
+				}
+			}
+		],
+		"date": "1999-12-31",
+		"dateAdded": "2015-04-26 06:40:48",
+		"dateModified": "2015-04-26 06:40:48",
+		"extra": "Extra",
+		"itemID": 90,
+		"itemType": "letter",
+		"key": "262GGUWT",
+		"language": "en-US",
+		"letterType": "Type",
+		"libraryCatalog": "Library catalog",
+		"libraryID": null,
+		"notes": [],
+		"relations": {},
+		"rights": "Rights",
+		"seeAlso": [],
+		"shortTitle": "Short title",
+		"tags": [],
+		"title": "Title",
+		"type": "Type",
+		"uniqueFields": {
+			"abstractNote": "Abstract note",
+			"accessDate": "1997-06-13 23:59:58",
+			"archive": "Archive",
+			"archiveLocation": "Archive location",
+			"callNumber": "Call number",
+			"date": "1999-12-31",
+			"extra": "Extra",
+			"language": "en-US",
+			"letterType": "Type",
+			"libraryCatalog": "Library catalog",
+			"rights": "Rights",
+			"shortTitle": "Short title",
+			"title": "Title",
+			"type": "Type",
+			"url": "http://www.example.com"
+		},
+		"uri": "http://zotero.org/users/local/GtG6GoZj/items/262GGUWT",
+		"url": "http://www.example.com",
+		"multi": {
+			"main": {},
+			"_keys": {}
+		}
+	},
+	"magazineArticle": {
+		"ISSN": "1234-5679",
+		"abstractNote": "Abstract note",
+		"accessDate": "1997-06-13 23:59:58",
+		"archive": "Archive",
+		"archiveLocation": "Archive location",
+		"attachments": [],
+		"callNumber": "Call number",
+		"collections": [],
+		"creators": [
+			{
+				"creatorType": "author",
+				"firstName": "authorFirst",
+				"lastName": "authorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "contributor",
+				"firstName": "contributorFirst",
+				"lastName": "contributorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "reviewedAuthor",
+				"firstName": "reviewedAuthorFirst",
+				"lastName": "reviewedAuthorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "translator",
+				"firstName": "translatorFirst",
+				"lastName": "translatorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "author",
+				"fieldMode": 1,
+				"lastName": "Institutional Author",
+				"multi": {
+					"_key": {}
+				}
+			}
+		],
+		"date": "1999-12-31",
+		"dateAdded": "2015-04-26 06:40:48",
+		"dateModified": "2015-04-26 06:40:48",
+		"extra": "Extra",
+		"issue": "5",
+		"itemID": 91,
+		"itemType": "magazineArticle",
+		"key": "S8SKUS3I",
+		"language": "en-US",
+		"libraryCatalog": "Library catalog",
+		"libraryID": null,
+		"notes": [],
+		"pages": "1-10",
+		"publicationTitle": "Publication title",
+		"relations": {},
+		"rights": "Rights",
+		"seeAlso": [],
+		"shortTitle": "Short title",
+		"tags": [],
+		"title": "Title",
+		"uniqueFields": {
+			"ISSN": "1234-5679",
+			"abstractNote": "Abstract note",
+			"accessDate": "1997-06-13 23:59:58",
+			"archive": "Archive",
+			"archiveLocation": "Archive location",
+			"callNumber": "Call number",
+			"date": "1999-12-31",
+			"extra": "Extra",
+			"issue": "5",
+			"language": "en-US",
+			"libraryCatalog": "Library catalog",
+			"pages": "1-10",
+			"publicationTitle": "Publication title",
+			"rights": "Rights",
+			"shortTitle": "Short title",
+			"title": "Title",
+			"url": "http://www.example.com",
+			"volume": "6",
+			"place": "Place",
+			"publisher": "Publisher"
+		},
+		"uri": "http://zotero.org/users/local/GtG6GoZj/items/S8SKUS3I",
+		"url": "http://www.example.com",
+		"volume": "6",
+		"multi": {
+			"main": {},
+			"_keys": {}
+		},
+		"place": "Place",
+		"publisher": "Publisher"
+	},
+	"manuscript": {
+		"abstractNote": "Abstract note",
+		"accessDate": "1997-06-13 23:59:58",
+		"archive": "Archive",
+		"archiveLocation": "Archive location",
+		"attachments": [],
+		"callNumber": "Call number",
+		"collections": [],
+		"creators": [
+			{
+				"creatorType": "author",
+				"firstName": "authorFirst",
+				"lastName": "authorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "contributor",
+				"firstName": "contributorFirst",
+				"lastName": "contributorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "translator",
+				"firstName": "translatorFirst",
+				"lastName": "translatorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "author",
+				"fieldMode": 1,
+				"lastName": "Institutional Author",
+				"multi": {
+					"_key": {}
+				}
+			}
+		],
+		"date": "1999-12-31",
+		"dateAdded": "2015-04-26 06:40:48",
+		"dateModified": "2015-04-26 06:40:48",
+		"extra": "Extra",
+		"itemID": 92,
+		"itemType": "manuscript",
+		"key": "BZPATRCB",
+		"language": "en-US",
+		"libraryCatalog": "Library catalog",
+		"libraryID": null,
+		"manuscriptType": "Type",
+		"notes": [],
+		"numPages": "4",
+		"place": "Place",
+		"relations": {},
+		"rights": "Rights",
+		"seeAlso": [],
+		"shortTitle": "Short title",
+		"tags": [],
+		"title": "Title",
+		"type": "Type",
+		"uniqueFields": {
+			"abstractNote": "Abstract note",
+			"accessDate": "1997-06-13 23:59:58",
+			"archive": "Archive",
+			"archiveLocation": "Archive location",
+			"callNumber": "Call number",
+			"date": "1999-12-31",
+			"extra": "Extra",
+			"language": "en-US",
+			"libraryCatalog": "Library catalog",
+			"manuscriptType": "Type",
+			"numPages": "4",
+			"place": "Place",
+			"rights": "Rights",
+			"shortTitle": "Short title",
+			"title": "Title",
+			"type": "Type",
+			"url": "http://www.example.com"
+		},
+		"uri": "http://zotero.org/users/local/GtG6GoZj/items/BZPATRCB",
+		"url": "http://www.example.com",
+		"multi": {
+			"main": {},
+			"_keys": {}
+		}
+	},
+	"map": {
+		"ISBN": "978-1-234-56789-7",
+		"abstractNote": "Abstract note",
+		"accessDate": "1997-06-13 23:59:58",
+		"archive": "Archive",
+		"archiveLocation": "Archive location",
+		"attachments": [],
+		"callNumber": "Call number",
+		"collections": [],
+		"creators": [
+			{
+				"creatorType": "cartographer",
+				"firstName": "cartographerFirst",
+				"lastName": "cartographerLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "contributor",
+				"firstName": "contributorFirst",
+				"lastName": "contributorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "seriesEditor",
+				"firstName": "seriesEditorFirst",
+				"lastName": "seriesEditorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "cartographer",
+				"fieldMode": 1,
+				"lastName": "Institutional Author",
+				"multi": {
+					"_key": {}
+				}
+			}
+		],
+		"date": "1999-12-31",
+		"dateAdded": "2015-04-26 06:40:48",
+		"dateModified": "2015-04-26 06:40:48",
+		"edition": "8",
+		"extra": "Extra",
+		"itemID": 93,
+		"itemType": "map",
+		"key": "WGRTVIWS",
+		"language": "en-US",
+		"libraryCatalog": "Library catalog",
+		"libraryID": null,
+		"mapType": "Type",
+		"notes": [],
+		"place": "Place",
+		"publisher": "Publisher",
+		"relations": {},
+		"rights": "Rights",
+		"scale": "Scale",
+		"seeAlso": [],
+		"seriesTitle": "Series title",
+		"shortTitle": "Short title",
+		"tags": [],
+		"title": "Title",
+		"type": "Type",
+		"uniqueFields": {
+			"ISBN": "978-1-234-56789-7",
+			"abstractNote": "Abstract note",
+			"accessDate": "1997-06-13 23:59:58",
+			"archive": "Archive",
+			"archiveLocation": "Archive location",
+			"callNumber": "Call number",
+			"date": "1999-12-31",
+			"edition": "8",
+			"extra": "Extra",
+			"language": "en-US",
+			"libraryCatalog": "Library catalog",
+			"mapType": "Type",
+			"place": "Place",
+			"publisher": "Publisher",
+			"rights": "Rights",
+			"scale": "Scale",
+			"seriesTitle": "Series title",
+			"shortTitle": "Short title",
+			"title": "Title",
+			"type": "Type",
+			"url": "http://www.example.com"
+		},
+		"uri": "http://zotero.org/users/local/GtG6GoZj/items/WGRTVIWS",
+		"url": "http://www.example.com",
+		"multi": {
+			"main": {},
+			"_keys": {}
+		}
+	},
+	"newspaperArticle": {
+		"ISSN": "1234-5679",
+		"abstractNote": "Abstract note",
+		"accessDate": "1997-06-13 23:59:58",
+		"archive": "Archive",
+		"archiveLocation": "Archive location",
+		"attachments": [],
+		"callNumber": "Call number",
+		"collections": [],
+		"creators": [
+			{
+				"creatorType": "author",
+				"firstName": "authorFirst",
+				"lastName": "authorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "contributor",
+				"firstName": "contributorFirst",
+				"lastName": "contributorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "reviewedAuthor",
+				"firstName": "reviewedAuthorFirst",
+				"lastName": "reviewedAuthorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "translator",
+				"firstName": "translatorFirst",
+				"lastName": "translatorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "author",
+				"fieldMode": 1,
+				"lastName": "Institutional Author",
+				"multi": {
+					"_key": {}
+				}
+			}
+		],
+		"date": "1999-12-31",
+		"dateAdded": "2015-04-26 06:40:48",
+		"dateModified": "2015-04-26 06:40:48",
+		"edition": "8",
+		"extra": "Extra",
+		"itemID": 94,
+		"itemType": "newspaperArticle",
+		"key": "4PHE8AXE",
+		"language": "en-US",
+		"libraryCatalog": "Library catalog",
+		"libraryID": null,
+		"notes": [],
+		"pages": "1-10",
+		"place": "Place",
+		"publicationTitle": "Publication title",
+		"relations": {},
+		"rights": "Rights",
+		"section": "Section",
+		"seeAlso": [],
+		"shortTitle": "Short title",
+		"tags": [],
+		"title": "Title",
+		"uniqueFields": {
+			"ISSN": "1234-5679",
+			"abstractNote": "Abstract note",
+			"accessDate": "1997-06-13 23:59:58",
+			"archive": "Archive",
+			"archiveLocation": "Archive location",
+			"callNumber": "Call number",
+			"date": "1999-12-31",
+			"edition": "8",
+			"extra": "Extra",
+			"language": "en-US",
+			"libraryCatalog": "Library catalog",
+			"pages": "1-10",
+			"place": "Place",
+			"publicationTitle": "Publication title",
+			"rights": "Rights",
+			"section": "Section",
+			"shortTitle": "Short title",
+			"title": "Title",
+			"url": "http://www.example.com",
+			"court": "Court",
+			"jurisdiction": "Jurisdiction",
+			"newsCaseDate": "News case date"
+		},
+		"uri": "http://zotero.org/users/local/GtG6GoZj/items/4PHE8AXE",
+		"url": "http://www.example.com",
+		"multi": {
+			"main": {},
+			"_keys": {}
+		},
+		"court": "Court",
+		"jurisdiction": "Jurisdiction",
+		"newsCaseDate": "News case date"
+	},
+	"patent": {
+		"abstractNote": "Abstract note",
+		"accessDate": "1997-06-13 23:59:58",
+		"applicationNumber": "Application number",
+		"assignee": "Assignee",
+		"attachments": [],
+		"collections": [],
+		"country": "Country",
+		"creators": [
+			{
+				"creatorType": "inventor",
+				"firstName": "inventorFirst",
+				"lastName": "inventorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "attorneyAgent",
+				"firstName": "attorneyAgentFirst",
+				"lastName": "attorneyAgentLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "contributor",
+				"firstName": "contributorFirst",
+				"lastName": "contributorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "inventor",
+				"fieldMode": 1,
+				"lastName": "Institutional Author",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"firstName": "recipientFirst",
+				"lastName": "recipientLast",
+				"creatorType": "recipient",
+				"multi": {
+					"_key": {}
+				}
+			}
+		],
+		"date": "1999-12-31",
+		"dateAdded": "2015-04-26 06:40:48",
+		"dateModified": "2015-04-26 06:40:48",
+		"extra": "Extra",
+		"filingDate": "2000-01-02",
+		"issueDate": "1999-12-31",
+		"issuingAuthority": "Issuing authority",
+		"itemID": 95,
+		"itemType": "patent",
+		"key": "URAE2N3M",
+		"language": "en-US",
+		"legalStatus": "Legal status",
+		"libraryID": null,
+		"notes": [],
+		"number": "3",
+		"pages": "1-10",
+		"patentNumber": "3",
+		"place": "Place",
+		"priorityNumbers": "Priority numbers",
+		"references": "References",
+		"relations": {},
+		"rights": "Rights",
+		"seeAlso": [],
+		"shortTitle": "Short title",
+		"tags": [],
+		"title": "Title",
+		"uniqueFields": {
+			"abstractNote": "Abstract note",
+			"accessDate": "1997-06-13 23:59:58",
+			"applicationNumber": "Application number",
+			"assignee": "Assignee",
+			"country": "Country",
+			"date": "1999-12-31",
+			"extra": "Extra",
+			"filingDate": "2000-01-02",
+			"issueDate": "1999-12-31",
+			"issuingAuthority": "Issuing authority",
+			"language": "en-US",
+			"legalStatus": "Legal status",
+			"number": "3",
+			"pages": "1-10",
+			"patentNumber": "3",
+			"place": "Place",
+			"priorityNumbers": "Priority numbers",
+			"references": "References",
+			"rights": "Rights",
+			"shortTitle": "Short title",
+			"title": "Title",
+			"url": "http://www.example.com",
+			"genre": "Genre",
+			"jurisdiction": "Jurisdiction",
+			"priorityDate": "Priority date",
+			"publicationDate": "Publication date",
+			"publicationNumber": "Publication number"
+		},
+		"uri": "http://zotero.org/users/local/GtG6GoZj/items/URAE2N3M",
+		"url": "http://www.example.com",
+		"multi": {
+			"main": {},
+			"_keys": {}
+		},
+		"genre": "Genre",
+		"jurisdiction": "Jurisdiction",
+		"priorityDate": "Priority date",
+		"publicationDate": "Publication date",
+		"publicationNumber": "Publication number"
+	},
+	"podcast": {
+		"abstractNote": "Abstract note",
+		"accessDate": "1997-06-13 23:59:58",
+		"attachments": [],
+		"audioFileType": "Medium",
+		"collections": [],
+		"creators": [
+			{
+				"creatorType": "podcaster",
+				"firstName": "podcasterFirst",
+				"lastName": "podcasterLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "contributor",
+				"firstName": "contributorFirst",
+				"lastName": "contributorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "guest",
+				"firstName": "guestFirst",
+				"lastName": "guestLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "podcaster",
+				"fieldMode": 1,
+				"lastName": "Institutional Author",
+				"multi": {
+					"_key": {}
+				}
+			}
+		],
+		"dateAdded": "2015-04-26 06:40:48",
+		"dateModified": "2015-04-26 06:40:48",
+		"episodeNumber": "3",
+		"extra": "Extra",
+		"itemID": 96,
+		"itemType": "podcast",
+		"key": "CDUFPIKZ",
+		"language": "en-US",
+		"libraryID": null,
+		"medium": "Medium",
+		"notes": [],
+		"number": "3",
+		"relations": {},
+		"rights": "Rights",
+		"runningTime": "1:22:33",
+		"seeAlso": [],
+		"seriesTitle": "Series title",
+		"shortTitle": "Short title",
+		"tags": [],
+		"title": "Title",
+		"uniqueFields": {
+			"abstractNote": "Abstract note",
+			"accessDate": "1997-06-13 23:59:58",
+			"audioFileType": "Medium",
+			"episodeNumber": "3",
+			"extra": "Extra",
+			"language": "en-US",
+			"medium": "Medium",
+			"number": "3",
+			"rights": "Rights",
+			"runningTime": "1:22:33",
+			"seriesTitle": "Series title",
+			"shortTitle": "Short title",
+			"title": "Title",
+			"url": "http://www.example.com",
+			"publisher": "Publisher",
+			"date": "1999-12-31"
+		},
+		"uri": "http://zotero.org/users/local/GtG6GoZj/items/CDUFPIKZ",
+		"url": "http://www.example.com",
+		"multi": {
+			"main": {},
+			"_keys": {}
+		},
+		"publisher": "Publisher",
+		"date": "1999-12-31"
+	},
+	"preprint": {
+		"DOI": "10.1234/example.doi",
+		"abstractNote": "Abstract note",
+		"accessDate": "1997-06-13 23:59:58",
+		"archive": "Archive",
+		"archiveID": "3",
+		"archiveLocation": "Archive location",
+		"attachments": [],
+		"callNumber": "Call number",
+		"citationKey": "Citation key",
+		"collections": [],
+		"creators": [
+			{
+				"creatorType": "author",
+				"firstName": "authorFirst",
+				"lastName": "authorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "contributor",
+				"firstName": "contributorFirst",
+				"lastName": "contributorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "editor",
+				"firstName": "editorFirst",
+				"lastName": "editorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "reviewedAuthor",
+				"firstName": "reviewedAuthorFirst",
+				"lastName": "reviewedAuthorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "translator",
+				"firstName": "translatorFirst",
+				"lastName": "translatorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "author",
+				"fieldMode": 1,
+				"lastName": "Institutional Author",
+				"multi": {
+					"_key": {}
+				}
+			}
+		],
+		"date": "1999-12-31",
+		"dateAdded": "2022-03-05 10:56:06",
+		"dateModified": "2022-03-05 10:56:06",
+		"extra": "Extra",
+		"genre": "Type",
+		"itemID": 62,
+		"itemType": "preprint",
+		"key": "46EWSSRQ",
+		"language": "en-US",
+		"libraryCatalog": "Library catalog",
+		"libraryID": null,
+		"notes": [],
+		"number": "3",
+		"place": "Place",
+		"publisher": "Publisher",
+		"relations": {},
+		"repository": "Publisher",
+		"rights": "Rights",
+		"seeAlso": [],
+		"series": "Series",
+		"seriesNumber": "9",
+		"shortTitle": "Short title",
+		"tags": [],
+		"title": "Title",
+		"type": "Type",
+		"uniqueFields": {
+			"DOI": "10.1234/example.doi",
+			"abstractNote": "Abstract note",
+			"accessDate": "1997-06-13 23:59:58",
+			"archive": "Archive",
+			"archiveID": "3",
+			"archiveLocation": "Archive location",
+			"callNumber": "Call number",
+			"citationKey": "Citation key",
+			"date": "1999-12-31",
+			"extra": "Extra",
+			"genre": "Type",
+			"language": "en-US",
+			"libraryCatalog": "Library catalog",
+			"number": "3",
+			"place": "Place",
+			"publisher": "Publisher",
+			"repository": "Publisher",
+			"rights": "Rights",
+			"series": "Series",
+			"seriesNumber": "9",
+			"shortTitle": "Short title",
+			"title": "Title",
+			"type": "Type",
+			"url": "http://www.example.com"
+		},
+		"uri": "http://zotero.org/users/local/NHq2tGeA/items/46EWSSRQ",
+		"url": "http://www.example.com"
+	},
+	"presentation": {
+		"abstractNote": "Abstract note",
+		"accessDate": "1997-06-13 23:59:58",
+		"attachments": [],
+		"collections": [],
+		"creators": [
+			{
+				"creatorType": "presenter",
+				"firstName": "presenterFirst",
+				"lastName": "presenterLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "contributor",
+				"firstName": "contributorFirst",
+				"lastName": "contributorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "presenter",
+				"fieldMode": 1,
+				"lastName": "Institutional Author",
+				"multi": {
+					"_key": {}
+				}
+			}
+		],
+		"date": "1999-12-31",
+		"dateAdded": "2015-04-26 06:40:48",
+		"dateModified": "2015-04-26 06:40:48",
+		"extra": "Extra",
+		"itemID": 97,
+		"itemType": "presentation",
+		"key": "HQ38BFRE",
+		"language": "en-US",
+		"libraryID": null,
+		"meetingName": "Meeting name",
+		"notes": [],
+		"place": "Place",
+		"presentationType": "Type",
+		"relations": {},
+		"rights": "Rights",
+		"seeAlso": [],
+		"shortTitle": "Short title",
+		"tags": [],
+		"title": "Title",
+		"type": "Type",
+		"uniqueFields": {
+			"abstractNote": "Abstract note",
+			"accessDate": "1997-06-13 23:59:58",
+			"date": "1999-12-31",
+			"extra": "Extra",
+			"language": "en-US",
+			"meetingName": "Meeting name",
+			"place": "Place",
+			"presentationType": "Type",
+			"rights": "Rights",
+			"shortTitle": "Short title",
+			"title": "Title",
+			"type": "Type",
+			"url": "http://www.example.com",
+			"archive": "Archive",
+			"archiveLocation": "Archive location",
+			"archiveCollection": "Archive collection"
+		},
+		"uri": "http://zotero.org/users/local/GtG6GoZj/items/HQ38BFRE",
+		"url": "http://www.example.com",
+		"multi": {
+			"main": {},
+			"_keys": {}
+		},
+		"archive": "Archive",
+		"archiveLocation": "Archive location",
+		"archiveCollection": "Archive collection"
+	},
+	"radioBroadcast": {
+		"abstractNote": "Abstract note",
+		"accessDate": "1997-06-13 23:59:58",
+		"archive": "Archive",
+		"archiveLocation": "Archive location",
+		"attachments": [],
+		"audioRecordingFormat": "Medium",
+		"callNumber": "Call number",
+		"collections": [],
+		"creators": [
+			{
+				"creatorType": "director",
+				"firstName": "directorFirst",
+				"lastName": "directorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "castMember",
+				"firstName": "castMemberFirst",
+				"lastName": "castMemberLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "contributor",
+				"firstName": "contributorFirst",
+				"lastName": "contributorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "guest",
+				"firstName": "guestFirst",
+				"lastName": "guestLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "producer",
+				"firstName": "producerFirst",
+				"lastName": "producerLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "scriptwriter",
+				"firstName": "scriptwriterFirst",
+				"lastName": "scriptwriterLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "director",
+				"fieldMode": 1,
+				"lastName": "Institutional Author",
+				"multi": {
+					"_key": {}
+				}
+			}
+		],
+		"date": "1999-12-31",
+		"dateAdded": "2015-04-26 06:40:48",
+		"dateModified": "2015-04-26 06:40:48",
+		"episodeNumber": "3",
+		"extra": "Extra",
+		"itemID": 98,
+		"itemType": "radioBroadcast",
+		"key": "IANDVIRR",
+		"language": "en-US",
+		"libraryCatalog": "Library catalog",
+		"libraryID": null,
+		"medium": "Medium",
+		"network": "Publisher",
+		"notes": [],
+		"number": "3",
+		"place": "Place",
+		"programTitle": "Publication title",
+		"publicationTitle": "Publication title",
+		"publisher": "Publisher",
+		"relations": {},
+		"rights": "Rights",
+		"runningTime": "1:22:33",
+		"seeAlso": [],
+		"shortTitle": "Short title",
+		"tags": [],
+		"title": "Title",
+		"uniqueFields": {
+			"abstractNote": "Abstract note",
+			"accessDate": "1997-06-13 23:59:58",
+			"archive": "Archive",
+			"archiveLocation": "Archive location",
+			"audioRecordingFormat": "Medium",
+			"callNumber": "Call number",
+			"date": "1999-12-31",
+			"episodeNumber": "3",
+			"extra": "Extra",
+			"language": "en-US",
+			"libraryCatalog": "Library catalog",
+			"medium": "Medium",
+			"network": "Publisher",
+			"number": "3",
+			"place": "Place",
+			"programTitle": "Publication title",
+			"publicationTitle": "Publication title",
+			"publisher": "Publisher",
+			"rights": "Rights",
+			"runningTime": "1:22:33",
+			"shortTitle": "Short title",
+			"title": "Title",
+			"url": "http://www.example.com"
+		},
+		"uri": "http://zotero.org/users/local/GtG6GoZj/items/IANDVIRR",
+		"url": "http://www.example.com",
+		"multi": {
+			"main": {},
+			"_keys": {}
+		}
+	},
+	"report": {
+		"abstractNote": "Abstract note",
+		"accessDate": "1997-06-13 23:59:58",
+		"archive": "Archive",
+		"archiveLocation": "Archive location",
+		"attachments": [],
+		"callNumber": "Call number",
+		"collections": [],
+		"creators": [
+			{
+				"creatorType": "author",
+				"firstName": "authorFirst",
+				"lastName": "authorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "contributor",
+				"firstName": "contributorFirst",
+				"lastName": "contributorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "seriesEditor",
+				"firstName": "seriesEditorFirst",
+				"lastName": "seriesEditorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "translator",
+				"firstName": "translatorFirst",
+				"lastName": "translatorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "author",
+				"fieldMode": 1,
+				"lastName": "Institutional Author",
+				"multi": {
+					"_key": {}
+				}
+			}
+		],
+		"date": "1999-12-31",
+		"dateAdded": "2015-04-26 06:40:48",
+		"dateModified": "2015-04-26 06:40:48",
+		"extra": "Extra",
+		"institution": "Publisher",
+		"itemID": 99,
+		"itemType": "report",
+		"key": "2MBIEXX8",
+		"language": "en-US",
+		"libraryCatalog": "Library catalog",
+		"libraryID": null,
+		"notes": [],
+		"number": "3",
+		"pages": "1-10",
+		"place": "Place",
+		"publisher": "Publisher",
+		"relations": {},
+		"reportNumber": "3",
+		"reportType": "Type",
+		"rights": "Rights",
+		"seeAlso": [],
+		"seriesTitle": "Series title",
+		"shortTitle": "Short title",
+		"tags": [],
+		"title": "Title",
+		"type": "Type",
+		"uniqueFields": {
+			"abstractNote": "Abstract note",
+			"accessDate": "1997-06-13 23:59:58",
+			"archive": "Archive",
+			"archiveLocation": "Archive location",
+			"callNumber": "Call number",
+			"date": "1999-12-31",
+			"extra": "Extra",
+			"institution": "Publisher",
+			"language": "en-US",
+			"libraryCatalog": "Library catalog",
+			"number": "3",
+			"pages": "1-10",
+			"place": "Place",
+			"publisher": "Publisher",
+			"reportNumber": "3",
+			"reportType": "Type",
+			"rights": "Rights",
+			"seriesTitle": "Series title",
+			"shortTitle": "Short title",
+			"title": "Title",
+			"type": "Type",
+			"url": "http://www.example.com",
+			"committee": "Committee",
+			"medium": "Medium",
+			"bookTitle": "Publication title",
+			"jurisdiction": "Jurisdiction",
+			"assemblyNumber": "Assembly number",
+			"status": "Status",
+			"publicationTitle": "Publication title"
+		},
+		"uri": "http://zotero.org/users/local/GtG6GoZj/items/2MBIEXX8",
+		"url": "http://www.example.com",
+		"multi": {
+			"main": {},
+			"_keys": {}
+		},
+		"committee": "Committee",
+		"medium": "Medium",
+		"bookTitle": "Publication title",
+		"jurisdiction": "Jurisdiction",
+		"assemblyNumber": "Assembly number",
+		"status": "Status",
+		"publicationTitle": "Publication title"
+	},
+	"statute": {
+		"abstractNote": "Abstract note",
+		"accessDate": "1997-06-13 23:59:58",
+		"attachments": [],
+		"code": "Code",
+		"codeNumber": "Code number",
+		"collections": [],
+		"creators": [
+			{
+				"creatorType": "author",
+				"firstName": "authorFirst",
+				"lastName": "authorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "contributor",
+				"firstName": "contributorFirst",
+				"lastName": "contributorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "author",
+				"fieldMode": 1,
+				"lastName": "Institutional Author",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"firstName": "translatorFirst",
+				"lastName": "translatorLast",
+				"creatorType": "translator",
+				"multi": {
+					"_key": {}
+				}
+			}
+		],
+		"date": "1999-12-31",
+		"dateAdded": "2015-04-26 06:40:48",
+		"dateEnacted": "1999-12-31",
+		"dateModified": "2015-04-26 06:40:48",
+		"extra": "Extra",
+		"history": "History",
+		"itemID": 100,
+		"itemType": "statute",
+		"key": "ZZWC5DCZ",
+		"language": "en-US",
+		"libraryID": null,
+		"nameOfAct": "Title",
+		"notes": [],
+		"number": "3",
+		"pages": "1-10",
+		"publicLawNumber": "3",
+		"relations": {},
+		"rights": "Rights",
+		"section": "Section",
+		"seeAlso": [],
+		"session": "Session",
+		"shortTitle": "Short title",
+		"tags": [],
+		"title": "Title",
+		"uniqueFields": {
+			"abstractNote": "Abstract note",
+			"accessDate": "1997-06-13 23:59:58",
+			"code": "Code",
+			"codeNumber": "Code number",
+			"date": "1999-12-31",
+			"dateEnacted": "1999-12-31",
+			"extra": "Extra",
+			"history": "History",
+			"language": "en-US",
+			"nameOfAct": "Title",
+			"number": "3",
+			"pages": "1-10",
+			"publicLawNumber": "3",
+			"rights": "Rights",
+			"section": "Section",
+			"session": "Session",
+			"shortTitle": "Short title",
+			"title": "Title",
+			"url": "http://www.example.com",
+			"publisher": "Publisher",
+			"jurisdiction": "Jurisdiction",
+			"publicationDate": "Publication date",
+			"reign": "Reign",
+			"regnalYear": "Regnal year",
+			"originalDate": "Original date",
+			"dateAmended": "Date amended",
+			"gazetteFlag": "Gazette flag"
+		},
+		"uri": "http://zotero.org/users/local/GtG6GoZj/items/ZZWC5DCZ",
+		"url": "http://www.example.com",
+		"multi": {
+			"main": {},
+			"_keys": {}
+		},
+		"publisher": "Publisher",
+		"jurisdiction": "Jurisdiction",
+		"publicationDate": "Publication date",
+		"reign": "Reign",
+		"regnalYear": "Regnal year",
+		"originalDate": "Original date",
+		"dateAmended": "Date amended",
+		"gazetteFlag": "Gazette flag"
+	},
+	"thesis": {
+		"abstractNote": "Abstract note",
+		"accessDate": "1997-06-13 23:59:58",
+		"archive": "Archive",
+		"archiveLocation": "Archive location",
+		"attachments": [],
+		"callNumber": "Call number",
+		"collections": [],
+		"creators": [
+			{
+				"creatorType": "author",
+				"firstName": "authorFirst",
+				"lastName": "authorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "contributor",
+				"firstName": "contributorFirst",
+				"lastName": "contributorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "author",
+				"fieldMode": 1,
+				"lastName": "Institutional Author",
+				"multi": {
+					"_key": {}
+				}
+			}
+		],
+		"date": "1999-12-31",
+		"dateAdded": "2015-04-26 06:40:48",
+		"dateModified": "2015-04-26 06:40:48",
+		"extra": "Extra",
+		"itemID": 101,
+		"itemType": "thesis",
+		"key": "IZIFIQ9N",
+		"language": "en-US",
+		"libraryCatalog": "Library catalog",
+		"libraryID": null,
+		"notes": [],
+		"numPages": "4",
+		"place": "Place",
+		"publisher": "Publisher",
+		"relations": {},
+		"rights": "Rights",
+		"seeAlso": [],
+		"shortTitle": "Short title",
+		"tags": [],
+		"thesisType": "Type",
+		"title": "Title",
+		"type": "Type",
+		"uniqueFields": {
+			"abstractNote": "Abstract note",
+			"accessDate": "1997-06-13 23:59:58",
+			"archive": "Archive",
+			"archiveLocation": "Archive location",
+			"callNumber": "Call number",
+			"date": "1999-12-31",
+			"extra": "Extra",
+			"language": "en-US",
+			"libraryCatalog": "Library catalog",
+			"numPages": "4",
+			"place": "Place",
+			"publisher": "Publisher",
+			"rights": "Rights",
+			"shortTitle": "Short title",
+			"thesisType": "Type",
+			"title": "Title",
+			"type": "Type",
+			"university": "Publisher",
+			"url": "http://www.example.com"
+		},
+		"university": "Publisher",
+		"uri": "http://zotero.org/users/local/GtG6GoZj/items/IZIFIQ9N",
+		"url": "http://www.example.com",
+		"multi": {
+			"main": {},
+			"_keys": {}
+		}
+	},
+	"tvBroadcast": {
+		"abstractNote": "Abstract note",
+		"accessDate": "1997-06-13 23:59:58",
+		"archive": "Archive",
+		"archiveLocation": "Archive location",
+		"attachments": [],
+		"callNumber": "Call number",
+		"collections": [],
+		"creators": [
+			{
+				"creatorType": "director",
+				"firstName": "directorFirst",
+				"lastName": "directorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "castMember",
+				"firstName": "castMemberFirst",
+				"lastName": "castMemberLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "contributor",
+				"firstName": "contributorFirst",
+				"lastName": "contributorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "guest",
+				"firstName": "guestFirst",
+				"lastName": "guestLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "producer",
+				"firstName": "producerFirst",
+				"lastName": "producerLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "scriptwriter",
+				"firstName": "scriptwriterFirst",
+				"lastName": "scriptwriterLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "director",
+				"fieldMode": 1,
+				"lastName": "Institutional Author",
+				"multi": {
+					"_key": {}
+				}
+			}
+		],
+		"date": "1999-12-31",
+		"dateAdded": "2015-04-26 06:40:48",
+		"dateModified": "2015-04-26 06:40:48",
+		"episodeNumber": "3",
+		"extra": "Extra",
+		"itemID": 102,
+		"itemType": "tvBroadcast",
+		"key": "K88A7XD3",
+		"language": "en-US",
+		"libraryCatalog": "Library catalog",
+		"libraryID": null,
+		"medium": "Medium",
+		"network": "Publisher",
+		"notes": [],
+		"number": "3",
+		"place": "Place",
+		"programTitle": "Publication title",
+		"publicationTitle": "Publication title",
+		"publisher": "Publisher",
+		"relations": {},
+		"rights": "Rights",
+		"runningTime": "1:22:33",
+		"seeAlso": [],
+		"shortTitle": "Short title",
+		"tags": [],
+		"title": "Title",
+		"uniqueFields": {
+			"abstractNote": "Abstract note",
+			"accessDate": "1997-06-13 23:59:58",
+			"archive": "Archive",
+			"archiveLocation": "Archive location",
+			"callNumber": "Call number",
+			"date": "1999-12-31",
+			"episodeNumber": "3",
+			"extra": "Extra",
+			"language": "en-US",
+			"libraryCatalog": "Library catalog",
+			"medium": "Medium",
+			"network": "Publisher",
+			"number": "3",
+			"place": "Place",
+			"programTitle": "Publication title",
+			"publicationTitle": "Publication title",
+			"publisher": "Publisher",
+			"rights": "Rights",
+			"runningTime": "1:22:33",
+			"shortTitle": "Short title",
+			"title": "Title",
+			"url": "http://www.example.com",
+			"videoRecordingFormat": "Medium"
+		},
+		"uri": "http://zotero.org/users/local/GtG6GoZj/items/K88A7XD3",
+		"url": "http://www.example.com",
+		"videoRecordingFormat": "Medium",
+		"multi": {
+			"main": {},
+			"_keys": {}
+		}
+	},
+	"videoRecording": {
+		"ISBN": "978-1-234-56789-7",
+		"abstractNote": "Abstract note",
+		"accessDate": "1997-06-13 23:59:58",
+		"archive": "Archive",
+		"archiveLocation": "Archive location",
+		"attachments": [],
+		"callNumber": "Call number",
+		"collections": [],
+		"creators": [
+			{
+				"creatorType": "director",
+				"firstName": "directorFirst",
+				"lastName": "directorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "castMember",
+				"firstName": "castMemberFirst",
+				"lastName": "castMemberLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "contributor",
+				"firstName": "contributorFirst",
+				"lastName": "contributorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "producer",
+				"firstName": "producerFirst",
+				"lastName": "producerLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "scriptwriter",
+				"firstName": "scriptwriterFirst",
+				"lastName": "scriptwriterLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "director",
+				"fieldMode": 1,
+				"lastName": "Institutional Author",
+				"multi": {
+					"_key": {}
+				}
+			}
+		],
+		"date": "1999-12-31",
+		"dateAdded": "2015-04-26 06:40:48",
+		"dateModified": "2015-04-26 06:40:48",
+		"extra": "Extra",
+		"itemID": 103,
+		"itemType": "videoRecording",
+		"key": "6VRTBPRB",
+		"language": "en-US",
+		"libraryCatalog": "Library catalog",
+		"libraryID": null,
+		"medium": "Medium",
+		"notes": [],
+		"numberOfVolumes": "7",
+		"place": "Place",
+		"publisher": "Publisher",
+		"relations": {},
+		"rights": "Rights",
+		"runningTime": "1:22:33",
+		"seeAlso": [],
+		"seriesTitle": "Series title",
+		"shortTitle": "Short title",
+		"studio": "Publisher",
+		"tags": [],
+		"title": "Title",
+		"uniqueFields": {
+			"ISBN": "978-1-234-56789-7",
+			"abstractNote": "Abstract note",
+			"accessDate": "1997-06-13 23:59:58",
+			"archive": "Archive",
+			"archiveLocation": "Archive location",
+			"callNumber": "Call number",
+			"date": "1999-12-31",
+			"extra": "Extra",
+			"language": "en-US",
+			"libraryCatalog": "Library catalog",
+			"medium": "Medium",
+			"numberOfVolumes": "7",
+			"place": "Place",
+			"publisher": "Publisher",
+			"rights": "Rights",
+			"runningTime": "1:22:33",
+			"seriesTitle": "Series title",
+			"shortTitle": "Short title",
+			"studio": "Publisher",
+			"title": "Title",
+			"url": "http://www.example.com",
+			"videoRecordingFormat": "Medium",
+			"volume": "6",
+			"websiteTitle": "Publication title",
+			"publicationTitle": "Publication title"
+		},
+		"uri": "http://zotero.org/users/local/GtG6GoZj/items/6VRTBPRB",
+		"url": "http://www.example.com",
+		"videoRecordingFormat": "Medium",
+		"volume": "6",
+		"multi": {
+			"main": {},
+			"_keys": {}
+		},
+		"websiteTitle": "Publication title",
+		"publicationTitle": "Publication title"
+	},
+	"webpage": {
+		"abstractNote": "Abstract note",
+		"accessDate": "1997-06-13 23:59:58",
+		"attachments": [],
+		"collections": [],
+		"creators": [
+			{
+				"creatorType": "author",
+				"firstName": "authorFirst",
+				"lastName": "authorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "contributor",
+				"firstName": "contributorFirst",
+				"lastName": "contributorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "translator",
+				"firstName": "translatorFirst",
+				"lastName": "translatorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "author",
+				"fieldMode": 1,
+				"lastName": "Institutional Author",
+				"multi": {
+					"_key": {}
+				}
+			}
+		],
+		"date": "1999-12-31",
+		"dateAdded": "2015-04-26 06:40:48",
+		"dateModified": "2015-04-26 06:40:48",
+		"extra": "Extra",
+		"itemID": 104,
+		"itemType": "webpage",
+		"key": "CTAR75NZ",
+		"language": "en-US",
+		"libraryID": null,
+		"notes": [],
+		"publicationTitle": "Publication title",
+		"relations": {},
+		"rights": "Rights",
+		"seeAlso": [],
+		"shortTitle": "Short title",
+		"tags": [],
+		"title": "Title",
+		"type": "Type",
+		"uniqueFields": {
+			"abstractNote": "Abstract note",
+			"accessDate": "1997-06-13 23:59:58",
+			"date": "1999-12-31",
+			"extra": "Extra",
+			"language": "en-US",
+			"publicationTitle": "Publication title",
+			"rights": "Rights",
+			"shortTitle": "Short title",
+			"title": "Title",
+			"type": "Type",
+			"url": "http://www.example.com",
+			"websiteTitle": "Publication title",
+			"websiteType": "Type"
+		},
+		"uri": "http://zotero.org/users/local/GtG6GoZj/items/CTAR75NZ",
+		"url": "http://www.example.com",
+		"websiteTitle": "Publication title",
+		"websiteType": "Type",
+		"multi": {
+			"main": {},
+			"_keys": {}
+		}
+	}
 }

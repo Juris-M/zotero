@@ -141,7 +141,7 @@ describe("Zotero.DataObject", function() {
 				var obj = createUnsavedDataObject(type);
 				var id = yield obj.saveTx();
 				
-				obj.synced = 1;
+				obj.synced = true;
 				yield obj.saveTx();
 				
 				if (type == 'item') {
@@ -210,7 +210,16 @@ describe("Zotero.DataObject", function() {
 				yield obj.loadPrimaryData();
 				assert.equal(obj.version, objs[type].version);
 			}
-		})
+		});
+		
+		it("shouldn't overwrite item type set in constructor", async function () {
+			var item = new Zotero.Item('book');
+			item.libraryID = Zotero.Libraries.userLibraryID;
+			item.key = Zotero.DataObjectUtilities.generateKey();
+			await item.loadPrimaryData();
+			var saved = await item.saveTx();
+			assert.ok(saved);
+		});
 	})
 	
 	describe("#loadAllData()", function () {
@@ -225,14 +234,14 @@ describe("Zotero.DataObject", function() {
 			var item = new Zotero.Item('attachment');
 			var id = yield item.saveTx();
 			yield item.loadAllData();
-			assert.equal(item.getNote(), '');
+			assert.equal(item.note, '');
 		})
 		
 		it("should load data on a note item", function* () {
 			var item = new Zotero.Item('note');
 			var id = yield item.saveTx();
 			yield item.loadAllData();
-			assert.equal(item.getNote(), '');
+			assert.equal(item.note, '');
 		})
 	})
 	
@@ -334,7 +343,7 @@ describe("Zotero.DataObject", function() {
 				let item = createUnsavedDataObject('item', { libraryID: group.libraryID });
 				var e = yield getPromiseError(item.saveTx());
 				assert.ok(e);
-				assert.include(e.message, "read-only");
+				assert.include(e.message, "Cannot edit item");
 			});
 			
 			it("should allow saving if skipEditCheck is passed", function* () {
@@ -351,14 +360,6 @@ describe("Zotero.DataObject", function() {
 					skipAll: true
 				}));
 				assert.isFalse(e);
-			});
-		});
-		
-		describe("Options", function () {
-			describe("#skipAll", function () {
-				it("should include edit check", function* () {
-					
-				});
 			});
 		});
 	})

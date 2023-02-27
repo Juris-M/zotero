@@ -66,7 +66,6 @@ describe("Tag Selector", function () {
 		await Zotero.Tags.setColor(libraryID, "C", '#CCCCCC', 3);
 		
 		var item = createUnsavedDataObject('item', { collections: [collection.id] });
-		var item = createUnsavedDataObject('item');
 		await item.setTags(["A", "B"]);
 		var promise = waitForTagSelector(win);
 		await item.saveTx();
@@ -94,6 +93,21 @@ describe("Tag Selector", function () {
 		
 		var tags = getRegularTags();
 		assert.sameMembers(tags, ['A', 'B']);
+	});
+	
+	it("should show tags from annotations for attachments in scope", async function () {
+		var collection = await createDataObject('collection');
+		var item = await createDataObject('item', { collections: [collection.id] });
+		var attachment = await importPDFAttachment(item);
+		var annotation = await createAnnotation('highlight', attachment);
+		var tag = Zotero.Utilities.randomString();
+		annotation.addTag(tag);
+		var promise = waitForTagSelector(win)
+		await annotation.saveTx();
+		await promise;
+		
+		var tags = getRegularTags();
+		assert.sameMembers(tags, [tag]);
 	});
 	
 	describe("#handleSearch()", function () {
@@ -203,7 +217,7 @@ describe("Tag Selector", function () {
 		it("should add a tag when added to an item in the library root", async function () {
 			var promise;
 			
-			if (collectionsView.selection.currentIndex != 0) {
+			if (collectionsView.selection.pivot != 0) {
 				promise = waitForTagSelector(win);
 				await collectionsView.selectLibrary();
 				await promise;

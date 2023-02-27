@@ -68,6 +68,25 @@ describe("Zotero.Utilities.Internal", function () {
 	});
 	
 	
+	describe("#isOnlyEmoji()", function () {
+		it("should return true for emoji", function () {
+			assert.isTrue(Zotero.Utilities.Internal.isOnlyEmoji("🐩"));
+		});
+		
+		it("should return true for emoji with text representation that use Variation Selector-16", function () {
+			assert.isTrue(Zotero.Utilities.Internal.isOnlyEmoji("⭐️"));
+		});
+		
+		it("should return true for emoji made up of multiple characters with ZWJ", function () {
+			assert.isTrue(Zotero.Utilities.Internal.isOnlyEmoji("👨‍🌾"));
+		});
+		
+		it("should return false for integer", function () {
+			assert.isFalse(Zotero.Utilities.Internal.isOnlyEmoji("0"));
+		});
+	});
+	
+	
 	describe("#delayGenerator", function () {
 		var spy;
 		
@@ -382,6 +401,15 @@ describe("Zotero.Utilities.Internal", function () {
 			assert.propertyVal(identifiers[2], "arXiv", "hep-ex/9809001");
 			assert.propertyVal(identifiers[3], "arXiv", "math.GT/0309135");
 		});
+
+		it("should extract ADS bibcodes", async function () {
+			var identifiers = ZUI.extractIdentifiers("9 2021wfc..rept....8D, 2022MSSP..16208010Y.");
+			assert.lengthOf(identifiers, 2);
+			assert.lengthOf(Object.keys(identifiers[0]), 1);
+			assert.lengthOf(Object.keys(identifiers[1]), 1);
+			assert.propertyVal(identifiers[0], "adsBibcode", "2021wfc..rept....8D");
+			assert.propertyVal(identifiers[1], "adsBibcode", "2022MSSP..16208010Y");
+		});
 	});
 	
 	describe("#resolveLocale()", function () {
@@ -466,6 +494,77 @@ describe("Zotero.Utilities.Internal", function () {
 		it("should trim given name if trim=true", function () {
 			var existing = ['Name', 'Name 1', 'Name 2', 'Name 3'];
 			assert.equal(Zotero.Utilities.Internal.getNextName('Name 2', existing, true), 'Name 4');
+		});
+	});
+
+	describe("#parseURL()", function () {
+		var f;
+		before(() => {
+			f = Zotero.Utilities.Internal.parseURL;
+		});
+
+		describe("#fileName", function () {
+			it("should contain filename", function () {
+				assert.propertyVal(f('http://example.com/abc/def.html?foo=bar'), 'fileName', 'def.html');
+			});
+
+			it("should be empty if no filename", function () {
+				assert.propertyVal(f('http://example.com/abc/'), 'fileName', '');
+			});
+		});
+
+		describe("#fileExtension", function () {
+			it("should contain extension", function () {
+				assert.propertyVal(f('http://example.com/abc/def.html?foo=bar'), 'fileExtension', 'html');
+			});
+
+			it("should be empty if no extension", function () {
+				assert.propertyVal(f('http://example.com/abc/def'), 'fileExtension', '');
+			});
+
+			it("should be empty if no filename", function () {
+				assert.propertyVal(f('http://example.com/abc/'), 'fileExtension', '');
+			});
+		});
+
+		describe("#fileBaseName", function () {
+			it("should contain base name", function () {
+				assert.propertyVal(f('http://example.com/abc/def.html?foo=bar'), 'fileBaseName', 'def');
+			});
+
+			it("should equal filename if no extension", function () {
+				assert.propertyVal(f('http://example.com/abc/def'), 'fileBaseName', 'def');
+			});
+
+			it("should be empty if no filename", function () {
+				assert.propertyVal(f('http://example.com/abc/'), 'fileBaseName', '');
+			});
+		});
+	});
+
+	describe("#generateHTMLFromTemplate()", function () {
+		it("should support variables with attributes", function () {
+			var vars = {
+				v1: '1',
+				v2: (pars) => pars.a1 + pars.a2 + pars.a3,
+				v3: () => '',
+				v5: () => 'something',
+				ar1: [],
+				ar2: [1, 2]
+			};
+			var template = `{{ v1}}{{v2 a1= 1  a2 =' 2' a3 = "3 "}}{{v3}}{{v4}}{{if ar1}}ar1{{endif}}{{if ar2}}{{ar2}}{{endif}}{{if v5}}yes{{endif}}{{if v3}}no{{endif}}{{if v2}}no{{endif}}`;
+			var html = Zotero.Utilities.Internal.generateHTMLFromTemplate(template, vars);
+			assert.equal(html, '11 23 1,2yes');
+		});
+
+		it("should support nested 'if' statements", function () {
+			var vars = {
+				v1: '1',
+				v2: 'H',
+			};
+			var template = `{{if v1 == '1'}}yes1{{if x}}no{{elseif v2  == h }}yes2{{endif}}{{elseif v2 == 2}}no{{else}}no{{endif}} {{if v2 == 1}}not{{elseif x}}not{{else}}yes3{{ endif}}`;
+			var html = Zotero.Utilities.Internal.generateHTMLFromTemplate(template, vars);
+			assert.equal(html, 'yes1yes2 yes3');
 		});
 	});
 })

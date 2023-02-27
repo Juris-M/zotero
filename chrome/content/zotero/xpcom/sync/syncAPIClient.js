@@ -35,6 +35,7 @@ Zotero.Sync.APIClient = function (options) {
 	this.baseURL = options.baseURL;
 	this.apiVersion = options.apiVersion;
 	this.apiKey = options.apiKey;
+	this.schemaVersion = options.schemaVersion || Zotero.Schema.globalSchemaVersion;
 	this.caller = options.caller;
 	this.debugUploadPolicy = Zotero.Prefs.get('sync.debugUploadPolicy');
 	this.cancellerReceiver = options.cancellerReceiver;
@@ -258,8 +259,9 @@ Zotero.Sync.APIClient.prototype = {
 	 * @param {Integer} libraryTypeID - userID or groupID
 	 * @param {String} objectType - 'collection', 'item', 'search'
 	 * @param {String[]} objectKeys - Keys of objects to request
-	 * @return {Array<Promise<Object[]|Error[]>>} - An array of promises for batches of JSON objects
-	 *     or Errors for failures
+	 * @return {Promise<Object>[]} - An array of promises for objects with JSON data as
+	 *     { keys: String[], json: Object[] } or objects with errors as
+	 *     { keys: String[], error: Error }
 	 */
 	downloadObjects: function (libraryType, libraryTypeID, objectType, objectKeys) {
 		if (!objectKeys.length) {
@@ -298,7 +300,6 @@ Zotero.Sync.APIClient.prototype = {
 			target: objectTypePlural,
 			libraryType: libraryType,
 			libraryTypeID: libraryTypeID,
-			format: 'json'
 		};
 		params[objectType + "Key"] = objectKeys.join(",");
 		if (objectType == 'item') {
@@ -319,7 +320,10 @@ Zotero.Sync.APIClient.prototype = {
 						json[i].data = Zotero.Jurism.SyncRecode.decode(json[i].data);
 					}
 				}
-				return json;
+				return {
+					keys: objectKeys,
+					json: json
+				};
 			}.bind(this))
 			// Return the error without failing the whole chain
 			.catch(function (e) {
@@ -327,7 +331,10 @@ Zotero.Sync.APIClient.prototype = {
 				if (e instanceof Zotero.HTTP.UnexpectedStatusException && e.is4xx()) {
 					throw e;
 				}
-				return e;
+				return {
+					keys: objectKeys,
+					error: e
+				};
 			})
 		];
 	},
@@ -627,6 +634,7 @@ Zotero.Sync.APIClient.prototype = {
 		if (this.apiKey) {
 			newHeaders["Zotero-API-Key"] = this.apiKey;
 		}
+		newHeaders["Zotero-Schema-Version"] = this.schemaVersion;
 		return newHeaders;
 	},
 	

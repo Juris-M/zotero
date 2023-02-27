@@ -268,7 +268,7 @@ Zotero.ItemFields = new function() {
 		
 		var baseFieldID = this.getID(baseField);
 		if (!baseFieldID) {
-			throw new Error("Invalid field '" + baseField + '" for base field');
+			throw new Error("Invalid field '" + baseField + "' for base field");
 		}
 		
 		if (fieldID == baseFieldID) {
@@ -305,7 +305,7 @@ Zotero.ItemFields = new function() {
 		
 		var baseFieldID = this.getID(baseField);
 		if (!baseFieldID) {
-			throw new Error("Invalid field '" + baseField + '" for base field');
+			throw new Error("Invalid field '" + baseField + "' for base field");
 		}
 		
 		// If field isn't a base field, return it if it's valid for the type
@@ -375,7 +375,11 @@ Zotero.ItemFields = new function() {
 	
 	
 	this.isAutocompleteField = function (field) {
-		field = this.getName(field);
+		var fieldName = this.getName(field);
+		if (!fieldName) {
+			Zotero.logError(`Can't check autocomplete for invalid field '${field}'`);
+			return false;
+		}
 		
 		var autoCompleteFields = [
 			'journalAbbreviation',
@@ -405,7 +409,7 @@ Zotero.ItemFields = new function() {
 			autoCompleteFields = autoCompleteFields.concat(add);
 		}
 		
-		return autoCompleteFields.indexOf(field) != -1;
+		return autoCompleteFields.includes(fieldName);
 	}
 	
 	
@@ -447,7 +451,7 @@ Zotero.ItemFields = new function() {
 		var fieldID = Zotero.ItemFields.getID(field);
 		if (!fieldID) {
 			Zotero.debug((new Error).stack, 1);
-			throw new Error(`Invalid field '${field}`);
+			throw new Error(`Invalid field '${field}'`);
 		}
 		return fieldID;
 	}
@@ -546,7 +550,9 @@ Zotero.ItemFields = new function() {
 		var rows = yield Zotero.DB.queryAsync(sql);
 		
 		_itemTypeFields = {
-			[Zotero.ItemTypes.getID('note')]: [] // Notes have no fields
+			// Notes and annotations have no fields
+			[Zotero.ItemTypes.getID('note')]: [],
+			[Zotero.ItemTypes.getID('annotation')]: []
 		};
 		
 		for (let i=0; i<rows.length; i++) {

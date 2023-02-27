@@ -62,7 +62,7 @@ Zotero.Server.Connector = {
 				if (!editable && !allowReadOnly) {
 					let userLibrary = Zotero.Libraries.userLibrary;
 					if (userLibrary && userLibrary.editable) {
-						Zotero.debug("Save target isn't editable -- switching to My Library");
+						Zotero.debug("Save target isn't editable -- switching lastViewedFolder to My Library");
 						let treeViewID = userLibrary.treeViewID;
 						Zotero.Prefs.set('lastViewedFolder', treeViewID);
 						({ library, collection, editable } = this.resolveTarget(treeViewID));
@@ -431,7 +431,7 @@ Zotero.Server.Connector.GetTranslators.prototype = {
 			}).catch(function(e) {
 				sendResponseCallback(500);
 				throw e;
-			}).done();
+			});
 		}
 	},
 	
@@ -1513,7 +1513,7 @@ Zotero.Server.Connector.GetTranslatorCode.prototype = {
 	 */
 	init: function(postData, sendResponseCallback) {
 		var translator = Zotero.Translators.get(postData.translatorID);
-		translator.getCode().then(function(code) {
+		Zotero.Translators.getCodeForTranslator(translator).then(function(code) {
 			sendResponseCallback(200, "application/javascript", code);
 		});
 	}
@@ -1696,9 +1696,8 @@ Zotero.Server.Connector.Ping.prototype = {
 	 */
 	init: function (req) {
 		if (req.method == 'GET') {
-			return [200, "text/html", '<!DOCTYPE html><html><head>' +
-				'<title>Zotero Connector Server is Available</title></head>' +
-				'<body>Zotero Connector Server is Available</body></html>'];
+			return [200, "text/html", '<!DOCTYPE html><html>'
+				+ '<body>Zotero is running</body></html>'];
 		} else {
 			// Store the active URL so it can be used for site-specific Quick Copy
 			if (req.data.activeURL) {
@@ -1708,7 +1707,8 @@ Zotero.Server.Connector.Ping.prototype = {
 			
 			let response = {
 				prefs: {
-					automaticSnapshots: Zotero.Prefs.get('automaticSnapshots')
+					automaticSnapshots: Zotero.Prefs.get('automaticSnapshots'),
+					googleDocsAddNoteEnabled: true
 				}
 			};
 			if (Zotero.QuickCopy.hasSiteSettings()) {
@@ -1852,3 +1852,103 @@ Zotero.Server.Connector.IEHack.prototype = {
 			'</head><body></body></html>');
 	}
 }
+
+/**
+ * Make an HTTP request from the client. Accepts {@link Zotero.HTTP.request} options and returns a minimal response
+ * object with the same form as the one returned from {@link Zotero.Utilities.Translate#request}.
+ *
+ * Accepts:
+ *		method - The request method ('GET', 'POST', etc.)
+ *		url - The URL to make the request to. Must be an absolute HTTP(S) URL.
+ *		options - See Zotero.HTTP.request() documentation. Differences:
+ *			- responseType is always set to 'text'
+ *			- successCodes is always set to false (non-2xx status codes will not trigger an error)
+ * Returns:
+ *		Response code is always 200. Body contains:
+ *			status - The response status code, as a number
+ *			headers - An object mapping header names to values
+ *			body - The response body, as a string
+ */
+Zotero.Server.Connector.Request = function () {};
+
+/**
+ * The list of allowed hosts. Intentionally hardcoded.
+ */
+Zotero.Server.Connector.Request.allowedHosts = ['www.worldcat.org'];
+
+/**
+ * For testing: allow disabling validation so we can make requests to the server.
+ */
+Zotero.Server.Connector.Request.enableValidation = false;
+
+Zotero.Server.Endpoints["/connector/request"] = Zotero.Server.Connector.Request;
+Zotero.Server.Connector.Request.prototype = {
+	supportedMethods: ["POST"],
+	supportedDataTypes: ["application/json"],
+
+	init: async function (req) {
+		let { method, url, options } = req.data;
+		
+		if (typeof method !== 'string' || typeof url !== 'string') {
+			return [400, 'text/plain', 'method and url are required and must be strings'];
+		}
+		
+		let uri;
+		try {
+			uri = Services.io.newURI(url);
+		}
+		catch (e) {
+			return [400, 'text/plain', 'Invalid URL'];
+		}
+		
+		if (uri.scheme != 'http' && uri.scheme != 'https') {
+			return [400, 'text/plain', 'Unsupported scheme'];
+		}
+
+		if (Zotero.Server.Connector.Request.enableValidation) {
+			if (!Zotero.Server.Connector.Request.allowedHosts.includes(uri.host)) {
+				return [
+					400,
+					'text/plain',
+					'Unsupported URL'
+				];
+			}
+
+			if (!req.headers['User-Agent'] || !req.headers['User-Agent'].startsWith('Mozilla/')) {
+				return [400, 'text/plain', 'Unsupported User-Agent'];
+			}
+		}
+		
+		options = options || {};
+		options.responseType = 'text';
+		options.successCodes = false;
+		
+		let xhr;
+		try {
+			xhr = await Zotero.HTTP.request(req.data.method, req.data.url, options);
+		}
+		catch (e) {
+			if (e instanceof Zotero.HTTP.BrowserOfflineException) {
+				return [503, 'text/plain', 'Client is offline'];
+			}
+			else {
+				throw e;
+			}
+		}
+
+		let status = xhr.status;
+		let headers = {};
+		xhr.getAllResponseHeaders()
+			.trim()
+			.split(/[\r\n]+/)
+			.map(line => line.split(': '))
+			.forEach(parts => headers[parts.shift()] = parts.join(': '));
+		let body = xhr.response;
+
+		return [200, 'application/json', JSON.stringify({
+			status,
+			headers,
+			body
+		})];
+	}
+};

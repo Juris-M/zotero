@@ -153,6 +153,71 @@ describe("Zotero.Items", function () {
 	});
 	
 	
+	describe("#copyChildItems()", function () {
+		var group;
+		
+		before(async function () {
+			group = await createGroup();
+		});
+		
+		after(async function () {
+			await group.eraseTx();
+		});
+		
+		it("should copy annotations from a group library to a personal library", async function () {
+			await Zotero.Users.setCurrentUserID(1);
+			await Zotero.Users.setName(1, 'Name 1');
+			await Zotero.Users.setName(12345, 'Name 2');
+			
+			var userLibraryID = Zotero.Libraries.userLibraryID;
+			
+			var item = await createDataObject('item', { libraryID: group.libraryID });
+			var file = getTestDataDirectory();
+			file.append('test.pdf');
+			var attachment = await Zotero.Attachments.importFromFile({
+				file,
+				parentItemID: item.id
+			});
+			// Annotation by this user
+			var annotation1 = await createAnnotation('highlight', attachment);
+			await annotation1.saveTx();
+			// Annotation by this user with createdByUserID set
+			var annotation2 = await createAnnotation('highlight', attachment);
+			annotation2.createdByUserID = 1;
+			await annotation2.saveTx({
+				skipEditCheck: true
+			});
+			// Annotation by another user
+			var annotation3 = await createAnnotation('highlight', attachment);
+			annotation3.createdByUserID = 12345;
+			await annotation3.saveTx({
+				skipEditCheck: true
+			});
+			
+			var newItem = item.clone(userLibraryID);
+			await newItem.saveTx();
+			var newAttachment = attachment.clone(userLibraryID);
+			await newAttachment.saveTx();
+			
+			await Zotero.DB.executeTransaction(async function () {
+				await Zotero.Items.copyChildItems(attachment, newAttachment);
+			});
+			
+			// Check annotations
+			var annotations = newAttachment.getAnnotations();
+			assert.lengthOf(annotations, 3);
+			var newAnnotation1 = annotations.find(o => o.annotationText == annotation1.annotationText);
+			var newAnnotation2 = annotations.find(o => o.annotationText == annotation2.annotationText);
+			var newAnnotation3 = annotations.find(o => o.annotationText == annotation3.annotationText);
+			// Current user's name shouldn't have been transferred
+			assert.isNull(newAnnotation1.annotationAuthorName);
+			assert.isNull(newAnnotation2.annotationAuthorName);
+			// Other user's should've been transferred
+			assert.equal(newAnnotation3.annotationAuthorName, 'Name 2');
+		});
+	});
+	
+	
 	describe("#merge()", function () {
 		it("should merge two items", function* () {
 			var item1 = yield createDataObject('item');
@@ -348,6 +413,552 @@ describe("Zotero.Items", function () {
 			var rels = item3.getRelationsByPredicate(predicate);
 			assert.deepEqual(rels, [item2URI]);
 		})
+
+		it("should merge identical attachments based on file hash", async function () {
+			let item1 = await createDataObject('item', { setTitle: true });
+			let attachment1 = await importPDFAttachment(item1);
+
+			let item2 = item1.clone();
+			await item2.saveTx();
+			let attachment2 = await importPDFAttachment(item2);
+
+			await Zotero.Items.merge(item1, [item2]);
+			
+			assert.isFalse(item1.deleted);
+			assert.isFalse(attachment1.deleted);
+			assert.equal(item1.numAttachments(true), 1);
+			assert.isTrue(item2.deleted);
+			assert.isTrue(attachment2.deleted);
+		});
+
+		it("should merge one attachment per item into the master attachment", async function () {
+			let item1 = await createDataObject('item', { setTitle: true });
+			let attachment1 = await importPDFAttachment(item1);
+
+			let item2 = item1.clone();
+			await item2.saveTx();
+			let attachment2 = await importPDFAttachment(item2);
+
+			let item3 = item1.clone();
+			await item3.saveTx();
+			let attachment3 = await importPDFAttachment(item3);
+
+			await Zotero.Items.merge(item1, [item2, item3]);
+
+			assert.isFalse(item1.deleted);
+			assert.isFalse(attachment1.deleted);
+			assert.equal(item1.numAttachments(true), 1);
+			assert.isTrue(item2.deleted);
+			assert.isTrue(attachment2.deleted);
+			assert.isTrue(item3.deleted);
+			assert.isTrue(attachment3.deleted);
+		});
+
+		it("should merge identical attachments based on content hash", async function () {
+			let item1 = await createDataObject('item', { setTitle: true });
+			let attachment1 = await importPDFAttachment(item1);
+
+			let item2 = item1.clone();
+			await item2.saveTx();
+			let attachment2 = await importFileAttachment('duplicatesMerge_test_new_md5.pdf', { parentItemID: item2.id });
+
+			assert.equal(await attachment1.attachmentText, await attachment2.attachmentText);
+			assert.notEqual(await attachment1.attachmentHash, await attachment2.attachmentHash);
+
+			await Zotero.Items.merge(item1, [item2]);
+			
+			assert.isFalse(item1.deleted);
+			assert.isFalse(attachment1.deleted);
+			assert.equal(item1.numAttachments(true), 1);
+			assert.isTrue(item2.deleted);
+			assert.isTrue(attachment2.deleted);
+		});
+		
+		it("should merge identical attachments based on content hash when unindexed", async function () {
+			let item1 = await createDataObject('item');
+			let attachment1 = await importPDFAttachment(item1);
+			
+			let item2 = item1.clone();
+			await item2.saveTx();
+			let attachment2 = await importFileAttachment('duplicatesMerge_test_new_md5.pdf', { parentItemID: item2.id });
+			
+			await Zotero.DB.executeTransaction(async () => {
+				await Zotero.FullText.clearItemWords(attachment1.id);
+				await Zotero.FullText.clearItemWords(attachment2.id);
+			});
+			
+			await Zotero.Items.merge(item1, [item2]);
+			
+			assert.isFalse(item1.deleted);
+			assert.isFalse(attachment1.deleted);
+			assert.equal(item1.numAttachments(true), 1);
+			assert.isTrue(item2.deleted);
+			assert.isTrue(attachment2.deleted);
+		});
+		
+		it("shouldn't merge attachments based on content hash when files are empty", async function () {
+			let item1 = await createDataObject('item', { setTitle: true });
+			let attachment1 = await importFileAttachment('empty.pdf', { parentItemID: item1.id });
+
+			let item2 = item1.clone();
+			await item2.saveTx();
+			let attachment2 = await importFileAttachment('duplicatesMerge_empty_new_md5.pdf', { parentItemID: item2.id });
+
+			assert.equal(await attachment1.attachmentText, await attachment2.attachmentText);
+			assert.notEqual(await attachment1.attachmentHash, await attachment2.attachmentHash);
+			assert.isEmpty(await attachment1.attachmentText);
+
+			await Zotero.Items.merge(item1, [item2]);
+			
+			assert.isFalse(item1.deleted);
+			assert.isFalse(attachment1.deleted);
+			assert.equal(item1.numAttachments(true), 2);
+			assert.isTrue(item2.deleted);
+			assert.isFalse(attachment2.deleted);
+		});
+		
+		it("should ignore attachment with missing file", async function () {
+			let item1 = await createDataObject('item');
+			let attachment1 = await importPDFAttachment(item1);
+			
+			let item2 = item1.clone();
+			await item2.saveTx();
+			let attachment2 = await importPDFAttachment(item2);
+			// Delete the attachment file
+			await OS.File.remove(await attachment2.getFilePathAsync());
+			
+			await Zotero.Items.merge(item1, [item2]);
+			
+			assert.isFalse(item1.deleted);
+			assert.isFalse(attachment1.deleted);
+			assert.equal(item1.numAttachments(true), 2);
+			assert.isTrue(item2.deleted);
+			assert.isFalse(attachment2.deleted);
+		});
+		
+		it("should allow small differences when hashing content", async function () {
+			let item1 = await createDataObject('item', { setTitle: true });
+			let attachment1 = await importFileAttachment('duplicatesMerge_JSTOR_1.pdf', { parentItemID: item1.id });
+
+			let item2 = item1.clone();
+			await item2.saveTx();
+			let attachment2 = await importFileAttachment('duplicatesMerge_JSTOR_2.pdf', { parentItemID: item2.id });
+
+			assert.notEqual(await attachment1.attachmentText, await attachment2.attachmentText);
+			assert.notEqual(await attachment1.attachmentHash, await attachment2.attachmentHash);
+			assert.equal(
+				(await Zotero.Items._hashAttachmentText(attachment1)).fromText,
+				(await Zotero.Items._hashAttachmentText(attachment2)).fromText
+			);
+
+			await Zotero.Items.merge(item1, [item2]);
+			
+			assert.isFalse(item1.deleted);
+			assert.isFalse(attachment1.deleted);
+			assert.equal(item1.numAttachments(true), 1);
+			assert.isTrue(item2.deleted);
+			assert.isTrue(attachment2.deleted);
+		});
+
+		it("should keep similar but not identical attachments separate", async function () {
+			let item1 = await createDataObject('item', { setTitle: true });
+			let attachment1 = await importFileAttachment('wonderland_short.pdf', { parentItemID: item1.id });
+
+			let item2 = item1.clone();
+			await item2.saveTx();
+			let attachment2 = await importFileAttachment('wonderland_long.pdf', { parentItemID: item2.id });
+
+			assert.notEqual(await attachment1.attachmentText, await attachment2.attachmentText);
+			assert.notEqual(await attachment1.attachmentHash, await attachment2.attachmentHash);
+
+			await Zotero.Items.merge(item1, [item2]);
+
+			assert.isFalse(item1.deleted);
+			assert.isFalse(attachment1.deleted);
+			assert.equal(item1.numAttachments(true), 2);
+			assert.isTrue(item2.deleted);
+			assert.isFalse(attachment2.deleted);
+		});
+
+		it("should only match attachments one-to-one", async function () {
+			let item1 = await createDataObject('item', { setTitle: true });
+			let attachment1 = await importFileAttachment('wonderland_short_watermarked_1.pdf', { parentItemID: item1.id });
+
+			let item2 = item1.clone();
+			await item2.saveTx();
+			let attachment2 = await importFileAttachment('wonderland_short_watermarked_2.pdf', { parentItemID: item2.id });
+			let attachment3 = await importFileAttachment('wonderland_short_watermarked_2.pdf', { parentItemID: item2.id });
+
+			await Zotero.Items.merge(item1, [item2]);
+
+			assert.isFalse(item1.deleted);
+			assert.isFalse(attachment1.deleted);
+			assert.equal(item1.numAttachments(true), 2);
+			assert.isTrue(item2.deleted);
+			// Doesn't matter which got merged
+			assert.isTrue((attachment2.deleted || attachment3.deleted) && !(attachment2.deleted && attachment3.deleted));
+		});
+
+		it("should copy annotations when merging", async function () {
+			let item1 = await createDataObject('item', { setTitle: true });
+			let attachment1 = await importPDFAttachment(item1);
+			let annotation1 = await createAnnotation('note', attachment1);
+
+			let item2 = item1.clone();
+			await item2.saveTx();
+			let attachment2 = await importPDFAttachment(item2);
+			let annotation2 = await createAnnotation('highlight', attachment2);
+			let annotation2Note = await Zotero.EditorInstance.createNoteFromAnnotations([annotation2], { parentID: item2.id });
+
+			assert.include(annotation2Note.getNote(), attachment2.key);
+
+			await Zotero.Items.merge(item1, [item2]);
+
+			assert.isFalse(item1.deleted);
+			assert.isFalse(attachment1.deleted);
+			assert.isFalse(annotation1.deleted);
+			assert.equal(item1.numAttachments(true), 1);
+			assert.isTrue(item2.deleted);
+			assert.isTrue(attachment2.deleted);
+			assert.isFalse(annotation2.deleted);
+			assert.equal(annotation1.parentItemID, attachment1.id);
+			assert.equal(annotation2.parentItemID, attachment1.id);
+			assert.notInclude(annotation2Note.getNote(), item2.key);
+			assert.include(annotation2Note.getNote(), item1.key);
+			assert.notInclude(annotation2Note.getNote(), attachment2.key);
+			assert.include(annotation2Note.getNote(), attachment1.key);
+		});
+
+		it("should update all item keys when moving notes", async function () {
+			let attachmentFilenames = [
+				'recognizePDF_test_arXiv.pdf',
+				'recognizePDF_test_DOI.pdf',
+				'recognizePDF_test_title.pdf'
+			];
+
+			let item1 = await createDataObject('item', { setTitle: true });
+			let attachments1 = [];
+			for (let filename of attachmentFilenames) {
+				let attachment = await importFileAttachment(filename, { parentID: item1.id });
+				attachments1.push(attachment);
+			}
+
+			let item2 = item1.clone();
+			await item2.saveTx();
+			let attachments2 = [];
+			let annotations2 = [];
+			let notes2 = [];
+			for (let filename of attachmentFilenames) {
+				let attachment = await importFileAttachment(filename, { parentID: item2.id });
+				let annotation = await createAnnotation('highlight', attachment);
+				let note = await Zotero.EditorInstance.createNoteFromAnnotations([annotation], { parentID: item2.id });
+				attachments2.push(attachment);
+				annotations2.push(annotation);
+				notes2.push(note);
+
+				assert.include(note.getNote(), item2.key);
+				assert.include(note.getNote(), attachment.key);
+			}
+
+			await Zotero.Items.merge(item1, [item2]);
+
+			assert.isFalse(item1.deleted);
+			assert.equal(item1.numAttachments(true), 3);
+			assert.isTrue(item2.deleted);
+
+			for (let i = 0; i < 3; i++) {
+				let attachment1 = attachments1[i];
+				let attachment2 = attachments2[i];
+				let note = notes2[i];
+
+				assert.equal(note.parentItemID, item1.id);
+				assert.include(note.getNote(), item1.key);
+				assert.notInclude(note.getNote(), item2.key);
+				assert.include(note.getNote(), attachment1.key);
+				assert.notInclude(note.getNote(), attachment2.key);
+			}
+		});
+
+		it("should merge snapshots with the same title, even if URL differs", async function () {
+			let content = getTestDataDirectory();
+			content.append('snapshot');
+			content.append('index.html');
+			
+			let snapshotContent = await Zotero.File.getContentsAsync(content);
+			
+			let item1 = await createDataObject('item', { setTitle: true });
+			let attachment1 = await Zotero.Attachments.importFromSnapshotContent({
+				parentItemID: item1.id,
+				url: 'https://example.com/test.html',
+				title: 'Snapshot',
+				snapshotContent
+			});
+
+			let item2 = item1.clone();
+			await item2.saveTx();
+			let attachment2 = await Zotero.Attachments.importFromSnapshotContent({
+				parentItemID: item2.id,
+				url: 'https://otherdomain.example.com/test.html',
+				title: 'Snapshot',
+				snapshotContent
+			});
+
+			await Zotero.Items.merge(item1, [item2]);
+
+			assert.isFalse(item1.deleted);
+			assert.isFalse(attachment1.deleted);
+			assert.equal(item1.numAttachments(true), 1);
+			assert.isTrue(item2.deleted);
+			assert.isTrue(attachment2.deleted);
+		});
+
+		it("should merge linked URLs", async function () {
+			let item1 = await createDataObject('item', { setTitle: true });
+			let attachment1 = await Zotero.Attachments.linkFromURL({
+				url: 'https://example.com/',
+				title: 'Catalog Entry',
+				parentItemID: item1.id
+			});
+
+			let item2 = item1.clone();
+			await item2.saveTx();
+			let attachment2 = await Zotero.Attachments.linkFromURL({
+				url: 'https://example.com/',
+				title: 'Catalog Entry',
+				parentItemID: item2.id
+			});
+			let attachment3 = await Zotero.Attachments.linkFromURL({
+				url: 'https://example.com/',
+				title: 'Catalog Entry',
+				parentItemID: item2.id
+			});
+
+			await Zotero.Items.merge(item1, [item2]);
+
+			assert.isFalse(item1.deleted);
+			assert.isFalse(attachment1.deleted);
+			assert.equal(attachment1.getField('url'), 'https://example.com/');
+			assert.equal(item1.numAttachments(true), 2);
+			assert.isTrue(item2.deleted);
+			assert.isTrue(attachment2.deleted);
+			assert.equal(attachment3.parentItemID, item1.id);
+			assert.isFalse(attachment3.deleted);
+		});
+
+		it("should keep web attachment with same URL but different title", async function () {
+			let item1 = await createDataObject('item', { setTitle: true });
+			let attachment1 = await Zotero.Attachments.linkFromURL({
+				url: 'https://example.com/',
+				title: 'Catalog Entry',
+				parentItemID: item1.id
+			});
+
+			let item2 = item1.clone();
+			await item2.saveTx();
+			let attachment2 = await Zotero.Attachments.linkFromURL({
+				url: 'https://example.com/',
+				title: 'Official Website',
+				parentItemID: item2.id
+			});
+			let attachment3 = await Zotero.Attachments.linkFromURL({
+				url: 'https://example.com/',
+				title: 'Catalog Entry',
+				parentItemID: item2.id
+			});
+
+			await Zotero.Items.merge(item1, [item2]);
+
+			assert.isFalse(item1.deleted);
+			assert.isFalse(attachment1.deleted);
+			assert.equal(attachment1.getField('url'), 'https://example.com/');
+			assert.equal(item1.numAttachments(true), 2);
+			assert.isTrue(item2.deleted);
+			assert.equal(attachment2.parentItemID, item1.id);
+			assert.isFalse(attachment2.deleted);
+			assert.isTrue(attachment3.deleted);
+		});
+
+		it("should move related items of merged attachments", async function () {
+			let relatedItem = await createDataObject('item');
+
+			let item1 = await createDataObject('item', { setTitle: true });
+			let attachment1 = await importPDFAttachment(item1);
+
+			let item2 = item1.clone();
+			await item2.saveTx();
+			let attachment2 = await importPDFAttachment(item2);
+			attachment2.addRelatedItem(relatedItem);
+
+			await Zotero.Items.merge(item1, [item2]);
+			
+			assert.isFalse(item1.deleted);
+			assert.isFalse(attachment1.deleted);
+			assert.equal(item1.numAttachments(true), 1);
+			assert.isTrue(item2.deleted);
+			assert.isTrue(attachment2.deleted);
+			assert.lengthOf(attachment1.relatedItems, 1);
+			assert.equal(attachment1.relatedItems[0], relatedItem.key);
+		});
+
+		it("should move merge-tracking relation from replaced attachment to master attachment", async function () {
+			let item1 = await createDataObject('item');
+			let attachment1 = await importPDFAttachment(item1);
+
+			let item2 = await createDataObject('item');
+			let attachment2 = await importPDFAttachment(item2);
+			let attachment2URI = Zotero.URI.getItemURI(attachment2);
+
+			let item3 = await createDataObject('item');
+			let attachment3 = await importPDFAttachment(item3);
+			let attachment3URI = Zotero.URI.getItemURI(attachment3);
+			
+			await Zotero.Items.merge(item2, [item3]);
+			await Zotero.Items.merge(item1, [item2]);
+			
+			var rels = attachment1.getRelationsByPredicate(Zotero.Relations.replacedItemPredicate);
+			assert.lengthOf(rels, 2);
+			assert.sameMembers(rels, [attachment2URI, attachment3URI]);
+		});
+
+		it("should not merge attachments with different content types", async function () {
+			let item1 = await createDataObject('item', { setTitle: true });
+			let attachment1 = await importPDFAttachment(item1);
+
+			let item2 = item1.clone();
+			await item2.saveTx();
+			let attachment2 = await importPDFAttachment(item2);
+			attachment2.attachmentContentType = 'text/plain';
+			await attachment2.saveTx();
+
+			await Zotero.Items.merge(item1, [item2]);
+
+			assert.isFalse(item1.deleted);
+			assert.isFalse(attachment1.deleted);
+			assert.equal(item1.numAttachments(true), 2);
+			assert.isTrue(item2.deleted);
+			assert.isFalse(attachment2.deleted);
+			assert.equal(attachment2.parentItemID, item1.id);
+		});
+
+		it("should merge two stored-file attachments with different link modes", async function () {
+			let file = getTestDataDirectory();
+			file.append('test.pdf');
+
+			let item1 = await createDataObject('item', { setTitle: true });
+			let attachment1 = await importPDFAttachment(item1);
+			attachment1.attachmentLinkMode = Zotero.Attachments.LINK_MODE_IMPORTED_URL;
+			await attachment1.saveTx();
+
+			let item2 = item1.clone();
+			await item2.saveTx();
+			let attachment2 = await importPDFAttachment(item2);
+
+			await Zotero.Items.merge(item1, [item2]);
+
+			assert.isFalse(item1.deleted);
+			assert.isFalse(attachment1.deleted);
+			assert.equal(item1.numAttachments(true), 1);
+			assert.isTrue(item2.deleted);
+			assert.isTrue(attachment2.deleted);
+		});
+
+		it("should not merge attachments with different link mode types", async function () {
+			let file = getTestDataDirectory();
+			file.append('test.pdf');
+
+			let item1 = await createDataObject('item', { setTitle: true });
+			let attachment1 = await Zotero.Attachments.linkFromFile({
+				file,
+				parentItemID: item1.id
+			});
+
+			let item2 = item1.clone();
+			await item2.saveTx();
+			let attachment2 = await importPDFAttachment(item2);
+
+			await Zotero.Items.merge(item1, [item2]);
+
+			assert.equal(await attachment1.attachmentHash, await attachment2.attachmentHash);
+			assert.isFalse(item1.deleted);
+			assert.isFalse(attachment1.deleted);
+			assert.equal(item1.numAttachments(true), 2);
+			assert.isTrue(item2.deleted);
+			assert.isFalse(attachment2.deleted);
+			assert.equal(attachment2.parentItemID, item1.id);
+		});
+
+		it("should not merge an attachment with a deleted master attachment", async function () {
+			let item1 = await createDataObject('item', { setTitle: true });
+			let attachment1 = await importPDFAttachment(item1);
+			attachment1.deleted = true;
+			await attachment1.saveTx();
+
+			let item2 = item1.clone();
+			await item2.saveTx();
+			let attachment2 = await importPDFAttachment(item2);
+
+			await Zotero.Items.merge(item1, [item2]);
+
+			assert.isFalse(item1.deleted);
+			assert.isTrue(attachment1.deleted);
+			assert.equal(item1.numAttachments(true), 2);
+			assert.isTrue(item2.deleted);
+			assert.isFalse(attachment2.deleted);
+			assert.equal(attachment2.parentItemID, item1.id);
+		});
+
+		it("should not merge two matching PDF attachments with embedded annotations", async function () {
+			let item1 = await createDataObject('item', { setTitle: true });
+			let attachment1 = await importFileAttachment('duplicatesMerge_annotated_1.pdf', { parentID: item1.id });
+
+			let item2 = item1.clone();
+			await item2.saveTx();
+			let attachment2 = await importFileAttachment('duplicatesMerge_annotated_2.pdf', { parentID: item2.id });
+
+			await Zotero.Items.merge(item1, [item2]);
+
+			assert.isFalse(item1.deleted);
+			assert.isFalse(attachment1.deleted);
+			assert.equal(item1.numAttachments(true), 2);
+			assert.isTrue(item2.deleted);
+			assert.isFalse(attachment2.deleted);
+			assert.equal(attachment2.parentItemID, item1.id);
+		});
+
+		it("should merge a non-master PDF without embedded annotations into a master PDF with embedded annotations", async function () {
+			let item1 = await createDataObject('item', { setTitle: true });
+			let attachment1 = await importFileAttachment('duplicatesMerge_annotated_1.pdf', { parentID: item1.id });
+
+			let item2 = item1.clone();
+			await item2.saveTx();
+			let attachment2 = await importFileAttachment('duplicatesMerge_notAnnotated.pdf', { parentID: item2.id });
+
+			await Zotero.Items.merge(item1, [item2]);
+
+			assert.isFalse(item1.deleted);
+			assert.isFalse(attachment1.deleted);
+			assert.equal(item1.numAttachments(true), 1);
+			assert.isTrue(item2.deleted);
+			assert.isTrue(attachment2.deleted);
+		});
+
+		it("should merge a master PDF without embedded annotations into a non-master PDF with embedded annotations", async function () {
+			let item1 = await createDataObject('item', { setTitle: true });
+			let attachment1 = await importFileAttachment('duplicatesMerge_notAnnotated.pdf', { parentID: item1.id });
+
+			let item2 = item1.clone();
+			await item2.saveTx();
+			let attachment2 = await importFileAttachment('duplicatesMerge_annotated_1.pdf', { parentID: item2.id });
+
+			await Zotero.Items.merge(item1, [item2]);
+
+			assert.isFalse(item1.deleted);
+			assert.isTrue(attachment1.deleted);
+			assert.equal(item1.numAttachments(false), 1); // Don't count the deleted attachment
+			assert.isTrue(item2.deleted);
+			assert.isFalse(attachment2.deleted);
+			assert.equal(attachment2.parentItemID, item1.id);
+		});
 	})
 	
 	
@@ -622,6 +1233,114 @@ describe("Zotero.Items", function () {
 				items.map(item => item.id),
 				[item1, item4, item6].map(item => item.id)
 			);
+		});
+		
+		it("shouldn't return parent item more than once when two child items are selected", async function () {
+			var item1 = await createDataObject('item');
+			var item2 = await createDataObject('item', { itemType: 'note', parentItemID: item1.id });
+			var item3 = await createDataObject('item', { itemType: 'note', parentItemID: item1.id });
+			var items = Zotero.Items.keepParents([item2, item3]);
+			assert.sameMembers(
+				items.map(item => item.id),
+				[item2.id, item3.id]
+			)
+		});
+	});
+	
+	describe("#_loadChildItems()", function () {
+		it("should mark child items as loaded for an attachment", async function () {
+			var attachment = await importPDFAttachment();
+			var itemID = attachment.id;
+			Zotero.Items.unload([itemID]);
+			attachment = await Zotero.Items.getAsync(itemID);
+			await attachment.loadDataType('childItems');
+			assert.isTrue(attachment._loaded.childItems);
+			attachment.getAnnotations();
+			await attachment.eraseTx();
+		});
+	});
+
+	describe("#getSortTitle()", function () {
+		it("should strip recognized markup tags", function () {
+			let tests = [
+				['A title <i>in italics</i>', 'A title in italics'],
+				['An unmatched </b> tag', 'An unmatched  tag'],
+				['A <sup>title</sub> with mismatched tags', 'A title with mismatched tags'],
+				['A title with a valid <span style="font-variant:small-caps;">span</span>', 'A title with a valid span'],
+				['Another title with a valid <span class="nocase">span</span>', 'Another title with a valid span'],
+				['A random <span>span tag</span>', 'A random <span>span tag']
+			];
+
+			for (let [input, expected] of tests) {
+				assert.equal(Zotero.Items.getSortTitle(input), expected);
+			}
+		});
+
+		it("should strip any punctuation at the beginning of the string besides @, #, and *", function () {
+			let tests = [
+				['_title', 'title'],
+				['-title', 'title'],
+				['-- longer title', 'longer title'],
+				['-_ longer title with different second character', '_ longer title with different second character'],
+				['"Quoted title', 'Quoted title'],
+				['@zotero on Twitter', '@zotero on Twitter'],
+				['#hashtag', '#hashtag'],
+				['*special', '*special'],
+				['**repeated', '**repeated']
+			];
+
+			for (let [input, expected] of tests) {
+				assert.equal(Zotero.Items.getSortTitle(input), expected);
+			}
+		});
+
+		it("should not strip dashes in the middle of the string", function () {
+			let tests = [
+				['123-456', '123-456'],
+				['Meyers-Briggs', 'Meyers-Briggs'],
+				['En–dash', 'En–dash'],
+				['Em—dash', 'Em—dash']
+			];
+
+			for (let [input, expected] of tests) {
+				assert.equal(Zotero.Items.getSortTitle(input), expected);
+			}
+		});
+
+		it("should strip opening punctuation after string-initial punctuation", function () {
+			let tests = [
+				['.[Test]', 'Test]'],
+				['"❮Word❯"', 'Word❯"'],
+				['"@": The Musical', '@": The Musical'],
+			];
+
+			for (let [input, expected] of tests) {
+				assert.equal(Zotero.Items.getSortTitle(input), expected);
+			}
+		});
+
+		it("should sort titles with special characters correctly", function () {
+			let tests = [
+				[
+					['A*B*@!@C*D 1', 'ABCD 2', 'A*B*@!@C*D 3', 'ABCD 4'],
+					['A*B*@!@C*D 1', 'A*B*@!@C*D 3', 'ABCD 2', 'ABCD 4']
+				],
+				[
+					['Why? Volume 1', 'Why! Volume 1', 'Why! Volume 2', 'Why? Volume 2'],
+					['Why! Volume 1', 'Why! Volume 2', 'Why? Volume 1', 'Why? Volume 2']
+				],
+				[
+					['Sign and symbol', '"@" Sign. Its accidental history.', 'Sign language'],
+					['"@" Sign. Its accidental history.', 'Sign and symbol', 'Sign language']
+				],
+			];
+
+			let st = Zotero.Items.getSortTitle;
+			let collation = Zotero.getLocaleCollation();
+			for (let [input, expected] of tests) {
+				input.sort((a, b) => collation.compareString(1, st(a), st(b)));
+				assert.deepEqual(input, expected);
+			}
 		});
 	});
 });

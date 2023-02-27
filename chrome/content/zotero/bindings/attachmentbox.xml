@@ -169,7 +169,9 @@
 						}
 						
 						var noteEditor = this._id('attachment-note-editor')
-						if (extraData && extraData[id]
+						if (extraData
+								&& extraData[id]
+								&& extraData[id].noteEditorID
 								&& extraData[id].noteEditorID == noteEditor.instanceID) {
 							//Zotero.debug("Skipping notification from current attachment note field");
 							continue;
@@ -243,7 +245,9 @@
 							urlField.setAttribute('hidden', false);
 							if (this.clickableLink) {
 								 urlField.onclick = function (event) {
-									ZoteroPane_Local.loadURI(this.value, event)
+									if (event.button != 2) {
+										ZoteroPane_Local.loadURI(this.value, event)
+									}
 								};
 								urlField.className = 'zotero-text-link';
 							}
@@ -304,8 +308,9 @@
 					// Page count
 					if (this.displayPages) {
 						Zotero.Fulltext.getPages(this.item.id)
-						.tap(() => Zotero.Promise.check(this.item))
 						.then(function (pages) {
+							if (!this.item) return;
+							
 							pages = pages ? pages.total : null;
 							if (pages) {
 								this._id("pages-label").value = Zotero.getString('itemFields.pages')
@@ -335,8 +340,9 @@
 						}
 						else {
 							this.item.attachmentModificationTime
-							.tap(() => Zotero.Promise.check(this._id))
 							.then(function (mtime) {
+								if (!this._id) return;
+								
 								if (mtime) {
 									this._id("dateModified").value = new Date(mtime).toLocaleString();
 								}
@@ -351,18 +357,19 @@
 					// Full-text index information
 					if (this.displayIndexed) {
 						this.updateItemIndexedState()
-						.tap(() => Zotero.Promise.check(this.item))
 						.then(function () {
+							if (!this.item) return;
 							indexStatusRow.hidden = false;
-						});
+						}.bind(this));
 					}
 					else {
 						indexStatusRow.hidden = true;
 					}
 					
-					// Note editor
+					var type = Zotero.Libraries.get(this.item.libraryID).libraryType;
 					var noteEditor = this._id('attachment-note-editor');
-					if (this.displayNote && (this.displayNoteIfEmpty || this.item.getNote() != '')) {
+					
+					if (this.displayNote && (this.displayNoteIfEmpty || this.item.note != '')) {
 						noteEditor.linksOnTop = true;
 						noteEditor.hidden = false;
 						
@@ -380,6 +387,7 @@
 					else {
 						noteEditor.hidden = true;
 					}
+					noteEditor.viewMode = 'library';
 					
 					if (this.displayButton) {
 						selectButton.label = this.buttonCaption;
@@ -529,8 +537,9 @@
 						var indexStatus = this._id('index-status');
 						var reindexButton = this._id('reindex');
 						
-						var status = yield Zotero.Fulltext.getIndexedState(this.item)
-							.tap(() => Zotero.Promise.check(this.item));
+						var status = yield Zotero.Fulltext.getIndexedState(this.item);
+						if (!this.item) return;
+						
 						var str = 'fulltext.indexState.';
 						switch (status) {
 							case Zotero.Fulltext.INDEX_STATE_UNAVAILABLE:
@@ -559,8 +568,8 @@
 						
 						var show = false;
 						if (this.editable) {
-							show = yield Zotero.Fulltext.canReindex(this.item)
-								.tap(() => Zotero.Promise.check(this.item));
+							show = yield Zotero.Fulltext.canReindex(this.item);
+							if (!this.item) return;
 						}
 						
 						if (show) {

@@ -8,9 +8,110 @@ Zotero.Cite = {
 	/**
 	 * Locator labels
 	 */
-	"labels":["page", "book", "chapter", "column", "figure", "folio",
-		"issue", "line", "note", "opus", "paragraph", "part", "section", "sub verbo",
-		"volume", "verse"],
+	"labels": [
+		"act",
+		"appendix",
+		"article-locator",
+		"book",
+		"canon",
+		"chapter",
+		"column",
+		"elocation",
+		"equation",
+		"figure",
+		"folio",
+		"issue",
+		"line",
+		"note",
+		"opus",
+		"page",
+		"paragraph",
+		"part",
+		"rule",
+		"scene",
+		"section",
+		"sub-verbo",
+		"table",
+		//"timestamp",
+		"title-locator",
+		"verse",
+		"volume"
+	],
+	
+	_locatorStrings: new Map(),
+	
+	/**
+	 * Get localized string for locator
+	 *
+	 * @param {String} locator - Locator name (e.g., 'book')
+	 * @return {String} - Localized string (e.g., 'Livre')
+	 */
+	getLocatorString: function (locator) {
+		// 'timestamp' not included in CSL locales
+		if (locator == 'timestamp') {
+			return Zotero.getString('citation.locator.timestamp');
+		}
+		
+		// Get the best CSL locale for the current Zotero locale
+		var cslLocale = Zotero.Utilities.Internal.resolveLocale(
+			Zotero.locale,
+			Object.keys(Zotero.Styles.locales)
+		);
+		
+		// If locator strings are already cached for the current locale, use that
+		if (this._locatorStrings.has(cslLocale)) {
+			return this._locatorStrings.get(cslLocale).get(locator);
+		}
+		var map = new Map();
+		this._locatorStrings.set(cslLocale, map);
+		
+		var localeXML = Zotero.Cite.Locale.get(cslLocale);
+		var parser;
+		if (Zotero.platformMajorVersion > 60) {
+			parser = new DOMParser();
+		}
+		else {
+			parser = Components.classes["@mozilla.org/xmlextras/domparser;1"]
+				.createInstance(Components.interfaces.nsIDOMParser);
+		}
+		var doc = parser.parseFromString(localeXML, 'text/xml');
+		var englishDoc;
+		// Cache all locators for the current locale
+		for (let locator of this.labels) {
+			let elem = doc.querySelector(`term[name="${locator}"]:not([form="short"]) > single`);
+			if (!elem) {
+				// If locator not found, get from the U.S. English locale
+				if (cslLocale != 'en-US') {
+					Zotero.logError(`Locator '${locator}' not found in ${cslLocale} locale -- trying en-US`);
+					if (!englishDoc) {
+						englishDoc = parser.parseFromString(Zotero.Cite.Locale.get('en-US'), 'text/xml');
+					}
+					elem = englishDoc.querySelector(`term[name="${locator}"]:not([form="short"]) > single`);
+					if (!elem) {
+						Zotero.logError(`Locator '${locator}' not found in en-US locale -- using name`);
+					}
+				}
+				else {
+					Zotero.logError(`Locator '${locator}' not found in en-US locale -- using name`);
+				}
+				// If still not found, use the locator name directly
+				if (!elem) {
+					map.set(locator, Zotero.Utilities.capitalize(locator));
+					continue;
+				}
+			}
+			// If <single> is empty, use the locator name directly
+			let str = elem.textContent;
+			if (!str) {
+				Zotero.logError(`Locator '${locator}' is empty in ${cslLocale} locale -- using name`);
+				map.set(locator, Zotero.Utilities.capitalize(locator));
+				continue;
+			}
+			map.set(locator, Zotero.Utilities.capitalize(str));
+		}
+		
+		return map.get(locator);
+	},
 	
 	/**
 	 * Remove specified item IDs in-place from a citeproc-js bibliography object returned
@@ -133,7 +234,6 @@ Zotero.Cite = {
 	 * @return {String} Bibliography in specified format
 	 */
 	"makeFormattedBibliography":function makeFormattedBibliography(cslEngine, format) {
-		cslEngine.setOutputFormat(format);
 		var bib = cslEngine.makeBibliography();
 		if(!bib) return false;
 		
@@ -318,114 +418,8 @@ Zotero.Cite = {
 	},
 	
 	extraToCSL: function (extra) {
-		return extra.replace(/^([A-Za-z \-]+)(:\s*.+)/gm, function (_, field, value) {
-			var originalField = field;
-			var field = field.toLowerCase().replace(/ /g, '-');
-			// Fields from https://aurimasv.github.io/z2csl/typeMap.xml
-			switch (field) {
-			// Standard fields
-			case 'abstract':
-			case 'accessed':
-			case 'annote':
-			case 'archive':
-			case 'archive-place':
-			case 'author':
-			case 'authority':
-			case 'call-number':
-			case 'chapter-number':
-			case 'citation-label':
-			case 'citation-number':
-			case 'collection-editor':
-			case 'collection-number':
-			case 'collection-title':
-			case 'composer':
-			case 'container':
-			case 'container-author':
-			case 'container-title':
-			case 'container-title-short':
-			case 'dimensions':
-			case 'director':
-			case 'edition':
-			case 'editor':
-			case 'editorial-director':
-			case 'event':
-			case 'event-date':
-			case 'event-place':
-			case 'first-reference-note-number':
-			case 'genre':
-			case 'illustrator':
-			case 'interviewer':
-			case 'issue':
-			case 'issued':
-			case 'jurisdiction':
-			case 'keyword':
-			case 'language':
-			case 'locator':
-			case 'medium':
-			case 'note':
-			case 'number':
-			case 'number-of-pages':
-			case 'number-of-volumes':
-			case 'original-author':
-			case 'original-date':
-			case 'original-publisher':
-			case 'original-publisher-place':
-			case 'original-title':
-			case 'page':
-			case 'page-first':
-			case 'publisher':
-			case 'publisher-place':
-			case 'recipient':
-			case 'references':
-			case 'reviewed-author':
-			case 'reviewed-title':
-			case 'scale':
-			case 'section':
-			case 'source':
-			case 'status':
-			case 'submitted':
-			case 'title':
-			case 'title-short':
-			case 'translator':
-			case 'type':
-			case 'version':
-			case 'volume':
-			case 'year-suffix':
-				break;
-			
-			// Uppercase fields
-			case 'doi':
-			case 'isbn':
-			case 'issn':
-			case 'pmcid':
-			case 'pmid':
-			case 'url':
-				field = field.toUpperCase();
-				break;
-			
-			// Weirdo
-			case 'archive-location':
-				field = 'archive_location';
-				break;
-			
-			default:
-				// See if this is a Zotero field written out (e.g., "Publication Title"), and if so
-				// convert to its associated CSL field
-				var zoteroField = originalField.replace(/ ([A-Z])/, '$1');
-				// If second character is lowercase (so not an acronym), lowercase first letter too
-				if (zoteroField[1] && zoteroField[1] == zoteroField[1].toLowerCase()) {
-					zoteroField = zoteroField[0].toLowerCase() + zoteroField.substr(1);
-				}
-				if (Zotero.Schema.CSL_FIELD_MAPPINGS_REVERSE[zoteroField]) {
-					field = Zotero.Schema.CSL_FIELD_MAPPINGS_REVERSE[zoteroField];
-				}
-				// Don't change other lines
-				else {
-					field = originalField;
-				}
-			}
-			return field + value;
-		});
+		Zotero.debug(`Zotero.Cite.extraToCSL() is deprecated -- use Zotero.Utilities.Item.extraToCSL() instead`);
+		return Zotero.Utilities.Item.extraToCSL(extra);
 	}
 };
 
@@ -673,7 +667,7 @@ Zotero.Cite.System.prototype = {
 
 		var cslItem;
 		try {
-			cslItem = Zotero.Utilities.itemToCSLJSON(zoteroItem, false, true);
+			cslItem = Zotero.Utilities.Item.itemToCSLJSON(zoteroItem, false, true);
 		} catch (e) {
 			throw "Error converting item to CSL format: " + e;
 		}

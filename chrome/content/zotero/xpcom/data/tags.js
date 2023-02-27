@@ -171,7 +171,11 @@ Zotero.Tags = new function() {
 			if (libraryID) {
 				throw new Error("tmpTable and libraryID are mutually exclusive");
 			}
-			sql += "AND itemID IN (SELECT itemID FROM " + tmpTable + ") ";
+			sql += "AND itemID IN (SELECT itemID FROM " + tmpTable;
+			// TEMP: Match parent attachments for annotation tags
+			sql += " UNION SELECT itemID FROM itemAnnotations WHERE parentItemID IN "
+				+ "(SELECT itemID FROM " + tmpTable + ")";
+			sql += ") ";
 		}
 		if (types && types.length) {
 			sql += "AND type IN (" + new Array(types.length).fill('?').join(', ') + ") ";
@@ -588,6 +592,8 @@ Zotero.Tags = new function() {
 		}
 		
 		var tagColors = Zotero.SyncedSettings.get(libraryID, 'tagColors') || [];
+		// Normalize tags from DB, which might not have been normalized properly previously
+		tagColors.forEach(x => x.name = x.name.normalize());
 		_libraryColors[libraryID] = tagColors;
 		_libraryColorsByName[libraryID] = new Map;
 		
@@ -616,7 +622,7 @@ Zotero.Tags = new function() {
 		this.getColors(libraryID);
 		var tagColors = _libraryColors[libraryID];
 		
-		name = name.trim();
+		name = name.trim().normalize();
 		
 		// Unset
 		if (!color) {
@@ -752,32 +758,6 @@ Zotero.Tags = new function() {
 					if (item.addTag(tagName)) {
 						await item.save();
 					}
-				}
-			}
-		}.bind(this));
-	};
-	
-	
-	/**
-	 * @param {Zotero.Item[]}
-	 * @return {Promise}
-	 */
-	this.removeColoredTagsFromItems = async function (items) {
-		return Zotero.DB.executeTransaction(async function () {
-			for (let item of items) {
-				let colors = this.getColors(item.libraryID);
-				let tags = item.getTags();
-				let changed = false;
-				for (let tag of tags) {
-					if (colors.has(tag.tag)) {
-						item.removeTag(tag.tag);
-						changed = true;
-					}
-				}
-				if (changed) {
-					await item.save({
-						skipDateModifiedUpdate: true
-					});
 				}
 			}
 		}.bind(this));
@@ -970,9 +950,11 @@ Zotero.Tags = new function() {
 	/**
 	 * Compare two API JSON tag objects
 	 */
-	this.equals = function (data1, data2) {
-		data1 = this.cleanData(data1);
-		data2 = this.cleanData(data2);
+	this.equals = function (data1, data2, options = {}) {
+		if (!options.skipClean) {
+			data1 = this.cleanData(data1);
+			data2 = this.cleanData(data2);
+		}
 		return data1.tag === data2.tag
 			&& ((!data1.type && !data2.type) || data1.type === data2.type);
 	},

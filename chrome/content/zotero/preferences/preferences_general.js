@@ -27,7 +27,7 @@
 
 Components.utils.import("resource://gre/modules/Services.jsm");
 Components.utils.import("resource://gre/modules/osfile.jsm");
-import FilePicker from 'zotero/filePicker';
+import FilePicker from 'zotero/modules/filePicker';
 
 Zotero_Preferences.General = {
 	init: function () {
@@ -38,6 +38,8 @@ Zotero_Preferences.General = {
 				'zotero.preferences.launchNonNativeFiles', Zotero.appName
 			);
 		}
+		var menuitem = document.getElementById('fileHandler-internal');
+		menuitem.setAttribute('label', Zotero.appName);
 		
 		this.updateAutoRenameFilesUI();
 		this._updateFileHandlerUI();
@@ -57,7 +59,7 @@ Zotero_Preferences.General = {
 		var currentPath = Zotero.Prefs.get(pref);
 		
 		var fp = new FilePicker();
-		if (currentPath) {
+		if (currentPath && currentPath != 'system') {
 			fp.displayDirectory = OS.Path.dirname(currentPath);
 		}
 		fp.init(
@@ -75,12 +77,7 @@ Zotero_Preferences.General = {
 	
 	setFileHandler: function (type, handler) {
 		var pref = this._getFileHandlerPref(type);
-		if (handler) {
-			Zotero.Prefs.set(pref, handler);
-		}
-		else {
-			Zotero.Prefs.clear(pref);
-		}
+		Zotero.Prefs.set(pref, handler);
 		this._updateFileHandlerUI();
 	},
 	
@@ -88,7 +85,14 @@ Zotero_Preferences.General = {
 		var handler = Zotero.Prefs.get('fileHandler.pdf');
 		var menulist = document.getElementById('fileHandler-pdf');
 		var customMenuItem = document.getElementById('fileHandler-custom');
-		if (handler) {
+		
+		// System default
+		if (handler == 'system') {
+			customMenuItem.hidden = true;
+			menulist.selectedIndex = 1;
+		}
+		// Custom handler
+		else if (handler) {
 			let icon;
 			try {
 				let fph = Services.io.getProtocolHandler("file")
@@ -113,11 +117,13 @@ Zotero_Preferences.General = {
 				customMenuItem.className = '';
 			}
 			customMenuItem.hidden = false;
-			menulist.selectedIndex = 0;
+			menulist.selectedIndex = 2;
 		}
+		// Zotero
 		else {
+			let menuitem = document.getElementById('fileHandler-internal');
+			menulist.selectedIndex = 0;
 			customMenuItem.hidden = true;
-			menulist.selectedIndex = 1;
 		}
 	},
 	

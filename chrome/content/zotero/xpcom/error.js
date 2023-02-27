@@ -51,7 +51,7 @@ Zotero.Error.ERROR_ZFS_UPLOAD_QUEUE_LIMIT = 6;
 Zotero.Error.ERROR_ZFS_FILE_EDITING_DENIED = 7;
 Zotero.Error.ERROR_INVALID_ITEM_TYPE = 8;
 Zotero.Error.ERROR_USER_NOT_AVAILABLE = 9;
-Zotero.Error.ERROR_INVALID_COLLECTION_NESTING = 10;
+Zotero.Error.ERROR_INVALID_OBJECT_NESTING = 10;
 //Zotero.Error.ERROR_SYNC_EMPTY_RESPONSE_FROM_SERVER = 6;
 //Zotero.Error.ERROR_SYNC_INVALID_RESPONSE_FROM_SERVER = 7;
 
@@ -89,7 +89,10 @@ Zotero.Exception.Alert.prototype = {
 	get title() {
 		if(this._title) {
 			try {
-				return Zotero.getString(this._title);
+				let titleString = Zotero.getString(this._title);
+				if (titleString !== this._title) {
+					return titleString;
+				}
 			} catch(e) {}
 		}
 		try {

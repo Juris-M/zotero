@@ -1,12 +1,15 @@
 [submodule "translators"]
 	path = translators
 	url = https://github.com/Juris-M/translators.git
+	branch = master
+[submodule "chrome/content/zotero/locale/csl"]
+	path = chrome/content/zotero/locale/csl
+	url = https://github.com/citation-style-language/locales.git
+	branch = master
 [submodule "styles"]
 	path = styles
 	url = https://github.com/Juris-M/jm-styles.git
-[submodule "csl-locale-submodule"]
-	path = chrome/content/zotero/locale/csl
-	url = https://github.com/citation-style-language/locales.git
+	branch = master
 [submodule "test/resource/chai"]
 	path = test/resource/chai
 	url = https://github.com/chaijs/chai.git
@@ -18,6 +21,7 @@
 [submodule "test/resource/chai-as-promised"]
 	path = test/resource/chai-as-promised
 	url = https://github.com/domenic/chai-as-promised.git
+	branch = master
 [submodule "resource/schema/global"]
 	path = resource/schema/global
 	url = git@github.com:Juris-M/zotero-schema.git
@@ -25,12 +29,15 @@
 [submodule "deployer"]
 	path = deployer
 	url = https://github.com/Juris-M/deployer.git
+	branch = master
 [submodule "resource/style-modules"]
 	path = style-modules
 	url = git@github.com:Juris-M/style-modules.git
+	branch = master
 [submodule "juris-desc"]
 	path = juris-desc
 	url = https://github.com/Juris-M/legal-resource-registry.git
+	branch = master
 [submodule "juris-abbrevs"]
 	path = juris-abbrevs
 	url = https://github.com/Juris-M/jurism-abbreviations.git
@@ -38,3 +45,21 @@
 [submodule "resource/SingleFile"]
 	path = resource/SingleFile
 	url = https://github.com/gildas-lormeau/SingleFile.git
+[submodule "pdf-reader"]
+	path = pdf-reader
+	url = https://github.com/zotero/pdf-reader.git
+	branch = master
+[submodule "pdf-worker"]
+	path = pdf-worker
+	url = https://github.com/zotero/pdf-worker.git
+	branch = master
+[submodule "note-editor"]
+	path = note-editor
+	url = https://github.com/zotero/note-editor.git
+	branch = master
+[submodule "chrome/content/zotero/xpcom/utilities"]
+	path = chrome/content/zotero/xpcom/utilities
+	url = https://github.com/zotero/utilities.git
+[submodule "chrome/content/zotero/xpcom/translate"]
+	path = chrome/content/zotero/xpcom/translate
+	url = https://github.com/zotero/translate.git

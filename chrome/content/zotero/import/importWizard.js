@@ -1,19 +1,39 @@
-import FilePicker from 'zotero/filePicker';
+/* global mendeleyAPIUtils:false */
+import FilePicker from 'zotero/modules/filePicker';
+Components.utils.import("resource://gre/modules/Services.jsm");
+Services.scriptloader.loadSubScript("chrome://zotero/content/import/mendeley/mendeleyAPIUtils.js");
+const { directAuth } = mendeleyAPIUtils;
 
 var Zotero_Import_Wizard = {
 	_wizard: null,
 	_dbs: null,
 	_file: null,
 	_translation: null,
-	
+	_mendeleyCode: null,
+	_mendeleyAuth: null,
+	_mendeleyHasPreviouslyImported: false,
+	_mendeleyImporterVersion: 0,
+	_isZotfileInstalled: false,
 	
 	init: async function () {
 		this._wizard = document.getElementById('import-wizard');
-		
 		var dbs = await Zotero_File_Interface.findMendeleyDatabases();
 		if (dbs.length) {
-			document.getElementById('radio-import-source-mendeley').hidden = false;
+			// Local import disabled
+			//document.getElementById('radio-import-source-mendeley').hidden = false;
 		}
+
+		const extensions = await Zotero.getInstalledExtensions();
+		this._isZotfileInstalled = !!extensions.find(extName => extName.match(/^ZotFile((?!disabled).)*$/));
+
+		const predicateID = Zotero.RelationPredicates.getID('mendeleyDB:documentUUID');
+
+		if (predicateID) {
+			const relSQL = 'SELECT ROWID FROM itemRelations WHERE predicateID = ? LIMIT 1';
+			this._mendeleyHasPreviouslyImported = !!(await Zotero.DB.valueQueryAsync(relSQL, predicateID));
+		}
+
+		this._mendeleyImporterVersion = parseInt((await Zotero.DB.valueQueryAsync("SELECT value FROM settings WHERE setting='mendeleyImport' AND key='version'")) || 0);
 		
 		// If no existing collections or non-trash items in the library, don't create a new
 		// collection by default
@@ -33,7 +53,20 @@ var Zotero_Import_Wizard = {
 			}
 		}
 		
+		if (args && args.pageID) {
+			this._wizard.goTo(args.pageID);
+		}
+
+		if (args && args.mendeleyCode && Zotero.Prefs.get("import.mendeleyUseOAuth")) {
+			this._mendeleyCode = args.mendeleyCode;
+			this._wizard.goTo('page-options');
+		}
+		
 		// Update labels
+		document.getElementById('radio-import-source-mendeley-online').label
+			= `Mendeley Reference Manager (${Zotero.getString('import.onlineImport')})`;
+		document.getElementById('radio-import-source-mendeley').label
+			= `Mendeley Desktop (${Zotero.getString('import.localImport')})`;
 		document.getElementById('file-handling-store').label = Zotero.getString(
 			'import.fileHandling.store',
 			Zotero.appName
@@ -43,10 +76,30 @@ var Zotero_Import_Wizard = {
 			'import.fileHandling.description',
 			Zotero.appName
 		);
+			
+		// Set up Mendeley username/password fields
+		document.querySelector('label[for="mendeley-username"]').textContent
+			= Zotero.Utilities.Internal.stringWithColon(Zotero.getString('general.username'));
+		document.querySelector('label[for="mendeley-password"]').textContent
+			= Zotero.Utilities.Internal.stringWithColon(Zotero.getString('general.password'));
+		document.getElementById('mendeley-username').addEventListener('keyup', this.onMendeleyAuthKeyUp.bind(this));
+		document.getElementById('mendeley-password').addEventListener('keyup', this.onMendeleyAuthKeyUp.bind(this));
+		
+		document.getElementById('relink-only-checkbox').addEventListener('command', this.onRelinkOnlyChange.bind(this));
+		// Set from integration.js prompt
+		if (args && args.relinkOnly) {
+			document.getElementById('relink-only-checkbox').checked = true;
+			this.onRelinkOnlyChange();
+		}
 		
 		Zotero.Translators.init(); // async
 	},
-	
+
+	onCancel: function () {
+		if (this._translation && this._translation.interrupt) {
+			this._translation.interrupt();
+		}
+	},
 	
 	onModeChosen: async function () {
 		var wizard = this._wizard;
@@ -57,6 +110,19 @@ var Zotero_Import_Wizard = {
 			case 'radio-import-source-file':
 				await this.chooseFile();
 				break;
+
+			case 'radio-import-source-mendeley-online':
+					if (this._isZotfileInstalled) {
+						this._onDone(
+							Zotero.getString('general.error'),
+							Zotero.getString('import.online.blockedByPlugin', 'ZotFile'),
+							false
+						);
+						return;
+					}
+				wizard.goTo('mendeley-online-explanation');
+				wizard.canRewind = true;
+			break;
 				
 			case 'radio-import-source-mendeley':
 				this._dbs = await Zotero_File_Interface.findMendeleyDatabases();
@@ -85,7 +151,61 @@ var Zotero_Import_Wizard = {
 			throw e;
 		}
 	},
-	
+
+	onMendeleyOnlineShow: async function () {
+		document.getElementById('mendeley-online-description').textContent = Zotero.Prefs.get("import.mendeleyUseOAuth")
+			? Zotero.getString('import.online.intro', [Zotero.appName, 'Mendeley Reference Manager', 'Mendeley'])
+			: Zotero.getString('import.online.formIntro', [Zotero.appName, 'Mendeley Reference Manager', 'Mendeley']);
+		document.getElementById('mendeley-online-description2').textContent = Zotero.getString(
+			'import.online.intro2', [Zotero.appName, 'Mendeley']
+		);
+		document.getElementById('mendeley-login').style.display = Zotero.Prefs.get("import.mendeleyUseOAuth") ? 'none' : '';
+		document.getElementById('mendeley-online-login-feedback').style.display = 'none';
+		this._wizard.canAdvance = Zotero.Prefs.get("import.mendeleyUseOAuth");
+	},
+
+	onMendeleyOnlineAdvance: async function () {
+		if (Zotero.Prefs.get("import.mendeleyUseOAuth")) {
+			Zotero_File_Interface.authenticateMendeleyOnline();
+			window.close();
+		}
+		else {
+			const userNameEl = document.getElementById('mendeley-username');
+			const passwordEl = document.getElementById('mendeley-password');
+			userNameEl.disabled = true;
+			passwordEl.disabled = true;
+			try {
+				this._mendeleyAuth = await directAuth(userNameEl.value, passwordEl.value);
+				this._wizard.goTo('page-options');
+			}
+			catch (e) {
+				const feedbackEl = document.getElementById('mendeley-online-login-feedback');
+				feedbackEl.textContent = Zotero.getString('import.online.wrongCredentials', ['Mendeley']);
+				feedbackEl.style.display = '';
+				this._wizard.canAdvance = false; // change to either of the inputs will reset thi
+			}
+			finally {
+				userNameEl.disabled = false;
+				passwordEl.disabled = false;
+			}
+		}
+	},
+
+	onMendeleyAuthKeyUp: function () {
+		document.getElementById('mendeley-online-login-feedback').style.display = 'none';
+		this._wizard.canAdvance = document.getElementById('mendeley-username').value.length > 0
+			&& document.getElementById('mendeley-password').value.length > 0;
+	},
+
+	onRelinkOnlyChange: function () {
+		if (document.getElementById('relink-only-checkbox').checked) {
+			document.getElementById('new-items-only-checkbox').checked = true;
+			document.getElementById('create-collection-checkbox').checked = false;
+		}
+
+		document.getElementById('new-items-only-checkbox').disabled = document.getElementById('relink-only-checkbox').checked;
+		document.getElementById('create-collection-checkbox').disabled = document.getElementById('relink-only-checkbox').checked;
+	},
 	
 	goToStart: function () {
 		this._wizard.goTo('page-start');
@@ -165,7 +285,17 @@ var Zotero_Import_Wizard = {
 	
 	
 	onOptionsShown: function () {
-		
+		document.getElementById('file-handling-options').hidden = !!(this._mendeleyAuth || this._mendeleyCode);
+		const hideExtraMendeleyOptions = !this._mendeleyHasPreviouslyImported || !(this._mendeleyAuth || this._mendeleyCode);
+		document.getElementById('mendeley-options').hidden = hideExtraMendeleyOptions;
+		document.getElementById('relink-only-wrapper').hidden = hideExtraMendeleyOptions || this._mendeleyImporterVersion > 0;
+		document.getElementById('relink-only-more-info').addEventListener('click', function () {
+			Zotero.launchURL('https://www.zotero.org/support/kb/mendeley_import#using_mendeley_citations');
+			window.close();
+		});
+		if (hideExtraMendeleyOptions) {
+			document.getElementById('new-items-only-checkbox').removeAttribute('checked');
+		}
 	},
 	
 	
@@ -192,7 +322,7 @@ var Zotero_Import_Wizard = {
 	
 	
 	onImportStart: async function () {
-		if (!this._file) {
+		if (!this._file && !(this._mendeleyAuth || this._mendeleyCode)) {
 			let index = document.getElementById('file-list').selectedIndex;
 			this._file = this._dbs[index].path;
 		}
@@ -204,9 +334,12 @@ var Zotero_Import_Wizard = {
 			let result = await Zotero_File_Interface.importFile({
 				file: this._file,
 				onBeforeImport: this.onBeforeImport.bind(this),
-				addToLibraryRoot: !document.getElementById('create-collection-checkbox')
-					.hasAttribute('checked'),
-				linkFiles: document.getElementById('file-handling-radio').selectedIndex == 1
+				addToLibraryRoot: !document.getElementById('create-collection-checkbox').checked,
+				linkFiles: document.getElementById('file-handling-radio').selectedIndex == 1,
+				mendeleyAuth: this._mendeleyAuth,
+				mendeleyCode: this._mendeleyCode,
+				newItemsOnly: document.getElementById('new-items-only-checkbox').checked,
+				relinkOnly: document.getElementById('relink-only-checkbox').checked
 			});
 			
 			// Cancelled by user or due to error
@@ -216,26 +349,28 @@ var Zotero_Import_Wizard = {
 			}
 			
 			let numItems = this._translation.newItems.length;
+			let numRelinked = this._translation.numRelinked;
 			this._onDone(
 				Zotero.getString('fileInterface.importComplete'),
-				Zotero.getString(`fileInterface.itemsWereImported`, numItems, numItems)
+				document.getElementById('relink-only-checkbox').checked
+					? Zotero.getString(`fileInterface.itemsWereRelinked`, numRelinked, numRelinked)
+					: Zotero.getString(`fileInterface.itemsWereImported`, numItems, numItems)
 			);
 		}
 		catch (e) {
 			if (e.message == 'Encrypted Mendeley database') {
 				let url = 'https://www.zotero.org/support/kb/mendeley_import';
-				this._onDone(
-					Zotero.getString('general.error'),
-					// TODO: Localize
-					`The selected Mendeley database cannot be read, likely because it is encrypted. `
-						+ `See <a href="${url}" class="text-link">How do I import a Mendeley library `
-						+ `into Zotero?</a> for more information.`
-				);
+				let HTML_NS = 'http://www.w3.org/1999/xhtml'
+				let elem = document.createElementNS(HTML_NS, 'div');
+				elem.innerHTML = `The selected Mendeley database cannot be read, likely because it `
+					+ `is encrypted. See <a href="${url}" class="text-link">How do I import a `
+					+ `Mendeley library into Zotero?</a> for more information.`
+				this._onDone(Zotero.getString('general.error'), elem);
 			}
 			else {
 				this._onDone(
 					Zotero.getString('general.error'),
-					Zotero.getString('fileInterface.importError'),
+					Zotero_File_Interface.makeImportErrorString(this._translation),
 					true
 				);
 			}
@@ -310,9 +445,9 @@ var Zotero_Import_Wizard = {
 		var xulElem = document.getElementById('result-description');
 		var htmlElem = document.getElementById('result-description-html');
 		
-		if (description.includes('href')) {
-			htmlElem.innerHTML = description;
-			Zotero.Utilities.Internal.updateHTMLInXUL(htmlElem);
+		if (description instanceof HTMLElement) {
+			htmlElem.appendChild(description);
+			Zotero.Utilities.Internal.updateHTMLInXUL(htmlElem, { callback: () => window.close() });
 			xulElem.hidden = true;
 			htmlElem.setAttribute('display', 'block');
 		}
@@ -321,7 +456,7 @@ var Zotero_Import_Wizard = {
 			xulElem.hidden = false;
 			htmlElem.setAttribute('display', 'none');
 		}
-		document.getElementById('result-description')
+		document.getElementById('result-description');
 		
 		if (showReportErrorButton) {
 			let button = document.getElementById('result-report-error');

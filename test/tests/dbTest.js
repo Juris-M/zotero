@@ -73,7 +73,14 @@ describe("Zotero.DB", function() {
 			assert.lengthOf(rows, 2);
 			assert.equal(rows[0].a, 1);
 			assert.equal(rows[1].a, 3);
-		})
+		});
+		
+		it("should accept combination of numbered and unnumbered placeholders", async function () {
+			var rows = await Zotero.DB.queryAsync("SELECT a FROM " + tmpTable + " WHERE (a=?1 OR b=?1) OR b=?", [2, 4]);
+			assert.lengthOf(rows, 2);
+			assert.equal(rows[0].a, 1);
+			assert.equal(rows[1].a, 3);
+		});
 		
 		it("should accept a single placeholder within parentheses", function* () {
 			var rows = yield Zotero.DB.queryAsync("SELECT a FROM " + tmpTable + " WHERE b IN (?)", 2);
@@ -302,11 +309,18 @@ describe("Zotero.DB", function() {
 			yield Zotero.DB.queryAsync("DROP TABLE " + tmpTable);
 		});
 		
-		it("should time out on nested transactions", function* () {
+		it("should time out on nested transactions", async function () {
 			var e;
-			yield Zotero.DB.executeTransaction(function* () {
-				e = yield getPromiseError(
-					Zotero.DB.executeTransaction(function* () {}).timeout(250)
+			await Zotero.DB.executeTransaction(async function () {
+				e = await getPromiseError(
+					Promise.race([
+						Zotero.Promise.delay(250).then(() => {
+							var e = new Error;
+							e.name = "TimeoutError";
+							throw e;
+						}),
+						Zotero.DB.executeTransaction(async function () {})
+					])
 				);
 			});
 			assert.ok(e);

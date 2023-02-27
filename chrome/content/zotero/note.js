@@ -23,16 +23,14 @@
     ***** END LICENSE BLOCK *****
 */
 
+// Auto-suggester fails without this
+Components.utils.import("resource://gre/modules/Services.jsm");
+
 var noteEditor;
 var notifierUnregisterID;
+var type;
 
 async function onLoad() {
-	noteEditor = document.getElementById('zotero-note-editor');
-	noteEditor.mode = 'edit';
-	
-	// Set font size from pref
-	Zotero.setFontSize(noteEditor);
-	
 	if (window.arguments) {
 		var io = window.arguments[0];
 	}
@@ -40,6 +38,30 @@ async function onLoad() {
 	var itemID = parseInt(io.itemID);
 	var collectionID = parseInt(io.collectionID);
 	var parentItemKey = io.parentItemKey;
+	
+	if (itemID) {
+		var ref = await Zotero.Items.getAsync(itemID);
+		var libraryID = ref.libraryID;
+	}
+	else {
+		if (parentItemKey) {
+			var ref = Zotero.Items.getByLibraryAndKey(parentItemKey);
+			var libraryID = ref.libraryID;
+		}
+		else {
+			if (collectionID && collectionID != '' && collectionID != 'undefined') {
+				var collection = Zotero.Collections.get(collectionID);
+				var libraryID = collection.libraryID;
+			}
+		}
+	}
+	type = Zotero.Libraries.get(libraryID).libraryType;
+	noteEditor = document.getElementById('zotero-note-editor');
+	noteEditor.mode = 'edit';
+	noteEditor.viewMode = 'window';
+	
+	// Set font size from pref
+	Zotero.setFontSize(noteEditor);
 	
 	if (itemID) {
 		var ref = await Zotero.Items.getAsync(itemID);
@@ -77,19 +99,19 @@ function onError() {
 
 function onUnload() {
 	Zotero.Notifier.unregisterObserver(notifierUnregisterID);
-	
-	if (noteEditor.item) {
-		window.opener.ZoteroPane.onNoteWindowClosed(noteEditor.item.id, noteEditor.value);
-	}
+	noteEditor.saveSync();
 }
 
 var NotifyCallback = {
 	notify: function(action, type, ids){
 		if (noteEditor.item && ids.includes(noteEditor.item.id)) {
-			var noteTitle = noteEditor.item.getNoteTitle();
-			if (!document.title && noteTitle != '') {
-				document.title = noteTitle;
+			if (action == 'delete') {
+				window.close();
+				return;
 			}
+		
+			var noteTitle = noteEditor.item.getNoteTitle();
+			document.title = noteTitle;
 			
 			// Update the window name (used for focusing) in case this is a new note
 			window.name = 'zotero-note-' + noteEditor.item.id;

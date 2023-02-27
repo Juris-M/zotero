@@ -56,7 +56,7 @@ describe("Connector Server", function () {
 			);
 
 			assert.isTrue(Zotero.Translators.get.calledWith('dummy-translator'));
-			let translatorCode = yield translator.getCode();
+			let translatorCode = yield Zotero.Translators.getCodeForTranslator(translator);
 			assert.equal(response.response, translatorCode);
 
 			Zotero.Translators.get.restore();
@@ -236,7 +236,7 @@ describe("Connector Server", function () {
 					}
 				],
 				uri: "https://www-example-com.proxy.example.com/path",
-				proxy: {scheme: 'https://%h.proxy.example.com/%p', dotsToHyphens: true}
+				proxy: {scheme: 'https://%h.proxy.example.com/%p'}
 			};
 			
 			var promise = waitForItemEvent('add');
@@ -1676,6 +1676,7 @@ describe("Connector Server", function () {
 		});
 		
 		it("should move item saved via /saveItems to another library", async function () {
+			let addItemsSpy = sinon.spy(Zotero.Server.Connector.SaveSession.prototype, 'addItems');
 			var group = await createGroup({ editable: true, filesEditable: false });
 			await selectLibrary(win);
 			await waitForItemsLoad(win);
@@ -1724,6 +1725,16 @@ describe("Connector Server", function () {
 			var item1 = Zotero.Items.get(ids1[0]);
 			// Attachment
 			await waitForItemEvent('add');
+			
+			// There's an additional addItems call in saveItems that is not async returned and runs
+			// after attachment notifier add event callbacks are run, so we have to do some
+			// hacky waiting here, otherwise we get some crazy race-conditions due to
+			// collection changing being debounced
+			let callCount = addItemsSpy.callCount;
+			while (addItemsSpy.callCount <= callCount) {
+				await Zotero.Promise.delay(50);
+			}
+			await addItemsSpy.lastCall.returnValue;
 			
 			var req = await reqPromise;
 			assert.equal(req.status, 201);
@@ -1777,6 +1788,8 @@ describe("Connector Server", function () {
 			assert.isFalse(Zotero.Items.exists(item2.id));
 			assert.equal(item3.libraryID, Zotero.Libraries.userLibraryID);
 			assert.equal(item3.numAttachments(), 1);
+			
+			addItemsSpy.restore();
 		});
 		
 		it("should move item saved via /saveSnapshot to another library", async function () {
@@ -2632,6 +2645,188 @@ describe("Connector Server", function () {
 			let itemIDs = yield addedItemIDsPromise;
 			var item = Zotero.Items.get(itemIDs[0]);
 			assert.equal(item.libraryID, Zotero.Libraries.userLibraryID);
+		});
+	});
+	
+	describe.skip('/connector/request', function () {
+		let endpoint;
+		
+		before(function () {
+			endpoint = connectorServerPath + '/connector/request';
+		});
+		
+		beforeEach(function () {
+			Zotero.Server.Connector.Request.enableValidation = true;
+		});
+
+		after(function () {
+			Zotero.Server.Connector.Request.enableValidation = true;
+		});
+		
+		it('should reject GET requests', async function () {
+			let req = await Zotero.HTTP.request(
+				'GET',
+				endpoint,
+				{
+					headers: { 'content-type': 'application/json' },
+					body: JSON.stringify({
+						method: 'GET',
+						url: 'https://www.example.com/'
+					}),
+					successCodes: false
+				}
+			);
+			assert.equal(req.status, 400);
+			assert.include(req.responseText, 'Endpoint does not support method');
+		});
+
+		it('should not make requests to arbitrary hosts', async function () {
+			let req = await Zotero.HTTP.request(
+				'POST',
+				endpoint,
+				{
+					headers: { 'content-type': 'application/json' },
+					body: JSON.stringify({
+						method: 'GET',
+						url: `http://localhost:${Zotero.Prefs.get('httpServer.port')}/`
+					}),
+					successCodes: false
+				}
+			);
+			assert.equal(req.status, 400);
+			assert.include(req.responseText, 'Unsupported URL');
+
+			req = await Zotero.HTTP.request(
+				'POST',
+				endpoint,
+				{
+					headers: { 'content-type': 'application/json' },
+					body: JSON.stringify({
+						method: 'GET',
+						url: `http://www.example.com/`
+					}),
+					successCodes: false
+				}
+			);
+			assert.equal(req.status, 400);
+			assert.include(req.responseText, 'Unsupported URL');
+		});
+
+		it('should reject requests with non-Mozilla/ user agents', async function () {
+			let req = await Zotero.HTTP.request(
+				'POST',
+				endpoint,
+				{
+					headers: {
+						'content-type': 'application/json',
+						'user-agent': 'BadBrowser/1.0'
+					},
+					body: JSON.stringify({
+						method: 'GET',
+						url: `https://www.worldcat.org/api/nonexistent`
+					}),
+					successCodes: false
+				}
+			);
+			assert.equal(req.status, 400);
+			assert.include(req.responseText, 'Unsupported User-Agent');
+		});
+
+		it('should allow a request to an allowed host', async function () {
+			let stub = sinon.stub(Zotero.HTTP, 'request');
+			// First call: call original
+			stub.callThrough();
+			// Second call (call from within /connector/request handler): return the following
+			stub.onSecondCall().returns({
+				status: 200,
+				getAllResponseHeaders: () => '',
+				response: 'it went through'
+			});
+			
+			let req = await Zotero.HTTP.request(
+				'POST',
+				endpoint,
+				{
+					headers: { 'content-type': 'application/json' },
+					body: JSON.stringify({
+						method: 'GET',
+						url: `https://www.worldcat.org/api/nonexistent`
+					})
+				}
+			);
+			assert.equal(req.status, 200);
+			assert.equal(JSON.parse(req.responseText).body, 'it went through');
+			
+			stub.restore();
+		});
+
+		it('should return response in translator request() format with lowercase headers', async function () {
+			let testEndpointPath = '/test/header';
+			
+			httpd.registerPathHandler(
+				testEndpointPath,
+				{
+					handle: function (request, response) {
+						response.setStatusLine(null, 200, 'OK');
+						response.setHeader('X-Some-Header', 'Header value');
+						response.write('body');
+					}
+				}
+			);
+			
+			Zotero.Server.Connector.Request.enableValidation = false;
+			let req = await Zotero.HTTP.request(
+				'POST',
+				endpoint,
+				{
+					headers: { 'content-type': 'application/json' },
+					body: JSON.stringify({
+						method: 'GET',
+						url: testServerPath + testEndpointPath
+					}),
+					responseType: 'json'
+				}
+			);
+			
+			assert.equal(req.response.status, 200);
+			assert.equal(req.response.headers['x-some-header'], 'Header value');
+			assert.equal(req.response.body, 'body');
+		});
+
+		it('should set Referer', async function () {
+			let testEndpointPath = '/test/referer';
+			let referer = 'https://www.example.com/';
+
+			httpd.registerPathHandler(
+				testEndpointPath,
+				{
+					handle: function (request, response) {
+						assert.equal(request.getHeader('Referer'), referer);
+						response.setStatusLine(null, 200, 'OK');
+						response.write('');
+					}
+				}
+			);
+
+			Zotero.Server.Connector.Request.enableValidation = false;
+			let req = await Zotero.HTTP.request(
+				'POST',
+				endpoint,
+				{
+					headers: { 'content-type': 'application/json' },
+					body: JSON.stringify({
+						method: 'GET',
+						url: testServerPath + testEndpointPath,
+						options: {
+							headers: {
+								Referer: referer
+							}
+						}
+					})
+				}
+			);
+
+			assert.equal(JSON.parse(req.response).status, 200);
 		});
 	});
 });

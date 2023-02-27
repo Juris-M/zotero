@@ -43,6 +43,10 @@ Zotero.QuickCopy = new function() {
 			this._prefObserverID = Zotero.Prefs.registerObserver(
 				"export.quickCopy.setting", _loadOutputFormat
 			);
+			
+			this._prefObserverID = Zotero.Prefs.registerObserver(
+				"export.noteQuickCopy.setting", _loadNoteOutputFormat
+			);
 			_initialized = true;
 		}
 		
@@ -59,6 +63,7 @@ Zotero.QuickCopy = new function() {
 			_initPromise = Zotero.Promise.each(
 				[
 					() => _loadOutputFormat(),
+					() => _loadNoteOutputFormat(),
 					() => this.loadSiteSettings()
 				],
 				f => f()
@@ -161,6 +166,11 @@ Zotero.QuickCopy = new function() {
 		return '';
 	});
 	
+	this.getNoteFormat = function () {
+		var pref = Zotero.Prefs.get('export.noteQuickCopy.setting');
+		pref = JSON.stringify(this.unserializeSetting(pref));
+		return pref;
+	};
 	
 	this.getFormatFromURL = function(url) {
 		var quickCopyPref = Zotero.Prefs.get("export.quickCopy.setting");
@@ -264,215 +274,18 @@ Zotero.QuickCopy = new function() {
 		if (format.mode == 'export') {
 			var translation = new Zotero.Translate.Export;
 			translation.noWait = true;	// needed not to break drags
-			translation.setItems(items);
+			// Allow to reuse items array
+			translation.setItems(items.slice());
 			translation.setTranslator(format.id);
+			if (format.options) {
+				translation.setDisplayOptions(format.options);
+			}
 			translation.setHandler("done", callback);
 			translation.translate();
 			return true;
 		}
 		else if (format.mode == 'bibliography') {
-			// Move notes to separate array
-			var allNotes = true;
-			var notes = [];
-
-			// Run default block or get extras, depending on mode
-			// This code is duplicated from zoteroPane.js.
-			var extras = undefined;
-
-			if (modified &&  Zotero.Prefs.get("export.quickCopy.linkOption")) {
-				allNotes = false;
-				extras = [];
-				for (var i = 0, ilen = items.length; i < ilen; i += 1) {
-					var item = items[i];
-					var extra = {};
-					if (item.isNote()) {
-						var parentID = item.getSource();
-						if (parentID) {
-							items[i] = Zotero.Items.get(parentID);
-						}
-						var note = item.getNote();
-						if (note) {
-							note = note.replace(/<[^>]+>/g, "");
-							note = note.replace(/&nbsp;/g, " ");
-							note = note.split("\n");
-							var summary = "";
-							var quote = "";
-							for (var j = 0, jlen = note.length; j < jlen; j += 1) {
-								if (_labelKeyRex.exec(note[j])) {
-									extra.locator_txt = note[j];
-								} else if (note[j].slice(0, 1) === "=") {
-									quote += note[j].slice(1).replace(/^\s+/, "").replace(/\s+$/, "") + " ";
-								} else if (note[j].slice(0, 1) === "~") {
-									summary += note[j].slice(1).replace(/^\s+/, "").replace(/\s+$/, "") + " ";
-								} else if (note[j].replace(/\s+/, "")) {
-									break;
-								}
-							}
-							if (quote) {
-								extra.suffix_txt = '("' + quote.replace(/\s+$/, "") + '")';
-							} else if (summary) {
-								extra.suffix_txt = '(' + summary.replace(/\s+$/, "") + ')';
-							}
-						}
-					}
-					if (items[i].isRegularItem()) {
-						extra.id = items[i].id;
-						extras.push(extra);
-					}
-				}
-			} else {
-				for (var i=0; i<items.length; i++) {
-					if (items[i].isNote()) {
-						notes.push(items.splice(i, 1)[0]);
-						i--;
-					}
-					else {
-						allNotes = false;
-					}
-				}
-			}
-			
-			// If all notes, export full content
-			if (allNotes) {
-								var content = [];
-				let parser = Components.classes["@mozilla.org/xmlextras/domparser;1"]
-					.createInstance(Components.interfaces.nsIDOMParser);
-				let docHTML = '<html><body><div class="zotero-notes"/></body></html>';
-				let doc = parser.parseFromString(docHTML, 'text/html');
-				let textDoc = parser.parseFromString(docHTML, 'text/html');
-				let container = doc.body.firstChild;
-				let textContainer = textDoc.body.firstChild;
-				
-				for (var i=0; i<notes.length; i++) {
-					var div = doc.createElement("div");
-					div.className = "zotero-note";
-					// AMO reviewer: This documented is never rendered (and the inserted markup
-					// is sanitized anyway)
-					div.insertAdjacentHTML('afterbegin', notes[i].getNote());
-					container.appendChild(div);
-					textContainer.appendChild(textDoc.importNode(div, true));
-				}
-				
-				// Raw HTML output
-				var html = container.outerHTML;
-				
-				// Add placeholders for newlines between notes
-				if (notes.length > 1) {
-					var divs = Zotero.Utilities.xpath(container, "div"),
-						textDivs = Zotero.Utilities.xpath(textContainer, "div");
-					for (var i=1, len=divs.length; i<len; i++) {
-						var p = doc.createElement("p");
-						p.appendChild(doc.createTextNode("--------------------------------------------------"));
-						container.insertBefore(p, divs[i]);
-						textContainer.insertBefore(textDoc.importNode(p, true), textDivs[i]);
-					}
-				}
-				
-				const BLOCKQUOTE_PREFS = {
-					'export.quickCopy.quoteBlockquotes.richText':doc,
-					'export.quickCopy.quoteBlockquotes.plainText':textDoc
-				};
-				for(var pref in BLOCKQUOTE_PREFS) {
-					if (Zotero.Prefs.get(pref)) {
-						var currentDoc = BLOCKQUOTE_PREFS[pref];
-						// Add quotes around blockquote paragraphs
-						var addOpenQuote = Zotero.Utilities.xpath(currentDoc, "//blockquote/p[1]"),
-							addCloseQuote = Zotero.Utilities.xpath(currentDoc, "//blockquote/p[last()]");
-						for(var i=0; i<addOpenQuote.length; i++) {
-							addOpenQuote[i].insertBefore(currentDoc.createTextNode("\u201c"),
-								addOpenQuote[i].firstChild);
-						}
-						for(var i=0; i<addCloseQuote.length; i++) {
-							addCloseQuote[i].appendChild(currentDoc.createTextNode("\u201d"));
-						}
-					}
-				}
-				
-				//
-				// Text-only adjustments
-				//
-				
-				// Replace span styles with characters
-				var spans = textDoc.getElementsByTagName("span");
-				for(var i=0; i<spans.length; i++) {
-					var span = spans[i];
-					if(span.style.textDecoration == "underline") {
-						span.insertBefore(textDoc.createTextNode("_"), span.firstChild);
-						span.appendChild(textDoc.createTextNode("_"));
-					}
-				}
-				
-				//
-				// And add spaces for indents
-				//
-				// Placeholder for 4 spaces in final output
-				const ZTAB = "%%ZOTEROTAB%%";
-				var ps = textDoc.getElementsByTagName("p");
-				for(var i=0; i<ps.length; i++) {
-					var p = ps[i],
-						paddingLeft = p.style.paddingLeft;
-					if(paddingLeft && paddingLeft.substr(paddingLeft.length-2) === "px") {
-						var paddingPx = parseInt(paddingLeft, 10),
-							ztabs = "";
-						for (let j = 30; j <= paddingPx; j += 30) ztabs += ZTAB;
-						p.insertBefore(textDoc.createTextNode(ztabs), p.firstChild);
-					}
-				}
-				
-				// Use plaintext serializer to output formatted text
-				var docEncoder = Components.classes["@mozilla.org/layout/documentEncoder;1?type=text/html"]
-					.createInstance(Components.interfaces.nsIDocumentEncoder);
-				docEncoder.init(textDoc, "text/plain", docEncoder.OutputFormatted);
-				var text = docEncoder.encodeToString().trim().replace(ZTAB, "    ", "g");
-				
-				//
-				// Adjustments for the HTML copied to the clipboard
-				//
-				
-				// Everything seems to like margin-left better than padding-left
-				var ps = Zotero.Utilities.xpath(doc, "p");
-				for(var i=0; i<ps.length; i++) {
-					var p = ps[i];
-					if(p.style.paddingLeft) {
-						p.style.marginLeft = p.style.paddingLeft;
-						p.style.paddingLeft = "";
-					}
-				}
-				
-				// Word and TextEdit don't indent blockquotes on their own and need this
-				//
-				// OO gets it right, so this results in an extra indent
-				if (Zotero.Prefs.get('export.quickCopy.compatibility.indentBlockquotes')) {
-					var ps = Zotero.Utilities.xpath(doc, "//blockquote/p");
-					for(var i=0; i<ps.length; i++) ps[i].style.marginLeft = "30px";
-				}
-				
-				// Add Word Normal style to paragraphs and add double-spacing
-				//
-				// OO inserts the conditional style code as a document comment
-				if (Zotero.Prefs.get('export.quickCopy.compatibility.word')) {
-					var ps = doc.getElementsByTagName("p");
-					for (var i=0; i<ps.length; i++) ps[i].className = "msoNormal";
-					var copyHTML = "<!--[if gte mso 0]>"
-									+ "<style>"
-									+ "p { margin-top:.1pt;margin-right:0in;margin-bottom:.1pt;margin-left:0in; line-height: 200%; }"
-									+ "li { margin-top:.1pt;margin-right:0in;margin-bottom:.1pt;margin-left:0in; line-height: 200%; }"
-									+ "blockquote p { margin-left: 11px; margin-right: 11px }"
-									+ "</style>"
-									+ "<![endif]-->\n"
-									+ container.outerHTML;
-				}
-				else {
-					var copyHTML = container.outerHTML;
-				}
-				
-				var content = {
-					text: format.contentType == "html" ? html : text,
-					html: copyHTML
-				};
-				
-				return content;
-			}
+			items = items.filter(item => !item.isNote());
 			
 			// determine locale preference
 			var locale = format.locale ? format.locale : Zotero.Prefs.get('export.quickCopy.locale');
@@ -501,30 +314,28 @@ Zotero.QuickCopy = new function() {
 				}
 
 				var html = csl.previewCitationCluster(citation, [], [], "html"); 
-				
+
 				if (Zotero.Prefs.get("export.quickCopy.linkOption") && !Zotero.Prefs.get("export.quickCopy.linkOptionDisable")) {
 					csl.sys.wrapCitationEntry = csl.sys.wrapCitationEntryText;
 				}
 				var text = csl.previewCitationCluster(citation, [], [], "text"); 
-				
 				csl.sys.wrapCitationEntry = false;
-				
+				csl.free();
 			} else {
 				var style = Zotero.Styles.get(format.id);
-				var cslEngine = style.getCiteProc(locale, null, true);
-				
+				var cslEngine = style.getCiteProc(locale, 'html', true);
 				if (Zotero.CiteProc.CSL.getCachedAbbrevList) {
 					Zotero.CiteProc.CSL.getCachedAbbrevList(cslEngine);
 				}
-				
  				var html = Zotero.Cite.makeFormattedBibliographyOrCitationList(cslEngine, items, "html");
-				cslEngine = style.getCiteProc(locale);
+ 				cslEngine.free();
 
+				cslEngine = style.getCiteProc(locale, 'text');
 				if (Zotero.CiteProc.CSL.getCachedAbbrevList) {
 					Zotero.CiteProc.CSL.getCachedAbbrevList(cslEngine);
 				}
-				
 				var text = Zotero.Cite.makeFormattedBibliographyOrCitationList(cslEngine, items, "text");
+				cslEngine.free();
 			}
 			
 			return {text:(format.contentType == "html" ? html : text), html:html};
@@ -546,6 +357,25 @@ Zotero.QuickCopy = new function() {
 	});
 	
 	
+	var _loadNoteOutputFormat = async function () {
+		var format = Zotero.Prefs.get("export.noteQuickCopy.setting");
+		format = Zotero.QuickCopy.unserializeSetting(format);
+		
+		// Always preload Note Markdown and Note HTML translators. They're both needed for note
+		// dragging if the format is "Markdown + Rich Text", HTML is needed for note dragging if
+		// the format is "HTML", and they're both needed for copying or dragging from the note
+		// editor, which uses `noWait`.
+		await _preloadFormat({ mode: 'export', id: Zotero.Translators.TRANSLATOR_ID_NOTE_MARKDOWN });
+		await _preloadFormat({ mode: 'export', id: Zotero.Translators.TRANSLATOR_ID_NOTE_HTML });
+		
+		// If there's another format, preload it for note item dragging
+		if (format.id != Zotero.Translators.TRANSLATOR_ID_MARKDOWN_AND_RICH_TEXT
+				&& format.id != Zotero.Translators.TRANSLATOR_ID_NOTE_HTML) {
+			await _preloadFormat(format);
+		}
+	};
+	
+	
 	var _preloadFormat = async function (format) {
 		format = Zotero.QuickCopy.unserializeSetting(format);
 		if (format.mode == 'export') {
@@ -557,7 +387,7 @@ Zotero.QuickCopy = new function() {
 				return;
 			}
 			translator.cacheCode = true;
-			await translator.getCode();
+			await Zotero.Translators.getCodeForTranslator(translator);
 		}
 	};
 	

@@ -221,6 +221,7 @@ Zotero.Sync.Storage.Mode.WebDAV.prototype = {
 				"OPTIONS",
 				this.rootURI,
 				{
+					successCodes: [200, 204, 404],
 					errorDelayIntervals: this.ERROR_DELAY_INTERVALS,
 					errorDelayMax: this.ERROR_DELAY_MAX,
 				}
@@ -622,7 +623,7 @@ Zotero.Sync.Storage.Mode.WebDAV.prototype = {
 			"OPTIONS",
 			uri,
 			{
-				successCodes: [200, 404],
+				successCodes: [200, 204, 404],
 				requestObserver: function (req) {
 					if (req.channel) {
 						channel = req.channel;
@@ -1437,17 +1438,19 @@ Zotero.Sync.Storage.Mode.WebDAV.prototype = {
 						break;
 				}
 				
-				// If an item file URI, get the property URI
+				// If a .zip file URL, get the .prop file URI
 				var deletePropURI = this._getPropertyURIFromItemURI(deleteURI);
-				// Only nsIURL has fileName
-				deletePropURI.QueryInterface(Ci.nsIURL);
-				
-				// If we already deleted the prop file, skip it
-				if (!deletePropURI || results.deleted.has(deletePropURI.fileName)) {
+				// Not a .zip file URL
+				if (!deletePropURI) {
 					return;
 				}
-				
+				// Only nsIURL has fileName
+				deletePropURI.QueryInterface(Ci.nsIURL);
 				fileName = deletePropURI.fileName;
+				// Already deleted
+				if (results.deleted.has(fileName)) {
+					return;
+				}
 				
 				// Delete property file
 				var req = yield Zotero.HTTP.request(

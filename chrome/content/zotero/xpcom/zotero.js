@@ -175,25 +175,6 @@ Services.scriptloader.loadSubScript("resource://zotero/polyfill.js");
 		this.uiReadyDeferred = Zotero.Promise.defer();
 		this.uiReadyPromise = this.uiReadyDeferred.promise;
 		
-		// Add a function to Zotero.Promise to check whether a value is still defined, and if not
-		// to throw a specific error that's ignored by the unhandled rejection handler in
-		// bluebird.js. This allows for easily cancelling promises when they're no longer
-		// needed, for example after a binding is destroyed.
-		//
-		// Example usage:
-		//
-		// getAsync.tap(() => Zotero.Promise.check(this.mode))
-		//
-		// If the binding is destroyed while getAsync() is being resolved and this.mode no longer
-		// exists, subsequent lines won't be run, and nothing will be logged to the console.
-		this.Promise.check = function (val) {
-			if (!val && val !== 0) {
-				let e = new Error;
-				e.name = "ZoteroPromiseInterrupt";
-				throw e;
-			}
-		};
-		
 		if (options) {
 			let opts = [
 				'openPane',
@@ -231,7 +212,10 @@ Services.scriptloader.loadSubScript("resource://zotero/polyfill.js");
 			var version = yield deferred.promise;
 		}
 		Zotero.version = version;
-		Zotero.isDevBuild = Zotero.version.includes('beta') || Zotero.version.includes('SOURCE');
+		Zotero.isDevBuild = Zotero.version.includes('beta')
+			|| Zotero.version.includes('dev')
+			|| Zotero.version.includes('SOURCE');
+		Zotero.isSourceBuild = Zotero.version.includes('SOURCE');
 		
 		// OS platform
 		var win = Components.classes["@mozilla.org/appshell/appShellService;1"]
@@ -376,6 +360,12 @@ Services.scriptloader.loadSubScript("resource://zotero/polyfill.js");
 		
 		// Make sure data directory isn't in Dropbox, etc.
 		yield Zotero.DataDirectory.checkForUnsafeLocation(dataDir);
+		
+		Services.obs.addObserver({
+			observe: function () {
+				Zotero.Session.save();
+			}
+		}, "quit-application-granted", false);
 		
 		// Register shutdown handler to call Zotero.shutdown()
 		var _shutdownObserver = {observe:function() { Zotero.shutdown().done() }};
@@ -705,6 +695,8 @@ Services.scriptloader.loadSubScript("resource://zotero/polyfill.js");
 			yield Zotero.CharacterSets.init();
 			yield Zotero.RelationPredicates.init();
 			
+			yield Zotero.Session.init();
+			
 			Zotero.locked = false;
 			
 			yield Zotero.Users.init();
@@ -743,6 +735,8 @@ Services.scriptloader.loadSubScript("resource://zotero/polyfill.js");
 			yield Zotero.Groups.init();
 			yield Zotero.Relations.init();
 			yield Zotero.Retractions.init();
+			yield Zotero.Dictionaries.init();
+			Zotero.Reader.init();
 			
 			// Migrate fields from Extra that can be moved to item fields after a schema update
 			yield Zotero.Schema.migrateExtraFields();
@@ -1957,7 +1951,7 @@ Zotero.Keys = new function() {
 
 
 /**
- * Add X-Zotero-Version header to HTTP requests to zotero.org
+ * Identify client when connecting to first-party domains
  *
  * @namespace
  */
@@ -1975,13 +1969,21 @@ Zotero.VersionHeader = {
 		try {
 			let channel = subject.QueryInterface(Components.interfaces.nsIHttpChannel);
 			let domain = channel.URI.host;
-			if (domain.endsWith(ZOTERO_CONFIG.DOMAIN_NAME)) {
+			// Add X-Zotero-Version header to HTTP requests to zotero.org
+			let isPrimaryDomain = domain == ZOTERO_CONFIG.DOMAIN_NAME
+				|| domain.endsWith('.' + ZOTERO_CONFIG.DOMAIN_NAME);
+			if (isPrimaryDomain) {
 				channel.setRequestHeader("X-Zotero-Version", Zotero.version, false);
 			}
 			else {
-				let ua = channel.getRequestHeader('User-Agent');
-				ua = this.update(domain, ua);
-				channel.setRequestHeader('User-Agent', ua, false);
+				// Use "Firefox/[version]" in user agent if not a proxy check or file sync request
+				let s3RE = /(zoteroproxycheck|zoterofilestorage(test)?)\.s3\.(us-east-1\.)?amazonaws\.com/;
+				let isAppNameDomain = s3RE.test(domain);
+				if (!isAppNameDomain) {
+					let ua = channel.getRequestHeader('User-Agent');
+					ua = this.update(ua);
+					channel.setRequestHeader('User-Agent', ua, false);
+				}
 			}
 		}
 		catch (e) {
@@ -1992,12 +1994,11 @@ Zotero.VersionHeader = {
 	/**
 	 * Replace Zotero/[version] with Firefox/[version] in the default user agent
 	 *
-	 * @param {String} domain
 	 * @param {String} ua - User Agent
 	 * @param {String} [testAppName] - App name to look for (necessary in tests, which are
 	 *     currently run in Firefox)
 	 */
-	update: function (domain, ua, testAppName) {
+	update: function (ua, testAppName) {
 		var info = Services.appinfo;
 		var appName = testAppName || info.name;
 		
@@ -2020,7 +2021,6 @@ Zotero.VersionHeader = {
 Zotero.DragDrop = {
 	currentEvent: null,
 	currentOrientation: 0,
-	currentSourceNode: null,
 	
 	getDataFromDataTransfer: function (dataTransfer, firstOnly) {
 		var dt = dataTransfer;
@@ -2079,28 +2079,8 @@ Zotero.DragDrop = {
 	},
 	
 	
-	getDragSource: function (dataTransfer) {
-		if (!dataTransfer) {
-			//Zotero.debug("Drag data not available", 2);
-			return false;
-		}
-		
-		// For items, the drag source is the CollectionTreeRow of the parent window
-		// of the source tree
-		if (dataTransfer.types.contains("zotero/item")) {
-			let sourceNode = dataTransfer.mozSourceNode || this.currentSourceNode;
-			if (!sourceNode || sourceNode.tagName != 'treechildren'
-					|| sourceNode.parentElement.id != 'zotero-items-tree') {
-				return false;
-			}
-			var win = sourceNode.ownerDocument.defaultView;
-			if (win.document.documentElement.getAttribute('windowtype') == 'zotero:search') {
-				return win.ZoteroAdvancedSearch.itemsView.collectionTreeRow;
-			}
-			return win.ZoteroPane.collectionsView.selectedTreeRow;
-		}
-		
-		return false;
+	getDragSource: function () {
+		return this.currentDragSource;
 	},
 	
 	
@@ -2155,7 +2135,7 @@ Zotero.Browser = new function() {
 		hiddenBrowser.docShell.allowJavascript = options.allowJavaScript !== false
 		hiddenBrowser.docShell.allowMetaRedirects = false;
 		hiddenBrowser.docShell.allowPlugins = false;
-		Zotero.debug("Created hidden browser (" + (nBrowsers++) + ")");
+		Zotero.debug("Created hidden browser (" + (++nBrowsers) + ")");
 		return hiddenBrowser;
 	}
 	

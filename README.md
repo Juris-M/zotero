@@ -7,6 +7,10 @@
 --------------
 
 ## From the Zotero README
+=======
+Zotero
+======
+[![CI](https://github.com/zotero/zotero/actions/workflows/ci.yml/badge.svg)](https://github.com/zotero/zotero/actions/workflows/ci.yml)
 
 [Zotero](https://www.zotero.org/) is a free, easy-to-use tool to help you collect, organize, cite, and share your research sources.
 

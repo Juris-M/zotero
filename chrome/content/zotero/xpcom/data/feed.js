@@ -60,13 +60,13 @@ Zotero.Feed = function(params = {}) {
 		get: function() { return this._get('_libraryFilesEditable'); }
 	});
 	
-	Zotero.Utilities.assignProps(this, params, 
+	Zotero.Utilities.Internal.assignProps(this, params,
 		['name', 'url', 'refreshInterval', 'cleanupReadAfter', 'cleanupUnreadAfter']);
 	
 	// Return a proxy so that we can disable the object once it's deleted
 	return new Proxy(this, {
 		get: function(obj, prop) {
-			if (obj._disabled && !(prop == 'libraryID' || prop == 'id' || prop == 'treeViewID')) {
+			if (obj._disabled && !(prop == 'libraryID' || prop == 'id' || prop == 'treeViewID' || prop == 'name')) {
 				throw new Error("Feed " + obj.libraryID + " has been disabled");
 			}
 			return obj[prop];
@@ -450,8 +450,8 @@ Zotero.Feed.prototype._updateFeed = Zotero.Promise.coroutine(function* () {
 				// that works with sync.
 				if (feedItem.libraryID != this.libraryID) {
 					let otherFeed = Zotero.Feeds.get(feedItem.libraryID);
-					Zotero.debug("Feed item " + feedItem.url + " from " + this.url + 
-						" exists in a different feed " + otherFeed.url + ". Skipping");
+					Zotero.debug("Feed item " + feedItem.guid + " from " + this.url
+						+ " exists in a different feed " + otherFeed.url + ". Skipping");
 					continue;
 				}
 				
@@ -475,9 +475,8 @@ Zotero.Feed.prototype._updateFeed = Zotero.Promise.coroutine(function* () {
 			
 			if (!feedItem.hasChanged()) {
 				Zotero.debug("Feed item " + feedItem.guid + " has not changed");
-				continue
+				continue;
 			}
-			feedItem.isRead = false;
 			toSave.push(feedItem);
 		}
 	}

@@ -75,7 +75,7 @@ Zotero.HTTP = new function() {
 	 * @constructor
 	 */
 	this.BrowserOfflineException = function() {
-		this.message = "XMLHttpRequest could not complete because the browser is offline";
+		this.message = `Request could not be completed because ${Zotero.appName} is offline`;
 		this.stack = new Error().stack;
 	};
 	this.BrowserOfflineException.prototype = Object.create(Error.prototype);
@@ -166,46 +166,48 @@ Zotero.HTTP = new function() {
 						if (e.xmlhttp.status == 503 && await _checkRetry(e.xmlhttp)) {
 							continue;
 						}
+						// Don't retry if errorDelayMax is 0
+						if (options.errorDelayMax === 0) {
+							throw e;
+						}
 						// Automatically retry other 5xx errors by default
-						if (options.errorDelayMax !== 0) {
-							if (!errorDelayGenerator) {
-								// Keep trying for up to an hour
-								errorDelayGenerator = Zotero.Utilities.Internal.delayGenerator(
-									options.errorDelayIntervals || _errorDelayIntervals,
-									options.errorDelayMax !== undefined
-										? options.errorDelayMax
-										: _errorDelayMax
-								);
+						if (!errorDelayGenerator) {
+							// Keep trying for up to an hour
+							errorDelayGenerator = Zotero.Utilities.Internal.delayGenerator(
+								options.errorDelayIntervals || _errorDelayIntervals,
+								options.errorDelayMax !== undefined
+									? options.errorDelayMax
+									: _errorDelayMax
+							);
+						}
+						let delayPromise = errorDelayGenerator.next().value;
+						let keepGoing;
+						// Provide caller with a callback to cancel while waiting to retry
+						if (options.cancellerReceiver) {
+							let resolve;
+							let reject;
+							let cancelPromise = new Zotero.Promise((res, rej) => {
+								resolve = res;
+								reject = function () {
+									rej(new Zotero.HTTP.CancelledException);
+								};
+							});
+							options.cancellerReceiver(reject);
+							try {
+								keepGoing = await Promise.race([delayPromise, cancelPromise]);
 							}
-							let delayPromise = errorDelayGenerator.next().value;
-							let keepGoing;
-							// Provide caller with a callback to cancel while waiting to retry
-							if (options.cancellerReceiver) {
-								let resolve;
-								let reject;
-								let cancelPromise = new Zotero.Promise((res, rej) => {
-									resolve = res;
-									reject = function () {
-										rej(new Zotero.HTTP.CancelledException);
-									};
-								});
-								options.cancellerReceiver(reject);
-								try {
-									keepGoing = await Promise.race([delayPromise, cancelPromise]);
-								}
-								catch (e) {
-									Zotero.debug("Request cancelled");
-									throw e;
-								}
-								resolve();
-							}
-							else {
-								keepGoing = await delayPromise;
-							}
-							if (!keepGoing) {
-								Zotero.logError("Failed too many times");
+							catch (e) {
+								Zotero.debug("Request cancelled");
 								throw e;
 							}
+							resolve();
+						}
+						else {
+							keepGoing = await delayPromise;
+						}
+						if (!keepGoing) {
+							Zotero.logError("Failed too many times");
+							throw e;
 						}
 						continue;
 					}
@@ -259,7 +261,7 @@ Zotero.HTTP = new function() {
 		}
 		
 		if (url.startsWith('http') && this.browserIsOffline()) {
-			Zotero.debug("HTTP " + method + " " + dispURL + " failed: Browser is offline");
+			Zotero.debug(`HTTP ${method} ${dispURL} failed: ${Zotero.appName} is offline`);
 			throw new this.BrowserOfflineException();
 		}
 		
@@ -511,7 +513,7 @@ Zotero.HTTP = new function() {
 				
 				if (xmlhttp.status == 0) {
 					try {
-						this.checkSecurity(channel);
+						this.checkSecurity(channel, { isProxyAuthRequest: options.isProxyAuthRequest });
 					}
 					catch (e) {
 						deferred.reject(e);
@@ -818,6 +820,70 @@ Zotero.HTTP = new function() {
 	};
 	
 	
+	/**
+	 * General mechanism for modifying requests based on predefined rules
+	 *
+	 * The observer is only active if any rules are enabled.
+	 */
+	this.RequestModifier = {
+		rules: new Set([
+			'remove-nature-feed-origin'
+		]),
+		enabledRules: new Set(),
+		
+		observe: function (channel, topic) {
+			channel.QueryInterface(Components.interfaces.nsIHttpChannel);
+			if (topic == "http-on-modify-request") {
+				// https://github.com/zotero/zotero/issues/2249
+				if (this.enabledRules.has('remove-nature-feed-origin')
+						&& channel.URI.spec.match(/^https?:\/\/idp\.nature\.com\/.+\.rss/)) {
+					let dispURL = Zotero.HTTP.getDisplayURI(channel.URI).spec;
+					Zotero.debug("RequestModifier: Removing Origin header for " + dispURL);
+					channel.setRequestHeader("Origin", "", false);
+				}
+			}
+		},
+		
+		enableRule: function (rule) {
+			if (!this.rules.has(rule)) {
+				throw new Error(`RequestModifier: Can't enable invalid rule '${rule}'`);
+			}
+			if (this.enabledRules.has(rule)) {
+				Zotero.debug(`RequestModifier: Rule '${rule}' is already enabled`);
+				return;
+			}
+			this.enabledRules.add(rule);
+			// Register the observer if any rules are enabled
+			if (this.enabledRules.size == 1) {
+				this.register();
+			}
+		},
+		
+		disableRule: function (rule) {
+			if (!this.rules.has(rule)) {
+				throw new Error(`RequestModifier: Can't disable invalid rule '${rule}'`);
+			}
+			if (!this.enabledRules.has(rule)) {
+				Zotero.debug(`RequestModifier: Rule '${rule}' isn't enabled`);
+				return;
+			}
+			this.enabledRules.delete(rule);
+			// Disable the observer if no rules are enabled
+			if (!this.enabledRules.size) {
+				this.unregister();
+			}
+		},
+		
+		register: function () {
+			Services.obs.addObserver(this, "http-on-modify-request", false);
+		},
+		
+		unregister: function () {
+			Services.obs.removeObserver(this, "http-on-modify-request");
+		}
+	};
+	
+	
 	this.CookieBlocker = {
 		registered: false,
 		observeredTopics: [
@@ -947,14 +1013,15 @@ Zotero.HTTP = new function() {
 						Zotero.debug("Proxy required for " + uri + " -- making HEAD request to trigger auth prompt");
 						yield Zotero.HTTP.request("HEAD", uri, {
 							foreground: true,
-							noCache: true
+							noCache: true,
+							isProxyAuthRequest: true
 						})
 						.catch(function (e) {
+							Zotero.logError("Error connecting to proxy -- proxied requests may not work");
+							Zotero.logError(e);
+							
 							// Show error icon at startup
-							if (!e.dialogHeader) {
-								e.dialogHeader = Zotero.getString('networkError.errorViaProxy');
-							}
-							e.message += "\n\n" + Zotero.getString('startupError.internetFunctionalityMayNotWork');
+							e.dialogHeader = Zotero.getString('networkError.errorViaProxy');
 							if (!e.dialogButtonText) {
 								e.dialogButtonText = Zotero.getString('general.moreInformation');
 								e.dialogButtonCallback = () => {
@@ -962,9 +1029,6 @@ Zotero.HTTP = new function() {
 								};
 							}
 							Zotero.proxyFailure = e;
-							Zotero.logError(e);
-							let msg = "Error connecting to proxy -- proxied requests may not work";
-							Zotero.logError(msg);
 						});
 						break;
 					}
@@ -1155,9 +1219,10 @@ Zotero.HTTP = new function() {
 	 * @param {Boolean} dontDelete Don't delete the hidden browser upon completion; calling function
 	 *                             must call deleteHiddenBrowser itself.
 	 * @param {Zotero.CookieSandbox} [cookieSandbox] Cookie sandbox object
+	 * @param {Object} [docShellPrefs] See Zotero.Browser.createHiddenBrowser
 	 * @return {browser} Hidden browser used for loading
 	 */
-	this.loadDocuments = function (urls, processor, onDone, onError, dontDelete, cookieSandbox) {
+	this.loadDocuments = function (urls, processor, onDone, onError, dontDelete, cookieSandbox, docShellPrefs={}) {
 		// (Approximately) how many seconds to wait if the document is left in the loading state and
 		// pageshow is called before we call pageshow with an incomplete document
 		const LOADING_STATE_TIMEOUT = 120;
@@ -1280,6 +1345,9 @@ Zotero.HTTP = new function() {
 			currentURL = 0;
 		for(var i=0; i<urls.length; i++) {
 			let hiddenBrowser = Zotero.Browser.createHiddenBrowser();
+			for (let pref in docShellPrefs) {
+				hiddenBrowser.docShell[pref] = docShellPrefs[pref];
+			}
 			if (cookieSandbox) {
 				cookieSandbox.attachToBrowser(hiddenBrowser);
 			}
@@ -1353,7 +1421,7 @@ Zotero.HTTP = new function() {
 	}
 	
 	
-	this.checkSecurity = function (channel) {
+	this.checkSecurity = function (channel, { isProxyAuthRequest } = {}) {
 		if (!channel) {
 			return;
 		}
@@ -1369,6 +1437,15 @@ Zotero.HTTP = new function() {
 				// Show actual error from the networking stack, with the hyperlink around the
 				// error code removed
 				msg = Zotero.Utilities.unescapeHTML(secInfo.errorMessage);
+				if (msg.includes('.' + ZOTERO_CONFIG.DOMAIN_NAME + ' ')
+						|| msg.includes(ZOTERO_CONFIG.PROXY_AUTH_URL.match(/^https:\/\/([^\/]+)\//)[1] + ' ')) {
+					msg = Zotero.getString('networkError.connectionMonitored', Zotero.appName)
+						+ "\n\n"
+						+ (isProxyAuthRequest
+							? Zotero.getString('startupError.internetFunctionalityMayNotWork') + "\n\n"
+							: "")
+						+ Zotero.getString('general.error') + ": " + msg.split(/\n/)[0];
+				}
 				dialogButtonText = Zotero.getString('general.moreInformation');
 				dialogButtonCallback = function () {
 					Zotero.launchURL('https://www.zotero.org/support/kb/ssl_certificate_error');

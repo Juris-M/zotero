@@ -169,6 +169,29 @@ describe("Zotero.HTTP", function () {
 				assert.equal(delayStub.args[1][0], 20);
 			});
 			
+			it("shouldn't retry on 500 error if errorDelayMax=0", async function () {
+				setResponse({
+					method: "GET",
+					url: "error",
+					status: 500,
+					text: ""
+				});
+				spy = sinon.spy(Zotero.HTTP, "_requestInternal");
+				var e = await getPromiseError(
+					Zotero.HTTP.request(
+						"GET",
+						baseURL + "error",
+						{
+							errorDelayIntervals: [10, 20, 100],
+							errorDelayMax: 0
+						}
+					)
+				);
+				assert.instanceOf(e, Zotero.HTTP.UnexpectedStatusException);
+				assert.isTrue(spy.calledOnce);
+				assert.isTrue(delayStub.notCalled);
+			});
+			
 			it("should provide cancellerReceiver a callback to cancel while waiting to retry a 5xx error", async function () {
 				delayStub.restore();
 				setResponse({
@@ -181,13 +204,13 @@ describe("Zotero.HTTP", function () {
 				spy = sinon.spy(Zotero.HTTP, "_requestInternal");
 				setTimeout(() => {
 					cancel();
-				}, 80);
+				}, 300);
 				var e = await getPromiseError(
 					Zotero.HTTP.request(
 						"GET",
 						baseURL + "error",
 						{
-							errorDelayIntervals: [10, 10, 150],
+							errorDelayIntervals: [10, 10, 600],
 							cancellerReceiver: function () {
 								cancel = arguments[0];
 							}
@@ -236,6 +259,29 @@ describe("Zotero.HTTP", function () {
 				// DEBUG: Why are these slightly off?
 				assert.approximately(delayStub.args[0][0], 5 * 1000, 5);
 				assert.approximately(delayStub.args[1][0], 10 * 1000, 5);
+			});
+			
+			it("should start with first interval on new request() call", async function () {
+				var called = 0;
+				server.respond(function (req) {
+					if (req.method == "GET" && req.url.startsWith(baseURL + "error")) {
+						if (called < 1) {
+							req.respond(500, {}, "");
+						}
+						else {
+							req.respond(200, {}, "");
+						}
+					}
+					called++;
+				});
+				spy = sinon.spy(Zotero.HTTP, "_requestInternal");
+				var errorDelayIntervals = [20];
+				await Zotero.HTTP.request("GET", baseURL + "error1", { errorDelayIntervals })
+				called = 0;
+				await Zotero.HTTP.request("GET", baseURL + "error2", { errorDelayIntervals }),
+				assert.equal(4, spy.callCount);
+				assert.equal(delayStub.args[0][0], 20);
+				assert.equal(delayStub.args[1][0], 20);
 			});
 		});
 	});

@@ -45,6 +45,10 @@ Zotero.Styles = new function() {
 	 * Initializes styles cache, loading metadata for styles into memory
 	 */
 	this.init = Zotero.Promise.coroutine(function* (options = {}) {
+		if (Zotero.Prefs.get('cite.useCiteprocRs')) {
+			yield Zotero.CiteprocRs.init();
+		}
+		
 		// Wait until bundled files have been updated, except when this is called by the schema update
 		// code itself
 		if (!options.fromSchemaUpdate) {
@@ -457,7 +461,7 @@ Zotero.Styles = new function() {
 			Components.utils.import("resource://gre/modules/Services.jsm");
 			var shouldInstall = Services.prompt.confirmEx(null,
 				Zotero.getString('styles.install.title'),
-				Zotero.getString('styles.validationWarning', origin),
+				Zotero.getString('styles.validationWarning', [origin, Zotero.appName]),
 				(Services.prompt.BUTTON_POS_0) * (Services.prompt.BUTTON_TITLE_OK)
 				+ (Services.prompt.BUTTON_POS_1) * (Services.prompt.BUTTON_TITLE_CANCEL)
 				+ Services.prompt.BUTTON_POS_1_DEFAULT + Services.prompt.BUTTON_DELAY_ENABLE,
@@ -699,15 +703,17 @@ Zotero.Style = function (style, path) {
 /**
  * Get a citeproc-js CSL.Engine instance
  * @param {String} locale Locale code
+ * @param {String} format Output format one of [rtf, html, text]
  * @param {Boolean} automaticJournalAbbreviations Whether to automatically abbreviate titles
  */
-Zotero.Style.prototype.getCiteProc = function(locale, automaticJournalAbbreviations) {
+Zotero.Style.prototype.getCiteProc = function(locale, format, automaticJournalAbbreviations) {
 	if(!locale) {
 		var locale = Zotero.locale;
 		if(!locale) {
 			var locale = 'en-US';
 		}
 	}
+	format = format || 'text';
 	
 	// APA and some similar styles capitalize the first word of subtitles
 	var uppercaseSubtitlesRE = /^apa($|-)|^academy-of-management($|-)|^(freshwater-science)/;
@@ -783,34 +789,85 @@ Zotero.Style.prototype.getCiteProc = function(locale, automaticJournalAbbreviati
 		}
 	}
 
+	xml = this._eventToEventTitle(xml);
+	
 	try {
-		var citeproc = new Zotero.CiteProc.CSL.Engine(
-			// Juris-M relies on abbrevsFilter plugin.
-			new Zotero.Cite.System({
-				automaticJournalAbbreviations: false,
-				uppercaseSubtitles: this._uppercaseSubtitles
-			}),
-			xml,
-			locale,
-			overrideLocale
-		);
+		var citeproc;
+		if (Zotero.Prefs.get('cite.useCiteprocRs')) {
+			citeproc = new Zotero.CiteprocRs.Engine(
+				new Zotero.Cite.System({
+					automaticJournalAbbreviations,
+					uppercaseSubtitles: uppercaseSubtitles
+				}),
+				this,
+				xml,
+				locale,
+				format == 'text' ? 'plain' : format,
+				overrideLocale
+			);
+		}
+		else {
+			var citeproc = new Zotero.CiteProc.CSL.Engine(
+				// Juris-M relies on abbrevsFilter plugin.
+				new Zotero.Cite.System({
+					automaticJournalAbbreviations: false,
+					uppercaseSubtitles: this._uppercaseSubtitles
+				}),
+				xml,
+				locale,
+				overrideLocale
+			);
+			citeproc.setOutputFormat(format);
+			citeproc.free = () => 0;
+			citeproc.opt.development_extensions.wrap_url_and_doi = true;
+			// Don't try to parse author names. We parse them in itemToCSLJSON
+			citeproc.opt.development_extensions.parse_names = false;
+			// Parse raw dates in Jurism
+			citeproc.opt.development_extensions.raw_date_parsing = true;
 		
-		citeproc.opt.development_extensions.wrap_url_and_doi = true;
-		// Don't try to parse author names. We parse them in itemToCSLJSON
-		citeproc.opt.development_extensions.parse_names = false;
-		// Parse raw dates in Jurism
-		citeproc.opt.development_extensions.raw_date_parsing = true;
-		
-		Zotero.setCitationLanguages({}, citeproc);
-		citeproc.opt.trigraph = trigraph;
-		
-		// See src/attributes.js for adaptive style version settings
+			Zotero.setCitationLanguages({}, citeproc);
+			citeproc.opt.trigraph = trigraph;
+			// See src/attributes.js for adaptive style version settings
+		}
 		
 		return citeproc;
 	} catch(e) {
 		Zotero.logError(e);
 		throw e;
 	}
+};
+
+/**
+ * Temporarily substitute `event-title` for `event`
+ *
+ * Until https://github.com/citation-style-language/styles/issues/6151
+ */
+Zotero.Style.prototype._eventToEventTitle = function (xml) {
+	var parser = Components.classes["@mozilla.org/xmlextras/domparser;1"]
+		.createInstance(Components.interfaces.nsIDOMParser);
+	var doc = parser.parseFromString(xml, "text/xml");
+	// Ignore styles that already include `event-title`
+	if (doc.querySelector('[variable*="event-title"]')) {
+		return xml;
+	}
+	var elems = doc.querySelectorAll('[variable*="event"]');
+	if (!elems.length) {
+		return xml;
+	}
+	var changed = false;
+	for (let elem of elems) {
+		let variable = elem.getAttribute('variable');
+		// Must be "event" or "event foo", not, say, "event-place"
+		if (!/event( |$)/.test(variable)) {
+			continue;
+		}
+		elem.setAttribute('variable', variable.replace(/event(?= |$)/, 'event-title'));
+		changed = true;
+	}
+	if (changed) {
+		xml = doc.documentElement.outerHTML;
+	}
+	return xml;
 };
 
 Zotero.Style.prototype.__defineGetter__("class",

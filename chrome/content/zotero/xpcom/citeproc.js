@@ -22305,7 +22305,7 @@ CSL.Output.Formats.prototype.text = {
         return "\n"+str;
     },
     "@display/left-margin": function (state, str) {
-        return str;
+        return str + " ";
     },
     "@display/right-inline": function (state, str) {
         return str;
@@ -23792,9 +23792,10 @@ CSL.Registry.NameReg = function (state) {
         }
         
         // A hack. Safe if the name object is used only here, for disambiguation purposes.
-        if (state.opt["demote-non-dropping-particle"] === "never" && nameobj["non-dropping-particle"] && nameobj["family"]) {
+        // TEMP: Disabled due to https://github.com/Juris-M/citeproc-js/issues/179
+        /*if (state.opt["demote-non-dropping-particle"] === "never" && nameobj["non-dropping-particle"] && nameobj["family"]) {
             nameobj["family"] = nameobj["non-dropping-particle"] + " " + nameobj["family"];
-        }
+        }*/
         
         //CSL.debug("INS");
         set_keys(this.state, "" + item_id, nameobj);

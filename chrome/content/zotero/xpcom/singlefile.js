@@ -23,7 +23,7 @@
     ***** END LICENSE BLOCK *****
 */
 
-Zotero.SingleFile = {
+Zotero.SingleFile = Object.assign(Zotero.SingleFile || {}, {
 	// These are defaults from SingleFile
 	// Located in: zotero/resources/SingleFile/extension/core/bg/config.js
 	CONFIG: {
@@ -32,7 +32,9 @@ Zotero.SingleFile = {
 		removeUnusedFonts: true,
 		removeFrames: true,
 		removeImports: true,
-		removeScripts: true,
+		blockScripts: true,
+		blockVideos: true,
+		blockAudios: true,
 		compressHTML: true,
 		compressCSS: false,
 		loadDeferredImages: true,
@@ -40,6 +42,7 @@ Zotero.SingleFile = {
 		loadDeferredImagesBlockCookies: false,
 		loadDeferredImagesBlockStorage: false,
 		loadDeferredImagesKeepZoomLevel: false,
+		loadDeferredImagesNativeTimeout: true, // See https://github.com/gildas-lormeau/SingleFile/issues/1026
 		filenameTemplate: "{page-title} ({date-iso} {time-locale}).html",
 		infobarTemplate: "",
 		includeInfobar: false,
@@ -58,8 +61,6 @@ Zotero.SingleFile = {
 		progressBarEnabled: true,
 		maxResourceSizeEnabled: false,
 		maxResourceSize: 10,
-		removeAudioSrc: true,
-		removeVideoSrc: true,
 		displayInfobar: true,
 		displayStats: false,
 		backgroundSave: true,
@@ -67,22 +68,32 @@ Zotero.SingleFile = {
 		autoSaveLoad: false,
 		autoSaveUnload: false,
 		autoSaveLoadOrUnload: true,
+		autoSaveDiscard: false,
+		autoSaveRemove: false,
 		autoSaveRepeat: false,
 		autoSaveRepeatDelay: 10,
 		removeAlternativeFonts: true,
 		removeAlternativeMedias: true,
 		removeAlternativeImages: true,
+		groupDuplicateImages: true,
 		saveRawPage: false,
-		saveToGDrive: false,
+		saveToClipboard: false,
+		addProof: false,
 		forceWebAuthFlow: false,
 		extractAuthCode: true,
-		insertTextBody: true,
 		resolveFragmentIdentifierURLs: false,
 		userScriptEnabled: true,
 		saveCreatedBookmarks: false,
+		allowedBookmarkFolders: [],
 		ignoredBookmarkFolders: [],
 		replaceBookmarkURL: true,
 		saveFavicon: true,
-		includeBOM: false
+		includeBOM: false,
+		warnUnsavedPage: true,
+		insertMetaNoIndex: false,
+		insertMetaCSP: true,
+		passReferrerOnError: false,
+		insertSingleFileComment: true,
+		blockMixedContent: false,
 	}
-};
+});

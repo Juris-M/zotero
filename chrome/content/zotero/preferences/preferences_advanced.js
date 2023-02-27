@@ -24,12 +24,10 @@
 */
 
 Components.utils.import("resource://gre/modules/Services.jsm");
-import FilePicker from 'zotero/filePicker';
+import FilePicker from 'zotero/modules/filePicker';
 
 Zotero_Preferences.Advanced = {
 	DEFAULT_OPENURL_RESOLVER: 'https://www.worldcat.org/registry/gateway',
-	
-	_openURLResolvers: null,
 	
 	init: function () {
 		Zotero_Preferences.Keys.init();
@@ -462,12 +460,6 @@ Zotero_Preferences.Advanced = {
 		var menupopup = openURLMenu.firstChild;
 		menupopup.innerHTML = '';
 		
-		var defaultMenuItem = document.createElement('menuitem');
-		defaultMenuItem.setAttribute('label', Zotero.getString('general.default'));
-		defaultMenuItem.setAttribute('value', this.DEFAULT_OPENURL_RESOLVER);
-		defaultMenuItem.setAttribute('type', 'checkbox');
-		menupopup.appendChild(defaultMenuItem);
-		
 		var customMenuItem = document.createElement('menuitem');
 		customMenuItem.setAttribute('label', Zotero.getString('general.custom'));
 		customMenuItem.setAttribute('value', 'custom');
@@ -521,13 +513,8 @@ Zotero_Preferences.Advanced = {
 			}
 		}
 		
-		// Default
-		if (currentResolver == this.DEFAULT_OPENURL_RESOLVER) {
-			openURLMenu.setAttribute('label', Zotero.getString('general.default'));
-			defaultMenuItem.setAttribute('checked', true);
-			Zotero.Prefs.clear('openURL.name');
-		}
-		else if (selectedName) {
+		// From directory
+		if (selectedName) {
 			openURLMenu.setAttribute('label', selectedName);
 			// If we found a match, update stored name
 			Zotero.Prefs.set('openURL.name', selectedName);
@@ -555,15 +542,8 @@ Zotero_Preferences.Advanced = {
 		var openURLServerField = document.getElementById('openURLServerField');
 		var openURLVersionMenu = document.getElementById('openURLVersionMenu');
 		
-		// Default
-		if (event.target.value == this.DEFAULT_OPENURL_RESOLVER) {
-			Zotero.Prefs.clear('openURL.name');
-			Zotero.Prefs.clear('openURL.resolver');
-			Zotero.Prefs.clear('openURL.version');
-			openURLServerField.value = this.DEFAULT_OPENURL_RESOLVER;
-		}
 		// If "Custom" selected, clear URL field
-		else if (event.target.value == "custom") {
+		if (event.target.value == "custom") {
 			Zotero.Prefs.clear('openURL.name');
 			Zotero.Prefs.set('openURL.resolver', '');
 			Zotero.Prefs.clear('openURL.version');
@@ -629,15 +609,18 @@ Zotero_Preferences.Advanced = {
 	onLocaleChange: function () {
 		var requestedLocale = Services.locale.getRequestedLocale();
 		var menu = document.getElementById('locale-menu');
+		
 		if (menu.value == 'automatic') {
 			// Changed if not already set to automatic (unless we have the automatic locale name,
 			// meaning we just switched away to the same manual locale and back to automatic)
-			var changed = requestedLocale && menu.label != this._getAutomaticLocaleMenuLabel();
+			var changed = requestedLocale
+				&& requestedLocale == Zotero.locale
+				&& menu.label != this._getAutomaticLocaleMenuLabel();
 			Services.locale.setRequestedLocales(null);
 		}
 		else {
 			// Changed if moving to a locale other than the current one
-			var changed = Zotero.locale != menu.value
+			var changed = requestedLocale != menu.value
 			Services.locale.setRequestedLocales([menu.value]);
 		}
 		

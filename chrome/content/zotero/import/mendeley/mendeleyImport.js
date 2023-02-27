@@ -1,19 +1,67 @@
-var EXPORTED_SYMBOLS = ["Zotero_Import_Mendeley"];
+/* eslint-disable no-await-in-loop, camelcase */
+/* global mendeleyDBMaps:false, mendeleyOnlineMappings:false, mendeleyAPIUtils:false */
+var EXPORTED_SYMBOLS = ["Zotero_Import_Mendeley"]; //eslint-disable-line no-unused-vars
 
 Components.utils.import("resource://gre/modules/Services.jsm");
 Components.utils.import("resource://gre/modules/osfile.jsm");
 Services.scriptloader.loadSubScript("chrome://zotero/content/include.js");
+Services.scriptloader.loadSubScript("chrome://zotero/content/import/mendeley/mendeleyOnlineMappings.js");
+Services.scriptloader.loadSubScript("chrome://zotero/content/import/mendeley/mendeleyAPIUtils.js");
+Services.scriptloader.loadSubScript("chrome://zotero/content/import/mendeley/mendeleySchemaMap.js");
+
+const importerVersion = 1;
+const { apiTypeToDBType, apiFieldToDBField } = mendeleyOnlineMappings;
+const { apiFetch, codeAuth, directAuth, get, getAll } = mendeleyAPIUtils;
+
+const colorMap = new Map();
+colorMap.set('rgb(255, 245, 173)', '#ffd400');
+colorMap.set('#fff5ad', '#ffd400');
+colorMap.set('rgb(255, 181, 182)', '#ff6666');
+colorMap.set('#ffb5b6', '#ff6666');
+colorMap.set('rgb(186, 226, 255)', '#2ea8e5');
+colorMap.set('#bae2ff', '#2ea8e5');
+colorMap.set('rgb(211, 194, 255)', '#a28ae5');
+colorMap.set('#d3c2ff', '#a28ae5');
+colorMap.set('rgb(220, 255, 176)', '#5fb236');
+colorMap.set('#dcffb0', '#5fb236');
 
 var Zotero_Import_Mendeley = function () {
 	this.createNewCollection = null;
 	this.linkFiles = null;
 	this.newItems = [];
+	this.newCollections = [];
+	this.mendeleyAuth = null;
+	this.newItemsOnly = false;
+	this.relinkOnly = false;
+	this.numRelinked = 0;
 	
-	this._db;
-	this._file;
-	this._itemDone;
+	this._tokens = null;
+	this._db = null;
+	this._file = null;
+	this._saveOptions = null;
+	this._itemDone = () => {};
 	this._progress = 0;
-	this._progressMax;
+	this._progressMax = 0;
+	this._tmpFilesToDelete = [];
+	this._caller = null;
+	this._interrupted = false;
+	this._totalSize = 0;
+	this._started = Date.now();
+	this._interruptChecker = (tickProgress = false) => {
+		if (this._interrupted) {
+			throw new Error(`Mendeley import interrupted!
+				Started: ${this._started} (${Math.round((Date.now() - this._started) / 1000)}s ago)
+				Progress: ${this._progress} / ${this._progressMax}
+				New items created: ${this.newItems.length}
+				Total size of files to download: ${Math.round(this._totalSize / 1024)}KB
+			`);
+		}
+
+		if (tickProgress) {
+			this._progress++;
+			this._itemDone();
+		}
+	};
 };
 
 Zotero_Import_Mendeley.prototype.setLocation = function (file) {
@@ -22,9 +70,9 @@ Zotero_Import_Mendeley.prototype.setLocation = function (file) {
 
 Zotero_Import_Mendeley.prototype.setHandler = function (name, handler) {
 	switch (name) {
-	case 'itemDone':
-		this._itemDone = handler;
-		break;
+		case 'itemDone':
+			this._itemDone = handler;
+			break;
 	}
 };
 
@@ -42,74 +90,178 @@ Zotero_Import_Mendeley.prototype.setTranslator = function () {};
 
 Zotero_Import_Mendeley.prototype.translate = async function (options = {}) {
 	this._linkFiles = options.linkFiles;
-	
-	if (true) {
-		Services.scriptloader.loadSubScript("chrome://zotero/content/import/mendeley/mendeleySchemaMap.js");
-	}
-	// TEMP: Load uncached from ~/zotero-client for development
-	else {
-		Components.utils.import("resource://gre/modules/FileUtils.jsm");
-		let file = FileUtils.getDir("Home", []);
-		file = OS.Path.join(file.path, 'zotero-client', 'chrome', 'content', 'zotero', 'import', 'mendeley', 'mendeleySchemaMap.js');
-		let fileURI = OS.Path.toFileURI(file);
-		let xmlhttp = await Zotero.HTTP.request(
-			'GET',
-			fileURI,
-			{
-				noCache: true,
-				responseType: 'text'
-			}
-		);
-		eval(xmlhttp.response);
-	}
+	this._saveOptions = {
+		skipSelect: true,
+		...(options.saveOptions || {})
+	};
+
+	this.newItemsOnly = this.newItemsOnly || this.relinkOnly;
 	
 	const libraryID = options.libraryID || Zotero.Libraries.userLibraryID;
 	const { key: rootCollectionKey } = options.collections
 		? Zotero.Collections.getLibraryAndKeyFromID(options.collections[0])
 		: {};
+
+	Zotero.debug(`Begining Mendeley import at ${this._started}. libraryID: ${libraryID}, linkFiles: ${this.linkFiles}, rootCollectionKey: ${rootCollectionKey}, newItemsOnly: ${this.newItemsOnly}, relinkOnly: ${this.relinkOnly}`);
 	
 	// TODO: Get appropriate version based on schema version
 	const mapVersion = 83;
-	map = map[mapVersion];
+	const map = mendeleyDBMaps[mapVersion];
 	
 	const mendeleyGroupID = 0;
 	
 	// Disable syncing while we're importing
 	var resumeSync = Zotero.Sync.Runner.delayIndefinite();
 	
-	this._db = new Zotero.DBConnection(this._file);
-	
+	if (this._file) {
+		this._db = new Zotero.DBConnection(this._file);
+	}
+
 	try {
-		if (!await this._isValidDatabase()) {
+		if (this._file && !await this._isValidDatabase()) {
 			throw new Error("Not a valid Mendeley database");
 		}
+
+		if (this.mendeleyAuth) {
+			this._tokens = this.mendeleyAuth;
+		}
+		else if (this.mendeleyCode) {
+			this._tokens = await codeAuth(this.mendeleyCode);
+		}
+
+		if (!this._file && !this._tokens) {
+			throw new Error("Missing import token");
+		}
+
+		// we don't know how long the import will be but want to show progress to give
+		// feedback that import has started so we arbitrary set progress at 2%
+		this._progress = 1;
+		this._progressMax = 50;
+		this._itemDone();
+
+		let folderKeys = new Map();
+		if(!this.relinkOnly) {
+			const folders = this._tokens
+				? await this._getFoldersAPI(mendeleyGroupID)
+				: await this._getFoldersDB(mendeleyGroupID);
+
+			const collectionJSON = this._foldersToAPIJSON(folders, rootCollectionKey);
+			folderKeys = this._getFolderKeys(collectionJSON);
+
+			await this._saveCollections(libraryID, collectionJSON, folderKeys);
+		}
 		
-		// Collections
-		let folders = await this._getFolders(mendeleyGroupID);
-		let collectionJSON = this._foldersToAPIJSON(folders, rootCollectionKey);
-		let folderKeys = this._getFolderKeys(collectionJSON);
-		await this._saveCollections(libraryID, collectionJSON, folderKeys);
-		
+		this._interruptChecker(true);
 		//
 		// Items
 		//
-		let documents = await this._getDocuments(mendeleyGroupID);
-		this._progressMax = documents.length;
+		let documents = this._tokens
+			? await this._getDocumentsAPI(mendeleyGroupID)
+			: await this._getDocumentsDB(mendeleyGroupID);
+
+		// Update progress to reflect items to import and remaining meta data stages
+		// We arbitrary set progress at approx 4%. We then add 8, one "tick" for each remaining meta data download.
+		this._progress = Math.max(Math.floor(0.04 * documents.length), 2);
+		this._progressMax = documents.length + this._progress + 8;
 		// Get various attributes mapped to document ids
-		let urls = await this._getDocumentURLs(mendeleyGroupID);
-		let creators = await this._getDocumentCreators(mendeleyGroupID, map.creatorTypes);
-		let tags = await this._getDocumentTags(mendeleyGroupID);
-		let collections = await this._getDocumentCollections(
-			mendeleyGroupID,
-			documents,
-			rootCollectionKey,
-			folderKeys
-		);
-		let files = await this._getDocumentFiles(mendeleyGroupID);
-		let annotations = await this._getDocumentAnnotations(mendeleyGroupID);
+		let urls = this._tokens
+			? await this._getDocumentURLsAPI(documents)
+			: await this._getDocumentURLsDB(mendeleyGroupID);
+
+		this._interruptChecker(true);
+
+		let creators = this._tokens
+			? await this._getDocumentCreatorsAPI(documents)
+			: await this._getDocumentCreatorsDB(mendeleyGroupID, map.creatorTypes);
+
+		this._interruptChecker(true);
+
+		let tags = this._tokens
+			? await this._getDocumentTagsAPI(documents)
+			: await this._getDocumentTagsDB(mendeleyGroupID);
+
+		this._interruptChecker(true);
+
+		let collections = this.relinkOnly ? new Map() : this._tokens
+			? await this._getDocumentCollectionsAPI(documents, rootCollectionKey, folderKeys)
+			: await this._getDocumentCollectionsDB(mendeleyGroupID, documents, rootCollectionKey, folderKeys);
+
+		this._interruptChecker(true);
+
+		let files = this.relinkOnly ? new Map() : this._tokens
+			? await this._getDocumentFilesAPI(documents)
+			: await this._getDocumentFilesDB(mendeleyGroupID);
+
+		this._interruptChecker(true);
+
+		let annotations = this._tokens
+			? await this._getDocumentAnnotationsAPI(mendeleyGroupID)
+			: await this._getDocumentAnnotationsDB(mendeleyGroupID);
+
+		this._interruptChecker(true);
+
+		let profile = this._tokens
+			? await this._getProfileAPI()
+			: await this._getProfileDB();
+
+		this._interruptChecker(true);
+
+		let groups = this._tokens
+			? await this._getGroupsAPI()
+			: await this._getGroupsDB();
+
+		this._interruptChecker(true);
+
+		const fileHashLookup = new Map();
+
+		for (let [documentID, fileEntries] of files) {
+			for (let fileEntry of fileEntries) {
+				fileHashLookup.set(fileEntry.hash, documentID);
+			}
+		}
+
+		for (let group of groups) {
+			let groupAnnotations = this._tokens
+				? await this._getDocumentAnnotationsAPI(group.id, profile.id)
+				: await this._getDocumentAnnotationsDB(group.id, profile.id);
+
+			for (let groupAnnotationsList of groupAnnotations.values()) {
+				for (let groupAnnotation of groupAnnotationsList) {
+					if (fileHashLookup.has(groupAnnotation.hash)) {
+						const targetDocumentID = fileHashLookup.get(groupAnnotation.hash);
+						if (!annotations.has(targetDocumentID)) {
+							annotations.set(targetDocumentID, []);
+						}
+						annotations.get(targetDocumentID).push(groupAnnotation);
+					}
+				}
+			}
+		}
+
 		for (let document of documents) {
 			let docURLs = urls.get(document.id);
 			let docFiles = files.get(document.id);
+
+			if (this._tokens) {
+				// extract identifiers
+				['arxiv', 'doi', 'isbn', 'issn', 'pmid', 'scopus', 'pui', 'pii', 'sgr'].forEach(
+					i => document[i] = (document.identifiers || {})[i]
+				);
+				
+				// normalise item type from the API to match Mendeley DB
+				document.type = apiTypeToDBType[document.type] || document.type;
+
+				// normalise field names from the API to match Mendeley DB
+				Object.keys(apiFieldToDBField).forEach((key) => {
+					if (key in document) {
+						const newKey = apiFieldToDBField[key];
+						if (newKey) {
+							document[newKey] = document[key];
+						}
+						delete document[key];
+					}
+				});
+			}
 			
 			// If there's a single PDF file, use "PDF" for the attachment title
 			if (docFiles && docFiles.length == 1 && docFiles[0].fileURL.endsWith('.pdf')) {
@@ -136,6 +288,15 @@ Zotero_Import_Mendeley.prototype.translate = async function (options = {}) {
 				}
 			}
 			
+			// Set content type for PDFs
+			if (docFiles) {
+				docFiles.forEach((file) => {
+					if (file.fileURL.endsWith('.pdf')) {
+						file.contentType = 'application/pdf';
+					}
+				});
+			}
+			
 			// Save each document with its attributes
 			let itemJSON = await this._documentToAPIJSON(
 				map,
@@ -143,11 +304,10 @@ Zotero_Import_Mendeley.prototype.translate = async function (options = {}) {
 				docURLs,
 				creators.get(document.id),
 				tags.get(document.id),
-				collections.get(document.id),
-				annotations.get(document.id)
+				collections.get(document.id)
 			);
 			let documentIDMap = await this._saveItems(libraryID, itemJSON);
-			// Save the document's attachments and extracted annotations for any of them
+			// Save the document's attachments and annotations for any of them
 			if (docFiles) {
 				await this._saveFilesAndAnnotations(
 					docFiles,
@@ -156,16 +316,32 @@ Zotero_Import_Mendeley.prototype.translate = async function (options = {}) {
 					annotations.get(document.id)
 				);
 			}
-			this.newItems.push(Zotero.Items.get(documentIDMap.get(document.id)));
-			this._progress++;
-			if (this._itemDone) {
-				this._itemDone();
-			}
+			this._interruptChecker(true);
 		}
+		if (this.newItemsOnly && rootCollectionKey && this.newItems.length === 0) {
+			Zotero.debug(`Mendeley Import detected no new items, removing import collection containing ${this.newCollections.length} collections created during the import`);
+			const rootCollection = await Zotero.Collections.getAsync(options.collections[0]);
+			await rootCollection.eraseTx(this._saveOptions);
+		}
+		
+		await Zotero.DB.queryAsync("REPLACE INTO settings VALUES ('mendeleyImport', 'version', ?)", importerVersion);
+		
+		Zotero.debug(`Completed Mendeley import in ${Math.round((Date.now() - this._started) / 1000)}s. (Started: ${this._started})`);
+	}
+	catch (e) {
+		Zotero.logError(e);
 	}
 	finally {
 		try {
-			await this._db.closeDatabase();
+			if (this._file) {
+				await this._db.closeDatabase();
+			}
+			if (this._tokens) {
+				Zotero.debug(`Clearing ${this._tmpFilesToDelete.length} temporary files after Mendeley import`);
+				await Promise.all(
+					this._tmpFilesToDelete.map(f => this._removeTemporaryFile(f))
+				);
+			}
 		}
 		catch (e) {
 			Zotero.logError(e);
@@ -174,6 +350,24 @@ Zotero_Import_Mendeley.prototype.translate = async function (options = {}) {
 		resumeSync();
 	}
 };
+
+Zotero_Import_Mendeley.prototype.interrupt = function () {
+	this._interrupted = true;
+	
+	if (this._caller) {
+		this._caller.stop();
+	}
+};
+
+Zotero_Import_Mendeley.prototype._removeTemporaryFile = async function (file) {
+	try {
+		await Zotero.File.removeIfExists(file);
+	}
+	catch (e) {
+		Zotero.logError("Error while removing temporary file " + file + ": " + e);
+	}
+};
+
 
 Zotero_Import_Mendeley.prototype._isValidDatabase = async function () {
 	var tables = [
@@ -200,7 +394,7 @@ Zotero_Import_Mendeley.prototype._isValidDatabase = async function () {
 //
 // Collections
 //
-Zotero_Import_Mendeley.prototype._getFolders = async function (groupID) {
+Zotero_Import_Mendeley.prototype._getFoldersDB = async function (groupID) {
 	return this._db.queryAsync(
 		`SELECT F.id, F.uuid, F.name, `
 			// Top-level folders can have a parentId of 0 instead of -1 (by mistake?)
@@ -211,6 +405,22 @@ Zotero_Import_Mendeley.prototype._getFolders = async function (groupID) {
 			+ `WHERE groupId=?`,
 		groupID
 	);
+};
+
+Zotero_Import_Mendeley.prototype._getFoldersAPI = async function (groupID) {
+	const params = {};
+	const headers = { Accept: 'application/vnd.mendeley-folder.1+json' };
+
+	if (groupID && groupID !== 0) {
+		params.group_id = groupID; //eslint-disable-line camelcase
+	}
+	return (await getAll(this._tokens, 'folders', params, headers, {}, this._interruptChecker)).map(f => ({
+		id: f.id,
+		uuid: f.id,
+		name: f.name,
+		parentId: f.parent_id || -1,
+		remoteUuid: f.id
+	}));
 };
 
 /**
@@ -224,11 +434,11 @@ Zotero_Import_Mendeley.prototype._foldersToAPIJSON = function (folderRows, paren
 };
 
 Zotero_Import_Mendeley.prototype._getFolderDescendents = function (folderID, folderKey, folderRows, maxDepth) {
-	if (maxDepth == 0) return []
+	if (maxDepth == 0) return [];
 	var descendents = [];
 	var children = folderRows
 		.filter(f => f.parentId == folderID)
-		.map(f => {
+		.map((f) => {
 			let c = {
 				folderID: f.id,
 				remoteUUID: f.remoteUuid,
@@ -290,6 +500,7 @@ Zotero_Import_Mendeley.prototype._saveCollections = async function (libraryID, j
 				collection.key = collectionJSON.key;
 				await collection.loadPrimaryData();
 			}
+			this.newCollections.push(collection);
 		}
 		
 		// Remove external ids before saving
@@ -298,9 +509,7 @@ Zotero_Import_Mendeley.prototype._saveCollections = async function (libraryID, j
 		delete toSave.remoteUUID;
 		
 		collection.fromJSON(toSave);
-		await collection.saveTx({
-			skipSelect: true
-		});
+		await collection.saveTx(this._saveOptions);
 	}
 };
 
@@ -329,13 +538,13 @@ Zotero_Import_Mendeley.prototype._findExistingCollection = async function (libra
 	Zotero.debug(`Found existing collection ${collections[0].libraryKey} for `
 		+ `${predicate} ${collectionJSON.relations[predicate]}`);
 	return collections[0];
-}
+};
 
 
 //
 // Items
 //
-Zotero_Import_Mendeley.prototype._getDocuments = async function (groupID) {
+Zotero_Import_Mendeley.prototype._getDocumentsDB = async function (groupID) {
 	return this._db.queryAsync(
 		`SELECT D.*, RD.remoteUuid FROM Documents D `
 			+ `JOIN RemoteDocuments RD ON (D.id=RD.documentId) `
@@ -344,12 +553,36 @@ Zotero_Import_Mendeley.prototype._getDocuments = async function (groupID) {
 	);
 };
 
+Zotero_Import_Mendeley.prototype._getDocumentsAPI = async function (groupID) {
+	const params = { view: 'all' };
+	const headers = { Accept: 'application/vnd.mendeley-document-with-files-list+json' };
+
+	if (groupID && groupID !== 0) {
+		params.group_id = groupID; //eslint-disable-line camelcase
+	}
+	
+
+	return (await getAll(this._tokens, 'documents', params, headers, {}, this._interruptChecker)).map(d => {
+		const processedDocument = { ...d, remoteUuid: d.id };
+
+		try {
+			const clientData = JSON.parse(d.client_data);
+			processedDocument.uuid = clientData.desktop_id ? clientData.desktop_id : d.id;
+		}
+		catch (_) {
+			processedDocument.uuid = d.id;
+		}
+
+		return processedDocument;
+	});
+};
+
 /**
  * Get a Map of document ids to arrays of URLs
  *
  * @return {Map<Number,String[]>}
  */
-Zotero_Import_Mendeley.prototype._getDocumentURLs = async function (groupID) {
+Zotero_Import_Mendeley.prototype._getDocumentURLsDB = async function (groupID) {
 	var rows = await this._db.queryAsync(
 		`SELECT documentId, CAST(url AS TEXT) AS url FROM DocumentUrls DU `
 			+ `JOIN RemoteDocuments USING (documentId) `
@@ -366,13 +599,17 @@ Zotero_Import_Mendeley.prototype._getDocumentURLs = async function (groupID) {
 	return map;
 };
 
+Zotero_Import_Mendeley.prototype._getDocumentURLsAPI = async function (documents) {
+	return new Map(documents.map(d => ([d.id, d.websites])));
+};
+
 /**
  * Get a Map of document ids to arrays of creator API JSON
  *
  * @param {Integer} groupID
  * @param {Object} creatorTypeMap - Mapping of Mendeley creator types to Zotero creator types
  */
-Zotero_Import_Mendeley.prototype._getDocumentCreators = async function (groupID, creatorTypeMap) {
+Zotero_Import_Mendeley.prototype._getDocumentCreatorsDB = async function (groupID, creatorTypeMap) {
 	var rows = await this._db.queryAsync(
 		`SELECT * FROM DocumentContributors `
 			+ `JOIN RemoteDocuments USING (documentId) `
@@ -393,10 +630,21 @@ Zotero_Import_Mendeley.prototype._getDocumentCreators = async function (groupID,
 	return map;
 };
 
+Zotero_Import_Mendeley.prototype._getDocumentCreatorsAPI = async function (documents) {
+	var map = new Map();
+	for (let doc of documents) {
+		const authors = (doc.authors || []).map(c => this._makeCreator('author', c.first_name, c.last_name));
+		const editors = (doc.editors || []).map(c => this._makeCreator('editor', c.first_name, c.last_name));
+		const translators = (doc.translators || []).map(c => this._makeCreator('translator', c.first_name, c.last_name));
+		map.set(doc.id, [...authors, ...editors, ...translators]);
+	}
+	return map;
+};
+
 /**
  * Get a Map of document ids to arrays of tag API JSON
  */
-Zotero_Import_Mendeley.prototype._getDocumentTags = async function (groupID) {
+Zotero_Import_Mendeley.prototype._getDocumentTagsDB = async function (groupID) {
 	var rows = await this._db.queryAsync(
 		// Manual tags
 		`SELECT documentId, tag, 0 AS type FROM DocumentTags `
@@ -424,10 +672,19 @@ Zotero_Import_Mendeley.prototype._getDocumentTags = async function (groupID) {
 	return map;
 };
 
+Zotero_Import_Mendeley.prototype._getDocumentTagsAPI = async function (documents) {
+	var map = new Map();
+	for (let doc of documents) {
+		const tags = [...(doc.tags || []).map(tag => ({ tag, type: 0 })), ...(doc.keywords || []).map(tag => ({ tag, type: 1 }))];
+		map.set(doc.id, tags);
+	}
+	return map;
+};
+
 /**
  * Get a Map of document ids to arrays of collection keys
  */
-Zotero_Import_Mendeley.prototype._getDocumentCollections = async function (groupID, documents, rootCollectionKey, folderKeys) {
+Zotero_Import_Mendeley.prototype._getDocumentCollectionsDB = async function (groupID, documents, rootCollectionKey, folderKeys) {
 	var rows = await this._db.queryAsync(
 		`SELECT documentId, folderId FROM DocumentFolders DF `
 			+ `JOIN RemoteDocuments USING (documentId) `
@@ -452,12 +709,28 @@ Zotero_Import_Mendeley.prototype._getDocumentCollections = async function (group
 	return map;
 };
 
+Zotero_Import_Mendeley.prototype._getDocumentCollectionsAPI = async function (documents, rootCollectionKey, folderKeys) {
+	return new Map(
+		documents.map((d) => {
+			const keys = (d.folder_uuids || []).map((fuuid) => {
+				const key = folderKeys.get(fuuid);
+				if (!key) {
+					Zotero.debug(`Document folder ${fuuid} not found -- skipping`, 2);
+				}
+				return key;
+			}).filter(Boolean);
+			// Add all documents to root collection if specified
+			return [d.id, [...keys, ...(rootCollectionKey ? [rootCollectionKey] : [])]];
+		})
+	);
+};
+
 /**
  * Get a Map of document ids to arrays of file metadata
  *
  * @return {Map<Number,Object[]>}
  */
-Zotero_Import_Mendeley.prototype._getDocumentFiles = async function (groupID) {
+Zotero_Import_Mendeley.prototype._getDocumentFilesDB = async function (groupID) {
 	var rows = await this._db.queryAsync(
 		`SELECT documentId, hash, localUrl FROM DocumentFiles `
 			+ `JOIN Files USING (hash) `
@@ -482,38 +755,246 @@ Zotero_Import_Mendeley.prototype._getDocumentFiles = async function (groupID) {
 	return map;
 };
 
+Zotero_Import_Mendeley.prototype._fetchFile = async function (fileID, filePath) {
+	const fileDir = OS.Path.dirname(filePath);
+	await Zotero.File.createDirectoryIfMissingAsync(fileDir);
+	const xhr = await apiFetch(this._tokens, `files/${fileID}`, {}, {}, { responseType: 'blob', followRedirects: false });
+	const uri = xhr.getResponseHeader('location');
+	await Zotero.File.download(uri, filePath);
+
+	this._progress += 1;
+	if (this._itemDone) {
+		this._itemDone();
+	}
+};
+
+Zotero_Import_Mendeley.prototype._getDocumentFilesAPI = async function (documents) {
+	const map = new Map();
+	
+	this._totalSize = 0;
+
+	Components.utils.import("resource://zotero/concurrentCaller.js");
+	this._caller = new ConcurrentCaller({
+		numConcurrent: 6,
+		onError: e => Zotero.logError(e),
+		logger: Zotero.debug,
+		Promise: Zotero.Promise
+	});
+
+	for (let doc of documents) {
+		const files = [];
+		for (let file of (doc.files || [])) {
+			// Most filesystems limit filename to 255 bytes
+			let fileName = Zotero.File.truncateFileName(Zotero.File.getValidFileName(file.file_name || 'file'), 255);
+			let ext = fileName.includes('.') ? fileName.split('.').pop() : '';
+			let fileBaseName = ext === '' ? fileName : fileName.slice(0, -ext.length - 1);
+			let tmpFile = OS.Path.join(Zotero.getTempDirectory().path, `m-api-${file.id}.${ext}`);
+			
+			this._tmpFilesToDelete.push(tmpFile);
+			this._caller.add(this._fetchFile.bind(this, file.id, tmpFile));
+			files.push({
+				fileURL: OS.Path.toFileURI(tmpFile),
+				title: file.file_name || '',
+				contentType: file.mime_type || '',
+				hash: file.filehash,
+				fileBaseName
+			});
+			this._totalSize += file.size;
+			this._progressMax += 1;
+		}
+		map.set(doc.id, files);
+	}
+	// TODO: check if enough space available totalSize
+	await this._caller.runAll();
+	this._caller = null;
+	return map;
+};
+
+
 /**
  * Get a Map of document ids to arrays of annotations
  */
-Zotero_Import_Mendeley.prototype._getDocumentAnnotations = async function (groupID) {
+Zotero_Import_Mendeley.prototype._getDocumentAnnotationsDB = async function (groupID, profileID = null) {
+	var map = new Map();
+	
+	// Highlights
 	var rows = await this._db.queryAsync(
-		`SELECT documentId, uuid, fileHash, page, note, color `
+		`SELECT documentId, FH.id AS highlightId, uuid, fileHash, color, createdTime, `
+			+ `page, x1, y1, x2, y2 `
+			+ `FROM FileHighlights FH `
+			+ `JOIN RemoteDocuments USING (documentId) `
+			+ `JOIN FileHighlightRects FHR ON (FH.id=FHR.highlightId) `
+			+ `WHERE groupId=? `
+			+ (profileID !== null ? `AND profileUuid=? ` : ``)
+			+ `ORDER BY FH.id, page, y1 DESC, x1`,
+		profileID !== null ? [groupID, profileID] : groupID
+	);
+	var currentHighlight = null;
+	for (let i = 0; i < rows.length; i++) {
+		let row = rows[i];
+		let docAnnotations = map.get(row.documentId);
+		if (!docAnnotations) docAnnotations = [];
+		// There can be multiple highlight rows per annotation, so add the last annotation when the
+		// UUID changes
+		if (!currentHighlight || currentHighlight.uuid != row.uuid) {
+			if (currentHighlight) {
+				docAnnotations.push(currentHighlight);
+				map.set(row.documentId, docAnnotations);
+			}
+			currentHighlight = {
+				type: 'highlight',
+				uuid: row.uuid,
+				hash: row.fileHash,
+				color: row.color,
+				dateAdded: row.createdTime,
+				page: null,
+				rects: []
+			};
+		}
+		currentHighlight.page = row.page;
+		currentHighlight.rects.push({
+			x1: row.x1,
+			y1: row.y1,
+			x2: row.x2,
+			y2: row.y2,
+		});
+		if (i == rows.length - 1) {
+			docAnnotations.push(currentHighlight);
+			map.set(row.documentId, docAnnotations);
+		}
+	}
+	
+	// Notes
+	rows = await this._db.queryAsync(
+		`SELECT documentId, uuid, fileHash, page, x, y, note, color, modifiedTime, createdTime `
 			+ `FROM FileNotes `
 			+ `JOIN RemoteDocuments USING (documentId) `
 			+ `WHERE groupId=? `
+			+ (profileID !== null ? `AND profileUuid=? ` : ``)
 			+ `ORDER BY page, y, x`,
-		groupID
+		profileID !== null ? [groupID, profileID] : groupID
 	);
-	var map = new Map();
 	for (let row of rows) {
 		let docAnnotations = map.get(row.documentId);
 		if (!docAnnotations) docAnnotations = [];
 		docAnnotations.push({
+			type: 'note',
 			uuid: row.uuid,
 			hash: row.fileHash,
+			x: row.x,
+			y: row.y,
 			note: row.note,
 			page: row.page,
-			color: row.color
+			color: row.color,
+			dateAdded: row.createdTime,
+			dateModified: row.modifiedTime
 		});
 		map.set(row.documentId, docAnnotations);
 	}
+	
 	return map;
+};
+
+Zotero_Import_Mendeley.prototype._getDocumentAnnotationsAPI = async function (groupID, profileID = null) {
+	const params = {};
+
+	if (groupID && groupID !== 0) {
+		params.group_id = groupID; //eslint-disable-line camelcase
+	}
+
+	const map = new Map();
+	(await getAll(this._tokens, 'annotations', params, { Accept: 'application/vnd.mendeley-annotation.1+json' }, {}, this._interruptChecker))
+		.forEach((a) => {
+			if (profileID !== null && a.profile_id !== profileID) {
+				// optionally filter annotations by profile id
+				return;
+			}
+
+			if (a.type === 'note') {
+				// This is a "general note" in Mendeley. It appears to be the same thing as
+				// document.note thus not an annotations and can be discarded
+				return;
+			}
+
+			const rects = (a.positions || []).map(position => ({
+				x1: (position.top_left || {}).x || 0,
+				y1: (position.top_left || {}).y || 0,
+				x2: (position.bottom_right || {}).x || 0,
+				y2: (position.bottom_right || {}).y || 0,
+			}));
+			let page = 1;
+			try {
+				// const page = ((a.positions || [])[0] || {}).page; // ???
+				page = a.positions[0].page;
+			}
+			catch (e) { }
+			
+			const annotation = {
+				id: a.id,
+				color: a.color
+					? `#${a.color.r.toString(16).padStart(2, '0')}${a.color.g.toString(16).padStart(2, '0')}${a.color.b.toString(16).padStart(2, '0')}`
+					: null,
+				dateAdded: a.created,
+				dateModified: a.last_modified,
+				hash: a.filehash,
+				uuid: a.id,
+				page,
+			};
+
+			if (a.type === 'highlight') {
+				annotation.type = 'highlight';
+				annotation.rects = rects;
+			}
+
+			if (a.type === 'sticky_note' && rects.length > 0) {
+				annotation.type = 'note';
+				annotation.note = a.text;
+				annotation.x = rects[0].x1;
+				annotation.y = rects[0].y1;
+			}
+
+			if (!map.has(a.document_id)) {
+				map.set(a.document_id, []);
+			}
+			map.get(a.document_id).push(annotation);
+		});
+	return map;
+};
+
+Zotero_Import_Mendeley.prototype._getGroupsAPI = async function () {
+	const params = { type: 'all' };
+	const headers = { Accept: 'application/vnd.mendeley-group-list+json' };
+	
+	return getAll(this._tokens, 'groups/v2', params, headers, {}, this._interruptChecker);
+};
+
+Zotero_Import_Mendeley.prototype._getGroupsDB = async function () {
+	const rows = await this._db.queryAsync(
+		"SELECT id, remoteUUid, name, isOwner FROM Groups WHERE remoteUuID != ?", ['']
+	);
+	return rows;
+};
+
+
+Zotero_Import_Mendeley.prototype._getProfileAPI = async function () {
+	const params = { };
+	const headers = { Accept: 'application/vnd.mendeley-profiles.2+json' };
+	
+	return get(this._tokens, 'profiles/v2/me', params, headers);
+};
+
+Zotero_Import_Mendeley.prototype._getProfileDB = async function () {
+	const rows = await this._db.queryAsync(
+		"SELECT uuid as id, firstName, lastName, displayName FROM Profiles ORDER BY ROWID LIMIT 1"
+	);
+
+	return rows[0];
 };
 
 /**
  * Create API JSON array with item and any child attachments or notes
  */
-Zotero_Import_Mendeley.prototype._documentToAPIJSON = async function (map, documentRow, urls, creators, tags, collections, annotations) {
+Zotero_Import_Mendeley.prototype._documentToAPIJSON = async function (map, documentRow, urls, creators, tags, collections) {
 	var parent = {
 		key: Zotero.DataObjectUtilities.generateKey()
 	};
@@ -584,14 +1065,14 @@ Zotero_Import_Mendeley.prototype._documentToAPIJSON = async function (map, docum
 	
 	for (let field in parent) {
 		switch (field) {
-		case 'itemType':
-		case 'key':
-		case 'parentItem':
-		case 'note':
-		case 'creators':
-		case 'dateAdded':
-		case 'dateModified':
-			continue;
+			case 'itemType':
+			case 'key':
+			case 'parentItem':
+			case 'note':
+			case 'creators':
+			case 'dateAdded':
+			case 'dateModified':
+				continue;
 		}
 		
 		// Move unknown/invalid fields to Extra
@@ -634,14 +1115,14 @@ Zotero_Import_Mendeley.prototype._documentToAPIJSON = async function (map, docum
 			// seriesEditor isn't valid on some item types (e.g., book)
 			if (creator.creatorType == 'seriesEditor'
 					&& !Zotero.CreatorTypes.isValidForItemType(
-							Zotero.CreatorTypes.getID('seriesEditor'), itemTypeID)) {
+						Zotero.CreatorTypes.getID('seriesEditor'), itemTypeID)) {
 				creator.creatorType = 'editor';
 			}
 		}
 	}
 	parent.tags = [];
 	// Add star tag for favorites
-	if (documentRow.favourite == 'true') {
+	if (documentRow.favourite === 'true' || documentRow.favourite === true) {
 		parent.tags.push('\u2605');
 	}
 	if (tags) {
@@ -759,7 +1240,6 @@ Zotero_Import_Mendeley.prototype._processField = function (parent, children, zFi
 			}
 			else {
 				Zotero.warn(`Unknown function subfield: ${subfield}`);
-				return;
 			}
 		}
 		else {
@@ -790,20 +1270,21 @@ Zotero_Import_Mendeley.prototype._makeCreator = function (creatorType, firstName
 Zotero_Import_Mendeley.prototype._addExtraField = function (extra, field, val) {
 	// Strip the field if it appears at the beginning of the value (to avoid "DOI: DOI: 10...")
 	if (typeof val == 'string') {
-		val = val.replace(new RegExp(`^${field}:\s*`, 'i'), "");
+		val = val.replace(new RegExp(`^${field}:\\s*`, 'i'), "");
 	}
 	extra = extra ? extra + '\n' : '';
 	if (field != 'arXiv') {
 		field = field[0].toUpperCase() + field.substr(1);
 		field = field.replace(/([a-z])([A-Z][a-z])/, "$1 $2");
 	}
+
 	return extra + `${field}: ${val}`;
 };
 
 Zotero_Import_Mendeley.prototype._convertNote = function (note) {
 	return note
 		// Add newlines after <br>
-		.replace(/<br\s*\/>/g, '<br\/>\n')
+		.replace(/<br\s*\/>/g, '<br/>\n')
 		//
 		// Legacy pre-HTML stuff
 		//
@@ -827,16 +1308,19 @@ Zotero_Import_Mendeley.prototype._saveItems = async function (libraryID, json) {
 	var lastExistingParentItem;
 	for (let i = 0; i < json.length; i++) {
 		let itemJSON = json[i];
+		let isMappedToExisting = false;
 		
 		// Check if the item has been previously imported
 		let item = await this._findExistingItem(libraryID, itemJSON, lastExistingParentItem);
 		if (item) {
+			isMappedToExisting = true;
 			if (item.isRegularItem()) {
 				lastExistingParentItem = item;
 				
 				// Update any child items to point to the existing item's key instead of the
 				// new generated one
 				this._updateParentKeys('item', json, i + 1, itemJSON.key, item.key);
+				this.numRelinked++;
 				
 				// Leave item in any collections it's in
 				itemJSON.collections = item.getCollections()
@@ -854,15 +1338,36 @@ Zotero_Import_Mendeley.prototype._saveItems = async function (libraryID, json) {
 				await item.loadPrimaryData();
 			}
 		}
+
+		if(this.relinkOnly && !isMappedToExisting) {
+			continue;
+		}
 		
 		// Remove external id before save
 		let toSave = Object.assign({}, itemJSON);
 		delete toSave.documentID;
-		
-		item.fromJSON(toSave);
+
+		if ((this.newItemsOnly && !isMappedToExisting) || !this.newItemsOnly) {
+			if (isMappedToExisting) {
+				// dateAdded shouldn't change on an updated item. See #2881
+				delete toSave.dateAdded;
+			}
+			item.fromJSON(toSave);
+			this.newItems.push(item);
+		}
+		else if (isMappedToExisting && toSave.relations) {
+			const predicate = 'mendeleyDB:documentUUID';
+			const existingRels = item.getRelationsByPredicate(predicate);
+			const newRel = toSave.relations[predicate];
+			if (existingRels.length && newRel && existingRels[0] !== newRel) {
+				Zotero.debug(`Migrating relation ${predicate} for existing item ${item.key} from ${existingRels[0]} to ${newRel}`);
+				item.removeRelation(predicate, existingRels[0]);
+				item.addRelation(predicate, newRel);
+			}
+		}
 		await item.saveTx({
-			skipSelect: true,
-			skipDateModifiedUpdate: true
+			skipDateModifiedUpdate: true,
+			...this._saveOptions
 		});
 		if (itemJSON.documentID) {
 			idMap.set(itemJSON.documentID, item.id);
@@ -959,7 +1464,7 @@ Zotero_Import_Mendeley.prototype._findExistingItem = async function (libraryID, 
 	Zotero.debug(`Found existing item ${existingItem.libraryKey} for `
 		+ `${predicate} ${itemJSON.relations[predicate]}`);
 	return existingItem;
-}
+};
 
 
 Zotero_Import_Mendeley.prototype._getItemByRelation = async function (libraryID, predicate, object) {
@@ -973,7 +1478,7 @@ Zotero_Import_Mendeley.prototype._getItemByRelation = async function (libraryID,
 
 
 /**
- * Saves attachments and extracted annotations for a given document
+ * Saves attachments and annotations for a given document
  */
 Zotero_Import_Mendeley.prototype._saveFilesAndAnnotations = async function (files, libraryID, parentItemID, annotations) {
 	for (let file of files) {
@@ -985,39 +1490,43 @@ Zotero_Import_Mendeley.prototype._saveFilesAndAnnotations = async function (file
 			
 			let attachment;
 			if (realPath) {
-				if (this._findExistingFile(parentItemID, file)) {
-					continue;
-				}
-				
-				let options = {
-					libraryID,
-					parentItemID,
-					file: realPath,
-					title: file.title
-				};
-				// If we're not set to link files or file is in Mendeley downloads folder, import it
-				if (!this._linkFiles || this._isDownloadedFile(path)) {
-					if (file.url) {
-						options.title = file.title;
-						options.url = file.url;
-						options.contentType = file.contentType;
-						options.singleFile = true;
-						attachment = await Zotero.Attachments.importSnapshotFromFile(options);
+				attachment = this._findExistingFile(parentItemID, file);
+				// If file hasn't already been imported, import it
+				if (!attachment) {
+					let options = {
+						libraryID,
+						parentItemID,
+						file: realPath,
+						title: file.title,
+						contentType: file.contentType
+					};
+
+					// If we're not set to link files or file is in Mendeley downloads folder, import it
+					if (!this._linkFiles || this._isDownloadedFile(path) || this._isTempDownloadedFile(path)) {
+						options.moveFile = this._isTempDownloadedFile(path);
+						
+						if (file.url) {
+							options.title = file.title;
+							options.url = file.url;
+							options.singleFile = true;
+							attachment = await Zotero.Attachments.importSnapshotFromFile(options);
+						}
+						else {
+							if (file.fileBaseName) {
+								options.fileBaseName = file.fileBaseName;
+							}
+							attachment = await Zotero.Attachments.importFromFile(options);
+						}
 					}
+					// Otherwise link it
 					else {
-						attachment = await Zotero.Attachments.importFromFile(options);
+						attachment = await Zotero.Attachments.linkFromFile(options);
 					}
+					attachment.setRelations({
+						'mendeleyDB:fileHash': file.hash
+					});
+					await attachment.saveTx(this._saveOptions);
 				}
-				// Otherwise link it
-				else {
-					attachment = await Zotero.Attachments.linkFromFile(options);
-				}
-				attachment.setRelations({
-					'mendeleyDB:fileHash': file.hash
-				});
-				await attachment.saveTx({
-					skipSelect: true
-				});
 			}
 			else {
 				Zotero.warn(path + " not found -- not importing");
@@ -1038,7 +1547,7 @@ Zotero_Import_Mendeley.prototype._saveFilesAndAnnotations = async function (file
 			Zotero.logError(e);
 		}
 	}
-}
+};
 
 
 Zotero_Import_Mendeley.prototype._findExistingFile = function (parentItemID, file) {
@@ -1055,7 +1564,7 @@ Zotero_Import_Mendeley.prototype._findExistingFile = function (parentItemID, fil
 		}
 	}
 	return false;
-}
+};
 
 Zotero_Import_Mendeley.prototype._isDownloadedFile = function (path) {
 	var parentDir = OS.Path.dirname(path);
@@ -1063,7 +1572,11 @@ Zotero_Import_Mendeley.prototype._isDownloadedFile = function (path) {
 		|| parentDir.endsWith(OS.Path.join('Local', 'Mendeley Ltd', 'Mendeley Desktop', 'Downloaded'))
 		|| parentDir.endsWith(OS.Path.join('Local', 'Mendeley Ltd.', 'Mendeley Desktop', 'Downloaded'))
 		|| parentDir.endsWith(OS.Path.join('data', 'Mendeley Ltd.', 'Mendeley Desktop', 'Downloaded'));
-}
+};
+
+Zotero_Import_Mendeley.prototype._isTempDownloadedFile = function (path) {
+	return path.startsWith(OS.Path.join(Zotero.getTempDirectory().path, 'm-api'));
+};
 
 /**
  * Get the path to use for a file that exists, or false if none
@@ -1089,7 +1602,7 @@ Zotero_Import_Mendeley.prototype._getRealFilePath = async function (path) {
 		return altPath;
 	}
 	return false;
-}
+};
 
 Zotero_Import_Mendeley.prototype._saveAnnotations = async function (annotations, parentItemID, attachmentItemID, fileHash) {
 	if (!annotations.length) return;
@@ -1098,22 +1611,86 @@ Zotero_Import_Mendeley.prototype._saveAnnotations = async function (annotations,
 	var libraryID = parentItem.libraryID;
 	if (attachmentItemID) {
 		var attachmentItem = Zotero.Items.get(attachmentItemID);
-		var attachmentURIPath = Zotero.API.getLibraryPrefix(libraryID) + '/items/' + attachmentItem.key;
+		
+		if (attachmentItem) {
+			let file = await attachmentItem.getFilePathAsync();
+			if (file) {
+				// Fix blank PDF attachment MIME type from previous imports
+				if (!attachmentItem.attachmentContentType) {
+					let type = 'application/pdf';
+					if (Zotero.MIME.sniffForMIMEType(await Zotero.File.getSample(file)) == type) {
+						attachmentItem.attachmentContentType = type;
+						await attachmentItem.saveTx(this._saveOptions);
+					}
+				}
+				
+				let annotationMap = new Map();
+				for (let annotation of annotations) {
+					// 'type', 'uuid', 'hash', 'color', 'dateAdded', 'page'
+					// For highlights: 'rects' (array of { x1, y1, x2, y2 })
+					// For notes: 'dateModified', 'x', 'y'
+					annotationMap.set(annotation.uuid, annotation);
+				}
+				// PDFWorker needs 'id'
+				annotations.forEach(annotation => annotation.id = annotation.uuid);
+				annotations.forEach(annotation => (colorMap.has(annotation.color)
+					? annotation.color = colorMap.get(annotation.color)
+					: annotation.color
+				));
+				// Returns 'id', 'position', 'type', 'pageLabel', 'sortIndex', 'text' (for highlight)
+				Zotero.debug("Processing annotations in " + file);
+				annotations = await Zotero.PDFWorker.processMendeleyAnnotations(file, annotations);
+				Zotero.debug("Done processing annotations");
+				
+				for (let annotation of annotations) {
+					// Ignore empty highlights
+					if (annotation.type == 'highlight' && !annotation.text) {
+						continue;
+					}
+					
+					let o = annotationMap.get(annotation.id);
+					Object.assign(o, annotation);
+					
+					// Check for existing annotation, and update it if found
+					predicate = 'mendeleyDB:annotationUUID';
+					let existingItem = await this._getItemByRelation(
+						attachmentItem.libraryID,
+						predicate,
+						o.uuid
+					);
+					let key = existingItem
+						? existingItem.key
+						: Zotero.DataObjectUtilities.generateKey();
+					await Zotero.Annotations.saveFromJSON(
+						attachmentItem,
+						{
+							key,
+							type: o.type,
+							text: o.text,
+							comment: o.note,
+							color: o.color,
+							pageLabel: o.pageLabel,
+							sortIndex: o.sortIndex,
+							position: o.position,
+							relations: {
+								[predicate]: o.uuid
+							}
+						},
+						{
+							skipSelect: true
+						}
+					);
+				}
+				return;
+			}
+		}
 	}
 	
+	// If no file, create note from extracted annotations instead
 	for (let annotation of annotations) {
 		if (!annotation.note || !annotation.note.trim()) continue;
 		
-		let linkStr;
-		let linkText = `note on p. ${annotation.page}`;
-		if (attachmentItem) {
-			let url = `zotero://open-pdf/${attachmentURIPath}?page=${annotation.page}`;
-			linkStr = `<a href="${url}">${linkText}</a>`;
-		}
-		else {
-			linkStr = linkText;
-		}
-		
+		let linkStr = `note on p. ${annotation.page}`;
 		noteStrings.push(
 			Zotero.Utilities.text2html(annotation.note.trim())
 				+ `<p class="pdf-link" style="margin-top: -0.5em; margin-bottom: 2em; font-size: .9em; text-align: right;">(${linkStr})</p>`
@@ -1146,9 +1723,7 @@ Zotero_Import_Mendeley.prototype._saveAnnotations = async function (annotations,
 		});
 	}
 	note.setNote('<h1>' + Zotero.getString('extractedAnnotations') + '</h1>\n' + noteStrings.join('\n'));
-	return note.saveTx({
-		skipSelect: true
-	});
+	await note.saveTx(this._saveOptions);
 };
 
 
@@ -1165,17 +1740,7 @@ Zotero_Import_Mendeley.prototype._updateParentKeys = function (objectType, json,
 			break;
 		}
 	}
-}
-
-Zotero_Import_Mendeley.prototype._updateItemCollectionKeys = function (json, oldKey, newKey) {
-	for (; i < json.length; i++) {
-		let x = json[i];
-		if (x[prop] == oldKey) {
-			x[prop] = newKey;
-		}
-	}
-}
-
+};
 
 //
 // Clean up extra files created <5.0.51

@@ -30,7 +30,7 @@ pref("extensions.zotero.automaticScraperUpdates",true);
 pref("extensions.zotero.triggerProxyAuthentication", true);
 // Proxy auth URLs should respond successfully to HEAD requests over HTTP and HTTPS (in case of forced HTTPS requests)
 pref("extensions.zotero.proxyAuthenticationURLs", "https://www.acm.org,https://www.ebscohost.com,https://www.sciencedirect.com,https://ieeexplore.ieee.org,https://www.jstor.org,http://www.ovid.com,https://link.springer.com,https://www.tandfonline.com");
-pref("extensions.zotero.openURL.resolver","https://www.worldcat.org/registry/gateway");
+pref("extensions.zotero.openURL.resolver","");
 pref("extensions.zotero.openURL.version","1.0");
 pref("extensions.zotero.automaticSnapshots",true);
 pref("extensions.zotero.downloadAssociatedFiles",true);
@@ -50,6 +50,7 @@ pref("extensions.zotero.attachmentRenameFormatStringCasesNoTitle", "{%C_}{%n_}{d
 pref("extensions.zotero.capitalizeTitles", false);
 pref("extensions.zotero.launchNonNativeFiles", false);
 pref("extensions.zotero.sortNotesChronologically", false);
+pref("extensions.zotero.sortNotesChronologically.reader", true);
 pref("extensions.zotero.sortAttachmentsChronologically", false);
 pref("extensions.zotero.showTrashWhenEmpty", true);
 pref("extensions.zotero.trashAutoEmptyDays", 30);
@@ -60,6 +61,7 @@ pref("extensions.zotero.reopenPanesOnRestart", true);
 
 pref("extensions.zotero.groups.copyChildLinks", true);
 pref("extensions.zotero.groups.copyChildFileAttachments", true);
+pref("extensions.zotero.groups.copyAnnotations", true);
 pref("extensions.zotero.groups.copyChildNotes", true);
 pref("extensions.zotero.groups.copyTags", true);
 
@@ -85,8 +87,10 @@ pref("extensions.zotero.sortCreatorAsString", false);
 pref("extensions.zotero.tagSelector.showAutomatic", true);
 pref("extensions.zotero.tagSelector.displayAllTags", false);
 
+pref("extensions.zotero.downloadPDFViaBrowser.onLoadTimeout", 3000);
+pref("extensions.zotero.downloadPDFViaBrowser.downloadTimeout", 60000);
+
 // Keyboard shortcuts
-pref("extensions.zotero.keys.toggleFullscreen", "F");
 pref("extensions.zotero.keys.saveToZotero", "S");
 pref("extensions.zotero.keys.newItem", "N");
 pref("extensions.zotero.keys.newNote", "O");
@@ -94,7 +98,6 @@ pref("extensions.zotero.keys.library", "L");
 pref("extensions.zotero.keys.quicksearch", "K");
 pref("extensions.zotero.keys.copySelectedItemCitationsToClipboard", "A");
 pref("extensions.zotero.keys.copySelectedItemsToClipboard", "C");
-pref("extensions.zotero.keys.toggleTagSelector", "T");
 pref("extensions.zotero.keys.sync", "Y");
 pref("extensions.zotero.keys.toggleAllRead", "R");
 pref("extensions.zotero.keys.toggleRead", "`");
@@ -108,8 +111,9 @@ pref("extensions.zotero.search.useLeftBound", true);
 
 // Notes
 pref("extensions.zotero.note.fontFamily", "Lucida Grande, Tahoma, Verdana, Helvetica, sans-serif");
-pref("extensions.zotero.note.fontSize", "12");
+pref("extensions.zotero.note.fontSize", "14");
 pref("extensions.zotero.note.css", "");
+pref("extensions.zotero.note.smartQuotes", true);
 
 // Reports
 pref("extensions.zotero.report.includeAllChildItems", true);
@@ -118,12 +122,15 @@ pref("extensions.zotero.report.combineChildItems", true);
 // Export and citation settings
 pref("extensions.zotero.export.lastTranslator", "14763d24-8ba0-45df-8f52-b8d1108e7ac9");
 pref("extensions.zotero.export.translatorSettings", "true,false");
+pref("extensions.zotero.export.citeSuppressTrailingPunctuation", false);
+pref("extensions.zotero.export.lastNoteTranslator", "1412e9e2-51e1-42ec-aa35-e036a895534b");
+pref("extensions.zotero.export.noteTranslatorSettings", "");
 pref("extensions.zotero.export.lastStyle", "http://juris-m.github.io/jm-styles/jm-chicago-fullnote-bibliography");
 pref("extensions.zotero.export.bibliographySettings", "save-as-rtf");
 pref("extensions.zotero.export.displayCharsetOption", true);
 pref("extensions.zotero.export.citePaperJournalArticleURL", false);
-pref("extensions.zotero.export.citeSuppressTrailingPunctuation", false);
 pref("extensions.zotero.cite.automaticJournalAbbreviations", false);
+pref("extensions.zotero.cite.useCiteprocRs", false);
 pref("extensions.zotero.import.charset", "auto");
 pref("extensions.zotero.import.createNewCollection.fromFileOpenHandler", true);
 pref("extensions.zotero.rtfScan.lastInputFile", "");
@@ -131,10 +138,8 @@ pref("extensions.zotero.rtfScan.lastOutputFile", "");
 
 pref("extensions.zotero.export.quickCopy.setting", "bibliography=http://juris-m.github.io/jm-styles/jm-chicago-fullnote-bibliography");
 pref("extensions.zotero.export.quickCopy.dragLimit", 50);
-pref("extensions.zotero.export.quickCopy.quoteBlockquotes.plainText", true);
-pref("extensions.zotero.export.quickCopy.quoteBlockquotes.richText", true);
-pref("extensions.zotero.export.quickCopy.compatibility.indentBlockquotes", true);
-pref("extensions.zotero.export.quickCopy.compatibility.word", false);
+
+pref("extensions.zotero.export.noteQuickCopy.setting", '{"mode":"export","id":"a45eca67-1ee8-45e5-b4c6-23fb8a852873","markdownOptions":{"includeAppLinks":true},"htmlOptions":{"includeAppLinks":false}}');
 
 // Language settings
 pref("extensions.zotero.csl.locale", 'en-US');
@@ -154,6 +159,8 @@ pref("extensions.zotero.integration.port", 50001);
 pref("extensions.zotero.integration.autoRegenerate", -1);	// -1 = ask; 0 = no; 1 = yes
 pref("extensions.zotero.integration.useClassicAddCitationDialog", false);
 pref("extensions.zotero.integration.keepAddCitationDialogRaised", false);
+pref("extensions.zotero.integration.upgradeTemplateDelayedOn", 0);
+pref("extensions.zotero.integration.dontPromptMendeleyImport", false);
 
 // Connector settings
 pref("extensions.zotero.httpServer.enabled", false);	// TODO enabled for testing only
@@ -161,9 +168,6 @@ pref("extensions.zotero.httpServer.port", 24119);	// ascii "ZO"
 
 // Zeroconf
 pref("extensions.zotero.zeroconf.server.enabled", false);
-
-// Annotation settings
-pref("extensions.zotero.annotations.warnOnClose", true);
 
 // Streaming server
 pref("extensions.zotero.streaming.enabled", true);
@@ -185,6 +189,10 @@ pref("extensions.zotero.sync.storage.groups.enabled", true);
 pref("extensions.zotero.sync.storage.downloadMode.personal", "on-sync");
 pref("extensions.zotero.sync.storage.downloadMode.groups", "on-sync");
 pref("extensions.zotero.sync.fulltext.enabled", true);
+pref("extensions.zotero.sync.reminder.setUp.enabled", true);
+pref("extensions.zotero.sync.reminder.setUp.lastDisplayed", 0);
+pref("extensions.zotero.sync.reminder.autoSync.enabled", true);
+pref("extensions.zotero.sync.reminder.autoSync.lastDisplayed", 0);
 
 // Proxy
 pref("extensions.zotero.proxies.autoRecognize", true);
@@ -218,3 +226,11 @@ pref("extensions.zotero.translators.RIS.import.keepID", false);
 // Retracted Items
 pref("extensions.zotero.retractions.enabled", true);
 pref("extensions.zotero.retractions.recentItems", "[]");
+
+// Annotations
+pref("extensions.zotero.annotations.noteTemplates.title", "<h1>{{title}}<br/>({{date}})</h1>");
+pref("extensions.zotero.annotations.noteTemplates.highlight", "<p>{{highlight}} {{citation}} {{comment}}</p>");
+pref("extensions.zotero.annotations.noteTemplates.note", "<p>{{citation}} {{comment}}</p>");
+
+// Scaffold
+pref("extensions.zotero.scaffold.eslint.enabled", true);

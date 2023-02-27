@@ -290,6 +290,7 @@ Zotero.Fulltext = Zotero.FullText = new function(){
 			Zotero.DB.query(sql, [itemID, {string:text}]);
 			*/
 			
+			Zotero.Notifier.queue('index', 'item', itemID);
 			Zotero.Notifier.queue('refresh', 'item', itemID);
 		}.bind(this));
 		
@@ -380,8 +381,8 @@ Zotero.Fulltext = Zotero.FullText = new function(){
 		}
 		
 		if (!charset) {
-			Zotero.logError(`Item ${itemID} didn't have a charset`);
-			return false;
+			Zotero.debug(`Item ${itemID} doesn't have a charset set -- using 'utf-8'`);
+			charset = 'utf-8';
 		}
 		
 		var maxLength = Zotero.Prefs.get('fulltext.textMaxLength');
@@ -459,6 +460,7 @@ Zotero.Fulltext = Zotero.FullText = new function(){
 
 		
 		var {exec, args} = this.getPDFConverterExecAndArgs();
+		// Keep in sync with Item::attachmentText
 		args.push('-nopgbrk');
 		
 		if (allPages) {

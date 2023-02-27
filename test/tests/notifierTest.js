@@ -75,7 +75,41 @@ describe("Zotero.Notifier", function () {
 			}.bind(this), { waitTimeout: 1000 });
 			
 			await promise1;
-			assert.isTrue(promise2.isRejected());
+			assert.ok(await getPromiseError(promise2));
+		});
+	});
+	
+	describe("Queue", function () {
+		describe("#commit()", function () {
+			it("should add options from queue to extraData", async function () {
+				var called = false;
+				var data;
+				
+				var notifierID = Zotero.Notifier.registerObserver({
+					notify: (event, type, ids, extraData) => {
+						called = true;
+						data = extraData;
+					}
+				});
+				
+				var notifierQueue = new Zotero.Notifier.Queue({
+					skipAutoSync: true
+				});
+				
+				var item = createUnsavedDataObject('item');
+				await item.saveTx({
+					notifierQueue
+				});
+				
+				assert.isFalse(called);
+				
+				await Zotero.Notifier.commit(notifierQueue);
+				
+				assert.isTrue(called);
+				assert.propertyVal(data, 'skipAutoSync', true);
+				
+				Zotero.Notifier.unregisterObserver(notifierID);
+			});
 		});
 	});
 });

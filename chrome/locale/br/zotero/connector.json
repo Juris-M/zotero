@@ -2,8 +2,20 @@
   "general_more": {
     "message": "Muioc'h..."
   },
+  "general_moreInfo": {
+    "message": "Muioc'h a ditouroù..."
+  },
+  "general_needHelp": {
+    "message": "Ezhomm ho peus sikour?"
+  },
   "general_done": {
     "message": "Graet"
+  },
+  "general_yes": {
+    "message": "Ya"
+  },
+  "general_no": {
+    "message": "Ket"
   },
   "general_tryAgain": {
     "message": "Klask en-dro"
@@ -17,6 +29,9 @@
   "general_pleaseWait": {
     "message": "Gortozit mar plij..."
   },
+  "general_copyToClipboard": {
+    "message": "Eilañ er golver"
+  },
   "progressWindow_savingTo": {
     "message": "Enrollañ e-barzh"
   },
@@ -25,6 +40,9 @@
   },
   "progressWindow_error_translation": {
     "message": "Ur fazi a zo c'hoarvezet en ur enrollañ an elfenn-mañ. Sellit ouzh $1 evit kaout muioc'h a ditouroù."
+  },
+  "progressWindow_error_siteAccessLimitsError": {
+    "message": "Ur fazi a zo c'hoarvezet en ur enrollañ an elfenn-mañ. $1 a c'hall bevenniñ an niver a elfennoù a c'hellit enrollañ war ar memes tro. Sellit ouzh $2 evit kaout muioc'h a ditouroù."
   },
   "progressWindow_error_troubleshootingTranslatorIssues": {
     "message": "Distankañ ar c'hudennoù troidigezh"

@@ -4,19 +4,7 @@
   <Description about="urn:mozilla:install-manifest">
     <em:id>juris-m@juris-m.github.io</em:id>
     <em:name>Juris-M</em:name>
-    <em:version>5.0.96m3.SOURCE</em:version>
-    <em:creator>Center for History and New Media<br/>George Mason University</em:creator>
-    <em:contributor>Dan Cohen</em:contributor>
-    <em:contributor>Sean Takats</em:contributor>
-    <em:developer>Simon Kornblith</em:developer>
-    <em:developer>David Norton</em:developer>
-    <em:developer>Dan Stillman</em:developer>
-    <em:developer>Frank Bennett</em:developer>
-    <em:homepageURL>https://juris-m.github.io</em:homepageURL>
-    <em:optionsURL>chrome://zotero/content/preferences/preferences.xul</em:optionsURL>
-    <em:aboutURL>chrome://zotero/content/about.xul</em:aboutURL>
-    <em:iconURL>chrome://zotero/skin/zotero-new-z-48px.png</em:iconURL>
-    <em:updateURL>https://juris-m.github.io/zotero/update.rdf</em:updateURL>
+    <em:version>6.0.20m1.SOURCE</em:version>
     <em:multiprocessCompatible>false</em:multiprocessCompatible>
     <em:description>Zotero-derived reference manager for legal and multilingual referencing.</em:description>
     <em:type>2</em:type> <!-- type=extension --> 

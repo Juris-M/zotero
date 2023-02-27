@@ -279,6 +279,27 @@ describe("Zotero.Attachments", function() {
 		});
 	});
 	
+	
+	describe("#importFromURL()", function () {
+		it("should download a PDF from a JS redirect page", async function () {
+			this.timeout(65e3);
+			
+			var item = await Zotero.Attachments.importFromURL({
+				libraryID: Zotero.Libraries.userLibraryID,
+				url: 'https://zotero-static.s3.amazonaws.com/test-pdf-redirect.html',
+				contentType: 'application/pdf'
+			});
+			
+			assert.isTrue(item.isPDFAttachment());
+			var sample = await Zotero.File.getContentsAsync(item.getFilePath(), null, 1000);
+			assert.equal(Zotero.MIME.sniffForMIMEType(sample), 'application/pdf');
+			
+			// Clean up
+			await Zotero.Items.erase(item.id);
+		});
+	});
+	
+	
 	describe("#linkFromDocument", function () {
 		it("should add a link attachment for the current webpage", function* () {
 			var item = yield createDataObject('item');
@@ -555,7 +576,7 @@ describe("Zotero.Attachments", function() {
 		});
 	});
 	
-	describe("PDF Retrieval", function () {
+	describe("Find Available PDF", function () {
 		var doiPrefix = 'https://doi.org/';
 		var doi1 = '10.1111/abcd';
 		var doi2 = '10.2222/bcde';
@@ -660,6 +681,24 @@ describe("Zotero.Attachments", function() {
 					// DOI 6 redirects to page 8, which is on a different domain and has a PDF
 					[doiPrefix + doi6, pageURL8, true],
 					[pageURL8, pageURL8, true],
+					
+					// Redirect loop
+					['http://website/redirect_loop1', 'http://website/redirect_loop2', false],
+					['http://website/redirect_loop2', 'http://website/redirect_loop3', false],
+					['http://website/redirect_loop3', 'http://website/redirect_loop1', false],
+					
+					// Too many total redirects
+					['http://website/too_many_redirects1', 'http://website/too_many_redirects2', false],
+					['http://website/too_many_redirects2', 'http://website/too_many_redirects3', false],
+					['http://website/too_many_redirects3', 'http://website/too_many_redirects4', false],
+					['http://website/too_many_redirects4', 'http://website/too_many_redirects5', false],
+					['http://website/too_many_redirects5', 'http://website/too_many_redirects6', false],
+					['http://website/too_many_redirects6', 'http://website/too_many_redirects7', false],
+					['http://website/too_many_redirects7', 'http://website/too_many_redirects8', false],
+					['http://website/too_many_redirects8', 'http://website/too_many_redirects9', false],
+					['http://website/too_many_redirects9', 'http://website/too_many_redirects10', false],
+					['http://website/too_many_redirects10', 'http://website/too_many_redirects11', false],
+					['http://website/too_many_redirects11', pageURL1, true],
 				];
 				for (let route of routes) {
 					let [expectedURL, responseURL, includePDF] = route;
@@ -778,7 +817,7 @@ describe("Zotero.Attachments", function() {
 						status: 200,
 						response,
 						getResponseHeader: makeGetResponseHeader({
-							'Content-Type': 'application/pdf'
+							'Content-Type': 'application/json'
 						})
 					};
 				}
@@ -796,6 +835,24 @@ describe("Zotero.Attachments", function() {
 			httpd.registerFile(
 				pdfURL.substr(baseURL.length - 1),
 				Zotero.File.pathToFile(OS.Path.join(getTestDataDirectory().path, 'test.pdf'))
+			);
+			
+			// Generate a page with a relative PDF URL
+			httpd.registerPathHandler(
+				"/" + doi4,
+				{
+					handle: function (request, response) {
+						response.setStatusLine(null, 200, "OK");
+						response.write(`<html>
+							<head>
+								<title>Page Title</title>
+							</head>
+							<body>
+								<a id="pdf-link" href="/article1/pdf">Download PDF</a>
+							</body>
+						</html>`);
+					}
+				}
 			);
 			
 			requestStubCallTimes = [];
@@ -1073,6 +1130,24 @@ describe("Zotero.Attachments", function() {
 			assert.equal(await OS.File.stat(attachment.getFilePath()).size, pdfSize);
 		});
 		
+		it("should stop after too many redirects to the same URL", async function () {
+			var item = createUnsavedDataObject('item', { itemType: 'journalArticle' });
+			item.setField('url', 'http://website/redirect_loop1');
+			await item.saveTx();
+			var attachment = await Zotero.Attachments.addAvailablePDF(item);
+			assert.isFalse(attachment);
+			assert.equal(requestStub.callCount, 7);
+		});
+		
+		it("should stop after too many total redirects for a given page URL", async function () {
+			var item = createUnsavedDataObject('item', { itemType: 'journalArticle' });
+			item.setField('url', 'http://website/too_many_redirects1');
+			await item.saveTx();
+			var attachment = await Zotero.Attachments.addAvailablePDF(item);
+			assert.isFalse(attachment);
+			assert.equal(requestStub.callCount, 10);
+		});
+		
 		it("should handle a custom resolver in HTML mode", async function () {
 			var doi = doi4;
 			var item = createUnsavedDataObject('item', { itemType: 'journalArticle' });
@@ -1101,6 +1176,44 @@ describe("Zotero.Attachments", function() {
 			assert.isTrue(call.calledWith('POST', ZOTERO_CONFIG.SERVICES_URL + 'oa/search'));
 			call = requestStub.getCall(3);
 			assert.isTrue(call.calledWith('GET', pageURL5));
+			
+			assert.ok(attachment);
+			var json = attachment.toJSON();
+			assert.equal(json.url, pdfURL);
+			assert.equal(json.contentType, 'application/pdf');
+			assert.equal(json.filename, 'Test.pdf');
+			assert.equal(await OS.File.stat(attachment.getFilePath()).size, pdfSize);
+		});
+		
+		it("should handle a custom resolver with a relative PDF path in HTML mode", async function () {
+			var doi = doi4;
+			var item = createUnsavedDataObject('item', { itemType: 'journalArticle' });
+			item.setField('title', 'Test');
+			item.setField('DOI', doi);
+			await item.saveTx();
+			
+			var resolvers = [{
+				name: 'Custom',
+				method: 'get',
+				// Registered with httpd.js in beforeEach()
+				url: baseURL + "{doi}",
+				mode: 'html',
+				selector: '#pdf-link',
+				attribute: 'href'
+			}];
+			Zotero.Prefs.set('findPDFs.resolvers', JSON.stringify(resolvers));
+			
+			var attachment = await Zotero.Attachments.addAvailablePDF(item);
+			
+			assert.equal(requestStub.callCount, 4);
+			var call = requestStub.getCall(0);
+			assert.isTrue(call.calledWith('GET', 'https://doi.org/' + doi));
+			var call = requestStub.getCall(1);
+			assert.isTrue(call.calledWith('GET', pageURL4));
+			call = requestStub.getCall(2);
+			assert.isTrue(call.calledWith('POST', ZOTERO_CONFIG.SERVICES_URL + 'oa/search'));
+			var call = requestStub.getCall(3);
+			assert.isTrue(call.calledWith('GET', baseURL + doi4));
 			
 			assert.ok(attachment);
 			var json = attachment.toJSON();
@@ -1329,7 +1442,7 @@ describe("Zotero.Attachments", function() {
 			assert.equal(newAttachment.attachmentContentType, 'application/pdf');
 			assert.isTrue(await newAttachment.fileExists());
 			assert.equal(newAttachment.getField('title'), 'Title');
-			assert.equal(newAttachment.getNote(), 'Note');
+			assert.equal(newAttachment.note, 'Note');
 			assert.sameDeepMembers(newAttachment.getTags(), [{ tag: 'Tag' }]);
 			assert.sameMembers(newAttachment.relatedItems, [relatedItem.key]);
 			assert.sameMembers(relatedItem.relatedItems, [newAttachment.key]);
@@ -1338,6 +1451,30 @@ describe("Zotero.Attachments", function() {
 				await Zotero.Fulltext.getIndexedState(newAttachment),
 				Zotero.Fulltext.INDEX_STATE_INDEXED
 			);
+		});
+		
+		
+		it("should move annotations to stored file", async function () {
+			var item = await createDataObject('item');
+			var relatedItem = await createDataObject('item');
+			
+			var originalFile = OS.Path.join(getTestDataDirectory().path, 'test.pdf');
+			var attachment = await Zotero.Attachments.linkFromFile({
+				file: originalFile,
+				title: 'Title',
+				parentItemID: item.id
+			});
+			var annotation1 = await createAnnotation('highlight', attachment);
+			var annotation2 = await createAnnotation('note', attachment);
+			
+			var newAttachment = await Zotero.Attachments.convertLinkedFileToStoredFile(attachment);
+			
+			assert.isFalse(Zotero.Items.exists(attachment.id));
+			assert.isTrue(Zotero.Items.exists(annotation1.id));
+			assert.isTrue(Zotero.Items.exists(annotation2.id));
+			
+			var annotations = newAttachment.getAnnotations();
+			assert.lengthOf(annotations, 2);
 		});
 		
 		

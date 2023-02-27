@@ -2,8 +2,4 @@
 
 ## Bug Reports and Feature Requests
 
-Jurism uses GitHub Issues for bug reports and feature requests. 
-
-## Working with Zotero Code
-
-There may be some issues that are more appropriate to fix upstream in Zotero. See [Zotero Source Code](https://www.zotero.org/support/dev/source_code).
+Jurism does not use GitHub Issues for bug reports, feature requests, or support questions. Please post communications to the [Jurism mailing list](https://juris-m.github.io/mail/). There is currently a large backlog on the list, but I will be more active there after this long-pending client update has been released.

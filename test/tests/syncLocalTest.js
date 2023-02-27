@@ -306,52 +306,6 @@ describe("Zotero.Sync.Data.Local", function() {
 		});
 		
 		
-		describe("#resetUnsyncedLibraryFiles", function () {
-			it("should delete unsynced files", function* () {
-				var group = yield createGroup({
-					version: 1,
-					libraryVersion: 2
-				});
-				var libraryID = group.libraryID;
-				
-				// File attachment that's totally in sync -- leave alone
-				var attachment1 = yield importFileAttachment('test.png', { libraryID });
-				attachment1.attachmentSyncState = "in_sync";
-				attachment1.attachmentSyncedModificationTime = yield attachment1.attachmentModificationTime;
-				attachment1.attachmentSyncedHash = yield attachment1.attachmentHash;
-				attachment1.synced = true;
-				yield attachment1.saveTx({
-					skipSyncedUpdate: true
-				});
-				
-				// File attachment that's in sync with changed file -- delete file and mark for download
-				var attachment2 = yield importFileAttachment('test.png', { libraryID });
-				attachment2.synced = true;
-				yield attachment2.saveTx({
-					skipSyncedUpdate: true
-				});
-				
-				// File attachment that's unsynced -- delete item and file
-				var attachment3 = yield importFileAttachment('test.pdf', { libraryID });
-				
-				// Has to be called before resetUnsyncedLibraryFiles()
-				assert.isTrue(yield Zotero.Sync.Data.Local._libraryHasUnsyncedFiles(libraryID));
-				
-				yield Zotero.Sync.Data.Local.resetUnsyncedLibraryFiles(libraryID);
-				
-				assert.isTrue(yield attachment1.fileExists());
-				assert.isFalse(yield attachment2.fileExists());
-				assert.isFalse(yield attachment3.fileExists());
-				assert.equal(
-					attachment1.attachmentSyncState, Zotero.Sync.Storage.Local.SYNC_STATE_IN_SYNC
-				);
-				assert.equal(
-					attachment2.attachmentSyncState, Zotero.Sync.Storage.Local.SYNC_STATE_TO_DOWNLOAD
-				);
-				assert.isFalse(Zotero.Items.get(attachment3.id));
-			});
-		});
-		
 		it("should revert modified file attachment item", async function () {
 			var group = await createGroup({
 				version: 1,
@@ -395,6 +349,53 @@ describe("Zotero.Sync.Data.Local", function() {
 			assert.equal(
 				attachment.attachmentSyncState, Zotero.Sync.Storage.Local.SYNC_STATE_IN_SYNC
 			);
+		});
+	});
+	
+	
+	describe("#resetUnsyncedLibraryFiles()", function () {
+		it("should delete unsynced files", function* () {
+			var group = yield createGroup({
+				version: 1,
+				libraryVersion: 2
+			});
+			var libraryID = group.libraryID;
+			
+			// File attachment that's totally in sync -- leave alone
+			var attachment1 = yield importFileAttachment('test.png', { libraryID });
+			attachment1.attachmentSyncState = "in_sync";
+			attachment1.attachmentSyncedModificationTime = yield attachment1.attachmentModificationTime;
+			attachment1.attachmentSyncedHash = yield attachment1.attachmentHash;
+			attachment1.synced = true;
+			yield attachment1.saveTx({
+				skipSyncedUpdate: true
+			});
+			
+			// File attachment that's in sync with changed file -- delete file and mark for download
+			var attachment2 = yield importFileAttachment('test.png', { libraryID });
+			attachment2.synced = true;
+			yield attachment2.saveTx({
+				skipSyncedUpdate: true
+			});
+			
+			// File attachment that's unsynced -- delete item and file
+			var attachment3 = yield importFileAttachment('test.pdf', { libraryID });
+			
+			// Has to be called before resetUnsyncedLibraryFiles()
+			assert.isTrue(yield Zotero.Sync.Data.Local._libraryHasUnsyncedFiles(libraryID));
+			
+			yield Zotero.Sync.Data.Local.resetUnsyncedLibraryFiles(libraryID);
+			
+			assert.isTrue(yield attachment1.fileExists());
+			assert.isFalse(yield attachment2.fileExists());
+			assert.isFalse(yield attachment3.fileExists());
+			assert.equal(
+				attachment1.attachmentSyncState, Zotero.Sync.Storage.Local.SYNC_STATE_IN_SYNC
+			);
+			assert.equal(
+				attachment2.attachmentSyncState, Zotero.Sync.Storage.Local.SYNC_STATE_TO_DOWNLOAD
+			);
+			assert.isFalse(Zotero.Items.get(attachment3.id));
 		});
 	});
 	
@@ -468,6 +469,17 @@ describe("Zotero.Sync.Data.Local", function() {
 	
 	
 	describe("#getUnsynced()", function () {
+		// See also: "shouldn't upload external annotations" in syncEngineTest.js
+		it("shouldn't include external annotations", async function () {
+			var attachment = await importFileAttachment('test.pdf');
+			var annotation1 = await createAnnotation('highlight', attachment);
+			var annotation2 = await createAnnotation('highlight', attachment, { isExternal: true });
+			
+			var ids = await Zotero.Sync.Data.Local.getUnsynced('item', Zotero.Libraries.userLibraryID);
+			assert.include(ids, attachment.id);
+			assert.include(ids, annotation1.id);
+		});
+		
 		it("should correct incorrectly nested collections", async function () {
 			var c1 = await createDataObject('collection');
 			var c2 = await createDataObject('collection');
@@ -503,6 +515,35 @@ describe("Zotero.Sync.Data.Local", function() {
 				skipBundledFiles: true
 			});
 		})
+		
+		it("shouldn't trigger an auto-sync", async function () {
+			var libraryID = Zotero.Libraries.userLibraryID;
+			
+			var item = createUnsavedDataObject('item');
+			let data = item.toJSON();
+			data.key = Zotero.DataObjectUtilities.generateKey();
+			data.version = 10;
+			let json = {
+				key: data.key,
+				version: 10,
+				data
+			};
+			
+			// Make sure the pref in question is still disabled by default during tests
+			assert.isFalse(Zotero.Prefs.get('sync.autoSync'));
+			Zotero.Prefs.set('sync.autoSync', true);
+			var stub = sinon.stub(Zotero.Sync.Runner, 'setSyncTimeout');
+			
+			await Zotero.Sync.Data.Local.processObjectsFromJSON(
+				'item', libraryID, [json], { stopOnError: true }
+			);
+			
+			// setSyncTimeout() shouldn't have been called at all
+			assert.isFalse(stub.called);
+			
+			stub.restore();
+			Zotero.Prefs.set('sync.autoSync', false);
+		});
 		
 		it("should update local version number and mark as synced if remote version is identical", function* () {
 			var libraryID = Zotero.Libraries.userLibraryID;
@@ -704,6 +745,58 @@ describe("Zotero.Sync.Data.Local", function() {
 			// Sync cache should match remote
 			var cacheJSON = await Zotero.Sync.Data.Local.getCacheObject(type, libraryID, data.key, data.version);
 			assert.propertyVal(cacheJSON.data, "name", changedName);
+		});
+		
+		it("should remove creators that were removed remotely and change existing", async function () {
+			var libraryID = Zotero.Libraries.userLibraryID;
+			
+			let item = await createDataObject(
+				'item',
+				{
+					version: 5,
+					creators: [
+						{
+							name: "A",
+							creatorType: "author"
+						},
+						{
+							name: "B",
+							creatorType: "author"
+						},
+						{
+							name: "C",
+							creatorType: "author"
+						}
+					]
+				}
+			);
+			let data = item.toJSON();
+			await Zotero.Sync.Data.Local.saveCacheObjects('item', libraryID, [data]);
+			
+			var newCreators = [
+				{
+					name: "D",
+					creatorType: "author"
+				}
+			];
+			
+			// Create remote version with removed creators
+			data.version = 10;
+			data.creators = newCreators;
+			let json = {
+				key: item.key,
+				version: 10,
+				data
+			};
+			await Zotero.Sync.Data.Local.processObjectsFromJSON(
+				'item', libraryID, [json], { stopOnError: true }
+			);
+			assert.equal(item.version, 10);
+			var creatorJSON = item.getCreatorsJSON();
+			assert.sameDeepMembers(creatorJSON, newCreators);
+			// Sync cache should match remote
+			var cacheJSON = await Zotero.Sync.Data.Local.getCacheObject('item', libraryID, data.key, data.version);
+			assert.sameDeepMembers(cacheJSON.data.creators, newCreators);
 		});
 		
 		it("should delete older versions in sync cache after processing", function* () {
@@ -937,6 +1030,69 @@ describe("Zotero.Sync.Data.Local", function() {
 			yield assert.eventually.equal(Zotero.DB.valueQueryAsync(
 				"SELECT COUNT(*) FROM items WHERE libraryID=? AND key=?", [libraryID, key2]
 			), 0);
+		});
+		
+		it("should update createdByUser and lastModifiedBy when saving group item", async function () {
+			var { libraryID } = await getGroup();
+			let item = await createDataObject('item', { libraryID });
+			let data = item.toJSON();
+			data.key = item.key;
+			data.version = 10;
+			let json = {
+				key: item.key,
+				version: 10,
+				meta: {
+					createdByUser: {
+						id: 12345,
+						username: 'foo',
+						name: 'Foo Foo'
+					},
+					lastModifiedByUser: {
+						id: 23456,
+						username: 'bar',
+						name: 'Bar Bar'
+					}
+				},
+				data
+			};
+			await Zotero.Sync.Data.Local.processObjectsFromJSON(
+				'item', libraryID, [json], { stopOnError: true }
+			);
+			let localItem = Zotero.Items.getByLibraryAndKey(libraryID, item.key);
+			assert.isTrue(localItem.synced);
+			
+			assert.equal(localItem.createdByUserID, 12345);
+			assert.equal(localItem.lastModifiedByUserID, 23456);
+			assert.equal(Zotero.Users.getName(12345), 'Foo Foo');
+			assert.equal(Zotero.Users.getName(23456), 'Bar Bar');
+		});
+		
+		it("should use username if empty name for createdByUser when saving group item", async function () {
+			var { libraryID } = await getGroup();
+			let item = await createDataObject('item', { libraryID });
+			let data = item.toJSON();
+			data.key = item.key;
+			data.version = 10;
+			let json = {
+				key: item.key,
+				version: 10,
+				meta: {
+					createdByUser: {
+						id: 12345,
+						username: 'foo',
+						name: ''
+					},
+				},
+				data
+			};
+			await Zotero.Sync.Data.Local.processObjectsFromJSON(
+				'item', libraryID, [json], { stopOnError: true }
+			);
+			let localItem = Zotero.Items.getByLibraryAndKey(libraryID, item.key);
+			assert.isTrue(localItem.synced);
+			
+			assert.equal(localItem.createdByUserID, 12345);
+			assert.equal(Zotero.Users.getName(12345), 'foo');
 		});
 	})
 	

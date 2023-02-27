@@ -317,10 +317,17 @@ Zotero.CookieSandbox.Observer = new function() {
 					this.trackedInterfaceRequestors.splice(i, 1);
 					this.trackedInterfaceRequestorSandboxes.splice(i, 1);
 					i--;
-				} else if(ir == notificationCallbacks) {
-					// We are tracking this interface requestor
-					trackedBy = this.trackedInterfaceRequestorSandboxes[i];
-					break;
+				} else {
+					let tracked = ir === notificationCallbacks;
+					try {
+						tracked = ir === notificationCallbacks.getInterface(Ci.nsIWebBrowserPersist);
+					} catch (e) { }
+					
+					if (tracked) {
+						// We are tracking this interface requestor
+						trackedBy = this.trackedInterfaceRequestorSandboxes[i];
+						break;
+					}
 				}
 			}
 			
@@ -350,12 +357,6 @@ Zotero.CookieSandbox.Observer = new function() {
 							notificationCallbacks.QueryInterface(Components.interfaces.nsIXMLHttpRequest);
 							tested = true;
 						} catch(e) {}
-						if(!tested) {
-							try {
-								notificationCallbacks.QueryInterface(Components.interfaces.nsIWebBrowserPersist);
-								tested = true;
-							} catch(e) {}
-						}
 					}
 				}
 			}
@@ -383,6 +384,10 @@ Zotero.CookieSandbox.Observer = new function() {
 			if(trackedBy) {
 				var cookiesForURI = trackedBy.getCookiesForURI(channel.URI);
 			}
+
+			if (trackedBy && trackedBy.userAgent) {
+				channel.setRequestHeader("User-Agent", trackedBy.userAgent, false);
+			}
 			
 			if(!trackedBy || !cookiesForURI) {
 				channel.setRequestHeader("Cookie", "", false);
@@ -390,11 +395,7 @@ Zotero.CookieSandbox.Observer = new function() {
 				Zotero.debug("CookieSandbox: Cleared cookies to be sent to "+channelURI, 5);
 				return;
 			}
-			
-			if(trackedBy.userAgent) {
-				channel.setRequestHeader("User-Agent", trackedBy.userAgent, false);
-			}
-			
+		
 			// add cookies to be sent to this domain
 			channel.setRequestHeader("Cookie", Zotero.CookieSandbox.generateCookieString(cookiesForURI), false);
 			Zotero.debug("CookieSandbox: Added cookies for request to "+channelURI, 5);

@@ -1,4 +1,5 @@
-var map = {
+// eslint-disable-next-line no-unused-vars
+var mendeleyDBMaps = {
 	83: {
 		itemTypes: {
 			Bill: "bill",
@@ -10,6 +11,7 @@ var map = {
 			EncyclopediaArticle: "encyclopediaArticle",
 			Film: "film",
 			Generic: "document",
+			Hearing: "hearing",
 			JournalArticle: "journalArticle",
 			MagazineArticle: "magazineArticle",
 			NewspaperArticle: "newspaperArticle",

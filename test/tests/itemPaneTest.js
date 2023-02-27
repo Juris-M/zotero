@@ -207,6 +207,29 @@ describe("Item pane", function () {
 				5000
 			);
 		});
+
+		it("should persist fieldMode after hiding a creator name editor", async function () {
+			let item = new Zotero.Item('book');
+			item.setCreators([
+				{
+					name: "First Last",
+					creatorType: "author",
+					fieldMode: 1
+				}
+			]);
+			await item.saveTx();
+			
+			let itemBox = doc.getElementById('zotero-editpane-item-box');
+			let box = doc.getAnonymousNodes(itemBox)[0];
+			
+			box.querySelector('label[fieldname="creator-0-lastName"]').click();
+			itemBox.hideEditor(box.querySelector('textbox[fieldname="creator-0-lastName"]'));
+			
+			assert.equal(
+				box.querySelector('label[fieldname="creator-0-lastName"]').getAttribute('fieldMode'),
+				'1'
+			);
+		});
 	})
 	
 	
@@ -346,6 +369,19 @@ describe("Item pane", function () {
 			var label = itemBox._id('fileName');
 			assert.equal(label.value, newName);
 		})
+		
+		it("should update on attachment title change", async function () {
+			var file = getTestDataDirectory();
+			file.append('test.png');
+			var item = await Zotero.Attachments.importFromFile({ file });
+			var newTitle = 'New Title';
+			item.setField('title', newTitle);
+			await item.saveTx();
+			
+			var itemBox = doc.getElementById('zotero-attachment-box');
+			var label = itemBox._id('title');
+			assert.equal(label.textContent, newTitle);
+		})
 	})
 	
 	
@@ -358,16 +394,22 @@ describe("Item pane", function () {
 			
 			// Wait for the editor
 			yield new Zotero.Promise((resolve, reject) => {
-				noteEditor.noteField.onInit(() => resolve());
-			})
-			assert.equal(noteEditor.noteField.value, '');
-			
+				noteEditor.onInit(() => resolve());
+			});
+			assert.equal(noteEditor._editorInstance._iframeWindow.wrappedJSObject.getDataSync(), null);
 			item.setNote('<p>Test</p>');
 			yield item.saveTx();
 			
-			assert.equal(noteEditor.noteField.value, '<p>Test</p>');
-		})
-	})
+			// Wait for asynchronous editor update
+			do {
+				yield Zotero.Promise.delay(10);
+			} while (
+				!/<div data-schema-version=".*"><p>Test<\/p><\/div>/.test(
+					noteEditor._editorInstance._iframeWindow.wrappedJSObject.getDataSync().html.replace(/\n/g, '')
+				)
+			);
+		});
+	});
 	
 	describe("Feed buttons", function() {
 		describe("Mark as Read/Unread", function() {

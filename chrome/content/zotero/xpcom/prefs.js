@@ -49,7 +49,7 @@ Zotero.Prefs = new function(){
 		if (!fromVersion) {
 			fromVersion = 0;
 		}
-		var toVersion = 2;
+		var toVersion = 6;
 		if (fromVersion < toVersion) {
 			for (var i = fromVersion + 1; i <= toVersion; i++) {
 				switch (i) {
@@ -72,6 +72,36 @@ Zotero.Prefs = new function(){
 						// The saveButton guidance panel initially could auto-hide too easily.
 						this.clear('firstRunGuidanceShown.saveIcon');
 						this.clear('firstRunGuidanceShown.saveButton');
+						break;
+					
+					case 3:
+						this.clear('note.fontSize');
+						break;
+					
+					case 4:
+						this.clear('fileHandler.pdf');
+						break;
+					
+					case 5:
+						this.clear('extensions.spellcheck.inline.max-misspellings', true);
+						break;
+					
+					// If the note Quick Copy setting was set to Markdown + Rich Text but in a
+					// non-default way (e.g., because of whitespace differences), clear the pref
+					// to pick up the new app-link options
+					case 6:
+						var o = this.get('export.noteQuickCopy.setting');
+						try {
+							o = JSON.parse(o);
+							if (o.mode == 'export'
+									&& o.id == Zotero.Translators.TRANSLATOR_ID_MARKDOWN_AND_RICH_TEXT) {
+								this.clear('export.noteQuickCopy.setting');
+							}
+						}
+						catch (e) {
+							Zotero.logError(e);
+							this.clear('export.noteQuickCopy.setting');
+						}
 						break;
 				}
 			}
@@ -218,6 +248,12 @@ Zotero.Prefs = new function(){
 			Zotero.setFontSize(
 				Zotero.getActiveZoteroPane().document.getElementById('zotero-pane')
 			);
+			Zotero.setFontSize(Zotero.getActiveZoteroPane().document.getElementById('zotero-context-pane'));
+			Zotero.getActiveZoteroPane().collectionsView && Zotero.getActiveZoteroPane().collectionsView.updateFontSize();
+			Zotero.getActiveZoteroPane().itemsView && Zotero.getActiveZoteroPane().itemsView.updateFontSize();
+		}],
+		["recursiveCollections", function() {
+			Zotero.getActiveZoteroPane().itemsView.refreshAndMaintainSelection();
 		}],
 		[ "layout", function(val) {
 			Zotero.getActiveZoteroPane().updateLayout();
@@ -235,6 +271,15 @@ Zotero.Prefs = new function(){
 			else {
 				Zotero.Sync.EventListeners.AutoSyncListener.unregister();
 				Zotero.Sync.EventListeners.IdleListener.unregister();
+				Zotero.Prefs.set('sync.reminder.autoSync.enabled', true);
+				// We don't want to immediately display reminder so bump this value
+				Zotero.Prefs.set('sync.reminder.autoSync.lastDisplayed', Math.round(Date.now() / 1000));
+			}
+			try {
+				Zotero.getActiveZoteroPane().initSyncReminders(false);
+			}
+			catch (e) {
+				Zotero.logError(e);
 			}
 		}],
 		[ "search.quicksearch-mode", function(val) {
@@ -253,6 +298,9 @@ Zotero.Prefs = new function(){
 				if (!win.Zotero) continue;
 				Zotero.updateQuickSearchBox(win.document);
 			}
+		}],
+		[ "cite.useCiteprocRs", function(val) {
+			val && Zotero.CiteprocRs.init();
 		}]
 	];
 	
@@ -329,12 +377,13 @@ Zotero.Prefs = new function(){
 		delete _observersBySymbol[symbol];
 		
 		var [name, handler] = obs;
-		var i = obs.indexOf(handler);
+		var handlers = _observers[name];
+		var i = handlers.indexOf(handler);
 		if (i == -1) {
 			Zotero.debug("Handler was not registered for preference " + name, 2);
 			return;
 		}
-		obs.splice(i, 1);
+		handlers.splice(i, 1);
 	}
 	
 	
@@ -457,4 +506,59 @@ Zotero.Prefs = new function(){
 			});
 		});
 	}
+	
+	this.getVirtualCollectionState = function (type) {
+		const prefKeys = {
+			duplicates: 'duplicateLibraries',
+			unfiled: 'unfiledLibraries',
+			retracted: 'retractedLibraries'
+		};
+		let prefKey = prefKeys[type];
+		if (!prefKey) {
+			throw new Error("Invalid virtual collection type '" + type + "'");
+		}
+		
+		var libraries;
+		try {
+			libraries = JSON.parse(Zotero.Prefs.get(prefKey) || '{}');
+			if (typeof libraries != 'object') {
+				throw true;
+			}
+		}
+		// Ignore old/incorrect formats
+		catch (e) {
+			Zotero.Prefs.clear(prefKey);
+			libraries = {};
+		}
+		
+		return libraries;
+	};
+	
+	
+	this.getVirtualCollectionStateForLibrary = function (libraryID, type) {
+		return this.getVirtualCollectionState(type)[libraryID] !== false;
+	};
+	
+	
+	this.setVirtualCollectionStateForLibrary = function (libraryID, type, show) {
+		const prefKeys = {
+			duplicates: 'duplicateLibraries',
+			unfiled: 'unfiledLibraries',
+			retracted: 'retractedLibraries'
+		};
+		let prefKey = prefKeys[type];
+		if (!prefKey) {
+			throw new Error("Invalid virtual collection type '" + type + "'");
+		}
+		
+		var libraries = this.getVirtualCollectionState(type);
+		
+		// Update current library
+		libraries[libraryID] = !!show;
+		// Remove libraries that don't exist or that are set to true
+		for (let id of Object.keys(libraries).filter(id => libraries[id] || !Zotero.Libraries.exists(id))) {
+			delete libraries[id];
+		}
+		Zotero.Prefs.set(prefKey, JSON.stringify(libraries));
+	};
 }

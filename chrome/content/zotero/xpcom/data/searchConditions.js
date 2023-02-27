@@ -169,6 +169,17 @@ Zotero.SearchConditions = new function(){
 			},
 			
 			{
+				name: 'quicksearch-titleCreatorYearNote',
+				operators: {
+					is: true,
+					isNot: true,
+					contains: true,
+					doesNotContain: true
+				},
+				noLoad: true
+			},
+			
+			{
 				name: 'quicksearch-fields',
 				operators: {
 					is: true,
@@ -389,6 +400,42 @@ Zotero.SearchConditions = new function(){
 			},
 			
 			{
+				name: 'author',
+				operators: {
+					is: true,
+					isNot: true,
+					contains: true,
+					doesNotContain: true
+				},
+				table: 'itemCreators',
+				field: "TRIM(firstName || ' ' || lastName)"
+			},
+			
+			{
+				name: 'editor',
+				operators: {
+					is: true,
+					isNot: true,
+					contains: true,
+					doesNotContain: true
+				},
+				table: 'itemCreators',
+				field: "TRIM(firstName || ' ' || lastName)"
+			},
+			
+			{
+				name: 'bookAuthor',
+				operators: {
+					is: true,
+					isNot: true,
+					contains: true,
+					doesNotContain: true
+				},
+				table: 'itemCreators',
+				field: "TRIM(firstName || ' ' || lastName)"
+			},
+			
+			{
 				name: 'field',
 				operators: {
 					is: true,
@@ -403,6 +450,18 @@ Zotero.SearchConditions = new function(){
 					+ "WHERE fieldName NOT IN ('accessDate', 'date', 'pages', "
 					+ "'section','seriesNumber','issue')"),
 				template: true // mark for special handling
+			},
+
+			{
+				name: 'anyField',
+				operators: {
+					is: true,
+					isNot: true,
+					contains: true,
+					doesNotContain: true,
+					beginsWith: true
+				},
+				special: false
 			},
 			
 			{
@@ -490,13 +549,25 @@ Zotero.SearchConditions = new function(){
 			},
 			
 			{
-				name: 'annotation',
+				name: 'annotationText',
 				operators: {
 					contains: true,
 					doesNotContain: true
 				},
-				table: 'annotations',
-				field: 'text'
+				table: 'itemAnnotations',
+				field: 'text',
+				special: true,
+			},
+			
+			{
+				name: 'annotationComment',
+				operators: {
+					contains: true,
+					doesNotContain: true
+				},
+				table: 'itemAnnotations',
+				field: 'comment',
+				special: true,
 			},
 			
 			{
@@ -593,6 +664,10 @@ Zotero.SearchConditions = new function(){
 		
 		var collation = Zotero.getLocaleCollation();
 		_standardConditions.sort(function(a, b) {
+			// Sort Any Field to the top
+			if (a.name == 'anyField') {
+				return -1;
+			}
 			return collation.compareString(1, a.localized, b.localized);
 		});
 	});
@@ -646,13 +721,20 @@ Zotero.SearchConditions = new function(){
 		if (str == 'itemType') {
 			str = 'itemTypeID';
 		}
+		else if (['author', 'editor', 'bookAuthor'].includes(str)) {
+			return Zotero.CreatorTypes.getLocalizedString(str);
+		}
 		
 		try {
-			return Zotero.getString('searchConditions.' + str)
+			let conditionKey = 'searchConditions.' + str;
+			let conditionString = Zotero.getString(conditionKey);
+			if (conditionString !== conditionKey) {
+				return conditionString;
+			}
 		}
-		catch (e) {
-			return Zotero.ItemFields.getLocalizedString(str);
-		}
+		catch (e) {}
+
+		return Zotero.ItemFields.getLocalizedString(str);
 	}
 	
 	

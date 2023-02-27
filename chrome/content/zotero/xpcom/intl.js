@@ -51,7 +51,7 @@ Zotero.Intl = new function () {
 				Zotero.Utilities.Internal.quitZotero(true);
 				return;
 			}
-        }
+		}
 		
 		Components.utils.import("resource://gre/modules/PluralForm.jsm");
 
@@ -76,7 +76,7 @@ Zotero.Intl = new function () {
 		Zotero.rtl = (Zotero.dir === 'rtl');
 		
 		this.strings = {};
-		const intlFiles = ['zotero.dtd', 'mozilla/editMenuOverlay.dtd'];
+		const intlFiles = ['zotero.dtd', 'preferences.dtd', 'mozilla/editMenuOverlay.dtd'];
 		for (let intlFile of intlFiles) {
 			let localeXML = Zotero.File.getContentsFromURL(`chrome://zotero/locale/${intlFile}`);
 			let regexp = /<!ENTITY ([^\s]+)\s+"([^"]+)/g;
@@ -128,9 +128,33 @@ Zotero.Intl = new function () {
 			else if (e.name != 'NS_ERROR_FAILURE') {
 				Zotero.logError(e);
 			}
-			throw new Error('Localized string not available for ' + name);
+			let msg = 'Localized string not available for ' + name;
+			if (Zotero.locale == 'en-US') {
+				throw new Error(msg);
+			}
+			// In non-English locales, just return key if string is unavailable
+			Zotero.debug(msg, 1);
+			return name;
 		}
 		return l10n;
+	};
+
+	/**
+	 * Get all strings with a specified prefix
+	 *
+	 * @param {String} prefix
+	 * @return {Object}
+	 */
+	this.getPrefixedStrings = function (prefix) {
+		let strings = [];
+		let enumerator = bundle.getSimpleEnumeration();
+		while (enumerator.hasMoreElements()) {
+			let entity = enumerator.getNext().QueryInterface(Ci.nsIPropertyElement);
+			if (entity.key.startsWith(prefix)) {
+				strings[entity.key] = entity.value;
+			}
+		}
+		return strings;
 	};
 
 	/*
