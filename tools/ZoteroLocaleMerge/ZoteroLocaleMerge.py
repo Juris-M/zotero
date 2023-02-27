@@ -22,8 +22,8 @@ class ZoteroLocaleMerge:
            Read updated CSV files, and merge into distribution source.
     '''
     def __init__(self):
-        self.files = ['about.dtd','preferences.dtd','searchbox.dtd','standalone.dtd','timeline.properties','zotero.dtd', 'zotero.properties', '../scaffold/scaffold.dtd', '../scaffold/scaffold.properties']
-        self.files_csv = ['about-dtd.csv','preferences-dtd.csv','searchbox-dtd.csv','standalone-dtd.csv','timeline-properties.csv','zotero-dtd.csv', 'zotero-properties.csv']
+        self.files = ['about.dtd','preferences.dtd','searchbox.dtd','standalone.dtd','timeline.properties','zotero.dtd', 'zotero.properties', 'csledit.dtd', 'cslpreview.dtd', './mozilla/browser.dtd', './mozilla/editMenuOverlay.dtd', './mozilla/intl.properties', '../scaffold/scaffold.dtd', '../scaffold/scaffold.properties']
+        self.files_csv = ['about-dtd.csv','preferences-dtd.csv','searchbox-dtd.csv','standalone-dtd.csv','timeline-properties.csv','zotero-dtd.csv', 'zotero-properties.csv', 'csledit-dtd.csv', 'cslpreview-dtd.csv', 'browser-dtd.csv', 'editMenuOverlay-dtd.csv', 'intl-properties.csv', 'scaffold-dtd.csv', 'scaffold-properties.csv']
         self.establishBasePaths()
         #self.masterData = {}
         self.referenceData = {}
