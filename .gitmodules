@@ -59,7 +59,7 @@
 	branch = master
 [submodule "chrome/content/zotero/xpcom/utilities"]
 	path = chrome/content/zotero/xpcom/utilities
-	url = https://github.com/Juris-M/utilities.git
+	url = git@github.com:Juris-M/utilities.git
 [submodule "chrome/content/zotero/xpcom/translate"]
 	path = chrome/content/zotero/xpcom/translate
 	url = https://github.com/zotero/translate.git
