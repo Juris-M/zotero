@@ -26,7 +26,7 @@ var ZOTERO_CONFIG = {
 	SYNC_INFO_URL: "https://www.zotero.org/support/sync",
 	TROUBLESHOOTING_URL: "https://juris-m.github.io/",
 	FEEDBACK_URL: "https://juris-m.github.io/",
-	CONNECTORS_URL: "https://juris-m.github.io/downloads/"
+	CONNECTORS_URL: "https://juris-m.github.io/downloads/",
 	CHANGELOG_URL: "https://www.zotero.org/support/changelog",
 	CREDITS_URL: 'https://www.zotero.org/support/credits_and_acknowledgments',
 	LICENSING_URL: 'https://www.zotero.org/support/licensing',
