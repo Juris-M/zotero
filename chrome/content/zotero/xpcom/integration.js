@@ -3186,7 +3186,7 @@ Zotero.Integration.Citation = class {
 						}
 						zoteroItem = new Zotero.Item();
 						Zotero.Utilities.itemFromCSLJSON(zoteroItem, itemData, this._extractingLibraryID, false);
-						var itemID = yield zoteroItem.saveTx();
+						var itemID = await zoteroItem.saveTx();
 						
 						this._extractedItems[extractedID] = itemID;
 					}

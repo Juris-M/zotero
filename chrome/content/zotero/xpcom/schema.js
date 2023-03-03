@@ -1063,18 +1063,18 @@ Zotero.Schema = new function(){
 				break;
 			
 			case 'style-modules':
-				yield Zotero.StyleModules.init(initOpts);
-				var updated = yield _updateBundledFilesAtLocation(installLocation, mode);
+				await Zotero.StyleModules.init(initOpts);
+				var updated = await _updateBundledFilesAtLocation(installLocation, mode);
 				break;
 			
 			case 'juris-maps':
-				yield Zotero.JurisMaps.init(initOpts);
-				var updated = yield _updateBundledFilesAtLocation(installLocation, mode);
+				await Zotero.JurisMaps.init(initOpts);
+				var updated = await _updateBundledFilesAtLocation(installLocation, mode);
 				break;
 			
 			case 'juris-abbrevs':
-				yield Zotero.JurisMaps.init(initOpts);
-				var updated = yield _updateBundledFilesAtLocation(installLocation, mode);
+				await Zotero.JurisMaps.init(initOpts);
+				var updated = await _updateBundledFilesAtLocation(installLocation, mode);
 				break;
 			
 			case 'translators':
@@ -2929,9 +2929,9 @@ Zotero.Schema = new function(){
 	var _migrateUserDataSchema = async function (fromVersion, options = {}) {
 		var toVersion = await _getSchemaSQLVersion('userdata');
 		
-		if (fromVersion == 107 && !(yield Zotero.DB.valueQueryAsync("SELECT COUNT(*) FROM fields WHERE fieldName='jurisdiction'"))) {
-			let sql = yield _getSchemaSQL('system-107-jurism');
-			yield Zotero.DB.executeSQLFile(sql);
+		if (fromVersion == 107 && !(await Zotero.DB.valueQueryAsync("SELECT COUNT(*) FROM fields WHERE fieldName='jurisdiction'"))) {
+			let sql = await _getSchemaSQL('system-107-jurism');
+			await Zotero.DB.executeSQLFile(sql);
 		}
 		
 		if (fromVersion >= toVersion) {
@@ -2951,8 +2951,8 @@ Zotero.Schema = new function(){
 		
 		// If at max table version of old sync-version Juris-M, restore to max sync Zotero version and layout
 		if (fromVersion === 10002) {
-			yield Zotero.DB.queryAsync("DROP INDEX IF EXISTS itemDataValues_value");
-			yield _updateDBVersion('userdata', 80);
+			await Zotero.DB.queryAsync("DROP INDEX IF EXISTS itemDataValues_value");
+			await _updateDBVersion('userdata', 80);
 		}
 		// Use old rename/FK behavior from SQLite <3.25
 		// https://stackoverflow.com/a/57275538

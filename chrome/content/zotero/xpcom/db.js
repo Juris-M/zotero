@@ -764,17 +764,10 @@ Zotero.DBConnection.prototype.columnQueryAsync = async function (sql, params, op
 		}
 		let rows;
 		if (options && options.noCache) {
-<<<<<<< HEAD
-			rows = yield conn.execute(sql, params);
-		}
-		else {
-			rows = yield conn.executeCached(sql, params);
-=======
 			rows = await conn.execute(sql, params);
 		}
 		else {
 			rows = await conn.executeCached(sql, params);
->>>>>>> zmaster-6.0.20
 		}
 		var column = [];
 		for (let i=0, len=rows.length; i<len; i++) {
