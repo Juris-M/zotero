@@ -1286,7 +1286,7 @@
 							typeBox.appendChild(img);
 							typeBox.setAttribute('onkeypress', 'return document.getBindingParent(this).handleKeyPress(event)');
 						} else {
-							typeBox.className = 'creator-type-label zotero-alien-clicky is-variant zotero-focusable');
+							typeBox.className = 'creator-type-label zotero-alien-clicky is-variant zotero-focusable';
 						}
 					}
 					else {
