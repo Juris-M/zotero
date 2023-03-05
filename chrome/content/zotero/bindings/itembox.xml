@@ -1262,19 +1262,17 @@
 					
 					var typeBox = document.createElement("hbox");
 					typeBox.setAttribute("typeid", typeID);
-					if (!parentNode) {
-						typeBox.onclick = () => {
-							document.popupNode = typeBox;
-							this._id("creator-type-menu").openPopup(typeBox);
-						}
-					}
 					typeBox.setAttribute("fieldname", 'creator-' + creatorPos + '-typeID');
 					if (langTag) {
 						typeBox.setAttribute("zlang", langTag);
 						typeBox.setAttribute("tooltiptext", Zotero.CachedLanguages.getNickname(langTag));
 					}
 					if (this.editable) {
-						typeBox.setAttribute("contextmenu", "mlz-language-menu");
+						typeBox.oncontextmenu = (e) => {
+							e.stopImmediatePropagation();
+							document.popupNode = typeBox;
+							this._id("mlz-language-menu").openPopup(typeBox);
+						}
 						if (!parentNode) {
 							typeBox.className = 'creator-type-label zotero-clicky zotero-focusable';
 							typeBox.setAttribute('ztabindex', tabindex - 1);
@@ -1295,6 +1293,12 @@
 						} else {
 							typeBox.className = 'creator-type-label';
 							typeBox.classList.add('is-variant');
+						}
+					}
+					if (!parentNode) {
+						typeBox.onclick = () => {
+							document.popupNode = typeBox;
+							this._id("creator-type-menu").openPopup(typeBox);
 						}
 					}
 					
@@ -1382,6 +1386,7 @@
 					else {
 						let index = creatorPos;
 						removeButton.onclick = (ev) => {
+							ev.stopPropagation();
 							document.getBindingParent(ev.currentTarget)
 								.removeCreator(index, ev.currentTarget.parentNode.parentNode);
 						}
@@ -2256,12 +2261,14 @@
 					}
 					// Block delete if there are multilingual variants
 					if (isMulti) {
+						this._lastTabIndex = null;
 						var langTag = labelToDelete.firstChild.getAttribute("zlang");
 						var creator = Zotero.Creators.cleanData(this.item.getCreator(index), {includeDependents:true});
 						delete creator.multi._key[langTag];
 						this.item.setCreator(index, creator, creator.creatorTypeID);
 					} else {
 						if (!(labelToDelete.nextSibling && labelToDelete.nextSibling.tagName === 'rows')) {
+							this._lastTabIndex = null;
 							this.item.removeCreator(index);
 						}
 					}
