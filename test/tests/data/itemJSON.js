@@ -1989,7 +1989,11 @@
 		"tags": [],
 		"title": "Title",
 		"url": "http://www.example.com",
-		"version": 0
+		"version": 0,
+		"multi": {
+			"main": {},
+			"_keys": {}
+		}
 	},
 	"presentation": {
 		"abstractNote": "Abstract note",
