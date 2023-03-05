@@ -717,16 +717,12 @@ Zotero.Item.prototype.getFieldsNotInType = function (itemTypeID, allowBaseConver
  */
 Zotero.Item.prototype.setField = function(field, value, loadIn, langTag, forceTop) {
 	this._disabledCheck();
-	
 	if (value === undefined) {
 		throw new Error(`'${field}' value cannot be undefined`);
 	}
 	
 	// Normalize values
-	if (typeof value == 'number') {
-		value = "" + value;
-	}
-	else if (typeof value == 'string') {
+	if (typeof value == 'string') {
 		value = value.trim().normalize();
 	}
 	if (value === "" || value === null || value === false) {
@@ -757,6 +753,7 @@ Zotero.Item.prototype.setField = function(field, value, loadIn, langTag, forceTo
 			throw new Error('Cannot set primary field ' + field + ' in loadIn mode in Zotero.Item.setField()');
 		}
 		
+
 		switch (field) {
 			case 'itemTypeID':
 				if (typeof value != 'number' || value != parseInt(value)) {
