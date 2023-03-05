@@ -29,6 +29,11 @@ async function getJS(source, options, signatures) {
 		const newFileSignature = await getFileSignature(f);
 		const dest = path.join('build', f.replace('.jsx', '.js'));
 		f = path.normalize(f);
+		if (f == "test/resource/mocha/test/integration/fixtures/esm/test-that-uses-dir-cjs-require.fixture.js") {
+			continue;
+		} else if (f == "test/resource/mocha/test/integration/fixtures/options/parallel/syntax-err.fixture.js") {
+			continue;
+		}
 		if (f in signatures) {
 			if (compareSignatures(newFileSignature, signatures[f])) {
 				try {
