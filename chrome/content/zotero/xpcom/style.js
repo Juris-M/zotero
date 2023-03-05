@@ -719,6 +719,7 @@ Zotero.Style.prototype.getCiteProc = function(locale, format, automaticJournalAb
 	var uppercaseSubtitlesRE = /^apa($|-)|^academy-of-management($|-)|^(freshwater-science)/;
 	var shortIDMatches = this.styleID.match(/\/?([^/]+)$/);
 	this._uppercaseSubtitles = !!shortIDMatches && uppercaseSubtitlesRE.test(shortIDMatches[1]);
+	var uppercaseSubtitles = this._uppercaseSubtitles;
 	
 	// determine version of parent style
 	var overrideLocale = false; // to force dependent style locale
