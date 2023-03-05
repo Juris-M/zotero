@@ -207,7 +207,7 @@ Zotero.DataDirectory = {
 				Zotero.logError(e);
 			}
 			
-			// Check for ~/Zotero/zotero.sqlite
+			// Check for ~/Zotero/jurism.sqlite
 			let dbFile = OS.Path.join(dataDir, dbFilename);
 			if (yield OS.File.exists(dbFile)) {
 				Zotero.debug("Using data directory " + dataDir);
@@ -219,7 +219,7 @@ Zotero.DataDirectory = {
 				return dataDir;
 			}
 			
-			// Check for <profile dir>/zotero/zotero.sqlite
+			// Check for <profile dir>/zotero/jurism.sqlite
 			let profileSubdirModTime;
 			try {
 				let dir = OS.Path.join(Zotero.Profile.dir, this.legacyDirName);
@@ -509,7 +509,7 @@ Zotero.DataDirectory = {
 						let dbfile = file.clone();
 						dbfile.append(this.getDatabaseFilename());
 						
-						// Warn if non-empty and no zotero.sqlite
+						// Warn if non-empty and no jurism.sqlite
 						if (!dbfile.exists()) {
 							dialogTitle = Zotero.getString('dataDir.selectedDirNonEmpty.title');
 							dialogText = Zotero.getString('dataDir.selectedDirNonEmpty.text');
@@ -694,7 +694,7 @@ Zotero.DataDirectory = {
 		if (OS.Path.basename(dir) != 'storage') {
 			return false;
 		}
-		let sqlitePath = OS.Path.join(OS.Path.dirname(dir), 'zotero.sqlite');
+		let sqlitePath = OS.Path.join(OS.Path.dirname(dir), this.getDatabaseFilename());
 		return OS.File.exists(sqlitePath);
 	},
 	
