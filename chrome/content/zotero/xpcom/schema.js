@@ -2413,13 +2413,13 @@ Zotero.Schema = new function(){
 				await _updateDBVersion('userdata', version);
 				
 				version = await _getSchemaSQLVersion('multilingual');
-				await _updateDBVersion('userdata', version);
+				await _updateDBVersion('multilingual', version);
 				
 				version = await _getSchemaSQLVersion('zls');
-				await _updateDBVersion('userdata', version);
+				await _updateDBVersion('zls', version);
 				
 				version = await _getSchemaSQLVersion('jurisdictions');
-				await _updateDBVersion('userdata', version);
+				await _updateDBVersion('jurisdictions', version);
 				
 				version = await _getSchemaSQLVersion('triggers');
 				await _updateDBVersion('triggers', version);
