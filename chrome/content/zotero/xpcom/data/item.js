@@ -722,7 +722,10 @@ Zotero.Item.prototype.setField = function(field, value, loadIn, langTag, forceTo
 	}
 	
 	// Normalize values
-	if (typeof value == 'string') {
+	if (typeof value == 'number') {
+		value = "" + value;
+	}
+	else if (typeof value == 'string') {
 		value = value.trim().normalize();
 	}
 	if (value === "" || value === null || value === false) {
@@ -5880,7 +5883,6 @@ Zotero.Item.prototype.toJSON = function (options = {}) {
 			}
 		}
 	}
-	
 	// Field variants
 	for (let i in this.multi._keys) {
 		for (let j in this.multi._keys[i]) {

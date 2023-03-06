@@ -1083,7 +1083,7 @@ Zotero.Integration.Session.prototype._processFields = async function () {
 		if (field.type === INTEGRATION_TYPE_ITEM) {
 			var noteIndex = await field.getNoteIndex(),
 				data = await field.unserialize(),
-				citation = new Zotero.Integration.Citation(field, data, noteIndex, this._session.data.prefs.extractingLibraryID, this._session.extractedItems);
+				citation = new Zotero.Integration.Citation(field, data, noteIndex, this.data.prefs.extractingLibraryID, this.extractedItems);
 
 			if (this._shouldMerge && typeof field.isAdjacentToNextField === 'function' && await field.isAdjacentToNextField()) {
 				adjacentCitations.push(citation);
@@ -1388,7 +1388,7 @@ Zotero.Integration.Session.prototype.cite = async function (field, addNote=false
 		if (field.type != INTEGRATION_TYPE_ITEM) {
 			throw new Zotero.Exception.Alert("integration.error.notInCitation");
 		}
-		citation = new Zotero.Integration.Citation(field, await field.unserialize(), await field.getNoteIndex(), this._session.data.prefs.extractingLibraryID, this._session.extractedItems);
+		citation = new Zotero.Integration.Citation(field, await field.unserialize(), await field.getNoteIndex(), this.data.prefs.extractingLibraryID, this.extractedItems);
 	} else {
 		newField = true;
 		field = new Zotero.Integration.CitationField(await this.addField(true));
@@ -1453,7 +1453,7 @@ Zotero.Integration.Session.prototype.cite = async function (field, addNote=false
 		
 	var io = new Zotero.Integration.CitationEditInterface(
 		citation, this.style.opt.sort_citations,
-		fieldIndexPromise, citationsByItemIDPromise, previewFn, this._session.style
+		fieldIndexPromise, citationsByItemIDPromise, previewFn, this.style
 	);
 	Zotero.debug(`Editing citation:`);
 	Zotero.debug(JSON.stringify(citation.toJSON()));
@@ -3335,7 +3335,6 @@ Zotero.Integration.Citation = class {
 		for (let key of saveProperties) {
 			if (key in this.properties) citation.properties[key] = this.properties[key];
 		}
-		
 		citation.citationItems = new Array(this.citationItems.length);
 		for (let i=0; i < this.citationItems.length; i++) {
 			var citationItem = this.citationItems[i],
@@ -3364,7 +3363,7 @@ Zotero.Integration.Citation = class {
 			citation.citationItems[i] = serializeCitationItem;
 		}
 		citation.schema = "https://github.com/citation-style-language/schema/raw/master/csl-citation.json";
-		
+
 		return citation;
 	}
 

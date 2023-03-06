@@ -168,16 +168,16 @@
 				}
 			},
 			{
-				"creatorType": "sponsor",
-				"name": "Institutional Author",
+				"firstName": "translatorFirst",
+				"lastName": "translatorLast",
+				"creatorType": "translator",
 				"multi": {
 					"_key": {}
 				}
 			},
 			{
-				"firstName": "translatorFirst",
-				"lastName": "translatorLast",
-				"creatorType": "translator",
+				"creatorType": "sponsor",
+				"name": "Institutional Author",
 				"multi": {
 					"_key": {}
 				}
@@ -304,6 +304,14 @@
 				}
 			},
 			{
+				"firstName": "recipientFirst",
+				"lastName": "recipientLast",
+				"creatorType": "recipient",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
 				"creatorType": "seriesEditor",
 				"firstName": "seriesEditorFirst",
 				"lastName": "seriesEditorLast",
@@ -322,14 +330,6 @@
 			{
 				"creatorType": "author",
 				"name": "Institutional Author",
-				"multi": {
-					"_key": {}
-				}
-			},
-			{
-				"firstName": "recipientFirst",
-				"lastName": "recipientLast",
-				"creatorType": "recipient",
 				"multi": {
 					"_key": {}
 				}
@@ -408,6 +408,14 @@
 				}
 			},
 			{
+				"firstName": "recipientFirst",
+				"lastName": "recipientLast",
+				"creatorType": "recipient",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
 				"creatorType": "seriesEditor",
 				"firstName": "seriesEditorFirst",
 				"lastName": "seriesEditorLast",
@@ -426,14 +434,6 @@
 			{
 				"creatorType": "author",
 				"name": "Institutional Author",
-				"multi": {
-					"_key": {}
-				}
-			},
-			{
-				"firstName": "recipientFirst",
-				"lastName": "recipientLast",
-				"creatorType": "recipient",
 				"multi": {
 					"_key": {}
 				}
@@ -469,6 +469,111 @@
 		"bookAbbreviation": "Journal abbreviation",
 		"volumeTitle": "Volume title"
 	},
+	"legalCommentary": {
+		"key": "XSEABJVM",
+		"collections": [],
+		"relations": {},
+		"tags": [],
+		"version": 0,
+		"dateAdded": "2015-04-12T09:00:22Z",
+		"dateModified": "2015-04-12T09:00:22Z",
+		"ISBN": "978-1-234-56789-7",
+		"abstractNote": "Abstract note",
+		"accessDate": "1997-06-13T23:59:58Z",
+		"archive": "Archive",
+		"archiveLocation": "Archive location",
+		"callNumber": "Call number",
+		"creators": [
+			{
+				"creatorType": "author",
+				"firstName": "authorFirst",
+				"lastName": "authorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "bookAuthor",
+				"firstName": "bookAuthorFirst",
+				"lastName": "bookAuthorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "contributor",
+				"firstName": "contributorFirst",
+				"lastName": "contributorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "editor",
+				"firstName": "editorFirst",
+				"lastName": "editorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "recipient",
+				"firstName": "recipientFirst",
+				"lastName": "recipientLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "seriesEditor",
+				"firstName": "seriesEditorFirst",
+				"lastName": "seriesEditorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "translator",
+				"firstName": "translatorFirst",
+				"lastName": "translatorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "author",
+				"name": "Institutional Author",
+				"multi": {
+					"_key": {}
+				}
+			}
+		],
+		"date": "1999-12-31",
+		"edition": "8",
+		"extra": "Extra",
+		"itemType": "legalCommentary",
+		"language": "en-US",
+		"libraryCatalog": "Library catalog",
+		"numberOfVolumes": "7",
+		"pages": "1-10",
+		"place": "Place",
+		"bookTitle": "Publication title",
+		"bookAbbreviation": "Journal abbreviation",
+		"publisher": "Publisher",
+		"rights": "Rights",
+		"series": "Series",
+		"seriesNumber": "9",
+		"shortTitle": "Short title",
+		"title": "Title",
+		"url": "http://www.example.com",
+		"versionNumber": "Version number",
+		"volume": "6",
+		"volumeTitle": "Volume title",
+		"multi": {
+			"main": {},
+			"_keys": {}
+		}
+	},
 	"case": {
 		"abstractNote": "Abstract note",
 		"accessDate": "1997-06-13T23:59:58Z",
@@ -480,6 +585,14 @@
 				"creatorType": "author",
 				"firstName": "authorFirst",
 				"lastName": "authorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"firstName": "commenterFirst",
+				"lastName": "commenterLast",
+				"creatorType": "commenter",
 				"multi": {
 					"_key": {}
 				}
@@ -501,24 +614,16 @@
 				}
 			},
 			{
-				"creatorType": "author",
-				"name": "Institutional Author",
-				"multi": {
-					"_key": {}
-				}
-			},
-			{
-				"firstName": "commenterFirst",
-				"lastName": "commenterLast",
-				"creatorType": "commenter",
-				"multi": {
-					"_key": {}
-				}
-			},
-			{
 				"firstName": "translatorFirst",
 				"lastName": "translatorLast",
 				"creatorType": "translator",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "author",
+				"name": "Institutional Author",
 				"multi": {
 					"_key": {}
 				}
@@ -535,7 +640,7 @@
 		"key": "9A2VVWGX",
 		"language": "en-US",
 		"relations": {},
-		"reporter": "Reporter",
+		"reporter": "Publication title",
 		"reporterVolume": "6",
 		"rights": "Rights",
 		"shortTitle": "Short title",
@@ -1145,23 +1250,17 @@
 		"committee": "Committee",
 		"creators": [
 			{
+				"creatorType": "testimonyBy",
+				"firstName": "testimonyByFirst",
+				"lastName": "testimonyByLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
 				"creatorType": "contributor",
 				"firstName": "contributorFirst",
 				"lastName": "contributorLast",
-				"multi": {
-					"_key": {}
-				}
-			},
-			{
-				"creatorType": "contributor",
-				"name": "Institutional Author",
-				"multi": {
-					"_key": {}
-				}
-			},
-			{
-				"name": "Institutional Author",
-				"creatorType": "testimonyBy",
 				"multi": {
 					"_key": {}
 				}
@@ -1173,12 +1272,19 @@
 				"multi": {
 					"_key": {}
 				}
+			},
+			{
+				"name": "Institutional Author",
+				"creatorType": "testimonyBy",
+				"multi": {
+					"_key": {}
+				}
 			}
 		],
 		"date": "1999-12-31",
 		"dateAdded": "2015-04-12T09:00:22Z",
 		"dateModified": "2015-04-12T09:00:22Z",
-		"documentNumber": "3",
+		"documentNumber": "Document number",
 		"extra": "Extra",
 		"history": "History",
 		"itemType": "hearing",
@@ -1803,16 +1909,16 @@
 				}
 			},
 			{
-				"creatorType": "inventor",
-				"name": "Institutional Author",
+				"firstName": "recipientFirst",
+				"lastName": "recipientLast",
+				"creatorType": "recipient",
 				"multi": {
 					"_key": {}
 				}
 			},
 			{
-				"firstName": "recipientFirst",
-				"lastName": "recipientLast",
-				"creatorType": "recipient",
+				"creatorType": "inventor",
+				"name": "Institutional Author",
 				"multi": {
 					"_key": {}
 				}
@@ -2191,7 +2297,7 @@
 		"dateAdded": "2015-04-12T09:00:22Z",
 		"dateModified": "2015-04-12T09:00:22Z",
 		"extra": "Extra",
-		"institution": "Publisher",
+		"institution": "Institution",
 		"itemType": "report",
 		"key": "V3MJGNVJ",
 		"language": "en-US",
@@ -2244,16 +2350,16 @@
 				}
 			},
 			{
-				"creatorType": "author",
-				"name": "Institutional Author",
+				"firstName": "translatorFirst",
+				"lastName": "translatorLast",
+				"creatorType": "translator",
 				"multi": {
 					"_key": {}
 				}
 			},
 			{
-				"firstName": "translatorFirst",
-				"lastName": "translatorLast",
-				"creatorType": "translator",
+				"creatorType": "author",
+				"name": "Institutional Author",
 				"multi": {
 					"_key": {}
 				}
@@ -2575,6 +2681,370 @@
 		"version": 0,
 		"websiteTitle": "Publication title",
 		"websiteType": "Type",
+		"multi": {
+			"main": {},
+			"_keys": {}
+		}
+	},
+	"gazette": {
+		"key": "YSEABJVM",
+		"collections": [],
+		"relations": {},
+		"tags": [],
+		"version": 0,
+		"dateAdded": "2015-04-12T09:00:22Z",
+		"dateModified": "2015-04-12T09:00:22Z",
+		"abstractNote": "Abstract note",
+		"accessDate": "1997-06-13T23:59:58Z",
+		"code": "Code",
+		"codeNumber": "Code number",
+		"creators": [
+			{
+				"creatorType": "author",
+				"firstName": "authorFirst",
+				"lastName": "authorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "contributor",
+				"firstName": "contributorFirst",
+				"lastName": "contributorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "translator",
+				"firstName": "translatorFirst",
+				"lastName": "translatorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "author",
+				"name": "Institutional Author",
+				"multi": {
+					"_key": {}
+				}
+			}
+		],
+		"dateEnacted": "1999-12-31",
+		"extra": "Extra",
+		"history": "History",
+		"itemType": "gazette",
+		"jurisdiction": "Jurisdiction",
+		"language": "en-US",
+		"publicLawNumber": "3",
+		"pages": "1-10",
+		"publicationDate": "Publication date",
+		"publisher": "Publisher",
+		"regnalYear": "Regnal year",
+		"reign": "Reign",
+		"rights": "Rights",
+		"section": "Section",
+		"session": "Session",
+		"shortTitle": "Short title",
+		"nameOfAct": "Title",
+		"url": "http://www.example.com",
+		"multi": {
+			"main": {},
+			"_keys": {}
+		}
+	},
+	"regulation": {
+		"key": "ZSEABJVM",
+		"collections": [],
+		"relations": {},
+		"tags": [],
+		"version": 0,
+		"dateAdded": "2015-04-12T09:00:22Z",
+		"dateModified": "2015-04-12T09:00:22Z",
+		"abstractNote": "Abstract note",
+		"accessDate": "1997-06-13T23:59:58Z",
+		"code": "Code",
+		"codeNumber": "Code number",
+		"creators": [
+			{
+				"creatorType": "author",
+				"firstName": "authorFirst",
+				"lastName": "authorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "contributor",
+				"firstName": "contributorFirst",
+				"lastName": "contributorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "translator",
+				"firstName": "translatorFirst",
+				"lastName": "translatorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "author",
+				"name": "Institutional Author",
+				"multi": {
+					"_key": {}
+				}
+			}
+		],
+		"dateEnacted": "1999-12-31",
+		"extra": "Extra",
+		"gazetteFlag": "Gazette flag",
+		"history": "History",
+		"itemType": "regulation",
+		"jurisdiction": "Jurisdiction",
+		"language": "en-US",
+		"regulatoryBody": "Legislative body",
+		"publicLawNumber": "3",
+		"pages": "1-10",
+		"publicationDate": "Publication date",
+		"publisher": "Publisher",
+		"rights": "Rights",
+		"section": "Section",
+		"session": "Session",
+		"shortTitle": "Short title",
+		"nameOfAct": "Title",
+		"regulationType": "Type",
+		"url": "http://www.example.com",
+		"multi": {
+			"main": {},
+			"_keys": {}
+		}
+	},
+	"classic": {
+		"key": "ASEABJVM",
+		"collections": [],
+		"relations": {},
+		"tags": [],
+		"version": 0,
+		"abstractNote": "Abstract note",
+		"accessDate": "1997-06-13T23:59:58Z",
+		"archive": "Archive",
+		"archiveLocation": "Archive location",
+		"callNumber": "Call number",
+		"creators": [
+			{
+				"creatorType": "author",
+				"firstName": "authorFirst",
+				"lastName": "authorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "contributor",
+				"firstName": "contributorFirst",
+				"lastName": "contributorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "translator",
+				"firstName": "translatorFirst",
+				"lastName": "translatorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "author",
+				"name": "Institutional Author",
+				"multi": {
+					"_key": {}
+				}
+			}
+		],
+		"date": "1999-12-31",
+		"extra": "Extra",
+		"itemType": "classic",
+		"language": "en-US",
+		"libraryCatalog": "Library catalog",
+		"numPages": "4",
+		"place": "Place",
+		"rights": "Rights",
+		"shortTitle": "Short title",
+		"title": "Title",
+		"manuscriptType": "Type",
+		"url": "http://www.example.com",
+		"volume": "6",
+		"multi": {
+			"main": {},
+			"_keys": {}
+		}
+	},
+	"treaty": {
+		"key": "BSEABJVM",
+		"collections": [],
+		"relations": {},
+		"tags": [],
+		"version": 0,
+		"abstractNote": "Abstract note",
+		"adoptionDate": "Adoption date",
+		"accessDate": "1997-06-13T23:59:58Z",
+		"archive": "Archive",
+		"archiveLocation": "Archive location",
+		"callNumber": "Call number",
+		"creators": [
+			{
+				"creatorType": "author",
+				"firstName": "authorFirst",
+				"lastName": "authorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "contributor",
+				"firstName": "contributorFirst",
+				"lastName": "contributorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "editor",
+				"firstName": "editorFirst",
+				"lastName": "editorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "reviewedAuthor",
+				"firstName": "reviewedAuthorFirst",
+				"lastName": "reviewedAuthorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "translator",
+				"firstName": "translatorFirst",
+				"lastName": "translatorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "author",
+				"name": "Institutional Author",
+				"multi": {
+					"_key": {}
+				}
+			}
+		],
+		"date": "1999-12-31",
+		"extra": "Extra",
+		"itemType": "treaty",
+		"language": "en-US",
+		"libraryCatalog": "Library catalog",
+		"treatyNumber": "3",
+		"pages": "1-10",
+		"openingDate": "Opening date",
+		"parentTreaty": "Parent treaty",
+		"reporter": "Publication title",
+		"publisher": "Publisher",
+		"rights": "Rights",
+		"section": "Section",
+		"shortTitle": "Short title",
+		"signingDate": "Signing date",
+		"supplementName": "Supplement name",
+		"title": "Title",
+		"url": "http://www.example.com",
+		"versionNumber": "Version number",
+		"volume": "6",
+		"multi": {
+			"main": {},
+			"_keys": {}
+		}
+	},
+	"standard": { 
+		"key": "CSEABJVM",
+		"collections": [],
+		"relations": {},
+		"tags": [],
+		"version": 0,
+		"itemType": "standard",
+		"title": "Title",
+		"abstractNote": "Abstract note",
+		"number": "3",
+		"publisher": "Publisher",
+		"versionNumber": "Version number",
+		"date": "1999-12-31",
+		"jurisdiction": "Jurisdiction",
+		"language": "en-US",
+		"shortTitle": "Short title",
+		"url": "http://www.example.com",
+		"accessDate": "1997-06-13T23:59:58Z",
+		"archive": "Archive",
+		"archiveLocation": "Archive location",
+		"libraryCatalog": "Library catalog",
+		"callNumber": "Call number",
+		"rights": "Rights",
+		"extra": "Extra",
+		"creators": 
+		[ 
+			{ 
+				"creatorType": "author",
+				"firstName": "authorFirst",
+				"lastName": "authorLast",
+				"multi": {
+					"_key": {}
+				} 
+			},
+			{
+				"creatorType": "contributor",
+				"firstName": "contributorFirst",
+				"lastName": "contributorLast",
+				"multi": {
+					"_key": {}
+				} 
+			},
+			{
+				"creatorType": "editor",
+				"firstName": "editorFirst",
+				"lastName": "editorLast",
+				"multi": {
+					"_key": {}
+				} 
+			},
+			{
+				"creatorType": "reviewedAuthor",
+				"firstName": "reviewedAuthorFirst",
+				"lastName": "reviewedAuthorLast",
+				"multi": {
+					"_key": {}
+				} 
+			},
+			{
+				"creatorType": "translator",
+				"firstName": "translatorFirst",
+				"lastName": "translatorLast",
+				"multi": {
+					"_key": {}
+				} 
+			},
+			{
+				"creatorType": "author",
+				"name": "Institutional Author",
+				"multi": {
+					"_key": {}
+				}
+			} 
+		],
 		"multi": {
 			"main": {},
 			"_keys": {}

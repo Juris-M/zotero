@@ -40,6 +40,8 @@ describe("Zotero_File_Interface", function() {
             delete trueItem.key;
             delete trueItem.collections;
         }
+        // Zotero.debug("savedItems\n"+JSON.stringify(savedItems, null, 2), 1);
+        // Zotero.debug("trueItems\n"+JSON.stringify(trueItems, null, 2), 1);
         assert.deepEqual(savedItems, trueItems, "saved items match inputs");
     });
     

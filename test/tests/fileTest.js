@@ -455,6 +455,7 @@ describe("Zotero.File", function () {
 	describe('#download()', function () {
 		const sizeInMB = 16; // size of the generated text file
 		let port, httpd, baseURL;
+		Components.utils.import("resource://zotero/concurrentCaller.js");
 
 		before(async function () {
 			// Real HTTP server

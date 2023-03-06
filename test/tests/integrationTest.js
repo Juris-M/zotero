@@ -728,7 +728,7 @@ describe("Zotero.Integration", function () {
 
 				let testItem = await createDataObject('item', {libraryID: Zotero.Libraries.userLibraryID});
 				testItem.setField('title', `Mendeley imported`);
-				testItem.setCreator(0, {creatorType: 'author', name: `Mendeleev, Dmitri `});
+				testItem.setCreator(0, {creatorType: 'author', name: `Mendeleev, Dmitri `, multi:{_key:{}}});
 				testItem.addRelation('mendeleyDB:documentUUID', 'e213167f-af42-4ff1-95e8-a9aa6b0b3e1b');
 				await testItem.saveTx();
 
@@ -917,7 +917,7 @@ describe("Zotero.Integration", function () {
 
 					let promise = execCommand('refresh', docID);
 					await assert.isFulfilled(waitForDialog());
-					
+
 					stub.restore();
 					await promise;
 				});
@@ -977,22 +977,22 @@ describe("Zotero.Integration", function () {
 				var docID = this.test.fullTitle();
 				let testItem1 = await createDataObject('item', {libraryID: Zotero.Libraries.userLibraryID});
 				testItem1.setField('title', `title1`);
-				testItem1.setCreator(0, {creatorType: 'author', firstName: "Foo", lastName: "Bar"});
+				testItem1.setCreator(0, {creatorType: 'author', firstName: "Foo", lastName: "Bar", multi: {_key:{}}});
 				testItem1.setField('date', '2022-01-01');
 				let testItem2 = await createDataObject('item', {libraryID: Zotero.Libraries.userLibraryID});
 				testItem2.setField('title', `title2`);
-				testItem2.setCreator(0, {creatorType: 'author', firstName: "Foo", lastName: "Bar"});
+				testItem2.setCreator(0, {creatorType: 'author', firstName: "Foo", lastName: "Bar", multi: {_key:{}}});
 				testItem2.setField('date', '2022-01-01');
 				setAddEditItems([testItem1, testItem2]);
 				await initDoc(docID);
 				await execCommand('addEditCitation', docID);
 				assert.equal(applications[docID].doc.fields[0].text, '(Bar, 2022a, 2022b)');
 				
-				testItem2.setCreator(0, {creatorType: 'author', firstName: "Foo F", lastName: "Bar"});
+				testItem2.setCreator(0, {creatorType: 'author', firstName: "Foo F", lastName: "Bar", multi: {_key:{}}});
 				await execCommand('refresh', docID);
 				assert.equal(applications[docID].doc.fields[0].text, '(F. Bar, 2022; F. F. Bar, 2022)');
 				
-				testItem2.setCreator(0, {creatorType: 'author', firstName: "Foo", lastName: "Bar"});
+				testItem2.setCreator(0, {creatorType: 'author', firstName: "Foo", lastName: "Bar", multi: {_key:{}}});
 				await execCommand('refresh', docID);
 				assert.equal(applications[docID].doc.fields[0].text, '(Bar, 2022a, 2022b)');
 			});
