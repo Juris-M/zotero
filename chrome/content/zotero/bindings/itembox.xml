@@ -701,7 +701,11 @@
 								this.nextSibling.firstElementChild.inputField.blur();
 							}
 						}.bind(label))
-						label.setAttribute("contextmenu", "mlz-language-menu");
+						label.oncontextmenu = (e) => {
+e.preventDefault();
+							document.popupNode = label;
+							this._id("mlz-language-menu").openPopup(label);
+						}
 					}
 					
 					var row = this.addDynamicRow(label, valueElement, null, null, parentNode, nextNode);
@@ -1269,6 +1273,7 @@
 					}
 					if (this.editable) {
 						typeBox.oncontextmenu = (e) => {
+e.preventDefault();
 							e.stopImmediatePropagation();
 							document.popupNode = typeBox;
 							this._id("mlz-language-menu").openPopup(typeBox);
@@ -1323,6 +1328,7 @@
 					var firstlast = document.createElement("hbox");
 					firstlast.className = 'creator-name-box';
 					firstlast.setAttribute("flex","1");
+firstlast.setAttribute("squiggle", true);
 					var fieldName = 'creator-' + creatorPos + '-lastName';
 					var lastNameLabel = firstlast.appendChild(
 						this.createValueElement(
@@ -1351,7 +1357,8 @@
 					}
 					
 					if (this.editable && fieldMode == 0) {
-						firstlast.oncontextmenu = () => {
+						firstlast.oncontextmenu = (e) => {
+e.preventDefault();
 							document.popupNode = firstlast;
 							this._id('zotero-creator-transform-menu').openPopup(firstlast);
 						};
@@ -2170,7 +2177,8 @@
 						if (this.editable && (fieldName == 'seriesTitle' || fieldName == 'shortTitle' ||
 								Zotero.ItemFields.isFieldOfBase(fieldID, 'title') ||
 								Zotero.ItemFields.isFieldOfBase(fieldID, 'publicationTitle'))) {
-							valueElement.oncontextmenu = () => {
+							valueElement.oncontextmenu = (e) => {
+e.preventDefault();
 								document.popupNode = valueElement;
 								this._id('zotero-field-transform-menu').openPopup(valueElement);
 							};
@@ -2184,7 +2192,8 @@
 					
 					// Add popup menu on DOI field with value
 					if (fieldName == 'DOI' && valueText) {
-						valueElement.oncontextmenu = () => {
+						valueElement.oncontextmenu = (e) => {
+e.preventDefault();
 							this._id('zotero-doi-menu').openPopup(valueElement);
 						};
 					}
@@ -2744,6 +2753,7 @@
 			  <parameter name="firstNameValue"/>
 			  <body>
 				<![CDATA[
+
 					function splitParticles(nameValue, firstNameFlag, caseOverride) {
 						// Parse particles out from name fields.
 						// * nameValue (string) is the field content to be parsed.
@@ -2858,6 +2868,7 @@
 					// (1) lastName must either have quotes start and end, or none at either end.
 					var mQuoted = lastNameValue.match(/^(?:\".*\")$/);
 					var mUnquoted = lastNameValue.match(/^(?:[^\"].*[^\"])$/);
+
 					if (!mQuoted && !mUnquoted) return false;
 					
 					
@@ -3157,10 +3168,10 @@
 				<![CDATA[
 					var lastNameValue = popupNode.parentNode.firstChild.value;
 					var firstNameValue = popupNode.parentNode.lastChild.value;
-					if (lastNameValue === this._defaultLastName) {
+					if (!lastNameValue || lastNameValue === this._defaultLastName) {
 						lastNameValue = '';
 					}
-					if (firstNameValue === this._defaultFirstName) {
+					if (!lastNameValue || firstNameValue === this._defaultFirstName) {
 						firstNameValue = '';
 					}
 					var variants = this.getNameParticleVariants(lastNameValue, firstNameValue);

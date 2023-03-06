@@ -50,7 +50,8 @@ describe("Item pane", function () {
 			var itemBox = doc.getElementById('zotero-editpane-item-box');
 			var label = doc.getAnonymousNodes(itemBox)[0].getElementsByAttribute('fieldname', 'creator-0-lastName')[0];
 			var parent = label.parentNode;
-			assert.isTrue(parent.hasAttribute('contextmenu'));
+			// The event handler isn't detected by getAttribute("contextmenu");
+			assert.isTrue(!!parent.oncontextmenu);
 
 			var menupopup = doc.getAnonymousNodes(itemBox)[0]
 				.getElementsByAttribute('id', 'zotero-creator-transform-menu')[0];
@@ -107,9 +108,10 @@ describe("Item pane", function () {
 			
 			var itemBox = doc.getElementById('zotero-editpane-item-box');
 			var label = doc.getAnonymousNodes(itemBox)[0].getElementsByAttribute('fieldname', 'title')[0];
-			assert.isTrue(label.hasAttribute('contextmenu'));
+			assert.isTrue(!!label.oncontextmenu);
 			
-			var menupopup = doc.getElementById('mlz-language-menu');
+			var menupopup = doc.getAnonymousNodes(itemBox)[0]
+				.getElementsByAttribute('id', 'mlz-language-menu')[0];
 			label.dispatchEvent(evt);
 			yield waitForDOMEvent(menupopup, "popupshown");
 			var menuitem = menupopup.getElementsByTagName('menuitem')[0];
@@ -140,7 +142,7 @@ describe("Item pane", function () {
 
 			var itemBox = doc.getElementById('zotero-editpane-item-box');
 			var label = doc.getAnonymousNodes(itemBox)[0].getElementsByAttribute('fieldname', 'title')[0];
-			assert.isTrue(label.hasAttribute('contextmenu'));
+			assert.isTrue(!!label.oncontextmenu);
 
 			var menupopup = doc.getElementById('mlz-language-menu');
 			label.dispatchEvent(evt);
