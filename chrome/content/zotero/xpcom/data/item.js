@@ -721,23 +721,6 @@ Zotero.Item.prototype.setField = function(field, value, loadIn, langTag, forceTo
 		throw new Error(`'${field}' value cannot be undefined`);
 	}
 	
-	// Normalize values
-	if (typeof value == 'number') {
-		value = "" + value;
-	}
-	else if (typeof value == 'string') {
-		value = value.trim().normalize();
-	}
-	if (value === "" || value === null || value === false) {
-		value = false;
-	}
-	var multiMode;
-	if (value.multi) {
-		multiMode = true;
-	} else {
-		multiMode = false;
-	}
-	
 	//Zotero.debug("Setting field '" + field + "' to '" + value + "' (loadIn: " + (loadIn ? 'true' : 'false') + ") for item " + this.id + " ");
 	
 	if (!field) {
@@ -781,7 +764,7 @@ Zotero.Item.prototype.setField = function(field, value, loadIn, langTag, forceTo
 			
 			case 'version':
 				if (typeof value != 'number' || value != parseInt(value)) {
-					throw new Error(`${field} must be a number`);
+					throw new Error(`${field} must be a number, not ${typeof value}/${value}`);
 				}
 				break;
 			
@@ -5489,7 +5472,7 @@ Zotero.Item.prototype.isCollection = function() {
 	}
 
 	// XXX Would be better to do without this rescue, but alien imports ...
-	if (!json.multi) {
+	if (json.itemType !== "annotation" && !json.multi) {
 		json.multi = {
 			main: {},
 			_keys: {}

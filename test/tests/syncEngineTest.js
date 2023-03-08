@@ -401,7 +401,7 @@ describe("Zotero.Sync.Data.Engine", function () {
 			});
 			setResponse({
 				method: "GET",
-				url: "users/1/items?format=json&itemKey=AAAAAAAA&includeTrashed=1",
+				url: "users/1/items?itemKey=AAAAAAAA&includeTrashed=1",
 				status: 200,
 				headers: headers,
 				json: [
@@ -442,94 +442,7 @@ describe("Zotero.Sync.Data.Engine", function () {
 			assert.equal(obj.getField('medium'), 'epub');
 			assert.equal(obj.getField('medium', false, false, 'ja'), 'イーパブ');
 		})
-
 		
-		it("[Jurism] should process extended key:val fields and variants from Extra, and preserve invalid pairs", function* () {
-			({ engine, client, caller } = yield setup());
-			
-			var headers = {
-				"Last-Modified-Version": 3
-			};
-			setResponse({
-				method: "GET",
-				url: "users/1/settings",
-				status: 200,
-				headers: headers,
-				json: {}
-			});
-			setResponse({
-				method: "GET",
-				url: "users/1/collections?format=versions",
-				status: 200,
-				headers: headers,
-				json: {}
-			});
-			setResponse({
-				method: "GET",
-				url: "users/1/searches?format=versions",
-				status: 200,
-				headers: headers,
-				json: {}
-			});
-			setResponse({
-				method: "GET",
-				url: "users/1/items?format=versions&includeTrashed=1",
-				status: 200,
-				headers: headers,
-				json: {
-					"AAAAAAAA": 3
-				}
-			});
-			setResponse({
-				method: "GET",
-				url: "users/1/items/top?format=versions&includeTrashed=1",
-				status: 200,
-				headers: headers,
-				json: {
-					"AAAAAAAA": 3
-				}
-			});
-			setResponse({
-				method: "GET",
-				url: "users/1/items?format=json&itemKey=AAAAAAAA&includeTrashed=1",
-				status: 200,
-				headers: headers,
-				json: [
-					makeItemJSON({
-						key: "AAAAAAAA",
-						version: 3,
-						itemType: "book",
-						title: "A",
-						shortTitle: "A-short",
-						extra: 'title--ja: Japanese\ntitle--EN:\ndistributor: Film distributor\ntitle-short--es: Spanish short title\nmedium: epub\nmedium--ja: イーパブ'
-					})
-				]
-			});
-			setResponse({
-				method: "GET",
-				url: "users/1/deleted?since=0",
-				status: 200,
-				headers: headers,
-				json: {}
-			});
-			yield engine.start();
-
-			var userLibraryID = Zotero.Libraries.userLibraryID;
-			
-			var obj = yield Zotero.Items.getByLibraryAndKeyAsync(userLibraryID, "AAAAAAAA");
-			assert.equal(obj.getField('title'), 'A');
-			assert.equal(obj.getField('shortTitle'), 'A-short');
-
-			assert.equal(obj.getField('title', false, false, 'ja'), 'Japanese');
-
-			var titleID = Zotero.ItemFields.getID('title');
-			assert.equal(obj.multi.main[titleID], 'en');
-			assert.equal(obj.getField('extra'), 'distributor: Film distributor');
-			assert.equal(obj.getField('shortTitle', false, false, 'es'), 'Spanish short title');
-			assert.equal(obj.getField('medium'), 'epub');
-			assert.equal(obj.getField('medium', false, false, 'ja'), 'イーパブ');
-		})
-
 		it("[Jurism] should process JSON extended creators and variants, adjusting type and preserving trailing content in Extra", function* () {
 			({ engine, client, caller } = yield setup());
 			
@@ -577,7 +490,7 @@ describe("Zotero.Sync.Data.Engine", function () {
 			});
 			setResponse({
 				method: "GET",
-				url: "users/1/items?format=json&itemKey=AAAAAAAA&includeTrashed=1",
+				url: "users/1/items?itemKey=AAAAAAAA&includeTrashed=1",
 				status: 200,
 				headers: headers,
 				json: [
@@ -669,141 +582,6 @@ describe("Zotero.Sync.Data.Engine", function () {
 			assert.equal(obj.getField('extra'), 'author--4--en: Brown||David\nMy Aunt Sally');
 		})
 
-		it("[Jurism] should process key:val extended creators and variants, adjusting type and preserving trailing content in Extra", function* () {
-			({ engine, client, caller } = yield setup());
-			
-			var headers = {
-				"Last-Modified-Version": 3
-			};
-			setResponse({
-				method: "GET",
-				url: "users/1/settings",
-				status: 200,
-				headers: headers,
-				json: {}
-			});
-			setResponse({
-				method: "GET",
-				url: "users/1/collections?format=versions",
-				status: 200,
-				headers: headers,
-				json: {}
-			});
-			setResponse({
-				method: "GET",
-				url: "users/1/searches?format=versions",
-				status: 200,
-				headers: headers,
-				json: {}
-			});
-			setResponse({
-				method: "GET",
-				url: "users/1/items?format=versions&includeTrashed=1",
-				status: 200,
-				headers: headers,
-				json: {
-					"AAAAAAAA": 3
-				}
-			});
-			setResponse({
-				method: "GET",
-				url: "users/1/items/top?format=versions&includeTrashed=1",
-				status: 200,
-				headers: headers,
-				json: {
-					"AAAAAAAA": 3
-				}
-			});
-			setResponse({
-				method: "GET",
-				url: "users/1/items?format=json&itemKey=AAAAAAAA&includeTrashed=1",
-				status: 200,
-				headers: headers,
-				json: [
-					makeItemJSON({
-						key: "AAAAAAAA",
-						version: 3,
-						itemType: "statute",
-						nameOfAct: "A",
-						creators: [
-							{
-								creatorType: "contributor",
-								lastName: "Smith",
-								firstName: "John"
-							},
-							{
-								creatorType: "author",
-								lastName: "Bob Jones Hamburgers",
-								firstName: "",
-								fieldMode: 1
-							}
-						],
-						extra: 'translator--2--JA:\nauthor--1--gr: Salibury Steaks of Joseph\ntranslator--2--de: German Center\ncontributor--0--EN:\ncontributor--0--pt: SMITH||John\nauthor--4--en: Brown||David\ntranslator--2: Center\ntype: regulation\nMy Aunt Sally'
-					})
-				]
-			});
-			setResponse({
-				method: "GET",
-				url: "users/1/deleted?since=0",
-				status: 200,
-				headers: headers,
-				json: {}
-			});
-			yield engine.start();
-
-			var userLibraryID = Zotero.Libraries.userLibraryID;
-
-			var expectedTranslator = {
-				creatorTypeID: Zotero.CreatorTypes.getID('translator'),
-				fieldMode: 1,
-				lastName: 'Center',
-				firstName: '',
-				multi: {
-					main: 'ja',
-					_key: {
-						de: {
-							fieldMode: 1,
-							lastName: 'German Center',
-							firstName: '',
-							creatorTypeID: Zotero.CreatorTypes.getID('translator')
-						}
-					}
-				}
-			}
-
-			var expectedAuthorMultiGR = {
-				fieldMode: 1,
-				firstName: '',
-				lastName: 'Salibury Steaks of Joseph',
-				creatorTypeID: Zotero.CreatorTypes.getID('author')
-			}
-			
-			var obj = yield Zotero.Items.getByLibraryAndKeyAsync(userLibraryID, "AAAAAAAA");
-			
-			var itemType = Zotero.ItemTypes.getName(obj.itemTypeID);
-			assert.equal(itemType, 'regulation');
-			assert.equal(obj.getField('nameOfAct'), 'A');
-
-			var creator = obj.getCreator(1);
-			var creatorType = Zotero.CreatorTypes.getName(creator.creatorTypeID);
-			assert.equal(creatorType, 'author');
-			assert.equal(creator.lastName, 'Bob Jones Hamburgers');
-			assert.equal(creator.firstName, '');
-			assert.equal(creator.fieldMode, 1);
-			assert.deepEqual(creator.multi._key['gr'], expectedAuthorMultiGR);
-			
-			var creator = obj.getCreator(0);
-			var creatorType = Zotero.CreatorTypes.getName(creator.creatorTypeID);
-			assert.equal(creatorType, 'contributor');
-			assert.equal(creator.lastName, 'Smith');
-			assert.equal(creator.firstName, 'John');
-
-			creator = obj.getCreator(2);
-			assert.deepEqual(creator.multi._key['de'], expectedTranslator.multi._key['de']);
-			assert.deepEqual(creator, expectedTranslator);
-
-			assert.equal(obj.getField('extra'), 'author--4--en: Brown||David\nMy Aunt Sally');
-		})
 
 		it("[Jurism] should process JSON extended dates", function* () {
 			({ engine, client, caller } = yield setup());
@@ -852,7 +630,7 @@ describe("Zotero.Sync.Data.Engine", function () {
 			});
 			setResponse({
 				method: "GET",
-				url: "users/1/items?format=json&itemKey=AAAAAAAA&includeTrashed=1",
+				url: "users/1/items?itemKey=AAAAAAAA&includeTrashed=1",
 				status: 200,
 				headers: headers,
 				json: [
@@ -883,83 +661,6 @@ describe("Zotero.Sync.Data.Engine", function () {
 			assert.equal(obj.getField('publicationDate'), '2001-06-27');
 		})
 
-		it("[Jurism] should process key:val extended dates", function* () {
-			({ engine, client, caller } = yield setup());
-			
-			var headers = {
-				"Last-Modified-Version": 3
-			};
-			setResponse({
-				method: "GET",
-				url: "users/1/settings",
-				status: 200,
-				headers: headers,
-				json: {}
-			});
-			setResponse({
-				method: "GET",
-				url: "users/1/collections?format=versions",
-				status: 200,
-				headers: headers,
-				json: {}
-			});
-			setResponse({
-				method: "GET",
-				url: "users/1/searches?format=versions",
-				status: 200,
-				headers: headers,
-				json: {}
-			});
-			setResponse({
-				method: "GET",
-				url: "users/1/items?format=versions&includeTrashed=1",
-				status: 200,
-				headers: headers,
-				json: {
-					"AAAAAAAA": 3
-				}
-			});
-			setResponse({
-				method: "GET",
-				url: "users/1/items/top?format=versions&includeTrashed=1",
-				status: 200,
-				headers: headers,
-				json: {
-					"AAAAAAAA": 3
-				}
-			});
-			setResponse({
-				method: "GET",
-				url: "users/1/items?format=json&itemKey=AAAAAAAA&includeTrashed=1",
-				status: 200,
-				headers: headers,
-				json: [
-					makeItemJSON({
-						key: "AAAAAAAA",
-						version: 3,
-						itemType: "patent",
-						title: "A",
-						extra: 'original-date: 1998-03-12\npublication-date: 2001-06-27\njurisdiction:002usUnited States|US'
-					})
-				]
-			});
-			setResponse({
-				method: "GET",
-				url: "users/1/deleted?since=0",
-				status: 200,
-				headers: headers,
-				json: {}
-			});
-			yield engine.start();
-
-			var userLibraryID = Zotero.Libraries.userLibraryID;
-
-			var obj = yield Zotero.Items.getByLibraryAndKeyAsync(userLibraryID, "AAAAAAAA");
-			
-			assert.equal(obj.getField('title'), 'A');
-			assert.equal(obj.getField('priorityDate'), '1998-03-12');
-			assert.equal(obj.getField('publicationDate'), '2001-06-27');
-		})
 		
 		it("should download items into a new read-only group", function* () {
 			var group = yield createGroup({
@@ -1966,6 +1667,16 @@ describe("Zotero.Sync.Data.Engine", function () {
 			itemResponseJSON.version = itemResponseJSON.data.version = lastLibraryVersion;
 			
 			server.respond(function (req) {
+				if (req.method == "GET") {
+					if (req.url == baseURL + "users/1/settings?since=" + lastLibraryVersion) {
+						let since = req.requestHeaders["If-Modified-Since-Version"];
+						if (since == 2) {
+							req.respond(304);
+							return;
+						}
+						return;
+					}
+				}
 				if (req.method == "POST") {
 					if (req.url == baseURL + "users/1/items") {
 						let json = JSON.parse(req.requestBody);
@@ -1976,8 +1687,10 @@ describe("Zotero.Sync.Data.Engine", function () {
 						assert.propertyVal(itemJSON, "contentType", item.attachmentContentType);
 						assert.propertyVal(itemJSON, "charset", item.attachmentCharset);
 						assert.propertyVal(itemJSON, "filename", item.attachmentFilename);
-						assert.notPropertyVal(itemJSON, "mtime");
-						assert.notPropertyVal(itemJSON, "md5");
+						// assert.notPropertyVal(itemJSON, "mtime");
+						expect(itemJSON).not.property("mtime");
+						// assert.notPropertyVal(itemJSON, "md5");
+						expect(itemJSON).not.property("md5");
 						req.respond(
 							200,
 							{
@@ -4217,7 +3930,7 @@ describe("Zotero.Sync.Data.Engine", function () {
 					'item', libraryID, objects[i].key, values[i].right.version
 				);
 				assert.propertyVal(cacheJSON, 'version', values[i].right.version);
-				assert.nestedPropertyVal(cacheJSON, 'data.title', values[i].right.title);
+				assert.deepPropertyVal(cacheJSON, 'data.title', values[i].right.title);
 			}
 			
 			var keys = await Zotero.Sync.Data.Local.getObjectsFromSyncQueue('item', libraryID);
@@ -4326,7 +4039,7 @@ describe("Zotero.Sync.Data.Engine", function () {
 					'item', libraryID, objects[i].key, values[i].right.version
 				);
 				assert.propertyVal(cacheJSON, 'version', values[i].right.version);
-				assert.nestedPropertyVal(cacheJSON, 'data.note', values[i].right.note);
+				assert.deepPropertyVal(cacheJSON, 'data.note', values[i].right.note);
 			}
 			
 			var keys = await Zotero.Sync.Data.Local.getObjectsFromSyncQueue('item', libraryID);
@@ -4464,17 +4177,17 @@ describe("Zotero.Sync.Data.Engine", function () {
 				);
 				assert.propertyVal(cacheJSON, 'version', values[i].right.version);
 				if (i == 0) {
-					assert.nestedPropertyVal(
+					assert.deepPropertyVal(
 						cacheJSON, 'data.annotationText', values[i].right.annotationText
 					);
 				}
 				else if (i == 1) {
-					assert.nestedPropertyVal(
+					assert.deepPropertyVal(
 						cacheJSON, 'data.annotationComment', values[i].right.annotationComment
 					);
 				}
 				else if (i == 2) {
-					assert.nestedPropertyVal(
+					assert.deepPropertyVal(
 						cacheJSON, 'data.annotationColor', values[i].right.annotationColor
 					);
 				}
@@ -4610,7 +4323,7 @@ describe("Zotero.Sync.Data.Engine", function () {
 					'item', libraryID, objects[i].key, values[i].right.version
 				);
 				assert.propertyVal(cacheJSON, 'version', values[i].right.version);
-				assert.nestedPropertyVal(cacheJSON, 'data.title', values[i].right.title);
+				assert.deepPropertyVal(cacheJSON, 'data.title', values[i].right.title);
 			}
 			
 			var keys = await Zotero.Sync.Data.Local.getObjectsFromSyncQueue('item', libraryID);

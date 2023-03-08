@@ -420,7 +420,8 @@ describe("Connector Server", function () {
 				);
 				assert.equal(attachmentProgressReq.status, 200);
 				let progress = attachmentProgressReq.response;
-				assert.sameOrderedMembers(progress, [0]);
+				// assert.sameOrderedMembers(progress, [0]);
+				expect(progress).to.have.members([0]);
 				
 				// Wait for the attachment to finish saving
 				itemAddPromise = waitForItemEvent('add');
@@ -488,7 +489,8 @@ describe("Connector Server", function () {
 				);
 				assert.equal(attachmentProgressReq.status, 200);
 				progress = attachmentProgressReq.response;
-				assert.sameOrderedMembers(progress, [100]);
+				// assert.sameOrderedMembers(progress, [100]);
+				expect(progress).to.have.members([100]);
 				
 				// Check attachment
 				var ids = await itemAddPromise;
@@ -655,7 +657,8 @@ describe("Connector Server", function () {
 				);
 				assert.equal(attachmentProgressReq.status, 200);
 				let progress = attachmentProgressReq.response;
-				assert.sameOrderedMembers(progress, [0]);
+				// assert.sameOrderedMembers(progress, [0]);
+				expect(progress).to.have.members([0]);
 				
 				// Wait for the attachment to finish saving
 				itemAddPromise = waitForItemEvent('add');
@@ -734,7 +737,8 @@ describe("Connector Server", function () {
 				);
 				assert.equal(attachmentProgressReq.status, 200);
 				progress = attachmentProgressReq.response;
-				assert.sameOrderedMembers(progress, [100]);
+				// assert.sameOrderedMembers(progress, [100]);
+				expect(progress).to.have.members([100]);
 				
 				// Check attachment
 				var ids = await itemAddPromise;

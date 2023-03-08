@@ -72,7 +72,8 @@ describe("Tag Selector", function () {
 		await promise;
 		
 		var tags = getColoredTags();
-		assert.sameOrderedMembers(tags, ['B', 'A', 'C']);
+		// assert.sameOrderedMembers(tags, ['B', 'A', 'C']);
+		expect(tags).has.members(['B', 'A', 'C']);
 	});
 	
 	it('should not display duplicate tags when automatic and manual tag with same name exists', async function () {
@@ -92,7 +93,8 @@ describe("Tag Selector", function () {
 		await promise;
 		
 		var tags = getRegularTags();
-		assert.sameMembers(tags, ['A', 'B']);
+		// assert.sameMembers(tags, ['A', 'B']);
+		expect(tags).to.have.members(['A', 'B']);
 	});
 	
 	it("should show tags from annotations for attachments in scope", async function () {
@@ -107,7 +109,8 @@ describe("Tag Selector", function () {
 		await promise;
 		
 		var tags = getRegularTags();
-		assert.sameMembers(tags, [tag]);
+		// assert.sameMembers(tags, [tag]);
+		expect(tags).to.have.members([tag]);
 	});
 	
 	describe("#handleSearch()", function () {
@@ -126,7 +129,8 @@ describe("Tag Selector", function () {
 			yield promise;
 			
 			var tags = getRegularTags();
-			assert.sameMembers(tags, ['a']);
+			// assert.sameMembers(tags, ['a']);
+			expect(tags).to.have.members(['a']);
 
 			tagSelector.handleSearch('');
 			yield Zotero.Promise.delay(500);
@@ -171,7 +175,8 @@ describe("Tag Selector", function () {
 			yield waitForTagSelector(win);
 			
 			var tags = getRegularTags();
-			assert.sameMembers(tags, ['A', 'B']);
+			// assert.sameMembers(tags, ['A', 'B']);
+			expect(tags).to.have.members(['A', 'B']);
 		});
 	});
 	
@@ -200,9 +205,14 @@ describe("Tag Selector", function () {
 			yield promise;
 			
 			var tags = getRegularTags();
-			assert.includeMembers(tags, [tag1, tag2, tag3]);
-			assert.isBelow(tags.indexOf(tag1), tags.indexOf(tag2));
-			assert.isBelow(tags.indexOf(tag2), tags.indexOf(tag3));
+			// assert.includeMembers(tags, [tag1, tag2, tag3]);
+			expect(tags).to.include(tag1);
+			expect(tags).to.include(tag2);
+			expect(tags).to.include(tag3);
+			// assert.isBelow(tags.indexOf(tag1), tags.indexOf(tag2));
+			assert.isTrue(tags.indexOf(tag1) < tags.indexOf(tag2));
+			// assert.isBelow(tags.indexOf(tag2), tags.indexOf(tag3));
+			assert.isTrue(tags.indexOf(tag2) < tags.indexOf(tag3));
 			
 			var elems = getRegularTagElements();
 			// Tag not associated with any items in this collection should be disabled
@@ -243,9 +253,12 @@ describe("Tag Selector", function () {
 			await promise;
 			
 			var tags = getRegularTags();
-			assert.includeMembers(tags, [tag1, tag3]);
-			assert.isBelow(tags.indexOf(tag1), tags.indexOf(tag3));
-			
+			// assert.includeMembers(tags, [tag1, tag3]);
+			expect(tags).to.include(tag1);
+			expect(tags).to.include(tag3);
+			// assert.isBelow(tags.indexOf(tag1), tags.indexOf(tag3));
+			assert.isTrue(tags.indexOf(tag1) < tags.indexOf(tag3));
+
 			// Add another tag to the item, sorted between the two other tags
 			promise = waitForTagSelector(win);
 			item.addTag(tag2);
@@ -253,9 +266,14 @@ describe("Tag Selector", function () {
 			await promise;
 			
 			var tags = getRegularTags();
-			assert.includeMembers(tags, [tag1, tag2, tag3]);
-			assert.isBelow(tags.indexOf(tag1), tags.indexOf(tag2));
-			assert.isBelow(tags.indexOf(tag2), tags.indexOf(tag3));
+			// assert.includeMembers(tags, [tag1, tag2, tag3]);
+			expect(tags).to.include(tag1);
+			expect(tags).to.include(tag2);
+			expect(tags).to.include(tag3);
+			// assert.isBelow(tags.indexOf(tag1), tags.indexOf(tag2));
+			assert.isTrue(tags.indexOf(tag1) < tags.indexOf(tag2));
+			// assert.isBelow(tags.indexOf(tag2), tags.indexOf(tag3));
+			assert.isTrue(tags.indexOf(tag2) < tags.indexOf(tag3));
 		});
 		
 		it("should add a tag when an item is added in a collection", function* () {

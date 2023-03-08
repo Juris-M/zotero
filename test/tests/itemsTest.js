@@ -506,7 +506,7 @@ describe("Zotero.Items", function () {
 
 			assert.equal(await attachment1.attachmentText, await attachment2.attachmentText);
 			assert.notEqual(await attachment1.attachmentHash, await attachment2.attachmentHash);
-			assert.isEmpty(await attachment1.attachmentText);
+			expect(await attachment1.attachmentText).to.be.empty;
 
 			await Zotero.Items.merge(item1, [item2]);
 			

@@ -2091,7 +2091,7 @@ describe("Zotero.Item", function () {
 			await item.addLinkedItem(groupItem);
 			assert.equal(await item.getLinkedItem(group.libraryID), groupItem);
 			var newItem = item.clone();
-			assert.isEmpty(Object.keys(newItem.toJSON().relations));
+			expect(Object.keys(newItem.toJSON().relations)).to.be.empty;
 		});
 		
 		it("should clone an annotation item", async function () {
@@ -2325,7 +2325,8 @@ describe("Zotero.Item", function () {
 						assert.propertyVal(json, name, item[name]);
 					}
 					assert.deepEqual(json.annotationPosition, item.annotationPosition);
-					assert.doesNotHaveAnyKeys(json.relations);
+					// assert.doesNotHaveAnyKeys(json.relations);
+					expect(json.relations).to.be.empty;
 					assert.notProperty(json, 'collections');
 					assert.notProperty(json, 'annotationIsExternal');
 				});

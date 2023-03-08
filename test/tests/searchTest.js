@@ -386,7 +386,8 @@ describe("Zotero.Search", function() {
 					s.addCondition('joinMode', 'any');
 					s.addCondition('fulltextContent', 'doesNotContain', 'foo');
 					var matches = await s.search();
-					assert.notIncludeMembers(matches, [fooItem.id, foobarItem.id]);
+					// assert.notIncludeMembers(matches, [fooItem.id, foobarItem.id]);
+					expect(matches).to.not.include([fooItem.id, foobarItem.id]);
 				});
 				
 				it("should find items that don't contain a phrase with joinMode=ANY", async function () {
@@ -395,7 +396,8 @@ describe("Zotero.Search", function() {
 					s.addCondition('joinMode', 'any');
 					s.addCondition('fulltextContent', 'doesNotContain', 'foo bar');
 					var matches = await s.search();
-					assert.notIncludeMembers(matches, [foobarItem.id]);
+					// assert.notIncludeMembers(matches, [foobarItem.id]);
+					expect(matches).to.not.include([foobarItem.id]);
 				});
 				
 				it("should find items that don't contain a regexp pattern with joinMode=ANY", async function () {
@@ -404,8 +406,11 @@ describe("Zotero.Search", function() {
 					s.addCondition('joinMode', 'any');
 					s.addCondition('fulltextContent/regexp', 'doesNotContain', 'foo.+bar');
 					var matches = await s.search();
-					assert.notIncludeMembers(matches, [foobarItem.id]);
-					assert.includeMembers(matches, [fooItem.id, bazItem.id]);
+					// assert.notIncludeMembers(matches, [foobarItem.id]);
+					expect(matches).to.not.include([foobarItem.id]);
+					// assert.includeMembers(matches, [fooItem.id, bazItem.id]);
+					expect(matches).to.include(fooItem.id);
+					expect(matches).to.include(bazItem.id);
 				});
 			});
 			
@@ -421,7 +426,8 @@ describe("Zotero.Search", function() {
 					s.addCondition('annotationText', 'contains', str);
 					var matches = await s.search();
 					// TEMP: Match parent attachment
-					assert.sameMembers(matches, [attachment.id]);
+					// assert.sameMembers(matches, [attachment.id]);
+					expect(matches).to.have.members([attachment.id]);
 				});
 			});
 			
@@ -437,7 +443,8 @@ describe("Zotero.Search", function() {
 					s.addCondition('annotationComment', 'contains', str);
 					var matches = await s.search();
 					// TEMP: Match parent attachment
-					assert.sameMembers(matches, [attachment.id]);
+					// assert.sameMembers(matches, [attachment.id]);
+					expect(matches).to.have.members([attachment.id]);
 				});
 			});
 			
@@ -448,7 +455,8 @@ describe("Zotero.Search", function() {
 					s.addCondition('fulltextWord', 'contains', 'foo');
 					let matches = yield s.search();
 					assert.lengthOf(matches, 2);
-					assert.sameMembers(matches, [fooItem.id, foobarItem.id]);
+					// assert.sameMembers(matches, [fooItem.id, foobarItem.id]);
+					expect(matches).to.have.members([fooItem.id, foobarItem.id]);
 				});
 		
 				it("should not return non-matches with full-text conditions", function* () {
@@ -548,7 +556,8 @@ describe("Zotero.Search", function() {
 					s.libraryID = Zotero.Libraries.userLibraryID;
 					s.addCondition('savedSearch', 'isNot', search.key);
 					var matches = yield s.search();
-					assert.notInclude(matches, item.id);
+					//assert.notInclude(matches, item.id);
+					expect(matches).to.not.include(item.id);
 				});
 				
 				it("should return no results for a search that doesn't exist", async function () {
@@ -572,8 +581,10 @@ describe("Zotero.Search", function() {
 					s.libraryID = Zotero.Libraries.userLibraryID;
 					s.addCondition('unfiled', 'true');
 					var matches = yield s.search();
-					assert.include(matches, item1.id);
-					assert.notInclude(matches, item2.id);
+					//assert.include(matches, item1.id);
+					expect(matches).to.include(item1.id);
+					// assert.notInclude(matches, item2.id);
+					expect(matches).to.not.include(item2.id);
 				});
 			});
 			
@@ -591,7 +602,8 @@ describe("Zotero.Search", function() {
 						s.addCondition('quicksearch-fields', 'contains', tag);
 						var matches = await s.search();
 						// TEMP: Match parent attachment
-						assert.sameMembers(matches, [attachment.id]);
+						// assert.sameMembers(matches, [attachment.id]);
+						expect(matches).to.have.members([attachment.id]);
 					});
 				})
 				
@@ -606,7 +618,8 @@ describe("Zotero.Search", function() {
 						s.addCondition('quicksearch-everything', 'contains', comment);
 						var matches = await s.search();
 						// TEMP: Match parent attachment
-						assert.sameMembers(matches, [attachment.id]);
+						// assert.sameMembers(matches, [attachment.id]);
+						expect(matches).to.have.members([attachment.id]);
 					});
 				});
 			});
@@ -623,7 +636,8 @@ describe("Zotero.Search", function() {
 						var s = new Zotero.Search();
 						s.libraryID = userLibraryID;
 						var matches = await s.search();
-						assert.notInclude(matches, attachment.id);
+						// assert.notInclude(matches, attachment.id);
+						expect(matches).to.not.include(attachment.id);
 					});
 					
 					it("should not match regular items with annotated child attachments in trash", async function () {
@@ -636,7 +650,8 @@ describe("Zotero.Search", function() {
 						var s = new Zotero.Search();
 						s.libraryID = userLibraryID;
 						var matches = await s.search();
-						assert.notInclude(matches, attachment.id);
+						// assert.notInclude(matches, attachment.id);
+						expect(matches).to.not.include(attachment.id);
 					});
 				});
 			});

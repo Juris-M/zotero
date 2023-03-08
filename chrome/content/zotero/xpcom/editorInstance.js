@@ -1048,7 +1048,7 @@ class EditorInstance {
 				// Provide an item created from `itemData`
 				else if (!citationItem.id && citationItem.itemData) {
 					let item = new Zotero.Item();
-					Zotero.Utilities.itemFromCSLJSON(item, citationItem.itemData);
+					Zotero.Utilities.Item.itemFromCSLJSON(item, citationItem.itemData);
 					return item;
 				}
 				// Otherwise returns `undefined` which makes this function to be
@@ -1139,7 +1139,7 @@ class EditorInstance {
 							let items = [];
 							for (let citationItem of citationItems) {
 								let item = new Zotero.Item();
-								Zotero.Utilities.itemFromCSLJSON(item, citationItem.itemData);
+								Zotero.Utilities.Item.itemFromCSLJSON(item, citationItem.itemData);
 								// This is the only way to pass our custom id for already cited
 								// items, without modifying `quickFormat` dialog too much.
 								// Must not contain `/`

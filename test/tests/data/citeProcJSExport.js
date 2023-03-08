@@ -573,7 +573,7 @@
 		}
 	},
 	"computerProgram": {
-		"type": "book",
+		"type": "software",
 		"multi": {
 			"main": {},
 			"_keys": {}

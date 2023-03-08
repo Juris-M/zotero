@@ -3180,12 +3180,12 @@ Zotero.Integration.Citation = class {
 						var itemID = this._extractedItems[extractedID];
 					} else {
 						if (!citationItem.itemData) {
-							var itemData = Zotero.Utilities.itemToCSLJSON(zoteroItem);
+							var itemData = Zotero.Utilities.Item.itemToCSLJSON(zoteroItem);
 						} else {
 							var itemData = Zotero.Utilities.deepCopy(citationItem.itemData);
 						}
 						zoteroItem = new Zotero.Item();
-						Zotero.Utilities.itemFromCSLJSON(zoteroItem, itemData, this._extractingLibraryID, false);
+						Zotero.Utilities.Item.itemFromCSLJSON(zoteroItem, itemData, this._extractingLibraryID, false);
 						var itemID = await zoteroItem.saveTx();
 						
 						this._extractedItems[extractedID] = itemID;
@@ -3223,7 +3223,7 @@ Zotero.Integration.Citation = class {
 					
 					// assign a Zotero item
 					var surrogateItem = Zotero.Integration.currentSession.embeddedZoteroItems[anonymousID] = new Zotero.Item();
-					Zotero.Utilities.itemFromCSLJSON(surrogateItem, itemData);
+					Zotero.Utilities.Item.itemFromCSLJSON(surrogateItem, itemData);
 					surrogateItem.cslItemID = globalID;
 					surrogateItem.cslURIs = citationItem.uris;
 					surrogateItem.cslItemData = itemData;

@@ -161,7 +161,7 @@ describe("Support Functions for Unit Testing", function() {
 			}
 			for (var key in newData) {
 				for (var field in newData[key]) {
-					if ("string" === typeof newData[key][field] || "number" === typeof newData[key][field]) {
+					if ("string" === typeof newData[key][field] || "number" === typeof newData[key][field]) {						
 						assert.equal(newData[key][field], oldData[key][field], "text/number field " + field +" in generated data matches the sample");
 					}
 				}
@@ -238,8 +238,6 @@ describe("Support Functions for Unit Testing", function() {
 			for (var key in newData) {
 				assert.isTrue(!!oldData[key], "sample has all keys in generated data");
 			}
-			//Zotero.debug("OLD "+JSON.stringify(oldData.treaty), 1);
-			//Zotero.debug("NEW "+JSON.stringify(newData.treaty), 1);
 			for (var key in oldData) {
 				for (var field in oldData[key]) {
 					if ("string" === typeof oldData[key][field] || "number" === typeof oldData[key][field]) {
@@ -263,16 +261,13 @@ describe("Support Functions for Unit Testing", function() {
 				}
 			}
 			for (var key in oldData) {
-				//if (key === "case") {
-				//	Zotero.debug(JSON.stringify(oldData[key], null, 2), 1);
-				//	Zotero.debug(JSON.stringify(newData[key], null, 2), 1);
-				//}
 				assert.deepEqual(oldData[key], newData[key], "sample data for item type matches generated data");
 			}
 			// END
+
 			assert.deepEqual(oldData, newData, 'translator export data has not changed');
 		}));
-		it("data should be up to date", Zotero.Promise.coroutine(function* () {
+		it("translator export data should be up to date", Zotero.Promise.coroutine(function* () {
 			let oldData = loadSampleData('translatorExport'),
 				newData = yield generateTranslatorExportData();
 			assert.isObject(newData, 'created data object');
@@ -321,6 +316,8 @@ describe("Support Functions for Unit Testing", function() {
 				}
 			}
 			for (var key in oldData) {
+				// Zotero.debug("old\n" + JSON.stringify(oldData.legalCommentary, null, 2), 1);
+				// Zotero.debug("new\n" + JSON.stringify(newData.legalCommentary, null, 2), 1);
 				assert.deepEqual(oldData[key], newData[key], "sample data for item type matches generated data");
 			}
 			// END

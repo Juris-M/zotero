@@ -3727,7 +3727,12 @@ Zotero.Schema = new function(){
                 // Drop indexes
                 // Recreate indexes
 
-                // zlsPreferences
+        // zlsPreferences
+		if (!(yield Zotero.DB.tableExists('zlsTags'))) {
+			yield Zotero.DB.queryAsync("CREATE TABLE zlsTags (\n	tag TEXT PRIMARY KEY,\n    nickname TEXT,\n    parent TEXT\n);");
+			yield Zotero.DB.queryAsync("CREATE INDEX zlsTags_nickname ON zlsTags(nickname);");
+			yield Zotero.DB.queryAsync("CREATE INDEX zlsTags_parent ON zlsTags(parent);");
+		}
 		if (yield Zotero.DB.tableExists('zlsPreferences')) {
 			yield Zotero.DB.queryAsync("ALTER TABLE zlsPreferences RENAME TO zlsPreferencesOld");
 		}
@@ -3743,7 +3748,7 @@ Zotero.Schema = new function(){
 			yield Zotero.DB.queryAsync("ALTER TABLE itemCreatorsMain RENAME TO itemCreatorsMainOld");
 		}
 		yield Zotero.DB.queryAsync("CREATE TABLE itemCreatorsMain (\n    itemID INT,\n    creatorID INT NOT NULL,\n    creatorTypeID INT NOT NULL DEFAULT 1,\n    orderIndex INT DEFAULT 0,\n	languageTag TEXT,\n	PRIMARY KEY (itemID, creatorID, creatorTypeID, orderIndex),\n    UNIQUE (itemID, orderIndex),\n    FOREIGN KEY (itemID) REFERENCES items(itemID) ON DELETE CASCADE,\n    FOREIGN KEY (creatorID) REFERENCES creators(creatorID) ON DELETE CASCADE,\n    FOREIGN KEY (creatorTypeID) REFERENCES creatorTypes(creatorTypeID)\n)");
-		if (yield Zotero.DB.tableExists('itemCreatorsMainsOld')) {		
+		if (yield Zotero.DB.tableExists('itemCreatorsMainOld')) {		
 			yield Zotero.DB.queryAsync("INSERT OR IGNORE INTO itemCreatorsMain SELECT * FROM itemCreatorsMainOld");
 		}
 		yield Zotero.DB.queryAsync("DROP INDEX IF EXISTS itemCreatorsMain_creatorTypeID");
@@ -3755,6 +3760,9 @@ Zotero.Schema = new function(){
 		}
 		yield Zotero.DB.queryAsync("CREATE TABLE itemCreatorsAlt (\n    itemID INT,\n    creatorID INT,\n    creatorTypeID INT DEFAULT 1,\n    orderIndex INT DEFAULT 0,\n	languageTag TEXT,\n    PRIMARY KEY (itemID, creatorID, creatorTypeID, orderIndex, languageTag),\n    UNIQUE (itemID, orderIndex, languageTag),\n    FOREIGN KEY (itemID) REFERENCES items(itemID) ON DELETE CASCADE,\n    FOREIGN KEY (creatorID) REFERENCES creators(creatorID) ON DELETE CASCADE,\n    FOREIGN KEY (creatorTypeID) REFERENCES creatorTypes(creatorTypeID)\n)");
 				yield Zotero.DB.queryAsync("CREATE INDEX itemCreatorsAlt_creatorTypeID ON itemCreatorsAlt(creatorTypeID)");
+				//
+				// What is this doing here? creatorsOld cannot exist.
+				//
 				if (yield Zotero.DB.tableExists('creatorsOld')) {
 					yield Zotero.DB.queryAsync("INSERT OR IGNORE INTO itemCreatorsAlt SELECT itemID, C.creatorID, creatorTypeID, orderIndex, languageTag FROM itemCreatorsAltOld ICO JOIN creatorsOld CO USING (creatorID) JOIN creators C ON (CO.creatorDataID=C.creatorID)");
 				}
@@ -3763,25 +3771,43 @@ Zotero.Schema = new function(){
 				yield Zotero.DB.queryAsync("CREATE INDEX itemCreatorsAlt_creatorTypeID ON itemCreatorsAlt(creatorTypeID)");
 
                 // itemDataMain
-				yield Zotero.DB.queryAsync("ALTER TABLE itemDataMain RENAME TO itemDataMainOld");
+				if (yield Zotero.DB.tableExists('itemDataMain')) {
+					yield Zotero.DB.queryAsync("ALTER TABLE itemDataMain RENAME TO itemDataMainOld");
+				}
 				yield Zotero.DB.queryAsync("CREATE TABLE itemDataMain (\n    itemID INTEGER,\n    fieldID INTEGER,\n    languageTag TEXT,\n	PRIMARY KEY (itemID, fieldID),\n    FOREIGN KEY (itemID) REFERENCES items(itemID) ON DELETE CASCADE,\n    FOREIGN KEY (fieldID) REFERENCES fieldsCombined(fieldID)\n)");
-				yield Zotero.DB.queryAsync("INSERT OR IGNORE INTO itemDataMain SELECT * FROM itemDataMainOld");
+				if (yield Zotero.DB.tableExists('itemDataMainOld')) {
+					yield Zotero.DB.queryAsync("INSERT OR IGNORE INTO itemDataMain SELECT * FROM itemDataMainOld");
+				}
 				yield Zotero.DB.queryAsync("DROP INDEX IF EXISTS itemDataMain_fieldID");
 				yield Zotero.DB.queryAsync("CREATE INDEX itemDataMain_fieldID ON itemDataMain(fieldID)");
 
                 // itemDataAlt
-				yield Zotero.DB.queryAsync("ALTER TABLE itemDataAlt RENAME TO itemDataAltOld");
+				if (yield Zotero.DB.tableExists('itemDataAlt')) {
+					yield Zotero.DB.queryAsync("ALTER TABLE itemDataAlt RENAME TO itemDataAltOld");
+				}
 				yield Zotero.DB.queryAsync("CREATE TABLE itemDataAlt (\n    itemID INTEGER,\n    fieldID INTEGER,\n    languageTag TEXT,\n    valueID INTEGER,\n	PRIMARY KEY (itemID, fieldID, languageTag),\n    FOREIGN KEY (itemID) REFERENCES items(itemID) ON DELETE CASCADE,\n    FOREIGN KEY (fieldID) REFERENCES fieldsCombined(fieldID),\n    FOREIGN KEY (valueID) REFERENCES itemDataValues(valueID)\n)");
-				yield Zotero.DB.queryAsync("INSERT OR IGNORE INTO itemDataAlt SELECT * FROM itemDataAltOld");
+				if (yield Zotero.DB.tableExists('itemDataAltOld')) {
+					yield Zotero.DB.queryAsync("INSERT OR IGNORE INTO itemDataAlt SELECT * FROM itemDataAltOld");
+				}
 				yield Zotero.DB.queryAsync("DROP INDEX IF EXISTS itemDataAlt_fieldID");
 				yield Zotero.DB.queryAsync("CREATE INDEX itemDataAlt_fieldID ON itemDataAlt(fieldID)");
 
                 // Drop the old tables
-				yield Zotero.DB.queryAsync("DROP TABLE zlsPreferencesOld");
-				yield Zotero.DB.queryAsync("DROP TABLE itemCreatorsMainOld");
-				yield Zotero.DB.queryAsync("DROP TABLE itemCreatorsAltOld");
-				yield Zotero.DB.queryAsync("DROP TABLE itemDataMainOld");
-				yield Zotero.DB.queryAsync("DROP TABLE itemDataAltOld");
+				if (yield Zotero.DB.tableExists('zlsPreferencesOld')) {
+					yield Zotero.DB.queryAsync("DROP TABLE zlsPreferencesOld");
+				}
+				if (yield Zotero.DB.tableExists('itemCreatorsMainOld')) {
+					yield Zotero.DB.queryAsync("DROP TABLE itemCreatorsMainOld");
+				}
+				if (yield Zotero.DB.tableExists('itemCreatorsAltOld')) {
+					yield Zotero.DB.queryAsync("DROP TABLE itemCreatorsAltOld");
+				}
+				if (yield Zotero.DB.tableExists('itemDataMainOld')) {
+					yield Zotero.DB.queryAsync("DROP TABLE itemDataMainOld");
+				}
+				if (yield Zotero.DB.tableExists('itemDataAltOld')) {
+					yield Zotero.DB.queryAsync("DROP TABLE itemDataAltOld");
+				}
 				if (yield Zotero.DB.tableExists('creatorsOld')) {
 					yield Zotero.DB.queryAsync("DROP TABLE creatorsOld");
 				}

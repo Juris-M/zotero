@@ -673,7 +673,8 @@ describe("ZoteroPane", function() {
 			bookItem.saveTx();
 
 			var bookSectionItem = await zp.duplicateAndConvertSelectedItem();
-			assert.isEmpty(bookSectionItem.getField('abstractNote'));
+			// assert.isEmpty(bookSectionItem.getField('abstractNote'));
+			expect(bookSectionItem.getField('abstractNote')).to.be.empty;
 		});
 	});
 	

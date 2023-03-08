@@ -264,7 +264,6 @@ describe("Zotero.Utilities", function() {
 			try {
 				fromZoteroItem = Zotero.Utilities.itemToCSLJSON(item);
 			} catch(e) {
-				Zotero.debug("XXX OUCH "+e, 1);
 				assert.fail(e, null, 'accepts Zotero Item');
 			}
 			assert.isObject(fromZoteroItem, 'converts Zotero Item to object');
@@ -290,7 +289,7 @@ describe("Zotero.Utilities", function() {
 			yield note.saveTx();
 			
 			let cslJSONNote = Zotero.Utilities.itemToCSLJSON(note);
-			assert.equal(cslJSONNote.type, 'article', 'note is exported as "article"');
+			assert.equal(cslJSONNote.type, 'document', 'note is exported as "document"');
 			assert.equal(cslJSONNote.title, note.getNoteTitle(), 'note title is set to Zotero pseudo-title');
 		}));
 		it("[Juris-M] should convert standalone attachments to expected format", Zotero.Promise.coroutine(function* () {
@@ -306,7 +305,7 @@ describe("Zotero.Utilities", function() {
 			yield attachment.saveTx();
 			
 			let cslJSONAttachment = Zotero.Utilities.itemToCSLJSON(attachment);
-			assert.equal(cslJSONAttachment.type, 'article', 'attachment is exported as "article"');
+			assert.equal(cslJSONAttachment.type, 'document', 'attachment is exported as "document"');
 			assert.equal(cslJSONAttachment.title, 'Empty', 'attachment title is correct');
 			assert.deepEqual(cslJSONAttachment.accessed, {"date-parts":[["2001",2,3]]}, 'attachment access date is mapped correctly');
 		}));
@@ -462,13 +461,10 @@ describe("Zotero.Utilities", function() {
 				let newJSON = Zotero.Utilities.itemToCSLJSON(item);
 				let canonicalJSON = dataCanonical[i];
 
-				Zotero.Utilities.initMaps();
+				Zotero.Utilities.Internal.initMaps();
 				
 				delete newJSON.id;
 				delete json.id;
-
-				Zotero.debug(`${json.type}`, 1);
-				
 				for (var key in canonicalJSON) {
 					assert.isTrue(!!newJSON[key], "newJSON has key " + key);
 					var cVal = canonicalJSON[key];
@@ -477,8 +473,7 @@ describe("Zotero.Utilities", function() {
 						assert.equal(cVal, nVal);
 					} else {
 						assert.equal(JSON.stringify(cVal), JSON.stringify(nVal), "in type " + canonicalJSON.type);
-					}
-				}
+					}				}
 				assert.deepEqual(newJSON, canonicalJSON, i + ' export -> import -> export is stable');
 			}
 		});
@@ -520,8 +515,11 @@ describe("Zotero.Utilities", function() {
 				var item = new Zotero.Item();
 				Zotero.Utilities.itemFromCSLJSON(item, json);
 				yield item.saveTx();
+
+				// var val = item.getField("title", null, null, "ja-JP");
+				// assert.equal(val, "Titlex");
 				
-				let newPortableJSON = Zotero.Utilities.itemToCSLJSON(item, true);
+				let newPortableJSON = Zotero.Utilities.Item.itemToCSLJSON(item, true);
 
 				delete newPortableJSON.id;
 				delete portablejson.id;
@@ -549,7 +547,7 @@ describe("Zotero.Utilities", function() {
 
 			let newJSON = Zotero.Utilities.itemToCSLJSON(item);
 			delete newJSON.id;
-			assert.hasAllKeys(newJSON, canonicalKeys);
+			expect(newJSON).to.have.keys(canonicalKeys);
 		});
 		it("should import exported standalone note", function* () {
 			let note = new Zotero.Item('note');
