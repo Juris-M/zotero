@@ -577,7 +577,7 @@
 				}
 			}
 		],
-		"event": "Conference name",
+		"event-title": "Conference name",
 		"event-place": "Place",
 		"id": 45,
 		"issued": {
@@ -1571,7 +1571,7 @@
 				}
 			}
 		],
-		"event": "Meeting name",
+		"event-title": "Meeting name",
 		"event-place": "Place",
 		"genre": "Type",
 		"id": 63,

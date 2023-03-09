@@ -1268,11 +1268,11 @@ describe("Zotero.Translate", function() {
 			await check(collectionExportFile, 'collection');
 		});
 	});
-/*	
+
 	describe("Async translators", function () {
-		var htmlURL = "http://127.0.0.1:23119/test/translate/test.html";
-		var jsonURL = "http://127.0.0.1:23119/test/translate/test.json";
-		var notFoundURL = "http://127.0.0.1:23119/test/translate/does_not_exist.html"
+		var htmlURL = "http://127.0.0.1:24119/test/translate/test.html";
+		var jsonURL = "http://127.0.0.1:24119/test/translate/test.json";
+		var notFoundURL = "http://127.0.0.1:24119/test/translate/does_not_exist.html"
 		var doc;
 
 		before(function* () {
@@ -1286,7 +1286,7 @@ describe("Zotero.Translate", function() {
 				translatorID: "e6111720-1f6c-42b0-a487-99b9fa50b8a1",
 				label: "Test",
 				creator: "Creator",
-				target: "^http:\/\/127.0.0.1:23119\/test",
+				target: "^http:\/\/127.0.0.1:24119\/test",
 				minVersion: "5.0",
 				maxVersion: "",
 				priority: 100,
@@ -1409,7 +1409,6 @@ describe("Zotero.Translate", function() {
 			assert.equal(item.getField('title'), 'Nothing');
 		});
 	});
-*/
 	
 	describe("ItemSaver", function () {
 		describe("#saveCollections()", function () {

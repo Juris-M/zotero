@@ -1049,7 +1049,7 @@ Zotero.Item.prototype.updateDisplayTitle = function () {
 	var itemTypeName = Zotero.ItemTypes.getName(itemTypeID);
 
 	var titleID = Zotero.ItemFields.getID('title');
-	if (!this.isNote() && !Zotero.ItemFields.isValidForType(titleID, itemTypeID)) {
+	if (!this.isNote() && !this.isAnnotation() && !Zotero.ItemFields.isValidForType(titleID, itemTypeID)) {
 		titleID = Zotero.ItemFields.getFieldIDFromTypeAndBase(itemTypeID, titleID);
 	}
 	var title = this.getField(titleID, false, true);

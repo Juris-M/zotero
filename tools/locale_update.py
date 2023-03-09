@@ -1,9 +1,9 @@
-#!/usr/bin/python2.7
+#!/usr/bin/python
 
 from ZoteroLocaleMerge import ZoteroLocaleMerge
 import os
-merger = ZoteroLocaleMerge()
+merger = ZoteroLocaleMerge.ZoteroLocaleMerge()
 
-print "Merging locales ..."
+print ("Merging locales ...")
 merger.merge()
-print "  done"
+print ("  done")

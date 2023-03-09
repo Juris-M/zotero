@@ -262,7 +262,7 @@ describe("Zotero.Utilities", function() {
 			
 			let fromZoteroItem;
 			try {
-				fromZoteroItem = Zotero.Utilities.itemToCSLJSON(item);
+				fromZoteroItem = Zotero.Utilities.Item.itemToCSLJSON(item);
 			} catch(e) {
 				assert.fail(e, null, 'accepts Zotero Item');
 			}
@@ -272,7 +272,7 @@ describe("Zotero.Utilities", function() {
 			
 			let fromExportItem;
 			try {
-				fromExportItem = Zotero.Utilities.itemToCSLJSON(
+				fromExportItem = Zotero.Utilities.Item.itemToCSLJSON(
 					Zotero.Utilities.Internal.itemToExportFormat(item)
 				);
 			} catch(e) {
@@ -288,7 +288,7 @@ describe("Zotero.Utilities", function() {
 			note.setNote('Some note longer than 50 characters, which will become the title.');
 			yield note.saveTx();
 			
-			let cslJSONNote = Zotero.Utilities.itemToCSLJSON(note);
+			let cslJSONNote = Zotero.Utilities.Item.itemToCSLJSON(note);
 			assert.equal(cslJSONNote.type, 'document', 'note is exported as "document"');
 			assert.equal(cslJSONNote.title, note.getNoteTitle(), 'note title is set to Zotero pseudo-title');
 		}));
@@ -304,7 +304,7 @@ describe("Zotero.Utilities", function() {
 			
 			yield attachment.saveTx();
 			
-			let cslJSONAttachment = Zotero.Utilities.itemToCSLJSON(attachment);
+			let cslJSONAttachment = Zotero.Utilities.Item.itemToCSLJSON(attachment);
 			assert.equal(cslJSONAttachment.type, 'document', 'attachment is exported as "document"');
 			assert.equal(cslJSONAttachment.title, 'Empty', 'attachment title is correct');
 			assert.deepEqual(cslJSONAttachment.accessed, {"date-parts":[["2001",2,3]]}, 'attachment access date is mapped correctly');
@@ -316,7 +316,7 @@ describe("Zotero.Utilities", function() {
 			let exportFormat = Zotero.Utilities.Internal.itemToExportFormat(item);
 			exportFormat.itemType = 'foo';
 			
-			assert.throws(Zotero.Utilities.itemToCSLJSON.bind(Zotero.Utilities, exportFormat), /^Unexpected Zotero Item type ".*"$/, 'throws an error when trying to map invalid item types');
+			assert.throws(Zotero.Utilities.Item.itemToCSLJSON.bind(Zotero.Utilities.Item, exportFormat), /^Unexpected Zotero Item type ".*"$/, 'throws an error when trying to map invalid item types');
 		}));
 		
 		it("should parse particles in creator names", function* () {
@@ -412,7 +412,7 @@ describe("Zotero.Utilities", function() {
 			});
 				
 			let item = Zotero.Items.get(data.item.id);
-			let cslCreators = Zotero.Utilities.itemToCSLJSON(item).author;
+			let cslCreators = Zotero.Utilities.Item.itemToCSLJSON(item).author;
 			
 			assert.deepEqual(cslCreators[0], creators[0].expect, 'simple name is not parsed');
 			assert.deepEqual(cslCreators[1], creators[1].expect, 'name with dropping and non-dropping particles is parsed');
@@ -440,7 +440,7 @@ describe("Zotero.Utilities", function() {
 			var utcDate = Zotero.Date.sqlToDate(localDate);
 			item.setField('accessDate', Zotero.Date.dateToSQL(utcDate, true));
 			await item.saveTx();
-			let accessed = Zotero.Utilities.itemToCSLJSON(item).accessed;
+			let accessed = Zotero.Utilities.Item.itemToCSLJSON(item).accessed;
 			
 			assert.equal(accessed['date-parts'][0][0], 2019);
 			assert.equal(accessed['date-parts'][0][1], 1);
@@ -458,7 +458,7 @@ describe("Zotero.Utilities", function() {
 				Zotero.Utilities.itemFromCSLJSON(item, json);
 				yield item.saveTx();
 				
-				let newJSON = Zotero.Utilities.itemToCSLJSON(item);
+				let newJSON = Zotero.Utilities.Item.itemToCSLJSON(item);
 				let canonicalJSON = dataCanonical[i];
 
 				Zotero.Utilities.Internal.initMaps();
@@ -493,7 +493,7 @@ describe("Zotero.Utilities", function() {
 				Zotero.Utilities.itemFromCSLJSON(item, json);
 				yield item.saveTx();
 				
-				let newJSON = Zotero.Utilities.itemToCSLJSON(item);
+				let newJSON = Zotero.Utilities.Item.itemToCSLJSON(item);
 				
 				delete newJSON.id;
 				delete json.id;
@@ -545,7 +545,7 @@ describe("Zotero.Utilities", function() {
 			Zotero.Utilities.itemFromCSLJSON(item, json);
 			yield item.saveTx();
 
-			let newJSON = Zotero.Utilities.itemToCSLJSON(item);
+			let newJSON = Zotero.Utilities.Item.itemToCSLJSON(item);
 			delete newJSON.id;
 			expect(newJSON).to.have.keys(canonicalKeys);
 		});
@@ -554,7 +554,7 @@ describe("Zotero.Utilities", function() {
 			note.setNote('Some note longer than 50 characters, which will become the title.');
 			yield note.saveTx();
 			
-			let jsonNote = Zotero.Utilities.itemToCSLJSON(note);
+			let jsonNote = Zotero.Utilities.Item.itemToCSLJSON(note);
 			
 			let item = new Zotero.Item();
 			Zotero.Utilities.itemFromCSLJSON(item, jsonNote);
@@ -569,7 +569,7 @@ describe("Zotero.Utilities", function() {
 			attachment.setNote('Note');
 			yield attachment.saveTx();
 			
-			let jsonAttachment = Zotero.Utilities.itemToCSLJSON(attachment);
+			let jsonAttachment = Zotero.Utilities.Item.itemToCSLJSON(attachment);
 			
 			let item = new Zotero.Item();
 			Zotero.Utilities.itemFromCSLJSON(item, jsonAttachment);

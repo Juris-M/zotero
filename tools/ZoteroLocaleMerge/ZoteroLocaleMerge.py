@@ -1,6 +1,7 @@
 #!/usr/bin/python
 
-import sys,os,re,csv,pyExcelerator
+import sys,os,re,csv,functools
+#,pyExcelerator
 
 class ZoteroLocaleMerge:
     '''Merge engine for Zotero locale files
@@ -59,7 +60,7 @@ class ZoteroLocaleMerge:
         for locale in os.listdir('chrome/locale'):
             if locale == '.git' or locale == '.svn' or locale == 'en-US':
                 continue
-            print "Normalizing locale files for: %s" % locale
+            print ("Normalizing locale files for: %s" % locale)
             for filename in self.files:
                 data = self.processFile(locale, filename)
                 self.output(locale, filename, data)
@@ -91,18 +92,21 @@ class ZoteroLocaleMerge:
             # With force, always overwrite target with master data,
             # but only if a partner exists (extensions to the
             # key set should first be made to the en-US locale)
-            if force and data.has_key(key):
+            if force and key in data:
                 data[key] = self.masterData[filename][key]
-            if not force and not data.has_key(key):
-                print "   Adding in %s: %s" % (filename, key)
+            if not force and not key in data:
+                print ("   Adding in %s: %s" % (filename, key))
                 data[key] = self.masterData[filename][key]
         if not force:
             # With force, do not delete strings that happen to be missing from
             # the update master
-            for key in data.keys():
-                if not self.masterData[filename].has_key(key):
-                    print 'Popping? %s' % key
-                    data.pop(key)
+            pops = [];
+            for key in data:
+                if not key in self.masterData[filename]:
+                    pops.append(key)
+            for key in pops:
+                print ('Popping? %s' % key)
+                data.pop(key)
         return data
 
     def extract_csv(self, locale, filename):
@@ -119,27 +123,27 @@ class ZoteroLocaleMerge:
         return ret
 
 
-    def extract_xls(self, locale, filename):
-        path_xls = 'locale-xls-in/%s.xls' % locale
-        if not os.path.exists(path_xls):
-            return {}
-        ifh = open(path_xls)
-        content = pyExcelerator.parse_xls(ifh)
-        ret = {}
-        rownum = 0
-        sheetnum = self.files.index(filename)
-        while True:
-            #print 'ok1'
-            if (content[sheetnum][1].has_key((rownum, 0))):
-                #print ' ok2'
-                if (content[sheetnum][1].has_key((rownum, 1))):
-                    #print '  ok3'
-                    ret[content[sheetnum][1][(rownum, 0)]] = content[sheetnum][1][(rownum, 1)]
-            else:
-                break
-            rownum += 1
-        ifh.close()
-        return ret
+#    def extract_xls(self, locale, filename):
+#        path_xls = 'locale-xls-in/%s.xls' % locale
+#        if not os.path.exists(path_xls):
+#            return {}
+#        ifh = open(path_xls)
+#        content = pyExcelerator.parse_xls(ifh)
+#        ret = {}
+#        rownum = 0
+#        sheetnum = self.files.index(filename)
+#        while True:
+#            #print 'ok1'
+#            if (content[sheetnum][1].has_key((rownum, 0))):
+#                #print ' ok2'
+#                if (content[sheetnum][1].has_key((rownum, 1))):
+#                    #print '  ok3'
+#                    ret[content[sheetnum][1][(rownum, 0)]] = content[sheetnum][1][(rownum, 1)]
+#            else:
+#                break
+#            rownum += 1
+#        ifh.close()
+#        return ret
 
 
     def extract(self, locale, filename, template='chrome/locale/%s/zotero/%s', cautious=False):
@@ -162,10 +166,10 @@ class ZoteroLocaleMerge:
                 m = re.match(rex, line)
                 if (m):
                     if cautious and m.group(2).lower().find("create a new item") > -1:
-                        print "SKIPPING: %s" % m.group(2)
+                        print ("SKIPPING: %s" % m.group(2))
                         continue
                     if cautious and m.group(2).lower().find("create a new note") > -1:
-                        print "SKIPPING: %s" % m.group(2)
+                        print ("SKIPPING: %s" % m.group(2))
                         continue
                     # For DOS line endings that can creep into the source.
                     data[m.group(1)] = m.group(2).strip('\x0d')
@@ -186,12 +190,13 @@ class ZoteroLocaleMerge:
             ws = self.wb.add_sheet(filename)
 
         lst = []
-        for key in data.keys():
+        for key in data:
             lst.append([key, data[key]])
-        lst.sort(self.sortKeys)
+        #lst.sort(self.sortKeys)
+        #lst.sort()
         rows = []
         rownum = 0
-        for item in lst:
+        for item in sorted(lst, key=functools.cmp_to_key(self.sortKeys)):
             if filename.endswith('.dtd'):
                 ofh.write('<!ENTITY %s \"%s\">\n' % (item[0], item[1]))
             else:
@@ -226,7 +231,7 @@ class ZoteroLocaleMerge:
 
     def establishBasePaths(self):
         if not os.path.exists('resource/schema/userdata.sql') or not os.path.exists('chrome'):
-            print "Oops. I'm not in a Zotero source archive?"
+            print ("Oops. I'm not in a Zotero source archive?")
             sys.exit()
         for p in ['locale-rev','locale-csv-in','locale-csv-out','locale-xls-out']:
             if not os.path.exists(p):
@@ -235,7 +240,7 @@ class ZoteroLocaleMerge:
 
 if __name__ == "__main__":
 
-    print "Updating locales from en-US master ..."
+    print ("Updating locales from en-US master ...")
     merger = ZoteroLocaleMerge();
     merger.merge()
-    print "  done"
+    print ("  done")
