@@ -81,10 +81,10 @@
     "message": "$1 nu a putut comunica cu aplicația desktop $2. $2 trebuie să fie deschis pentru a folosi citarea bazată pe web."
   },
   "integration_googleDocs_unlinkBeforeSaving_warning": {
-    "message": "Acest document conține citări Jurism active, care vor apărea ca linkuri zotero.org într-o copie descărcată."
+    "message": "Acest document conține citări Zotero active, care vor apărea ca linkuri zotero.org într-o copie descărcată."
   },
   "integration_googleDocs_unlinkBeforeSaving_instructions": {
-    "message": "Pentru a genera o versiune bună pentru partajare, selectează <b>Fă o copie…</b> din meniul Fișier, selectează <b>Dezlegare citări</b> din meniul Jurism în noul document și apoi descarcă versiunea dezlegată. Păstrează acest document cu legături originale, pentru cazul în care vei dori să faci viitoare modificări."
+    "message": "Pentru a genera o versiune bună pentru partajare, selectează <b>Fă o copie…</b> din meniul Fișier, selectează <b>Dezlegare citări</b> din meniul Zotero în noul document și apoi descarcă versiunea dezlegată. Păstrează acest document cu legături originale, pentru cazul în care vei dori să faci viitoare modificări."
   },
   "integration_googleDocs_unlinkBeforeSaving_downloadAnyway": {
     "message": "Descară oricum versiunea legată"

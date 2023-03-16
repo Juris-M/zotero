@@ -59,6 +59,12 @@
   "progressWindow_error_upgradeClient_latestVersion": {
     "message": "最新版"
   },
+  "extensionIsDisabled": {
+    "message": "$1は無効にします"
+  },
+  "extensionIsDisabled_extensionPage": {
+    "message": "$1は拡張機能ページに無効にします"
+  },
   "appConnector": {
     "message": "$1 コネクタ"
   },
@@ -105,10 +111,10 @@
     "message": " $1 が $2 デスクトップアプリケーションとは通信できません。ウェブベース引用を利用するには $2 を起動しておく必要があります。"
   },
   "integration_googleDocs_unlinkBeforeSaving_warning": {
-    "message": "文書には有効な Jurism の引用が含まれています。ダウンロードコピー内に zotero.org のリンクが表示されます。"
+    "message": "文書には有効な Zotero の引用が含まれています。ダウンロードコピー内に zotero.org のリンクが表示されます。"
   },
   "integration_googleDocs_unlinkBeforeSaving_instructions": {
-    "message": "共有に適した版を生成するには、ファイルメニューから <b>コピーを作成…</b> を選択し、新しい文書の Jurism メニューから <b>引用リンクを解除</b> を選び、リンクを解除した版をダウンロードします。更に変更を加える必要がある場合は、オリジナルのリンク付きの文書を保存しておいてください。"
+    "message": "共有に適した版を生成するには、ファイルメニューから <b>コピーを作成…</b> を選択し、新しい文書の Zotero メニューから <b>引用リンクを解除</b> を選び、リンクを解除した版をダウンロードします。更に変更を加える必要がある場合は、オリジナルのリンク付きの文書を保存しておいてください。"
   },
   "integration_googleDocs_unlinkBeforeSaving_downloadAnyway": {
     "message": "リンクされたバージョンを強制的にダウンロード"
@@ -139,6 +145,18 @@
   },
   "integration_googleDocs_orphanedCitations_disclaimer": {
     "message": "これらの引用は <a target=\"_blank\" href=\"https://www.zotero.org/support/kb/google_docs_citations_unlinked\">$1 からリンク解除</a>されました。更新したり、参考文献目録に表示したりする前に、再リンクする必要があります。"
+  },
+  "copyUnproxiedLink": {
+    "message": "プロキシを通じないリンクをコピーします"
+  },
+  "copyUnproxiedPageURL": {
+    "message": "プロキシを通じないページのURLをコピーします"
+  },
+  "reloadViaProxy": {
+    "message": "プロキシ経由でリロードします"
+  },
+  "reloadVia": {
+    "message": "$1経由でリロードします"
   },
   "general_saveTo": {
     "message": "$1 に保存する"

@@ -59,6 +59,12 @@
   "progressWindow_error_upgradeClient_latestVersion": {
     "message": "última versão"
   },
+  "extensionIsDisabled": {
+    "message": "$1 está desabilitado"
+  },
+  "extensionIsDisabled_extensionPage": {
+    "message": "$1 está desabilitado nas páginas adicionais"
+  },
   "appConnector": {
     "message": "Conector $1"
   },
@@ -105,10 +111,10 @@
     "message": "O $1 não conseguiu se comunicar com a aplicação $2 desktop. $2 deve estar aberto para utilizar a citação pela web."
   },
   "integration_googleDocs_unlinkBeforeSaving_warning": {
-    "message": "Este documento contém citações ativas do Jurism, que aparecerão como links para zotero.org em uma cópia que seja baixada."
+    "message": "Este documento contém citações ativas do Zotero, que aparecerão como links para zotero.org em uma cópia que seja baixada."
   },
   "integration_googleDocs_unlinkBeforeSaving_instructions": {
-    "message": "Para gerar uma versão adequada para ser compartilhada, selecione <b>Fazer uma cópia…</b> no menu Arquivo, selecione <b>Desvincular Citações</b> no menu Jurism no novo documento, e então baixe a versão sem vinculações. Mantenha esse documento original com vinculações para caso você precise fazer outras alterações."
+    "message": "Para gerar uma versão adequada para ser compartilhada, selecione <b>Fazer uma cópia…</b> no menu Arquivo, selecione <b>Desvincular Citações</b> no menu Zotero no novo documento, e então baixe a versão sem vinculações. Mantenha esse documento original com vinculações para caso você precise fazer outras alterações."
   },
   "integration_googleDocs_unlinkBeforeSaving_downloadAnyway": {
     "message": "Baixar a versão conectada mesmo assim"
@@ -139,6 +145,18 @@
   },
   "integration_googleDocs_orphanedCitations_disclaimer": {
     "message": "Estas citações foram desvinculadas<a target=\"_blank\" href=\"https://www.zotero.org/support/kb/google_docs_citations_unlinked\">de$1</a>. Você terá que religá-las antes que sejam atualizadas ou apareçam na sua bibliografia."
+  },
+  "copyUnproxiedLink": {
+    "message": "Copiar link sem proxy"
+  },
+  "copyUnproxiedPageURL": {
+    "message": "Copiar página URL sem proxy"
+  },
+  "reloadViaProxy": {
+    "message": "Recarregar por Proxy"
+  },
+  "reloadVia": {
+    "message": "Recarregar por $1"
   },
   "general_saveTo": {
     "message": "Salvar para $1"

@@ -84,7 +84,7 @@
     "message": "$1 không thể kết nối với $2. $2 phải chạy để có thể dùng trích dẫn web."
   },
   "integration_googleDocs_unlinkBeforeSaving_warning": {
-    "message": "Tài liệu này có chứa trích dẫn Jurism mà sẽ hiển thị là các liên kết zotero.org trong bản sao đã tải xuống"
+    "message": "Tài liệu này có chứa trích dẫn Zotero mà sẽ hiển thị là các liên kết zotero.org trong bản sao đã tải xuống"
   },
   "integration_googleDocs_unlinkBeforeSaving_instructions": {
     "message": "Để tạo bản phù hợp cho chia sẻ, chọn <b>Tạo bản sao…</b> từ menu Tệp, chọn <b>Bỏ liên kết trích dẫn</b> từ menu Zotero trong tài liệu mới và sau đó tải bản bỏ liên kết. Giữ bản ban đầu có liên kết này để dự phòng bạn cần thay đổi sau."

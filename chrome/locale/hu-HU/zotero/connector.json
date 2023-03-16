@@ -99,7 +99,7 @@
     "message": "A $1 nem tudott kommunikálni a $2 asztali alkalmazással. $2-t meg kell nyitni a webalapú idézés használatához."
   },
   "integration_googleDocs_unlinkBeforeSaving_warning": {
-    "message": "Ez a dokumentum aktív Jurism-hivatkozásokat tartalmaz, amelyek zotero.org linkként jelennek meg egy letöltött példányban."
+    "message": "Ez a dokumentum aktív Zotero-hivatkozásokat tartalmaz, amelyek zotero.org linkként jelennek meg egy letöltött példányban."
   },
   "integration_googleDocs_unlinkBeforeSaving_downloadAnyway": {
     "message": "Mindenképpen töltse le a hivatkozott verziót"

@@ -59,6 +59,12 @@
   "progressWindow_error_upgradeClient_latestVersion": {
     "message": "Последняя версия"
   },
+  "extensionIsDisabled": {
+    "message": "$1 отключено"
+  },
+  "extensionIsDisabled_extensionPage": {
+    "message": "$1 отключено на странице расширения"
+  },
   "appConnector": {
     "message": "Плагин $1"
   },
@@ -105,10 +111,10 @@
     "message": "$1 не может соединиться с локальным приложением $2. $2 должно быть запущено для использования web-цитирования."
   },
   "integration_googleDocs_unlinkBeforeSaving_warning": {
-    "message": "Этот документ содержит активные Jurism-ссылки, которые будут отображены как гиперссылки на zotero.org в загруженной версии."
+    "message": "Этот документ содержит активные Zotero-ссылки, которые будут отображены как гиперссылки на zotero.org в загруженной версии."
   },
   "integration_googleDocs_unlinkBeforeSaving_instructions": {
-    "message": "Чтобы создать версию, удобную для обмена, выберите <b>Создать копию…</b> в меню «Файл», выберите <b>Отвязать цитирование</b> в меню Jurism в скопированном документе, и затем загрузите версию без активных ссылок. Сохраните исходный документ с активными ссылками, если планируете его изменять в дальнейшем."
+    "message": "Чтобы создать версию, удобную для обмена, выберите <b>Создать копию…</b> в меню «Файл», выберите <b>Отвязать цитирование</b> в меню Zotero в скопированном документе, и затем загрузите версию без активных ссылок. Сохраните исходный документ с активными ссылками, если планируете его изменять в дальнейшем."
   },
   "integration_googleDocs_unlinkBeforeSaving_downloadAnyway": {
     "message": "Всё равно загрузить версию со ссылками"
@@ -139,6 +145,18 @@
   },
   "integration_googleDocs_orphanedCitations_disclaimer": {
     "message": "Это цитирование было <a target=\"_blank\" href=\"https://www.zotero.org/support/kb/google_docs_citations_unlinked\">отвязано от $1</a>. Вы должны его исправить чтобы изменения появились в библиографии."
+  },
+  "copyUnproxiedLink": {
+    "message": "Скопировать ссылку без указания прокси-сервера"
+  },
+  "copyUnproxiedPageURL": {
+    "message": "Скопировать URL без указания прокси-сервера"
+  },
+  "reloadViaProxy": {
+    "message": "Перезагрузить через прокси-сервер"
+  },
+  "reloadVia": {
+    "message": "Перезагрузить через $1"
   },
   "general_saveTo": {
     "message": "Сохранить в $1"

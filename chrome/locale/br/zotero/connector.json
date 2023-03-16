@@ -81,10 +81,10 @@
     "message": "$1 n'eus ket gellet eskemm gant an arload burevek $2. $2 a rank bezañ digoret evit gellet enlakaat arroudennoù diwar ar web."
   },
   "integration_googleDocs_unlinkBeforeSaving_warning": {
-    "message": "An teuliad-mañ a endalc'h arroudennoù Jurism oberiant hag a zeuio war-wel dindan liammoù zotero.org e-barzh un eilenn bellgarget."
+    "message": "An teuliad-mañ a endalc'h arroudennoù Zotero oberiant hag a zeuio war-wel dindan liammoù zotero.org e-barzh un eilenn bellgarget."
   },
   "integration_googleDocs_unlinkBeforeSaving_instructions": {
-    "message": "Evit genel ur stumm azasaet d'ar rannañ, diuzit <b>Ober un eilenn…</b> e-barzh al lañser Restr, diuzit <b>Diliammañ an arroudennoù</b> e-barzh lañser Jurism an teuliad nevez, ha pellgargit a-benn neuze ar stumm nann-liammet. Mirit an teuliad orin-mañ liammet en degouezh m'ho pefe da zegas cheñchamantoù ennañ."
+    "message": "Evit genel ur stumm azasaet d'ar rannañ, diuzit <b>Ober un eilenn…</b> e-barzh al lañser Restr, diuzit <b>Diliammañ an arroudennoù</b> e-barzh lañser Zotero an teuliad nevez, ha pellgargit a-benn neuze ar stumm nann-liammet. Mirit an teuliad orin-mañ liammet en degouezh m'ho pefe da zegas cheñchamantoù ennañ."
   },
   "integration_googleDocs_unlinkBeforeSaving_downloadAnyway": {
     "message": "Pellgargañ ar stumm ereet forzh penaos"

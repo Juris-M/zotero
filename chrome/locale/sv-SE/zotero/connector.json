@@ -84,10 +84,10 @@
     "message": "$1kunde inte kommunicera med $2 programmet. $2 måste vara igång för att möjliggöra webbaserad referenstagning."
   },
   "integration_googleDocs_unlinkBeforeSaving_warning": {
-    "message": "Detta dokument har aktiva Jurism-referenser som visas som zotero.org-länkar i en nedladdad kopia."
+    "message": "Detta dokument har aktiva Zotero-referenser som visas som zotero.org-länkar i en nedladdad kopia."
   },
   "integration_googleDocs_unlinkBeforeSaving_instructions": {
-    "message": "Gör att skapa en version som lämpar sig för delning, välj <b>Gör en kopia…</b> från Arkiv-menyn, välj <b>Ta bort länkar för referenser</b> ur Jurism-menyn i det nya dokumentet och ladda sedan hem versionen utan länkar. Behåll detta originaldokument med länkar om du behöver göra ändringar framöver."
+    "message": "Gör att skapa en version som lämpar sig för delning, välj <b>Gör en kopia…</b> från Arkiv-menyn, välj <b>Ta bort länkar för referenser</b> ur Zotero-menyn i det nya dokumentet och ladda sedan hem versionen utan länkar. Behåll detta originaldokument med länkar om du behöver göra ändringar framöver."
   },
   "integration_googleDocs_unlinkBeforeSaving_downloadAnyway": {
     "message": "Ladda hem länkad version ändå"

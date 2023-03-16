@@ -105,10 +105,10 @@
     "message": "El $1 no s'ha pogut comunicar amb l'aplicació d'escriptori del $2. El $2 cal que sigui obert per a utilitzar la citació basada en web. "
   },
   "integration_googleDocs_unlinkBeforeSaving_warning": {
-    "message": "El document conté cites actives de Jurism, que apareixeran com a enllaços de zotero.org en una còpia baixada."
+    "message": "El document conté cites actives de Zotero, que apareixeran com a enllaços de zotero.org en una còpia baixada."
   },
   "integration_googleDocs_unlinkBeforeSaving_instructions": {
-    "message": "Per a generar una versió adequada per a la compartició, seleccioneu <b>Fes una còpia…</b> del menú Fitxer, selecciona <b>Desvincula les cites</b> del menú de Jurism en el nou document, i baixeu la versió desvinculada. Conserveu el document vinculat original en cas que vulgueu fer-hi més canvis."
+    "message": "Per a generar una versió adequada per a la compartició, seleccioneu <b>Fes una còpia…</b> del menú Fitxer, selecciona <b>Desvincula les cites</b> del menú de Zotero en el nou document, i baixeu la versió desvinculada. Conserveu el document vinculat original en cas que vulgueu fer-hi més canvis."
   },
   "integration_googleDocs_unlinkBeforeSaving_downloadAnyway": {
     "message": "Baixa la versió enllaçada igualment"

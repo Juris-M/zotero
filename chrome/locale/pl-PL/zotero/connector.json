@@ -59,6 +59,12 @@
   "progressWindow_error_upgradeClient_latestVersion": {
     "message": "ostatnia wersja"
   },
+  "extensionIsDisabled": {
+    "message": "$1 jest wyłączony"
+  },
+  "extensionIsDisabled_extensionPage": {
+    "message": "$1 jest wyłączony w rozszerzeniach"
+  },
   "appConnector": {
     "message": "Łącznik $1"
   },
@@ -105,10 +111,10 @@
     "message": "$1 nie mógł się połączyć z aplikacją desktop $2. $2 musi być uruchomiony, aby używać cytowania opartego na stronach internetowych."
   },
   "integration_googleDocs_unlinkBeforeSaving_warning": {
-    "message": "Ten dokument zawiera aktywne cytowania Jurism, które pojawią się w pobranej kopii jako odsyłacze zotero.org."
+    "message": "Ten dokument zawiera aktywne cytowania Zotero, które pojawią się w pobranej kopii jako odsyłacze zotero.org."
   },
   "integration_googleDocs_unlinkBeforeSaving_instructions": {
-    "message": "Aby utworzyć wersję możliwą do współdzielenia, wybierz <b>Zapisz kopię…</b> z menu Plik, wybierz <b>Unlink Citations</b> z menu Jurism w nowym dokumencie, a nastepnie pobierz wersję dokumentu z odłączonymi cytowaniami. Zachowaj jednak oryginalny dokument z powiązanymi cytowaniami, w razie potrzeby dokonania w nim zmian w przyszłości."
+    "message": "Aby utworzyć wersję możliwą do współdzielenia, wybierz <b>Zapisz kopię…</b> z menu Plik, wybierz <b>Unlink Citations</b> z menu Zotero w nowym dokumencie, a nastepnie pobierz wersję dokumentu z odłączonymi cytowaniami. Zachowaj jednak oryginalny dokument z powiązanymi cytowaniami, w razie potrzeby dokonania w nim zmian w przyszłości."
   },
   "integration_googleDocs_unlinkBeforeSaving_downloadAnyway": {
     "message": "Pobierz wersję z powiązanymi cytowaniami"
@@ -139,6 +145,12 @@
   },
   "integration_googleDocs_orphanedCitations_disclaimer": {
     "message": "Te cytaty zostały <a target=\"_blank\" href=\"https://www.zotero.org/support/kb/google_docs_citations_unlinked\">odłączone od $1</a>. Musisz ponownie połączyć je, zanim zostaną zaktualizowane lub pojawią się w Twojej bibliografii."
+  },
+  "reloadViaProxy": {
+    "message": "Wczytaj ponownie przez serwer pośredniczący"
+  },
+  "reloadVia": {
+    "message": "Wczytaj ponownie przez $1"
   },
   "general_saveTo": {
     "message": "Zapisz w $1"

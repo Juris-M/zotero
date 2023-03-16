@@ -59,6 +59,12 @@
   "progressWindow_error_upgradeClient_latestVersion": {
     "message": "dernière version"
   },
+  "extensionIsDisabled": {
+    "message": "$1 est désactivé"
+  },
+  "extensionIsDisabled_extensionPage": {
+    "message": "$1 est désactivé sur la page des extensions"
+  },
   "appConnector": {
     "message": "Connecteur $1"
   },
@@ -105,10 +111,10 @@
     "message": "Le $1 n'a pas pu communiquer avec l'application $2. $2 doit être ouvert pour pouvoir insérer des citations dans une application web."
   },
   "integration_googleDocs_unlinkBeforeSaving_warning": {
-    "message": "Ce document contient des citations Jurism actives qui apparaîtront sous forme de liens zotero.org dans une copie téléchargée."
+    "message": "Ce document contient des citations Zotero actives qui apparaîtront sous forme de liens zotero.org dans une copie téléchargée."
   },
   "integration_googleDocs_unlinkBeforeSaving_instructions": {
-    "message": "Pour générer une version adaptée au partage, sélectionnez <b>Faire une copie…</b> dans le menu Fichier, sélectionnez <b>Dissocier les citations</b> dans le menu Jurism du nouveau document, puis téléchargez la version non liée. Conservez ce document lié original au cas où vous auriez besoin d'apporter d'autres modifications."
+    "message": "Pour générer une version adaptée au partage, sélectionnez <b>Faire une copie…</b> dans le menu Fichier, sélectionnez <b>Dissocier les citations</b> dans le menu Zotero du nouveau document, puis téléchargez la version non liée. Conservez ce document lié original au cas où vous auriez besoin d'apporter d'autres modifications."
   },
   "integration_googleDocs_unlinkBeforeSaving_downloadAnyway": {
     "message": "Télécharger la version liée quand même"
@@ -117,7 +123,7 @@
     "message": "$1 met à jour votre document."
   },
   "integration_googleDocs_docxAlert": {
-    "message": "L'intégration de $1 n'est pas disponible lors de l'édition directe de fichiers Microsoft Word .docx dans Google Docs. Sélectionnez Fichier → Enregistrer au format Google Docs afin d'activer cette fonctionnalité.<br/><br/>Si vous souhaitez transférer un document Word avec $1 citations vers Google Docs, consultez <a href=\"https://www.zotero.org/support/kb/moving_documents_between_word_processors\">Transférer des documents comportant des citations Jurism entre différents logiciels de traitement de texte</a>."
+    "message": "L'intégration de $1 n'est pas disponible lors de l'édition directe de fichiers Microsoft Word .docx dans Google Docs. Sélectionnez Fichier → Enregistrer au format Google Docs afin d'activer cette fonctionnalité.<br/><br/>Si vous souhaitez transférer un document Word avec $1 citations vers Google Docs, consultez <a href=\"https://www.zotero.org/support/kb/moving_documents_between_word_processors\">Transférer des documents comportant des citations Zotero entre différents logiciels de traitement de texte</a>."
   },
   "integration_googleDocs_documentLocked": {
     "message": "Les citations du document sont en cours de modification par un autre utilisateur $1. Veuillez réessayer ultérieurement."
@@ -139,6 +145,18 @@
   },
   "integration_googleDocs_orphanedCitations_disclaimer": {
     "message": "Ces citations ne sont <a target=\"_blank\" href=\"https://www.zotero.org/support/kb/google_docs_citations_unlinked\">plus liées à $1</a>. Vous devez les lier à nouveau pour qu'elles soient mises à jour ou apparaissent dans votre bibliographie."
+  },
+  "copyUnproxiedLink": {
+    "message": "Copier le lien sans proxy"
+  },
+  "copyUnproxiedPageURL": {
+    "message": "Copier l’URL de la page sans proxy"
+  },
+  "reloadViaProxy": {
+    "message": "Recharger via proxy"
+  },
+  "reloadVia": {
+    "message": "Recharger via $1"
   },
   "general_saveTo": {
     "message": "Enregistrer dans $1"

@@ -105,10 +105,10 @@
     "message": "$1 ne more komunicirati z namiznim programjem $2. $2 mora biti odprt, da lahko uporabite citiranje prek spleta."
   },
   "integration_googleDocs_unlinkBeforeSaving_warning": {
-    "message": "Ta dokument vsebuje aktivne citate Jurism, ki se bodo pojavili kot povezave zotero.org v preneseni kopiji."
+    "message": "Ta dokument vsebuje aktivne citate Zotero, ki se bodo pojavili kot povezave zotero.org v preneseni kopiji."
   },
   "integration_googleDocs_unlinkBeforeSaving_instructions": {
-    "message": "Za tvorbo različice, primerne za skupno rabo, izberite <b>Naredi kopijo …</b> v meniju Datoteka, izberite <b>Razveži citate</b> v meniju Jurism v novem dokumentu, nato pa prenesite razvezano različico. Ohranite ta izvirni povezani dokument, če boste želeli opraviti nadaljnje spremembe."
+    "message": "Za tvorbo različice, primerne za skupno rabo, izberite <b>Naredi kopijo …</b> v meniju Datoteka, izberite <b>Razveži citate</b> v meniju Zotero v novem dokumentu, nato pa prenesite razvezano različico. Ohranite ta izvirni povezani dokument, če boste želeli opraviti nadaljnje spremembe."
   },
   "integration_googleDocs_unlinkBeforeSaving_downloadAnyway": {
     "message": "Vseeno prenesi povezano različico"
