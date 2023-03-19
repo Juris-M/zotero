@@ -30,9 +30,37 @@ fi
 
 git checkout $HASH
 
-rm -fR build
 
-node ./scripts/build.js
+##
+# Very slightly fancy here
+##
+
+dialog --title "Push code for client build" --yesno "Do you trust the content of\nthis ./build directory?"  8 35;
+
+if [ "$?" == 0 ]; then
+    REBUILD=0
+else
+    REBUILD=1
+fi
+
+echo -n Okay .
+sleep 2
+echo -n .
+sleep 2
+echo -n .
+sleep 2
+
+clear
+
+if [ $REBUILD -eq 1 ]; then
+    rm -fR build
+    rm .signatures.json
+    node ./scripts/build.js
+fi
+
+##
+# End of fancy stuff
+##
 
 cd build
 
