@@ -7,7 +7,6 @@ var ZOTERO_CONFIG = {
 	REPOSITORY_URL: 'https://jurism.xyz/updater/',
 	PRODUCER: 'Jurism Project',
 	PRODUCER_URL: 'https://juris-m.github.io',
-	REPOSITORY_URL: 'https://repo.zotero.org/repo/',
 	BASE_URI: 'http://zotero.org/',
 	WWW_BASE_URL: 'https://www.zotero.org/',
 	PROXY_AUTH_URL: 'https://zoteroproxycheck.s3.amazonaws.com/test',
