@@ -20,14 +20,14 @@
 	url = https://github.com/domenic/chai-as-promised.git
 [submodule "resource/schema/global"]
 	path = resource/schema/global
-	url = git@github.com:Juris-M/zotero-schema.git
+	url = https://github.com/Juris-M/zotero-schema.git
 	branch = master
 [submodule "deployer"]
 	path = deployer
 	url = https://github.com/Juris-M/deployer.git
 [submodule "resource/style-modules"]
 	path = style-modules
-	url = git@github.com:Juris-M/style-modules.git
+	url = https://github.com/Juris-M/style-modules.git
 [submodule "juris-desc"]
 	path = juris-desc
 	url = https://github.com/Juris-M/legal-resource-registry.git
@@ -37,4 +37,4 @@
 	branch = master
 [submodule "resource/SingleFile"]
 	path = resource/SingleFile
-	url = https://github.com/gildas-lormeau/SingleFile.git
+	url = https://github.com/gildas-lormeau/SingleFile.git	
