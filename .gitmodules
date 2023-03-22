@@ -13,7 +13,7 @@
 [submodule "test/resource/chai"]
 	path = test/resource/chai
 	url = https://github.com/chaijs/chai.git
-	branch = master
+	branch = 4.x.x
 [submodule "test/resource/mocha"]
 	path = test/resource/mocha
 	url = https://github.com/mochajs/mocha.git
