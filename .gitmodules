@@ -62,4 +62,4 @@
 	url = git@github.com:Juris-M/utilities.git
 [submodule "chrome/content/zotero/xpcom/translate"]
 	path = chrome/content/zotero/xpcom/translate
-	url = https://github.com/Juris-M/translate
+	url = https://github.com/Juris-M/translate.git
