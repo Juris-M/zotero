@@ -38,6 +38,8 @@ const getReplacements = () => {
 
 const patchConnectorJSON = () => {
 	for (var locale of fs.readdirSync(getLocaleDir())) {
+        var pth = getLocaleFile(locale, "connector.json");
+        if (!fs.existsSync(pth)) continue;
 		var obj = JSON.parse(fs.readFileSync(getLocaleFile(locale, "connector.json")).toString());
 		for (var key in obj) {
 			for (var subkey in obj[key]) {
