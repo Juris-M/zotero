@@ -69,13 +69,13 @@
     "message": "Aktivera spara i onlinebibliotek"
   },
   "reports_report_submitted": {
-    "message": "Din felrapport har skickats in.\n\nRapport ID: $1\n\nSkapa gärna ett inlägg i Zoteros forum med denna rapport ID, tillsammans med en beskrivning av problemet och vad du gjorde för att problemet skulle uppstå.\n\nFelrapporter gås inte igenom förrän de har beskrivits i forumet."
+    "message": "Din felrapport har skickats in.\n\nRapport ID: $1\n\nSkapa gärna ett inlägg i Jurisms forum med denna rapport ID, tillsammans med en beskrivning av problemet och vad du gjorde för att problemet skulle uppstå.\n\nFelrapporter gås inte igenom förrän de har beskrivits i forumet."
   },
   "reports_debug_output_submitted": {
     "message": "Din felsökningsinformation har skickats in.\n\nFelsöknings ID (Debug ID) är $1."
   },
   "reports_submission_failed": {
-    "message": "Ett fel har uppstått när rapporten skulle skickas in\n\n$1\n\nKontrollera din internetuppkoppling. Om problemet kvarstår, gör ett inlägg i Zoteros forum."
+    "message": "Ett fel har uppstått när rapporten skulle skickas in\n\n$1\n\nKontrollera din internetuppkoppling. Om problemet kvarstår, gör ett inlägg i Jurisms forum."
   },
   "integration_error_clientUpgrade": {
     "message": "Webbaserad referenstagning kräver $1 eller senare."
@@ -84,10 +84,10 @@
     "message": "$1kunde inte kommunicera med $2 programmet. $2 måste vara igång för att möjliggöra webbaserad referenstagning."
   },
   "integration_googleDocs_unlinkBeforeSaving_warning": {
-    "message": "Detta dokument har aktiva Zotero-referenser som visas som zotero.org-länkar i en nedladdad kopia."
+    "message": "Detta dokument har aktiva Jurism-referenser som visas som zotero.org-länkar i en nedladdad kopia."
   },
   "integration_googleDocs_unlinkBeforeSaving_instructions": {
-    "message": "Gör att skapa en version som lämpar sig för delning, välj <b>Gör en kopia…</b> från Arkiv-menyn, välj <b>Ta bort länkar för referenser</b> ur Zotero-menyn i det nya dokumentet och ladda sedan hem versionen utan länkar. Behåll detta originaldokument med länkar om du behöver göra ändringar framöver."
+    "message": "Gör att skapa en version som lämpar sig för delning, välj <b>Gör en kopia…</b> från Arkiv-menyn, välj <b>Ta bort länkar för referenser</b> ur Jurism-menyn i det nya dokumentet och ladda sedan hem versionen utan länkar. Behåll detta originaldokument med länkar om du behöver göra ändringar framöver."
   },
   "integration_googleDocs_unlinkBeforeSaving_downloadAnyway": {
     "message": "Ladda hem länkad version ändå"

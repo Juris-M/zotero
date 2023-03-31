@@ -69,10 +69,10 @@
     "message": "$1 nemohl komunikovat s desktopovou aplikací $2. Při používání webových citací  musí být   $2 otevřen."
   },
   "integration_googleDocs_unlinkBeforeSaving_warning": {
-    "message": "Tento dokument obsahuje aktivní citaci Zotero, která se objeví ve stažené kopii jako odkaz zotero.org."
+    "message": "Tento dokument obsahuje aktivní citaci Jurism, která se objeví ve stažené kopii jako odkaz zotero.org."
   },
   "integration_googleDocs_unlinkBeforeSaving_instructions": {
-    "message": "Pro generování verze vhodné pro sdílení zvolte <b> Vytvořit kopii... </b> z menu Soubor, zvolte <b> Odpojit citace </b> ze Zotero menu v novém dokumentu a poté stáhněte verzi s odpojenými citacemi. Originální dokument s propojenými citacemi uchovejte pro případ, že byste v budoucnu potřebovali provést další změny."
+    "message": "Pro generování verze vhodné pro sdílení zvolte <b> Vytvořit kopii... </b> z menu Soubor, zvolte <b> Odpojit citace </b> ze Jurism menu v novém dokumentu a poté stáhněte verzi s odpojenými citacemi. Originální dokument s propojenými citacemi uchovejte pro případ, že byste v budoucnu potřebovali provést další změny."
   },
   "integration_googleDocs_unlinkBeforeSaving_downloadAnyway": {
     "message": "Přesto stáhnout propojenou verzi"

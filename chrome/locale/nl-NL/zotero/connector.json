@@ -57,7 +57,7 @@
     "message": "Activeer opslaan naar online bibliotheek"
   },
   "integration_googleDocs_unlinkBeforeSaving_warning": {
-    "message": "Dit document bevat actieve Zotero citaten die worden weergegeven als Zotero.org links in de gedownloade versie."
+    "message": "Dit document bevat actieve Jurism citaten die worden weergegeven als Jurism.org links in de gedownloade versie."
   },
   "integration_googleDocs_unlinkBeforeSaving_downloadAnyway": {
     "message": "Gelinkte versie toch downloaden"

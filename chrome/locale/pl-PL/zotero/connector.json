@@ -96,13 +96,13 @@
     "message": "Włącz zapisywanie do zdalnej biblioteki"
   },
   "reports_report_submitted": {
-    "message": "Twój raport o błędzie został przesłany.\n\nID raportu: $1\n\nProszę wyślij wiadomość na Forum Zotero z tym ID raportu, opisem problemu i krokami niezbędnymi do powtórzenia błędu.\n\nRaporty błędów nie są weryfikowane, jeśli nie są przesłane na forum."
+    "message": "Twój raport o błędzie został przesłany.\n\nID raportu: $1\n\nProszę wyślij wiadomość na Forum Jurism z tym ID raportu, opisem problemu i krokami niezbędnymi do powtórzenia błędu.\n\nRaporty błędów nie są weryfikowane, jeśli nie są przesłane na forum."
   },
   "reports_debug_output_submitted": {
     "message": "Informacja debugowania została wysłana.\n\nIdentyfikator informacji to $1."
   },
   "reports_submission_failed": {
-    "message": "Błąd podczas przesyłania raportu.\n\n$1\n\nProszę, sprawdź swoje połączenie internetowe. Jeśli problem wciąż istnieje, wyślij wiadomość na Forum Zotero."
+    "message": "Błąd podczas przesyłania raportu.\n\n$1\n\nProszę, sprawdź swoje połączenie internetowe. Jeśli problem wciąż istnieje, wyślij wiadomość na Forum Jurism."
   },
   "integration_error_clientUpgrade": {
     "message": "Cytowanie oparte na stronach internetowych wymaga $1 lub nowszego."
@@ -111,10 +111,10 @@
     "message": "$1 nie mógł się połączyć z aplikacją desktop $2. $2 musi być uruchomiony, aby używać cytowania opartego na stronach internetowych."
   },
   "integration_googleDocs_unlinkBeforeSaving_warning": {
-    "message": "Ten dokument zawiera aktywne cytowania Zotero, które pojawią się w pobranej kopii jako odsyłacze zotero.org."
+    "message": "Ten dokument zawiera aktywne cytowania Jurism, które pojawią się w pobranej kopii jako odsyłacze zotero.org."
   },
   "integration_googleDocs_unlinkBeforeSaving_instructions": {
-    "message": "Aby utworzyć wersję możliwą do współdzielenia, wybierz <b>Zapisz kopię…</b> z menu Plik, wybierz <b>Unlink Citations</b> z menu Zotero w nowym dokumencie, a nastepnie pobierz wersję dokumentu z odłączonymi cytowaniami. Zachowaj jednak oryginalny dokument z powiązanymi cytowaniami, w razie potrzeby dokonania w nim zmian w przyszłości."
+    "message": "Aby utworzyć wersję możliwą do współdzielenia, wybierz <b>Zapisz kopię…</b> z menu Plik, wybierz <b>Unlink Citations</b> z menu Jurism w nowym dokumencie, a nastepnie pobierz wersję dokumentu z odłączonymi cytowaniami. Zachowaj jednak oryginalny dokument z powiązanymi cytowaniami, w razie potrzeby dokonania w nim zmian w przyszłości."
   },
   "integration_googleDocs_unlinkBeforeSaving_downloadAnyway": {
     "message": "Pobierz wersję z powiązanymi cytowaniami"

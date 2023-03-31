@@ -69,13 +69,13 @@
     "message": "Cho phép lưu vào thư viện trực tuyến"
   },
   "reports_report_submitted": {
-    "message": "Báo cáo lỗi của bạn đã được gửi đi.\n\nID báo cáo: $1\n\nHãy gửi thông tin lên diễn đàn Zotero với ID báo cáo này, mô tả lỗi và các bước sinh ra lỗi.\n\nBáo cáo lỗi chỉ được xem xét khi nó có trên diễn đàn."
+    "message": "Báo cáo lỗi của bạn đã được gửi đi.\n\nID báo cáo: $1\n\nHãy gửi thông tin lên diễn đàn Jurism với ID báo cáo này, mô tả lỗi và các bước sinh ra lỗi.\n\nBáo cáo lỗi chỉ được xem xét khi nó có trên diễn đàn."
   },
   "reports_debug_output_submitted": {
     "message": "Thông tin gỗ rối của bạn đã được gửi đi.\n\nMã gỡ rối (ID) là $1."
   },
   "reports_submission_failed": {
-    "message": "Có lỗi xảy ra khi gửi báo cáo của bạn.\n\n$1\n\nKiểm tra kết nối internet. Nếu vẫn có lỗi thì gửi thông tin lên diễn đàn Zotero."
+    "message": "Có lỗi xảy ra khi gửi báo cáo của bạn.\n\n$1\n\nKiểm tra kết nối internet. Nếu vẫn có lỗi thì gửi thông tin lên diễn đàn Jurism."
   },
   "integration_error_clientUpgrade": {
     "message": "Trích dẫn trên web cần phiên bản $1 hoặc cao hơn."
@@ -84,10 +84,10 @@
     "message": "$1 không thể kết nối với $2. $2 phải chạy để có thể dùng trích dẫn web."
   },
   "integration_googleDocs_unlinkBeforeSaving_warning": {
-    "message": "Tài liệu này có chứa trích dẫn Zotero mà sẽ hiển thị là các liên kết zotero.org trong bản sao đã tải xuống"
+    "message": "Tài liệu này có chứa trích dẫn Jurism mà sẽ hiển thị là các liên kết zotero.org trong bản sao đã tải xuống"
   },
   "integration_googleDocs_unlinkBeforeSaving_instructions": {
-    "message": "Để tạo bản phù hợp cho chia sẻ, chọn <b>Tạo bản sao…</b> từ menu Tệp, chọn <b>Bỏ liên kết trích dẫn</b> từ menu Zotero trong tài liệu mới và sau đó tải bản bỏ liên kết. Giữ bản ban đầu có liên kết này để dự phòng bạn cần thay đổi sau."
+    "message": "Để tạo bản phù hợp cho chia sẻ, chọn <b>Tạo bản sao…</b> từ menu Tệp, chọn <b>Bỏ liên kết trích dẫn</b> từ menu Jurism trong tài liệu mới và sau đó tải bản bỏ liên kết. Giữ bản ban đầu có liên kết này để dự phòng bạn cần thay đổi sau."
   },
   "integration_googleDocs_unlinkBeforeSaving_downloadAnyway": {
     "message": "Tải bản có liên kết thay thế"

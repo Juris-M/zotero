@@ -69,10 +69,10 @@
     "message": "$1 중계기가 $2 데스크톱 애플리케이션과 통신하지 못했습니다. 웹 기반 인용 기능을 사용하려면 반드시 $2 애플리케이션을 열어두세요."
   },
   "integration_googleDocs_unlinkBeforeSaving_warning": {
-    "message": "이 문서는 활성화된 Zotero 인용문을 담고 있으며, 다운로드된 사본에서 인용문은 \"zotero.org\" 링크로 나타납니다."
+    "message": "이 문서는 활성화된 Jurism 인용문을 담고 있으며, 다운로드된 사본에서 인용문은 \"zotero.org\" 링크로 나타납니다."
   },
   "integration_googleDocs_unlinkBeforeSaving_instructions": {
-    "message": "공유하기 알맞은 판본을 생성하려면, 파일 메뉴의 <b>사본 만들기...</b>를 선택한 뒤, 새 (사본) 문서에서 Zotero 메뉴의 <b>인용 연결 해제</b>를 선택하고 나서, 인용 연결이 해제된 판본을 다운로드하세요. 인용문이 연결된 원본 문서는 향후 수정 가능성을 고려하여 남겨두어주세요."
+    "message": "공유하기 알맞은 판본을 생성하려면, 파일 메뉴의 <b>사본 만들기...</b>를 선택한 뒤, 새 (사본) 문서에서 Jurism 메뉴의 <b>인용 연결 해제</b>를 선택하고 나서, 인용 연결이 해제된 판본을 다운로드하세요. 인용문이 연결된 원본 문서는 향후 수정 가능성을 고려하여 남겨두어주세요."
   },
   "integration_googleDocs_unlinkBeforeSaving_downloadAnyway": {
     "message": "어쨌든 링크된 버전 다운로드"

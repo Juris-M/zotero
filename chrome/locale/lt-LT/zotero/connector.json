@@ -72,7 +72,7 @@
     "message": "„$1“ nepajėgia pasiekti „$2“ darbalaukio programos. Norint naudotis žiniatinklio pagrindu veikiančiu citavimu, „$2“ vis tiek turi būti atverta."
   },
   "integration_googleDocs_unlinkBeforeSaving_warning": {
-    "message": "Šiame dokumente yra aktyvių Zotero citavimų, kurie parsisiųstoje kopijoje atrodys tarsi nuorodos į zotero.org."
+    "message": "Šiame dokumente yra aktyvių Jurism citavimų, kurie parsisiųstoje kopijoje atrodys tarsi nuorodos į zotero.org."
   },
   "integration_googleDocs_unlinkBeforeSaving_downloadAnyway": {
     "message": "Vis tiek parsisiųsti susietą versiją"

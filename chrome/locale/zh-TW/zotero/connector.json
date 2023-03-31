@@ -96,13 +96,13 @@
     "message": "啟用儲存至線上文獻庫"
   },
   "reports_report_submitted": {
-    "message": "您的錯誤報告已送出。\n\n報告 ID: $1\n\n請在Zotero論壇發文，文章內容請包含此報告ID、描述發生的問題以及任何可重現問題的步驟。\n\n不會處理未於論壇發文的錯誤報告。"
+    "message": "您的錯誤報告已送出。\n\n報告 ID: $1\n\n請在Jurism論壇發文，文章內容請包含此報告ID、描述發生的問題以及任何可重現問題的步驟。\n\n不會處理未於論壇發文的錯誤報告。"
   },
   "reports_debug_output_submitted": {
     "message": "您的debug輸出結果已送出。Debug ID是 $1。"
   },
   "reports_submission_failed": {
-    "message": "提交報告時發生錯誤。\n\n$1\n\n請檢查您的網路連線。如果錯誤重複出現，請在Zotero論壇發文。"
+    "message": "提交報告時發生錯誤。\n\n$1\n\n請檢查您的網路連線。如果錯誤重複出現，請在Jurism論壇發文。"
   },
   "integration_error_clientUpgrade": {
     "message": "引用網站資料庫的文獻，需要 $1 或更新的版本。"
@@ -111,10 +111,10 @@
     "message": "$1 無法與 $2 桌面應用程式溝通。$2 一定得開啟，才能引用網站資料庫的文獻。"
   },
   "integration_googleDocs_unlinkBeforeSaving_warning": {
-    "message": "此文件包含有效的 Zotero 引文，此引文將於下載的副本中顯示為 zotero.org 連結"
+    "message": "此文件包含有效的 Jurism 引文，此引文將於下載的副本中顯示為 zotero.org 連結"
   },
   "integration_googleDocs_unlinkBeforeSaving_instructions": {
-    "message": "為了要生成較為適合分享的版本，從檔案選單中選擇<b>複製……</b>，在新文件中從Zotero選單中選擇<b>未連結引文</b>，然後下載未連結版本。保留原始連結文件以防你有需要做任何後續的變動。"
+    "message": "為了要生成較為適合分享的版本，從檔案選單中選擇<b>複製……</b>，在新文件中從Jurism選單中選擇<b>未連結引文</b>，然後下載未連結版本。保留原始連結文件以防你有需要做任何後續的變動。"
   },
   "integration_googleDocs_unlinkBeforeSaving_downloadAnyway": {
     "message": "無論如何都下載已連結的版本"

@@ -90,13 +90,13 @@
     "message": "Habilita desar a la biblioteca en línia"
   },
   "reports_report_submitted": {
-    "message": "S'ha tramès el vostre informe d'errors.\n\nID de l'informe: $1\n\nPubliqueu un missatge als fòrums del Zotero amb aquest ID d'informe, una descripció del problema, i tots els passos necessaris per a reproduir-lo.\n\nEls informes d'error no són revisats a menys que se'n faci referència als fòrums."
+    "message": "S'ha tramès el vostre informe d'errors.\n\nID de l'informe: $1\n\nPubliqueu un missatge als fòrums del Jurism amb aquest ID d'informe, una descripció del problema, i tots els passos necessaris per a reproduir-lo.\n\nEls informes d'error no són revisats a menys que se'n faci referència als fòrums."
   },
   "reports_debug_output_submitted": {
     "message": "S'ha tramès la vostra sortida de depuració.\n\nL'ID de depuració és $1."
   },
   "reports_submission_failed": {
-    "message": "S'ha produït un error en trametre el vostre informe.\n\n$1\n\nComproveu la connexió a Internet. Si el problema persisteix, publiqueu un missatge als fòrums del Zotero."
+    "message": "S'ha produït un error en trametre el vostre informe.\n\n$1\n\nComproveu la connexió a Internet. Si el problema persisteix, publiqueu un missatge als fòrums del Jurism."
   },
   "integration_error_clientUpgrade": {
     "message": "La citació basada en web requereix la versió $1 o posterior."
@@ -105,10 +105,10 @@
     "message": "El $1 no s'ha pogut comunicar amb l'aplicació d'escriptori del $2. El $2 cal que sigui obert per a utilitzar la citació basada en web. "
   },
   "integration_googleDocs_unlinkBeforeSaving_warning": {
-    "message": "El document conté cites actives de Zotero, que apareixeran com a enllaços de zotero.org en una còpia baixada."
+    "message": "El document conté cites actives de Jurism, que apareixeran com a enllaços de zotero.org en una còpia baixada."
   },
   "integration_googleDocs_unlinkBeforeSaving_instructions": {
-    "message": "Per a generar una versió adequada per a la compartició, seleccioneu <b>Fes una còpia…</b> del menú Fitxer, selecciona <b>Desvincula les cites</b> del menú de Zotero en el nou document, i baixeu la versió desvinculada. Conserveu el document vinculat original en cas que vulgueu fer-hi més canvis."
+    "message": "Per a generar una versió adequada per a la compartició, seleccioneu <b>Fes una còpia…</b> del menú Fitxer, selecciona <b>Desvincula les cites</b> del menú de Jurism en el nou document, i baixeu la versió desvinculada. Conserveu el document vinculat original en cas que vulgueu fer-hi més canvis."
   },
   "integration_googleDocs_unlinkBeforeSaving_downloadAnyway": {
     "message": "Baixa la versió enllaçada igualment"

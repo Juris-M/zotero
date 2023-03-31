@@ -102,7 +102,7 @@
     "message": "您的调试输出已提交。Debug ID 为 $1。"
   },
   "reports_submission_failed": {
-    "message": "提交您的报告时出错。\n\n$1\n\n请检查您的网络连接。如果错误反复出现，到 Zotero 论坛发帖询问。"
+    "message": "提交您的报告时出错。\n\n$1\n\n请检查您的网络连接。如果错误反复出现，到 Jurism 论坛发帖询问。"
   },
   "integration_error_clientUpgrade": {
     "message": "基于 Web 的引用需要 $1 或更高版本。"
@@ -111,10 +111,10 @@
     "message": "$1 无法与桌面应用程序 $2 通信。必须打开 $2 才能使用基于 Web 的引用。"
   },
   "integration_googleDocs_unlinkBeforeSaving_warning": {
-    "message": "此文档包含有效的 Zotero 引注，该引注将在下载的副本中显示为 zotero.org 链接"
+    "message": "此文档包含有效的 Jurism 引注，该引注将在下载的副本中显示为 zotero.org 链接"
   },
   "integration_googleDocs_unlinkBeforeSaving_instructions": {
-    "message": "为生成易于共享的版本，从文件菜单中选择<b>复制…</b>，在新文档中从 Zotero 菜单中选择<b>未链接引注</b>，然后下载未链接版本。保留原始的已链接文档以备需要进一步更改。"
+    "message": "为生成易于共享的版本，从文件菜单中选择<b>复制…</b>，在新文档中从 Jurism 菜单中选择<b>未链接引注</b>，然后下载未链接版本。保留原始的已链接文档以备需要进一步更改。"
   },
   "integration_googleDocs_unlinkBeforeSaving_downloadAnyway": {
     "message": "坚持下载有链接版本"

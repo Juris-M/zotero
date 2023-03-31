@@ -87,7 +87,7 @@
     "message": "$1 è in esecuzione?"
   },
   "error_connection_save": {
-    "message": "$1 non è stato in grado di comunicare con l'applicazione desktop di  $2. Zotero Connector può salvare alcune pagine direttamente nel tuo account $3, ma per ottenere un risultato migliore è bene assicurarsi che $2 sia aperto prima di tentare il salvataggio."
+    "message": "$1 non è stato in grado di comunicare con l'applicazione desktop di  $2. Jurism Connector può salvare alcune pagine direttamente nel tuo account $3, ma per ottenere un risultato migliore è bene assicurarsi che $2 sia aperto prima di tentare il salvataggio."
   },
   "error_connection_downloadOrTroubleshoot": {
     "message": "È possibile <a href=\"$1\">scaricare $2</a> o <a href=\"$3\">risolvere i problemi di connessione</a> se necessario."
@@ -96,13 +96,13 @@
     "message": "Abilita il salvataggio nella biblioteca online"
   },
   "reports_report_submitted": {
-    "message": "La segnalazione di errore è stata inviata.\n\nID della segnalazione: $1\n\nTi preghiamo di pubblicare un messaggio sul forum di Zotero contenente l'ID di segnalazione, una descrizione del problema e tutti i passaggi necessari a ricrearlo.\n\nLe segnalazioni di errore non saranno revisionate a meno che non vengano espressamente menzionate nel forum."
+    "message": "La segnalazione di errore è stata inviata.\n\nID della segnalazione: $1\n\nTi preghiamo di pubblicare un messaggio sul forum di Jurism contenente l'ID di segnalazione, una descrizione del problema e tutti i passaggi necessari a ricrearlo.\n\nLe segnalazioni di errore non saranno revisionate a meno che non vengano espressamente menzionate nel forum."
   },
   "reports_debug_output_submitted": {
     "message": "Il messaggio di debug è stato inviato.\n\nID della segnalazione: $1."
   },
   "reports_submission_failed": {
-    "message": "Si è verificato un errore durante l'invio della segnalazione.\n\n$1\n\nControlla la tua connessione a Internet. Se il problema dovesse persistere, ti invitiamo a pubblicare un messaggio sul forum di Zotero."
+    "message": "Si è verificato un errore durante l'invio della segnalazione.\n\n$1\n\nControlla la tua connessione a Internet. Se il problema dovesse persistere, ti invitiamo a pubblicare un messaggio sul forum di Jurism."
   },
   "integration_error_clientUpgrade": {
     "message": "Le citazioni web richiedono la versione $1 o successiva."
@@ -111,10 +111,10 @@
     "message": "$1 non è stato in grado di comunicare con l'applicazione desktop di $2. $2 deve essere aperto se desideri utilizzare le citazioni web."
   },
   "integration_googleDocs_unlinkBeforeSaving_warning": {
-    "message": "Il documento include delle citazioni di Zotero che verranno mostrate come collegamento a zotero.org all'interno della copia scaricata."
+    "message": "Il documento include delle citazioni di Jurism che verranno mostrate come collegamento a zotero.org all'interno della copia scaricata."
   },
   "integration_googleDocs_unlinkBeforeSaving_instructions": {
-    "message": "Per generare una versione adatta alla condivisione, seleziona <b>Crea una copia…</b> dal menù File, quindi <b>Scollega le citazioni</b> dal menù di Zotero all'interno del nuovo documento e, infine, scarica la versione senza collegamenti. Conserva una copia del documento originale con i collegamenti nel caso sia necessario apportare ulteriori modifiche."
+    "message": "Per generare una versione adatta alla condivisione, seleziona <b>Crea una copia…</b> dal menù File, quindi <b>Scollega le citazioni</b> dal menù di Jurism all'interno del nuovo documento e, infine, scarica la versione senza collegamenti. Conserva una copia del documento originale con i collegamenti nel caso sia necessario apportare ulteriori modifiche."
   },
   "integration_googleDocs_unlinkBeforeSaving_downloadAnyway": {
     "message": "Scarica la versione con i collegamenti ugualmente"

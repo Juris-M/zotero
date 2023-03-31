@@ -87,7 +87,7 @@
     "message": "Onko $1 käynnissä?"
   },
   "error_connection_save": {
-    "message": "$1 ei saanut yhteyttä $2-työpöytäsovellukseen. Zotero Connector pystyy tallentamaan joitain sivuja $3-tilille, mutta paras toimivuus saavutetaan, jos avaat $2n ennen kuin yrität tallentaa."
+    "message": "$1 ei saanut yhteyttä $2-työpöytäsovellukseen. Jurism Connector pystyy tallentamaan joitain sivuja $3-tilille, mutta paras toimivuus saavutetaan, jos avaat $2n ennen kuin yrität tallentaa."
   },
   "error_connection_downloadOrTroubleshoot": {
     "message": "Voit <a href=\"$1\">ladata $2</a> tai <a href=\"$3\">suorittaa tarvittaessa yhteyden vianmäärityksen</a>. "
@@ -96,7 +96,7 @@
     "message": "Käytä tallennusta verkkokirjastoon (Online Library)"
   },
   "reports_report_submitted": {
-    "message": "Virheraporttisi on lähetetty.\n\nRaportin tunniste: $1\n\nKirjoita seuraavaksi Zoteron käyttäjäfoorumille viesti, jossa mainitset raportin tunnisteen, ongelman kuvauksen sekä kuvauksen siitä, mitä käyttäjän pitää tehdä vian toistamiseksi.\n\nVirheilmoituksia ei käsitellä ellei yllämainittua käyttäjäfoorumiviestiä kirjoiteta."
+    "message": "Virheraporttisi on lähetetty.\n\nRaportin tunniste: $1\n\nKirjoita seuraavaksi Jurismn käyttäjäfoorumille viesti, jossa mainitset raportin tunnisteen, ongelman kuvauksen sekä kuvauksen siitä, mitä käyttäjän pitää tehdä vian toistamiseksi.\n\nVirheilmoituksia ei käsitellä ellei yllämainittua käyttäjäfoorumiviestiä kirjoiteta."
   },
   "reports_debug_output_submitted": {
     "message": "Virheenjäljitystallenne on lähetetty.\n\nTallenteen tunniste (Debug ID) on $1."
@@ -111,10 +111,10 @@
     "message": "$1ei saanut yhteyttä työpöytäsovellukseen $2. $2 tulee olla auki jotta verkkopohjainen viittaaminen onnistuu. "
   },
   "integration_googleDocs_unlinkBeforeSaving_warning": {
-    "message": "Tämä asiakirja sisältää aktiivisia Zotero-viitteitä jotka näkyvät zotero.org-linkkeinä ladatussa kopiossa."
+    "message": "Tämä asiakirja sisältää aktiivisia Jurism-viitteitä jotka näkyvät zotero.org-linkkeinä ladatussa kopiossa."
   },
   "integration_googleDocs_unlinkBeforeSaving_instructions": {
-    "message": "Tehdäksesi jakamiskelpoisen version tiedostosta, valitse <b>Luo kopio</b> Tiedosto-valikosta, valitse <b>Poista linkitys viitteistä</b> uuden asiakirjan Zotero-valikosta ja lataa linkittämätön versio itsellesi. Säilytä alkuperäinen linkitetty versio asiakirjasta siltä varalta että haluat tehdä siihen muutoksia."
+    "message": "Tehdäksesi jakamiskelpoisen version tiedostosta, valitse <b>Luo kopio</b> Tiedosto-valikosta, valitse <b>Poista linkitys viitteistä</b> uuden asiakirjan Jurism-valikosta ja lataa linkittämätön versio itsellesi. Säilytä alkuperäinen linkitetty versio asiakirjasta siltä varalta että haluat tehdä siihen muutoksia."
   },
   "integration_googleDocs_unlinkBeforeSaving_downloadAnyway": {
     "message": "Lataa silti linkitetty versio"

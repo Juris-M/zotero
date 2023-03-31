@@ -96,13 +96,13 @@
     "message": "Habilitar guardar en la biblioteca en línea"
   },
   "reports_report_submitted": {
-    "message": "Su informe de error ha sido enviado.\n\nIdentificador del informe: $1\n\nPor favor, publique un mensaje en los foros de Zotero con este identificador de informe, una descripción del problema y los pasos necesarios para reproducirlo.\n\nLos informes de error no se revisan a menos que se mencionen en los foros."
+    "message": "Su informe de error ha sido enviado.\n\nIdentificador del informe: $1\n\nPor favor, publique un mensaje en los foros de Jurism con este identificador de informe, una descripción del problema y los pasos necesarios para reproducirlo.\n\nLos informes de error no se revisan a menos que se mencionen en los foros."
   },
   "reports_debug_output_submitted": {
     "message": "Su salida de depuración ha sido enviada.\n\nEl identificador de depuración es $1."
   },
   "reports_submission_failed": {
-    "message": "Ocurrió un error al enviar su informe.\n\n$1\n\nPor favor, compruebe su conexión a Internet. Si el problema persiste, envíe un mensaje a los foros de Zotero."
+    "message": "Ocurrió un error al enviar su informe.\n\n$1\n\nPor favor, compruebe su conexión a Internet. Si el problema persiste, envíe un mensaje a los foros de Jurism."
   },
   "integration_error_clientUpgrade": {
     "message": "La citación basada en web requiere $1 o superior."
@@ -111,10 +111,10 @@
     "message": "El $1 fue habilitado para comunicar con la aplicación de escritorio de $2. $2 debe estar abierto para usar la citación basada en web."
   },
   "integration_googleDocs_unlinkBeforeSaving_warning": {
-    "message": "Este documento contiene citas activas de Zotero que aparecerán como enlaces a zotero.org en la copia descargada."
+    "message": "Este documento contiene citas activas de Jurism que aparecerán como enlaces a zotero.org en la copia descargada."
   },
   "integration_googleDocs_unlinkBeforeSaving_instructions": {
-    "message": "Para generar una versión adecuada para compartir, seleccione <b>Hacer una copia... </b>desde el menú Archivo, seleccione <b>Desvincular citas </b>desde el menú de Zotero en el nuevo documento y luego descargue la versión no enlazada. Conserve este documento original vinculado en caso de que necesite realizar más cambios."
+    "message": "Para generar una versión adecuada para compartir, seleccione <b>Hacer una copia... </b>desde el menú Archivo, seleccione <b>Desvincular citas </b>desde el menú de Jurism en el nuevo documento y luego descargue la versión no enlazada. Conserve este documento original vinculado en caso de que necesite realizar más cambios."
   },
   "integration_googleDocs_unlinkBeforeSaving_downloadAnyway": {
     "message": "Descargar la versión enlazada de todos modos"

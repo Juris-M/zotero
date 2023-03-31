@@ -51,7 +51,7 @@
 <!ENTITY zotero.duplicatesMerge.fieldSelect "مواردی را که می‌خواهید از سایر نسخه‌ها نگه داشته شوند، انتخاب کنید.">
 <!ENTITY zotero.duplicatesMerge.versionSelect "آن نسخه از آیتمی را که می‌خواهید به عنوان آیتم اصلی استفاده شود، انتخاب کنید.">
 <!ENTITY zotero.errorReport.notReviewed "برای بررسی گزارش خطا، حتما باید آن را به انجمن گفتگو ارجاع دهید. در غیر این صورت گزارش بررسی نخواهد شد.">
-<!ENTITY zotero.errorReport.postToForums "Please post a message to the Jurism support list (juris-m.github.io/mail) with this Report ID, a description of the problem, and any steps necessary to reproduce it.">
+<!ENTITY zotero.errorReport.postToForums "Please post a message to the Jurism support channels (see juris-m.github.io/mail) with this Report ID, a description of the problem, and any steps necessary to reproduce it.">
 <!ENTITY zotero.errorReport.reportID "شناسه گزارش:">
 <!ENTITY zotero.errorReport.submissionInProgress "لطفا تا پایان ارسال گزارش خطا، صبر کنید.">
 <!ENTITY zotero.errorReport.submitted "گزارش خطا ارسال شد.">

@@ -96,13 +96,13 @@
     "message": "オンライン・ライブラリへの保存を有効にする"
   },
   "reports_report_submitted": {
-    "message": "エラーレポートが送信されました。\n\nレポート ID: $1\n\nこのレポート ID、問題の説明、再現に必要な手順を Zotero フォーラムに投稿してください。\n\nフォーラムで参照されない限り、エラーレポートはレビューされません。"
+    "message": "エラーレポートが送信されました。\n\nレポート ID: $1\n\nこのレポート ID、問題の説明、再現に必要な手順を Jurism フォーラムに投稿してください。\n\nフォーラムで参照されない限り、エラーレポートはレビューされません。"
   },
   "reports_debug_output_submitted": {
     "message": "デバッグ出力が送信されました。\n\nデバッグ ID は $1 です、"
   },
   "reports_submission_failed": {
-    "message": "下記のレポートの送信中にエラーが発生しました。\n\n$1\n\nインターネット接続を確認してください。 問題が解決しない場合は、Zotero フォーラムにメッセージを投稿してください。"
+    "message": "下記のレポートの送信中にエラーが発生しました。\n\n$1\n\nインターネット接続を確認してください。 問題が解決しない場合は、Jurism フォーラムにメッセージを投稿してください。"
   },
   "integration_error_clientUpgrade": {
     "message": "ウェブベースの引用にはバージョン $1 以上が必要です。"
@@ -111,10 +111,10 @@
     "message": " $1 が $2 デスクトップアプリケーションとは通信できません。ウェブベース引用を利用するには $2 を起動しておく必要があります。"
   },
   "integration_googleDocs_unlinkBeforeSaving_warning": {
-    "message": "文書には有効な Zotero の引用が含まれています。ダウンロードコピー内に zotero.org のリンクが表示されます。"
+    "message": "文書には有効な Jurism の引用が含まれています。ダウンロードコピー内に zotero.org のリンクが表示されます。"
   },
   "integration_googleDocs_unlinkBeforeSaving_instructions": {
-    "message": "共有に適した版を生成するには、ファイルメニューから <b>コピーを作成…</b> を選択し、新しい文書の Zotero メニューから <b>引用リンクを解除</b> を選び、リンクを解除した版をダウンロードします。更に変更を加える必要がある場合は、オリジナルのリンク付きの文書を保存しておいてください。"
+    "message": "共有に適した版を生成するには、ファイルメニューから <b>コピーを作成…</b> を選択し、新しい文書の Jurism メニューから <b>引用リンクを解除</b> を選び、リンクを解除した版をダウンロードします。更に変更を加える必要がある場合は、オリジナルのリンク付きの文書を保存しておいてください。"
   },
   "integration_googleDocs_unlinkBeforeSaving_downloadAnyway": {
     "message": "リンクされたバージョンを強制的にダウンロード"

@@ -96,13 +96,13 @@
     "message": "Çevrimiçi Kitaplığa Kaydetmeyi Etkinleştir"
   },
   "reports_report_submitted": {
-    "message": "Hata raporunuz teslim edildi.\n\nRapor Kimlik Numarası: $1\n\nLütfen Zotero forumlarına bir ileti bırakınız ve bu iletide Rapor Kimlik Numarasını, sorunun bir tanımını ve bu sorunu yeniden oluşturabilmek için yapılanları adım adım yazınız.\n\nHata raporları forumlarda bildirilmezlerse incelenmeyeceklerdir."
+    "message": "Hata raporunuz teslim edildi.\n\nRapor Kimlik Numarası: $1\n\nLütfen Jurism forumlarına bir ileti bırakınız ve bu iletide Rapor Kimlik Numarasını, sorunun bir tanımını ve bu sorunu yeniden oluşturabilmek için yapılanları adım adım yazınız.\n\nHata raporları forumlarda bildirilmezlerse incelenmeyeceklerdir."
   },
   "reports_debug_output_submitted": {
     "message": "Hata ayıklama çıktınız gönderildi.\n\nHata Ayıklama Kimlik Numarası: $1."
   },
   "reports_submission_failed": {
-    "message": "Raporunuz gönderilirken bir hata oluştu.\n\n$1\n\nLütfen internet bağlantınızı kontrol ediniz. Eğer sorununuz devam ederse Zotero forumlarına bir ileti bırakınız."
+    "message": "Raporunuz gönderilirken bir hata oluştu.\n\n$1\n\nLütfen internet bağlantınızı kontrol ediniz. Eğer sorununuz devam ederse Jurism forumlarına bir ileti bırakınız."
   },
   "integration_error_clientUpgrade": {
     "message": "Web bazlı alıntı yapmak için $1 veya yenisi gerekmektedir."
@@ -111,7 +111,7 @@
     "message": "$1, $2 masaüstü uygulamasıyla iletişim kuramamaktadır. Web bazlı alıntı yapabilmek için $2 açık olmalıdır."
   },
   "integration_googleDocs_unlinkBeforeSaving_warning": {
-    "message": "Bu belge aktif Zotero alıntıları içermektedir ve bu alıntılar belgenin indirilmiş kopyalarında zotero.org bağlantıları olarak görüneceklerdir."
+    "message": "Bu belge aktif Jurism alıntıları içermektedir ve bu alıntılar belgenin indirilmiş kopyalarında zotero.org bağlantıları olarak görüneceklerdir."
   },
   "integration_googleDocs_unlinkBeforeSaving_instructions": {
     "message": "Paylaşılmaya uygun bir versiyon üretmek için, önce <b>Kopya yarat...</b>seçeneğini, sonra da <b>Alıntıları Bağlantısızlaştır</b> seçeneğini seçiniz ve sonra bağlantısızlaştırılmış versiyonu indiriniz. Belgenizin bağlantıları içeren asıl versiyonunu, gelecekte değişiklikler yapabilmek için tutunuz."

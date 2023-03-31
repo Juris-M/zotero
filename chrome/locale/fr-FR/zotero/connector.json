@@ -96,13 +96,13 @@
     "message": "Activer l'enregistrement dans la bibliothèque en ligne"
   },
   "reports_report_submitted": {
-    "message": "Votre rapport d'erreur a été soumis.\n\nReport ID: $1\n\nVeuillez poster un message sur les forums de Zotero avec cet identifiant, une description du problème et toutes les étapes nécessaires pour le reproduire.\nLes rapports d'erreur ne sont pas analysés tant qu'ils ne sont pas cités dans les forums avec cet identifiant."
+    "message": "Votre rapport d'erreur a été soumis.\n\nReport ID: $1\n\nVeuillez poster un message sur les forums de Jurism avec cet identifiant, une description du problème et toutes les étapes nécessaires pour le reproduire.\nLes rapports d'erreur ne sont pas analysés tant qu'ils ne sont pas cités dans les forums avec cet identifiant."
   },
   "reports_debug_output_submitted": {
     "message": "Le journal de débogage a été envoyé.\n\nLe Debug ID est $1."
   },
   "reports_submission_failed": {
-    "message": "Une erreur s'est produite lors de l'envoi de votre rapport.\n\n$1\n\nVeuillez vérifier votre connexion internet. Si le problème persiste, veuillez poster un message sur les forums Zotero."
+    "message": "Une erreur s'est produite lors de l'envoi de votre rapport.\n\n$1\n\nVeuillez vérifier votre connexion internet. Si le problème persiste, veuillez poster un message sur les forums Jurism."
   },
   "integration_error_clientUpgrade": {
     "message": "L'insertion de citations dans une application web nécessite $1 ou ultérieur."
@@ -111,10 +111,10 @@
     "message": "Le $1 n'a pas pu communiquer avec l'application $2. $2 doit être ouvert pour pouvoir insérer des citations dans une application web."
   },
   "integration_googleDocs_unlinkBeforeSaving_warning": {
-    "message": "Ce document contient des citations Zotero actives qui apparaîtront sous forme de liens zotero.org dans une copie téléchargée."
+    "message": "Ce document contient des citations Jurism actives qui apparaîtront sous forme de liens zotero.org dans une copie téléchargée."
   },
   "integration_googleDocs_unlinkBeforeSaving_instructions": {
-    "message": "Pour générer une version adaptée au partage, sélectionnez <b>Faire une copie…</b> dans le menu Fichier, sélectionnez <b>Dissocier les citations</b> dans le menu Zotero du nouveau document, puis téléchargez la version non liée. Conservez ce document lié original au cas où vous auriez besoin d'apporter d'autres modifications."
+    "message": "Pour générer une version adaptée au partage, sélectionnez <b>Faire une copie…</b> dans le menu Fichier, sélectionnez <b>Dissocier les citations</b> dans le menu Jurism du nouveau document, puis téléchargez la version non liée. Conservez ce document lié original au cas où vous auriez besoin d'apporter d'autres modifications."
   },
   "integration_googleDocs_unlinkBeforeSaving_downloadAnyway": {
     "message": "Télécharger la version liée quand même"
@@ -123,7 +123,7 @@
     "message": "$1 met à jour votre document."
   },
   "integration_googleDocs_docxAlert": {
-    "message": "L'intégration de $1 n'est pas disponible lors de l'édition directe de fichiers Microsoft Word .docx dans Google Docs. Sélectionnez Fichier → Enregistrer au format Google Docs afin d'activer cette fonctionnalité.<br/><br/>Si vous souhaitez transférer un document Word avec $1 citations vers Google Docs, consultez <a href=\"https://www.zotero.org/support/kb/moving_documents_between_word_processors\">Transférer des documents comportant des citations Zotero entre différents logiciels de traitement de texte</a>."
+    "message": "L'intégration de $1 n'est pas disponible lors de l'édition directe de fichiers Microsoft Word .docx dans Google Docs. Sélectionnez Fichier → Enregistrer au format Google Docs afin d'activer cette fonctionnalité.<br/><br/>Si vous souhaitez transférer un document Word avec $1 citations vers Google Docs, consultez <a href=\"https://www.zotero.org/support/kb/moving_documents_between_word_processors\">Transférer des documents comportant des citations Jurism entre différents logiciels de traitement de texte</a>."
   },
   "integration_googleDocs_documentLocked": {
     "message": "Les citations du document sont en cours de modification par un autre utilisateur $1. Veuillez réessayer ultérieurement."

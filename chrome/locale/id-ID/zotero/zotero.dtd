@@ -51,7 +51,7 @@
 <!ENTITY zotero.duplicatesMerge.fieldSelect "Pilih kolom untuk dipertahankan dari versi lain item ini:">
 <!ENTITY zotero.duplicatesMerge.versionSelect "Pilih versi item untuk digunakan sebagai item utama:">
 <!ENTITY zotero.errorReport.notReviewed "Laporan kesalahan tidak akan ditinjau ulang kecuali dirujuk di dalam forum.">
-<!ENTITY zotero.errorReport.postToForums "Please post a message to the Jurism support list (juris-m.github.io/mail) with this Report ID, a description of the problem, and any steps necessary to reproduce it.">
+<!ENTITY zotero.errorReport.postToForums "Please post a message to the Jurism support channels (see juris-m.github.io/mail) with this Report ID, a description of the problem, and any steps necessary to reproduce it.">
 <!ENTITY zotero.errorReport.reportID "ID Laporan:">
 <!ENTITY zotero.errorReport.submissionInProgress "Mohon tunggu sampai laporan kesalahan dikirimkan.">
 <!ENTITY zotero.errorReport.submitted "Laporan kesalahan Anda telah dikirimkan.">

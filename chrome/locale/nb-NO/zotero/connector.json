@@ -96,13 +96,13 @@
     "message": "Aktiver Lagre til nettbiblioteket"
   },
   "reports_report_submitted": {
-    "message": "Feilrapporten din er levert.\n\nRapport ID: $1\n\nLegg igjen en melding på Zotero forumene med denne rapport ID-en, en beskrivelse av problemet, og nødvendige steg for å gjenskape problemet.\n\nFeilrapporter blir ikke gjennomfått hvis de følges av en melding på forumene."
+    "message": "Feilrapporten din er levert.\n\nRapport ID: $1\n\nLegg igjen en melding på Jurism forumene med denne rapport ID-en, en beskrivelse av problemet, og nødvendige steg for å gjenskape problemet.\n\nFeilrapporter blir ikke gjennomfått hvis de følges av en melding på forumene."
   },
   "reports_debug_output_submitted": {
     "message": "Utdata fra feilsøket ditt er levert.\n\nDebug ID er $1."
   },
   "reports_submission_failed": {
-    "message": "En feil skjedde under levering av rapporten din.\n\n$1\n\nSjekk internettforbindelsen din. Hvis problemet vedvarer, skriv en melding på Zotero forumene."
+    "message": "En feil skjedde under levering av rapporten din.\n\n$1\n\nSjekk internettforbindelsen din. Hvis problemet vedvarer, skriv en melding på Jurism forumene."
   },
   "integration_error_clientUpgrade": {
     "message": "Web-basert henvisning krever $1 eller senere."
@@ -111,10 +111,10 @@
     "message": "$1 var ikke i stand til å kommunisere med $2 skrivebordsprogrammet. $2 må være åpen for å benytte web-basert henvisning."
   },
   "integration_googleDocs_unlinkBeforeSaving_warning": {
-    "message": "Dette dokumentet inneholder aktive Zotero henvisninger som vil vises som zotero.org koblinger i en nedlastet kopi."
+    "message": "Dette dokumentet inneholder aktive Jurism henvisninger som vil vises som zotero.org koblinger i en nedlastet kopi."
   },
   "integration_googleDocs_unlinkBeforeSaving_instructions": {
-    "message": "For å lage en versjon som er egnet for deling, velg <b>Make a copy…</b>fra File-menyen, velg deretter<b>Unlink Citations</b> fra Zotero-menyen i det nye dokumentet, og last deretter ned versjonen med koblinger fjernet. Behold det opprinnelige dokumentet med koblinger i tilfelle du trenger å gjøre flere endringer."
+    "message": "For å lage en versjon som er egnet for deling, velg <b>Make a copy…</b>fra File-menyen, velg deretter<b>Unlink Citations</b> fra Jurism-menyen i det nye dokumentet, og last deretter ned versjonen med koblinger fjernet. Behold det opprinnelige dokumentet med koblinger i tilfelle du trenger å gjøre flere endringer."
   },
   "integration_googleDocs_unlinkBeforeSaving_downloadAnyway": {
     "message": "Last uansett ned versjon med koblinger"

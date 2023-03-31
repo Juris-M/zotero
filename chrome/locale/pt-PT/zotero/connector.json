@@ -96,13 +96,13 @@
     "message": "Activar Guardar na Biblioteca em Linha"
   },
   "reports_report_submitted": {
-    "message": "O seu relatório de erro foi submetido.\n\nID do relatório: $1\n\nPor favor, poste uma mensagem nos Fórums do Zotero com o ID do relatório, uma descrição do problema e quaisquer passos necessários para o reproduzir.\n\nOs relatórios de erro não são revistos a não ser que sejam referenciados nos fóruns."
+    "message": "O seu relatório de erro foi submetido.\n\nID do relatório: $1\n\nPor favor, poste uma mensagem nos Fórums do Jurism com o ID do relatório, uma descrição do problema e quaisquer passos necessários para o reproduzir.\n\nOs relatórios de erro não são revistos a não ser que sejam referenciados nos fóruns."
   },
   "reports_debug_output_submitted": {
     "message": "As suas saídas de depuração foram submetidas.\n\nO ID de Depuração é $1."
   },
   "reports_submission_failed": {
-    "message": "Ocurreu um erro ao submeter o seu relatório.\n\n$1\n\nPor favor, verifique sua ligação à internet. Se o problema persistir, poste uma mensagem nos Fórums do Zotero."
+    "message": "Ocurreu um erro ao submeter o seu relatório.\n\n$1\n\nPor favor, verifique sua ligação à internet. Se o problema persistir, poste uma mensagem nos Fórums do Jurism."
   },
   "integration_error_clientUpgrade": {
     "message": "A citação baseada na Web requer o $1 ou mais recente."
@@ -111,10 +111,10 @@
     "message": "O $1 não foi capaz de comunicar com a aplicação de secretária $2. O $2 tem de estar aberto para usar a citação baseada na Web."
   },
   "integration_googleDocs_unlinkBeforeSaving_warning": {
-    "message": "Este documento contém citações ativas do Zotero que irão aparecer como hiperligações zotero.org numa cópia descarregada."
+    "message": "Este documento contém citações ativas do Jurism que irão aparecer como hiperligações zotero.org numa cópia descarregada."
   },
   "integration_googleDocs_unlinkBeforeSaving_instructions": {
-    "message": "Para gerar uma versão apropriada para partilha, selecione <b>Criar uma cópia…</b> no menu Ficheiro, selecione, no novo documento, <b>Desligar Citações</b> no menu Zotero e descarregue então a versão desligada. Mantenha este documento ligado para o caso de necessitar de fazer mais alterações."
+    "message": "Para gerar uma versão apropriada para partilha, selecione <b>Criar uma cópia…</b> no menu Ficheiro, selecione, no novo documento, <b>Desligar Citações</b> no menu Jurism e descarregue então a versão desligada. Mantenha este documento ligado para o caso de necessitar de fazer mais alterações."
   },
   "integration_googleDocs_unlinkBeforeSaving_downloadAnyway": {
     "message": "Descarregar Versão Ligada de Qualquer Modo"

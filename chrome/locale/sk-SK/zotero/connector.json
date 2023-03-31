@@ -90,13 +90,13 @@
     "message": "Zapnúť ukladanie do Online knižnice"
   },
   "reports_report_submitted": {
-    "message": "Vaše chybové hlásenie bolo odoslané.\n\nID správy: $1\n\nProsím napíšte správu do diskusného fóra Zotero obsahujúcu toto ID, popis problému a kroky, ktoré sú potrebné k jeho reprodukovaniu.\n\nChybové hlásenia sa nekontrolujú dokiaľ sa o nich nediskutuje vo fórach."
+    "message": "Vaše chybové hlásenie bolo odoslané.\n\nID správy: $1\n\nProsím napíšte správu do diskusného fóra Jurism obsahujúcu toto ID, popis problému a kroky, ktoré sú potrebné k jeho reprodukovaniu.\n\nChybové hlásenia sa nekontrolujú dokiaľ sa o nich nediskutuje vo fórach."
   },
   "reports_debug_output_submitted": {
     "message": "Vaše ladiace informácie boli odoslané.\n\nID ladenia je $1."
   },
   "reports_submission_failed": {
-    "message": "Pri odosielaní vašej správy sa vyskytla chyba.\n\n$1\n\nSkontrolujte prosím svoje pripojenie na internet. Ak problémy pretrvávajú, pošlite správu na fóra Zotero."
+    "message": "Pri odosielaní vašej správy sa vyskytla chyba.\n\n$1\n\nSkontrolujte prosím svoje pripojenie na internet. Ak problémy pretrvávajú, pošlite správu na fóra Jurism."
   },
   "integration_error_clientUpgrade": {
     "message": "Webové citovanie vyžaduje verziu $1 alebo vyššiu."
@@ -108,7 +108,7 @@
     "message": "Tento dokument obsahuje aktívne citácie Zotera, ktoré sa objavia ako odkazy zotero.org v stiahnutej kópii."
   },
   "integration_googleDocs_unlinkBeforeSaving_instructions": {
-    "message": "Pre vytvorenie verzie vhodnej na zdieľaie, zvoľte <b>Vytvoriť kópiu…</b> z ponuky Súbor, zvoľte <b>Odpojiť citácie</b> z ponuky Zotero v novom dokumente a potom stiahnite neprepojenú verziu. Uschovajte tento pôvodný prepojený dokument pre prípad, že budete potrebovať urobiť ďalšie zmeny."
+    "message": "Pre vytvorenie verzie vhodnej na zdieľaie, zvoľte <b>Vytvoriť kópiu…</b> z ponuky Súbor, zvoľte <b>Odpojiť citácie</b> z ponuky Jurism v novom dokumente a potom stiahnite neprepojenú verziu. Uschovajte tento pôvodný prepojený dokument pre prípad, že budete potrebovať urobiť ďalšie zmeny."
   },
   "integration_googleDocs_unlinkBeforeSaving_downloadAnyway": {
     "message": "Každopádne stiahnuť prepojenú verziu"

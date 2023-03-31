@@ -51,7 +51,7 @@
 <!ENTITY zotero.duplicatesMerge.fieldSelect "Vyberte pole z jiných verzí položky, která se mají zachovat:">
 <!ENTITY zotero.duplicatesMerge.versionSelect "Vyberte verzi položky, jež bude použita jako hlavní položka:">
 <!ENTITY zotero.errorReport.notReviewed "Chybová hlášení nejsou zpracovávána, dokud nejsou nahlášena do fóra.">
-<!ENTITY zotero.errorReport.postToForums "Please post a message to the Jurism support list (juris-m.github.io/mail) with this Report ID, a description of the problem, and any steps necessary to reproduce it.">
+<!ENTITY zotero.errorReport.postToForums "Please post a message to the Jurism support channels (see juris-m.github.io/mail) with this Report ID, a description of the problem, and any steps necessary to reproduce it.">
 <!ENTITY zotero.errorReport.reportID "ID hlášení:">
 <!ENTITY zotero.errorReport.submissionInProgress "Čekejte, prosím, dokud nebude zpráva o chybách odeslána.">
 <!ENTITY zotero.errorReport.submitted "Zpráva o chybách byla odeslána.">

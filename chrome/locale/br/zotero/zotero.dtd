@@ -51,7 +51,7 @@
 <!ENTITY zotero.duplicatesMerge.fieldSelect "Diuzañ ar maeziennoù da virout diwar stummoù all an elfenn:">
 <!ENTITY zotero.duplicatesMerge.versionSelect "Dibabit stumm an elfenn da implijout evel elfenn mestr:">
 <!ENTITY zotero.errorReport.notReviewed "An danevelloù fazioù na vezont ket lennet keit ha ma ne vezont ket daveennet e-barzh ar foromoù.">
-<!ENTITY zotero.errorReport.postToForums "Please post a message to the Jurism support list (juris-m.github.io/mail) with this Report ID, a description of the problem, and any steps necessary to reproduce it.">
+<!ENTITY zotero.errorReport.postToForums "Please post a message to the Jurism support channels (see juris-m.github.io/mail) with this Report ID, a description of the problem, and any steps necessary to reproduce it.">
 <!ENTITY zotero.errorReport.reportID "ID danevell:">
 <!ENTITY zotero.errorReport.submissionInProgress "Gortozit e-pad ma vez kaset an danevell fazi mar plij.">
 <!ENTITY zotero.errorReport.submitted "An danevell fazi a zo bet kaset.">

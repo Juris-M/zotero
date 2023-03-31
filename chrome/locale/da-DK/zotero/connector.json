@@ -69,10 +69,10 @@
     "message": "$1 kunne ikke kommunikere med skrivebordsprogrammet $2. $2 skal være åben for at bruge web-baseret henvisning."
   },
   "integration_googleDocs_unlinkBeforeSaving_warning": {
-    "message": "Dette dokument indeholder aktive Zotero-referencer, der vil optræde som zotero.org-links i en downloadet kopi."
+    "message": "Dette dokument indeholder aktive Jurism-referencer, der vil optræde som zotero.org-links i en downloadet kopi."
   },
   "integration_googleDocs_unlinkBeforeSaving_instructions": {
-    "message": "For at oprette en version, der er egnet til deling, skal du vælge <b>Lav en kopi...</b> i filmenuen, vælge <b>Frakobl referencer</b> i Zotero-menuen i det nye dokument og derefter downloade den frakoblet version."
+    "message": "For at oprette en version, der er egnet til deling, skal du vælge <b>Lav en kopi...</b> i filmenuen, vælge <b>Frakobl referencer</b> i Jurism-menuen i det nye dokument og derefter downloade den frakoblet version."
   },
   "integration_googleDocs_unlinkBeforeSaving_downloadAnyway": {
     "message": "Download linket version alligevel"

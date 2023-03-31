@@ -51,7 +51,7 @@
 <!ENTITY zotero.duplicatesMerge.fieldSelect "選取欄位，以防止項目之其他版本：">
 <!ENTITY zotero.duplicatesMerge.versionSelect "選擇項目之版本，以用作主項目(master item)：">
 <!ENTITY zotero.errorReport.notReviewed "除非論壇上有提到，否則不會有人檢閱錯誤報告。">
-<!ENTITY zotero.errorReport.postToForums "Please post a message to the Jurism support list (juris-m.github.io/mail) with this Report ID, a description of the problem, and any steps necessary to reproduce it.">
+<!ENTITY zotero.errorReport.postToForums "Please post a message to the Jurism support channels (see juris-m.github.io/mail) with this Report ID, a description of the problem, and any steps necessary to reproduce it.">
 <!ENTITY zotero.errorReport.reportID "報告識別號：">
 <!ENTITY zotero.errorReport.submissionInProgress "正送出錯誤報告，請稍等。">
 <!ENTITY zotero.errorReport.submitted "錯誤報告已送出。">
