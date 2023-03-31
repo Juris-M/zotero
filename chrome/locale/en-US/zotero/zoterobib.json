@@ -231,10 +231,10 @@
     "string": "New item…"
   },
   "zbib.saveToZotero.message": {
-    "string": "Once you’ve <a>installed Zotero and the Zotero Connector</a>, you can export your bibliography to Zotero by clicking the “Save to Zotero” button in your browser’s toolbar."
+    "string": "Once you’ve <a>installed Zotero and the Zotero Connector</a>, you can export your bibliography to Zotero by clicking the “Save to Jurism” button in your browser’s toolbar."
   },
   "zbib.saveToZotero.title": {
-    "string": "Save to Zotero"
+    "string": "Save to Jurism"
   },
   "zbib.styleInstaller.active": {
     "string": "Active"
