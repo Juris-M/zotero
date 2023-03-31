@@ -1,7 +1,19 @@
 {
   "about.dtd": {},
-  "csledit.dtd": {},
-  "cslpreview.dtd": {},
+  "csledit.dtd": {
+    "styles.editor": {
+      "words": [
+        "Jurism"
+      ]
+    }
+  },
+  "cslpreview.dtd": {
+    "styles.preview": {
+      "words": [
+        "Jurism"
+      ]
+    }
+  },
   "preferences.dtd": {
     "zotero.preferences.attachmentBaseDir.message": {
       "words": [
@@ -35,12 +47,12 @@
     },
     "zotero.preferences.sync.fileSyncing.groups": {
       "words": [
-        "Jurism"
+        "Zotero"
       ]
     },
     "zotero.preferences.sync.fileSyncing.tos1": {
       "words": [
-        "Jurism"
+        "Zotero"
       ]
     },
     "zotero.preferences.sync.reset.restoreFromServer.desc": {
@@ -67,13 +79,7 @@
   },
   "publications.dtd": {},
   "searchbox.dtd": {},
-  "standalone.dtd": {
-    "quitApplicationCmdMac.label": {
-      "words": [
-        "Jurism"
-      ]
-    }
-  },
+  "standalone.dtd": {},
   "timeline.properties": {
     "general.title": {
       "words": [
@@ -83,7 +89,7 @@
   },
   "zotero.dtd": {
     "zotero.errorReport.postToForums": {
-      "text": "Please post a message to the Jurism support list (juris-m.github.io/mail) with this Report ID, a description of the problem, and any steps necessary to reproduce it."
+      "text": "Please post a message to the Jurism support channels (see juris-m.github.io/mail) with this Report ID, a description of the problem, and any steps necessary to reproduce it."
     },
     "zotero.errorReport.title": {
       "words": [
@@ -92,7 +98,7 @@
     },
     "zotero.import.source.file": {
       "words": [
-        "Jurism"
+        "Zotero"
       ]
     },
     "zotero.rtfScan.citationsPage.description": {
@@ -147,26 +153,17 @@
     }
   },
   "zotero.properties": {
-    "about.createdBy": {
-      "text": "Jurism is based on Zotero, a project of the [Roy Rosenzweig Center for History and New Media] and is developed by a [global community]."
-    },
     "db.integrityCheck.reportInForums": {
-      "text": "You can report this problem to the Jurism support list (juris-m.github.io/mail)."
-    },
-    "standalone.corruptInstallation": {
-      "text": "Your Jurism installation appears to be corrupted due to a failed auto-update. While Jurism may continue to function, to avoid potential bugs, please download the latest version of Jurism from https://juris-m.github.io/release as soon as possible."
+      "text": "You can report this problem in the Jurism support channels (see juris-m.github.io/mail)."
     },
     "sync.storage.error.default": {
-      "text": "A file sync error occurred. Please try syncing again.\\n\\nIf you receive this message repeatedly, restart %S and/or your computer and try again. If you continue to receive the message, submit an error report and post the Report ID to the Jurism support list (juris-m.github.io/mail)."
+      "text": "A file sync error occurred. Please try syncing again.\\n\\nIf you receive this message repeatedly, restart %S and/or your computer and try again. If you continue to receive the message, submit an error report and post the Report ID to the Jurism support channels (see juris-m.github.io/mail) for assistance."
     },
     "sync.storage.error.defaultRestart": {
-      "text": "A file sync error occurred. Please restart %S and/or your computer and try syncing again.\\n\\nIf you receive this message repeatedly, submit an error report and post the Report ID to the Jurism support list (juris-m.github.io/mail)."
+      "text": "A file sync error occurred. Please restart %S and/or your computer and try syncing again.\\n\\nIf you receive this message repeatedly, submit an error report and post the Report ID to a Jurism support channel (see juris-m.github.io/mail) for assistance."
     },
     "sync.storage.error.webdav.fileMissingAfterUpload": {
-      "text": "A potential problem was found with your WebDAV server.\\n\\nAn uploaded file was not immediately available for download. There may be a short delay between when you upload files and when they become available, particularly if you are using a cloud storage service.\\n\\nIf Zotero file syncing appears to work normally, you can ignore this message. If you have trouble, please post to the Jurism support list (juris-m.github.io/mail)."
-    },
-    "zotero.preferences.sync.purgeStorage.desc": {
-      "text": "If you plan to use WebDAV for file syncing and you previously synced attachment files in My Library to the Zotero servers, you can purge those files from the Zotero servers to give you more storage space for groups.\\n\\nYou can purge files at any time from your account settings on zotero.org."
+      "text": "A potential problem was found with your WebDAV server.\\n\\nAn uploaded file was not immediately available for download. There may be a short delay between when you upload files and when they become available, particularly if you are using a cloud storage service.\\n\\nIf file syncing appears to work normally, you can ignore this message. If you have trouble, please post to a Jurism support channel (see juris-m.github.io/mail)."
     },
     "app.firefox": {
       "words": [
@@ -370,6 +367,7 @@
     "integration.error.macWordSBPermissionsMissing": {
       "words": [
         "Jurism",
+        "Jurism",
         "Jurism"
       ]
     },
@@ -476,6 +474,13 @@
         "Jurism"
       ]
     },
+    "standalone.corruptInstallation": {
+      "words": [
+        "Jurism",
+        "Jurism",
+        "Jurism"
+      ]
+    },
     "standalone.rootWarning": {
       "words": [
         "Jurism",
@@ -484,11 +489,6 @@
       ]
     },
     "standalone.updateMessage": {
-      "words": [
-        "Jurism"
-      ]
-    },
-    "startupError": {
       "words": [
         "Jurism"
       ]
@@ -530,11 +530,6 @@
         "Jurism"
       ]
     },
-    "styles.validationWarning": {
-      "words": [
-        "Jurism"
-      ]
-    },
     "sync.conflict.autoChange.alert": {
       "words": [
         "Jurism"
@@ -567,7 +562,7 @@
     },
     "sync.error.corruptedLoginManager": {
       "words": [
-        "Zotero",
+        "Jurism",
         "Juris-M"
       ]
     },
@@ -578,7 +573,7 @@
     },
     "sync.error.invalidClock": {
       "words": [
-        "Zotero"
+        "Jurism"
       ]
     },
     "sync.error.invalidLogin.text": {
@@ -641,7 +636,7 @@
     "sync.storage.error.zfs.groupQuotaReached1": {
       "words": [
         "Zotero",
-        "Jurism"
+        "Zotero"
       ]
     },
     "sync.storage.error.zfs.personalQuotaReached1": {
@@ -680,6 +675,12 @@
       "words": [
         "Jurism",
         "Jurism"
+      ]
+    },
+    "zotero.preferences.sync.purgeStorage.desc": {
+      "words": [
+        "Zotero",
+        "Zotero"
       ]
     },
     "zotero.preferences.sync.purgeStorage.title": {
