@@ -175,4 +175,37 @@ describe("Import/Export", function () {
 			});
 		});
 	});
+
+    // not currently supported
+    describe ("CSL JSON import", function() {
+		it.skip('should save seeAlsos as relations', async function () {
+			let myItems = [
+                {
+                    "id": "item1",
+                	"type": "graphic",
+		            "multi": { "main": {}, "_keys": {}},
+		            "title": "Title 1",
+                    "seeAlso": ["item2"]
+                },
+                {
+                    "id": "item2",
+                    "type": "graphic",
+		            "multi": { "main": {}, "_keys": {}},
+		            "title": "Title 2",
+                    "seeAlso": ["item1"]
+                }
+
+			];
+			var libraryID = Zotero.Libraries.userLibraryID;
+			var file = OS.Path.join(getTestDataDirectory().path, 'csl_json.json');
+			translation = new Zotero.Translate.Import();
+			translation.setLocation(Zotero.File.pathToFile(file));
+			let translators = await translation.getTranslators();
+			translation.setTranslator(translators[0]);
+			var newItems = await translation.translate({ libraryID });
+			assert.lengthOf(newItems, 2);
+			assert.sameMembers(newItems[0].relatedItems, [newItems[1]]);
+			assert.sameMembers(newItems[1].relatedItems, [newItems[0]]);
+		});
+    });
 });
