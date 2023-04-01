@@ -45,8 +45,8 @@
 <!ENTITY zotero.preferences.debugOutputLogging.clearOutput "Çıktıyı Temizle">
 <!ENTITY zotero.preferences.debugOutputLogging.enableAfterRestart "Tekrar başladıktan sonra etkinleştir">
 <!ENTITY zotero.preferences.debugOutputLogging.linesLogged "satır kaydedilmiş">
-<!ENTITY zotero.preferences.debugOutputLogging.message "Hata ayıklama çıktısı, Juris-M geliştiricilerine Juris-M'daki sorunların düzeltilmesinde yardım eder. Hata ayıklama özelliği Juris-M'yu yavaşlatacaktır. Bir Juris-M geliştiricisi hata ayıklama kaydı istemediği sürece bu özelliği seçilmemiş olarak bırakınız.">
-<!ENTITY zotero.preferences.debugOutputLogging.submitToServer "Juris-M Sunucusuna Gönder">
+<!ENTITY zotero.preferences.debugOutputLogging.message "Hata ayıklama çıktısı, Jurism geliştiricilerine Jurism'daki sorunların düzeltilmesinde yardım eder. Hata ayıklama özelliği Jurism'yu yavaşlatacaktır. Bir Jurism geliştiricisi hata ayıklama kaydı istemediği sürece bu özelliği seçilmemiş olarak bırakınız.">
+<!ENTITY zotero.preferences.debugOutputLogging.submitToServer "Jurism Sunucusuna Gönder">
 <!ENTITY zotero.preferences.debugOutputLogging.viewOutput "Çıktıyı Göster">
 <!ENTITY zotero.preferences.default "Varsayılan:">
 <!ENTITY zotero.preferences.downloadAssociatedFiles "Eserleri kaydederken ilişkilendirilen PDF ve diğer dosyaları da otomatik olarak ekle">
@@ -87,7 +87,7 @@
 <!ENTITY zotero.preferences.keys.library "Kitaplık">
 <!ENTITY zotero.preferences.keys.newItem "Yeni Eser Oluştur">
 <!ENTITY zotero.preferences.keys.newNote "Yeni Not Oluştur">
-<!ENTITY zotero.preferences.keys.openZotero "Juris-M Bölmesini Aç/Kapa">
+<!ENTITY zotero.preferences.keys.openZotero "Jurism Bölmesini Aç/Kapa">
 <!ENTITY zotero.preferences.keys.overrideGlobal "Çelişen kısayolların üzerine yazdırmayı dene">
 <!ENTITY zotero.preferences.keys.quicksearch "Çabuk Arama">
 <!ENTITY zotero.preferences.keys.saveToZotero "Jurism'ya Kaydet (adres çubuğu ikonu)">
@@ -99,7 +99,7 @@
 <!ENTITY zotero.preferences.lang.csl "CSL:">
 <!ENTITY zotero.preferences.lang.display "Display">
 <!ENTITY zotero.preferences.lang.inCitationsAndBibliographies "In citations and bibliographies">
-<!ENTITY zotero.preferences.lang.insideZotero "Juris-M UI">
+<!ENTITY zotero.preferences.lang.insideZotero "Jurism UI">
 <!ENTITY zotero.preferences.lang.institutions "Institutions:">
 <!ENTITY zotero.preferences.lang.journals "Journals:">
 <!ENTITY zotero.preferences.lang.languageList "Languages for Use in Metadata">
@@ -184,7 +184,7 @@
 <!ENTITY zotero.preferences.quickCopy.dragLimit "Bu kadardan daha fazlası sürüklendiğinde Çabuk Kopyalamayı devre dışı bırak:">
 <!ENTITY zotero.preferences.quickCopy.itemFormat "Item Format:">
 <!ENTITY zotero.preferences.quickCopy.linkCitationFormReverse "Use citation form as default">
-<!ENTITY zotero.preferences.quickCopy.linkOption "Include Juris-M link wrappers in QuickCopy citations">
+<!ENTITY zotero.preferences.quickCopy.linkOption "Include Jurism link wrappers in QuickCopy citations">
 <!ENTITY zotero.preferences.quickCopy.macWarning "Uyarı: Zengin-metin biçimi Mac OS X'de kaybolacaktır.">
 <!ENTITY zotero.preferences.quickCopy.noteFormat "Note Format:">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.domainPath "Etki alanı/Yol">
@@ -202,7 +202,7 @@
 <!ENTITY zotero.preferences.search.indexStats.words "Sozcükler:">
 <!ENTITY zotero.preferences.search.pdfIndexing "PDF İndeksleme">
 <!ENTITY zotero.preferences.settings "Ayarlar">
-<!ENTITY zotero.preferences.showIn "Juris-M'yu Bunda Aç:">
+<!ENTITY zotero.preferences.showIn "Jurism'yu Bunda Aç:">
 <!ENTITY zotero.preferences.showIn.appTab "Uygulama sekmesi">
 <!ENTITY zotero.preferences.showIn.browserPane "Tarayıcı bölmesi">
 <!ENTITY zotero.preferences.showIn.separateTab "Ayrı sekme">
@@ -232,7 +232,7 @@
 <!ENTITY zotero.preferences.sync.reset "Sıfırla">
 <!ENTITY zotero.preferences.sync.reset.button "Sıfırla...">
 <!ENTITY zotero.preferences.sync.reset.fullSync "Tam Eşitleme">
-<!ENTITY zotero.preferences.sync.reset.fullSync.desc "Eşitleme geçmişini gözetmeksinizin, yerel Juris-M verilerini sunucudaki veri ile birleştir.">
+<!ENTITY zotero.preferences.sync.reset.fullSync.desc "Eşitleme geçmişini gözetmeksinizin, yerel Jurism verilerini sunucudaki veri ile birleştir.">
 <!ENTITY zotero.preferences.sync.reset.resetDataSyncHistory "Veri Eşitleme Geçmişini Sıfırla">
 <!ENTITY zotero.preferences.sync.reset.resetDataSyncHistory.desc "Eşitleme geçmişini yok sayarak, yerel verileri uzaktaki verilerle birleştir">
 <!ENTITY zotero.preferences.sync.reset.resetFileSyncHistory "Dosya Eşitleme Geçmişini Sıfırla">
@@ -256,5 +256,5 @@
 <!ENTITY zotero.preferences.trashAutoEmptyDaysPre "Bu kadar zaman önce Çöp Sepetine gönderilmiş eserleri otomatik olarak sil:">
 <!ENTITY zotero.preferences.updateNow "Şimdi Güncelle">
 <!ENTITY zotero.preferences.userInterface "Kullanıcı Arabirimi">
-<!ENTITY zotero.preferences.zoteroDotOrgVersionHeader "Juris-M.org'a, kullanılan Juris-M sürümüne göre içeriği özelleştirme yetkisi ver.">
-<!ENTITY zotero.preferences.zoteroDotOrgVersionHeader.tooltip "Etkinleştirilirse, varolan Juris-M sürümü zotero.org'a yapılan HTTP isteklerine eklenecektir.">
+<!ENTITY zotero.preferences.zoteroDotOrgVersionHeader "Jurism.org'a, kullanılan Jurism sürümüne göre içeriği özelleştirme yetkisi ver.">
+<!ENTITY zotero.preferences.zoteroDotOrgVersionHeader.tooltip "Etkinleştirilirse, varolan Jurism sürümü zotero.org'a yapılan HTTP isteklerine eklenecektir.">

@@ -375,7 +375,7 @@
 <!ENTITY zotero.upgrade.changeLogAfterLink "да би видели шта је ново.">
 <!ENTITY zotero.upgrade.changeLogBeforeLink "Погледајте">
 <!ENTITY zotero.upgrade.changeLogLink "записник промена">
-<!ENTITY zotero.upgrade.ifZoteroInfo "If you are migrating from official Juris-M/Juris-M to MLZ, the next step of the upgrade process will convert your database for use with MLZ.">
+<!ENTITY zotero.upgrade.ifZoteroInfo "If you are migrating from official Jurism/Jurism to MLZ, the next step of the upgrade process will convert your database for use with MLZ.">
 <!ENTITY zotero.upgrade.ifZoteroInfoLabel "Note:">
 <!ENTITY zotero.upgrade.majorUpgrade "Ово је веће ажурирање.">
 <!ENTITY zotero.upgrade.majorUpgradeAfterLink "пре него што наставите.">

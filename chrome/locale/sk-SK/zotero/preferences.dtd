@@ -45,8 +45,8 @@
 <!ENTITY zotero.preferences.debugOutputLogging.clearOutput "Vymazať protokol">
 <!ENTITY zotero.preferences.debugOutputLogging.enableAfterRestart "Povoliť pri novom spustení">
 <!ENTITY zotero.preferences.debugOutputLogging.linesLogged "zaznamenaných riadkov">
-<!ENTITY zotero.preferences.debugOutputLogging.message "Protokol ladenia môže pomôcť vývojárom rozpoznať problémy v Zotere. Zaznamenávanie protokolu spomalí Juris-M, takže túto možnosť by ste mali povoliť iba vtedy, keď si od vás protokol ladenia vyžiada niekto z vývojárskeho tímu Zotera.">
-<!ENTITY zotero.preferences.debugOutputLogging.submitToServer "Odoslať na server Juris-M">
+<!ENTITY zotero.preferences.debugOutputLogging.message "Protokol ladenia môže pomôcť vývojárom rozpoznať problémy v Zotere. Zaznamenávanie protokolu spomalí Jurism, takže túto možnosť by ste mali povoliť iba vtedy, keď si od vás protokol ladenia vyžiada niekto z vývojárskeho tímu Zotera.">
+<!ENTITY zotero.preferences.debugOutputLogging.submitToServer "Odoslať na server Jurism">
 <!ENTITY zotero.preferences.debugOutputLogging.viewOutput "Zobraziť protokol">
 <!ENTITY zotero.preferences.default "Predvolené:">
 <!ENTITY zotero.preferences.downloadAssociatedFiles "pri ukladaní záznamov automaticky priložiť prepojené PDF a ostatné súbory">
@@ -99,7 +99,7 @@
 <!ENTITY zotero.preferences.lang.csl "CSL:">
 <!ENTITY zotero.preferences.lang.display "Display">
 <!ENTITY zotero.preferences.lang.inCitationsAndBibliographies "In citations and bibliographies">
-<!ENTITY zotero.preferences.lang.insideZotero "Juris-M UI">
+<!ENTITY zotero.preferences.lang.insideZotero "Jurism UI">
 <!ENTITY zotero.preferences.lang.institutions "Institutions:">
 <!ENTITY zotero.preferences.lang.journals "Journals:">
 <!ENTITY zotero.preferences.lang.languageList "Languages for Use in Metadata">
@@ -184,7 +184,7 @@
 <!ENTITY zotero.preferences.quickCopy.dragLimit "Zakázať rýchle kopírovanie pri presúvaní viac než">
 <!ENTITY zotero.preferences.quickCopy.itemFormat "Item Format:">
 <!ENTITY zotero.preferences.quickCopy.linkCitationFormReverse "Use citation form as default">
-<!ENTITY zotero.preferences.quickCopy.linkOption "Include Juris-M link wrappers in QuickCopy citations">
+<!ENTITY zotero.preferences.quickCopy.linkOption "Include Jurism link wrappers in QuickCopy citations">
 <!ENTITY zotero.preferences.quickCopy.macWarning "Poznámka: Formát textu sa v Mac OS X nezachová.">
 <!ENTITY zotero.preferences.quickCopy.noteFormat "Note Format:">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.domainPath "doména/cesta">
@@ -202,7 +202,7 @@
 <!ENTITY zotero.preferences.search.indexStats.words "Slov:">
 <!ENTITY zotero.preferences.search.pdfIndexing "Indexovanie PDF súborov">
 <!ENTITY zotero.preferences.settings "Nastavenia">
-<!ENTITY zotero.preferences.showIn "Nahrať Juris-M do:">
+<!ENTITY zotero.preferences.showIn "Nahrať Jurism do:">
 <!ENTITY zotero.preferences.showIn.appTab "Záložka aplikácií">
 <!ENTITY zotero.preferences.showIn.browserPane "Panel prehliadača">
 <!ENTITY zotero.preferences.showIn.separateTab "Osobitná záložka">

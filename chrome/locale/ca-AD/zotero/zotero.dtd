@@ -39,14 +39,14 @@
 <!ENTITY zotero.context.addStandaloneNote "Add Standalone Note">
 <!ENTITY zotero.context.addStandaloneNoteFromAnnotations "Add Standalone Note from Annotations">
 <!ENTITY zotero.context.editInWindow "Edit in a Separate Window">
-<!ENTITY zotero.contextMenu.addTextToCurrentNote "Afegeix la selecció a una nota del Juris-M">
-<!ENTITY zotero.contextMenu.addTextToNewNote "Crea un element del Juris-M i una nota amb la selecció">
-<!ENTITY zotero.contextMenu.saveImageAsItem "Desa la imatge com un element del Juris-M">
-<!ENTITY zotero.contextMenu.saveLinkAsItem "Desa l'enllaç com un element del Juris-M">
+<!ENTITY zotero.contextMenu.addTextToCurrentNote "Afegeix la selecció a una nota del Jurism">
+<!ENTITY zotero.contextMenu.addTextToNewNote "Crea un element del Jurism i una nota amb la selecció">
+<!ENTITY zotero.contextMenu.saveImageAsItem "Desa la imatge com un element del Jurism">
+<!ENTITY zotero.contextMenu.saveLinkAsItem "Desa l'enllaç com un element del Jurism">
 <!ENTITY zotero.createParent.button.manual "Manual Entry">
 <!ENTITY zotero.createParent.title "Create Parent Item">
-<!ENTITY zotero.downloadManager.label "Desa al Juris-M">
-<!ENTITY zotero.downloadManager.noPDFTools.description "Per utilitzar aquesta funció, primer cal instal·lar les eines de PDF en les preferències del Juris-M.">
+<!ENTITY zotero.downloadManager.label "Desa al Jurism">
+<!ENTITY zotero.downloadManager.noPDFTools.description "Per utilitzar aquesta funció, primer cal instal·lar les eines de PDF en les preferències del Jurism.">
 <!ENTITY zotero.downloadManager.saveToLibrary.description "Els adjunts no es poden desar a la biblioteca seleccionada. Aquest element es desarà a la biblioteca.">
 <!ENTITY zotero.duplicatesMerge.fieldSelect "Seleccioneu els camps que voleu mantenir de les altres versions de l'element:">
 <!ENTITY zotero.duplicatesMerge.versionSelect "Triaeu la versió de l'element com a element prinicpal:">
@@ -56,7 +56,7 @@
 <!ENTITY zotero.errorReport.submissionInProgress "Espereu mentre s&apos;envia l&apos;informe d&apos;error.">
 <!ENTITY zotero.errorReport.submitted "L&apos;informe d&apos;error ha estat enviat correctament.">
 <!ENTITY zotero.errorReport.title "Informe d'error de Jurism">
-<!ENTITY zotero.errorReport.unrelatedMessages "Això pot incloure missatges no relacionats amb el Juris-M.">
+<!ENTITY zotero.errorReport.unrelatedMessages "Això pot incloure missatges no relacionats amb el Jurism.">
 <!ENTITY zotero.exportOptions.format.label "Format:">
 <!ENTITY zotero.exportOptions.title "Exporta...">
 <!ENTITY zotero.exportOptions.translatorOptions.label "Opcions del traductor">
@@ -144,7 +144,7 @@
 <!ENTITY zotero.integration.prefs.lang.titles "Titles:">
 <!ENTITY zotero.integration.prefs.lang.translation "Translation">
 <!ENTITY zotero.integration.prefs.lang.transliteration "Transliteration">
-<!ENTITY zotero.integration.prefs.storeReferences.caption "L'emmagatzematge de les referències en el document augmenta lleugerament la mida del fitxer, però us permet compartir el document amb altres persones sense necessitat de fer servir un grup del Juris-M. Per actualitzar els documents creats amb aquesta opció cal tenir la versió Juris-M 3.0 o versions posteriors.">
+<!ENTITY zotero.integration.prefs.storeReferences.caption "L'emmagatzematge de les referències en el document augmenta lleugerament la mida del fitxer, però us permet compartir el document amb altres persones sense necessitat de fer servir un grup del Jurism. Per actualitzar els documents creats amb aquesta opció cal tenir la versió Jurism 3.0 o versions posteriors.">
 <!ENTITY zotero.integration.prefs.storeReferences.label "Emmagatzema les referències al document">
 <!ENTITY zotero.integration.prefs.suppressTrailingPunctuation.caption "When this option is enabled, all trailing punctuation will be dropped in note styles. To selectively drop trailing punctuation on individual citations, disable this option, and set suppression on each citation directly.">
 <!ENTITY zotero.integration.prefs.suppressTrailingPunctuation.label "Suppress all trailing punctuation">
@@ -284,7 +284,7 @@
 <!ENTITY zotero.selectitems.intro.label "Seleccioneu els elements que voleu afegir a la biblioteca">
 <!ENTITY zotero.selectitems.select.label "D'acord">
 <!ENTITY zotero.selectitems.title "Selecciona elements">
-<!ENTITY zotero.sync.button "Sincronitza amb el servidor del Juris-M">
+<!ENTITY zotero.sync.button "Sincronitza amb el servidor del Jurism">
 <!ENTITY zotero.sync.error "Error de sincronització">
 <!ENTITY zotero.sync.longTagFixer.character "caràcter">
 <!ENTITY zotero.sync.longTagFixer.characters "caràcters">
@@ -375,7 +375,7 @@
 <!ENTITY zotero.upgrade.changeLogAfterLink "per esbrinar si hi ha novetats">
 <!ENTITY zotero.upgrade.changeLogBeforeLink "Mireu">
 <!ENTITY zotero.upgrade.changeLogLink "la llista de canvis">
-<!ENTITY zotero.upgrade.ifZoteroInfo "If you are migrating from official Juris-M/Juris-M to MLZ, the next step of the upgrade process will convert your database for use with MLZ.">
+<!ENTITY zotero.upgrade.ifZoteroInfo "If you are migrating from official Jurism/Jurism to MLZ, the next step of the upgrade process will convert your database for use with MLZ.">
 <!ENTITY zotero.upgrade.ifZoteroInfoLabel "Note:">
 <!ENTITY zotero.upgrade.majorUpgrade "Aquesta és una actualització principal.">
 <!ENTITY zotero.upgrade.majorUpgradeAfterLink "abans de continuar.">

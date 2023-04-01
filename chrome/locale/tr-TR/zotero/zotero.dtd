@@ -39,14 +39,14 @@
 <!ENTITY zotero.context.addStandaloneNote "Add Standalone Note">
 <!ENTITY zotero.context.addStandaloneNoteFromAnnotations "Add Standalone Note from Annotations">
 <!ENTITY zotero.context.editInWindow "Edit in a Separate Window">
-<!ENTITY zotero.contextMenu.addTextToCurrentNote "Seçileni Juris-M Not'a Ekle">
-<!ENTITY zotero.contextMenu.addTextToNewNote "Seçimden Juris-M öğesi ve Notu Yarat">
-<!ENTITY zotero.contextMenu.saveImageAsItem "Resmi Juris-M öğesi olarak kaydet">
-<!ENTITY zotero.contextMenu.saveLinkAsItem "Bağlantıyı Juris-M öğesi olarak kaydet">
+<!ENTITY zotero.contextMenu.addTextToCurrentNote "Seçileni Jurism Not'a Ekle">
+<!ENTITY zotero.contextMenu.addTextToNewNote "Seçimden Jurism öğesi ve Notu Yarat">
+<!ENTITY zotero.contextMenu.saveImageAsItem "Resmi Jurism öğesi olarak kaydet">
+<!ENTITY zotero.contextMenu.saveLinkAsItem "Bağlantıyı Jurism öğesi olarak kaydet">
 <!ENTITY zotero.createParent.button.manual "Manual Entry">
 <!ENTITY zotero.createParent.title "Create Parent Item">
-<!ENTITY zotero.downloadManager.label "Juris-M'ya Kaydet">
-<!ENTITY zotero.downloadManager.noPDFTools.description "Bu özelliği kullanabilmek için, önce Juris-M tercihlerindeki Arama bölmesinde PDF araçlarını kurmanız gerekmektedir.">
+<!ENTITY zotero.downloadManager.label "Jurism'ya Kaydet">
+<!ENTITY zotero.downloadManager.noPDFTools.description "Bu özelliği kullanabilmek için, önce Jurism tercihlerindeki Arama bölmesinde PDF araçlarını kurmanız gerekmektedir.">
 <!ENTITY zotero.downloadManager.saveToLibrary.description "Ekler şu an seçili olan kitaplığa kaydedilemedi. Bu eser kitaplığınıza kaydedilecek.">
 <!ENTITY zotero.duplicatesMerge.fieldSelect "Eserin diğer versiyonlarından hangi alanların tutulacağını seç:">
 <!ENTITY zotero.duplicatesMerge.versionSelect "Eserin hangi versiyonunun asıl eser olarak kullanılacağını seç:">
@@ -56,7 +56,7 @@
 <!ENTITY zotero.errorReport.submissionInProgress "Lütfen hata raporu gönderilene kadar bekleyiniz.">
 <!ENTITY zotero.errorReport.submitted "Hata raporu gönderilmiştir.">
 <!ENTITY zotero.errorReport.title "Jurism Hata Raporu">
-<!ENTITY zotero.errorReport.unrelatedMessages "Bu, Juris-M ile ilgili olmayan mesajlar içerebilir.">
+<!ENTITY zotero.errorReport.unrelatedMessages "Bu, Jurism ile ilgili olmayan mesajlar içerebilir.">
 <!ENTITY zotero.exportOptions.format.label "Biçim">
 <!ENTITY zotero.exportOptions.title "Dışarı Aktar...">
 <!ENTITY zotero.exportOptions.translatorOptions.label "Çevirmen Seçenekleri">
@@ -144,7 +144,7 @@
 <!ENTITY zotero.integration.prefs.lang.titles "Titles:">
 <!ENTITY zotero.integration.prefs.lang.translation "Translation">
 <!ENTITY zotero.integration.prefs.lang.transliteration "Transliteration">
-<!ENTITY zotero.integration.prefs.storeReferences.caption "Kaynakları belgenizde kaydetmeniz dosya boyutunuzu büyütebilir, ancak belgenizi başkalarıyla bir Juris-M grubu kullanmadan paylaşabilmenizi sağlayacaktır. Bu seçenekle yaratılmış belgelerin güncellenebilmesi, Juris-M 3.0 veya sonraki sürümleri gerektirir.">
+<!ENTITY zotero.integration.prefs.storeReferences.caption "Kaynakları belgenizde kaydetmeniz dosya boyutunuzu büyütebilir, ancak belgenizi başkalarıyla bir Jurism grubu kullanmadan paylaşabilmenizi sağlayacaktır. Bu seçenekle yaratılmış belgelerin güncellenebilmesi, Jurism 3.0 veya sonraki sürümleri gerektirir.">
 <!ENTITY zotero.integration.prefs.storeReferences.label "Kaynakları belgede göster">
 <!ENTITY zotero.integration.prefs.suppressTrailingPunctuation.caption "When this option is enabled, all trailing punctuation will be dropped in note styles. To selectively drop trailing punctuation on individual citations, disable this option, and set suppression on each citation directly.">
 <!ENTITY zotero.integration.prefs.suppressTrailingPunctuation.label "Suppress all trailing punctuation">
@@ -284,7 +284,7 @@
 <!ENTITY zotero.selectitems.intro.label "Kitaplığınıza eklemek istediğiniz eserleri seçiniz">
 <!ENTITY zotero.selectitems.select.label "Tamam">
 <!ENTITY zotero.selectitems.title "Eser Seç">
-<!ENTITY zotero.sync.button "Juris-M Sunucusu ile Eşitle">
+<!ENTITY zotero.sync.button "Jurism Sunucusu ile Eşitle">
 <!ENTITY zotero.sync.error "Eşitleme Hatası">
 <!ENTITY zotero.sync.longTagFixer.character "karaktere">
 <!ENTITY zotero.sync.longTagFixer.characters "karaktere">
@@ -375,7 +375,7 @@
 <!ENTITY zotero.upgrade.changeLogAfterLink "bakınız.">
 <!ENTITY zotero.upgrade.changeLogBeforeLink "Yeni olanları öğrenmek için, lütfen">
 <!ENTITY zotero.upgrade.changeLogLink "değişiklik kaydına">
-<!ENTITY zotero.upgrade.ifZoteroInfo "If you are migrating from official Juris-M/Juris-M to MLZ, the next step of the upgrade process will convert your database for use with MLZ.">
+<!ENTITY zotero.upgrade.ifZoteroInfo "If you are migrating from official Jurism/Jurism to MLZ, the next step of the upgrade process will convert your database for use with MLZ.">
 <!ENTITY zotero.upgrade.ifZoteroInfoLabel "Note:">
 <!ENTITY zotero.upgrade.majorUpgrade "Bu büyük bir yükseltmedir.">
 <!ENTITY zotero.upgrade.majorUpgradeAfterLink "devam etmeden önce.">

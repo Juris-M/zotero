@@ -45,8 +45,8 @@
 <!ENTITY zotero.preferences.debugOutputLogging.clearOutput "清除输出">
 <!ENTITY zotero.preferences.debugOutputLogging.enableAfterRestart "重启后启用">
 <!ENTITY zotero.preferences.debugOutputLogging.linesLogged "行被记录了">
-<!ENTITY zotero.preferences.debugOutputLogging.message "调试日志可以帮助 Juris-M 开发人员诊断问题. 记录调试日志会拖慢 Juris-M, 所以除非 Juris-M 开发人员请求获取调试日志, 否则请禁用此项.">
-<!ENTITY zotero.preferences.debugOutputLogging.submitToServer "提交到 Juris-M 服务器">
+<!ENTITY zotero.preferences.debugOutputLogging.message "调试日志可以帮助 Jurism 开发人员诊断问题. 记录调试日志会拖慢 Jurism, 所以除非 Jurism 开发人员请求获取调试日志, 否则请禁用此项.">
+<!ENTITY zotero.preferences.debugOutputLogging.submitToServer "提交到 Jurism 服务器">
 <!ENTITY zotero.preferences.debugOutputLogging.viewOutput "查看输出">
 <!ENTITY zotero.preferences.default "默认:">
 <!ENTITY zotero.preferences.downloadAssociatedFiles "保存条目时自动附加相关的 PDF 文档及其它文件">
@@ -87,7 +87,7 @@
 <!ENTITY zotero.preferences.keys.library "数据库">
 <!ENTITY zotero.preferences.keys.newItem "新建条目">
 <!ENTITY zotero.preferences.keys.newNote "新建笔记">
-<!ENTITY zotero.preferences.keys.openZotero "开/关 Juris-M 面板">
+<!ENTITY zotero.preferences.keys.openZotero "开/关 Jurism 面板">
 <!ENTITY zotero.preferences.keys.overrideGlobal "尝试覆盖有冲突的快捷键">
 <!ENTITY zotero.preferences.keys.quicksearch "快速搜索">
 <!ENTITY zotero.preferences.keys.saveToZotero "保存到Jurism (地址栏图标)">
@@ -99,7 +99,7 @@
 <!ENTITY zotero.preferences.lang.csl "CSL:">
 <!ENTITY zotero.preferences.lang.display "Display">
 <!ENTITY zotero.preferences.lang.inCitationsAndBibliographies "In citations and bibliographies">
-<!ENTITY zotero.preferences.lang.insideZotero "Juris-M UI">
+<!ENTITY zotero.preferences.lang.insideZotero "Jurism UI">
 <!ENTITY zotero.preferences.lang.institutions "Institutions:">
 <!ENTITY zotero.preferences.lang.journals "Journals:">
 <!ENTITY zotero.preferences.lang.languageList "Languages for Use in Metadata">
@@ -184,7 +184,7 @@
 <!ENTITY zotero.preferences.quickCopy.dragLimit "禁用便捷复制, 当拖动项超过">
 <!ENTITY zotero.preferences.quickCopy.itemFormat "Item Format:">
 <!ENTITY zotero.preferences.quickCopy.linkCitationFormReverse "Use citation form as default">
-<!ENTITY zotero.preferences.quickCopy.linkOption "Include Juris-M link wrappers in QuickCopy citations">
+<!ENTITY zotero.preferences.quickCopy.linkOption "Include Jurism link wrappers in QuickCopy citations">
 <!ENTITY zotero.preferences.quickCopy.macWarning "提示: 在Mac OS X 下富文本格式将丢失.">
 <!ENTITY zotero.preferences.quickCopy.noteFormat "Note Format:">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.domainPath "域/路径">
@@ -202,7 +202,7 @@
 <!ENTITY zotero.preferences.search.indexStats.words "字:">
 <!ENTITY zotero.preferences.search.pdfIndexing "PDF 索引">
 <!ENTITY zotero.preferences.settings "设置">
-<!ENTITY zotero.preferences.showIn "载入Juris-M于:">
+<!ENTITY zotero.preferences.showIn "载入Jurism于:">
 <!ENTITY zotero.preferences.showIn.appTab "App 标签页">
 <!ENTITY zotero.preferences.showIn.browserPane "浏览器边栏">
 <!ENTITY zotero.preferences.showIn.separateTab "独立标签页">
@@ -256,5 +256,5 @@
 <!ENTITY zotero.preferences.trashAutoEmptyDaysPre "自动删除回收站内时间超过">
 <!ENTITY zotero.preferences.updateNow "立刻更新">
 <!ENTITY zotero.preferences.userInterface "用户界面">
-<!ENTITY zotero.preferences.zoteroDotOrgVersionHeader "允许 zotero.org 根据当前 Juris-M 版本定制内容">
-<!ENTITY zotero.preferences.zoteroDotOrgVersionHeader.tooltip "如果启用, 当前 Juris-M 的版本号会添加到发送至 zotero.org 的HTTP请求中.">
+<!ENTITY zotero.preferences.zoteroDotOrgVersionHeader "允许 zotero.org 根据当前 Jurism 版本定制内容">
+<!ENTITY zotero.preferences.zoteroDotOrgVersionHeader.tooltip "如果启用, 当前 Jurism 的版本号会添加到发送至 zotero.org 的HTTP请求中.">

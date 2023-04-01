@@ -39,14 +39,14 @@
 <!ENTITY zotero.context.addStandaloneNote "Add Standalone Note">
 <!ENTITY zotero.context.addStandaloneNoteFromAnnotations "Add Standalone Note from Annotations">
 <!ENTITY zotero.context.editInWindow "Edit in a Separate Window">
-<!ENTITY zotero.contextMenu.addTextToCurrentNote "Adaugă selecția la nota Juris-M">
-<!ENTITY zotero.contextMenu.addTextToNewNote "Creează pe baza selecției o înregistrare și o notă Juris-M">
-<!ENTITY zotero.contextMenu.saveImageAsItem "Salvează imaginea ca înregistrare în Juris-M">
-<!ENTITY zotero.contextMenu.saveLinkAsItem "Salvează legătura ca înregistrare în Juris-M">
+<!ENTITY zotero.contextMenu.addTextToCurrentNote "Adaugă selecția la nota Jurism">
+<!ENTITY zotero.contextMenu.addTextToNewNote "Creează pe baza selecției o înregistrare și o notă Jurism">
+<!ENTITY zotero.contextMenu.saveImageAsItem "Salvează imaginea ca înregistrare în Jurism">
+<!ENTITY zotero.contextMenu.saveLinkAsItem "Salvează legătura ca înregistrare în Jurism">
 <!ENTITY zotero.createParent.button.manual "Manual Entry">
 <!ENTITY zotero.createParent.title "Create Parent Item">
-<!ENTITY zotero.downloadManager.label "Salvează în Juris-M">
-<!ENTITY zotero.downloadManager.noPDFTools.description "Pentru a folosi această facilitate, trebuie să instalezi mai întâi uneletele PDF în preferințele Juris-M.">
+<!ENTITY zotero.downloadManager.label "Salvează în Jurism">
+<!ENTITY zotero.downloadManager.noPDFTools.description "Pentru a folosi această facilitate, trebuie să instalezi mai întâi uneletele PDF în preferințele Jurism.">
 <!ENTITY zotero.downloadManager.saveToLibrary.description "Anexele nu pot fi salvate în biblioteca selectată. Această înregistrare va fi salvată în schimb în biblioteca ta.">
 <!ENTITY zotero.duplicatesMerge.fieldSelect "Selectează câmpurile pentru a le păstra față de alte versiuni ale înregistrării:">
 <!ENTITY zotero.duplicatesMerge.versionSelect "Alege versiunea înregistrării pe care o folosești ca înregistrare master:">
@@ -56,7 +56,7 @@
 <!ENTITY zotero.errorReport.submissionInProgress "Așteaptă, te rog, ca raportul de eroare să fie trimis.">
 <!ENTITY zotero.errorReport.submitted "Raportul de eroare a fost trimis.">
 <!ENTITY zotero.errorReport.title "Raportul de erori Jurism">
-<!ENTITY zotero.errorReport.unrelatedMessages "Aceasta ar putea include mesaje fără legătură cu Juris-M.">
+<!ENTITY zotero.errorReport.unrelatedMessages "Aceasta ar putea include mesaje fără legătură cu Jurism.">
 <!ENTITY zotero.exportOptions.format.label "Formatare:">
 <!ENTITY zotero.exportOptions.title "Export...">
 <!ENTITY zotero.exportOptions.translatorOptions.label "Opțiuni translator">
@@ -144,7 +144,7 @@
 <!ENTITY zotero.integration.prefs.lang.titles "Titles:">
 <!ENTITY zotero.integration.prefs.lang.translation "Translation">
 <!ENTITY zotero.integration.prefs.lang.transliteration "Transliteration">
-<!ENTITY zotero.integration.prefs.storeReferences.caption "Stocarea referințelor în documentul va crește dimensiunea fișierului, dar îți va permite să-l partajezi cu alții fără a folosi un grup Juris-M. Este nevoie de Juris-M 3.0 sau mai recent pentru a actualiza documentele create cu această opțiune.">
+<!ENTITY zotero.integration.prefs.storeReferences.caption "Stocarea referințelor în documentul va crește dimensiunea fișierului, dar îți va permite să-l partajezi cu alții fără a folosi un grup Jurism. Este nevoie de Jurism 3.0 sau mai recent pentru a actualiza documentele create cu această opțiune.">
 <!ENTITY zotero.integration.prefs.storeReferences.label "Stochează referințele în document">
 <!ENTITY zotero.integration.prefs.suppressTrailingPunctuation.caption "When this option is enabled, all trailing punctuation will be dropped in note styles. To selectively drop trailing punctuation on individual citations, disable this option, and set suppression on each citation directly.">
 <!ENTITY zotero.integration.prefs.suppressTrailingPunctuation.label "Suppress all trailing punctuation">
@@ -284,7 +284,7 @@
 <!ENTITY zotero.selectitems.intro.label "Selectează înregistrările pe care ai vrea să le adaugi în biblioteca ta">
 <!ENTITY zotero.selectitems.select.label "OK">
 <!ENTITY zotero.selectitems.title "Selectează înregistrări">
-<!ENTITY zotero.sync.button "Sincronizare cu serverul Juris-M">
+<!ENTITY zotero.sync.button "Sincronizare cu serverul Jurism">
 <!ENTITY zotero.sync.error "Eroare la sincronizare">
 <!ENTITY zotero.sync.longTagFixer.character "caracter">
 <!ENTITY zotero.sync.longTagFixer.characters "caractere">
@@ -375,7 +375,7 @@
 <!ENTITY zotero.upgrade.changeLogAfterLink "pentru a vedea ce este nou.">
 <!ENTITY zotero.upgrade.changeLogBeforeLink "Vezi, te rog,">
 <!ENTITY zotero.upgrade.changeLogLink "raportul schimbărilor">
-<!ENTITY zotero.upgrade.ifZoteroInfo "If you are migrating from official Juris-M/Juris-M to MLZ, the next step of the upgrade process will convert your database for use with MLZ.">
+<!ENTITY zotero.upgrade.ifZoteroInfo "If you are migrating from official Jurism/Jurism to MLZ, the next step of the upgrade process will convert your database for use with MLZ.">
 <!ENTITY zotero.upgrade.ifZoteroInfoLabel "Note:">
 <!ENTITY zotero.upgrade.majorUpgrade "Aceasta este o actualizare majoră.">
 <!ENTITY zotero.upgrade.majorUpgradeAfterLink "înainte de a continua.">

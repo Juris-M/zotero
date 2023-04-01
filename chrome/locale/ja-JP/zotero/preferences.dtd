@@ -45,8 +45,8 @@
 <!ENTITY zotero.preferences.debugOutputLogging.clearOutput "デバッグ出力を消去する">
 <!ENTITY zotero.preferences.debugOutputLogging.enableAfterRestart "再起動の後で有効化">
 <!ENTITY zotero.preferences.debugOutputLogging.linesLogged "行が記録されました。">
-<!ENTITY zotero.preferences.debugOutputLogging.message "デバッグ出力は Juris-M 開発者が Juris-M 内部の問題を診断する際に役立ちます。デバッグ出力の記録は Juris-M の動作を重くするので、Juris-M 開発者からデバッグ出力の要求があった場合を除き、通常はこの機能を無効のままにしてください。">
-<!ENTITY zotero.preferences.debugOutputLogging.submitToServer "Juris-M サーバに報告する">
+<!ENTITY zotero.preferences.debugOutputLogging.message "デバッグ出力は Jurism 開発者が Jurism 内部の問題を診断する際に役立ちます。デバッグ出力の記録は Jurism の動作を重くするので、Jurism 開発者からデバッグ出力の要求があった場合を除き、通常はこの機能を無効のままにしてください。">
+<!ENTITY zotero.preferences.debugOutputLogging.submitToServer "Jurism サーバに報告する">
 <!ENTITY zotero.preferences.debugOutputLogging.viewOutput "デバッグ出力を閲覧する">
 <!ENTITY zotero.preferences.default "既定値:">
 <!ENTITY zotero.preferences.downloadAssociatedFiles "アイテムを作成するときに自動的に関連 PDF や他のファイルを添付する">
@@ -87,7 +87,7 @@
 <!ENTITY zotero.preferences.keys.library "ライブラリー">
 <!ENTITY zotero.preferences.keys.newItem "新しいアイテムを作成する">
 <!ENTITY zotero.preferences.keys.newNote "新しいメモを作成する">
-<!ENTITY zotero.preferences.keys.openZotero "Juris-M 画面を開く／閉じる">
+<!ENTITY zotero.preferences.keys.openZotero "Jurism 画面を開く／閉じる">
 <!ENTITY zotero.preferences.keys.overrideGlobal "衝突するショートカットを上書きする">
 <!ENTITY zotero.preferences.keys.quicksearch "簡易検索">
 <!ENTITY zotero.preferences.keys.saveToZotero "Jurism に保存する (アドレスバーのアイコン)">
@@ -99,7 +99,7 @@
 <!ENTITY zotero.preferences.lang.csl "CSL:">
 <!ENTITY zotero.preferences.lang.display "表示">
 <!ENTITY zotero.preferences.lang.inCitationsAndBibliographies "引用と参考文献">
-<!ENTITY zotero.preferences.lang.insideZotero "Juris-M内部">
+<!ENTITY zotero.preferences.lang.insideZotero "Jurism内部">
 <!ENTITY zotero.preferences.lang.institutions "Institutions:">
 <!ENTITY zotero.preferences.lang.journals "Journals:">
 <!ENTITY zotero.preferences.lang.languageList "メタデータに使用する言語">
@@ -184,7 +184,7 @@
 <!ENTITY zotero.preferences.quickCopy.dragLimit "アイテム数が右の値より大きい時はドラッグ時のクイックコピーを無効化する:">
 <!ENTITY zotero.preferences.quickCopy.itemFormat "Item Format:">
 <!ENTITY zotero.preferences.quickCopy.linkCitationFormReverse "Use citation form as default">
-<!ENTITY zotero.preferences.quickCopy.linkOption "Include Juris-M link wrappers in QuickCopy citations">
+<!ENTITY zotero.preferences.quickCopy.linkOption "Include Jurism link wrappers in QuickCopy citations">
 <!ENTITY zotero.preferences.quickCopy.macWarning "注意: Mac OS X 上ではリッチテキスト形式の書式設定は失われます。">
 <!ENTITY zotero.preferences.quickCopy.noteFormat "Note Format:">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.domainPath "ドメイン／パス">
@@ -202,7 +202,7 @@
 <!ENTITY zotero.preferences.search.indexStats.words "単語:">
 <!ENTITY zotero.preferences.search.pdfIndexing "PDF 索引作成">
 <!ENTITY zotero.preferences.settings "設定">
-<!ENTITY zotero.preferences.showIn "Juris-Mを表示するのは:">
+<!ENTITY zotero.preferences.showIn "Jurismを表示するのは:">
 <!ENTITY zotero.preferences.showIn.appTab "アプリタブ">
 <!ENTITY zotero.preferences.showIn.browserPane "ブラウザ画面下">
 <!ENTITY zotero.preferences.showIn.separateTab "新しいタブ">
@@ -256,5 +256,5 @@
 <!ENTITY zotero.preferences.trashAutoEmptyDaysPre "ゴミ箱の中のアイテムが">
 <!ENTITY zotero.preferences.updateNow "今すぐ更新">
 <!ENTITY zotero.preferences.userInterface "ユーザーインターフェース">
-<!ENTITY zotero.preferences.zoteroDotOrgVersionHeader "現行の Juris-M のバージョンに基づいて zotero.org が内容をカスタマイズすることを許可する">
-<!ENTITY zotero.preferences.zoteroDotOrgVersionHeader.tooltip "有効化されると、現在の Juris-M バージョン情報が zotero.org への HTTP リクエストへ含まれます。">
+<!ENTITY zotero.preferences.zoteroDotOrgVersionHeader "現行の Jurism のバージョンに基づいて zotero.org が内容をカスタマイズすることを許可する">
+<!ENTITY zotero.preferences.zoteroDotOrgVersionHeader.tooltip "有効化されると、現在の Jurism バージョン情報が zotero.org への HTTP リクエストへ含まれます。">

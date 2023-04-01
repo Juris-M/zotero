@@ -39,14 +39,14 @@
 <!ENTITY zotero.context.addStandaloneNote "Add Standalone Note">
 <!ENTITY zotero.context.addStandaloneNoteFromAnnotations "Add Standalone Note from Annotations">
 <!ENTITY zotero.context.editInWindow "Edit in a Separate Window">
-<!ENTITY zotero.contextMenu.addTextToCurrentNote "将所选内容添加到 Juris-M 笔记">
-<!ENTITY zotero.contextMenu.addTextToNewNote "由所选内容创建 Juris-M 条目及笔记">
-<!ENTITY zotero.contextMenu.saveImageAsItem "将图片保存为 Juris-M 条目">
-<!ENTITY zotero.contextMenu.saveLinkAsItem "将链接保存为 Juris-M 条目">
+<!ENTITY zotero.contextMenu.addTextToCurrentNote "将所选内容添加到 Jurism 笔记">
+<!ENTITY zotero.contextMenu.addTextToNewNote "由所选内容创建 Jurism 条目及笔记">
+<!ENTITY zotero.contextMenu.saveImageAsItem "将图片保存为 Jurism 条目">
+<!ENTITY zotero.contextMenu.saveLinkAsItem "将链接保存为 Jurism 条目">
 <!ENTITY zotero.createParent.button.manual "Manual Entry">
 <!ENTITY zotero.createParent.title "Create Parent Item">
-<!ENTITY zotero.downloadManager.label "保存到 Juris-M">
-<!ENTITY zotero.downloadManager.noPDFTools.description "要使用该功能, 您必须在 Juris-M 首选项中的搜索选项卡里安装 PDF 工具.">
+<!ENTITY zotero.downloadManager.label "保存到 Jurism">
+<!ENTITY zotero.downloadManager.noPDFTools.description "要使用该功能, 您必须在 Jurism 首选项中的搜索选项卡里安装 PDF 工具.">
 <!ENTITY zotero.downloadManager.saveToLibrary.description "附件无法保存到当前选中的文献库. 不过, 该条目将被保存到您的文献库中.">
 <!ENTITY zotero.duplicatesMerge.fieldSelect "选择需要保留的域, 防止被其它版本的域覆盖.">
 <!ENTITY zotero.duplicatesMerge.versionSelect "选择作为主条目的条目版本.">
@@ -56,7 +56,7 @@
 <!ENTITY zotero.errorReport.submissionInProgress "正在提交错误报告, 请稍候.">
 <!ENTITY zotero.errorReport.submitted "错误报告已经提交.">
 <!ENTITY zotero.errorReport.title "Jurism 错误报告">
-<!ENTITY zotero.errorReport.unrelatedMessages "这里可能包括和Juris-M无关的消息。">
+<!ENTITY zotero.errorReport.unrelatedMessages "这里可能包括和Jurism无关的消息。">
 <!ENTITY zotero.exportOptions.format.label "格式:">
 <!ENTITY zotero.exportOptions.title "导出...">
 <!ENTITY zotero.exportOptions.translatorOptions.label "转换器选项">
@@ -144,7 +144,7 @@
 <!ENTITY zotero.integration.prefs.lang.titles "Titles:">
 <!ENTITY zotero.integration.prefs.lang.translation "Translation">
 <!ENTITY zotero.integration.prefs.lang.transliteration "Transliteration">
-<!ENTITY zotero.integration.prefs.storeReferences.caption "在文档中储存参考文献会稍微增加文档的大小, 但这样可以和没有使用 Juris-M v群组的其它用户共享您的文档. 要使用该功能, Juris-M 必须升级到3.0或更高版本.">
+<!ENTITY zotero.integration.prefs.storeReferences.caption "在文档中储存参考文献会稍微增加文档的大小, 但这样可以和没有使用 Jurism v群组的其它用户共享您的文档. 要使用该功能, Jurism 必须升级到3.0或更高版本.">
 <!ENTITY zotero.integration.prefs.storeReferences.label "在文档中保存参考文献">
 <!ENTITY zotero.integration.prefs.suppressTrailingPunctuation.caption "When this option is enabled, all trailing punctuation will be dropped in note styles. To selectively drop trailing punctuation on individual citations, disable this option, and set suppression on each citation directly.">
 <!ENTITY zotero.integration.prefs.suppressTrailingPunctuation.label "Suppress all trailing punctuation">
@@ -284,7 +284,7 @@
 <!ENTITY zotero.selectitems.intro.label "选择您要添加到文献库的条目">
 <!ENTITY zotero.selectitems.select.label "确定">
 <!ENTITY zotero.selectitems.title "选择条目">
-<!ENTITY zotero.sync.button "与 Juris-M 服务器同步">
+<!ENTITY zotero.sync.button "与 Jurism 服务器同步">
 <!ENTITY zotero.sync.error "同步错误">
 <!ENTITY zotero.sync.longTagFixer.character "字符">
 <!ENTITY zotero.sync.longTagFixer.characters "字符串">
@@ -375,7 +375,7 @@
 <!ENTITY zotero.upgrade.changeLogAfterLink "以了解有哪些新的改动.">
 <!ENTITY zotero.upgrade.changeLogBeforeLink "请查阅">
 <!ENTITY zotero.upgrade.changeLogLink "变更日志">
-<!ENTITY zotero.upgrade.ifZoteroInfo "If you are migrating from official Juris-M/Juris-M to MLZ, the next step of the upgrade process will convert your database for use with MLZ.">
+<!ENTITY zotero.upgrade.ifZoteroInfo "If you are migrating from official Jurism/Jurism to MLZ, the next step of the upgrade process will convert your database for use with MLZ.">
 <!ENTITY zotero.upgrade.ifZoteroInfoLabel "Note:">
 <!ENTITY zotero.upgrade.majorUpgrade "这是主版本更新.">
 <!ENTITY zotero.upgrade.majorUpgradeAfterLink "在继续之前.">

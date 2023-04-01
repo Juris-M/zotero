@@ -45,8 +45,8 @@
 <!ENTITY zotero.preferences.debugOutputLogging.clearOutput "Xóa thông tin gỡ rối">
 <!ENTITY zotero.preferences.debugOutputLogging.enableAfterRestart "Cho phép sau khi khởi động lại">
 <!ENTITY zotero.preferences.debugOutputLogging.linesLogged "dòng được ghi nhận">
-<!ENTITY zotero.preferences.debugOutputLogging.message "Thông tin gỡ rối có thể giúp các nhà phát triển Juris-M chẩn đoán lỗi của Juris-M. Ghi nhận thông tin gỡ rối làm chậm Juris-M nên thông thường bạn nên tắt nó trừ khi một nhà phát triển Juris-M yêu cầu Thông tin gỡ rối.">
-<!ENTITY zotero.preferences.debugOutputLogging.submitToServer "Gửi tới máy chủ Juris-M">
+<!ENTITY zotero.preferences.debugOutputLogging.message "Thông tin gỡ rối có thể giúp các nhà phát triển Jurism chẩn đoán lỗi của Jurism. Ghi nhận thông tin gỡ rối làm chậm Jurism nên thông thường bạn nên tắt nó trừ khi một nhà phát triển Jurism yêu cầu Thông tin gỡ rối.">
+<!ENTITY zotero.preferences.debugOutputLogging.submitToServer "Gửi tới máy chủ Jurism">
 <!ENTITY zotero.preferences.debugOutputLogging.viewOutput "Xem thông tin gỡ rối">
 <!ENTITY zotero.preferences.default "Mặc định:">
 <!ENTITY zotero.preferences.downloadAssociatedFiles "Tự động đính kèm các tập tin PDF và các tập tin liên quan khác khi lưu tài liệu mới">
@@ -87,7 +87,7 @@
 <!ENTITY zotero.preferences.keys.library "Thư viện">
 <!ENTITY zotero.preferences.keys.newItem "Tạo tài liệu mới">
 <!ENTITY zotero.preferences.keys.newNote "Tạo ghi chú mới">
-<!ENTITY zotero.preferences.keys.openZotero "Mở/Đóng cửa sổ Juris-M">
+<!ENTITY zotero.preferences.keys.openZotero "Mở/Đóng cửa sổ Jurism">
 <!ENTITY zotero.preferences.keys.overrideGlobal "Thử ghi đè các phím gõ tắt có xung đột">
 <!ENTITY zotero.preferences.keys.quicksearch "Tìm kiếm nhanh">
 <!ENTITY zotero.preferences.keys.saveToZotero "Lưu vào Jurism (biểu tượng thanh địa chỉ)">
@@ -99,7 +99,7 @@
 <!ENTITY zotero.preferences.lang.csl "CSL:">
 <!ENTITY zotero.preferences.lang.display "Display">
 <!ENTITY zotero.preferences.lang.inCitationsAndBibliographies "In citations and bibliographies">
-<!ENTITY zotero.preferences.lang.insideZotero "Juris-M UI">
+<!ENTITY zotero.preferences.lang.insideZotero "Jurism UI">
 <!ENTITY zotero.preferences.lang.institutions "Institutions:">
 <!ENTITY zotero.preferences.lang.journals "Journals:">
 <!ENTITY zotero.preferences.lang.languageList "Languages for Use in Metadata">
@@ -184,7 +184,7 @@
 <!ENTITY zotero.preferences.quickCopy.dragLimit "Tắt copy nhanh khi kéo nhiều hơn">
 <!ENTITY zotero.preferences.quickCopy.itemFormat "Item Format:">
 <!ENTITY zotero.preferences.quickCopy.linkCitationFormReverse "Use citation form as default">
-<!ENTITY zotero.preferences.quickCopy.linkOption "Include Juris-M link wrappers in QuickCopy citations">
+<!ENTITY zotero.preferences.quickCopy.linkOption "Include Jurism link wrappers in QuickCopy citations">
 <!ENTITY zotero.preferences.quickCopy.macWarning "Chú ý: Định dạng rich-text sẽ bị mất khi dùng trên Mac OS X.">
 <!ENTITY zotero.preferences.quickCopy.noteFormat "Note Format:">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.domainPath "Tên miền/Đường dẫn">
@@ -202,7 +202,7 @@
 <!ENTITY zotero.preferences.search.indexStats.words "Tổng số từ:">
 <!ENTITY zotero.preferences.search.pdfIndexing "Tạo chỉ mục cho PDF">
 <!ENTITY zotero.preferences.settings "Các thiết lập">
-<!ENTITY zotero.preferences.showIn "Nạp Juris-M vào:">
+<!ENTITY zotero.preferences.showIn "Nạp Jurism vào:">
 <!ENTITY zotero.preferences.showIn.appTab "Ứng dụng">
 <!ENTITY zotero.preferences.showIn.browserPane "Khung trình duyệt">
 <!ENTITY zotero.preferences.showIn.separateTab "Phân cách">
@@ -256,5 +256,5 @@
 <!ENTITY zotero.preferences.trashAutoEmptyDaysPre "Tự động loại bỏ các tài liệu trong Thùng rác đã xóa hơn">
 <!ENTITY zotero.preferences.updateNow "Cập nhật ngay bây giờ">
 <!ENTITY zotero.preferences.userInterface "Giao diện người dùng">
-<!ENTITY zotero.preferences.zoteroDotOrgVersionHeader "Cho phép zotero.org điều chỉnh nội dung dựa trên phiên bản Juris-M hiện tại">
-<!ENTITY zotero.preferences.zoteroDotOrgVersionHeader.tooltip "Nếu cho phép, số hiệu phiên bản Juris-M hiện tại sẽ được gộp vào các yêu cầu HTTP gửi tới zotero.org">
+<!ENTITY zotero.preferences.zoteroDotOrgVersionHeader "Cho phép zotero.org điều chỉnh nội dung dựa trên phiên bản Jurism hiện tại">
+<!ENTITY zotero.preferences.zoteroDotOrgVersionHeader.tooltip "Nếu cho phép, số hiệu phiên bản Jurism hiện tại sẽ được gộp vào các yêu cầu HTTP gửi tới zotero.org">

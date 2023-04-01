@@ -45,8 +45,8 @@
 <!ENTITY zotero.preferences.debugOutputLogging.clearOutput "Tyhjennä päiväkirja">
 <!ENTITY zotero.preferences.debugOutputLogging.enableAfterRestart "Laita päälle uudelleenkäynnistyksen jälkeen">
 <!ENTITY zotero.preferences.debugOutputLogging.linesLogged "riviä päiväkirjassa">
-<!ENTITY zotero.preferences.debugOutputLogging.message "Virheenjäljityksen päiväkirja voi auttaa Juris-Mn kehittäjiä diagnosoimaan Juris-Mn ongelmia. Virheenjäljitys hidastaa Juris-Mn toimintaa, joten sen tulisi yleisesti ottaen olla poissa päältä ellei Juris-Mn kehittäjä erikseen pyydää virheenjäljityksen päiväkirjaa.">
-<!ENTITY zotero.preferences.debugOutputLogging.submitToServer "Lähetä Juris-M-palvelimelle">
+<!ENTITY zotero.preferences.debugOutputLogging.message "Virheenjäljityksen päiväkirja voi auttaa Jurismn kehittäjiä diagnosoimaan Jurismn ongelmia. Virheenjäljitys hidastaa Jurismn toimintaa, joten sen tulisi yleisesti ottaen olla poissa päältä ellei Jurismn kehittäjä erikseen pyydää virheenjäljityksen päiväkirjaa.">
+<!ENTITY zotero.preferences.debugOutputLogging.submitToServer "Lähetä Jurism-palvelimelle">
 <!ENTITY zotero.preferences.debugOutputLogging.viewOutput "Katso päiväkirjaa">
 <!ENTITY zotero.preferences.default "Oletus:">
 <!ENTITY zotero.preferences.downloadAssociatedFiles "Liitä automaattisesti asiaankuuluvat PDF:t ja muut tiedostot">
@@ -87,7 +87,7 @@
 <!ENTITY zotero.preferences.keys.library "Library">
 <!ENTITY zotero.preferences.keys.newItem "Luo uusi nimike">
 <!ENTITY zotero.preferences.keys.newNote "Luo uusi muistiinpano">
-<!ENTITY zotero.preferences.keys.openZotero "Avaa/sulje Juris-M-ikkuna">
+<!ENTITY zotero.preferences.keys.openZotero "Avaa/sulje Jurism-ikkuna">
 <!ENTITY zotero.preferences.keys.overrideGlobal "Yritä ohittaa keskenään ristiriitaiset pikanäppäimet">
 <!ENTITY zotero.preferences.keys.quicksearch "Pikahaku">
 <!ENTITY zotero.preferences.keys.saveToZotero "Tallenna Jurismon (osoitepalkin kuvake)">
@@ -99,7 +99,7 @@
 <!ENTITY zotero.preferences.lang.csl "CSL:">
 <!ENTITY zotero.preferences.lang.display "Display">
 <!ENTITY zotero.preferences.lang.inCitationsAndBibliographies "In citations and bibliographies">
-<!ENTITY zotero.preferences.lang.insideZotero "Juris-M UI">
+<!ENTITY zotero.preferences.lang.insideZotero "Jurism UI">
 <!ENTITY zotero.preferences.lang.institutions "Institutions:">
 <!ENTITY zotero.preferences.lang.journals "Journals:">
 <!ENTITY zotero.preferences.lang.languageList "Languages for Use in Metadata">
@@ -184,7 +184,7 @@
 <!ENTITY zotero.preferences.quickCopy.dragLimit "Estä pikakopiointi raahattaessa yli ">
 <!ENTITY zotero.preferences.quickCopy.itemFormat "Item Format:">
 <!ENTITY zotero.preferences.quickCopy.linkCitationFormReverse "Use citation form as default">
-<!ENTITY zotero.preferences.quickCopy.linkOption "Include Juris-M link wrappers in QuickCopy citations">
+<!ENTITY zotero.preferences.quickCopy.linkOption "Include Jurism link wrappers in QuickCopy citations">
 <!ENTITY zotero.preferences.quickCopy.macWarning "Huom.: Rikastetun tekstin muotoilut menetetään Mac OS X:llä.">
 <!ENTITY zotero.preferences.quickCopy.noteFormat "Note Format:">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.domainPath "Verkkotunnus/polku">
@@ -202,7 +202,7 @@
 <!ENTITY zotero.preferences.search.indexStats.words "Sanoja:">
 <!ENTITY zotero.preferences.search.pdfIndexing "PDF-tiedostojen indeksointi">
 <!ENTITY zotero.preferences.settings "Asetukset">
-<!ENTITY zotero.preferences.showIn "Juris-Mn paikka">
+<!ENTITY zotero.preferences.showIn "Jurismn paikka">
 <!ENTITY zotero.preferences.showIn.appTab "Sovellusvälilehti">
 <!ENTITY zotero.preferences.showIn.browserPane "Selainikkuna">
 <!ENTITY zotero.preferences.showIn.separateTab "Erillinen välilehti">
@@ -256,5 +256,5 @@
 <!ENTITY zotero.preferences.trashAutoEmptyDaysPre "Poista roskakorista automaattisesti nimikkeet, jotka poistettiin yli">
 <!ENTITY zotero.preferences.updateNow "Päivitä nyt">
 <!ENTITY zotero.preferences.userInterface "Käyttöliittymä">
-<!ENTITY zotero.preferences.zoteroDotOrgVersionHeader "Anna zotero.orgin muunnella sisältöään nykyisen Juris-M-version perusteella">
-<!ENTITY zotero.preferences.zoteroDotOrgVersionHeader.tooltip "If enabled, the current Juris-M version will be added to HTTP requests to zotero.org.">
+<!ENTITY zotero.preferences.zoteroDotOrgVersionHeader "Anna zotero.orgin muunnella sisältöään nykyisen Jurism-version perusteella">
+<!ENTITY zotero.preferences.zoteroDotOrgVersionHeader.tooltip "If enabled, the current Jurism version will be added to HTTP requests to zotero.org.">

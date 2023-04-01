@@ -45,8 +45,8 @@
 <!ENTITY zotero.preferences.debugOutputLogging.clearOutput "Rensa utdata">
 <!ENTITY zotero.preferences.debugOutputLogging.enableAfterRestart "Aktivera efter omstart">
 <!ENTITY zotero.preferences.debugOutputLogging.linesLogged "loggade rader">
-<!ENTITY zotero.preferences.debugOutputLogging.message "En logg kan hjälpa Juris-Ms utvecklare att diagnosticera problem i Juris-M. Att skapa loggar kommer att sakta ner Juris-M, så det bör inte vara påslaget om man inte vill felsöka Juris-M.">
-<!ENTITY zotero.preferences.debugOutputLogging.submitToServer "Skicka till Juris-M-server">
+<!ENTITY zotero.preferences.debugOutputLogging.message "En logg kan hjälpa Jurisms utvecklare att diagnosticera problem i Jurism. Att skapa loggar kommer att sakta ner Jurism, så det bör inte vara påslaget om man inte vill felsöka Jurism.">
+<!ENTITY zotero.preferences.debugOutputLogging.submitToServer "Skicka till Jurism-server">
 <!ENTITY zotero.preferences.debugOutputLogging.viewOutput "Visa utdata">
 <!ENTITY zotero.preferences.default "Standardvärde:">
 <!ENTITY zotero.preferences.downloadAssociatedFiles "Bifoga automatiskt associerade PDF:er och andra filer när källor sparas">
@@ -87,7 +87,7 @@
 <!ENTITY zotero.preferences.keys.library "Bibliotek">
 <!ENTITY zotero.preferences.keys.newItem "Lagra en ny källa">
 <!ENTITY zotero.preferences.keys.newNote "Skapa en ny anteckning">
-<!ENTITY zotero.preferences.keys.openZotero "Öppna/stäng Juris-M-panelen">
+<!ENTITY zotero.preferences.keys.openZotero "Öppna/stäng Jurism-panelen">
 <!ENTITY zotero.preferences.keys.overrideGlobal "Försök kringgå motsägelsefulla snabbkommandon">
 <!ENTITY zotero.preferences.keys.quicksearch "Snabbsökning">
 <!ENTITY zotero.preferences.keys.saveToZotero "Spara till Jurism (adressradsikon)">
@@ -99,7 +99,7 @@
 <!ENTITY zotero.preferences.lang.csl "CSL:">
 <!ENTITY zotero.preferences.lang.display "Display">
 <!ENTITY zotero.preferences.lang.inCitationsAndBibliographies "In citations and bibliographies">
-<!ENTITY zotero.preferences.lang.insideZotero "Juris-M UI">
+<!ENTITY zotero.preferences.lang.insideZotero "Jurism UI">
 <!ENTITY zotero.preferences.lang.institutions "Institutions:">
 <!ENTITY zotero.preferences.lang.journals "Journals:">
 <!ENTITY zotero.preferences.lang.languageList "Languages for Use in Metadata">
@@ -184,7 +184,7 @@
 <!ENTITY zotero.preferences.quickCopy.dragLimit "Stäng av snabbkopiering om fler än ... filer är markerade.">
 <!ENTITY zotero.preferences.quickCopy.itemFormat "Item Format:">
 <!ENTITY zotero.preferences.quickCopy.linkCitationFormReverse "Use citation form as default">
-<!ENTITY zotero.preferences.quickCopy.linkOption "Include Juris-M link wrappers in QuickCopy citations">
+<!ENTITY zotero.preferences.quickCopy.linkOption "Include Jurism link wrappers in QuickCopy citations">
 <!ENTITY zotero.preferences.quickCopy.macWarning "OBS: Rich-text-format försvinner i Mac OS X.">
 <!ENTITY zotero.preferences.quickCopy.noteFormat "Note Format:">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.domainPath "Domän/sökväg">
@@ -202,7 +202,7 @@
 <!ENTITY zotero.preferences.search.indexStats.words "Ord:">
 <!ENTITY zotero.preferences.search.pdfIndexing "PDF-indexering">
 <!ENTITY zotero.preferences.settings "Inställningar">
-<!ENTITY zotero.preferences.showIn "Ladda Juris-M i:">
+<!ENTITY zotero.preferences.showIn "Ladda Jurism i:">
 <!ENTITY zotero.preferences.showIn.appTab "programflik">
 <!ENTITY zotero.preferences.showIn.browserPane "webbläsarfönstret">
 <!ENTITY zotero.preferences.showIn.separateTab "ny flik">
@@ -256,5 +256,5 @@
 <!ENTITY zotero.preferences.trashAutoEmptyDaysPre "Ta automatiskt bort källor från papperskorgen som lagts dit för mer än">
 <!ENTITY zotero.preferences.updateNow "Uppdatera nu">
 <!ENTITY zotero.preferences.userInterface "Användargränssnitt">
-<!ENTITY zotero.preferences.zoteroDotOrgVersionHeader "Tillåt zotero.org att justera innehåll beroende på installerad Juris-M-version">
+<!ENTITY zotero.preferences.zoteroDotOrgVersionHeader "Tillåt zotero.org att justera innehåll beroende på installerad Jurism-version">
 <!ENTITY zotero.preferences.zoteroDotOrgVersionHeader.tooltip "Visa för zotero.org vilken version av programmet jag använder">

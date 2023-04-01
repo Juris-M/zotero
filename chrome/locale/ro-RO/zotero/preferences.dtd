@@ -45,8 +45,8 @@
 <!ENTITY zotero.preferences.debugOutputLogging.clearOutput "Ștergere ieșire">
 <!ENTITY zotero.preferences.debugOutputLogging.enableAfterRestart "Activare după restart">
 <!ENTITY zotero.preferences.debugOutputLogging.linesLogged "linii înregistrate">
-<!ENTITY zotero.preferences.debugOutputLogging.message "Datele de ieșire de la depanare pot ajuta dezvoltatorii Juris-M să diagnosticheze problemele din Juris-M. Jurnalul de depanare va încetini Juris-M, așa încât va trebui să-l păstrați dezactivat până când un dezvoltator Juris-M cere datele de ieșire de la depanare.">
-<!ENTITY zotero.preferences.debugOutputLogging.submitToServer "Trimitere către serverul Juris-M">
+<!ENTITY zotero.preferences.debugOutputLogging.message "Datele de ieșire de la depanare pot ajuta dezvoltatorii Jurism să diagnosticheze problemele din Jurism. Jurnalul de depanare va încetini Jurism, așa încât va trebui să-l păstrați dezactivat până când un dezvoltator Jurism cere datele de ieșire de la depanare.">
+<!ENTITY zotero.preferences.debugOutputLogging.submitToServer "Trimitere către serverul Jurism">
 <!ENTITY zotero.preferences.debugOutputLogging.viewOutput "Vizualizare ieșire">
 <!ENTITY zotero.preferences.default "Implicite:">
 <!ENTITY zotero.preferences.downloadAssociatedFiles "Anexează automat fișierele PDF asociate, precum și alte fișiere, atunci când sunt salvate înregistrările">
@@ -87,7 +87,7 @@
 <!ENTITY zotero.preferences.keys.library "Bibliotecă">
 <!ENTITY zotero.preferences.keys.newItem "Creează o nouă înregistrare">
 <!ENTITY zotero.preferences.keys.newNote "Creează o notă nouă">
-<!ENTITY zotero.preferences.keys.openZotero "Deschide/Închide panoul Juris-M">
+<!ENTITY zotero.preferences.keys.openZotero "Deschide/Închide panoul Jurism">
 <!ENTITY zotero.preferences.keys.overrideGlobal "Încearcă să suprascrii scurtăturile care sunt în conflict">
 <!ENTITY zotero.preferences.keys.quicksearch "Căutare rapidă">
 <!ENTITY zotero.preferences.keys.saveToZotero "Salvează în Jurism (iconița din bara de adrese)">
@@ -99,7 +99,7 @@
 <!ENTITY zotero.preferences.lang.csl "CSL:">
 <!ENTITY zotero.preferences.lang.display "Display">
 <!ENTITY zotero.preferences.lang.inCitationsAndBibliographies "In citations and bibliographies">
-<!ENTITY zotero.preferences.lang.insideZotero "Juris-M UI">
+<!ENTITY zotero.preferences.lang.insideZotero "Jurism UI">
 <!ENTITY zotero.preferences.lang.institutions "Institutions:">
 <!ENTITY zotero.preferences.lang.journals "Journals:">
 <!ENTITY zotero.preferences.lang.languageList "Languages for Use in Metadata">
@@ -184,7 +184,7 @@
 <!ENTITY zotero.preferences.quickCopy.dragLimit "Dezactivează Copierea rapidă în timpul tragerii a mai mult de">
 <!ENTITY zotero.preferences.quickCopy.itemFormat "Item Format:">
 <!ENTITY zotero.preferences.quickCopy.linkCitationFormReverse "Use citation form as default">
-<!ENTITY zotero.preferences.quickCopy.linkOption "Include Juris-M link wrappers in QuickCopy citations">
+<!ENTITY zotero.preferences.quickCopy.linkOption "Include Jurism link wrappers in QuickCopy citations">
 <!ENTITY zotero.preferences.quickCopy.macWarning "Notă: Formatarea RTF se va pierde pe Mac OS X.">
 <!ENTITY zotero.preferences.quickCopy.noteFormat "Note Format:">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.domainPath "Domeniu/Cale">
@@ -202,7 +202,7 @@
 <!ENTITY zotero.preferences.search.indexStats.words "Cuvinte:">
 <!ENTITY zotero.preferences.search.pdfIndexing "Indexare PDF">
 <!ENTITY zotero.preferences.settings "Setări">
-<!ENTITY zotero.preferences.showIn "Încarcă Juris-M în:">
+<!ENTITY zotero.preferences.showIn "Încarcă Jurism în:">
 <!ENTITY zotero.preferences.showIn.appTab "Filă aplicație">
 <!ENTITY zotero.preferences.showIn.browserPane "Panou browser">
 <!ENTITY zotero.preferences.showIn.separateTab "Filă separată">
@@ -256,5 +256,5 @@
 <!ENTITY zotero.preferences.trashAutoEmptyDaysPre "Șterge automat din coșul de gunoi înregistrările mai vechi de">
 <!ENTITY zotero.preferences.updateNow "Actualizează acum">
 <!ENTITY zotero.preferences.userInterface "Interfață utilizator">
-<!ENTITY zotero.preferences.zoteroDotOrgVersionHeader "Permite zotero.org să modifice conținutul pe bază versiunii curente de Juris-M">
-<!ENTITY zotero.preferences.zoteroDotOrgVersionHeader.tooltip "Dacă e activată, versiunea curentă de Juris-M va fi adăugată la cererile HTTP de la zotero.org">
+<!ENTITY zotero.preferences.zoteroDotOrgVersionHeader "Permite zotero.org să modifice conținutul pe bază versiunii curente de Jurism">
+<!ENTITY zotero.preferences.zoteroDotOrgVersionHeader.tooltip "Dacă e activată, versiunea curentă de Jurism va fi adăugată la cererile HTTP de la zotero.org">

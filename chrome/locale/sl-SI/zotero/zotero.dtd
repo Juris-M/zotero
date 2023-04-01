@@ -39,13 +39,13 @@
 <!ENTITY zotero.context.addStandaloneNote "Add Standalone Note">
 <!ENTITY zotero.context.addStandaloneNoteFromAnnotations "Add Standalone Note from Annotations">
 <!ENTITY zotero.context.editInWindow "Edit in a Separate Window">
-<!ENTITY zotero.contextMenu.addTextToCurrentNote "Dodaj izbor v opombo Juris-M">
-<!ENTITY zotero.contextMenu.addTextToNewNote "Ustvari vnos in opombo Juris-M iz izbora">
+<!ENTITY zotero.contextMenu.addTextToCurrentNote "Dodaj izbor v opombo Jurism">
+<!ENTITY zotero.contextMenu.addTextToNewNote "Ustvari vnos in opombo Jurism iz izbora">
 <!ENTITY zotero.contextMenu.saveImageAsItem "Shrani sliko kot vnos Zotera">
 <!ENTITY zotero.contextMenu.saveLinkAsItem "Shrani povezavo kot vnos Zotera">
 <!ENTITY zotero.createParent.button.manual "Manual Entry">
 <!ENTITY zotero.createParent.title "Create Parent Item">
-<!ENTITY zotero.downloadManager.label "Shrani na Juris-M">
+<!ENTITY zotero.downloadManager.label "Shrani na Jurism">
 <!ENTITY zotero.downloadManager.noPDFTools.description "Če želite uporabiti to funkcijo, morate najprej namestiti orodja PDF v nastavitvah Zotera.">
 <!ENTITY zotero.downloadManager.saveToLibrary.description "V trenutno izbrano knjižnico priponk ni mogoče shraniti. Vnos bo namesto tega shranjen v vašo knjižnico.">
 <!ENTITY zotero.duplicatesMerge.fieldSelect "Izberite polja, ki jih želite izvzeti iz drugih različic vnosa:">
@@ -56,7 +56,7 @@
 <!ENTITY zotero.errorReport.submissionInProgress "Počakajte, da je poročilo o napaki oddano.">
 <!ENTITY zotero.errorReport.submitted "Poročilo o napaki je bilo oddano.">
 <!ENTITY zotero.errorReport.title "Poročilo o napaki Jurism">
-<!ENTITY zotero.errorReport.unrelatedMessages "Vključuje lahko sporočila, ki se ne nanašajo na Juris-M.">
+<!ENTITY zotero.errorReport.unrelatedMessages "Vključuje lahko sporočila, ki se ne nanašajo na Jurism.">
 <!ENTITY zotero.exportOptions.format.label "Vrsta datoteke:">
 <!ENTITY zotero.exportOptions.title "Izvozi ...">
 <!ENTITY zotero.exportOptions.translatorOptions.label "Možnosti prevajanja">
@@ -144,7 +144,7 @@
 <!ENTITY zotero.integration.prefs.lang.titles "Titles:">
 <!ENTITY zotero.integration.prefs.lang.translation "Translation">
 <!ENTITY zotero.integration.prefs.lang.transliteration "Transliteration">
-<!ENTITY zotero.integration.prefs.storeReferences.caption "Shranjevanje sklicev v dokumentu malce poveča velikost datoteke, vendar omogoča skupno rabo dokumenta z drugimi, četudi ne uporabljajo skupine Juris-M. Juris-M 3.0 ali kasnejši je potreben za posodabljanje dokumentov, ki jih ustvarite s to možnostjo.">
+<!ENTITY zotero.integration.prefs.storeReferences.caption "Shranjevanje sklicev v dokumentu malce poveča velikost datoteke, vendar omogoča skupno rabo dokumenta z drugimi, četudi ne uporabljajo skupine Jurism. Jurism 3.0 ali kasnejši je potreben za posodabljanje dokumentov, ki jih ustvarite s to možnostjo.">
 <!ENTITY zotero.integration.prefs.storeReferences.label "Sklice shrani v dokumentu">
 <!ENTITY zotero.integration.prefs.suppressTrailingPunctuation.caption "When this option is enabled, all trailing punctuation will be dropped in note styles. To selectively drop trailing punctuation on individual citations, disable this option, and set suppression on each citation directly.">
 <!ENTITY zotero.integration.prefs.suppressTrailingPunctuation.label "Suppress all trailing punctuation">
@@ -284,7 +284,7 @@
 <!ENTITY zotero.selectitems.intro.label "Izberite vnose, ki bi jih želeli dodati v svojo knjižnico">
 <!ENTITY zotero.selectitems.select.label "V redu">
 <!ENTITY zotero.selectitems.title "Izberi vnose">
-<!ENTITY zotero.sync.button "Uskladi s strežnikom Juris-M">
+<!ENTITY zotero.sync.button "Uskladi s strežnikom Jurism">
 <!ENTITY zotero.sync.error "Napaka usklajevanja">
 <!ENTITY zotero.sync.longTagFixer.character "znaku">
 <!ENTITY zotero.sync.longTagFixer.characters "znakih">
@@ -375,7 +375,7 @@
 <!ENTITY zotero.upgrade.changeLogAfterLink "kjer so navedene novosti.">
 <!ENTITY zotero.upgrade.changeLogBeforeLink "Oglejte si">
 <!ENTITY zotero.upgrade.changeLogLink "zapisnik sprememb,">
-<!ENTITY zotero.upgrade.ifZoteroInfo "If you are migrating from official Juris-M/Juris-M to MLZ, the next step of the upgrade process will convert your database for use with MLZ.">
+<!ENTITY zotero.upgrade.ifZoteroInfo "If you are migrating from official Jurism/Jurism to MLZ, the next step of the upgrade process will convert your database for use with MLZ.">
 <!ENTITY zotero.upgrade.ifZoteroInfoLabel "Note:">
 <!ENTITY zotero.upgrade.majorUpgrade "To je ključna posodobitev.">
 <!ENTITY zotero.upgrade.majorUpgradeAfterLink "preden nadaljujete.">

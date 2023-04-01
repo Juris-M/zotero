@@ -39,14 +39,14 @@
 <!ENTITY zotero.context.addStandaloneNote "Add Standalone Note">
 <!ENTITY zotero.context.addStandaloneNoteFromAnnotations "Add Standalone Note from Annotations">
 <!ENTITY zotero.context.editInWindow "Edit in a Separate Window">
-<!ENTITY zotero.contextMenu.addTextToCurrentNote "選択範囲を Juris-M メモに追加">
-<!ENTITY zotero.contextMenu.addTextToNewNote "選択範囲から Juris-M アイテムとメモを作成">
-<!ENTITY zotero.contextMenu.saveImageAsItem "画像を Juris-M アイテムとして保存">
-<!ENTITY zotero.contextMenu.saveLinkAsItem "リンクを Juris-M アイテムとして保存">
+<!ENTITY zotero.contextMenu.addTextToCurrentNote "選択範囲を Jurism メモに追加">
+<!ENTITY zotero.contextMenu.addTextToNewNote "選択範囲から Jurism アイテムとメモを作成">
+<!ENTITY zotero.contextMenu.saveImageAsItem "画像を Jurism アイテムとして保存">
+<!ENTITY zotero.contextMenu.saveLinkAsItem "リンクを Jurism アイテムとして保存">
 <!ENTITY zotero.createParent.button.manual "Manual Entry">
 <!ENTITY zotero.createParent.title "Create Parent Item">
-<!ENTITY zotero.downloadManager.label "Juris-M に保存する">
-<!ENTITY zotero.downloadManager.noPDFTools.description "この機能を利用するには、まず Juris-M 環境設定の検索ペインで PDF ツールをインストールする必要があります。">
+<!ENTITY zotero.downloadManager.label "Jurism に保存する">
+<!ENTITY zotero.downloadManager.noPDFTools.description "この機能を利用するには、まず Jurism 環境設定の検索ペインで PDF ツールをインストールする必要があります。">
 <!ENTITY zotero.downloadManager.saveToLibrary.description "添付ファイルは現在選択中のライブラリに保存することができません。その代わり、このアイテムはあなたのライブラリに保存されます。">
 <!ENTITY zotero.duplicatesMerge.fieldSelect "このアイテムの重複するヴァージョンから維持したいフィールドを選択してください:">
 <!ENTITY zotero.duplicatesMerge.versionSelect "土台として用いるアイテムのヴァージョンを選んでください:">
@@ -56,7 +56,7 @@
 <!ENTITY zotero.errorReport.submissionInProgress "エラーレポートが送信されるまでお待ちください。">
 <!ENTITY zotero.errorReport.submitted "エラーレポートが送信されました。">
 <!ENTITY zotero.errorReport.title "Jurism エラーレポート">
-<!ENTITY zotero.errorReport.unrelatedMessages "エラーの記録にはJuris-M に無関係のメッセージが含まれている恐れがあります。">
+<!ENTITY zotero.errorReport.unrelatedMessages "エラーの記録にはJurism に無関係のメッセージが含まれている恐れがあります。">
 <!ENTITY zotero.exportOptions.format.label "フォーマット:">
 <!ENTITY zotero.exportOptions.title "エクスポート...">
 <!ENTITY zotero.exportOptions.translatorOptions.label "トランスレータのオプション">
@@ -144,7 +144,7 @@
 <!ENTITY zotero.integration.prefs.lang.titles "Titles:">
 <!ENTITY zotero.integration.prefs.lang.translation "翻訳">
 <!ENTITY zotero.integration.prefs.lang.transliteration "音訳">
-<!ENTITY zotero.integration.prefs.storeReferences.caption "文献情報をあなたの文書中に保存するとわずかにファイルサイズが大きくなりますが、あなたは Juris-M グループを使わなくても他人とその文書を共有することが可能になります。このオプションで作成された文書を更新するには Juris-M 3.0 以降が必要です。">
+<!ENTITY zotero.integration.prefs.storeReferences.caption "文献情報をあなたの文書中に保存するとわずかにファイルサイズが大きくなりますが、あなたは Jurism グループを使わなくても他人とその文書を共有することが可能になります。このオプションで作成された文書を更新するには Jurism 3.0 以降が必要です。">
 <!ENTITY zotero.integration.prefs.storeReferences.label "文献情報を文書中に保存">
 <!ENTITY zotero.integration.prefs.suppressTrailingPunctuation.caption "When this option is enabled, all trailing punctuation will be dropped in note styles. To selectively drop trailing punctuation on individual citations, disable this option, and set suppression on each citation directly.">
 <!ENTITY zotero.integration.prefs.suppressTrailingPunctuation.label "Suppress all trailing punctuation">
@@ -284,7 +284,7 @@
 <!ENTITY zotero.selectitems.intro.label "ライブラリに追加したいアイテムを選択してください">
 <!ENTITY zotero.selectitems.select.label "OK">
 <!ENTITY zotero.selectitems.title "アイテムを選択">
-<!ENTITY zotero.sync.button "Juris-M サーバーと同期する">
+<!ENTITY zotero.sync.button "Jurism サーバーと同期する">
 <!ENTITY zotero.sync.error "同期エラー">
 <!ENTITY zotero.sync.longTagFixer.character "文字目">
 <!ENTITY zotero.sync.longTagFixer.characters "文字目">
@@ -375,7 +375,7 @@
 <!ENTITY zotero.upgrade.changeLogAfterLink "をご覧ください。">
 <!ENTITY zotero.upgrade.changeLogBeforeLink "新機能と改良点については">
 <!ENTITY zotero.upgrade.changeLogLink "更新履歴">
-<!ENTITY zotero.upgrade.ifZoteroInfo "If you are migrating from official Juris-M/Juris-M to MLZ, the next step of the upgrade process will convert your database for use with MLZ.">
+<!ENTITY zotero.upgrade.ifZoteroInfo "If you are migrating from official Jurism/Jurism to MLZ, the next step of the upgrade process will convert your database for use with MLZ.">
 <!ENTITY zotero.upgrade.ifZoteroInfoLabel "Note:">
 <!ENTITY zotero.upgrade.majorUpgrade "これは重要な更新です。">
 <!ENTITY zotero.upgrade.majorUpgradeAfterLink "まずご確認ください。">

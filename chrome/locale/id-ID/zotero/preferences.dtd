@@ -45,8 +45,8 @@
 <!ENTITY zotero.preferences.debugOutputLogging.clearOutput "Bersihkan Output">
 <!ENTITY zotero.preferences.debugOutputLogging.enableAfterRestart "Aktifkan setelah restart">
 <!ENTITY zotero.preferences.debugOutputLogging.linesLogged "baris tercatat">
-<!ENTITY zotero.preferences.debugOutputLogging.message "Output debug dapat membantu pengembang Juris-M untuk mendiagnosis masalah yang terjadi pada Juris-M.  Pencatatan debug akan memperlambat Juris-M, sehingga Anda sebaiknya tetap menonaktifkannya, kecuali bila pengembang Juris-M meminta output debug.">
-<!ENTITY zotero.preferences.debugOutputLogging.submitToServer "Kirimkan ke Server Juris-M">
+<!ENTITY zotero.preferences.debugOutputLogging.message "Output debug dapat membantu pengembang Jurism untuk mendiagnosis masalah yang terjadi pada Jurism.  Pencatatan debug akan memperlambat Jurism, sehingga Anda sebaiknya tetap menonaktifkannya, kecuali bila pengembang Jurism meminta output debug.">
+<!ENTITY zotero.preferences.debugOutputLogging.submitToServer "Kirimkan ke Server Jurism">
 <!ENTITY zotero.preferences.debugOutputLogging.viewOutput "Lihat Output">
 <!ENTITY zotero.preferences.default "Default:">
 <!ENTITY zotero.preferences.downloadAssociatedFiles "Lampirkan PDF dan berkas terkait lainnya secara automatis saat menyimpan item">
@@ -87,7 +87,7 @@
 <!ENTITY zotero.preferences.keys.library "Library">
 <!ENTITY zotero.preferences.keys.newItem "Buat sebuah item baru">
 <!ENTITY zotero.preferences.keys.newNote "Buat sebuah catatan baru">
-<!ENTITY zotero.preferences.keys.openZotero "Buka/Tutup  Jendela Juris-M">
+<!ENTITY zotero.preferences.keys.openZotero "Buka/Tutup  Jendela Jurism">
 <!ENTITY zotero.preferences.keys.overrideGlobal "Usahakan kendalikan shortcut yang berkontradiksi">
 <!ENTITY zotero.preferences.keys.quicksearch "Pencarian Cepat">
 <!ENTITY zotero.preferences.keys.saveToZotero "Save to Jurism (address bar icon)">
@@ -99,7 +99,7 @@
 <!ENTITY zotero.preferences.lang.csl "CSL:">
 <!ENTITY zotero.preferences.lang.display "Display">
 <!ENTITY zotero.preferences.lang.inCitationsAndBibliographies "Documents">
-<!ENTITY zotero.preferences.lang.insideZotero "Juris-M">
+<!ENTITY zotero.preferences.lang.insideZotero "Jurism">
 <!ENTITY zotero.preferences.lang.institutions "Institutions:">
 <!ENTITY zotero.preferences.lang.journals "Journals:">
 <!ENTITY zotero.preferences.lang.languageList "Language tags">
@@ -184,7 +184,7 @@
 <!ENTITY zotero.preferences.quickCopy.dragLimit "Matikan fitur Salin Cepat saat menarik lebih dari">
 <!ENTITY zotero.preferences.quickCopy.itemFormat "Item Format:">
 <!ENTITY zotero.preferences.quickCopy.linkCitationFormReverse "Use citation form as default">
-<!ENTITY zotero.preferences.quickCopy.linkOption "Include Juris-M link wrappers in QuickCopy citations">
+<!ENTITY zotero.preferences.quickCopy.linkOption "Include Jurism link wrappers in QuickCopy citations">
 <!ENTITY zotero.preferences.quickCopy.macWarning "Catatan: Pemformatan rich-text akan hilang pada Mac OS X.">
 <!ENTITY zotero.preferences.quickCopy.noteFormat "Note Format:">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.domainPath "Domain/Rute">
@@ -202,7 +202,7 @@
 <!ENTITY zotero.preferences.search.indexStats.words "Kata:">
 <!ENTITY zotero.preferences.search.pdfIndexing "Pengindeksian PDF">
 <!ENTITY zotero.preferences.settings "Settings">
-<!ENTITY zotero.preferences.showIn "Muat Juris-M di dalam:">
+<!ENTITY zotero.preferences.showIn "Muat Jurism di dalam:">
 <!ENTITY zotero.preferences.showIn.appTab "Tab App">
 <!ENTITY zotero.preferences.showIn.browserPane "Jendela peramban">
 <!ENTITY zotero.preferences.showIn.separateTab "Tab terpisah">
@@ -256,5 +256,5 @@
 <!ENTITY zotero.preferences.trashAutoEmptyDaysPre "Buang item-item di dalam kantung sampah yang telah dihapus lebih dari">
 <!ENTITY zotero.preferences.updateNow "Mutakhirkan sekarang">
 <!ENTITY zotero.preferences.userInterface "Antarmuka pengguna">
-<!ENTITY zotero.preferences.zoteroDotOrgVersionHeader "Izinkan zotero.org untuk menyusun konten berdasarkan versi Juris-M sekarang">
-<!ENTITY zotero.preferences.zoteroDotOrgVersionHeader.tooltip "Jika dibolehkan, versi Juris-M sekarang akan dimasukkan dalam permintaan HTTP kepada zotero.org.">
+<!ENTITY zotero.preferences.zoteroDotOrgVersionHeader "Izinkan zotero.org untuk menyusun konten berdasarkan versi Jurism sekarang">
+<!ENTITY zotero.preferences.zoteroDotOrgVersionHeader.tooltip "Jika dibolehkan, versi Jurism sekarang akan dimasukkan dalam permintaan HTTP kepada zotero.org.">

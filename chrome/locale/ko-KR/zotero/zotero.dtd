@@ -39,14 +39,14 @@
 <!ENTITY zotero.context.addStandaloneNote "Add Standalone Note">
 <!ENTITY zotero.context.addStandaloneNoteFromAnnotations "Add Standalone Note from Annotations">
 <!ENTITY zotero.context.editInWindow "Edit in a Separate Window">
-<!ENTITY zotero.contextMenu.addTextToCurrentNote "Juris-M 노트에 선택 내용 추가">
-<!ENTITY zotero.contextMenu.addTextToNewNote "선택한 내용으로 Juris-M 노트 생성">
-<!ENTITY zotero.contextMenu.saveImageAsItem "Juris-M 항목으로 이미지 저장">
-<!ENTITY zotero.contextMenu.saveLinkAsItem "Juris-M 항목으로 링크 저장">
+<!ENTITY zotero.contextMenu.addTextToCurrentNote "Jurism 노트에 선택 내용 추가">
+<!ENTITY zotero.contextMenu.addTextToNewNote "선택한 내용으로 Jurism 노트 생성">
+<!ENTITY zotero.contextMenu.saveImageAsItem "Jurism 항목으로 이미지 저장">
+<!ENTITY zotero.contextMenu.saveLinkAsItem "Jurism 항목으로 링크 저장">
 <!ENTITY zotero.createParent.button.manual "Manual Entry">
 <!ENTITY zotero.createParent.title "Create Parent Item">
-<!ENTITY zotero.downloadManager.label "Juris-M로 저장">
-<!ENTITY zotero.downloadManager.noPDFTools.description "이 기능을 사용하려면, 먼저 Juris-M 환경설정에서 PDF 도구를 인스톨해야 합니다.">
+<!ENTITY zotero.downloadManager.label "Jurism로 저장">
+<!ENTITY zotero.downloadManager.noPDFTools.description "이 기능을 사용하려면, 먼저 Jurism 환경설정에서 PDF 도구를 인스톨해야 합니다.">
 <!ENTITY zotero.downloadManager.saveToLibrary.description "첨부물을 현재 선택한 라이브러리에 저장할 수 없습니다. 그 대신 귀하의 라이브러리에 저장됩니다.">
 <!ENTITY zotero.duplicatesMerge.fieldSelect "항목의 다른 버전과 무관하게 유지할 필드 선택:">
 <!ENTITY zotero.duplicatesMerge.versionSelect "원본 항목으로 사용할 항목의 버전 선택:">
@@ -56,7 +56,7 @@
 <!ENTITY zotero.errorReport.submissionInProgress "오류 보고가 제출되는 동안 기다려 주세요.">
 <!ENTITY zotero.errorReport.submitted "오류 보고가 제출되었습니다.">
 <!ENTITY zotero.errorReport.title "Jurism 오류 보고">
-<!ENTITY zotero.errorReport.unrelatedMessages "Juris-M와 관련 없는 메시지가 포함될 수 있습니다.">
+<!ENTITY zotero.errorReport.unrelatedMessages "Jurism와 관련 없는 메시지가 포함될 수 있습니다.">
 <!ENTITY zotero.exportOptions.format.label "형식:">
 <!ENTITY zotero.exportOptions.title "내보내기...">
 <!ENTITY zotero.exportOptions.translatorOptions.label "중계기 옵션">
@@ -144,7 +144,7 @@
 <!ENTITY zotero.integration.prefs.lang.titles "Titles:">
 <!ENTITY zotero.integration.prefs.lang.translation "Translation">
 <!ENTITY zotero.integration.prefs.lang.transliteration "Transliteration">
-<!ENTITY zotero.integration.prefs.storeReferences.caption "문서 안에 레퍼런스를 저장하면 파일 크기가 다소 증가할 수 있습니다. 하지만 문서를 Juris-M 그룹을 통하지 않고도 공유할 수 있습니다. Juris-M 3.0이상 버전이 필요한 기능입니다.">
+<!ENTITY zotero.integration.prefs.storeReferences.caption "문서 안에 레퍼런스를 저장하면 파일 크기가 다소 증가할 수 있습니다. 하지만 문서를 Jurism 그룹을 통하지 않고도 공유할 수 있습니다. Jurism 3.0이상 버전이 필요한 기능입니다.">
 <!ENTITY zotero.integration.prefs.storeReferences.label "문서 안에 레퍼런스 저장">
 <!ENTITY zotero.integration.prefs.suppressTrailingPunctuation.caption "When this option is enabled, all trailing punctuation will be dropped in note styles. To selectively drop trailing punctuation on individual citations, disable this option, and set suppression on each citation directly.">
 <!ENTITY zotero.integration.prefs.suppressTrailingPunctuation.label "Suppress all trailing punctuation">
@@ -284,7 +284,7 @@
 <!ENTITY zotero.selectitems.intro.label "라이브러리에 추가하고 싶은 항목 선택">
 <!ENTITY zotero.selectitems.select.label "확인">
 <!ENTITY zotero.selectitems.title "항목 선택">
-<!ENTITY zotero.sync.button "Juris-M 서버와 동기화">
+<!ENTITY zotero.sync.button "Jurism 서버와 동기화">
 <!ENTITY zotero.sync.error "동기화 오류">
 <!ENTITY zotero.sync.longTagFixer.character "글자">
 <!ENTITY zotero.sync.longTagFixer.characters "글자">
@@ -375,7 +375,7 @@
 <!ENTITY zotero.upgrade.changeLogAfterLink "보기">
 <!ENTITY zotero.upgrade.changeLogBeforeLink "새롭게 달라진 기능은 다음을 참고하십시오: ">
 <!ENTITY zotero.upgrade.changeLogLink "변경 사항">
-<!ENTITY zotero.upgrade.ifZoteroInfo "If you are migrating from official Juris-M/Juris-M to MLZ, the next step of the upgrade process will convert your database for use with MLZ.">
+<!ENTITY zotero.upgrade.ifZoteroInfo "If you are migrating from official Jurism/Jurism to MLZ, the next step of the upgrade process will convert your database for use with MLZ.">
 <!ENTITY zotero.upgrade.ifZoteroInfoLabel "Note:">
 <!ENTITY zotero.upgrade.majorUpgrade "이것은 중요 업그레이드입니다.">
 <!ENTITY zotero.upgrade.majorUpgradeAfterLink "을 참조하시기 바랍니다.">

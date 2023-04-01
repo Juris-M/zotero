@@ -39,14 +39,14 @@
 <!ENTITY zotero.context.addStandaloneNote "Add Standalone Note">
 <!ENTITY zotero.context.addStandaloneNoteFromAnnotations "Add Standalone Note from Annotations">
 <!ENTITY zotero.context.editInWindow "Edit in a Separate Window">
-<!ENTITY zotero.contextMenu.addTextToCurrentNote "Lisää valinta Juris-M-muistiinpanoon">
-<!ENTITY zotero.contextMenu.addTextToNewNote "Luo Juris-M-nimike and muistiinpano valinnasta">
-<!ENTITY zotero.contextMenu.saveImageAsItem "Tallenna kuva Juris-Mon">
-<!ENTITY zotero.contextMenu.saveLinkAsItem "Tallenna linkki Juris-Mon">
+<!ENTITY zotero.contextMenu.addTextToCurrentNote "Lisää valinta Jurism-muistiinpanoon">
+<!ENTITY zotero.contextMenu.addTextToNewNote "Luo Jurism-nimike and muistiinpano valinnasta">
+<!ENTITY zotero.contextMenu.saveImageAsItem "Tallenna kuva Jurismon">
+<!ENTITY zotero.contextMenu.saveLinkAsItem "Tallenna linkki Jurismon">
 <!ENTITY zotero.createParent.button.manual "Manual Entry">
 <!ENTITY zotero.createParent.title "Create Parent Item">
-<!ENTITY zotero.downloadManager.label "Tallenna Juris-Mon">
-<!ENTITY zotero.downloadManager.noPDFTools.description "Käyttääksesi tätä ominaisuutta tulee sinun ensin asentaa PDF-työkalut Juris-Mn asetuksista.">
+<!ENTITY zotero.downloadManager.label "Tallenna Jurismon">
+<!ENTITY zotero.downloadManager.noPDFTools.description "Käyttääksesi tätä ominaisuutta tulee sinun ensin asentaa PDF-työkalut Jurismn asetuksista.">
 <!ENTITY zotero.downloadManager.saveToLibrary.description "Liitteitä ei voi tallentaa valittuun kirjastoon. Nimike sen sijaan tallennetaan kirjastoon.">
 <!ENTITY zotero.duplicatesMerge.fieldSelect "Valise kentät, jotka säilytetään muista versioista:">
 <!ENTITY zotero.duplicatesMerge.versionSelect "Valitse se nimikkeen versio, jota haluat käyttää pääversiona:">
@@ -56,7 +56,7 @@
 <!ENTITY zotero.errorReport.submissionInProgress "Odota, kunnes virheraportti on toimitettu.">
 <!ENTITY zotero.errorReport.submitted "Virheraporttisi on toimitettu.">
 <!ENTITY zotero.errorReport.title "Jurismn virheraportti">
-<!ENTITY zotero.errorReport.unrelatedMessages "Mukana saattaa olla Juris-Mon liittymättömiä viestejä.">
+<!ENTITY zotero.errorReport.unrelatedMessages "Mukana saattaa olla Jurismon liittymättömiä viestejä.">
 <!ENTITY zotero.exportOptions.format.label "Muoto:">
 <!ENTITY zotero.exportOptions.title "Vie...">
 <!ENTITY zotero.exportOptions.translatorOptions.label "Kääntäjän asetukset">
@@ -144,7 +144,7 @@
 <!ENTITY zotero.integration.prefs.lang.titles "Titles:">
 <!ENTITY zotero.integration.prefs.lang.translation "Translation">
 <!ENTITY zotero.integration.prefs.lang.transliteration "Transliteration">
-<!ENTITY zotero.integration.prefs.storeReferences.caption "Viitteiden tallentaminen asiakirjassa kasvattaa hiukan tiedoston kokoa, mutta tällöin tiedoston voi jakaa muiden kanssa käyttämättä Juris-M-ryhmää. Tällä toiminnalle luotujen asiakirjojen muokkaamiseen tarvitaan Juris-M 3.0 tai uudempi.">
+<!ENTITY zotero.integration.prefs.storeReferences.caption "Viitteiden tallentaminen asiakirjassa kasvattaa hiukan tiedoston kokoa, mutta tällöin tiedoston voi jakaa muiden kanssa käyttämättä Jurism-ryhmää. Tällä toiminnalle luotujen asiakirjojen muokkaamiseen tarvitaan Jurism 3.0 tai uudempi.">
 <!ENTITY zotero.integration.prefs.storeReferences.label "Tallenna viitteet asiakirjassa">
 <!ENTITY zotero.integration.prefs.suppressTrailingPunctuation.caption "When this option is enabled, all trailing punctuation will be dropped in note styles. To selectively drop trailing punctuation on individual citations, disable this option, and set suppression on each citation directly.">
 <!ENTITY zotero.integration.prefs.suppressTrailingPunctuation.label "Suppress all trailing punctuation">
@@ -284,7 +284,7 @@
 <!ENTITY zotero.selectitems.intro.label "Valitse nimikkeet, jotka haluat lisätä kirjastoon">
 <!ENTITY zotero.selectitems.select.label "OK">
 <!ENTITY zotero.selectitems.title "Valitse nimikkeet">
-<!ENTITY zotero.sync.button "Synkronoi Juris-M-palvelimen kanssa">
+<!ENTITY zotero.sync.button "Synkronoi Jurism-palvelimen kanssa">
 <!ENTITY zotero.sync.error "Synkronointivirhe">
 <!ENTITY zotero.sync.longTagFixer.character "merkin kohdalta">
 <!ENTITY zotero.sync.longTagFixer.characters "merkin kohdalta">
@@ -375,7 +375,7 @@
 <!ENTITY zotero.upgrade.changeLogAfterLink "tutustuaksesi uusiin ominaisuuksiin ja päivityksiin.">
 <!ENTITY zotero.upgrade.changeLogBeforeLink "Katso">
 <!ENTITY zotero.upgrade.changeLogLink "muutosloki">
-<!ENTITY zotero.upgrade.ifZoteroInfo "If you are migrating from official Juris-M/Juris-M to MLZ, the next step of the upgrade process will convert your database for use with MLZ.">
+<!ENTITY zotero.upgrade.ifZoteroInfo "If you are migrating from official Jurism/Jurism to MLZ, the next step of the upgrade process will convert your database for use with MLZ.">
 <!ENTITY zotero.upgrade.ifZoteroInfoLabel "Note:">
 <!ENTITY zotero.upgrade.majorUpgrade "Tämä on merkittävä päivitys.">
 <!ENTITY zotero.upgrade.majorUpgradeAfterLink "ennen kuin jatkat.">

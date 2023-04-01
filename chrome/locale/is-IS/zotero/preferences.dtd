@@ -45,8 +45,8 @@
 <!ENTITY zotero.preferences.debugOutputLogging.clearOutput "Hreinsa útkeyrslu">
 <!ENTITY zotero.preferences.debugOutputLogging.enableAfterRestart "Virkja eftir endurræsingu">
 <!ENTITY zotero.preferences.debugOutputLogging.linesLogged "skráðar línur">
-<!ENTITY zotero.preferences.debugOutputLogging.message "Kembun á útkeyrslu getur hjálpað Juris-M forriturum og hönnuðum að greina vandamál í Juris-M. Aðgerðaskráning mun hægja á Juris-M og því er best að afvirkja slíka skráningu nema forritunaraðili frá Juris-M biðji um kembunar útkeyrslu.">
-<!ENTITY zotero.preferences.debugOutputLogging.submitToServer "Senda til Juris-M netþjóns">
+<!ENTITY zotero.preferences.debugOutputLogging.message "Kembun á útkeyrslu getur hjálpað Jurism forriturum og hönnuðum að greina vandamál í Jurism. Aðgerðaskráning mun hægja á Jurism og því er best að afvirkja slíka skráningu nema forritunaraðili frá Jurism biðji um kembunar útkeyrslu.">
+<!ENTITY zotero.preferences.debugOutputLogging.submitToServer "Senda til Jurism netþjóns">
 <!ENTITY zotero.preferences.debugOutputLogging.viewOutput "Sýna útkeyrslu">
 <!ENTITY zotero.preferences.default "Sjálfgefið:">
 <!ENTITY zotero.preferences.downloadAssociatedFiles "Hengja sjálfkrafa PDF skjöl og önnur gögn við færslur þegar þær eru vistaðar">
@@ -87,7 +87,7 @@
 <!ENTITY zotero.preferences.keys.library "Bókasafn">
 <!ENTITY zotero.preferences.keys.newItem "Ný færsla">
 <!ENTITY zotero.preferences.keys.newNote "Ný athugasemd">
-<!ENTITY zotero.preferences.keys.openZotero "Opna/Loka Juris-M svæði">
+<!ENTITY zotero.preferences.keys.openZotero "Opna/Loka Jurism svæði">
 <!ENTITY zotero.preferences.keys.overrideGlobal "Try to override conflicting shortcuts">
 <!ENTITY zotero.preferences.keys.quicksearch "Flýtileit">
 <!ENTITY zotero.preferences.keys.saveToZotero "Vista í Jurism (tákn birt í vefslóðareit)">
@@ -99,7 +99,7 @@
 <!ENTITY zotero.preferences.lang.csl "CSL:">
 <!ENTITY zotero.preferences.lang.display "Display">
 <!ENTITY zotero.preferences.lang.inCitationsAndBibliographies "In citations and bibliographies">
-<!ENTITY zotero.preferences.lang.insideZotero "Juris-M UI">
+<!ENTITY zotero.preferences.lang.insideZotero "Jurism UI">
 <!ENTITY zotero.preferences.lang.institutions "Institutions:">
 <!ENTITY zotero.preferences.lang.journals "Journals:">
 <!ENTITY zotero.preferences.lang.languageList "Languages for Use in Metadata">
@@ -184,7 +184,7 @@
 <!ENTITY zotero.preferences.quickCopy.dragLimit "Afvirkja flýtiafrit þegar dregnar eru fleiri en">
 <!ENTITY zotero.preferences.quickCopy.itemFormat "Item Format:">
 <!ENTITY zotero.preferences.quickCopy.linkCitationFormReverse "Use citation form as default">
-<!ENTITY zotero.preferences.quickCopy.linkOption "Include Juris-M link wrappers in QuickCopy citations">
+<!ENTITY zotero.preferences.quickCopy.linkOption "Include Jurism link wrappers in QuickCopy citations">
 <!ENTITY zotero.preferences.quickCopy.macWarning "Athugið: Upplýsingar um letursnið glatast í Mac OS X stýrikerfinu.">
 <!ENTITY zotero.preferences.quickCopy.noteFormat "Note Format:">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.domainPath "Lén/Slóð">
@@ -202,7 +202,7 @@
 <!ENTITY zotero.preferences.search.indexStats.words "Orð:">
 <!ENTITY zotero.preferences.search.pdfIndexing "PDF innihaldsskráning">
 <!ENTITY zotero.preferences.settings "Stillingar">
-<!ENTITY zotero.preferences.showIn "Hlaða Juris-M í:">
+<!ENTITY zotero.preferences.showIn "Hlaða Jurism í:">
 <!ENTITY zotero.preferences.showIn.appTab "Flipa í smáforriti">
 <!ENTITY zotero.preferences.showIn.browserPane "Nýjum vafraglugga">
 <!ENTITY zotero.preferences.showIn.separateTab "Nýjum flipa">
@@ -256,5 +256,5 @@
 <!ENTITY zotero.preferences.trashAutoEmptyDaysPre "Sjálfvirkt fjarlæja færslur í ruslakörfu sem voru settar þar fyrir meira en">
 <!ENTITY zotero.preferences.updateNow "Uppfæra núna">
 <!ENTITY zotero.preferences.userInterface "Notendaviðmót">
-<!ENTITY zotero.preferences.zoteroDotOrgVersionHeader "Heimila zotero.org að aðlaga innihald fengið frá þeirri útgáfu Juris-M sem nú er í notkun">
-<!ENTITY zotero.preferences.zoteroDotOrgVersionHeader.tooltip "Ef virkjað, þá mun sú útgáfa Juris-M sem nú er í notkun verða tekin með í HTTP beiðnum til zotero.org.">
+<!ENTITY zotero.preferences.zoteroDotOrgVersionHeader "Heimila zotero.org að aðlaga innihald fengið frá þeirri útgáfu Jurism sem nú er í notkun">
+<!ENTITY zotero.preferences.zoteroDotOrgVersionHeader.tooltip "Ef virkjað, þá mun sú útgáfa Jurism sem nú er í notkun verða tekin með í HTTP beiðnum til zotero.org.">

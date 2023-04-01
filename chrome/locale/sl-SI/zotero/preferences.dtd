@@ -45,8 +45,8 @@
 <!ENTITY zotero.preferences.debugOutputLogging.clearOutput "Počisti izhod">
 <!ENTITY zotero.preferences.debugOutputLogging.enableAfterRestart "Omogoči po ponovnem zagonu">
 <!ENTITY zotero.preferences.debugOutputLogging.linesLogged "zabeleženih vrstic">
-<!ENTITY zotero.preferences.debugOutputLogging.message "Izhod razhroščevanja lahko pomaga razvijalcem Zotera pri diagnostiki težav v Zoteru. Beleženje razhroščevanja upočasni Juris-M, zato ga v splošnem pustite onemogočenega, razen če razvijalec Zotera zaprosi za izhod razhroščevanja.">
-<!ENTITY zotero.preferences.debugOutputLogging.submitToServer "Objavi na strežniku Juris-M">
+<!ENTITY zotero.preferences.debugOutputLogging.message "Izhod razhroščevanja lahko pomaga razvijalcem Zotera pri diagnostiki težav v Zoteru. Beleženje razhroščevanja upočasni Jurism, zato ga v splošnem pustite onemogočenega, razen če razvijalec Zotera zaprosi za izhod razhroščevanja.">
+<!ENTITY zotero.preferences.debugOutputLogging.submitToServer "Objavi na strežniku Jurism">
 <!ENTITY zotero.preferences.debugOutputLogging.viewOutput "Pokaži izhod">
 <!ENTITY zotero.preferences.default "Privzeto:">
 <!ENTITY zotero.preferences.downloadAssociatedFiles "Samodejno pripni pridružene PDF-je in druge datoteke pri shranjevanju vnosov">
@@ -87,7 +87,7 @@
 <!ENTITY zotero.preferences.keys.library "Knjižnica">
 <!ENTITY zotero.preferences.keys.newItem "Ustvari nov vnos">
 <!ENTITY zotero.preferences.keys.newNote "Ustvari novo opombo">
-<!ENTITY zotero.preferences.keys.openZotero "Odpri/zapri podokno Juris-M">
+<!ENTITY zotero.preferences.keys.openZotero "Odpri/zapri podokno Jurism">
 <!ENTITY zotero.preferences.keys.overrideGlobal "Poskusi preglasiti sporne tipke za bližnjice">
 <!ENTITY zotero.preferences.keys.quicksearch "Hitro iskanje">
 <!ENTITY zotero.preferences.keys.saveToZotero "Shrani v Jurism (ikona v naslovni vrstici)">
@@ -99,7 +99,7 @@
 <!ENTITY zotero.preferences.lang.csl "CSL:">
 <!ENTITY zotero.preferences.lang.display "Display">
 <!ENTITY zotero.preferences.lang.inCitationsAndBibliographies "In citations and bibliographies">
-<!ENTITY zotero.preferences.lang.insideZotero "Juris-M UI">
+<!ENTITY zotero.preferences.lang.insideZotero "Jurism UI">
 <!ENTITY zotero.preferences.lang.institutions "Institutions:">
 <!ENTITY zotero.preferences.lang.journals "Journals:">
 <!ENTITY zotero.preferences.lang.languageList "Languages for Use in Metadata">
@@ -184,7 +184,7 @@
 <!ENTITY zotero.preferences.quickCopy.dragLimit "Onemogoči Hitro kopiranje ob vleki več kot">
 <!ENTITY zotero.preferences.quickCopy.itemFormat "Item Format:">
 <!ENTITY zotero.preferences.quickCopy.linkCitationFormReverse "Use citation form as default">
-<!ENTITY zotero.preferences.quickCopy.linkOption "Include Juris-M link wrappers in QuickCopy citations">
+<!ENTITY zotero.preferences.quickCopy.linkOption "Include Jurism link wrappers in QuickCopy citations">
 <!ENTITY zotero.preferences.quickCopy.macWarning "Opomba: Oblikovanje besedila bo na Mac OS X izgubljeno.">
 <!ENTITY zotero.preferences.quickCopy.noteFormat "Note Format:">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.domainPath "Domena/pot">
@@ -202,7 +202,7 @@
 <!ENTITY zotero.preferences.search.indexStats.words "Besed:">
 <!ENTITY zotero.preferences.search.pdfIndexing "Indeksiranje PDF">
 <!ENTITY zotero.preferences.settings "Nastavitve">
-<!ENTITY zotero.preferences.showIn "Naloži Juris-M v:">
+<!ENTITY zotero.preferences.showIn "Naloži Jurism v:">
 <!ENTITY zotero.preferences.showIn.appTab "zavihku programa">
 <!ENTITY zotero.preferences.showIn.browserPane "podoknu brskalnika">
 <!ENTITY zotero.preferences.showIn.separateTab "ločenem zavihku">
@@ -232,7 +232,7 @@
 <!ENTITY zotero.preferences.sync.reset "Ponastavi">
 <!ENTITY zotero.preferences.sync.reset.button "Ponastavi ...">
 <!ENTITY zotero.preferences.sync.reset.fullSync "Polno usklajevanje">
-<!ENTITY zotero.preferences.sync.reset.fullSync.desc "Spoji krajevne podatke Juris-M s podatki s strežnika, pri čemer prezri zgodovino usklajevanja.">
+<!ENTITY zotero.preferences.sync.reset.fullSync.desc "Spoji krajevne podatke Jurism s podatki s strežnika, pri čemer prezri zgodovino usklajevanja.">
 <!ENTITY zotero.preferences.sync.reset.resetDataSyncHistory "Ponastavi zgodovino usklajevanja podatkov">
 <!ENTITY zotero.preferences.sync.reset.resetDataSyncHistory.desc "Spoji krajevne podatke s podatki s strežnika, pri čemer prezri zgodovino usklajevanja.">
 <!ENTITY zotero.preferences.sync.reset.resetFileSyncHistory "Ponastavi zgodovino usklajevanja datotek">

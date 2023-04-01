@@ -39,14 +39,14 @@
 <!ENTITY zotero.context.addStandaloneNote "Add Standalone Note">
 <!ENTITY zotero.context.addStandaloneNoteFromAnnotations "Add Standalone Note from Annotations">
 <!ENTITY zotero.context.editInWindow "Edit in a Separate Window">
-<!ENTITY zotero.contextMenu.addTextToCurrentNote "Bæta vali á Juris-M minnisblað">
-<!ENTITY zotero.contextMenu.addTextToNewNote "Útbúa Juris-M færslu og minnisblað út frá vali">
-<!ENTITY zotero.contextMenu.saveImageAsItem "Vista mynd sem Juris-M færslu">
-<!ENTITY zotero.contextMenu.saveLinkAsItem "Vista slóð sem Juris-M færslu">
+<!ENTITY zotero.contextMenu.addTextToCurrentNote "Bæta vali á Jurism minnisblað">
+<!ENTITY zotero.contextMenu.addTextToNewNote "Útbúa Jurism færslu og minnisblað út frá vali">
+<!ENTITY zotero.contextMenu.saveImageAsItem "Vista mynd sem Jurism færslu">
+<!ENTITY zotero.contextMenu.saveLinkAsItem "Vista slóð sem Jurism færslu">
 <!ENTITY zotero.createParent.button.manual "Manual Entry">
 <!ENTITY zotero.createParent.title "Create Parent Item">
-<!ENTITY zotero.downloadManager.label "Vista í Juris-M">
-<!ENTITY zotero.downloadManager.noPDFTools.description "Til að nota þessa aðgerð verður þú fyrst að setja upp PDF verkfærin á leitarspjaldinu í Juris-M kjörstillingum.">
+<!ENTITY zotero.downloadManager.label "Vista í Jurism">
+<!ENTITY zotero.downloadManager.noPDFTools.description "Til að nota þessa aðgerð verður þú fyrst að setja upp PDF verkfærin á leitarspjaldinu í Jurism kjörstillingum.">
 <!ENTITY zotero.downloadManager.saveToLibrary.description "Ekki er hægt að vista viðhengi í því safni sem nú er valið. Þessi færsla verður í staðinn vistuð í færslusafninu þínu.">
 <!ENTITY zotero.duplicatesMerge.fieldSelect "Veldu svæði sem nota skal frá öðrum útgáfum af færslunni:">
 <!ENTITY zotero.duplicatesMerge.versionSelect "Veldu útgáfuna af þeirri færslu sem nota skal sem móðurfærslu:">
@@ -56,7 +56,7 @@
 <!ENTITY zotero.errorReport.submissionInProgress "Bíddu aðeins á meðan villuskýrsla er send.">
 <!ENTITY zotero.errorReport.submitted "Villuskýrsla þín hefur verið send.">
 <!ENTITY zotero.errorReport.title "Jurism villutilkynning">
-<!ENTITY zotero.errorReport.unrelatedMessages "Hér gætu einnig verið skilaboð ótengd Juris-M.">
+<!ENTITY zotero.errorReport.unrelatedMessages "Hér gætu einnig verið skilaboð ótengd Jurism.">
 <!ENTITY zotero.exportOptions.format.label "Snið:">
 <!ENTITY zotero.exportOptions.title "Flytja út…">
 <!ENTITY zotero.exportOptions.translatorOptions.label "Þýðingarstillingar">
@@ -144,7 +144,7 @@
 <!ENTITY zotero.integration.prefs.lang.titles "Titles:">
 <!ENTITY zotero.integration.prefs.lang.translation "Translation">
 <!ENTITY zotero.integration.prefs.lang.transliteration "Transliteration">
-<!ENTITY zotero.integration.prefs.storeReferences.caption "Vistun tilvísana í skjali veldur lítilsháttar stækkun skjalanna, en leyfir þér að deila þínum skjölum með öðrum án þess að notar Juris-M tól. Til að uppfæra skjöl sem voru búin til með þessari tilvísunaraðferð þarf að nota Juris-M útgáfu 3.0 eða síðari útgáfur.">
+<!ENTITY zotero.integration.prefs.storeReferences.caption "Vistun tilvísana í skjali veldur lítilsháttar stækkun skjalanna, en leyfir þér að deila þínum skjölum með öðrum án þess að notar Jurism tól. Til að uppfæra skjöl sem voru búin til með þessari tilvísunaraðferð þarf að nota Jurism útgáfu 3.0 eða síðari útgáfur.">
 <!ENTITY zotero.integration.prefs.storeReferences.label "Vista tilvísanir í skjali">
 <!ENTITY zotero.integration.prefs.suppressTrailingPunctuation.caption "When this option is enabled, all trailing punctuation will be dropped in note styles. To selectively drop trailing punctuation on individual citations, disable this option, and set suppression on each citation directly.">
 <!ENTITY zotero.integration.prefs.suppressTrailingPunctuation.label "Suppress all trailing punctuation">
@@ -284,7 +284,7 @@
 <!ENTITY zotero.selectitems.intro.label "Veldu þær færslur sem þú vilt að bætist í færslusafnið þitt">
 <!ENTITY zotero.selectitems.select.label "Í lagi">
 <!ENTITY zotero.selectitems.title "Veldu færslur">
-<!ENTITY zotero.sync.button "Samhæfa Juris-M netþjóni">
+<!ENTITY zotero.sync.button "Samhæfa Jurism netþjóni">
 <!ENTITY zotero.sync.error "Sæmhæfingarvilla">
 <!ENTITY zotero.sync.longTagFixer.character "bókstaf">
 <!ENTITY zotero.sync.longTagFixer.characters "bókstafi">
@@ -375,7 +375,7 @@
 <!ENTITY zotero.upgrade.changeLogAfterLink "til að sjá hvað er nýtt.">
 <!ENTITY zotero.upgrade.changeLogBeforeLink "Hægt er að skoða">
 <!ENTITY zotero.upgrade.changeLogLink "breytingafærsluskrána">
-<!ENTITY zotero.upgrade.ifZoteroInfo "If you are migrating from official Juris-M/Juris-M to MLZ, the next step of the upgrade process will convert your database for use with MLZ.">
+<!ENTITY zotero.upgrade.ifZoteroInfo "If you are migrating from official Jurism/Jurism to MLZ, the next step of the upgrade process will convert your database for use with MLZ.">
 <!ENTITY zotero.upgrade.ifZoteroInfoLabel "Note:">
 <!ENTITY zotero.upgrade.majorUpgrade "Þetta er alhliða uppfærsla.">
 <!ENTITY zotero.upgrade.majorUpgradeAfterLink "áður en haldið er áfram.">

@@ -45,8 +45,8 @@
 <!ENTITY zotero.preferences.debugOutputLogging.clearOutput "출력 지우기">
 <!ENTITY zotero.preferences.debugOutputLogging.enableAfterRestart "재시작 후 사용">
 <!ENTITY zotero.preferences.debugOutputLogging.linesLogged "줄 기록됨">
-<!ENTITY zotero.preferences.debugOutputLogging.message "디버그 출력은 Juris-M 개발자가 문제를 해결하는데 도움을 줍니다. 디버그 로깅은 Juris-M의 실행속도를 저하시킵니다. 따라서 Juris-M 개발자가 디버그 출력을 요구하지 않는한 사용하지 마십시오.">
-<!ENTITY zotero.preferences.debugOutputLogging.submitToServer "Juris-M 서버에 제출">
+<!ENTITY zotero.preferences.debugOutputLogging.message "디버그 출력은 Jurism 개발자가 문제를 해결하는데 도움을 줍니다. 디버그 로깅은 Jurism의 실행속도를 저하시킵니다. 따라서 Jurism 개발자가 디버그 출력을 요구하지 않는한 사용하지 마십시오.">
+<!ENTITY zotero.preferences.debugOutputLogging.submitToServer "Jurism 서버에 제출">
 <!ENTITY zotero.preferences.debugOutputLogging.viewOutput "출력 보기">
 <!ENTITY zotero.preferences.default "기본값:">
 <!ENTITY zotero.preferences.downloadAssociatedFiles "항목 저장시 연관된 PDF 및 다른 파일을 자동으로 첨부">
@@ -87,7 +87,7 @@
 <!ENTITY zotero.preferences.keys.library "라이브러리">
 <!ENTITY zotero.preferences.keys.newItem "새 항목 작성">
 <!ENTITY zotero.preferences.keys.newNote "새 노트 ">
-<!ENTITY zotero.preferences.keys.openZotero "Juris-M 패널 열기/닫기">
+<!ENTITY zotero.preferences.keys.openZotero "Jurism 패널 열기/닫기">
 <!ENTITY zotero.preferences.keys.overrideGlobal "충돌하는 단축키는 무시합니다.">
 <!ENTITY zotero.preferences.keys.quicksearch "빠른 검색">
 <!ENTITY zotero.preferences.keys.saveToZotero "Jurism에 저장 (주소 표시줄 아이콘)">
@@ -99,7 +99,7 @@
 <!ENTITY zotero.preferences.lang.csl "CSL:">
 <!ENTITY zotero.preferences.lang.display "Display">
 <!ENTITY zotero.preferences.lang.inCitationsAndBibliographies "In citations and bibliographies">
-<!ENTITY zotero.preferences.lang.insideZotero "Juris-M UI">
+<!ENTITY zotero.preferences.lang.insideZotero "Jurism UI">
 <!ENTITY zotero.preferences.lang.institutions "Institutions:">
 <!ENTITY zotero.preferences.lang.journals "Journals:">
 <!ENTITY zotero.preferences.lang.languageList "Languages for Use in Metadata">
@@ -184,7 +184,7 @@
 <!ENTITY zotero.preferences.quickCopy.dragLimit "다음 항목 이상을 끌어넣을 경우 빠른 복사 동작 안함:">
 <!ENTITY zotero.preferences.quickCopy.itemFormat "Item Format:">
 <!ENTITY zotero.preferences.quickCopy.linkCitationFormReverse "Use citation form as default">
-<!ENTITY zotero.preferences.quickCopy.linkOption "Include Juris-M link wrappers in QuickCopy citations">
+<!ENTITY zotero.preferences.quickCopy.linkOption "Include Jurism link wrappers in QuickCopy citations">
 <!ENTITY zotero.preferences.quickCopy.macWarning "주: Rich-text 형식은 Mac OS X 에서는 손실됩니다.">
 <!ENTITY zotero.preferences.quickCopy.noteFormat "Note Format:">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.domainPath "도메인/경로">
@@ -202,7 +202,7 @@
 <!ENTITY zotero.preferences.search.indexStats.words "단어:">
 <!ENTITY zotero.preferences.search.pdfIndexing "PDF 색인">
 <!ENTITY zotero.preferences.settings "설정">
-<!ENTITY zotero.preferences.showIn "Juris-M 창을 열 곳:">
+<!ENTITY zotero.preferences.showIn "Jurism 창을 열 곳:">
 <!ENTITY zotero.preferences.showIn.appTab "어플리케이션 탭">
 <!ENTITY zotero.preferences.showIn.browserPane "브라우저 창">
 <!ENTITY zotero.preferences.showIn.separateTab "분리 탭">
@@ -256,5 +256,5 @@
 <!ENTITY zotero.preferences.trashAutoEmptyDaysPre "휴지통에서 자동 삭제되는 시점 : 휴지통으로 이동 후">
 <!ENTITY zotero.preferences.updateNow "지금 업데이트">
 <!ENTITY zotero.preferences.userInterface "사용자 인터페이스">
-<!ENTITY zotero.preferences.zoteroDotOrgVersionHeader "zotero.org가 현재 Juris-M 버전의 정보를 사용하여 기능을 개선하도록 허락">
-<!ENTITY zotero.preferences.zoteroDotOrgVersionHeader.tooltip "이 기능을 선택하면, zotero.org로 보내는 HTTP 요청에 현재 Juris-M 버전을 덧붙입니다.">
+<!ENTITY zotero.preferences.zoteroDotOrgVersionHeader "zotero.org가 현재 Jurism 버전의 정보를 사용하여 기능을 개선하도록 허락">
+<!ENTITY zotero.preferences.zoteroDotOrgVersionHeader.tooltip "이 기능을 선택하면, zotero.org로 보내는 HTTP 요청에 현재 Jurism 버전을 덧붙입니다.">

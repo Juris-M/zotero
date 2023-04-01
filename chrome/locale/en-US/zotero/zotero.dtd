@@ -39,14 +39,14 @@
 <!ENTITY zotero.context.addStandaloneNote "Add Standalone Note">
 <!ENTITY zotero.context.addStandaloneNoteFromAnnotations "Add Standalone Note from Annotations">
 <!ENTITY zotero.context.editInWindow "Edit in a Separate Window">
-<!ENTITY zotero.contextMenu.addTextToCurrentNote "Add Selection to Juris-M Note">
-<!ENTITY zotero.contextMenu.addTextToNewNote "Create Juris-M Item and Note from Selection">
-<!ENTITY zotero.contextMenu.saveImageAsItem "Save Image As Juris-M Item">
-<!ENTITY zotero.contextMenu.saveLinkAsItem "Save Link As Juris-M Item">
+<!ENTITY zotero.contextMenu.addTextToCurrentNote "Add Selection to Jurism Note">
+<!ENTITY zotero.contextMenu.addTextToNewNote "Create Jurism Item and Note from Selection">
+<!ENTITY zotero.contextMenu.saveImageAsItem "Save Image As Jurism Item">
+<!ENTITY zotero.contextMenu.saveLinkAsItem "Save Link As Jurism Item">
 <!ENTITY zotero.createParent.button.manual "Manual Entry">
 <!ENTITY zotero.createParent.title "Create Parent Item">
-<!ENTITY zotero.downloadManager.label "Save to Juris-M">
-<!ENTITY zotero.downloadManager.noPDFTools.description "To use this feature, you must first install the PDF tools in the Search pane of the Juris-M preferences.">
+<!ENTITY zotero.downloadManager.label "Save to Jurism">
+<!ENTITY zotero.downloadManager.noPDFTools.description "To use this feature, you must first install the PDF tools in the Search pane of the Jurism preferences.">
 <!ENTITY zotero.downloadManager.saveToLibrary.description "Attachments cannot be saved to the currently selected library. This item will be saved to your library instead.">
 <!ENTITY zotero.duplicatesMerge.fieldSelect "Select fields to keep from other versions of the item:">
 <!ENTITY zotero.duplicatesMerge.versionSelect "Choose the version of the item to use as the master item:">
@@ -56,7 +56,7 @@
 <!ENTITY zotero.errorReport.submissionInProgress "Please wait while the error report is submitted.">
 <!ENTITY zotero.errorReport.submitted "Your error report has been submitted.">
 <!ENTITY zotero.errorReport.title "Jurism Error Report">
-<!ENTITY zotero.errorReport.unrelatedMessages "This may include messages unrelated to Juris-M.">
+<!ENTITY zotero.errorReport.unrelatedMessages "This may include messages unrelated to Jurism.">
 <!ENTITY zotero.exportOptions.format.label "Format:">
 <!ENTITY zotero.exportOptions.title "Export…">
 <!ENTITY zotero.exportOptions.translatorOptions.label "Translator Options">
@@ -144,7 +144,7 @@
 <!ENTITY zotero.integration.prefs.lang.titles "Titles:">
 <!ENTITY zotero.integration.prefs.lang.translation "lang">
 <!ENTITY zotero.integration.prefs.lang.transliteration "script">
-<!ENTITY zotero.integration.prefs.storeReferences.caption "Storing references in your document slightly increases file size, but will allow you to share your document with others without using a Juris-M group. Juris-M/Juris-M 3.0 or later is required to update documents created with this option.">
+<!ENTITY zotero.integration.prefs.storeReferences.caption "Storing references in your document slightly increases file size, but will allow you to share your document with others without using a Jurism group. Jurism/Jurism 3.0 or later is required to update documents created with this option.">
 <!ENTITY zotero.integration.prefs.storeReferences.label "Store references in document">
 <!ENTITY zotero.integration.prefs.suppressTrailingPunctuation.caption "When this option is enabled, all trailing punctuation will be dropped in note styles. To selectively drop trailing punctuation on individual citations, disable this option, and set suppression on each citation directly.">
 <!ENTITY zotero.integration.prefs.suppressTrailingPunctuation.label "Suppress all trailing punctuation">
@@ -284,7 +284,7 @@
 <!ENTITY zotero.selectitems.intro.label "Select which items you'd like to add to your library">
 <!ENTITY zotero.selectitems.select.label "OK">
 <!ENTITY zotero.selectitems.title "Select Items">
-<!ENTITY zotero.sync.button "Sync with Juris-M Server">
+<!ENTITY zotero.sync.button "Sync with Jurism Server">
 <!ENTITY zotero.sync.error "Sync Error">
 <!ENTITY zotero.sync.longTagFixer.character "character">
 <!ENTITY zotero.sync.longTagFixer.characters "characters">
@@ -375,7 +375,7 @@
 <!ENTITY zotero.upgrade.changeLogAfterLink "to find out what's new.">
 <!ENTITY zotero.upgrade.changeLogBeforeLink "Please see">
 <!ENTITY zotero.upgrade.changeLogLink "the changelog">
-<!ENTITY zotero.upgrade.ifZoteroInfo "If this is a first-time install on a computer with an existing Juris-M/Juris-M database, Juris-M will make a copy of it, and use the copy as your initial Juris-M database. You can sync Juris-M to your original Juris-M account. You can return to official Juris-M at any time by reinstalling or reenabling the official Juris-M client.">
+<!ENTITY zotero.upgrade.ifZoteroInfo "If this is a first-time install on a computer with an existing Jurism/Jurism database, Jurism will make a copy of it, and use the copy as your initial Jurism database. You can sync Jurism to your original Jurism account. You can return to official Jurism at any time by reinstalling or reenabling the official Jurism client.">
 <!ENTITY zotero.upgrade.ifZoteroInfoLabel "Note:">
 <!ENTITY zotero.upgrade.majorUpgrade "This is a major upgrade.">
 <!ENTITY zotero.upgrade.majorUpgradeAfterLink "before continuing.">

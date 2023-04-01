@@ -45,8 +45,8 @@
 <!ENTITY zotero.preferences.debugOutputLogging.clearOutput "ล้างผลลัพธ์">
 <!ENTITY zotero.preferences.debugOutputLogging.enableAfterRestart "ใช้งานได้หลังจากเริ่มโปรแกรมใหม่">
 <!ENTITY zotero.preferences.debugOutputLogging.linesLogged "ลงบันทึกจำนวนบรรทัด">
-<!ENTITY zotero.preferences.debugOutputLogging.message "การส่งออกการแก้จุดบกพร่องสามารถช่วยผู้พัฒนา Juris-M ให้รู้ถึงปัญหา การบันทึกแก้จุดบอกพร่องจะทำให้ Juris-M ช้าลง ดังนั้นคุณไม่ควรใช้ตัวเลือกนี้เว้นแต่ผู้พัฒนา Juris-M จะร้องขอให้ส่งออกการแก้จุดบกพร่อง">
-<!ENTITY zotero.preferences.debugOutputLogging.submitToServer "ส่งไปเครื่องบริการของ Juris-M">
+<!ENTITY zotero.preferences.debugOutputLogging.message "การส่งออกการแก้จุดบกพร่องสามารถช่วยผู้พัฒนา Jurism ให้รู้ถึงปัญหา การบันทึกแก้จุดบอกพร่องจะทำให้ Jurism ช้าลง ดังนั้นคุณไม่ควรใช้ตัวเลือกนี้เว้นแต่ผู้พัฒนา Jurism จะร้องขอให้ส่งออกการแก้จุดบกพร่อง">
+<!ENTITY zotero.preferences.debugOutputLogging.submitToServer "ส่งไปเครื่องบริการของ Jurism">
 <!ENTITY zotero.preferences.debugOutputLogging.viewOutput "ดูผลลัพธ์">
 <!ENTITY zotero.preferences.default "ค่าโดยปริยาย:">
 <!ENTITY zotero.preferences.downloadAssociatedFiles "แนบแฟ้ม PDF และแฟ้มอื่นโดยอัตโนมัติเมื่อบันทึกรายการ">
@@ -87,7 +87,7 @@
 <!ENTITY zotero.preferences.keys.library "ไลบรารี่">
 <!ENTITY zotero.preferences.keys.newItem "สร้างรายการใหม่">
 <!ENTITY zotero.preferences.keys.newNote "สร้างหมายเหตุใหม่">
-<!ENTITY zotero.preferences.keys.openZotero "เปิด/ปิดแผง Juris-M">
+<!ENTITY zotero.preferences.keys.openZotero "เปิด/ปิดแผง Jurism">
 <!ENTITY zotero.preferences.keys.overrideGlobal "พยายามครอบงำทางลัดที่ขัดแย้งกัน">
 <!ENTITY zotero.preferences.keys.quicksearch "ค้นหาแบบเร็ว">
 <!ENTITY zotero.preferences.keys.saveToZotero "Save to Jurism (address bar icon)">
@@ -99,7 +99,7 @@
 <!ENTITY zotero.preferences.lang.csl "CSL:">
 <!ENTITY zotero.preferences.lang.display "Display">
 <!ENTITY zotero.preferences.lang.inCitationsAndBibliographies "In citations and bibliographies">
-<!ENTITY zotero.preferences.lang.insideZotero "Juris-M UI">
+<!ENTITY zotero.preferences.lang.insideZotero "Jurism UI">
 <!ENTITY zotero.preferences.lang.institutions "Institutions:">
 <!ENTITY zotero.preferences.lang.journals "Journals:">
 <!ENTITY zotero.preferences.lang.languageList "Languages for Use in Metadata">
@@ -184,7 +184,7 @@
 <!ENTITY zotero.preferences.quickCopy.dragLimit "ไม่ใช้การสำเนาแบบเร็วเมื่อลากรายการมากกว่า ">
 <!ENTITY zotero.preferences.quickCopy.itemFormat "Item Format:">
 <!ENTITY zotero.preferences.quickCopy.linkCitationFormReverse "Use citation form as default">
-<!ENTITY zotero.preferences.quickCopy.linkOption "Include Juris-M link wrappers in QuickCopy citations">
+<!ENTITY zotero.preferences.quickCopy.linkOption "Include Jurism link wrappers in QuickCopy citations">
 <!ENTITY zotero.preferences.quickCopy.macWarning "หมายเหตุ: การจัดรูปแบบจะสูญหายไปบน Mac OS X">
 <!ENTITY zotero.preferences.quickCopy.noteFormat "Note Format:">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.domainPath "โดเมน/พาธ">
@@ -202,7 +202,7 @@
 <!ENTITY zotero.preferences.search.indexStats.words "คำ:">
 <!ENTITY zotero.preferences.search.pdfIndexing "ทำดัชนี PDF">
 <!ENTITY zotero.preferences.settings "ตั้งค่า">
-<!ENTITY zotero.preferences.showIn "โหลด Juris-M ใน:">
+<!ENTITY zotero.preferences.showIn "โหลด Jurism ใน:">
 <!ENTITY zotero.preferences.showIn.appTab "แท็บโปรแกรม">
 <!ENTITY zotero.preferences.showIn.browserPane "ช่องเบราเซอร์">
 <!ENTITY zotero.preferences.showIn.separateTab "แยกแท็บ">
@@ -256,5 +256,5 @@
 <!ENTITY zotero.preferences.trashAutoEmptyDaysPre "ล้างรายการในถังขยะที่เคยลบนานกว่า ">
 <!ENTITY zotero.preferences.updateNow "อัพเดตเดี๋ยวนี้">
 <!ENTITY zotero.preferences.userInterface "ส่วนต่อประสานกับผู้ใช้">
-<!ENTITY zotero.preferences.zoteroDotOrgVersionHeader "ยินยอมให้ zotero.org ปรับปรุงข้อมูลตามรุ่นปัจจุบันของ Juris-M">
-<!ENTITY zotero.preferences.zoteroDotOrgVersionHeader.tooltip "ถ้าเป็นไปได้ Juris-M รุ่นปัจจุบันจะถูกเพิ่มใน HTTP โดยร้องขอไปยัง zotero.org">
+<!ENTITY zotero.preferences.zoteroDotOrgVersionHeader "ยินยอมให้ zotero.org ปรับปรุงข้อมูลตามรุ่นปัจจุบันของ Jurism">
+<!ENTITY zotero.preferences.zoteroDotOrgVersionHeader.tooltip "ถ้าเป็นไปได้ Jurism รุ่นปัจจุบันจะถูกเพิ่มใน HTTP โดยร้องขอไปยัง zotero.org">

@@ -45,8 +45,8 @@
 <!ENTITY zotero.preferences.debugOutputLogging.clearOutput "Wyczyść wyjście">
 <!ENTITY zotero.preferences.debugOutputLogging.enableAfterRestart "Włącz po ponownym uruchomieniu">
 <!ENTITY zotero.preferences.debugOutputLogging.linesLogged "wierszy zapisano">
-<!ENTITY zotero.preferences.debugOutputLogging.message "Informacje debugowania mogą pomóć programistom Juris-M wykryć problemy w Juris-M. Zapisywanie informacji debugowania spowalnia pracę Juris-M, więc zwykle powinno sie zostawić tą opcję wyłączoną, chyba że programista Juris-M zażądał takiej informacji.">
-<!ENTITY zotero.preferences.debugOutputLogging.submitToServer "Wyślij na serwer Juris-M">
+<!ENTITY zotero.preferences.debugOutputLogging.message "Informacje debugowania mogą pomóć programistom Jurism wykryć problemy w Jurism. Zapisywanie informacji debugowania spowalnia pracę Jurism, więc zwykle powinno sie zostawić tą opcję wyłączoną, chyba że programista Jurism zażądał takiej informacji.">
+<!ENTITY zotero.preferences.debugOutputLogging.submitToServer "Wyślij na serwer Jurism">
 <!ENTITY zotero.preferences.debugOutputLogging.viewOutput "Pokaż wyjście">
 <!ENTITY zotero.preferences.default "Domyślna:">
 <!ENTITY zotero.preferences.downloadAssociatedFiles "Zapisując element dołączaj powiązane pliki PDF i inne">
@@ -87,7 +87,7 @@
 <!ENTITY zotero.preferences.keys.library "Biblioteka">
 <!ENTITY zotero.preferences.keys.newItem "Utwórz nowy element">
 <!ENTITY zotero.preferences.keys.newNote "Utwórz nową notatkę">
-<!ENTITY zotero.preferences.keys.openZotero "Otwórz/Zamknij okno Juris-M">
+<!ENTITY zotero.preferences.keys.openZotero "Otwórz/Zamknij okno Jurism">
 <!ENTITY zotero.preferences.keys.overrideGlobal "Spróbuj pominąć powtarzające się skróty">
 <!ENTITY zotero.preferences.keys.quicksearch "Szybkie wyszukiwanie">
 <!ENTITY zotero.preferences.keys.saveToZotero "Zapisz w Jurism (ikona paska adresu)">
@@ -99,7 +99,7 @@
 <!ENTITY zotero.preferences.lang.csl "CSL:">
 <!ENTITY zotero.preferences.lang.display "Display">
 <!ENTITY zotero.preferences.lang.inCitationsAndBibliographies "In citations and bibliographies">
-<!ENTITY zotero.preferences.lang.insideZotero "Juris-M UI">
+<!ENTITY zotero.preferences.lang.insideZotero "Jurism UI">
 <!ENTITY zotero.preferences.lang.institutions "Institutions:">
 <!ENTITY zotero.preferences.lang.journals "Journals:">
 <!ENTITY zotero.preferences.lang.languageList "Languages for Use in Metadata">
@@ -184,7 +184,7 @@
 <!ENTITY zotero.preferences.quickCopy.dragLimit "Wyłącz Szybką kopię jeśli przeciągane jest więcej niż">
 <!ENTITY zotero.preferences.quickCopy.itemFormat "Item Format:">
 <!ENTITY zotero.preferences.quickCopy.linkCitationFormReverse "Use citation form as default">
-<!ENTITY zotero.preferences.quickCopy.linkOption "Include Juris-M link wrappers in QuickCopy citations">
+<!ENTITY zotero.preferences.quickCopy.linkOption "Include Jurism link wrappers in QuickCopy citations">
 <!ENTITY zotero.preferences.quickCopy.macWarning "Uwaga: formatowanie RTF zostanie utracone w systemie Mac OS X.">
 <!ENTITY zotero.preferences.quickCopy.noteFormat "Note Format:">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.domainPath "Domena/Ścieżka dostępu">
@@ -202,7 +202,7 @@
 <!ENTITY zotero.preferences.search.indexStats.words "Słowa:">
 <!ENTITY zotero.preferences.search.pdfIndexing "Indeksowanie plików PDF">
 <!ENTITY zotero.preferences.settings "Ustawienia">
-<!ENTITY zotero.preferences.showIn "Ładuj Juris-M w:">
+<!ENTITY zotero.preferences.showIn "Ładuj Jurism w:">
 <!ENTITY zotero.preferences.showIn.appTab "Zakładce aplikacji">
 <!ENTITY zotero.preferences.showIn.browserPane "Panelu przeglądarki">
 <!ENTITY zotero.preferences.showIn.separateTab "Oddzielnej zakładce">
@@ -232,7 +232,7 @@
 <!ENTITY zotero.preferences.sync.reset "Przywróć">
 <!ENTITY zotero.preferences.sync.reset.button "Przywróć...">
 <!ENTITY zotero.preferences.sync.reset.fullSync "Pełna synchronizacja">
-<!ENTITY zotero.preferences.sync.reset.fullSync.desc "Połącz lokalne dane Juris-M z danymi z serwera synchronizacji, ignorując historię synchronizacji.">
+<!ENTITY zotero.preferences.sync.reset.fullSync.desc "Połącz lokalne dane Jurism z danymi z serwera synchronizacji, ignorując historię synchronizacji.">
 <!ENTITY zotero.preferences.sync.reset.resetDataSyncHistory "Wyczyść historię synchronizacji danych">
 <!ENTITY zotero.preferences.sync.reset.resetDataSyncHistory.desc "Połącz lokalne dane ze zdalnymi, ignorując historię synchronizacji">
 <!ENTITY zotero.preferences.sync.reset.resetFileSyncHistory "Wyczyść historię synchronizacji plików">
@@ -256,5 +256,5 @@
 <!ENTITY zotero.preferences.trashAutoEmptyDaysPre "Automatycznie usuń z kosza elementy usunięte dawniej niż">
 <!ENTITY zotero.preferences.updateNow "Aktualizuj teraz">
 <!ENTITY zotero.preferences.userInterface "Interfejs użytkownika">
-<!ENTITY zotero.preferences.zoteroDotOrgVersionHeader "Pozwól zotero.org dostosować zawartość opierając się na aktualnej wersji Juris-M">
-<!ENTITY zotero.preferences.zoteroDotOrgVersionHeader.tooltip "Jeśli zaznaczone, bieżąca wersja Juris-M będzie dołączona w nagłówku HTTP podczas zapytań do zotero.org.">
+<!ENTITY zotero.preferences.zoteroDotOrgVersionHeader "Pozwól zotero.org dostosować zawartość opierając się na aktualnej wersji Jurism">
+<!ENTITY zotero.preferences.zoteroDotOrgVersionHeader.tooltip "Jeśli zaznaczone, bieżąca wersja Jurism będzie dołączona w nagłówku HTTP podczas zapytań do zotero.org.">

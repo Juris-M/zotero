@@ -45,8 +45,8 @@
 <!ENTITY zotero.preferences.debugOutputLogging.clearOutput "Clear Output">
 <!ENTITY zotero.preferences.debugOutputLogging.enableAfterRestart "Enable after restart">
 <!ENTITY zotero.preferences.debugOutputLogging.linesLogged "lines logged">
-<!ENTITY zotero.preferences.debugOutputLogging.message "Debug output can help Juris-M developers diagnose problems in Juris-M. Debug logging will slow down Juris-M, so you should generally leave it disabled unless a Juris-M developer requests debug output.">
-<!ENTITY zotero.preferences.debugOutputLogging.submitToServer "Submit to Juris-M Server">
+<!ENTITY zotero.preferences.debugOutputLogging.message "Debug output can help Jurism developers diagnose problems in Jurism. Debug logging will slow down Jurism, so you should generally leave it disabled unless a Jurism developer requests debug output.">
+<!ENTITY zotero.preferences.debugOutputLogging.submitToServer "Submit to Jurism Server">
 <!ENTITY zotero.preferences.debugOutputLogging.viewOutput "View Output">
 <!ENTITY zotero.preferences.default "Standard:">
 <!ENTITY zotero.preferences.downloadAssociatedFiles "Lagre tilknyttede PDF-filer og andre filer når du lagrer elementer">
@@ -87,7 +87,7 @@
 <!ENTITY zotero.preferences.keys.library "Bibliotek">
 <!ENTITY zotero.preferences.keys.newItem "Opprett et nytt element">
 <!ENTITY zotero.preferences.keys.newNote "Opprett et nytt notat">
-<!ENTITY zotero.preferences.keys.openZotero "Åpne/lukk Juris-M-panelet">
+<!ENTITY zotero.preferences.keys.openZotero "Åpne/lukk Jurism-panelet">
 <!ENTITY zotero.preferences.keys.overrideGlobal "Forsøk å overstyre snarveier i konflikt">
 <!ENTITY zotero.preferences.keys.quicksearch "Hurtigsøk">
 <!ENTITY zotero.preferences.keys.saveToZotero "Lagre til Jurism (adressefelt ikon)">
@@ -99,7 +99,7 @@
 <!ENTITY zotero.preferences.lang.csl "CSL:">
 <!ENTITY zotero.preferences.lang.display "Display">
 <!ENTITY zotero.preferences.lang.inCitationsAndBibliographies "In citations and bibliographies">
-<!ENTITY zotero.preferences.lang.insideZotero "Juris-M UI">
+<!ENTITY zotero.preferences.lang.insideZotero "Jurism UI">
 <!ENTITY zotero.preferences.lang.institutions "Institutions:">
 <!ENTITY zotero.preferences.lang.journals "Journals:">
 <!ENTITY zotero.preferences.lang.languageList "Languages for Use in Metadata">
@@ -184,7 +184,7 @@
 <!ENTITY zotero.preferences.quickCopy.dragLimit "Deaktiver hurtigkopi når du drar mer enn">
 <!ENTITY zotero.preferences.quickCopy.itemFormat "Item Format:">
 <!ENTITY zotero.preferences.quickCopy.linkCitationFormReverse "Use citation form as default">
-<!ENTITY zotero.preferences.quickCopy.linkOption "Include Juris-M link wrappers in QuickCopy citations">
+<!ENTITY zotero.preferences.quickCopy.linkOption "Include Jurism link wrappers in QuickCopy citations">
 <!ENTITY zotero.preferences.quickCopy.macWarning "Obs: Rik-tekst-formatering blir borte i Mac OS X.">
 <!ENTITY zotero.preferences.quickCopy.noteFormat "Note Format:">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.domainPath "Domene/sti">
@@ -202,7 +202,7 @@
 <!ENTITY zotero.preferences.search.indexStats.words "Ord:">
 <!ENTITY zotero.preferences.search.pdfIndexing "PDF-registrering">
 <!ENTITY zotero.preferences.settings "Innstillinger">
-<!ENTITY zotero.preferences.showIn "Load Juris-M in:">
+<!ENTITY zotero.preferences.showIn "Load Jurism in:">
 <!ENTITY zotero.preferences.showIn.appTab "App tab">
 <!ENTITY zotero.preferences.showIn.browserPane "Browser pane">
 <!ENTITY zotero.preferences.showIn.separateTab "Separate tab">
@@ -256,5 +256,5 @@
 <!ENTITY zotero.preferences.trashAutoEmptyDaysPre "Fjern automatisk elementer i papirkorgen slettet for mer enn">
 <!ENTITY zotero.preferences.updateNow "Oppdater nå">
 <!ENTITY zotero.preferences.userInterface "Brukergrensesnitt">
-<!ENTITY zotero.preferences.zoteroDotOrgVersionHeader "Allow zotero.org to customize content based on current Juris-M version">
-<!ENTITY zotero.preferences.zoteroDotOrgVersionHeader.tooltip "If enabled, the current Juris-M version will be added to HTTP requests to zotero.org.">
+<!ENTITY zotero.preferences.zoteroDotOrgVersionHeader "Allow zotero.org to customize content based on current Jurism version">
+<!ENTITY zotero.preferences.zoteroDotOrgVersionHeader.tooltip "If enabled, the current Jurism version will be added to HTTP requests to zotero.org.">

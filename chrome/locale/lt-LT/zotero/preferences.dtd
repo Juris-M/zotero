@@ -45,8 +45,8 @@
 <!ENTITY zotero.preferences.debugOutputLogging.clearOutput "Išvalyti išvedimą">
 <!ENTITY zotero.preferences.debugOutputLogging.enableAfterRestart "Įgalinti paleidus iš naujo">
 <!ENTITY zotero.preferences.debugOutputLogging.linesLogged "eilutė(s)(-ių) įrašyta ">
-<!ENTITY zotero.preferences.debugOutputLogging.message "Derinimo pranešimai Juris-M programuotojams gali padėti aptikti Juris-M nesklandumus. Derinimo pranešimų rašymas į žurnalą gali sulėtinti Juris-M darbą, tad šią funkciją siūlome naudoti tik tuomet, jei Juris-M programuotojai paprašo pateikti derinimo išvedimą.">
-<!ENTITY zotero.preferences.debugOutputLogging.submitToServer "Išsiųsti į Juris-M serverį">
+<!ENTITY zotero.preferences.debugOutputLogging.message "Derinimo pranešimai Jurism programuotojams gali padėti aptikti Jurism nesklandumus. Derinimo pranešimų rašymas į žurnalą gali sulėtinti Jurism darbą, tad šią funkciją siūlome naudoti tik tuomet, jei Jurism programuotojai paprašo pateikti derinimo išvedimą.">
+<!ENTITY zotero.preferences.debugOutputLogging.submitToServer "Išsiųsti į Jurism serverį">
 <!ENTITY zotero.preferences.debugOutputLogging.viewOutput "Rodyti išvedimą">
 <!ENTITY zotero.preferences.default "Numatyta:">
 <!ENTITY zotero.preferences.downloadAssociatedFiles "Įrašant įrašus, automatiškai prisegti susijusius PDF dokumentus ir kitus failus">
@@ -87,7 +87,7 @@
 <!ENTITY zotero.preferences.keys.library "Library">
 <!ENTITY zotero.preferences.keys.newItem "Sukurti naują įrašą">
 <!ENTITY zotero.preferences.keys.newNote "Sukurti naują pastabą">
-<!ENTITY zotero.preferences.keys.openZotero "Atverti/užverti Juris-M skydelį">
+<!ENTITY zotero.preferences.keys.openZotero "Atverti/užverti Jurism skydelį">
 <!ENTITY zotero.preferences.keys.overrideGlobal "Try to override conflicting shortcuts">
 <!ENTITY zotero.preferences.keys.quicksearch "Greita paieška">
 <!ENTITY zotero.preferences.keys.saveToZotero "Įrašyti į Jurism (ženkliukas adreso juostoje)">
@@ -99,7 +99,7 @@
 <!ENTITY zotero.preferences.lang.csl "CSL:">
 <!ENTITY zotero.preferences.lang.display "Display">
 <!ENTITY zotero.preferences.lang.inCitationsAndBibliographies "Documents">
-<!ENTITY zotero.preferences.lang.insideZotero "Juris-M">
+<!ENTITY zotero.preferences.lang.insideZotero "Jurism">
 <!ENTITY zotero.preferences.lang.institutions "Institutions:">
 <!ENTITY zotero.preferences.lang.journals "Journals:">
 <!ENTITY zotero.preferences.lang.languageList "Language tags">
@@ -184,7 +184,7 @@
 <!ENTITY zotero.preferences.quickCopy.dragLimit "Neleisti greitai kopijuoti, jei tempiama daugiau kaip">
 <!ENTITY zotero.preferences.quickCopy.itemFormat "Item Format:">
 <!ENTITY zotero.preferences.quickCopy.linkCitationFormReverse "Use citation form as default">
-<!ENTITY zotero.preferences.quickCopy.linkOption "Include Juris-M link wrappers in QuickCopy citations">
+<!ENTITY zotero.preferences.quickCopy.linkOption "Include Jurism link wrappers in QuickCopy citations">
 <!ENTITY zotero.preferences.quickCopy.macWarning "Pastaba: raiškiojo teksto formatavimas nebus išlaikomas Mac OS X sistemoje.">
 <!ENTITY zotero.preferences.quickCopy.noteFormat "Note Format:">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.domainPath "Sritis/kelias">
@@ -202,7 +202,7 @@
 <!ENTITY zotero.preferences.search.indexStats.words "Žodžių:">
 <!ENTITY zotero.preferences.search.pdfIndexing "PDF indeksavimas">
 <!ENTITY zotero.preferences.settings "Nuostatos">
-<!ENTITY zotero.preferences.showIn "Juris-M paleisdimas:">
+<!ENTITY zotero.preferences.showIn "Jurism paleisdimas:">
 <!ENTITY zotero.preferences.showIn.appTab "Programos kortelėje">
 <!ENTITY zotero.preferences.showIn.browserPane "Naršyklės skydelyje">
 <!ENTITY zotero.preferences.showIn.separateTab "Atskiroje kortelėje">
@@ -256,5 +256,5 @@
 <!ENTITY zotero.preferences.trashAutoEmptyDaysPre "Automatiškai šalinti šiukšlinės įrašus, senesnius nei">
 <!ENTITY zotero.preferences.updateNow "Atnaujinti dabar">
 <!ENTITY zotero.preferences.userInterface "Naudotojo sąsaja">
-<!ENTITY zotero.preferences.zoteroDotOrgVersionHeader "Leisti zotero.org derinti turinį pagal dabartinę Juris-M versiją">
-<!ENTITY zotero.preferences.zoteroDotOrgVersionHeader.tooltip "Jei parinktis įgalinta, dabartinė Juris-M versija bus automatiškai įtraukta į zotero.org HTTP užklausas.">
+<!ENTITY zotero.preferences.zoteroDotOrgVersionHeader "Leisti zotero.org derinti turinį pagal dabartinę Jurism versiją">
+<!ENTITY zotero.preferences.zoteroDotOrgVersionHeader.tooltip "Jei parinktis įgalinta, dabartinė Jurism versija bus automatiškai įtraukta į zotero.org HTTP užklausas.">

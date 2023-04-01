@@ -39,14 +39,14 @@
 <!ENTITY zotero.context.addStandaloneNote "Add Standalone Note">
 <!ENTITY zotero.context.addStandaloneNoteFromAnnotations "Add Standalone Note from Annotations">
 <!ENTITY zotero.context.editInWindow "Edit in a Separate Window">
-<!ENTITY zotero.contextMenu.addTextToCurrentNote "Overfør den markerede tekst til din note i Juris-M">
-<!ENTITY zotero.contextMenu.addTextToNewNote "Opret Juris-M-element og note ud fra markering">
-<!ENTITY zotero.contextMenu.saveImageAsItem "Gem billede som Juris-M-element.">
-<!ENTITY zotero.contextMenu.saveLinkAsItem "Gem link som Juris-M-element.">
+<!ENTITY zotero.contextMenu.addTextToCurrentNote "Overfør den markerede tekst til din note i Jurism">
+<!ENTITY zotero.contextMenu.addTextToNewNote "Opret Jurism-element og note ud fra markering">
+<!ENTITY zotero.contextMenu.saveImageAsItem "Gem billede som Jurism-element.">
+<!ENTITY zotero.contextMenu.saveLinkAsItem "Gem link som Jurism-element.">
 <!ENTITY zotero.createParent.button.manual "Manual Entry">
 <!ENTITY zotero.createParent.title "Create Parent Item">
-<!ENTITY zotero.downloadManager.label "Gem til Juris-M">
-<!ENTITY zotero.downloadManager.noPDFTools.description "For at bruge denne funktion skal du først installere PDF-værktøjerne i Juris-Ms indstillinger.">
+<!ENTITY zotero.downloadManager.label "Gem til Jurism">
+<!ENTITY zotero.downloadManager.noPDFTools.description "For at bruge denne funktion skal du først installere PDF-værktøjerne i Jurisms indstillinger.">
 <!ENTITY zotero.downloadManager.saveToLibrary.description "Vedhæftede filer kan ikke gemmes i det aktuelle bibliotek. I stedet gemmes hele elementet  i dit bibliotek.">
 <!ENTITY zotero.duplicatesMerge.fieldSelect "Vælg felter som skal bevares fra andre versioner af elementet">
 <!ENTITY zotero.duplicatesMerge.versionSelect "Vælg den version af elementet som du vil bruge som hovedelement:">
@@ -56,7 +56,7 @@
 <!ENTITY zotero.errorReport.submissionInProgress "Vent venligst mens fejlrapporten registreres.">
 <!ENTITY zotero.errorReport.submitted "Din fejlrapport er registreret.">
 <!ENTITY zotero.errorReport.title "Jurism fejlrapport">
-<!ENTITY zotero.errorReport.unrelatedMessages "Dette kan inkludere beskeder, som ikke har noget med Juris-M at gøre.">
+<!ENTITY zotero.errorReport.unrelatedMessages "Dette kan inkludere beskeder, som ikke har noget med Jurism at gøre.">
 <!ENTITY zotero.exportOptions.format.label "Format:">
 <!ENTITY zotero.exportOptions.title "Eksportér...">
 <!ENTITY zotero.exportOptions.translatorOptions.label "Oversættelsesmuligheder">
@@ -144,7 +144,7 @@
 <!ENTITY zotero.integration.prefs.lang.titles "Titles:">
 <!ENTITY zotero.integration.prefs.lang.translation "Translation">
 <!ENTITY zotero.integration.prefs.lang.transliteration "Transliteration">
-<!ENTITY zotero.integration.prefs.storeReferences.caption "At gemme referencer i dit dokument gør filen en anelse større, men det gør det også muligt at dele dokumentet med andre ved hjælp af en Juris-M-gruppe. At opdatere dokumenter oprettet med denne funktion kræver Juris-M 3.0 eller højere.">
+<!ENTITY zotero.integration.prefs.storeReferences.caption "At gemme referencer i dit dokument gør filen en anelse større, men det gør det også muligt at dele dokumentet med andre ved hjælp af en Jurism-gruppe. At opdatere dokumenter oprettet med denne funktion kræver Jurism 3.0 eller højere.">
 <!ENTITY zotero.integration.prefs.storeReferences.label "Gem referencer i dokument">
 <!ENTITY zotero.integration.prefs.suppressTrailingPunctuation.caption "When this option is enabled, all trailing punctuation will be dropped in note styles. To selectively drop trailing punctuation on individual citations, disable this option, and set suppression on each citation directly.">
 <!ENTITY zotero.integration.prefs.suppressTrailingPunctuation.label "Suppress all trailing punctuation">
@@ -284,7 +284,7 @@
 <!ENTITY zotero.selectitems.intro.label "Vælg de elementer, du ønsker at tilføje til dit bibliotek">
 <!ENTITY zotero.selectitems.select.label "OK">
 <!ENTITY zotero.selectitems.title "Vælg elementer">
-<!ENTITY zotero.sync.button "Synkroniser med Juris-M Server">
+<!ENTITY zotero.sync.button "Synkroniser med Jurism Server">
 <!ENTITY zotero.sync.error "Synkroniseringsfejl">
 <!ENTITY zotero.sync.longTagFixer.character "tegn">
 <!ENTITY zotero.sync.longTagFixer.characters "tegn">
@@ -375,7 +375,7 @@
 <!ENTITY zotero.upgrade.changeLogAfterLink "for at se nyhederne.">
 <!ENTITY zotero.upgrade.changeLogBeforeLink "Se venligst">
 <!ENTITY zotero.upgrade.changeLogLink "listen med ændringer">
-<!ENTITY zotero.upgrade.ifZoteroInfo "If you are migrating from official Juris-M/Juris-M to MLZ, the next step of the upgrade process will convert your database for use with MLZ.">
+<!ENTITY zotero.upgrade.ifZoteroInfo "If you are migrating from official Jurism/Jurism to MLZ, the next step of the upgrade process will convert your database for use with MLZ.">
 <!ENTITY zotero.upgrade.ifZoteroInfoLabel "Note:">
 <!ENTITY zotero.upgrade.majorUpgrade "Dette er en større opgradering.">
 <!ENTITY zotero.upgrade.majorUpgradeAfterLink "inden du fortsætter">

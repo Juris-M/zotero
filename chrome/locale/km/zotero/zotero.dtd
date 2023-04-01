@@ -56,7 +56,7 @@
 <!ENTITY zotero.errorReport.submissionInProgress "សូមរង់ចាំ ខណៈពេលកំពុងធ្វើរបាយការណ៍អំពីកំហុស។">
 <!ENTITY zotero.errorReport.submitted "កំហុសបានធ្វើរបាយការណ៍រួចហើយ។">
 <!ENTITY zotero.errorReport.title "Jurism Error Report">
-<!ENTITY zotero.errorReport.unrelatedMessages "This may include messages unrelated to Juris-M.">
+<!ENTITY zotero.errorReport.unrelatedMessages "This may include messages unrelated to Jurism.">
 <!ENTITY zotero.exportOptions.format.label "ទ្រង់ទ្រាយ:">
 <!ENTITY zotero.exportOptions.title "នាំចេញ...">
 <!ENTITY zotero.exportOptions.translatorOptions.label "ជម្រើសកូដចម្លង">
@@ -375,7 +375,7 @@
 <!ENTITY zotero.upgrade.changeLogAfterLink "ដើម្បីរកមើលអ្វីដែលថ្មី។">
 <!ENTITY zotero.upgrade.changeLogBeforeLink "សូមមើល">
 <!ENTITY zotero.upgrade.changeLogLink "កំណត់ហេតុផ្លាស់ប្តូរ">
-<!ENTITY zotero.upgrade.ifZoteroInfo "If you are migrating from official Juris-M/Juris-M to MLZ, the next step of the upgrade process will convert your database for use with MLZ.">
+<!ENTITY zotero.upgrade.ifZoteroInfo "If you are migrating from official Jurism/Jurism to MLZ, the next step of the upgrade process will convert your database for use with MLZ.">
 <!ENTITY zotero.upgrade.ifZoteroInfoLabel "Note:">
 <!ENTITY zotero.upgrade.majorUpgrade "នេះគឺជាការធ្វើទំនើបកម្មចម្បង។">
 <!ENTITY zotero.upgrade.majorUpgradeAfterLink "មុនពេលបន្ត">

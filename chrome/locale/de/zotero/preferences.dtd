@@ -45,8 +45,8 @@
 <!ENTITY zotero.preferences.debugOutputLogging.clearOutput "Ausgabe löschen">
 <!ENTITY zotero.preferences.debugOutputLogging.enableAfterRestart "Nach Neustart aktivieren">
 <!ENTITY zotero.preferences.debugOutputLogging.linesLogged "geloggte Zeilen">
-<!ENTITY zotero.preferences.debugOutputLogging.message "Debug-Output kann den Juris-M-Entwicklern bei der Problemdiagnose helfen. Das Loggen des Debug-Outputs macht Juris-M langsamer und sollte deswegen standardmäßig deaktiviert sein, außer wenn ein Juris-M-Entwickler nach dem Debug-Output fragt.">
-<!ENTITY zotero.preferences.debugOutputLogging.submitToServer "Zum Juris-M-Server übertragen">
+<!ENTITY zotero.preferences.debugOutputLogging.message "Debug-Output kann den Jurism-Entwicklern bei der Problemdiagnose helfen. Das Loggen des Debug-Outputs macht Jurism langsamer und sollte deswegen standardmäßig deaktiviert sein, außer wenn ein Jurism-Entwickler nach dem Debug-Output fragt.">
+<!ENTITY zotero.preferences.debugOutputLogging.submitToServer "Zum Jurism-Server übertragen">
 <!ENTITY zotero.preferences.debugOutputLogging.viewOutput "Ausgabe anzeigen">
 <!ENTITY zotero.preferences.default "Standardeinstellungen:">
 <!ENTITY zotero.preferences.downloadAssociatedFiles "Automatisch zugehörige PDFs und andere Dateien beim Speichern von Einträgen anhängen">
@@ -87,7 +87,7 @@
 <!ENTITY zotero.preferences.keys.library "Bibliothek">
 <!ENTITY zotero.preferences.keys.newItem "Neuen Eintrag erstellen">
 <!ENTITY zotero.preferences.keys.newNote "Neue Notiz erstellen">
-<!ENTITY zotero.preferences.keys.openZotero "Juris-M-Panel öffnen/schließen">
+<!ENTITY zotero.preferences.keys.openZotero "Jurism-Panel öffnen/schließen">
 <!ENTITY zotero.preferences.keys.overrideGlobal "Versuche, konfligierende Tastenkombinationen zu überschreiben">
 <!ENTITY zotero.preferences.keys.quicksearch "Schnellsuche">
 <!ENTITY zotero.preferences.keys.saveToZotero "In Jurism speichern (Adressleisten-Symbol)">
@@ -99,7 +99,7 @@
 <!ENTITY zotero.preferences.lang.csl "CSL:">
 <!ENTITY zotero.preferences.lang.display "Display">
 <!ENTITY zotero.preferences.lang.inCitationsAndBibliographies "In citations and bibliographies">
-<!ENTITY zotero.preferences.lang.insideZotero "Juris-M UI">
+<!ENTITY zotero.preferences.lang.insideZotero "Jurism UI">
 <!ENTITY zotero.preferences.lang.institutions "Institutions:">
 <!ENTITY zotero.preferences.lang.journals "Journals:">
 <!ENTITY zotero.preferences.lang.languageList "Languages for Use in Metadata">
@@ -184,7 +184,7 @@
 <!ENTITY zotero.preferences.quickCopy.dragLimit "Quick-Copy deaktiveren, wenn mehr als ... Einträge aktiv sind">
 <!ENTITY zotero.preferences.quickCopy.itemFormat "Item Format:">
 <!ENTITY zotero.preferences.quickCopy.linkCitationFormReverse "Use citation form as default">
-<!ENTITY zotero.preferences.quickCopy.linkOption "Include Juris-M link wrappers in QuickCopy citations">
+<!ENTITY zotero.preferences.quickCopy.linkOption "Include Jurism link wrappers in QuickCopy citations">
 <!ENTITY zotero.preferences.quickCopy.macWarning "Achtung: Rich-Text-Formatierungen gehen unter Mac OS X verloren.">
 <!ENTITY zotero.preferences.quickCopy.noteFormat "Note Format:">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.domainPath "Domain/Pfad">
@@ -202,7 +202,7 @@
 <!ENTITY zotero.preferences.search.indexStats.words "Wörter:">
 <!ENTITY zotero.preferences.search.pdfIndexing "PDF-Indizierung">
 <!ENTITY zotero.preferences.settings "Einstellungen">
-<!ENTITY zotero.preferences.showIn "Juris-M öffnen im:">
+<!ENTITY zotero.preferences.showIn "Jurism öffnen im:">
 <!ENTITY zotero.preferences.showIn.appTab "App Tab">
 <!ENTITY zotero.preferences.showIn.browserPane "Browser Ausschnitt">
 <!ENTITY zotero.preferences.showIn.separateTab "Eigenem Tab">
@@ -256,5 +256,5 @@
 <!ENTITY zotero.preferences.trashAutoEmptyDaysPre "Einträge im Papierkorb automatisch löschen nach mehr als">
 <!ENTITY zotero.preferences.updateNow "Jetzt aktualisieren">
 <!ENTITY zotero.preferences.userInterface "Benutzer-Interface">
-<!ENTITY zotero.preferences.zoteroDotOrgVersionHeader "Juris-M.org erlauben, Inhalte auf Basis der aktuellen Juris-M-Version anzupassen">
-<!ENTITY zotero.preferences.zoteroDotOrgVersionHeader.tooltip "Wenn aktiv, wird die aktuelle Juris-M-Version bei HTTP-Anfragen zu zotero.org mit übertragen.">
+<!ENTITY zotero.preferences.zoteroDotOrgVersionHeader "Jurism.org erlauben, Inhalte auf Basis der aktuellen Jurism-Version anzupassen">
+<!ENTITY zotero.preferences.zoteroDotOrgVersionHeader.tooltip "Wenn aktiv, wird die aktuelle Jurism-Version bei HTTP-Anfragen zu zotero.org mit übertragen.">

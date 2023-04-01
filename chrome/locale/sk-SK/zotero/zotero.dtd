@@ -56,7 +56,7 @@
 <!ENTITY zotero.errorReport.submissionInProgress "Počkajte, prosím, kým sa neodošle hlásenie o chybe.">
 <!ENTITY zotero.errorReport.submitted "Hlásenie o chybe bolo odoslané.">
 <!ENTITY zotero.errorReport.title "Výkaz chýb Zotera">
-<!ENTITY zotero.errorReport.unrelatedMessages "Toto môže obsahovať hlásenia nesúvisiace so Juris-Mm.">
+<!ENTITY zotero.errorReport.unrelatedMessages "Toto môže obsahovať hlásenia nesúvisiace so Jurismm.">
 <!ENTITY zotero.exportOptions.format.label "Formát:">
 <!ENTITY zotero.exportOptions.title "Export...">
 <!ENTITY zotero.exportOptions.translatorOptions.label "Možnosti konvertorov">
@@ -144,7 +144,7 @@
 <!ENTITY zotero.integration.prefs.lang.titles "Titles:">
 <!ENTITY zotero.integration.prefs.lang.translation "Translation">
 <!ENTITY zotero.integration.prefs.lang.transliteration "Transliteration">
-<!ENTITY zotero.integration.prefs.storeReferences.caption "Ukladanie odkazov do vášho dokumentu nepatrne zväčší veľkosť súboru, ale vám umožní zdieľať váš dokument s ostatnými bez použitia skupín Zotera. Pre aktualizáciu dokumentov vytvorených s touto možnosťou sa vyžaduje Juris-M 3.0 alebo novšie. ">
+<!ENTITY zotero.integration.prefs.storeReferences.caption "Ukladanie odkazov do vášho dokumentu nepatrne zväčší veľkosť súboru, ale vám umožní zdieľať váš dokument s ostatnými bez použitia skupín Zotera. Pre aktualizáciu dokumentov vytvorených s touto možnosťou sa vyžaduje Jurism 3.0 alebo novšie. ">
 <!ENTITY zotero.integration.prefs.storeReferences.label "Ukladať odkazy do dokumentu">
 <!ENTITY zotero.integration.prefs.suppressTrailingPunctuation.caption "When this option is enabled, all trailing punctuation will be dropped in note styles. To selectively drop trailing punctuation on individual citations, disable this option, and set suppression on each citation directly.">
 <!ENTITY zotero.integration.prefs.suppressTrailingPunctuation.label "Suppress all trailing punctuation">
@@ -284,7 +284,7 @@
 <!ENTITY zotero.selectitems.intro.label "Označte, ktoré záznamy chcete pridať do vašej knižnice">
 <!ENTITY zotero.selectitems.select.label "OK">
 <!ENTITY zotero.selectitems.title "Označiť záznamy">
-<!ENTITY zotero.sync.button "Synchronizovať so serverom Juris-M">
+<!ENTITY zotero.sync.button "Synchronizovať so serverom Jurism">
 <!ENTITY zotero.sync.error "Chyba pri synchronizácii">
 <!ENTITY zotero.sync.longTagFixer.character "znaku">
 <!ENTITY zotero.sync.longTagFixer.characters "znakoch">
@@ -375,7 +375,7 @@
 <!ENTITY zotero.upgrade.changeLogAfterLink "aby ste sa dozvedeli o novinkách a zmenách v tejto verzii.">
 <!ENTITY zotero.upgrade.changeLogBeforeLink "Prosím prezrite si">
 <!ENTITY zotero.upgrade.changeLogLink "protokol o zmenách">
-<!ENTITY zotero.upgrade.ifZoteroInfo "If you are migrating from official Juris-M/Juris-M to MLZ, the next step of the upgrade process will convert your database for use with MLZ.">
+<!ENTITY zotero.upgrade.ifZoteroInfo "If you are migrating from official Jurism/Jurism to MLZ, the next step of the upgrade process will convert your database for use with MLZ.">
 <!ENTITY zotero.upgrade.ifZoteroInfoLabel "Note:">
 <!ENTITY zotero.upgrade.majorUpgrade "Toto je hlavná aktualizácia.">
 <!ENTITY zotero.upgrade.majorUpgradeAfterLink ".">

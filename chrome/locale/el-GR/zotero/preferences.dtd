@@ -45,8 +45,8 @@
 <!ENTITY zotero.preferences.debugOutputLogging.clearOutput "Εκκαθάριση εξόδου">
 <!ENTITY zotero.preferences.debugOutputLogging.enableAfterRestart "Ενεργοποίηση μετά από επανεκκίνηση">
 <!ENTITY zotero.preferences.debugOutputLogging.linesLogged "καταγεγραμμένες γραμμές">
-<!ENTITY zotero.preferences.debugOutputLogging.message "Η έξοδος ή αποτέλεσμα προς αποσφαλμάτωση μπορεί να βοηθήσει τους προγραμματιστές του Juris-M να διαγιγνώσκουν προβλήματα. Οι καταγραφές αποσφαλμάτωσης θα επιβραδύνουν το Juris-M, γι' αυτό εν γένει πρέπει να μην τις ενεργοποιείτε, εκτός κι αν κάποιος προγραμματιστής του Juris-M ζητά εξόδους αποσφαλμάτωσης.">
-<!ENTITY zotero.preferences.debugOutputLogging.submitToServer "Να υποβληθούν στον διακομιστή Juris-M">
+<!ENTITY zotero.preferences.debugOutputLogging.message "Η έξοδος ή αποτέλεσμα προς αποσφαλμάτωση μπορεί να βοηθήσει τους προγραμματιστές του Jurism να διαγιγνώσκουν προβλήματα. Οι καταγραφές αποσφαλμάτωσης θα επιβραδύνουν το Jurism, γι' αυτό εν γένει πρέπει να μην τις ενεργοποιείτε, εκτός κι αν κάποιος προγραμματιστής του Jurism ζητά εξόδους αποσφαλμάτωσης.">
+<!ENTITY zotero.preferences.debugOutputLogging.submitToServer "Να υποβληθούν στον διακομιστή Jurism">
 <!ENTITY zotero.preferences.debugOutputLogging.viewOutput "Προβολή εξόδου">
 <!ENTITY zotero.preferences.default "Αρχικές">
 <!ENTITY zotero.preferences.downloadAssociatedFiles "Αυτόματη προσάρτηση των συνοδευτικών PDF και άλλων αρχείων όταν αποθηκεύονται στοιχεία">
@@ -87,7 +87,7 @@
 <!ENTITY zotero.preferences.keys.library "Library">
 <!ENTITY zotero.preferences.keys.newItem "Δημιουργία Νέου στοιχείου">
 <!ENTITY zotero.preferences.keys.newNote "Δημιουργία Νέας σημείωσης">
-<!ENTITY zotero.preferences.keys.openZotero "Άνοιγμα/Κλείσιμο του πλαισίου Juris-M">
+<!ENTITY zotero.preferences.keys.openZotero "Άνοιγμα/Κλείσιμο του πλαισίου Jurism">
 <!ENTITY zotero.preferences.keys.overrideGlobal "Try to override conflicting shortcuts">
 <!ENTITY zotero.preferences.keys.quicksearch "Γρήγορη αναζήτηση">
 <!ENTITY zotero.preferences.keys.saveToZotero "Αποθήκευση στο Jurism (εικονίδιο γραμμής διεύθυνσης)">
@@ -99,7 +99,7 @@
 <!ENTITY zotero.preferences.lang.csl "CSL:">
 <!ENTITY zotero.preferences.lang.display "Display">
 <!ENTITY zotero.preferences.lang.inCitationsAndBibliographies "In citations and bibliographies">
-<!ENTITY zotero.preferences.lang.insideZotero "Juris-M UI">
+<!ENTITY zotero.preferences.lang.insideZotero "Jurism UI">
 <!ENTITY zotero.preferences.lang.institutions "Institutions:">
 <!ENTITY zotero.preferences.lang.journals "Journals:">
 <!ENTITY zotero.preferences.lang.languageList "Languages for Use in Metadata">
@@ -184,7 +184,7 @@
 <!ENTITY zotero.preferences.quickCopy.dragLimit "Απενεργοποίηση της Γρήγορης αντιγραφής όταν σύρονται περισσότερα από">
 <!ENTITY zotero.preferences.quickCopy.itemFormat "Item Format:">
 <!ENTITY zotero.preferences.quickCopy.linkCitationFormReverse "Use citation form as default">
-<!ENTITY zotero.preferences.quickCopy.linkOption "Include Juris-M link wrappers in QuickCopy citations">
+<!ENTITY zotero.preferences.quickCopy.linkOption "Include Jurism link wrappers in QuickCopy citations">
 <!ENTITY zotero.preferences.quickCopy.macWarning "Σημείωση: η μορφοποίηση εμπλουτισμένου κειμένου θα χαθεί στο Mac OS X.">
 <!ENTITY zotero.preferences.quickCopy.noteFormat "Note Format:">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.domainPath "Περιοχή/Διαδρομή">
@@ -202,7 +202,7 @@
 <!ENTITY zotero.preferences.search.indexStats.words "Λέξεις:">
 <!ENTITY zotero.preferences.search.pdfIndexing "Καταλογοποίηση PDF">
 <!ENTITY zotero.preferences.settings "Ρυθμίσεις">
-<!ENTITY zotero.preferences.showIn "Φόρτωση του Juris-M σε:">
+<!ENTITY zotero.preferences.showIn "Φόρτωση του Jurism σε:">
 <!ENTITY zotero.preferences.showIn.appTab "Καρτέλα εφαρμογών">
 <!ENTITY zotero.preferences.showIn.browserPane "Πλαίσιο περιηγητή">
 <!ENTITY zotero.preferences.showIn.separateTab "Διαχωρισμός καρτέλας">
@@ -256,5 +256,5 @@
 <!ENTITY zotero.preferences.trashAutoEmptyDaysPre "Αυτόματη διαγραφή από τον κάδο ανακύκλωσης στοιχείων που έχουν διαγραφεί για περισσότερο από">
 <!ENTITY zotero.preferences.updateNow "Ενημέρωση τώρα">
 <!ENTITY zotero.preferences.userInterface "Περιβάλλον χρήστη">
-<!ENTITY zotero.preferences.zoteroDotOrgVersionHeader "Να επιτρέπεται στο zotero.org να προσαρμόσει το περιεχόμενο, βάσει της τρέχουσας έκδοσης του Juris-M">
-<!ENTITY zotero.preferences.zoteroDotOrgVersionHeader.tooltip "Αν ενεργοποιηθεί, η τρέχουσα έκδοση του Juris-M θα συμπεριληφθεί στα αιτήματα HTTP προς το zotero.org.">
+<!ENTITY zotero.preferences.zoteroDotOrgVersionHeader "Να επιτρέπεται στο zotero.org να προσαρμόσει το περιεχόμενο, βάσει της τρέχουσας έκδοσης του Jurism">
+<!ENTITY zotero.preferences.zoteroDotOrgVersionHeader.tooltip "Αν ενεργοποιηθεί, η τρέχουσα έκδοση του Jurism θα συμπεριληφθεί στα αιτήματα HTTP προς το zotero.org.">

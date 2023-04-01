@@ -39,14 +39,14 @@
 <!ENTITY zotero.context.addStandaloneNote "Add Standalone Note">
 <!ENTITY zotero.context.addStandaloneNoteFromAnnotations "Add Standalone Note from Annotations">
 <!ENTITY zotero.context.editInWindow "Edit in a Separate Window">
-<!ENTITY zotero.contextMenu.addTextToCurrentNote "Προσθήκη επιλογής στις Σημειώσεις Juris-M">
-<!ENTITY zotero.contextMenu.addTextToNewNote "Δημιουργία Στοιχείου Juris-M και Σημειώσεων από Επιλογή">
-<!ENTITY zotero.contextMenu.saveImageAsItem "Αποθήκευση Εικόνας ως Στοιχείο Juris-M">
-<!ENTITY zotero.contextMenu.saveLinkAsItem "Αποθήκευση Συνδέσμου ως Στοιχείο Juris-M">
+<!ENTITY zotero.contextMenu.addTextToCurrentNote "Προσθήκη επιλογής στις Σημειώσεις Jurism">
+<!ENTITY zotero.contextMenu.addTextToNewNote "Δημιουργία Στοιχείου Jurism και Σημειώσεων από Επιλογή">
+<!ENTITY zotero.contextMenu.saveImageAsItem "Αποθήκευση Εικόνας ως Στοιχείο Jurism">
+<!ENTITY zotero.contextMenu.saveLinkAsItem "Αποθήκευση Συνδέσμου ως Στοιχείο Jurism">
 <!ENTITY zotero.createParent.button.manual "Manual Entry">
 <!ENTITY zotero.createParent.title "Create Parent Item">
-<!ENTITY zotero.downloadManager.label "Αποθήκευση στο Juris-M">
-<!ENTITY zotero.downloadManager.noPDFTools.description "Για να χρησιμοποιήσετε τη λειτουργία αυτή πρώτα πρέπει να εγκαταστήσετε τα εργαλεία PDF στο πλαίσιο Αναζήτησης των Προτιμήσεων του Juris-M.">
+<!ENTITY zotero.downloadManager.label "Αποθήκευση στο Jurism">
+<!ENTITY zotero.downloadManager.noPDFTools.description "Για να χρησιμοποιήσετε τη λειτουργία αυτή πρώτα πρέπει να εγκαταστήσετε τα εργαλεία PDF στο πλαίσιο Αναζήτησης των Προτιμήσεων του Jurism.">
 <!ENTITY zotero.downloadManager.saveToLibrary.description "Στην επιλεγμένη βιβλιοθήκη δεν μπορούν να αποθηκευτούν προσαρτήματα. Αντ' αυτής, το στοιχείο θα αποθηκευτεί στην βιβλιοθήκη σας.">
 <!ENTITY zotero.duplicatesMerge.fieldSelect "Επιλέξτε πεδία που θα διατηρηθούν από άλλες εκδόσεις του στοιχείου:">
 <!ENTITY zotero.duplicatesMerge.versionSelect "Επιλέξτε την έκδοση του Στοιχείου που θα χρησιμοποιηθεί ως κύριο στοιχείο:">
@@ -56,7 +56,7 @@
 <!ENTITY zotero.errorReport.submissionInProgress "Περιμένετε μέχρι να υποβληθεί η αναφορά σφάλματος.">
 <!ENTITY zotero.errorReport.submitted "Η αναφορά σας σφάλματος υποβλήθηκε.">
 <!ENTITY zotero.errorReport.title "Αναφορά σφάλματος Jurism">
-<!ENTITY zotero.errorReport.unrelatedMessages "Πιθανόν να συμπεριληφθούν μηνύματα άσχετα με το Juris-M.">
+<!ENTITY zotero.errorReport.unrelatedMessages "Πιθανόν να συμπεριληφθούν μηνύματα άσχετα με το Jurism.">
 <!ENTITY zotero.exportOptions.format.label "Μορφή:">
 <!ENTITY zotero.exportOptions.title "Εξαγωγή...">
 <!ENTITY zotero.exportOptions.translatorOptions.label "Επιλογές μεταφραστή">
@@ -144,7 +144,7 @@
 <!ENTITY zotero.integration.prefs.lang.titles "Titles:">
 <!ENTITY zotero.integration.prefs.lang.translation "Translation">
 <!ENTITY zotero.integration.prefs.lang.transliteration "Transliteration">
-<!ENTITY zotero.integration.prefs.storeReferences.caption "Η αποθήκευση των αναφορών σε έγγραφο αυξάνει ελαφρώς το μέγεθος του αρχείου, αλλά επιτρέπει τον διαμοιρασμό του εγγράφου σας με άλλους, χρησιμοποιώντας κάποια ομάδα Juris-M. Για την αναβάθμιση εγγράφων που δημιουργήθηκαν με την λειτουργία αυτή απαιτείται Juris-M 3.0 ή μεταγενέστερο.">
+<!ENTITY zotero.integration.prefs.storeReferences.caption "Η αποθήκευση των αναφορών σε έγγραφο αυξάνει ελαφρώς το μέγεθος του αρχείου, αλλά επιτρέπει τον διαμοιρασμό του εγγράφου σας με άλλους, χρησιμοποιώντας κάποια ομάδα Jurism. Για την αναβάθμιση εγγράφων που δημιουργήθηκαν με την λειτουργία αυτή απαιτείται Jurism 3.0 ή μεταγενέστερο.">
 <!ENTITY zotero.integration.prefs.storeReferences.label "Αποθήκευση αναφορών σε έγγραφο">
 <!ENTITY zotero.integration.prefs.suppressTrailingPunctuation.caption "When this option is enabled, all trailing punctuation will be dropped in note styles. To selectively drop trailing punctuation on individual citations, disable this option, and set suppression on each citation directly.">
 <!ENTITY zotero.integration.prefs.suppressTrailingPunctuation.label "Suppress all trailing punctuation">
@@ -284,7 +284,7 @@
 <!ENTITY zotero.selectitems.intro.label "Επιλέξτε ποια στοιχεία θέλετε να προσθέσετε στην βιβλιοθήκη σας">
 <!ENTITY zotero.selectitems.select.label "ΟΚ">
 <!ENTITY zotero.selectitems.title "Επιλέξτε στοιχεία">
-<!ENTITY zotero.sync.button "Συγχρονισμός με τον διακομιστή του Juris-M">
+<!ENTITY zotero.sync.button "Συγχρονισμός με τον διακομιστή του Jurism">
 <!ENTITY zotero.sync.error "Σφάλμα συγχρονισμού">
 <!ENTITY zotero.sync.longTagFixer.character "χαρακτήρα">
 <!ENTITY zotero.sync.longTagFixer.characters "χαρακτήρες">
@@ -375,7 +375,7 @@
 <!ENTITY zotero.upgrade.changeLogAfterLink "για να δείτε τι νεότερο υπάρχει.">
 <!ENTITY zotero.upgrade.changeLogBeforeLink "Παρακαλώ διαβάστε">
 <!ENTITY zotero.upgrade.changeLogLink "τον κατάλογο των αλλαγών (changelog)">
-<!ENTITY zotero.upgrade.ifZoteroInfo "If you are migrating from official Juris-M/Juris-M to MLZ, the next step of the upgrade process will convert your database for use with MLZ.">
+<!ENTITY zotero.upgrade.ifZoteroInfo "If you are migrating from official Jurism/Jurism to MLZ, the next step of the upgrade process will convert your database for use with MLZ.">
 <!ENTITY zotero.upgrade.ifZoteroInfoLabel "Note:">
 <!ENTITY zotero.upgrade.majorUpgrade "Αυτή είναι μια κύρια αναβάθμιση.">
 <!ENTITY zotero.upgrade.majorUpgradeAfterLink "πριν συνεχίσετε.">

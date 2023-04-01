@@ -45,8 +45,8 @@
 <!ENTITY zotero.preferences.debugOutputLogging.clearOutput "Neteja el resultat de sortida">
 <!ENTITY zotero.preferences.debugOutputLogging.enableAfterRestart "Activa després de reiniciar">
 <!ENTITY zotero.preferences.debugOutputLogging.linesLogged "línies registrades">
-<!ENTITY zotero.preferences.debugOutputLogging.message "El resultat de la depuració pot ajudar els desenvolupadors del Juris-M a diagnosticar problemes. L'enregistrament de la depuració alentirà el Juris-M, per això hauríeu de deixar-la deshabilitada si no és que un desenvolupador del Juris-M us sol·licita el resultat de la depuració.">
-<!ENTITY zotero.preferences.debugOutputLogging.submitToServer "Tramet al servidor del Juris-M">
+<!ENTITY zotero.preferences.debugOutputLogging.message "El resultat de la depuració pot ajudar els desenvolupadors del Jurism a diagnosticar problemes. L'enregistrament de la depuració alentirà el Jurism, per això hauríeu de deixar-la deshabilitada si no és que un desenvolupador del Jurism us sol·licita el resultat de la depuració.">
+<!ENTITY zotero.preferences.debugOutputLogging.submitToServer "Tramet al servidor del Jurism">
 <!ENTITY zotero.preferences.debugOutputLogging.viewOutput "Visualitza el resultat de sortida">
 <!ENTITY zotero.preferences.default "Per defecte:">
 <!ENTITY zotero.preferences.downloadAssociatedFiles "Adjunta automàticament documents PDF associats i altres fitxers quan es desin els elements">
@@ -87,7 +87,7 @@
 <!ENTITY zotero.preferences.keys.library "Llibreria">
 <!ENTITY zotero.preferences.keys.newItem "Crea un element nou">
 <!ENTITY zotero.preferences.keys.newNote "Crea una nota nova">
-<!ENTITY zotero.preferences.keys.openZotero "Obre/Tanca el Juris-M">
+<!ENTITY zotero.preferences.keys.openZotero "Obre/Tanca el Jurism">
 <!ENTITY zotero.preferences.keys.overrideGlobal "intenta corregir els conflictes en les dreceres de teclat">
 <!ENTITY zotero.preferences.keys.quicksearch "Cerca ràpida">
 <!ENTITY zotero.preferences.keys.saveToZotero "Desa al Jurism (icona de la barra d'adreces)">
@@ -99,7 +99,7 @@
 <!ENTITY zotero.preferences.lang.csl "CSL:">
 <!ENTITY zotero.preferences.lang.display "Display">
 <!ENTITY zotero.preferences.lang.inCitationsAndBibliographies "In citations and bibliographies">
-<!ENTITY zotero.preferences.lang.insideZotero "Juris-M UI">
+<!ENTITY zotero.preferences.lang.insideZotero "Jurism UI">
 <!ENTITY zotero.preferences.lang.institutions "Institutions:">
 <!ENTITY zotero.preferences.lang.journals "Journals:">
 <!ENTITY zotero.preferences.lang.languageList "Languages for Use in Metadata">
@@ -184,7 +184,7 @@
 <!ENTITY zotero.preferences.quickCopy.dragLimit "Desactiva la còpia ràpida quan arrosseguis més de">
 <!ENTITY zotero.preferences.quickCopy.itemFormat "Item Format:">
 <!ENTITY zotero.preferences.quickCopy.linkCitationFormReverse "Use citation form as default">
-<!ENTITY zotero.preferences.quickCopy.linkOption "Include Juris-M link wrappers in QuickCopy citations">
+<!ENTITY zotero.preferences.quickCopy.linkOption "Include Jurism link wrappers in QuickCopy citations">
 <!ENTITY zotero.preferences.quickCopy.macWarning "Nota: el format de text enriquit es perdrà en Mac OS X">
 <!ENTITY zotero.preferences.quickCopy.noteFormat "Note Format:">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.domainPath "Domini/Ruta">
@@ -202,7 +202,7 @@
 <!ENTITY zotero.preferences.search.indexStats.words "Paraules:">
 <!ENTITY zotero.preferences.search.pdfIndexing "Indexació dels PDF">
 <!ENTITY zotero.preferences.settings "Configuració">
-<!ENTITY zotero.preferences.showIn "Carrega el Juris-M en:">
+<!ENTITY zotero.preferences.showIn "Carrega el Jurism en:">
 <!ENTITY zotero.preferences.showIn.appTab "Pestanya d'aplicacions">
 <!ENTITY zotero.preferences.showIn.browserPane "Subfinestra del navegador">
 <!ENTITY zotero.preferences.showIn.separateTab "Pestanya separada">
@@ -231,8 +231,8 @@
 <!ENTITY zotero.preferences.sync.password "Contrasenya">
 <!ENTITY zotero.preferences.sync.reset "Reinicia">
 <!ENTITY zotero.preferences.sync.reset.button "Reinicia…">
-<!ENTITY zotero.preferences.sync.reset.fullSync "Sincronització completa amb el servidor del Juris-M">
-<!ENTITY zotero.preferences.sync.reset.fullSync.desc "Fusiona les dades locals del Juris-M amb les dades del servidor de sincronització i ignorant l'historial de sincronització.">
+<!ENTITY zotero.preferences.sync.reset.fullSync "Sincronització completa amb el servidor del Jurism">
+<!ENTITY zotero.preferences.sync.reset.fullSync.desc "Fusiona les dades locals del Jurism amb les dades del servidor de sincronització i ignorant l'historial de sincronització.">
 <!ENTITY zotero.preferences.sync.reset.resetDataSyncHistory "Reinicia l'historial de sincronització de dades">
 <!ENTITY zotero.preferences.sync.reset.resetDataSyncHistory.desc "Fusiona les dades locals amb les remotes, ignorant l'historial de sincronització">
 <!ENTITY zotero.preferences.sync.reset.resetFileSyncHistory "Reinicia l'historial de sincronització dels fitxers">
@@ -256,5 +256,5 @@
 <!ENTITY zotero.preferences.trashAutoEmptyDaysPre "Elimina automàticament els elements de la paperera que s'han suprimit fa més de">
 <!ENTITY zotero.preferences.updateNow "Actualitza ara">
 <!ENTITY zotero.preferences.userInterface "Interfície de l'usuari">
-<!ENTITY zotero.preferences.zoteroDotOrgVersionHeader "Permeteu que zotero.org personalitzi el contingut en base a la versió actual del Juris-M">
-<!ENTITY zotero.preferences.zoteroDotOrgVersionHeader.tooltip "Si està activat, la versió actual del Juris-M s'afegirà a les petitcions HTTP per zotero.org.">
+<!ENTITY zotero.preferences.zoteroDotOrgVersionHeader "Permeteu que zotero.org personalitzi el contingut en base a la versió actual del Jurism">
+<!ENTITY zotero.preferences.zoteroDotOrgVersionHeader.tooltip "Si està activat, la versió actual del Jurism s'afegirà a les petitcions HTTP per zotero.org.">
