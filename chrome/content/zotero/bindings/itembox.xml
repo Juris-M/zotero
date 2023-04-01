@@ -734,7 +734,6 @@ e.preventDefault();
 							if (v != sv) {
 								menuitem.setAttribute('tooltiptext', v);
 							}
-							/*	
 							menuitem.setAttribute('fieldName', fieldName);
 							menuitem.setAttribute('originalValue', v);
 							menuitem.setAttribute(
@@ -746,7 +745,6 @@ e.preventDefault();
 								+ "binding.refresh();"
 							);
 							popup.appendChild(menuitem);
-							*/
 						}
 						
 						row.appendChild(button);
