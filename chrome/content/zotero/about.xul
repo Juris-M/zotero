@@ -44,7 +44,7 @@
 						Zotero.Utilities.htmlSpecialChars(
 							Zotero.getString(
 								'about.createdBy',
-								[Zotero.appName, `[${ZOTERO_CONFIG.PRODUCER}]`]
+								[`${ZOTERO_CONFIG.CLIENT_NAME}`, `[${ZOTERO_CONFIG.PRODUCER}]`]
 							),
 						)
 						.replace(
@@ -56,7 +56,7 @@
 					
 					document.getElementById('third-party-software').innerHTML =
 						Zotero.Utilities.htmlSpecialChars(
-							Zotero.getString('about.openSource', Zotero.appName)
+							Zotero.getString('about.openSource', [`${ZOTERO_CONFIG.CLIENT_NAME}`, Zotero.appName])
 						)
 						.replace(
 							/\[([^\]]+)](.+)\[([^\]]+)]/,

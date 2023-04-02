@@ -29,10 +29,10 @@
 
 var InstallChecker = Components.utils.import("chrome://zotero/content/install_check.jsm").Checker;
 InstallChecker(
-    "Juris-M chooser", 
-    "Installing Juris-M will not affect your Zotero data", 
+    "Jurism chooser", 
+    "Installing Jurism will not affect your Zotero data", 
     "juris-m@juris-m.github.io", 
-    "Juris-M: for legal and multilingual scholars", 
+    "Jurism: for legal and multilingual scholars", 
     "zotero@chnm.gmu.edu", 
     "Zotero: for normal people"
 );

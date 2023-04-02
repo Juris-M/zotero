@@ -1,11 +1,11 @@
 var ZOTERO_CONFIG = {
 	GUID: 'juris-m@juris-m.github.io',
 	ID: 'jurism',
-	CLIENT_NAME: 'Juris-M',
+	CLIENT_NAME: 'Jurism',
 	DOMAIN_NAME: 'zotero.org',
 	DOMAIN_NAME_JURISM: 'juris-m.github.io',
 	REPOSITORY_URL: 'https://jurism.xyz/updater/',
-	PRODUCER: 'Jurism Project',
+	PRODUCER: 'the Jurism Project',
 	PRODUCER_URL: 'https://juris-m.github.io',
 	BASE_URI: 'http://zotero.org/',
 	WWW_BASE_URL: 'https://www.zotero.org/',

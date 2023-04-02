@@ -1255,7 +1255,7 @@ class VirtualizedTable extends React.Component {
 	_getRenderedTextHeight() {
 		let div = document.createElementNS("http://www.w3.org/1999/xhtml", 'div');
 		div.style.visibility = "hidden";
-		div.textContent = "Zotero";
+		div.textContent = "Jurism";
 		document.documentElement.appendChild(div);
 		let height = window.getComputedStyle(div).height;
 		document.documentElement.removeChild(div);
