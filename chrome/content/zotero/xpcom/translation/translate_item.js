@@ -561,7 +561,7 @@ Zotero.Translate.ItemSaver.prototype = {
 			if (attachment.tags) newAttachment.setTags(this._cleanTags(attachment.tags));
 			if (attachment.note) newAttachment.setNote(attachment.note);
 			yield newAttachment.saveTx(this._saveOptions);
-			// yield this._handleRelated(attachment, newAttachment);
+			this._handleRelatedReg(attachment, newAttachment);
 
 			Zotero.debug("Translate: Created attachment; id is " + newAttachment.id, 4);
 			attachmentCallback(attachment, 100);
@@ -958,9 +958,9 @@ Zotero.Translate.ItemSaver.prototype = {
 			myNote.setCollections(this._collections);
 		}
 		yield myNote.save(this._saveOptions);
-		//if (typeof note == "object") {
-		//	yield this._handleRelated(note, myNote);
-		//}
+		if (typeof note == "object") {
+			this._handleRelatedReg(note, myNote);
+		}
 		return myNote;
 	}),
 	
@@ -996,6 +996,13 @@ Zotero.Translate.ItemSaver.prototype = {
 			newTags.push(tag);
 		}
 		return newTags;
+	},
+	
+	"_handleRelatedReg":function(item, newItem) {
+		// add to ID map
+		if(item.itemID || item.id) {
+			this._IDMap[item.itemID || item.id] = newItem.id;
+		}
 	},
 	
 	"_handleRelated": async function(jsonByItem, item) {
