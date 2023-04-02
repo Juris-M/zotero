@@ -203,9 +203,6 @@ describe("Import/Export", function () {
 			translation.setTranslator(translators[0]);
 			var newItems = await translation.translate({ libraryID });
 			assert.lengthOf(newItems, 2);
-			//var relatedItems = await Zotero.Relations.getByPredicateAndObject(
-			//	'item', Zotero.Relations.relatedItemPredicate, Zotero.URI.getItemURI(newItems[0])
-			//);
 			assert.lengthOf(newItems[0].relatedItems, 1);
 			var id = Zotero.Items.getIDFromLibraryAndKey(libraryID, newItems[0].relatedItems[0]);
 			var newItem = await Zotero.Items.get(id);
