@@ -271,7 +271,7 @@ describe("Zotero.Schema", function() {
 			
 			function createResponseWithMessage(message) {
 				server.respond(function (req) {
-					if (req.method != "POST" || !req.url.includes('/repo/updated')) {
+					if (req.method != "POST" || !req.url.includes('/updater/updated')) {
 						return;
 					}
 					req.respond(
