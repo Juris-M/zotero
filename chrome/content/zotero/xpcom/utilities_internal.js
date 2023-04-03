@@ -1064,7 +1064,7 @@ Zotero.Utilities.Internal = {
 	 * @param {Boolean} legacy Add mappings for legacy (pre-4.0.27) translators
 	 * @return {Object}
 	 */
-	itemToExportFormat: function (zoteroItem, legacy, skipChildItems, addRelations) {
+	itemToExportFormat: function (zoteroItem, legacy, skipChildItems) {
 		function addCompatibilityMappings(item, zoteroItem) {
 			item.uniqueFields = {};
 
@@ -1156,14 +1156,6 @@ Zotero.Utilities.Internal = {
 			return item;
 		}
 
-		function addRelations(item, zoteroItem) {
-			item.seeAlso = zoteroItem.relatedItems.map(function(key){
-				let id = Zotero.Items.getIDFromLibraryAndKey(zoteroItem.libraryID, key);
-				let otherZoteroItem = Zotero.Items.get(id);
-				return Zotero.URI.getItemURI(otherZoteroItem);
-			});
-		}
-		
 		var item = zoteroItem.toJSON();
 
 		item.uri = Zotero.URI.getItemURI(zoteroItem);
@@ -1197,8 +1189,12 @@ Zotero.Utilities.Internal = {
 
 		if (legacy) addCompatibilityMappings(item, zoteroItem);
 
-		if (addRelations) addRelations(item, zoteroItem);
-		
+		item.seeAlso = zoteroItem.relatedItems.map(function(key){
+			let id = Zotero.Items.getIDFromLibraryAndKey(zoteroItem.libraryID, key);
+			let otherZoteroItem = Zotero.Items.get(id);
+			return Zotero.URI.getItemURI(otherZoteroItem);
+		});
+        
 		return item;
 	},
 	
