@@ -1158,7 +1158,9 @@ Zotero.Utilities.Internal = {
 
 		function addRelations(item, zoteroItem) {
 			item.seeAlso = zoteroItem.relatedItems.map(function(key){
-				return Zotero.Items.getIDFromLibraryAndKey(zoteroItem.libraryID, key);
+				let id = Zotero.Items.getIDFromLibraryAndKey(zoteroItem.libraryID, key);
+				let otherZoteroItem = Zotero.Items.get(id);
+				return Zotero.URI.getItemURI(otherZoteroItem);
 			});
 		}
 		

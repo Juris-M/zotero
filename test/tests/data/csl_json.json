@@ -1,0 +1,17 @@
+[
+    {
+        "id": "item1",
+    	"type": "graphic",
+        "multi": { "main": {}, "_keys": {}},
+        "title": "Title 1",
+        "seeAlso": ["item1", "item2"]
+    },
+    {
+        "id": "item2",
+        "type": "graphic",
+        "multi": { "main": {}, "_keys": {}},
+        "title": "Title 2",
+        "seeAlso": ["item1", "item2"]
+    }
+
+]

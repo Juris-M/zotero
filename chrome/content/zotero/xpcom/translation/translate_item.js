@@ -96,7 +96,7 @@ Zotero.Translate.ItemSaver.prototype = {
 		var jsonByItem = new Map();
 		
 		await Zotero.DB.executeTransaction(async function () {
-            let seeAlsoItems = [];
+			let itemsWithSeeAlso = [];
 			for (let jsonItem of jsonItems) {
 				jsonItem = Object.assign({}, jsonItem);
 				
@@ -181,20 +181,20 @@ Zotero.Translate.ItemSaver.prototype = {
 						jsonItem.attachments = attachmentsToSave;
 					}
 				}
-				// add to ID map
-				if(jsonItem.itemID || jsonItem.id) {
-					this._IDMap[jsonItem.itemID || jsonItem.id] = item.id;
-					if (jsonItem.seeAlso && jsonItem.seeAlso.length) {
-						seeAlsoItems.push(item);
-					}
-				}
 				// Add to new item list
 				items.push(item);
 				jsonByItem.set(item, jsonItem);
+				
+				// Add to list if using seeAlso
+				if(this._handleMappedId(jsonItem, item)) {
+					if (jsonItem.seeAlso && jsonItem.seeAlso.length) {
+						itemsWithSeeAlso.push(item);
+					}
+				}
 			}
-			for (let item of seeAlsoItems) {
-				// handle see also
-				await this._handleRelated(jsonByItem, item);
+			for (let item of itemsWithSeeAlso) {
+				let jsonItem = jsonByItem.get(item);
+				await this._handleRelated(jsonItem, item);
 			}
 		}.bind(this));
 
@@ -561,7 +561,7 @@ Zotero.Translate.ItemSaver.prototype = {
 			if (attachment.tags) newAttachment.setTags(this._cleanTags(attachment.tags));
 			if (attachment.note) newAttachment.setNote(attachment.note);
 			yield newAttachment.saveTx(this._saveOptions);
-			this._handleRelatedReg(attachment, newAttachment);
+			this._handleMappedId(attachment, newAttachment);
 
 			Zotero.debug("Translate: Created attachment; id is " + newAttachment.id, 4);
 			attachmentCallback(attachment, 100);
@@ -959,7 +959,8 @@ Zotero.Translate.ItemSaver.prototype = {
 		}
 		yield myNote.save(this._saveOptions);
 		if (typeof note == "object") {
-			this._handleRelatedReg(note, myNote);
+			this._handleMappedId(note, myNote);
+			this._handleRelated(note, myNote);
 		}
 		return myNote;
 	}),
@@ -998,18 +999,19 @@ Zotero.Translate.ItemSaver.prototype = {
 		return newTags;
 	},
 	
-	"_handleRelatedReg":function(item, newItem) {
+	"_handleMappedId":function(item, newItem) {
 		// add to ID map
 		if(item.itemID || item.id) {
 			this._IDMap[item.itemID || item.id] = newItem.id;
+			return true;
 		}
+		return false;
 	},
 	
-	"_handleRelated": async function(jsonByItem, item) {
-		let jsonItem = jsonByItem.get(item);
+	"_handleRelated": async function(jsonItem, item) {
 		if(jsonItem.seeAlso) {
-			for(var i=0; i<jsonItem.seeAlso.length; i++) {
-				var seeAlso = jsonItem.seeAlso[i];
+			for(let i=0; i<jsonItem.seeAlso.length; i++) {
+				let seeAlso = jsonItem.seeAlso[i];
 				if (seeAlso == (jsonItem.itemID || jsonItem.id)) continue;
 				if(this._IDMap[seeAlso]) {
 					let otherItem = Zotero.Items.get(this._IDMap[seeAlso]);
