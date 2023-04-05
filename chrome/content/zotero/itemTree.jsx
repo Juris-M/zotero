@@ -1274,9 +1274,6 @@ var ItemTree = class ItemTree extends LibraryTree {
 			case 'title':
 				return Zotero.Items.getSortTitle(item.getDisplayTitle());
 
-			case 'court':
-				return item.getCourtName();
-			
 			case 'hasAttachment':
 				if (this._canGetBestAttachmentState(item)) {
 					return item.getBestAttachmentStateCached();
@@ -3853,12 +3850,7 @@ var ItemTreeRow = function(ref, level, isOpen)
 
 ItemTreeRow.prototype.getField = function(field, unformatted)
 {
-	if (field === 'court') {
-		var ret = this.ref.getCourtName();
-	} else {
-		var ret = this.ref.getField(field, unformatted, true);
-	}
-	return ret;
+	return this.ref.getField(field, unformatted, true);
 }
 
 ItemTreeRow.prototype.numNotes = function() {
