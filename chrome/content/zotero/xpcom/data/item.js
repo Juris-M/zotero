@@ -291,7 +291,22 @@ Zotero.Item.prototype.getField = function(field, unformatted, includeBaseMapped,
 	}
 	
 	value = (value !== null && value !== false) ? value : '';
-	
+
+	function parseJurisdiction(val, unformatted) {
+		if (val) {
+			var offset = parseInt(val.slice(0,3), 10);
+			if (offset) {
+				offset += 3;
+				if (unformatted) {
+					val = val.slice(3, offset);
+				} else {
+					val = val.slice(offset);
+				}
+			}
+		}
+		return val;
+	}
+
 	if (!unformatted) {
 		// Multipart date fields
 		if (Zotero.ItemFields.isDate(fieldID)) {
@@ -299,13 +314,15 @@ Zotero.Item.prototype.getField = function(field, unformatted, includeBaseMapped,
 		}
 	}
 	if ('jurisdiction' === field) {
-		var offset = parseInt(value.slice(0,3), 10);
-		if (offset) {
-			offset += 3;
-			if (unformatted) {
-				value = value.slice(3, offset);
-			} else {
-				value = value.slice(offset);
+		value = parseJurisdiction(value, unformatted);
+	}
+	if ('court' === field) {
+		if (!unformatted && value) {
+			var jurisdictionFieldID = Zotero.ItemFields.getID('jurisdiction');
+			var jurisdictionID = parseJurisdiction(this._itemData[jurisdictionFieldID], true);
+			if (jurisdictionID) {
+				value = Zotero.CachedJurisdictionData.courtNameFromId(jurisdictionID, value);
+				
 			}
 		}
 	}
@@ -1026,21 +1043,6 @@ Zotero.Item.prototype.getDisplayTitle = function (includeAuthorAndDate) {
 	return this._displayTitle = this.getField('title', false, true, Zotero.CachedLanguages.getDisplayLang());
 }
 
-
-Zotero.Item.prototype.getCourtName = function() {
-	var ret = false;
-	var courtID = this.getField('court');
-	if (courtID) {
-		var jurisdictionID = this.getField('jurisdiction', true);
-		if (jurisdictionID) {
-			ret = Zotero.CachedJurisdictionData.courtNameFromId(jurisdictionID, courtID);
-		} else {
-			ret = courtID;
-		}
-	}
-	return ret;
-}
-
 /**
  * Update the generated display title from the loaded data
  */
@@ -1127,7 +1129,7 @@ Zotero.Item.prototype.updateDisplayTitle = function () {
 			if (reporter) {
 				strParts.push('(' + reporter + ')');
 			} else {
-				court = this.getCourtName();
+				court = this.getField('court');
 				if (court) {
 					strParts.push('(' + court + ')');
 				}
@@ -1144,7 +1146,7 @@ Zotero.Item.prototype.updateDisplayTitle = function () {
 			var strParts = [];
 			var caseinfo = "";
 			
-			court = this.getCourtName();
+			court = this.getField('court');
 			if (court) {
 				strParts.push(court);
 			}
