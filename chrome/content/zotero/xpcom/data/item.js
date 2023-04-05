@@ -292,34 +292,39 @@ Zotero.Item.prototype.getField = function(field, unformatted, includeBaseMapped,
 	
 	value = (value !== null && value !== false) ? value : '';
 
-	function parseJurisdiction(val, unformatted) {
-		if (val) {
-			var offset = parseInt(val.slice(0,3), 10);
-			if (offset) {
-				offset += 3;
-				if (unformatted) {
-					val = val.slice(3, offset);
-				} else {
-					val = val.slice(offset);
-				}
-			}
-		}
-		return val;
-	}
-
 	if (!unformatted) {
 		// Multipart date fields
 		if (Zotero.ItemFields.isDate(fieldID)) {
 			value = Zotero.Date.multipartToStr(value);
 		}
 	}
+	function getJurisdiction(val, unformatted) {
+		if (val) {
+            var m = val.match(/^[0-9]{3}/);
+            if (m) {
+			    var offset = parseInt(val.slice(0,3), 10);
+			    if (offset) {
+				    offset += 3;
+                    var id = val.slice(3, offset);
+				    if (unformatted) {
+					    val = id;
+				    } else {
+					    val = Zotero.CachedJurisdictionData.jurisdictionNameFromId(id);
+				    }
+			    }
+            }
+		}
+		return val;
+	}
+
 	if ('jurisdiction' === field) {
-		value = parseJurisdiction(value, unformatted);
+        Zotero.CachedJurisdictionData.jurisdictionNameFromId(jurisdictionID, value);
+		value = getJurisdiction(value, unformatted);
 	}
 	if ('court' === field) {
 		if (!unformatted && value) {
 			var jurisdictionFieldID = Zotero.ItemFields.getID('jurisdiction');
-			var jurisdictionID = parseJurisdiction(this._itemData[jurisdictionFieldID], true);
+			var jurisdictionID = getJurisdiction(this._itemData[jurisdictionFieldID], true);
 			if (jurisdictionID) {
 				value = Zotero.CachedJurisdictionData.courtNameFromId(jurisdictionID, value);
 				
