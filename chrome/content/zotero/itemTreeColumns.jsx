@@ -208,6 +208,14 @@ const COLUMNS = [
 		zoteroPersist: new Set(["width", "hidden", "sortDirection"])
 	},
 	{
+		dataKey: "jurisdiction",
+		disabledIn: "feed",
+		submenu: true,
+		label: "itemFields.jurisdiction",
+		flex: 1,
+		zoteroPersist: new Set(["width", "hidden", "sortDirection"])
+	},
+	{
 		dataKey: "number",
 		disabledIn: "feed",
 		submenu: true,
