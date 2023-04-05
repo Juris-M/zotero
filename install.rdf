@@ -4,7 +4,7 @@
   <Description about="urn:mozilla:install-manifest">
     <em:id>juris-m@juris-m.github.io</em:id>
     <em:name>Juris-M</em:name>
-    <em:version>6.0.20m1.SOURCE</em:version>
+    <em:version>6.0.20m2.SOURCE</em:version>
     <em:multiprocessCompatible>false</em:multiprocessCompatible>
     <em:description>Zotero-derived reference manager for legal and multilingual referencing.</em:description>
     <em:type>2</em:type> <!-- type=extension --> 
