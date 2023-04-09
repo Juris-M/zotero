@@ -50,6 +50,8 @@ Zotero.JurisMaps = new function() {
 		
 		Zotero.debug("Cached " + num + " juris maps in " + (new Date - start) + " ms");
 		
+		yield this.populateJurisdictions();
+		
 		_initializationDeferred.resolve();
 		_initialized = true;
 	});
@@ -123,10 +125,6 @@ Zotero.JurisMaps = new function() {
 	 * (re)Populate the jurisdiction table
 	 */
 	this.populateJurisdictions = Zotero.Promise.coroutine(function*() {
-		if (!_initialized) {
-			Zotero.debug("jurisMaps not yet initialized. Postponing populateJurisdictions to assure compact source is up to date.");
-			return;
-		}
 		if (_populated) return;
 		Zotero.debug("[Jurism] populating database with jurisdiction info");
 		var mapsToUpdate = {};
@@ -153,7 +151,7 @@ Zotero.JurisMaps = new function() {
 
 		if (Object.keys(mapsToUpdate).length > 0) {
 			Zotero.debug("updating jurisdictions: "+ JSON.stringify(Object.keys(mapsToUpdate)));
-			Zotero.showZoteroPaneProgressMeter("Installing " + Object.keys(mapsToUpdate).length + " jurisdictions", true);
+			Zotero.showZoteroPaneProgressMeter(`Configuring ${Object.keys(mapsToUpdate).length} jurisdictions`, true);
 
 			var iterator = new OS.File.DirectoryIterator(jurisMapsDir);
 			try {
@@ -183,6 +181,7 @@ Zotero.JurisMaps = new function() {
 				throw e;
 			}
 			Zotero.hideZoteroPaneOverlays();
+			alert(`Configured ${Object.keys(mapsToUpdate).length}} jurisdictions.\nRestart Jurism to install the updated configuration.`);
 		}
 		_populated = true;
 	});

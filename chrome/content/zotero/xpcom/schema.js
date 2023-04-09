@@ -1462,9 +1462,6 @@ Zotero.Schema = new function(){
 						await OS.File.move(tmpFile, OS.Path.join(hiddenDir, fileName));
 					}
 				}
-				if (mode === "juris-maps") {
-					await Zotero.JurisMaps.populateJurisdictions();
-				}
 			}
 			
 			if(xpiZipReader) xpiZipReader.close();
