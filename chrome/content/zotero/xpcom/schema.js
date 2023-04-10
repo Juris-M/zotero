@@ -401,25 +401,27 @@ Zotero.Schema = new function(){
 						_schemaUpdateDeferred.reject(e);
 						return;
 					}
-					
-					let kbURL = 'https://www.zotero.org/support/kb/unable_to_load_translators_and_styles';
-					let msg = Zotero.getString('startupError.bundledFileUpdateError', Zotero.clientName);
-					
-					let ps = Services.prompt;
-					let buttonFlags = ps.BUTTON_POS_0 * ps.BUTTON_TITLE_IS_STRING
-						+ ps.BUTTON_POS_1 * ps.BUTTON_TITLE_CANCEL
-						+ ps.BUTTON_POS_2 * ps.BUTTON_TITLE_IS_STRING;
-					let index = ps.confirmEx(
-						null,
-						Zotero.getString('general.error'),
-						msg,
-						buttonFlags,
-						Zotero.getString('general.moreInformation'),
-						"",
-						Zotero.getString('errorReport.reportError'),
-						null, {}
-					);
-					
+
+                    if (!Zotero.test) {
+					    let kbURL = 'https://www.zotero.org/support/kb/unable_to_load_translators_and_styles';
+					    let msg = Zotero.getString('startupError.bundledFileUpdateError', Zotero.clientName);
+					    
+					    let ps = Services.prompt;
+					    let buttonFlags = ps.BUTTON_POS_0 * ps.BUTTON_TITLE_IS_STRING
+						    + ps.BUTTON_POS_1 * ps.BUTTON_TITLE_CANCEL
+						    + ps.BUTTON_POS_2 * ps.BUTTON_TITLE_IS_STRING;
+					    let index = ps.confirmEx(
+						    null,
+						    Zotero.getString('general.error'),
+						    msg,
+						    buttonFlags,
+						    Zotero.getString('general.moreInformation'),
+						    "",
+						    Zotero.getString('errorReport.reportError'),
+						    null, {}
+					    );
+					}
+                    
 					_schemaUpdateDeferred.reject(e);
 					
 					if (index == 0) {
