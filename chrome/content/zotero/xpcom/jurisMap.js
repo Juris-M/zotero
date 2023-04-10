@@ -3,6 +3,7 @@ Zotero.JurisMaps = new function() {
 	var _populated = false;
 	var _initializationDeferred = false;
 	var _jurisMaps;
+	var _emptyAtStartup = false;
 	
 	Components.utils.import("resource://gre/modules/Services.jsm");
 	Components.utils.import("resource://gre/modules/FileUtils.jsm");
@@ -49,8 +50,6 @@ Zotero.JurisMaps = new function() {
 		var num = yield this.readMapsFromDirectory(dir);
 		
 		Zotero.debug("Cached " + num + " juris maps in " + (new Date - start) + " ms");
-		
-		yield this.populateJurisdictions();
 		
 		_initializationDeferred.resolve();
 		_initialized = true;
@@ -107,6 +106,11 @@ Zotero.JurisMaps = new function() {
 		finally {
 			iterator.close();
 		}
+		if (numCached) {
+			yield this.populateJurisdictions();
+		} else {
+			_emptyAtStartup = true;
+		}
 		return numCached;
 	});
 	
@@ -150,8 +154,10 @@ Zotero.JurisMaps = new function() {
 		}
 
 		if (Object.keys(mapsToUpdate).length > 0) {
+			var _mapNum = Object.keys(mapsToUpdate).length;
+			var jWord = _mapNum === 1 ? "jurisdiction" : "jurisdictions";
 			Zotero.debug("updating jurisdictions: "+ JSON.stringify(Object.keys(mapsToUpdate)));
-			Zotero.showZoteroPaneProgressMeter(`Configuring ${Object.keys(mapsToUpdate).length} jurisdictions`, true);
+			Zotero.showZoteroPaneProgressMeter(`Configuring ${_mapNum} ${jWord}`, true);
 
 			var iterator = new OS.File.DirectoryIterator(jurisMapsDir);
 			try {
@@ -181,7 +187,9 @@ Zotero.JurisMaps = new function() {
 				throw e;
 			}
 			Zotero.hideZoteroPaneOverlays();
-			alert(`Configured ${Object.keys(mapsToUpdate).length}} jurisdictions.\nRestart Jurism to install the updated configuration.`);
+			if (!_emptyAtStartup && _mapNum > 0) {
+				alert(`Configured ${_mapNum} ${jWord}.\nRestart Jurism to install the updated configuration.`);
+			}
 		}
 		_populated = true;
 	});
