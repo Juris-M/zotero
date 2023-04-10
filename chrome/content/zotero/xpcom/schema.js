@@ -1073,7 +1073,7 @@ Zotero.Schema = new function(){
 				break;
 			
 			case 'juris-abbrevs':
-				await Zotero.JurisMaps.init(initOpts);
+				await Zotero.JurisAbbrevs.init(initOpts);
 				var updated = await _updateBundledFilesAtLocation(installLocation, mode);
 				break;
 			
@@ -1630,10 +1630,6 @@ Zotero.Schema = new function(){
 			}
 			finally {
 				iterator.close();
-			}
-			if (mode === "juris-maps") {
-				await Zotero.JurisMaps.init({fromSchemaUpdate: true});
-				await Zotero.JurisMaps.populateJurisdictions();
 			}
 		}
 		
