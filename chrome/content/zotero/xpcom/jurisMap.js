@@ -187,7 +187,7 @@ Zotero.JurisMaps = new function() {
 				throw e;
 			}
 			Zotero.hideZoteroPaneOverlays();
-			if (!_emptyAtStartup && _mapNum > 0) {
+			if (!Zotero.test && !_emptyAtStartup && _mapNum > 0) {
 				alert(`Configured ${_mapNum} ${jWord}.\nRestart Jurism to install the updated configuration.`);
 			}
 		}
