@@ -1,116 +1,169 @@
 {
-  "general_more": {
-    "message": "Mer…"
-  },
-  "general_moreInfo": {
-    "message": "Mer info…"
-  },
-  "general_done": {
-    "message": "Klar"
-  },
-  "general_yes": {
-    "message": "Ja"
-  },
-  "general_no": {
-    "message": "Nej"
-  },
-  "general_tryAgain": {
-    "message": "Försök igen"
-  },
-  "general_warning": {
-    "message": "Varning"
-  },
-  "general_cancel": {
-    "message": "Avbryt"
-  },
-  "general_pleaseWait": {
-    "message": "Vänta…"
-  },
-  "general_copyToClipboard": {
-    "message": "Kopiera till urklipp"
-  },
-  "progressWindow_savingTo": {
-    "message": "Spara till"
-  },
-  "progressWindow_tagPlaceholder": {
-    "message": "Etiketter (avdelade med kommatecken)"
-  },
-  "progressWindow_error_translation": {
-    "message": "Ett fel uppstod när källan skulle sparas.  Se $1 för mer information."
-  },
-  "progressWindow_error_troubleshootingTranslatorIssues": {
-    "message": "Felsök problem med källfångare"
-  },
-  "progressWindow_error_fallback": {
-    "message": "Ett fel uppstod när informationen sparades med $1. Försöker att spara med $2 istället."
-  },
-  "progressWindow_error_upgradeClient": {
-    "message": "Den här funktionen stöds inte av din version av $1. Uppdatera till $2."
-  },
-  "progressWindow_error_upgradeClient_latestVersion": {
-    "message": "senaste versionen"
-  },
-  "appConnector": {
-    "message": "$1 Connector"
-  },
-  "upgradeApp": {
-    "message": "Uppgradera $1"
-  },
-  "error_connection_isAppRunning": {
-    "message": "Körs $1?"
-  },
-  "error_connection_save": {
-    "message": "$1 kunde inte kommunicera med $2 programmet. Connector kan spara vissa sidor direkt till ditt $3 konto, men du bör se till att $2 är startat innan du sparar för bästa resultat."
-  },
-  "error_connection_downloadOrTroubleshoot": {
-    "message": "Du kan <a href=\"$1\">ladda ner $2</a> eller <a href=\"$3\">felsöka anslutningen</a> om nödvändigt."
-  },
-  "error_connection_enableSavingToOnlineLibrary": {
-    "message": "Aktivera spara i onlinebibliotek"
-  },
-  "reports_report_submitted": {
-    "message": "Din felrapport har skickats in.\n\nRapport ID: $1\n\nSkapa gärna ett inlägg i Jurisms forum med denna rapport ID, tillsammans med en beskrivning av problemet och vad du gjorde för att problemet skulle uppstå.\n\nFelrapporter gås inte igenom förrän de har beskrivits i forumet."
-  },
-  "reports_debug_output_submitted": {
-    "message": "Din felsökningsinformation har skickats in.\n\nFelsöknings ID (Debug ID) är $1."
-  },
-  "reports_submission_failed": {
-    "message": "Ett fel har uppstått när rapporten skulle skickas in\n\n$1\n\nKontrollera din internetuppkoppling. Om problemet kvarstår, gör ett inlägg i Jurisms forum."
-  },
-  "integration_error_clientUpgrade": {
-    "message": "Webbaserad referenstagning kräver $1 eller senare."
-  },
-  "integration_error_connection": {
-    "message": "$1kunde inte kommunicera med $2 programmet. $2 måste vara igång för att möjliggöra webbaserad referenstagning."
-  },
-  "integration_googleDocs_unlinkBeforeSaving_warning": {
-    "message": "Detta dokument har aktiva Jurism-referenser som visas som zotero.org-länkar i en nedladdad kopia."
-  },
-  "integration_googleDocs_unlinkBeforeSaving_instructions": {
-    "message": "Gör att skapa en version som lämpar sig för delning, välj <b>Gör en kopia…</b> från Arkiv-menyn, välj <b>Ta bort länkar för referenser</b> ur Jurism-menyn i det nya dokumentet och ladda sedan hem versionen utan länkar. Behåll detta originaldokument med länkar om du behöver göra ändringar framöver."
-  },
-  "integration_googleDocs_unlinkBeforeSaving_downloadAnyway": {
-    "message": "Ladda hem länkad version ändå"
-  },
-  "integration_googleDocs_updating": {
-    "message": "$1 uppdaterar ditt dokument."
-  },
-  "integration_googleDocs_docxAlert": {
-    "message": "$1 integreringen är inte tillgänglig när du redigerar Microsoft Word .docx files direkt i Google Docs. Välj Arkiv → Spara som Google Docs för att aktivera denna funktionalitet.<br/><br/>Om du vill föra över ett Word-dokument med $1 referenser till Google Docs, se <a href=\"https://www.zotero.org/support/kb/moving_documents_between_word_processors\">Flytta dokument mellan ordbehandlare</a>."
-  },
-  "integration_googleDocs_orphanedCitations_buttonTooltip": {
-    "message": "Visa avlänkade $1 referenser"
-  },
-  "integration_googleDocs_orphanedCitations_alert": {
-    "message": "Den referens du försöker redigera har avlänkats från $1.,"
-  },
-  "integration_googleDocs_orphanedCitations_alertButton": {
-    "message": "Länka om referens"
-  },
-  "integration_googleDocs_orphanedCitations_disclaimer": {
-    "message": "Dessa referenser har blivit <a target=\"_blank\" href=\"https://www.zotero.org/support/kb/google_docs_citations_unlinked\">avlänkade från $1</a>. Du kommer att behöva omlänka dem innan de uppdateras eller visas i din källförteckning."
-  },
-  "general_saveTo": {
-    "message": "Spara till $1"
-  }
+    "appConnector": {
+        "message": "$1 Connector"
+    },
+    "copyUnproxiedLink": {
+        "message": "Copy Unproxied Link"
+    },
+    "copyUnproxiedPageURL": {
+        "message": "Copy Unproxied Page URL"
+    },
+    "error_connection_downloadOrTroubleshoot": {
+        "message": "Du kan <a href=\"$1\">ladda ner $2</a> eller <a href=\"$3\">fels\u00f6ka anslutningen</a> om n\u00f6dv\u00e4ndigt."
+    },
+    "error_connection_enableSavingToOnlineLibrary": {
+        "message": "Aktivera spara i onlinebibliotek"
+    },
+    "error_connection_isAppRunning": {
+        "message": "K\u00f6rs $1?"
+    },
+    "error_connection_save": {
+        "message": "$1 kunde inte kommunicera med $2 programmet. Connector kan spara vissa sidor direkt till ditt $3 konto, men du b\u00f6r se till att $2 \u00e4r startat innan du sparar f\u00f6r b\u00e4sta resultat."
+    },
+    "extensionIsDisabled": {
+        "message": "$1 is disabled"
+    },
+    "extensionIsDisabled_extensionPage": {
+        "message": "$1 is disabled on extension pages"
+    },
+    "firstRun_acceptButton": {
+        "description": "The Accept button for the first-run dialog",
+        "message": "Got it"
+    },
+    "firstRun_text1": {
+        "message": "The $1 Connector enables you to <a href=\"$2\">save items to $1</a> from your browser in a single click."
+    },
+    "firstRun_text2": {
+        "message": "If you haven\u2019t yet, <a href=\"$2\">download</a> the standalone $1 application for the best experience."
+    },
+    "firstRun_text3": {
+        "message": "(You can view the $1 Privacy Policy on <a href=\"$2\">the project website</a>)."
+    },
+    "firstRun_title": {
+        "message": "You\u2019ve installed the $1 Connector!"
+    },
+    "general_cancel": {
+        "message": "Avbryt"
+    },
+    "general_copyToClipboard": {
+        "message": "Kopiera till urklipp"
+    },
+    "general_done": {
+        "message": "Klar"
+    },
+    "general_more": {
+        "message": "Mer\u2026"
+    },
+    "general_moreInfo": {
+        "message": "Mer info\u2026"
+    },
+    "general_needHelp": {
+        "message": "Need help?"
+    },
+    "general_no": {
+        "message": "Nej"
+    },
+    "general_pleaseWait": {
+        "message": "V\u00e4nta\u2026"
+    },
+    "general_saveTo": {
+        "message": "Spara till $1"
+    },
+    "general_tryAgain": {
+        "message": "F\u00f6rs\u00f6k igen"
+    },
+    "general_warning": {
+        "message": "Varning"
+    },
+    "general_yes": {
+        "message": "Ja"
+    },
+    "integration_error_clientUpgrade": {
+        "message": "Webbaserad referenstagning kr\u00e4ver $1 eller senare."
+    },
+    "integration_error_connection": {
+        "message": "$1kunde inte kommunicera med $2 programmet. $2 m\u00e5ste vara ig\u00e5ng f\u00f6r att m\u00f6jligg\u00f6ra webbaserad referenstagning."
+    },
+    "integration_googleDocs_documentLocked": {
+        "message": "The document citations are being edited by another $1 user. Please try again later."
+    },
+    "integration_googleDocs_documentLocked_moreInfo": {
+        "message": "$1 locks your document to prevent multiple users from editing citations at the same time. Concurrent citation editing in the document may lead to citation or document corruption. Certain unforeseeable circumstances, such as network failures, may lead to your document becoming permanently locked. If you believe this has happened, you can override the lock.<br/><br/>Would you like to override the document lock?"
+    },
+    "integration_googleDocs_documentPermissionError": {
+        "message": "The Google account you selected does not have permission to edit this document. Please try again, and be sure to choose the account with editing access."
+    },
+    "integration_googleDocs_docxAlert": {
+        "message": "$1 integreringen \u00e4r inte tillg\u00e4nglig n\u00e4r du redigerar Microsoft Word .docx files direkt i Google Docs. V\u00e4lj Arkiv \u2192 Spara som Google Docs f\u00f6r att aktivera denna funktionalitet.<br/><br/>Om du vill f\u00f6ra \u00f6ver ett Word-dokument med $1 referenser till Google Docs, se <a href=\"https://www.zotero.org/support/kb/moving_documents_between_word_processors\">Flytta dokument mellan ordbehandlare</a>."
+    },
+    "integration_googleDocs_orphanedCitations_alert": {
+        "message": "Den referens du f\u00f6rs\u00f6ker redigera har avl\u00e4nkats fr\u00e5n $1.,"
+    },
+    "integration_googleDocs_orphanedCitations_alertButton": {
+        "message": "L\u00e4nka om referens"
+    },
+    "integration_googleDocs_orphanedCitations_buttonTooltip": {
+        "message": "Visa avl\u00e4nkade $1 referenser"
+    },
+    "integration_googleDocs_orphanedCitations_disclaimer": {
+        "message": "Dessa referenser har blivit <a target=\"_blank\" href=\"https://www.zotero.org/support/kb/google_docs_citations_unlinked\">avl\u00e4nkade fr\u00e5n $1</a>. Du kommer att beh\u00f6va oml\u00e4nka dem innan de uppdateras eller visas i din k\u00e4llf\u00f6rteckning."
+    },
+    "integration_googleDocs_unlinkBeforeSaving_downloadAnyway": {
+        "message": "Ladda hem l\u00e4nkad version \u00e4nd\u00e5"
+    },
+    "integration_googleDocs_unlinkBeforeSaving_instructions": {
+        "message": "G\u00f6r att skapa en version som l\u00e4mpar sig f\u00f6r delning, v\u00e4lj <b>G\u00f6r en kopia\u2026</b> fr\u00e5n Arkiv-menyn, v\u00e4lj <b>Ta bort l\u00e4nkar f\u00f6r referenser</b> ur Jurism-menyn i det nya dokumentet och ladda sedan hem versionen utan l\u00e4nkar. Beh\u00e5ll detta originaldokument med l\u00e4nkar om du beh\u00f6ver g\u00f6ra \u00e4ndringar fram\u00f6ver."
+    },
+    "integration_googleDocs_unlinkBeforeSaving_warning": {
+        "message": "Detta dokument har aktiva Jurism-referenser som visas som zotero.org-l\u00e4nkar i en nedladdad kopia."
+    },
+    "integration_googleDocs_updating": {
+        "message": "$1 uppdaterar ditt dokument."
+    },
+    "progressWindow_error_fallback": {
+        "message": "Ett fel uppstod n\u00e4r informationen sparades med $1. F\u00f6rs\u00f6ker att spara med $2 ist\u00e4llet."
+    },
+    "progressWindow_error_siteAccessLimits": {
+        "message": "Site Access Limits"
+    },
+    "progressWindow_error_siteAccessLimitsError": {
+        "description": "The placeholders are for the failing translator label (e.g., Google Scholar) and the Site Access Limits link",
+        "message": "An error occurred while saving this item. $1 may limit the number of items you can save at once. See $2 for more information."
+    },
+    "progressWindow_error_translation": {
+        "message": "Ett fel uppstod n\u00e4r k\u00e4llan skulle sparas.  Se $1 f\u00f6r mer information."
+    },
+    "progressWindow_error_troubleshootingTranslatorIssues": {
+        "message": "Fels\u00f6k problem med k\u00e4llf\u00e5ngare"
+    },
+    "progressWindow_error_upgradeClient": {
+        "message": "Den h\u00e4r funktionen st\u00f6ds inte av din version av $1. Uppdatera till $2."
+    },
+    "progressWindow_error_upgradeClient_latestVersion": {
+        "message": "senaste versionen"
+    },
+    "progressWindow_savingTo": {
+        "message": "Spara till"
+    },
+    "progressWindow_tagPlaceholder": {
+        "message": "Etiketter (avdelade med kommatecken)"
+    },
+    "reloadVia": {
+        "message": "Reload via $1"
+    },
+    "reloadViaProxy": {
+        "message": "Reload via Proxy"
+    },
+    "reports_debug_output_submitted": {
+        "message": "Din fels\u00f6kningsinformation har skickats in.\n\nFels\u00f6knings ID (Debug ID) \u00e4r $1."
+    },
+    "reports_report_submitted": {
+        "message": "Din felrapport har skickats in.\n\nRapport ID: $1\n\nSkapa g\u00e4rna ett inl\u00e4gg i Jurisms forum med denna rapport ID, tillsammans med en beskrivning av problemet och vad du gjorde f\u00f6r att problemet skulle uppst\u00e5.\n\nFelrapporter g\u00e5s inte igenom f\u00f6rr\u00e4n de har beskrivits i forumet."
+    },
+    "reports_submission_failed": {
+        "message": "Ett fel har uppst\u00e5tt n\u00e4r rapporten skulle skickas in\n\n$1\n\nKontrollera din internetuppkoppling. Om problemet kvarst\u00e5r, g\u00f6r ett inl\u00e4gg i Jurisms forum."
+    },
+    "upgradeApp": {
+        "message": "Uppgradera $1"
+    }
 }

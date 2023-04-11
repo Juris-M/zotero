@@ -1,164 +1,167 @@
 {
-  "general_more": {
-    "message": "Plus…"
-  },
-  "general_moreInfo": {
-    "message": "Plus d'info..."
-  },
-  "general_needHelp": {
-    "message": "Besoin d'aide?"
-  },
-  "general_done": {
-    "message": "Terminé"
-  },
-  "general_yes": {
-    "message": "Oui"
-  },
-  "general_no": {
-    "message": "Non"
-  },
-  "general_tryAgain": {
-    "message": "Réessayer"
-  },
-  "general_warning": {
-    "message": "Avertissement"
-  },
-  "general_cancel": {
-    "message": "Annuler"
-  },
-  "general_pleaseWait": {
-    "message": "Veuillez patienter…"
-  },
-  "general_copyToClipboard": {
-    "message": "Copier dans le presse-papiers"
-  },
-  "progressWindow_savingTo": {
-    "message": "Enregistrer dans"
-  },
-  "progressWindow_tagPlaceholder": {
-    "message": "Marqueurs (séparés par des virgules)"
-  },
-  "progressWindow_error_translation": {
-    "message": "Une erreur s’est produite lors de l’enregistrement de ce document. Consultez $1 pour davantage de précisions. "
-  },
-  "progressWindow_error_siteAccessLimitsError": {
-    "message": "Une erreur s'est produite lors de l'enregistrement de ce document. Il est possible que $1 limite le nombre de documents que vous pouvez enregistrer en même temps. Voir $2 pour plus d'informations."
-  },
-  "progressWindow_error_troubleshootingTranslatorIssues": {
-    "message": "Résoudre les problèmes de convertisseur"
-  },
-  "progressWindow_error_siteAccessLimits": {
-    "message": "Limites d'accès au site"
-  },
-  "progressWindow_error_fallback": {
-    "message": "Une erreur s’est produite lors de l’enregistrement avec $1. Tentative d’enregistrement en utilisant $2 à la place."
-  },
-  "progressWindow_error_upgradeClient": {
-    "message": "Cette fonctionnalité n’est pas compatible avec votre version de $1. Veuillez mettre à niveau vers $2."
-  },
-  "progressWindow_error_upgradeClient_latestVersion": {
-    "message": "dernière version"
-  },
-  "extensionIsDisabled": {
-    "message": "$1 est désactivé"
-  },
-  "extensionIsDisabled_extensionPage": {
-    "message": "$1 est désactivé sur la page des extensions"
-  },
-  "appConnector": {
-    "message": "Connecteur $1"
-  },
-  "upgradeApp": {
-    "message": "Mettre à niveau $1"
-  },
-  "firstRun_title": {
-    "message": "Vous avez installé le connecteur pour $1!"
-  },
-  "firstRun_text1": {
-    "message": "Le Connecteur $1 vous permet <a href=\"$2\">d'enregistrer des documents dans$1</a> depuis de votre navigateur en un seul clic."
-  },
-  "firstRun_text2": {
-    "message": "Si vous ne l'avez pas encore fait, <a href=\"$2\">téléchargez</a>l'application autonome $1 pour bénéficier d'une expérience optimale."
-  },
-  "firstRun_acceptButton": {
-    "message": "Compris"
-  },
-  "error_connection_isAppRunning": {
-    "message": "$1 est-il ouvert ?"
-  },
-  "error_connection_save": {
-    "message": "Le $1 n'a pas pu communiquer avec l'application $2. Le Connecteur peut enregistrer certaines pages directement sur votre compte $3, mais pour de meilleurs résultats assurez-vous que $2 est ouvert avant d'essayer d'enregistrer."
-  },
-  "error_connection_downloadOrTroubleshoot": {
-    "message": "Vous pouvez <a href=\"$1\">télécharger le $2</a> ou <a href=\"$3\">résoudre les problèmes de connexion</a> si nécessaire."
-  },
-  "error_connection_enableSavingToOnlineLibrary": {
-    "message": "Activer l'enregistrement dans la bibliothèque en ligne"
-  },
-  "reports_report_submitted": {
-    "message": "Votre rapport d'erreur a été soumis.\n\nReport ID: $1\n\nVeuillez poster un message sur les forums de Jurism avec cet identifiant, une description du problème et toutes les étapes nécessaires pour le reproduire.\nLes rapports d'erreur ne sont pas analysés tant qu'ils ne sont pas cités dans les forums avec cet identifiant."
-  },
-  "reports_debug_output_submitted": {
-    "message": "Le journal de débogage a été envoyé.\n\nLe Debug ID est $1."
-  },
-  "reports_submission_failed": {
-    "message": "Une erreur s'est produite lors de l'envoi de votre rapport.\n\n$1\n\nVeuillez vérifier votre connexion internet. Si le problème persiste, veuillez poster un message sur les forums Jurism."
-  },
-  "integration_error_clientUpgrade": {
-    "message": "L'insertion de citations dans une application web nécessite $1 ou ultérieur."
-  },
-  "integration_error_connection": {
-    "message": "Le $1 n'a pas pu communiquer avec l'application $2. $2 doit être ouvert pour pouvoir insérer des citations dans une application web."
-  },
-  "integration_googleDocs_unlinkBeforeSaving_warning": {
-    "message": "Ce document contient des citations Jurism actives qui apparaîtront sous forme de liens zotero.org dans une copie téléchargée."
-  },
-  "integration_googleDocs_unlinkBeforeSaving_instructions": {
-    "message": "Pour générer une version adaptée au partage, sélectionnez <b>Faire une copie…</b> dans le menu Fichier, sélectionnez <b>Dissocier les citations</b> dans le menu Jurism du nouveau document, puis téléchargez la version non liée. Conservez ce document lié original au cas où vous auriez besoin d'apporter d'autres modifications."
-  },
-  "integration_googleDocs_unlinkBeforeSaving_downloadAnyway": {
-    "message": "Télécharger la version liée quand même"
-  },
-  "integration_googleDocs_updating": {
-    "message": "$1 met à jour votre document."
-  },
-  "integration_googleDocs_docxAlert": {
-    "message": "L'intégration de $1 n'est pas disponible lors de l'édition directe de fichiers Microsoft Word .docx dans Google Docs. Sélectionnez Fichier → Enregistrer au format Google Docs afin d'activer cette fonctionnalité.<br/><br/>Si vous souhaitez transférer un document Word avec $1 citations vers Google Docs, consultez <a href=\"https://www.zotero.org/support/kb/moving_documents_between_word_processors\">Transférer des documents comportant des citations Jurism entre différents logiciels de traitement de texte</a>."
-  },
-  "integration_googleDocs_documentLocked": {
-    "message": "Les citations du document sont en cours de modification par un autre utilisateur $1. Veuillez réessayer ultérieurement."
-  },
-  "integration_googleDocs_documentLocked_moreInfo": {
-    "message": "$1 verrouille votre document pour empêcher plusieurs utilisateurs de modifier les citations en même temps. La modification simultanée de citations dans le document peut entraîner une corruption des citations ou du document. Certaines circonstances imprévisibles, telles que des pannes de réseau, peuvent entraîner le verrouillage permanent de votre document. Si vous pensez que cela s'est produit, vous pouvez annuler le verrouillage. <br/><br/>Voulez-vous annuler le verrouillage du document ?"
-  },
-  "integration_googleDocs_documentPermissionError": {
-    "message": "Le compte Google que vous avez sélectionné n'a pas l'autorisation de modifier ce document. Veuillez réessayer, en vous assurant de choisir un compte disposant d'un accès en modification."
-  },
-  "integration_googleDocs_orphanedCitations_buttonTooltip": {
-    "message": "Afficher les citations $1 non liées."
-  },
-  "integration_googleDocs_orphanedCitations_alert": {
-    "message": "La citation que vous tentez de modifier n'est plus liée à  $1."
-  },
-  "integration_googleDocs_orphanedCitations_alertButton": {
-    "message": "Lier à nouveau la citation."
-  },
-  "integration_googleDocs_orphanedCitations_disclaimer": {
-    "message": "Ces citations ne sont <a target=\"_blank\" href=\"https://www.zotero.org/support/kb/google_docs_citations_unlinked\">plus liées à $1</a>. Vous devez les lier à nouveau pour qu'elles soient mises à jour ou apparaissent dans votre bibliographie."
-  },
-  "copyUnproxiedLink": {
-    "message": "Copier le lien sans proxy"
-  },
-  "copyUnproxiedPageURL": {
-    "message": "Copier l’URL de la page sans proxy"
-  },
-  "reloadViaProxy": {
-    "message": "Recharger via proxy"
-  },
-  "reloadVia": {
-    "message": "Recharger via $1"
-  },
-  "general_saveTo": {
-    "message": "Enregistrer dans $1"
-  }
+    "appConnector": {
+        "message": "Connecteur $1"
+    },
+    "copyUnproxiedLink": {
+        "message": "Copier le lien sans proxy"
+    },
+    "copyUnproxiedPageURL": {
+        "message": "Copier l\u2019URL\u202fde la page sans proxy"
+    },
+    "error_connection_downloadOrTroubleshoot": {
+        "message": "Vous pouvez <a href=\"$1\">t\u00e9l\u00e9charger le $2</a> ou <a href=\"$3\">r\u00e9soudre les probl\u00e8mes de connexion</a> si n\u00e9cessaire."
+    },
+    "error_connection_enableSavingToOnlineLibrary": {
+        "message": "Activer l'enregistrement dans la biblioth\u00e8que en ligne"
+    },
+    "error_connection_isAppRunning": {
+        "message": "$1 est-il ouvert\u00a0?"
+    },
+    "error_connection_save": {
+        "message": "Le $1 n'a pas pu communiquer avec l'application $2. Le Connecteur peut enregistrer certaines pages directement sur votre compte $3, mais pour de meilleurs r\u00e9sultats assurez-vous que $2 est ouvert avant d'essayer d'enregistrer."
+    },
+    "extensionIsDisabled": {
+        "message": "$1 est d\u00e9sactiv\u00e9"
+    },
+    "extensionIsDisabled_extensionPage": {
+        "message": "$1 est d\u00e9sactiv\u00e9 sur la page des extensions"
+    },
+    "firstRun_acceptButton": {
+        "message": "Compris"
+    },
+    "firstRun_text1": {
+        "message": "Le Connecteur $1 vous permet <a href=\"$2\">d'enregistrer des documents dans$1</a> depuis de votre navigateur en un seul clic."
+    },
+    "firstRun_text2": {
+        "message": "Si vous ne l'avez pas encore fait, <a href=\"$2\">t\u00e9l\u00e9chargez</a>l'application autonome $1 pour b\u00e9n\u00e9ficier d'une exp\u00e9rience optimale."
+    },
+    "firstRun_text3": {
+        "message": "(You can view the $1 Privacy Policy on <a href=\"$2\">the project website</a>)."
+    },
+    "firstRun_title": {
+        "message": "Vous avez install\u00e9 le connecteur pour $1!"
+    },
+    "general_cancel": {
+        "message": "Annuler"
+    },
+    "general_copyToClipboard": {
+        "message": "Copier dans le presse-papiers"
+    },
+    "general_done": {
+        "message": "Termin\u00e9"
+    },
+    "general_more": {
+        "message": "Plus\u2026"
+    },
+    "general_moreInfo": {
+        "message": "Plus d'info..."
+    },
+    "general_needHelp": {
+        "message": "Besoin d'aide?"
+    },
+    "general_no": {
+        "message": "Non"
+    },
+    "general_pleaseWait": {
+        "message": "Veuillez patienter\u2026"
+    },
+    "general_saveTo": {
+        "message": "Enregistrer dans $1"
+    },
+    "general_tryAgain": {
+        "message": "R\u00e9essayer"
+    },
+    "general_warning": {
+        "message": "Avertissement"
+    },
+    "general_yes": {
+        "message": "Oui"
+    },
+    "integration_error_clientUpgrade": {
+        "message": "L'insertion de citations dans une application web n\u00e9cessite $1 ou ult\u00e9rieur."
+    },
+    "integration_error_connection": {
+        "message": "Le $1 n'a pas pu communiquer avec l'application $2. $2 doit \u00eatre ouvert pour pouvoir ins\u00e9rer des citations dans une application web."
+    },
+    "integration_googleDocs_documentLocked": {
+        "message": "Les citations du document sont en cours de modification par un autre utilisateur $1. Veuillez r\u00e9essayer ult\u00e9rieurement."
+    },
+    "integration_googleDocs_documentLocked_moreInfo": {
+        "message": "$1 verrouille votre document pour emp\u00eacher plusieurs utilisateurs de modifier les citations en m\u00eame temps. La modification simultan\u00e9e de citations dans le document peut entra\u00eener une corruption des citations ou du document. Certaines circonstances impr\u00e9visibles, telles que des pannes de r\u00e9seau, peuvent entra\u00eener le verrouillage permanent de votre document. Si vous pensez que cela s'est produit, vous pouvez annuler le verrouillage. <br/><br/>Voulez-vous annuler le verrouillage du document ?"
+    },
+    "integration_googleDocs_documentPermissionError": {
+        "message": "Le compte Google que vous avez s\u00e9lectionn\u00e9 n'a pas l'autorisation de modifier ce document. Veuillez r\u00e9essayer, en vous assurant de choisir un compte disposant d'un acc\u00e8s en modification."
+    },
+    "integration_googleDocs_docxAlert": {
+        "message": "L'int\u00e9gration de $1 n'est pas disponible lors de l'\u00e9dition directe de fichiers Microsoft Word .docx dans Google Docs. S\u00e9lectionnez Fichier \u2192 Enregistrer au format Google Docs afin d'activer cette fonctionnalit\u00e9.<br/><br/>Si vous souhaitez transf\u00e9rer un document Word avec $1 citations vers Google Docs, consultez <a href=\"https://www.zotero.org/support/kb/moving_documents_between_word_processors\">Transf\u00e9rer des documents comportant des citations Jurism entre diff\u00e9rents logiciels de traitement de texte</a>."
+    },
+    "integration_googleDocs_orphanedCitations_alert": {
+        "message": "La citation que vous tentez de modifier n'est plus li\u00e9e \u00e0  $1."
+    },
+    "integration_googleDocs_orphanedCitations_alertButton": {
+        "message": "Lier \u00e0 nouveau la citation."
+    },
+    "integration_googleDocs_orphanedCitations_buttonTooltip": {
+        "message": "Afficher les citations $1 non li\u00e9es."
+    },
+    "integration_googleDocs_orphanedCitations_disclaimer": {
+        "message": "Ces citations ne sont <a target=\"_blank\" href=\"https://www.zotero.org/support/kb/google_docs_citations_unlinked\">plus li\u00e9es \u00e0 $1</a>. Vous devez les lier \u00e0 nouveau pour qu'elles soient mises \u00e0 jour ou apparaissent dans votre bibliographie."
+    },
+    "integration_googleDocs_unlinkBeforeSaving_downloadAnyway": {
+        "message": "T\u00e9l\u00e9charger la version li\u00e9e quand m\u00eame"
+    },
+    "integration_googleDocs_unlinkBeforeSaving_instructions": {
+        "message": "Pour g\u00e9n\u00e9rer une version adapt\u00e9e au partage, s\u00e9lectionnez <b>Faire une copie\u2026</b> dans le menu Fichier, s\u00e9lectionnez <b>Dissocier les citations</b> dans le menu Jurism du nouveau document, puis t\u00e9l\u00e9chargez la version non li\u00e9e. Conservez ce document li\u00e9 original au cas o\u00f9 vous auriez besoin d'apporter d'autres modifications."
+    },
+    "integration_googleDocs_unlinkBeforeSaving_warning": {
+        "message": "Ce document contient des citations Jurism actives qui appara\u00eetront sous forme de liens zotero.org dans une copie t\u00e9l\u00e9charg\u00e9e."
+    },
+    "integration_googleDocs_updating": {
+        "message": "$1 met \u00e0 jour votre document."
+    },
+    "progressWindow_error_fallback": {
+        "message": "Une erreur s\u2019est produite lors de l\u2019enregistrement avec $1. Tentative d\u2019enregistrement en utilisant $2 \u00e0 la place."
+    },
+    "progressWindow_error_siteAccessLimits": {
+        "message": "Limites d'acc\u00e8s au site"
+    },
+    "progressWindow_error_siteAccessLimitsError": {
+        "message": "Une erreur s'est produite lors de l'enregistrement de ce document. Il est possible que $1 limite le nombre de documents que vous pouvez enregistrer en m\u00eame temps. Voir $2 pour plus d'informations."
+    },
+    "progressWindow_error_translation": {
+        "message": "Une erreur s\u2019est produite lors de l\u2019enregistrement de ce document. Consultez $1 pour davantage de pr\u00e9cisions. "
+    },
+    "progressWindow_error_troubleshootingTranslatorIssues": {
+        "message": "R\u00e9soudre les probl\u00e8mes de convertisseur"
+    },
+    "progressWindow_error_upgradeClient": {
+        "message": "Cette fonctionnalit\u00e9 n\u2019est pas compatible avec votre version de $1. Veuillez mettre \u00e0 niveau vers $2."
+    },
+    "progressWindow_error_upgradeClient_latestVersion": {
+        "message": "derni\u00e8re version"
+    },
+    "progressWindow_savingTo": {
+        "message": "Enregistrer dans"
+    },
+    "progressWindow_tagPlaceholder": {
+        "message": "Marqueurs (s\u00e9par\u00e9s par des virgules)"
+    },
+    "reloadVia": {
+        "message": "Recharger via $1"
+    },
+    "reloadViaProxy": {
+        "message": "Recharger via proxy"
+    },
+    "reports_debug_output_submitted": {
+        "message": "Le journal de d\u00e9bogage a \u00e9t\u00e9 envoy\u00e9.\n\nLe Debug ID est $1."
+    },
+    "reports_report_submitted": {
+        "message": "Votre rapport d'erreur a \u00e9t\u00e9 soumis.\n\nReport ID: $1\n\nVeuillez poster un message sur les forums de Jurism avec cet identifiant, une description du probl\u00e8me et toutes les \u00e9tapes n\u00e9cessaires pour le reproduire.\nLes rapports d'erreur ne sont pas analys\u00e9s tant qu'ils ne sont pas cit\u00e9s dans les forums avec cet identifiant."
+    },
+    "reports_submission_failed": {
+        "message": "Une erreur s'est produite lors de l'envoi de votre rapport.\n\n$1\n\nVeuillez v\u00e9rifier votre connexion internet. Si le probl\u00e8me persiste, veuillez poster un message sur les forums Jurism."
+    },
+    "upgradeApp": {
+        "message": "Mettre \u00e0 niveau $1"
+    }
 }

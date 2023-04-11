@@ -1,164 +1,167 @@
 {
-  "general_more": {
-    "message": "Más…"
-  },
-  "general_moreInfo": {
-    "message": "Más información..."
-  },
-  "general_needHelp": {
-    "message": "¿Necesita ayuda?"
-  },
-  "general_done": {
-    "message": "Hecho"
-  },
-  "general_yes": {
-    "message": "Sí"
-  },
-  "general_no": {
-    "message": "No"
-  },
-  "general_tryAgain": {
-    "message": "Pruebe de nuevo"
-  },
-  "general_warning": {
-    "message": "Advertencia"
-  },
-  "general_cancel": {
-    "message": "Cancelar"
-  },
-  "general_pleaseWait": {
-    "message": "Por favor, espere..."
-  },
-  "general_copyToClipboard": {
-    "message": "Copiar al portapapeles"
-  },
-  "progressWindow_savingTo": {
-    "message": "Guardando a"
-  },
-  "progressWindow_tagPlaceholder": {
-    "message": "Etiquetas (separadas por comas)"
-  },
-  "progressWindow_error_translation": {
-    "message": "Ocurrió un error mientras se guardaba este elemento. Véase $1 para más información."
-  },
-  "progressWindow_error_siteAccessLimitsError": {
-    "message": "Ocurrió un error mientras se guardaba este elemento. $1puede limitar el número de elementos que puede guardar a la vez. Véase$2para más información."
-  },
-  "progressWindow_error_troubleshootingTranslatorIssues": {
-    "message": "Solución de problemas del traductor"
-  },
-  "progressWindow_error_siteAccessLimits": {
-    "message": "Límites de acceso al sitio"
-  },
-  "progressWindow_error_fallback": {
-    "message": "Ocurrió un error al guardar con $1. Intentando guardar usando $2 en su lugar."
-  },
-  "progressWindow_error_upgradeClient": {
-    "message": "Esta característica no está soportada por su versión de $1. Por favor, actualice a $2."
-  },
-  "progressWindow_error_upgradeClient_latestVersion": {
-    "message": "última versión"
-  },
-  "extensionIsDisabled": {
-    "message": "$1 está desactivado"
-  },
-  "extensionIsDisabled_extensionPage": {
-    "message": "$1está desactivado en las páginas de extensión"
-  },
-  "appConnector": {
-    "message": "Conector de $1"
-  },
-  "upgradeApp": {
-    "message": "Actualizar $1"
-  },
-  "firstRun_title": {
-    "message": "¡Ha instalado el conector $1!"
-  },
-  "firstRun_text1": {
-    "message": "El conector$1le permite <a href=\"$2\">guardar elementos a $1</a> desde su navegador con un solo clic."
-  },
-  "firstRun_text2": {
-    "message": "Si aún no la tiene, <a href=\"$2\">descargue</a> la aplicación $1 independiente para una mejor experiencia."
-  },
-  "firstRun_acceptButton": {
-    "message": "Entendido"
-  },
-  "error_connection_isAppRunning": {
-    "message": "¿Está $1 en ejecución?"
-  },
-  "error_connection_save": {
-    "message": "El $1 fue habilitado para comunicar con la aplicación de escritorio de $2. El Conector puede guardar algunas páginas directamente en su cuenta $3, pero para obtener mejores resultados debe asegurarse de que $2 está abierto antes de intentar guardar."
-  },
-  "error_connection_downloadOrTroubleshoot": {
-    "message": "Puedes <a href=\"$1\">descargar $2</a> o <a href=\"$3\">solucionar problemas de la conexión</a> si es necesario."
-  },
-  "error_connection_enableSavingToOnlineLibrary": {
-    "message": "Habilitar guardar en la biblioteca en línea"
-  },
-  "reports_report_submitted": {
-    "message": "Su informe de error ha sido enviado.\n\nIdentificador del informe: $1\n\nPor favor, publique un mensaje en los foros de Jurism con este identificador de informe, una descripción del problema y los pasos necesarios para reproducirlo.\n\nLos informes de error no se revisan a menos que se mencionen en los foros."
-  },
-  "reports_debug_output_submitted": {
-    "message": "Su salida de depuración ha sido enviada.\n\nEl identificador de depuración es $1."
-  },
-  "reports_submission_failed": {
-    "message": "Ocurrió un error al enviar su informe.\n\n$1\n\nPor favor, compruebe su conexión a Internet. Si el problema persiste, envíe un mensaje a los foros de Jurism."
-  },
-  "integration_error_clientUpgrade": {
-    "message": "La citación basada en web requiere $1 o superior."
-  },
-  "integration_error_connection": {
-    "message": "El $1 fue habilitado para comunicar con la aplicación de escritorio de $2. $2 debe estar abierto para usar la citación basada en web."
-  },
-  "integration_googleDocs_unlinkBeforeSaving_warning": {
-    "message": "Este documento contiene citas activas de Jurism que aparecerán como enlaces a zotero.org en la copia descargada."
-  },
-  "integration_googleDocs_unlinkBeforeSaving_instructions": {
-    "message": "Para generar una versión adecuada para compartir, seleccione <b>Hacer una copia... </b>desde el menú Archivo, seleccione <b>Desvincular citas </b>desde el menú de Jurism en el nuevo documento y luego descargue la versión no enlazada. Conserve este documento original vinculado en caso de que necesite realizar más cambios."
-  },
-  "integration_googleDocs_unlinkBeforeSaving_downloadAnyway": {
-    "message": "Descargar la versión enlazada de todos modos"
-  },
-  "integration_googleDocs_updating": {
-    "message": "$1 está actualizando su documento."
-  },
-  "integration_googleDocs_docxAlert": {
-    "message": "La integración de $1 no está disponible cuando editas archivos .docx de Microsoft Word directamente en Google Docs. Elige Archivo → Guardar como Google Docs para habilitar esta funcionalidad.<br/><br/>Si quieres transferir un documento Word con citas  $1 a Google Docs, consulta <a href=\"https://www.zotero.org/support/kb/moving_documents_between_word_processors\">Mover documentos entre procesadores de texto</a>."
-  },
-  "integration_googleDocs_documentLocked": {
-    "message": "Las citas del documento están siendo editadas por otro usuario $1. Por favor, inténtelo más tarde."
-  },
-  "integration_googleDocs_documentLocked_moreInfo": {
-    "message": "$1 bloquea el documento para evitar que varios usuarios editen las citas al mismo tiempo. La edición simultánea de citas en el documento puede provocar la corrupción de las citas o del documento. Ciertas circunstancias imprevisibles, como los fallos de la red, pueden hacer que su documento se bloquee permanentemente. Si cree que esto ha ocurrido, puede anular el bloqueo.<br/><br/>¿Desea anular el bloqueo del documento?"
-  },
-  "integration_googleDocs_documentPermissionError": {
-    "message": "La cuenta de Google que eligió no tiene permiso para editar este documento. Por favor, inténtelo de nuevo y asegúrese de elegir una cuenta con acceso de edición."
-  },
-  "integration_googleDocs_orphanedCitations_buttonTooltip": {
-    "message": "Mostar citas$1 desvinculadas"
-  },
-  "integration_googleDocs_orphanedCitations_alert": {
-    "message": "La cita que intenta editar se ha desvinculado de $1."
-  },
-  "integration_googleDocs_orphanedCitations_alertButton": {
-    "message": "Volver a enlazar cita"
-  },
-  "integration_googleDocs_orphanedCitations_disclaimer": {
-    "message": "Estas citas han quedado <a target=\"_blank\" href=\"https://www.zotero.org/support/kb/google_docs_citations_unlinked\">desvinculadas de $1</a>. Tendrá que volver a enlazarlas para que se actualicen o aparezcan en su bibliografía."
-  },
-  "copyUnproxiedLink": {
-    "message": "Copiar enlace sin proxy"
-  },
-  "copyUnproxiedPageURL": {
-    "message": "Copiar URL de página sin proxy"
-  },
-  "reloadViaProxy": {
-    "message": "Volver a cargar vía Proxy"
-  },
-  "reloadVia": {
-    "message": "Volver a cargar vía $1"
-  },
-  "general_saveTo": {
-    "message": "Guardar a $1"
-  }
+    "appConnector": {
+        "message": "Conector de $1"
+    },
+    "copyUnproxiedLink": {
+        "message": "Copiar enlace sin proxy"
+    },
+    "copyUnproxiedPageURL": {
+        "message": "Copiar URL de p\u00e1gina sin proxy"
+    },
+    "error_connection_downloadOrTroubleshoot": {
+        "message": "Puedes <a href=\"$1\">descargar $2</a> o <a href=\"$3\">solucionar problemas de la conexi\u00f3n</a> si es necesario."
+    },
+    "error_connection_enableSavingToOnlineLibrary": {
+        "message": "Habilitar guardar en la biblioteca en l\u00ednea"
+    },
+    "error_connection_isAppRunning": {
+        "message": "\u00bfEst\u00e1 $1 en ejecuci\u00f3n?"
+    },
+    "error_connection_save": {
+        "message": "El $1 fue habilitado para comunicar con la aplicaci\u00f3n de escritorio de $2. El Conector puede guardar algunas p\u00e1ginas directamente en su cuenta $3, pero para obtener mejores resultados debe asegurarse de que $2 est\u00e1 abierto antes de intentar guardar."
+    },
+    "extensionIsDisabled": {
+        "message": "$1 est\u00e1 desactivado"
+    },
+    "extensionIsDisabled_extensionPage": {
+        "message": "$1est\u00e1 desactivado en las p\u00e1ginas de extensi\u00f3n"
+    },
+    "firstRun_acceptButton": {
+        "message": "Entendido"
+    },
+    "firstRun_text1": {
+        "message": "El conector$1le permite <a href=\"$2\">guardar elementos a $1</a> desde su navegador con un solo clic."
+    },
+    "firstRun_text2": {
+        "message": "Si a\u00fan no la tiene, <a href=\"$2\">descargue</a> la aplicaci\u00f3n $1 independiente para una mejor experiencia."
+    },
+    "firstRun_text3": {
+        "message": "(You can view the $1 Privacy Policy on <a href=\"$2\">the project website</a>)."
+    },
+    "firstRun_title": {
+        "message": "\u00a1Ha instalado el conector $1!"
+    },
+    "general_cancel": {
+        "message": "Cancelar"
+    },
+    "general_copyToClipboard": {
+        "message": "Copiar al portapapeles"
+    },
+    "general_done": {
+        "message": "Hecho"
+    },
+    "general_more": {
+        "message": "M\u00e1s\u2026"
+    },
+    "general_moreInfo": {
+        "message": "M\u00e1s informaci\u00f3n..."
+    },
+    "general_needHelp": {
+        "message": "\u00bfNecesita ayuda?"
+    },
+    "general_no": {
+        "message": "No"
+    },
+    "general_pleaseWait": {
+        "message": "Por favor, espere..."
+    },
+    "general_saveTo": {
+        "message": "Guardar a $1"
+    },
+    "general_tryAgain": {
+        "message": "Pruebe de nuevo"
+    },
+    "general_warning": {
+        "message": "Advertencia"
+    },
+    "general_yes": {
+        "message": "S\u00ed"
+    },
+    "integration_error_clientUpgrade": {
+        "message": "La citaci\u00f3n basada en web requiere $1 o superior."
+    },
+    "integration_error_connection": {
+        "message": "El $1 fue habilitado para comunicar con la aplicaci\u00f3n de escritorio de $2. $2 debe estar abierto para usar la citaci\u00f3n basada en web."
+    },
+    "integration_googleDocs_documentLocked": {
+        "message": "Las citas del documento est\u00e1n siendo editadas por otro usuario $1. Por favor, int\u00e9ntelo m\u00e1s tarde."
+    },
+    "integration_googleDocs_documentLocked_moreInfo": {
+        "message": "$1\u00a0bloquea el documento para evitar que varios usuarios editen las citas al mismo tiempo. La edici\u00f3n simult\u00e1nea de citas en el documento puede provocar la corrupci\u00f3n de las citas o del documento. Ciertas circunstancias imprevisibles, como los fallos de la red, pueden hacer que su documento se bloquee permanentemente. Si cree que esto ha ocurrido, puede anular el bloqueo.<br/><br/>\u00bfDesea anular el bloqueo del documento?"
+    },
+    "integration_googleDocs_documentPermissionError": {
+        "message": "La cuenta de Google que eligi\u00f3 no tiene permiso para editar este documento. Por favor, int\u00e9ntelo de nuevo y aseg\u00farese de elegir una cuenta con acceso de edici\u00f3n."
+    },
+    "integration_googleDocs_docxAlert": {
+        "message": "La integraci\u00f3n de $1 no est\u00e1 disponible cuando editas archivos .docx de Microsoft Word directamente en Google Docs. Elige Archivo \u2192 Guardar como Google Docs para habilitar esta funcionalidad.<br/><br/>Si quieres transferir un documento Word con citas  $1 a Google Docs, consulta <a href=\"https://www.zotero.org/support/kb/moving_documents_between_word_processors\">Mover documentos entre procesadores de texto</a>."
+    },
+    "integration_googleDocs_orphanedCitations_alert": {
+        "message": "La cita que intenta editar se ha desvinculado de $1."
+    },
+    "integration_googleDocs_orphanedCitations_alertButton": {
+        "message": "Volver a enlazar cita"
+    },
+    "integration_googleDocs_orphanedCitations_buttonTooltip": {
+        "message": "Mostar citas$1 desvinculadas"
+    },
+    "integration_googleDocs_orphanedCitations_disclaimer": {
+        "message": "Estas citas han quedado <a target=\"_blank\" href=\"https://www.zotero.org/support/kb/google_docs_citations_unlinked\">desvinculadas de $1</a>. Tendr\u00e1 que volver a enlazarlas para que se actualicen o aparezcan en su bibliograf\u00eda."
+    },
+    "integration_googleDocs_unlinkBeforeSaving_downloadAnyway": {
+        "message": "Descargar la versi\u00f3n enlazada de todos modos"
+    },
+    "integration_googleDocs_unlinkBeforeSaving_instructions": {
+        "message": "Para generar una versi\u00f3n adecuada para compartir, seleccione <b>Hacer una copia... </b>desde el men\u00fa Archivo, seleccione <b>Desvincular citas </b>desde el men\u00fa de Jurism en el nuevo documento y luego descargue la versi\u00f3n no enlazada. Conserve este documento original vinculado en caso de que necesite realizar m\u00e1s cambios."
+    },
+    "integration_googleDocs_unlinkBeforeSaving_warning": {
+        "message": "Este documento contiene citas activas de Jurism que aparecer\u00e1n como enlaces a zotero.org en la copia descargada."
+    },
+    "integration_googleDocs_updating": {
+        "message": "$1 est\u00e1 actualizando su documento."
+    },
+    "progressWindow_error_fallback": {
+        "message": "Ocurri\u00f3 un error al guardar con $1. Intentando guardar usando $2 en su lugar."
+    },
+    "progressWindow_error_siteAccessLimits": {
+        "message": "L\u00edmites de acceso al sitio"
+    },
+    "progressWindow_error_siteAccessLimitsError": {
+        "message": "Ocurri\u00f3 un error mientras se guardaba este elemento. $1puede limitar el n\u00famero de elementos que puede guardar a la vez. V\u00e9ase$2para m\u00e1s informaci\u00f3n."
+    },
+    "progressWindow_error_translation": {
+        "message": "Ocurri\u00f3 un error mientras se guardaba este elemento. V\u00e9ase $1 para m\u00e1s informaci\u00f3n."
+    },
+    "progressWindow_error_troubleshootingTranslatorIssues": {
+        "message": "Soluci\u00f3n de problemas del traductor"
+    },
+    "progressWindow_error_upgradeClient": {
+        "message": "Esta caracter\u00edstica no est\u00e1 soportada por su versi\u00f3n de $1. Por favor, actualice a $2."
+    },
+    "progressWindow_error_upgradeClient_latestVersion": {
+        "message": "\u00faltima versi\u00f3n"
+    },
+    "progressWindow_savingTo": {
+        "message": "Guardando a"
+    },
+    "progressWindow_tagPlaceholder": {
+        "message": "Etiquetas (separadas por comas)"
+    },
+    "reloadVia": {
+        "message": "Volver a cargar v\u00eda $1"
+    },
+    "reloadViaProxy": {
+        "message": "Volver a cargar v\u00eda Proxy"
+    },
+    "reports_debug_output_submitted": {
+        "message": "Su salida de depuraci\u00f3n ha sido enviada.\n\nEl identificador de depuraci\u00f3n es $1."
+    },
+    "reports_report_submitted": {
+        "message": "Su informe de error ha sido enviado.\n\nIdentificador del informe: $1\n\nPor favor, publique un mensaje en los foros de Jurism con este identificador de informe, una descripci\u00f3n del problema y los pasos necesarios para reproducirlo.\n\nLos informes de error no se revisan a menos que se mencionen en los foros."
+    },
+    "reports_submission_failed": {
+        "message": "Ocurri\u00f3 un error al enviar su informe.\n\n$1\n\nPor favor, compruebe su conexi\u00f3n a Internet. Si el problema persiste, env\u00ede un mensaje a los foros de Jurism."
+    },
+    "upgradeApp": {
+        "message": "Actualizar $1"
+    }
 }

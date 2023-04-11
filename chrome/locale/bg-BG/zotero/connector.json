@@ -1,74 +1,170 @@
 {
-  "general_more": {
-    "message": "Още..."
-  },
-  "general_done": {
-    "message": "Готово"
-  },
-  "general_yes": {
-    "message": "Да"
-  },
-  "general_no": {
-    "message": "Не"
-  },
-  "general_tryAgain": {
-    "message": "Опитайте отново"
-  },
-  "general_warning": {
-    "message": "Предупреждение"
-  },
-  "general_cancel": {
-    "message": "Отказ"
-  },
-  "general_copyToClipboard": {
-    "message": "Копиране в клипборда"
-  },
-  "progressWindow_savingTo": {
-    "message": "Записване в"
-  },
-  "progressWindow_tagPlaceholder": {
-    "message": "Маркери (отделени със запетаи)"
-  },
-  "progressWindow_error_translation": {
-    "message": "Възникна грешка при записа. Вижте $1 за повече информация."
-  },
-  "progressWindow_error_troubleshootingTranslatorIssues": {
-    "message": "Отстраняване на проблеми в софтуера за извличане на данни"
-  },
-  "progressWindow_error_fallback": {
-    "message": "Възникна грешка при записване с $1. Опит за записване с $2"
-  },
-  "progressWindow_error_upgradeClient": {
-    "message": "Тази възможност не се поддържа от Вашата версия на $1 . Моля, актуализирайте до версия $2."
-  },
-  "progressWindow_error_upgradeClient_latestVersion": {
-    "message": "последна версия"
-  },
-  "appConnector": {
-    "message": "Добавка за браузъра $1"
-  },
-  "upgradeApp": {
-    "message": "Актуализиране $1"
-  },
-  "error_connection_isAppRunning": {
-    "message": "Работи ли $1 ?"
-  },
-  "error_connection_save": {
-    "message": "$1 не успя да се свърже със софтуера $2.  Добавката за браузъра може да записва някои страници директно във Вашия $3 акаунт, но за най-добри резултати трябва да се сигурни, че $2 е стартиран преди да направите опит за запис."
-  },
-  "error_connection_downloadOrTroubleshoot": {
-    "message": "Можете да <a href=\"$1\">изтеглите$2</a> или <a href=\"$3\">да отстраните неизправностите във връзката</a> при необходимост."
-  },
-  "error_connection_enableSavingToOnlineLibrary": {
-    "message": "Активиране на запис в онлайн библиотеката"
-  },
-  "integration_error_clientUpgrade": {
-    "message": "Уеб-базираното цитиране изисква минимум версия $1."
-  },
-  "integration_error_connection": {
-    "message": "$1 не можа да се свърже с $2 програмата. $2 трябва да бъде стартиран за да се използва уеб-базирано цитиране."
-  },
-  "general_saveTo": {
-    "message": "Запиши в $1"
-  }
+    "appConnector": {
+        "message": "\u0414\u043e\u0431\u0430\u0432\u043a\u0430 \u0437\u0430 \u0431\u0440\u0430\u0443\u0437\u044a\u0440\u0430 $1"
+    },
+    "copyUnproxiedLink": {
+        "message": "Copy Unproxied Link"
+    },
+    "copyUnproxiedPageURL": {
+        "message": "Copy Unproxied Page URL"
+    },
+    "error_connection_downloadOrTroubleshoot": {
+        "message": "\u041c\u043e\u0436\u0435\u0442\u0435 \u0434\u0430 <a href=\"$1\">\u0438\u0437\u0442\u0435\u0433\u043b\u0438\u0442\u0435$2</a> \u0438\u043b\u0438 <a href=\"$3\">\u0434\u0430 \u043e\u0442\u0441\u0442\u0440\u0430\u043d\u0438\u0442\u0435 \u043d\u0435\u0438\u0437\u043f\u0440\u0430\u0432\u043d\u043e\u0441\u0442\u0438\u0442\u0435 \u0432\u044a\u0432 \u0432\u0440\u044a\u0437\u043a\u0430\u0442\u0430</a> \u043f\u0440\u0438 \u043d\u0435\u043e\u0431\u0445\u043e\u0434\u0438\u043c\u043e\u0441\u0442."
+    },
+    "error_connection_enableSavingToOnlineLibrary": {
+        "message": "\u0410\u043a\u0442\u0438\u0432\u0438\u0440\u0430\u043d\u0435 \u043d\u0430 \u0437\u0430\u043f\u0438\u0441 \u0432 \u043e\u043d\u043b\u0430\u0439\u043d \u0431\u0438\u0431\u043b\u0438\u043e\u0442\u0435\u043a\u0430\u0442\u0430"
+    },
+    "error_connection_isAppRunning": {
+        "message": "\u0420\u0430\u0431\u043e\u0442\u0438 \u043b\u0438 $1 ?"
+    },
+    "error_connection_save": {
+        "message": "$1 \u043d\u0435 \u0443\u0441\u043f\u044f \u0434\u0430 \u0441\u0435 \u0441\u0432\u044a\u0440\u0436\u0435 \u0441\u044a\u0441 \u0441\u043e\u0444\u0442\u0443\u0435\u0440\u0430 $2.  \u0414\u043e\u0431\u0430\u0432\u043a\u0430\u0442\u0430 \u0437\u0430 \u0431\u0440\u0430\u0443\u0437\u044a\u0440\u0430 \u043c\u043e\u0436\u0435 \u0434\u0430 \u0437\u0430\u043f\u0438\u0441\u0432\u0430 \u043d\u044f\u043a\u043e\u0438 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0438 \u0434\u0438\u0440\u0435\u043a\u0442\u043d\u043e \u0432\u044a\u0432 \u0412\u0430\u0448\u0438\u044f $3 \u0430\u043a\u0430\u0443\u043d\u0442, \u043d\u043e \u0437\u0430 \u043d\u0430\u0439-\u0434\u043e\u0431\u0440\u0438 \u0440\u0435\u0437\u0443\u043b\u0442\u0430\u0442\u0438 \u0442\u0440\u044f\u0431\u0432\u0430 \u0434\u0430 \u0441\u0435 \u0441\u0438\u0433\u0443\u0440\u043d\u0438, \u0447\u0435 $2 \u0435 \u0441\u0442\u0430\u0440\u0442\u0438\u0440\u0430\u043d \u043f\u0440\u0435\u0434\u0438 \u0434\u0430 \u043d\u0430\u043f\u0440\u0430\u0432\u0438\u0442\u0435 \u043e\u043f\u0438\u0442 \u0437\u0430 \u0437\u0430\u043f\u0438\u0441."
+    },
+    "extensionIsDisabled": {
+        "message": "$1 is disabled"
+    },
+    "extensionIsDisabled_extensionPage": {
+        "message": "$1 is disabled on extension pages"
+    },
+    "firstRun_acceptButton": {
+        "description": "The Accept button for the first-run dialog",
+        "message": "Got it"
+    },
+    "firstRun_text1": {
+        "message": "The $1 Connector enables you to <a href=\"$2\">save items to $1</a> from your browser in a single click."
+    },
+    "firstRun_text2": {
+        "message": "If you haven\u2019t yet, <a href=\"$2\">download</a> the standalone $1 application for the best experience."
+    },
+    "firstRun_text3": {
+        "message": "(You can view the $1 Privacy Policy on <a href=\"$2\">the project website</a>)."
+    },
+    "firstRun_title": {
+        "message": "You\u2019ve installed the $1 Connector!"
+    },
+    "general_cancel": {
+        "message": "\u041e\u0442\u043a\u0430\u0437"
+    },
+    "general_copyToClipboard": {
+        "message": "\u041a\u043e\u043f\u0438\u0440\u0430\u043d\u0435 \u0432 \u043a\u043b\u0438\u043f\u0431\u043e\u0440\u0434\u0430"
+    },
+    "general_done": {
+        "message": "\u0413\u043e\u0442\u043e\u0432\u043e"
+    },
+    "general_more": {
+        "message": "\u041e\u0449\u0435..."
+    },
+    "general_moreInfo": {
+        "message": "More Info\u2026"
+    },
+    "general_needHelp": {
+        "message": "Need help?"
+    },
+    "general_no": {
+        "message": "\u041d\u0435"
+    },
+    "general_pleaseWait": {
+        "message": "Please wait\u2026"
+    },
+    "general_saveTo": {
+        "message": "\u0417\u0430\u043f\u0438\u0448\u0438 \u0432 $1"
+    },
+    "general_tryAgain": {
+        "message": "\u041e\u043f\u0438\u0442\u0430\u0439\u0442\u0435 \u043e\u0442\u043d\u043e\u0432\u043e"
+    },
+    "general_warning": {
+        "message": "\u041f\u0440\u0435\u0434\u0443\u043f\u0440\u0435\u0436\u0434\u0435\u043d\u0438\u0435"
+    },
+    "general_yes": {
+        "message": "\u0414\u0430"
+    },
+    "integration_error_clientUpgrade": {
+        "message": "\u0423\u0435\u0431-\u0431\u0430\u0437\u0438\u0440\u0430\u043d\u043e\u0442\u043e \u0446\u0438\u0442\u0438\u0440\u0430\u043d\u0435 \u0438\u0437\u0438\u0441\u043a\u0432\u0430 \u043c\u0438\u043d\u0438\u043c\u0443\u043c \u0432\u0435\u0440\u0441\u0438\u044f $1."
+    },
+    "integration_error_connection": {
+        "message": "$1 \u043d\u0435 \u043c\u043e\u0436\u0430 \u0434\u0430 \u0441\u0435 \u0441\u0432\u044a\u0440\u0436\u0435 \u0441 $2 \u043f\u0440\u043e\u0433\u0440\u0430\u043c\u0430\u0442\u0430. $2 \u0442\u0440\u044f\u0431\u0432\u0430 \u0434\u0430 \u0431\u044a\u0434\u0435 \u0441\u0442\u0430\u0440\u0442\u0438\u0440\u0430\u043d \u0437\u0430 \u0434\u0430 \u0441\u0435 \u0438\u0437\u043f\u043e\u043b\u0437\u0432\u0430 \u0443\u0435\u0431-\u0431\u0430\u0437\u0438\u0440\u0430\u043d\u043e \u0446\u0438\u0442\u0438\u0440\u0430\u043d\u0435."
+    },
+    "integration_googleDocs_documentLocked": {
+        "message": "The document citations are being edited by another $1 user. Please try again later."
+    },
+    "integration_googleDocs_documentLocked_moreInfo": {
+        "message": "$1 locks your document to prevent multiple users from editing citations at the same time. Concurrent citation editing in the document may lead to citation or document corruption. Certain unforeseeable circumstances, such as network failures, may lead to your document becoming permanently locked. If you believe this has happened, you can override the lock.<br/><br/>Would you like to override the document lock?"
+    },
+    "integration_googleDocs_documentPermissionError": {
+        "message": "The Google account you selected does not have permission to edit this document. Please try again, and be sure to choose the account with editing access."
+    },
+    "integration_googleDocs_docxAlert": {
+        "message": "$1 integration is not available when editing Microsoft Word .docx files directly in Google Docs. Choose File \u2192 Save as Google Docs to enable this functionality.<br/><br/>If you want to transfer a Word document with $1 citations to Google Docs, see <a href=\"https://www.zotero.org/support/kb/moving_documents_between_word_processors\">Moving Documents Between Word Processors</a>."
+    },
+    "integration_googleDocs_orphanedCitations_alert": {
+        "message": "The citation you are trying to edit has become unlinked from $1."
+    },
+    "integration_googleDocs_orphanedCitations_alertButton": {
+        "message": "Relink Citation"
+    },
+    "integration_googleDocs_orphanedCitations_buttonTooltip": {
+        "message": "Show unlinked $1 citations"
+    },
+    "integration_googleDocs_orphanedCitations_disclaimer": {
+        "message": "These citations have become <a target=\"_blank\" href=\"https://www.zotero.org/support/kb/google_docs_citations_unlinked\">unlinked from $1</a>. You will need to relink them before they will update or appear in your bibliography."
+    },
+    "integration_googleDocs_unlinkBeforeSaving_downloadAnyway": {
+        "message": "Download Linked Version Anyway"
+    },
+    "integration_googleDocs_unlinkBeforeSaving_instructions": {
+        "message": "To generate a version suitable for sharing, select <b>Make a copy\u2026</b> from the File menu, select <b>Unlink Citations</b> from the Jurism menu in the new document, and then download the unlinked version. Keep this original linked document in case you need to make further changes."
+    },
+    "integration_googleDocs_unlinkBeforeSaving_warning": {
+        "message": "This document contains active Jurism citations that will appear as zotero.org links in a downloaded copy."
+    },
+    "integration_googleDocs_updating": {
+        "message": "$1 is updating your document."
+    },
+    "progressWindow_error_fallback": {
+        "message": "\u0412\u044a\u0437\u043d\u0438\u043a\u043d\u0430 \u0433\u0440\u0435\u0448\u043a\u0430 \u043f\u0440\u0438 \u0437\u0430\u043f\u0438\u0441\u0432\u0430\u043d\u0435 \u0441 $1. \u041e\u043f\u0438\u0442 \u0437\u0430 \u0437\u0430\u043f\u0438\u0441\u0432\u0430\u043d\u0435 \u0441 $2"
+    },
+    "progressWindow_error_siteAccessLimits": {
+        "message": "Site Access Limits"
+    },
+    "progressWindow_error_siteAccessLimitsError": {
+        "description": "The placeholders are for the failing translator label (e.g., Google Scholar) and the Site Access Limits link",
+        "message": "An error occurred while saving this item. $1 may limit the number of items you can save at once. See $2 for more information."
+    },
+    "progressWindow_error_translation": {
+        "message": "\u0412\u044a\u0437\u043d\u0438\u043a\u043d\u0430 \u0433\u0440\u0435\u0448\u043a\u0430 \u043f\u0440\u0438 \u0437\u0430\u043f\u0438\u0441\u0430. \u0412\u0438\u0436\u0442\u0435 $1 \u0437\u0430 \u043f\u043e\u0432\u0435\u0447\u0435 \u0438\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u044f."
+    },
+    "progressWindow_error_troubleshootingTranslatorIssues": {
+        "message": "\u041e\u0442\u0441\u0442\u0440\u0430\u043d\u044f\u0432\u0430\u043d\u0435 \u043d\u0430 \u043f\u0440\u043e\u0431\u043b\u0435\u043c\u0438 \u0432 \u0441\u043e\u0444\u0442\u0443\u0435\u0440\u0430 \u0437\u0430 \u0438\u0437\u0432\u043b\u0438\u0447\u0430\u043d\u0435 \u043d\u0430 \u0434\u0430\u043d\u043d\u0438"
+    },
+    "progressWindow_error_upgradeClient": {
+        "message": "\u0422\u0430\u0437\u0438 \u0432\u044a\u0437\u043c\u043e\u0436\u043d\u043e\u0441\u0442 \u043d\u0435 \u0441\u0435 \u043f\u043e\u0434\u0434\u044a\u0440\u0436\u0430 \u043e\u0442 \u0412\u0430\u0448\u0430\u0442\u0430 \u0432\u0435\u0440\u0441\u0438\u044f \u043d\u0430 $1 . \u041c\u043e\u043b\u044f, \u0430\u043a\u0442\u0443\u0430\u043b\u0438\u0437\u0438\u0440\u0430\u0439\u0442\u0435 \u0434\u043e \u0432\u0435\u0440\u0441\u0438\u044f $2."
+    },
+    "progressWindow_error_upgradeClient_latestVersion": {
+        "message": "\u043f\u043e\u0441\u043b\u0435\u0434\u043d\u0430 \u0432\u0435\u0440\u0441\u0438\u044f"
+    },
+    "progressWindow_savingTo": {
+        "message": "\u0417\u0430\u043f\u0438\u0441\u0432\u0430\u043d\u0435 \u0432"
+    },
+    "progressWindow_tagPlaceholder": {
+        "message": "\u041c\u0430\u0440\u043a\u0435\u0440\u0438 (\u043e\u0442\u0434\u0435\u043b\u0435\u043d\u0438 \u0441\u044a\u0441 \u0437\u0430\u043f\u0435\u0442\u0430\u0438)"
+    },
+    "reloadVia": {
+        "message": "Reload via $1"
+    },
+    "reloadViaProxy": {
+        "message": "Reload via Proxy"
+    },
+    "reports_debug_output_submitted": {
+        "message": "Your debug output has been submitted.\n\nThe Debug ID is $1."
+    },
+    "reports_report_submitted": {
+        "message": "Your error report has been submitted.\n\nReport ID: $1\n\nPlease post a message to the Jurism Forums with this Report ID, a description of the problem, and any steps necessary to reproduce it.\n\nError reports are not reviewed unless referred to in the forums."
+    },
+    "reports_submission_failed": {
+        "description": "$1 will be the error message sent to the Jurism servers",
+        "message": "An error occurred submitting your report.\n\n$1\n\nPlease check your internet connection. If the problem persists, post a message to the Jurism Forums."
+    },
+    "upgradeApp": {
+        "message": "\u0410\u043a\u0442\u0443\u0430\u043b\u0438\u0437\u0438\u0440\u0430\u043d\u0435 $1"
+    }
 }

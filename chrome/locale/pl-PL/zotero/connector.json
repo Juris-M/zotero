@@ -1,158 +1,167 @@
 {
-  "general_more": {
-    "message": "Więcej..."
-  },
-  "general_moreInfo": {
-    "message": "Więcej informacji..."
-  },
-  "general_needHelp": {
-    "message": "Czy potrzebujesz pomocy?"
-  },
-  "general_done": {
-    "message": "Zrobione"
-  },
-  "general_yes": {
-    "message": "Tak"
-  },
-  "general_no": {
-    "message": "Nie"
-  },
-  "general_tryAgain": {
-    "message": "Spróbuj ponownie"
-  },
-  "general_warning": {
-    "message": "Ostrzeżenie"
-  },
-  "general_cancel": {
-    "message": "Anuluj"
-  },
-  "general_pleaseWait": {
-    "message": "Proszę czekać..."
-  },
-  "general_copyToClipboard": {
-    "message": "Kopiuj do schowka"
-  },
-  "progressWindow_savingTo": {
-    "message": "Zapisywanie do"
-  },
-  "progressWindow_tagPlaceholder": {
-    "message": "Znaczniki (oddzielone przecinkami)"
-  },
-  "progressWindow_error_translation": {
-    "message": "Podczas zapisu tego elementu wystąpił błąd. Aby uzyskać więcej informacji zobacz $1."
-  },
-  "progressWindow_error_siteAccessLimitsError": {
-    "message": "W trakcie zapisu tego elementu wystąpił błąd. $1 może ograniczać liczbę elementów, które możesz zapisać jednocześnie. Zobacz $2 aby uzyskać więcej informacji."
-  },
-  "progressWindow_error_troubleshootingTranslatorIssues": {
-    "message": "Znane błędy translacji"
-  },
-  "progressWindow_error_siteAccessLimits": {
-    "message": "Limit dostępu do witryny"
-  },
-  "progressWindow_error_fallback": {
-    "message": "Podczas zapisywania za pomocą $1 wystąpił błąd. Próba zapisu za pomocą $2."
-  },
-  "progressWindow_error_upgradeClient": {
-    "message": "Ta funkcja nie jest wspierana przez twoją wersję $1. Proszę zaktualizować do wersji $2."
-  },
-  "progressWindow_error_upgradeClient_latestVersion": {
-    "message": "ostatnia wersja"
-  },
-  "extensionIsDisabled": {
-    "message": "$1 jest wyłączony"
-  },
-  "extensionIsDisabled_extensionPage": {
-    "message": "$1 jest wyłączony w rozszerzeniach"
-  },
-  "appConnector": {
-    "message": "Łącznik $1"
-  },
-  "upgradeApp": {
-    "message": "Aktualizuj $1"
-  },
-  "firstRun_title": {
-    "message": "$1 Connector został zainstalowany!"
-  },
-  "firstRun_text1": {
-    "message": "$1 Connector umożliwia ci <a href=\"$2\">zapisywanie elementów do $1</a> z twojej przeglądarki tylko jednym kliknięciem."
-  },
-  "firstRun_text2": {
-    "message": "Jeśli jeszcze nie próbowałeś(aś), <a href=\"$2\">pobierz</a> samodzielną aplikację $1."
-  },
-  "firstRun_acceptButton": {
-    "message": "Rozumiem"
-  },
-  "error_connection_isAppRunning": {
-    "message": "Czy $1 jest uruchomiony?"
-  },
-  "error_connection_save": {
-    "message": "$1  nie mógł połączyć się z aplikacją desktop $2. Łącznik może zapisywać niektóre strony bezpośrednio do twojego konta $3, ale dla lepszej integracji powinieneś upewnić się, że $2 jest otwarty przed próbą zapisania."
-  },
-  "error_connection_downloadOrTroubleshoot": {
-    "message": "Możesz <a href=\"$1\">pobrać $2</a> lub <a href=\"$3\">rozwiązać problem z połączeniem</a>, jeśli to konieczne."
-  },
-  "error_connection_enableSavingToOnlineLibrary": {
-    "message": "Włącz zapisywanie do zdalnej biblioteki"
-  },
-  "reports_report_submitted": {
-    "message": "Twój raport o błędzie został przesłany.\n\nID raportu: $1\n\nProszę wyślij wiadomość na Forum Jurism z tym ID raportu, opisem problemu i krokami niezbędnymi do powtórzenia błędu.\n\nRaporty błędów nie są weryfikowane, jeśli nie są przesłane na forum."
-  },
-  "reports_debug_output_submitted": {
-    "message": "Informacja debugowania została wysłana.\n\nIdentyfikator informacji to $1."
-  },
-  "reports_submission_failed": {
-    "message": "Błąd podczas przesyłania raportu.\n\n$1\n\nProszę, sprawdź swoje połączenie internetowe. Jeśli problem wciąż istnieje, wyślij wiadomość na Forum Jurism."
-  },
-  "integration_error_clientUpgrade": {
-    "message": "Cytowanie oparte na stronach internetowych wymaga $1 lub nowszego."
-  },
-  "integration_error_connection": {
-    "message": "$1 nie mógł się połączyć z aplikacją desktop $2. $2 musi być uruchomiony, aby używać cytowania opartego na stronach internetowych."
-  },
-  "integration_googleDocs_unlinkBeforeSaving_warning": {
-    "message": "Ten dokument zawiera aktywne cytowania Jurism, które pojawią się w pobranej kopii jako odsyłacze zotero.org."
-  },
-  "integration_googleDocs_unlinkBeforeSaving_instructions": {
-    "message": "Aby utworzyć wersję możliwą do współdzielenia, wybierz <b>Zapisz kopię…</b> z menu Plik, wybierz <b>Unlink Citations</b> z menu Jurism w nowym dokumencie, a nastepnie pobierz wersję dokumentu z odłączonymi cytowaniami. Zachowaj jednak oryginalny dokument z powiązanymi cytowaniami, w razie potrzeby dokonania w nim zmian w przyszłości."
-  },
-  "integration_googleDocs_unlinkBeforeSaving_downloadAnyway": {
-    "message": "Pobierz wersję z powiązanymi cytowaniami"
-  },
-  "integration_googleDocs_updating": {
-    "message": "$1 uaktualnia twój dokument."
-  },
-  "integration_googleDocs_docxAlert": {
-    "message": "Integracja z $1 nie jest dostępna podczas edycji plików .docx Microsoft Word bezpośrednio w Dokumentach Google. Wybierz Plik → Zapisz jako plik Dokumentów Google, aby włączyć tę funkcję.<br/><br/> Jeśli chcesz przesłać dokument Word z cytowaniami $1 do Dokumentów Google, zobacz intrukcję <a href=\"https://www.zotero.org/support/kb/moving_documents_between_word_processors\">Moving Documents Between Word Processors</a>."
-  },
-  "integration_googleDocs_documentLocked": {
-    "message": "Cytowania w dokumencie są właśnie edytowane przez innego użytkownika $1. Proszę spróbuj ponownie później."
-  },
-  "integration_googleDocs_documentLocked_moreInfo": {
-    "message": "$1 blokuje dokument, aby uniemożliwić wielu użytkownikom edycję cytatów w tym samym czasie. Jednoczesna edycja cytatów w dokumencie może prowadzić do uszkodzenia dokumentu lub cytowań. Pewne nieprzewidywalne okoliczności, takie jak awarie sieci, mogą spowodować trwałe zablokowanie dokumentu. Jeśli uważasz, że tak się stało, możesz obejść blokadę. <br/><br/>Czy chcesz ominąć blokadę dokumentu?"
-  },
-  "integration_googleDocs_documentPermissionError": {
-    "message": "Konto Google, które zostało wybrane, nie ma dostępu do edycji tego dokumentu. Proszę, spróbuj ponownie i upewnij się, że wybrano konto z dostępem do edycji."
-  },
-  "integration_googleDocs_orphanedCitations_buttonTooltip": {
-    "message": "Pokaż niepołączone $1 cytowania"
-  },
-  "integration_googleDocs_orphanedCitations_alert": {
-    "message": "Cytowanie, które próbujesz edytować, zostało odłączone od $1."
-  },
-  "integration_googleDocs_orphanedCitations_alertButton": {
-    "message": "Połącz ponownie cytowanie"
-  },
-  "integration_googleDocs_orphanedCitations_disclaimer": {
-    "message": "Te cytaty zostały <a target=\"_blank\" href=\"https://www.zotero.org/support/kb/google_docs_citations_unlinked\">odłączone od $1</a>. Musisz ponownie połączyć je, zanim zostaną zaktualizowane lub pojawią się w Twojej bibliografii."
-  },
-  "reloadViaProxy": {
-    "message": "Wczytaj ponownie przez serwer pośredniczący"
-  },
-  "reloadVia": {
-    "message": "Wczytaj ponownie przez $1"
-  },
-  "general_saveTo": {
-    "message": "Zapisz w $1"
-  }
+    "appConnector": {
+        "message": "\u0141\u0105cznik $1"
+    },
+    "copyUnproxiedLink": {
+        "message": "Copy Unproxied Link"
+    },
+    "copyUnproxiedPageURL": {
+        "message": "Copy Unproxied Page URL"
+    },
+    "error_connection_downloadOrTroubleshoot": {
+        "message": "Mo\u017cesz <a href=\"$1\">pobra\u0107 $2</a> lub <a href=\"$3\">rozwi\u0105za\u0107 problem z po\u0142\u0105czeniem</a>, je\u015bli to konieczne."
+    },
+    "error_connection_enableSavingToOnlineLibrary": {
+        "message": "W\u0142\u0105cz zapisywanie do zdalnej biblioteki"
+    },
+    "error_connection_isAppRunning": {
+        "message": "Czy $1 jest uruchomiony?"
+    },
+    "error_connection_save": {
+        "message": "$1  nie m\u00f3g\u0142 po\u0142\u0105czy\u0107 si\u0119 z aplikacj\u0105 desktop $2. \u0141\u0105cznik mo\u017ce zapisywa\u0107 niekt\u00f3re strony bezpo\u015brednio do twojego konta $3, ale dla lepszej integracji powiniene\u015b upewni\u0107 si\u0119, \u017ce $2 jest otwarty przed pr\u00f3b\u0105 zapisania."
+    },
+    "extensionIsDisabled": {
+        "message": "$1 jest wy\u0142\u0105czony"
+    },
+    "extensionIsDisabled_extensionPage": {
+        "message": "$1 jest wy\u0142\u0105czony w rozszerzeniach"
+    },
+    "firstRun_acceptButton": {
+        "message": "Rozumiem"
+    },
+    "firstRun_text1": {
+        "message": "$1 Connector umo\u017cliwia ci <a href=\"$2\">zapisywanie element\u00f3w do $1</a> z twojej przegl\u0105darki tylko jednym klikni\u0119ciem."
+    },
+    "firstRun_text2": {
+        "message": "Je\u015bli jeszcze nie pr\u00f3bowa\u0142e\u015b(a\u015b), <a href=\"$2\">pobierz</a> samodzieln\u0105 aplikacj\u0119 $1."
+    },
+    "firstRun_text3": {
+        "message": "(You can view the $1 Privacy Policy on <a href=\"$2\">the project website</a>)."
+    },
+    "firstRun_title": {
+        "message": "$1 Connector zosta\u0142 zainstalowany!"
+    },
+    "general_cancel": {
+        "message": "Anuluj"
+    },
+    "general_copyToClipboard": {
+        "message": "Kopiuj do schowka"
+    },
+    "general_done": {
+        "message": "Zrobione"
+    },
+    "general_more": {
+        "message": "Wi\u0119cej..."
+    },
+    "general_moreInfo": {
+        "message": "Wi\u0119cej informacji..."
+    },
+    "general_needHelp": {
+        "message": "Czy potrzebujesz pomocy?"
+    },
+    "general_no": {
+        "message": "Nie"
+    },
+    "general_pleaseWait": {
+        "message": "Prosz\u0119 czeka\u0107..."
+    },
+    "general_saveTo": {
+        "message": "Zapisz w $1"
+    },
+    "general_tryAgain": {
+        "message": "Spr\u00f3buj ponownie"
+    },
+    "general_warning": {
+        "message": "Ostrze\u017cenie"
+    },
+    "general_yes": {
+        "message": "Tak"
+    },
+    "integration_error_clientUpgrade": {
+        "message": "Cytowanie oparte na stronach internetowych wymaga $1 lub nowszego."
+    },
+    "integration_error_connection": {
+        "message": "$1 nie m\u00f3g\u0142 si\u0119 po\u0142\u0105czy\u0107 z aplikacj\u0105 desktop $2. $2 musi by\u0107 uruchomiony, aby u\u017cywa\u0107 cytowania opartego na stronach internetowych."
+    },
+    "integration_googleDocs_documentLocked": {
+        "message": "Cytowania w dokumencie s\u0105 w\u0142a\u015bnie edytowane przez innego u\u017cytkownika $1. Prosz\u0119 spr\u00f3buj ponownie p\u00f3\u017aniej."
+    },
+    "integration_googleDocs_documentLocked_moreInfo": {
+        "message": "$1 blokuje dokument, aby uniemo\u017cliwi\u0107 wielu u\u017cytkownikom edycj\u0119 cytat\u00f3w w tym samym czasie. Jednoczesna edycja cytat\u00f3w w dokumencie mo\u017ce prowadzi\u0107 do uszkodzenia dokumentu lub cytowa\u0144. Pewne nieprzewidywalne okoliczno\u015bci, takie jak awarie sieci, mog\u0105 spowodowa\u0107 trwa\u0142e zablokowanie dokumentu. Je\u015bli uwa\u017casz, \u017ce tak si\u0119 sta\u0142o, mo\u017cesz obej\u015b\u0107 blokad\u0119. <br/><br/>Czy chcesz omin\u0105\u0107 blokad\u0119 dokumentu?"
+    },
+    "integration_googleDocs_documentPermissionError": {
+        "message": "Konto Google, kt\u00f3re zosta\u0142o wybrane, nie ma dost\u0119pu do edycji tego dokumentu. Prosz\u0119, spr\u00f3buj ponownie i upewnij si\u0119, \u017ce wybrano konto z dost\u0119pem do edycji."
+    },
+    "integration_googleDocs_docxAlert": {
+        "message": "Integracja z $1 nie jest dost\u0119pna podczas edycji plik\u00f3w .docx Microsoft Word bezpo\u015brednio w Dokumentach Google. Wybierz Plik \u2192 Zapisz jako plik Dokument\u00f3w Google, aby w\u0142\u0105czy\u0107 t\u0119 funkcj\u0119.<br/><br/> Je\u015bli chcesz przes\u0142a\u0107 dokument Word z cytowaniami $1 do Dokument\u00f3w Google, zobacz intrukcj\u0119 <a href=\"https://www.zotero.org/support/kb/moving_documents_between_word_processors\">Moving Documents Between Word Processors</a>."
+    },
+    "integration_googleDocs_orphanedCitations_alert": {
+        "message": "Cytowanie, kt\u00f3re pr\u00f3bujesz edytowa\u0107, zosta\u0142o od\u0142\u0105czone od $1."
+    },
+    "integration_googleDocs_orphanedCitations_alertButton": {
+        "message": "Po\u0142\u0105cz ponownie cytowanie"
+    },
+    "integration_googleDocs_orphanedCitations_buttonTooltip": {
+        "message": "Poka\u017c niepo\u0142\u0105czone $1 cytowania"
+    },
+    "integration_googleDocs_orphanedCitations_disclaimer": {
+        "message": "Te cytaty zosta\u0142y <a target=\"_blank\" href=\"https://www.zotero.org/support/kb/google_docs_citations_unlinked\">od\u0142\u0105czone od $1</a>. Musisz ponownie po\u0142\u0105czy\u0107 je, zanim zostan\u0105 zaktualizowane lub pojawi\u0105 si\u0119 w Twojej bibliografii."
+    },
+    "integration_googleDocs_unlinkBeforeSaving_downloadAnyway": {
+        "message": "Pobierz wersj\u0119 z powi\u0105zanymi cytowaniami"
+    },
+    "integration_googleDocs_unlinkBeforeSaving_instructions": {
+        "message": "Aby utworzy\u0107 wersj\u0119 mo\u017cliw\u0105 do wsp\u00f3\u0142dzielenia, wybierz <b>Zapisz kopi\u0119\u2026</b> z menu Plik, wybierz <b>Unlink Citations</b> z menu Jurism w nowym dokumencie, a nastepnie pobierz wersj\u0119 dokumentu z od\u0142\u0105czonymi cytowaniami. Zachowaj jednak oryginalny dokument z powi\u0105zanymi cytowaniami, w razie potrzeby dokonania w nim zmian w przysz\u0142o\u015bci."
+    },
+    "integration_googleDocs_unlinkBeforeSaving_warning": {
+        "message": "Ten dokument zawiera aktywne cytowania Jurism, kt\u00f3re pojawi\u0105 si\u0119 w pobranej kopii jako odsy\u0142acze zotero.org."
+    },
+    "integration_googleDocs_updating": {
+        "message": "$1 uaktualnia tw\u00f3j dokument."
+    },
+    "progressWindow_error_fallback": {
+        "message": "Podczas zapisywania za pomoc\u0105 $1 wyst\u0105pi\u0142 b\u0142\u0105d. Pr\u00f3ba zapisu za pomoc\u0105 $2."
+    },
+    "progressWindow_error_siteAccessLimits": {
+        "message": "Limit dost\u0119pu do witryny"
+    },
+    "progressWindow_error_siteAccessLimitsError": {
+        "message": "W trakcie zapisu tego elementu wyst\u0105pi\u0142 b\u0142\u0105d. $1 mo\u017ce ogranicza\u0107 liczb\u0119 element\u00f3w, kt\u00f3re mo\u017cesz zapisa\u0107 jednocze\u015bnie. Zobacz $2 aby uzyska\u0107 wi\u0119cej informacji."
+    },
+    "progressWindow_error_translation": {
+        "message": "Podczas zapisu tego elementu wyst\u0105pi\u0142 b\u0142\u0105d. Aby uzyska\u0107 wi\u0119cej informacji zobacz $1."
+    },
+    "progressWindow_error_troubleshootingTranslatorIssues": {
+        "message": "Znane b\u0142\u0119dy translacji"
+    },
+    "progressWindow_error_upgradeClient": {
+        "message": "Ta funkcja nie jest wspierana przez twoj\u0105 wersj\u0119 $1. Prosz\u0119 zaktualizowa\u0107 do wersji $2."
+    },
+    "progressWindow_error_upgradeClient_latestVersion": {
+        "message": "ostatnia wersja"
+    },
+    "progressWindow_savingTo": {
+        "message": "Zapisywanie do"
+    },
+    "progressWindow_tagPlaceholder": {
+        "message": "Znaczniki (oddzielone przecinkami)"
+    },
+    "reloadVia": {
+        "message": "Wczytaj ponownie przez $1"
+    },
+    "reloadViaProxy": {
+        "message": "Wczytaj ponownie przez serwer po\u015brednicz\u0105cy"
+    },
+    "reports_debug_output_submitted": {
+        "message": "Informacja debugowania zosta\u0142a wys\u0142ana.\n\nIdentyfikator informacji to $1."
+    },
+    "reports_report_submitted": {
+        "message": "Tw\u00f3j raport o b\u0142\u0119dzie zosta\u0142 przes\u0142any.\n\nID raportu: $1\n\nProsz\u0119 wy\u015blij wiadomo\u015b\u0107 na Forum Jurism z tym ID raportu, opisem problemu i krokami niezb\u0119dnymi do powt\u00f3rzenia b\u0142\u0119du.\n\nRaporty b\u0142\u0119d\u00f3w nie s\u0105 weryfikowane, je\u015bli nie s\u0105 przes\u0142ane na forum."
+    },
+    "reports_submission_failed": {
+        "message": "B\u0142\u0105d podczas przesy\u0142ania raportu.\n\n$1\n\nProsz\u0119, sprawd\u017a swoje po\u0142\u0105czenie internetowe. Je\u015bli problem wci\u0105\u017c istnieje, wy\u015blij wiadomo\u015b\u0107 na Forum Jurism."
+    },
+    "upgradeApp": {
+        "message": "Aktualizuj $1"
+    }
 }

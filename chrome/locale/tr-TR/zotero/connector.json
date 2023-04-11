@@ -1,164 +1,167 @@
 {
-  "general_more": {
-    "message": "Daha Başka..."
-  },
-  "general_moreInfo": {
-    "message": "Daha Fazla Bilgi..."
-  },
-  "general_needHelp": {
-    "message": "Yardıma ihtiyacınız var mı?"
-  },
-  "general_done": {
-    "message": "Tamam"
-  },
-  "general_yes": {
-    "message": "Evet"
-  },
-  "general_no": {
-    "message": "Hayır"
-  },
-  "general_tryAgain": {
-    "message": "Yeniden Dene"
-  },
-  "general_warning": {
-    "message": "Uyarı"
-  },
-  "general_cancel": {
-    "message": "İptal Et"
-  },
-  "general_pleaseWait": {
-    "message": "Lütfen bekleyin..."
-  },
-  "general_copyToClipboard": {
-    "message": "Panoya Kopyala"
-  },
-  "progressWindow_savingTo": {
-    "message": "Buraya Kaydediyor"
-  },
-  "progressWindow_tagPlaceholder": {
-    "message": "Etiketler (virgüllerle ayrılmış)"
-  },
-  "progressWindow_error_translation": {
-    "message": "Bu eseri kaydederken bir hata meydana geldi. Daha fazla bilgi için $1'ye bakınız."
-  },
-  "progressWindow_error_siteAccessLimitsError": {
-    "message": "Bu eseri kaydederken bir hata oldu. $1, aynı anda kaydedilen eser sayısını kısıtlamakta olabilir. Daha çok bilgi için buraya bakınız: $2 "
-  },
-  "progressWindow_error_troubleshootingTranslatorIssues": {
-    "message": "Çevirmen Sorunlarını Giderme"
-  },
-  "progressWindow_error_siteAccessLimits": {
-    "message": "Siteye Erişim Sınırlamaları"
-  },
-  "progressWindow_error_fallback": {
-    "message": "$1 çevirmenini kullanarak kaydetme işlemi sırasında bir hata oldu. $2 kullanılarak kaydetme deneniyor."
-  },
-  "progressWindow_error_upgradeClient": {
-    "message": "Bu özellik, $1'nin sizdeki sürümü tarafından desteklenmemektedir. Lütfen $2 yükseltiniz."
-  },
-  "progressWindow_error_upgradeClient_latestVersion": {
-    "message": "son sürüme"
-  },
-  "extensionIsDisabled": {
-    "message": "$1 devre dışı"
-  },
-  "extensionIsDisabled_extensionPage": {
-    "message": "$1, Uzantılar sayfasında devre dışı"
-  },
-  "appConnector": {
-    "message": "$1 Bağlayıcısı"
-  },
-  "upgradeApp": {
-    "message": "$1 Programını Yükselt"
-  },
-  "firstRun_title": {
-    "message": "$1 Bağlayıcısını Kurdunuz!"
-  },
-  "firstRun_text1": {
-    "message": "$1 Bağlayıcısı, tarayıcınızda tek bir tıklama ile <a href=\"$2\">eserleri $1 içinde kaydetmenizi</a> sağlar."
-  },
-  "firstRun_text2": {
-    "message": "Eğer hala yapmadıysanız, en iyi deneyim için $1 uygulamasını <a href=\"$2\">indiriniz</a>."
-  },
-  "firstRun_acceptButton": {
-    "message": "Tamam"
-  },
-  "error_connection_isAppRunning": {
-    "message": "$1 Çalışıyor mu?"
-  },
-  "error_connection_save": {
-    "message": "$1, $2 masaüstü uygulamasıyla iletişim kuramamaktadır. Bağlayıcı, bazı sayfaları $3 hesabınıza direk olarak kaydedebilmektedir, ancak en iyi sonuçları alabilmek için kaydetmeyi denemeden önce $2 programının açık olduğuna emin olunuz."
-  },
-  "error_connection_downloadOrTroubleshoot": {
-    "message": "<a href=\"$1\">$2 programını indirebilir</a> ya da gerekirse <a href=\"$3\">bağlantı sorununu gidermeyi</a> deneyebilirsiniz."
-  },
-  "error_connection_enableSavingToOnlineLibrary": {
-    "message": "Çevrimiçi Kitaplığa Kaydetmeyi Etkinleştir"
-  },
-  "reports_report_submitted": {
-    "message": "Hata raporunuz teslim edildi.\n\nRapor Kimlik Numarası: $1\n\nLütfen Jurism forumlarına bir ileti bırakınız ve bu iletide Rapor Kimlik Numarasını, sorunun bir tanımını ve bu sorunu yeniden oluşturabilmek için yapılanları adım adım yazınız.\n\nHata raporları forumlarda bildirilmezlerse incelenmeyeceklerdir."
-  },
-  "reports_debug_output_submitted": {
-    "message": "Hata ayıklama çıktınız gönderildi.\n\nHata Ayıklama Kimlik Numarası: $1."
-  },
-  "reports_submission_failed": {
-    "message": "Raporunuz gönderilirken bir hata oluştu.\n\n$1\n\nLütfen internet bağlantınızı kontrol ediniz. Eğer sorununuz devam ederse Jurism forumlarına bir ileti bırakınız."
-  },
-  "integration_error_clientUpgrade": {
-    "message": "Web bazlı alıntı yapmak için $1 veya yenisi gerekmektedir."
-  },
-  "integration_error_connection": {
-    "message": "$1, $2 masaüstü uygulamasıyla iletişim kuramamaktadır. Web bazlı alıntı yapabilmek için $2 açık olmalıdır."
-  },
-  "integration_googleDocs_unlinkBeforeSaving_warning": {
-    "message": "Bu belge aktif Jurism alıntıları içermektedir ve bu alıntılar belgenin indirilmiş kopyalarında zotero.org bağlantıları olarak görüneceklerdir."
-  },
-  "integration_googleDocs_unlinkBeforeSaving_instructions": {
-    "message": "Paylaşılmaya uygun bir versiyon üretmek için, önce <b>Kopya yarat...</b>seçeneğini, sonra da <b>Alıntıları Bağlantısızlaştır</b> seçeneğini seçiniz ve sonra bağlantısızlaştırılmış versiyonu indiriniz. Belgenizin bağlantıları içeren asıl versiyonunu, gelecekte değişiklikler yapabilmek için tutunuz."
-  },
-  "integration_googleDocs_unlinkBeforeSaving_downloadAnyway": {
-    "message": "Yine de Bağlantılı Versiyonu İndir"
-  },
-  "integration_googleDocs_updating": {
-    "message": "$1 belgenizi güncelliyor."
-  },
-  "integration_googleDocs_docxAlert": {
-    "message": "$1 ile birleştirme, Microsoft Word .docx dosyalarını Google Docs içinde düzenlerken kullanılamamaktadır. Dosya Seçiniz → Google Docs dosyası olarak kaydediniz seçenekleri ile bu fonksiyonu etkinleştirebilirsiniz.<br/><br/> $1 alıntısı içeren bir Word belgesini Google Docs uygulamasına aktarmak için, <a href=\"https://www.zotero.org/support/kb/moving_documents_between_word_processors\">Moving Documents Between Word Processors</a> sayfasına bakınız."
-  },
-  "integration_googleDocs_documentLocked": {
-    "message": "Bu belgenin alıntıları başka bir $1 kullanıcısı tarafından düzenlenmektedir. Lütfen daha sonra tekrar deneyin."
-  },
-  "integration_googleDocs_documentLocked_moreInfo": {
-    "message": "$1, birçok kullanıcının aynı anda alıntıları düzenlemesini engellemek için belgeyi kilitlemektedir. Eşzamanlı alıntı düzenlemeler alıntı veya belge bozulmasına neden olabilir. Ağ arızaları gibi bazı öngörülemeyen durumlar, belgenizin kalıcı olarak kilitlenmesine neden olabilir. Eğer bunun olduğuna inanıyorsanız, kilidi geçersiz kılabilirsiniz.<br/><br/>Belgedeki kilidi geçersiz kılmak ister misiniz?"
-  },
-  "integration_googleDocs_documentPermissionError": {
-    "message": "Seçtiğiniz Google hesabının bu belgeyi düzenleme izni yok. Lütfen tekrar deneyin ve düzenleme erişimi olan hesabı seçtiğinizden emin olun."
-  },
-  "integration_googleDocs_orphanedCitations_buttonTooltip": {
-    "message": "Bağlantılarını kaybetmiş $1 alıntılarını göster"
-  },
-  "integration_googleDocs_orphanedCitations_alert": {
-    "message": "Düzenlemeye çalıştığınız alıntı $1 ile olan bağlantısını kaybetmiş."
-  },
-  "integration_googleDocs_orphanedCitations_alertButton": {
-    "message": "Alıntının Bağlantısını Yeniden Kur"
-  },
-  "integration_googleDocs_orphanedCitations_disclaimer": {
-    "message": "Bu alıntılar <a target=\"_blank\" href=\"https://www.zotero.org/support/kb/google_docs_citations_unlinked\">$1 ile olan bağlantılarını kaybetmiş</a>. Kaynakçanızda güncellenmeleri ya da görünebilmeleri için yeniden bağlantılarını kurmanız gerekmektedir."
-  },
-  "copyUnproxiedLink": {
-    "message": "Vekillenmemiş Bağlantıyı Kopyala"
-  },
-  "copyUnproxiedPageURL": {
-    "message": "Vekillenmemiş Sayfa URL'sini Kopyala"
-  },
-  "reloadViaProxy": {
-    "message": "Vekil ile Yeniden Yükle"
-  },
-  "reloadVia": {
-    "message": "$1 ile Yeniden Yükle"
-  },
-  "general_saveTo": {
-    "message": "$1'ya Kaydet"
-  }
+    "appConnector": {
+        "message": "$1 Ba\u011flay\u0131c\u0131s\u0131"
+    },
+    "copyUnproxiedLink": {
+        "message": "Vekillenmemi\u015f Ba\u011flant\u0131y\u0131 Kopyala"
+    },
+    "copyUnproxiedPageURL": {
+        "message": "Vekillenmemi\u015f Sayfa URL'sini Kopyala"
+    },
+    "error_connection_downloadOrTroubleshoot": {
+        "message": "<a href=\"$1\">$2 program\u0131n\u0131 indirebilir</a> ya da gerekirse <a href=\"$3\">ba\u011flant\u0131 sorununu gidermeyi</a> deneyebilirsiniz."
+    },
+    "error_connection_enableSavingToOnlineLibrary": {
+        "message": "\u00c7evrimi\u00e7i Kitapl\u0131\u011fa Kaydetmeyi Etkinle\u015ftir"
+    },
+    "error_connection_isAppRunning": {
+        "message": "$1 \u00c7al\u0131\u015f\u0131yor mu?"
+    },
+    "error_connection_save": {
+        "message": "$1, $2 masa\u00fcst\u00fc uygulamas\u0131yla ileti\u015fim kuramamaktad\u0131r. Ba\u011flay\u0131c\u0131, baz\u0131 sayfalar\u0131 $3 hesab\u0131n\u0131za direk olarak kaydedebilmektedir, ancak en iyi sonu\u00e7lar\u0131 alabilmek i\u00e7in kaydetmeyi denemeden \u00f6nce $2 program\u0131n\u0131n a\u00e7\u0131k oldu\u011funa emin olunuz."
+    },
+    "extensionIsDisabled": {
+        "message": "$1 devre d\u0131\u015f\u0131"
+    },
+    "extensionIsDisabled_extensionPage": {
+        "message": "$1, Uzant\u0131lar sayfas\u0131nda devre d\u0131\u015f\u0131"
+    },
+    "firstRun_acceptButton": {
+        "message": "Tamam"
+    },
+    "firstRun_text1": {
+        "message": "$1 Ba\u011flay\u0131c\u0131s\u0131, taray\u0131c\u0131n\u0131zda tek bir t\u0131klama ile <a href=\"$2\">eserleri $1 i\u00e7inde kaydetmenizi</a> sa\u011flar."
+    },
+    "firstRun_text2": {
+        "message": "E\u011fer hala yapmad\u0131ysan\u0131z, en iyi deneyim i\u00e7in $1 uygulamas\u0131n\u0131 <a href=\"$2\">indiriniz</a>."
+    },
+    "firstRun_text3": {
+        "message": "(You can view the $1 Privacy Policy on <a href=\"$2\">the project website</a>)."
+    },
+    "firstRun_title": {
+        "message": "$1 Ba\u011flay\u0131c\u0131s\u0131n\u0131 Kurdunuz!"
+    },
+    "general_cancel": {
+        "message": "\u0130ptal Et"
+    },
+    "general_copyToClipboard": {
+        "message": "Panoya Kopyala"
+    },
+    "general_done": {
+        "message": "Tamam"
+    },
+    "general_more": {
+        "message": "Daha Ba\u015fka..."
+    },
+    "general_moreInfo": {
+        "message": "Daha Fazla Bilgi..."
+    },
+    "general_needHelp": {
+        "message": "Yard\u0131ma ihtiyac\u0131n\u0131z var m\u0131?"
+    },
+    "general_no": {
+        "message": "Hay\u0131r"
+    },
+    "general_pleaseWait": {
+        "message": "L\u00fctfen bekleyin..."
+    },
+    "general_saveTo": {
+        "message": "$1'ya Kaydet"
+    },
+    "general_tryAgain": {
+        "message": "Yeniden Dene"
+    },
+    "general_warning": {
+        "message": "Uyar\u0131"
+    },
+    "general_yes": {
+        "message": "Evet"
+    },
+    "integration_error_clientUpgrade": {
+        "message": "Web bazl\u0131 al\u0131nt\u0131 yapmak i\u00e7in $1 veya yenisi gerekmektedir."
+    },
+    "integration_error_connection": {
+        "message": "$1, $2 masa\u00fcst\u00fc uygulamas\u0131yla ileti\u015fim kuramamaktad\u0131r. Web bazl\u0131 al\u0131nt\u0131 yapabilmek i\u00e7in $2 a\u00e7\u0131k olmal\u0131d\u0131r."
+    },
+    "integration_googleDocs_documentLocked": {
+        "message": "Bu belgenin al\u0131nt\u0131lar\u0131 ba\u015fka bir $1 kullan\u0131c\u0131s\u0131 taraf\u0131ndan d\u00fczenlenmektedir. L\u00fctfen daha sonra tekrar deneyin."
+    },
+    "integration_googleDocs_documentLocked_moreInfo": {
+        "message": "$1, bir\u00e7ok kullan\u0131c\u0131n\u0131n ayn\u0131 anda al\u0131nt\u0131lar\u0131 d\u00fczenlemesini engellemek i\u00e7in belgeyi kilitlemektedir. E\u015fzamanl\u0131 al\u0131nt\u0131 d\u00fczenlemeler al\u0131nt\u0131 veya belge bozulmas\u0131na neden olabilir. A\u011f ar\u0131zalar\u0131 gibi baz\u0131 \u00f6ng\u00f6r\u00fclemeyen durumlar, belgenizin kal\u0131c\u0131 olarak kilitlenmesine neden olabilir. E\u011fer bunun oldu\u011funa inan\u0131yorsan\u0131z, kilidi ge\u00e7ersiz k\u0131labilirsiniz.<br/><br/>Belgedeki kilidi ge\u00e7ersiz k\u0131lmak ister misiniz?"
+    },
+    "integration_googleDocs_documentPermissionError": {
+        "message": "Se\u00e7ti\u011finiz Google hesab\u0131n\u0131n bu belgeyi d\u00fczenleme izni yok. L\u00fctfen tekrar deneyin ve d\u00fczenleme eri\u015fimi olan hesab\u0131 se\u00e7ti\u011finizden emin olun."
+    },
+    "integration_googleDocs_docxAlert": {
+        "message": "$1 ile birle\u015ftirme, Microsoft Word .docx dosyalar\u0131n\u0131 Google Docs i\u00e7inde d\u00fczenlerken kullan\u0131lamamaktad\u0131r. Dosya Se\u00e7iniz \u2192 Google Docs dosyas\u0131 olarak kaydediniz se\u00e7enekleri ile bu fonksiyonu etkinle\u015ftirebilirsiniz.<br/><br/> $1 al\u0131nt\u0131s\u0131 i\u00e7eren bir Word belgesini Google Docs uygulamas\u0131na aktarmak i\u00e7in, <a href=\"https://www.zotero.org/support/kb/moving_documents_between_word_processors\">Moving Documents Between Word Processors</a> sayfas\u0131na bak\u0131n\u0131z."
+    },
+    "integration_googleDocs_orphanedCitations_alert": {
+        "message": "D\u00fczenlemeye \u00e7al\u0131\u015ft\u0131\u011f\u0131n\u0131z al\u0131nt\u0131 $1 ile olan ba\u011flant\u0131s\u0131n\u0131 kaybetmi\u015f."
+    },
+    "integration_googleDocs_orphanedCitations_alertButton": {
+        "message": "Al\u0131nt\u0131n\u0131n Ba\u011flant\u0131s\u0131n\u0131 Yeniden Kur"
+    },
+    "integration_googleDocs_orphanedCitations_buttonTooltip": {
+        "message": "Ba\u011flant\u0131lar\u0131n\u0131 kaybetmi\u015f $1 al\u0131nt\u0131lar\u0131n\u0131 g\u00f6ster"
+    },
+    "integration_googleDocs_orphanedCitations_disclaimer": {
+        "message": "Bu al\u0131nt\u0131lar <a target=\"_blank\" href=\"https://www.zotero.org/support/kb/google_docs_citations_unlinked\">$1 ile olan ba\u011flant\u0131lar\u0131n\u0131 kaybetmi\u015f</a>. Kaynak\u00e7an\u0131zda g\u00fcncellenmeleri ya da g\u00f6r\u00fcnebilmeleri i\u00e7in yeniden ba\u011flant\u0131lar\u0131n\u0131 kurman\u0131z gerekmektedir."
+    },
+    "integration_googleDocs_unlinkBeforeSaving_downloadAnyway": {
+        "message": "Yine de Ba\u011flant\u0131l\u0131 Versiyonu \u0130ndir"
+    },
+    "integration_googleDocs_unlinkBeforeSaving_instructions": {
+        "message": "Payla\u015f\u0131lmaya uygun bir versiyon \u00fcretmek i\u00e7in, \u00f6nce <b>Kopya yarat...</b>se\u00e7ene\u011fini, sonra da <b>Al\u0131nt\u0131lar\u0131 Ba\u011flant\u0131s\u0131zla\u015ft\u0131r</b> se\u00e7ene\u011fini se\u00e7iniz ve sonra ba\u011flant\u0131s\u0131zla\u015ft\u0131r\u0131lm\u0131\u015f versiyonu indiriniz. Belgenizin ba\u011flant\u0131lar\u0131 i\u00e7eren as\u0131l versiyonunu, gelecekte de\u011fi\u015fiklikler yapabilmek i\u00e7in tutunuz."
+    },
+    "integration_googleDocs_unlinkBeforeSaving_warning": {
+        "message": "Bu belge aktif Jurism al\u0131nt\u0131lar\u0131 i\u00e7ermektedir ve bu al\u0131nt\u0131lar belgenin indirilmi\u015f kopyalar\u0131nda zotero.org ba\u011flant\u0131lar\u0131 olarak g\u00f6r\u00fcneceklerdir."
+    },
+    "integration_googleDocs_updating": {
+        "message": "$1 belgenizi g\u00fcncelliyor."
+    },
+    "progressWindow_error_fallback": {
+        "message": "$1 \u00e7evirmenini kullanarak kaydetme i\u015flemi s\u0131ras\u0131nda bir hata oldu. $2 kullan\u0131larak kaydetme deneniyor."
+    },
+    "progressWindow_error_siteAccessLimits": {
+        "message": "Siteye Eri\u015fim S\u0131n\u0131rlamalar\u0131"
+    },
+    "progressWindow_error_siteAccessLimitsError": {
+        "message": "Bu eseri kaydederken bir hata oldu. $1, ayn\u0131 anda kaydedilen eser say\u0131s\u0131n\u0131 k\u0131s\u0131tlamakta olabilir. Daha \u00e7ok bilgi i\u00e7in buraya bak\u0131n\u0131z: $2 "
+    },
+    "progressWindow_error_translation": {
+        "message": "Bu eseri kaydederken bir hata meydana geldi. Daha fazla bilgi i\u00e7in $1'ye bak\u0131n\u0131z."
+    },
+    "progressWindow_error_troubleshootingTranslatorIssues": {
+        "message": "\u00c7evirmen Sorunlar\u0131n\u0131 Giderme"
+    },
+    "progressWindow_error_upgradeClient": {
+        "message": "Bu \u00f6zellik, $1'nin sizdeki s\u00fcr\u00fcm\u00fc taraf\u0131ndan desteklenmemektedir. L\u00fctfen $2 y\u00fckseltiniz."
+    },
+    "progressWindow_error_upgradeClient_latestVersion": {
+        "message": "son s\u00fcr\u00fcme"
+    },
+    "progressWindow_savingTo": {
+        "message": "Buraya Kaydediyor"
+    },
+    "progressWindow_tagPlaceholder": {
+        "message": "Etiketler (virg\u00fcllerle ayr\u0131lm\u0131\u015f)"
+    },
+    "reloadVia": {
+        "message": "$1 ile Yeniden Y\u00fckle"
+    },
+    "reloadViaProxy": {
+        "message": "Vekil ile Yeniden Y\u00fckle"
+    },
+    "reports_debug_output_submitted": {
+        "message": "Hata ay\u0131klama \u00e7\u0131kt\u0131n\u0131z g\u00f6nderildi.\n\nHata Ay\u0131klama Kimlik Numaras\u0131: $1."
+    },
+    "reports_report_submitted": {
+        "message": "Hata raporunuz teslim edildi.\n\nRapor Kimlik Numaras\u0131: $1\n\nL\u00fctfen Jurism forumlar\u0131na bir ileti b\u0131rak\u0131n\u0131z ve bu iletide Rapor Kimlik Numaras\u0131n\u0131, sorunun bir tan\u0131m\u0131n\u0131 ve bu sorunu yeniden olu\u015fturabilmek i\u00e7in yap\u0131lanlar\u0131 ad\u0131m ad\u0131m yaz\u0131n\u0131z.\n\nHata raporlar\u0131 forumlarda bildirilmezlerse incelenmeyeceklerdir."
+    },
+    "reports_submission_failed": {
+        "message": "Raporunuz g\u00f6nderilirken bir hata olu\u015ftu.\n\n$1\n\nL\u00fctfen internet ba\u011flant\u0131n\u0131z\u0131 kontrol ediniz. E\u011fer sorununuz devam ederse Jurism forumlar\u0131na bir ileti b\u0131rak\u0131n\u0131z."
+    },
+    "upgradeApp": {
+        "message": "$1 Program\u0131n\u0131 Y\u00fckselt"
+    }
 }

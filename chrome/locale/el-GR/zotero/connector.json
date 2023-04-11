@@ -1,92 +1,170 @@
 {
-  "general_more": {
-    "message": "Περισσότερα..."
-  },
-  "general_done": {
-    "message": "Ολοκληρώθηκε"
-  },
-  "general_yes": {
-    "message": "Ναι"
-  },
-  "general_no": {
-    "message": "Όχι"
-  },
-  "general_tryAgain": {
-    "message": "Ξαναπροσπάθηστε"
-  },
-  "general_warning": {
-    "message": "Προειδοποίηση"
-  },
-  "general_cancel": {
-    "message": "Άκυρο"
-  },
-  "general_pleaseWait": {
-    "message": "Παρακαλώ περιμένετε..."
-  },
-  "general_copyToClipboard": {
-    "message": "Αντιγραφή στο Πρόχειρο"
-  },
-  "progressWindow_savingTo": {
-    "message": "Αποθήκευση σε"
-  },
-  "progressWindow_tagPlaceholder": {
-    "message": "Ετικέτες (διαχωρισμένες με κόμμα)"
-  },
-  "progressWindow_error_translation": {
-    "message": "Παρουσιάστηκε σφάλμα κατά την αποθήκευση αυτού του στοιχείου. Δείτε $1 για περισσότερες πληροφορίες."
-  },
-  "progressWindow_error_troubleshootingTranslatorIssues": {
-    "message": "Αντιμετώπιση Προβλημάτων Μεταφραστή"
-  },
-  "progressWindow_error_fallback": {
-    "message": "Παρουσιάστηκε σφάλμα κατά την αποθήκευση με $1. Αντ' αυτού, γίνεται προσπάθεια αποθήκευσης με χρήση $2."
-  },
-  "progressWindow_error_upgradeClient": {
-    "message": "Αυτή η λειτουργία δεν υποστηρίζεται από την έκδοση $1. Παρακαλώ αναβαθμίστε στην $2."
-  },
-  "progressWindow_error_upgradeClient_latestVersion": {
-    "message": "τελευταία έκδοση"
-  },
-  "appConnector": {
-    "message": "Συνδετήρας $1"
-  },
-  "upgradeApp": {
-    "message": "Αναβάθμιση $1"
-  },
-  "error_connection_isAppRunning": {
-    "message": "Εκτελείτε η $1;"
-  },
-  "error_connection_save": {
-    "message": "Το $1 δεν μπόρεσε να επικοινωνήσει με την εφαρμογή γραφείου $2. Ο Συνδετήρας μπορεί να αποθηκεύσει κάποιες σελίδες απευθείας στο λογαριασμό σας $3, αλλά για καλύτερα αποτελέσματα θα πρέπει να βεβαιωθείτε ότι η εφαρμογή $2 είναι ανοιχτή πριν επιχειρήσετε να το αποθηκεύσετε."
-  },
-  "error_connection_downloadOrTroubleshoot": {
-    "message": "Μπορείτε <a href=\"$1\">να κατεβάσετε την $2</a> ή <a href=\"$3\"> να επιλύσετε τα προβλήματα της σύνδεση</a> αν είναι απαραίτητο."
-  },
-  "error_connection_enableSavingToOnlineLibrary": {
-    "message": "Ενεργοποίηση αποθήκευσης στη Βιβλιοθήκη με απευθείας σύνδεση "
-  },
-  "integration_error_clientUpgrade": {
-    "message": "Η προσθήκη παραπομπής με μορφή Web απαιτεί έκδοση $1ή μεταγενέστερη."
-  },
-  "integration_error_connection": {
-    "message": "Το $1 δεν μπόρεσε να επικοινωνήσει με την εφαρμογή γραφείου $2. Το $2 πρέπει να είναι ανοικτό για να προστεθεί παραπομπή με μορφή web."
-  },
-  "integration_googleDocs_unlinkBeforeSaving_warning": {
-    "message": "Αυτό το έγγραφο περιέχει ενεργές παραπομπές Jurism που θα εμφανίζονται ως σύνδεσμοι zotero.org σε ένα αντίγραφο που έχετε λάβει."
-  },
-  "integration_googleDocs_unlinkBeforeSaving_instructions": {
-    "message": "Για να δημιουργήσετε μια έκδοση κατάλληλη για κοινή χρήση, επιλέξτε <b>Δημιουργία αντιγράφου ...</b> από το μενού Αρχείο, επιλέξτε <b>Αποσύνδεση Παραπομπών</b> από το μενού Jurism στο νέο έγγραφο και στη συνέχεια κάντε λήψη της μη συνδεδεμένης έκδοσης. Διατηρήστε αυτό το πρωτότυπο συνδεδεμένο έγγραφο σε περίπτωση που χρειαστεί να κάνετε περαιτέρω αλλαγές."
-  },
-  "integration_googleDocs_unlinkBeforeSaving_downloadAnyway": {
-    "message": "Λήψη Συνδεδεμένης Έκδοσης οπωσδήποτε"
-  },
-  "integration_googleDocs_updating": {
-    "message": "Το $1 ενημερώνει το έγγραφό σας."
-  },
-  "integration_googleDocs_docxAlert": {
-    "message": "Η ενσωμάτωση του $1δεν είναι διαθέσιμη όταν επεξεργάζεστε αρχεία .docx του Microsoft Word κατευθείαν από το Google Docs. Για να ενεργοποιήσετε την λειτουργία αυτή επιλέξτε Αρχείο→Αποθήκευση ως Έγγραφο Google.<br/><br/>Αν θέλετε να μεταφέρετε ένα έγγραφο Word με παραπομπές $1στο Google Docs, δείτε <a href=\"https://www.zotero.org/support/kb/moving_documents_between_word_processors\">Μετακίνηση Εγγράφων Μεταξύ Επεξεργαστών Word</a>."
-  },
-  "general_saveTo": {
-    "message": "Αποθήκευση σε $1"
-  }
+    "appConnector": {
+        "message": "\u03a3\u03c5\u03bd\u03b4\u03b5\u03c4\u03ae\u03c1\u03b1\u03c2 $1"
+    },
+    "copyUnproxiedLink": {
+        "message": "Copy Unproxied Link"
+    },
+    "copyUnproxiedPageURL": {
+        "message": "Copy Unproxied Page URL"
+    },
+    "error_connection_downloadOrTroubleshoot": {
+        "message": "\u039c\u03c0\u03bf\u03c1\u03b5\u03af\u03c4\u03b5 <a href=\"$1\">\u03bd\u03b1 \u03ba\u03b1\u03c4\u03b5\u03b2\u03ac\u03c3\u03b5\u03c4\u03b5 \u03c4\u03b7\u03bd $2</a> \u03ae <a href=\"$3\"> \u03bd\u03b1 \u03b5\u03c0\u03b9\u03bb\u03cd\u03c3\u03b5\u03c4\u03b5 \u03c4\u03b1 \u03c0\u03c1\u03bf\u03b2\u03bb\u03ae\u03bc\u03b1\u03c4\u03b1 \u03c4\u03b7\u03c2 \u03c3\u03cd\u03bd\u03b4\u03b5\u03c3\u03b7</a> \u03b1\u03bd \u03b5\u03af\u03bd\u03b1\u03b9 \u03b1\u03c0\u03b1\u03c1\u03b1\u03af\u03c4\u03b7\u03c4\u03bf."
+    },
+    "error_connection_enableSavingToOnlineLibrary": {
+        "message": "\u0395\u03bd\u03b5\u03c1\u03b3\u03bf\u03c0\u03bf\u03af\u03b7\u03c3\u03b7 \u03b1\u03c0\u03bf\u03b8\u03ae\u03ba\u03b5\u03c5\u03c3\u03b7\u03c2 \u03c3\u03c4\u03b7 \u0392\u03b9\u03b2\u03bb\u03b9\u03bf\u03b8\u03ae\u03ba\u03b7 \u03bc\u03b5 \u03b1\u03c0\u03b5\u03c5\u03b8\u03b5\u03af\u03b1\u03c2 \u03c3\u03cd\u03bd\u03b4\u03b5\u03c3\u03b7 "
+    },
+    "error_connection_isAppRunning": {
+        "message": "\u0395\u03ba\u03c4\u03b5\u03bb\u03b5\u03af\u03c4\u03b5 \u03b7 $1;"
+    },
+    "error_connection_save": {
+        "message": "\u03a4\u03bf $1 \u03b4\u03b5\u03bd \u03bc\u03c0\u03cc\u03c1\u03b5\u03c3\u03b5 \u03bd\u03b1 \u03b5\u03c0\u03b9\u03ba\u03bf\u03b9\u03bd\u03c9\u03bd\u03ae\u03c3\u03b5\u03b9 \u03bc\u03b5 \u03c4\u03b7\u03bd \u03b5\u03c6\u03b1\u03c1\u03bc\u03bf\u03b3\u03ae \u03b3\u03c1\u03b1\u03c6\u03b5\u03af\u03bf\u03c5 $2. \u039f \u03a3\u03c5\u03bd\u03b4\u03b5\u03c4\u03ae\u03c1\u03b1\u03c2 \u03bc\u03c0\u03bf\u03c1\u03b5\u03af \u03bd\u03b1 \u03b1\u03c0\u03bf\u03b8\u03b7\u03ba\u03b5\u03cd\u03c3\u03b5\u03b9 \u03ba\u03ac\u03c0\u03bf\u03b9\u03b5\u03c2 \u03c3\u03b5\u03bb\u03af\u03b4\u03b5\u03c2 \u03b1\u03c0\u03b5\u03c5\u03b8\u03b5\u03af\u03b1\u03c2 \u03c3\u03c4\u03bf \u03bb\u03bf\u03b3\u03b1\u03c1\u03b9\u03b1\u03c3\u03bc\u03cc \u03c3\u03b1\u03c2 $3, \u03b1\u03bb\u03bb\u03ac \u03b3\u03b9\u03b1 \u03ba\u03b1\u03bb\u03cd\u03c4\u03b5\u03c1\u03b1 \u03b1\u03c0\u03bf\u03c4\u03b5\u03bb\u03ad\u03c3\u03bc\u03b1\u03c4\u03b1 \u03b8\u03b1 \u03c0\u03c1\u03ad\u03c0\u03b5\u03b9 \u03bd\u03b1 \u03b2\u03b5\u03b2\u03b1\u03b9\u03c9\u03b8\u03b5\u03af\u03c4\u03b5 \u03cc\u03c4\u03b9 \u03b7 \u03b5\u03c6\u03b1\u03c1\u03bc\u03bf\u03b3\u03ae $2 \u03b5\u03af\u03bd\u03b1\u03b9 \u03b1\u03bd\u03bf\u03b9\u03c7\u03c4\u03ae \u03c0\u03c1\u03b9\u03bd \u03b5\u03c0\u03b9\u03c7\u03b5\u03b9\u03c1\u03ae\u03c3\u03b5\u03c4\u03b5 \u03bd\u03b1 \u03c4\u03bf \u03b1\u03c0\u03bf\u03b8\u03b7\u03ba\u03b5\u03cd\u03c3\u03b5\u03c4\u03b5."
+    },
+    "extensionIsDisabled": {
+        "message": "$1 is disabled"
+    },
+    "extensionIsDisabled_extensionPage": {
+        "message": "$1 is disabled on extension pages"
+    },
+    "firstRun_acceptButton": {
+        "description": "The Accept button for the first-run dialog",
+        "message": "Got it"
+    },
+    "firstRun_text1": {
+        "message": "The $1 Connector enables you to <a href=\"$2\">save items to $1</a> from your browser in a single click."
+    },
+    "firstRun_text2": {
+        "message": "If you haven\u2019t yet, <a href=\"$2\">download</a> the standalone $1 application for the best experience."
+    },
+    "firstRun_text3": {
+        "message": "(You can view the $1 Privacy Policy on <a href=\"$2\">the project website</a>)."
+    },
+    "firstRun_title": {
+        "message": "You\u2019ve installed the $1 Connector!"
+    },
+    "general_cancel": {
+        "message": "\u0386\u03ba\u03c5\u03c1\u03bf"
+    },
+    "general_copyToClipboard": {
+        "message": "\u0391\u03bd\u03c4\u03b9\u03b3\u03c1\u03b1\u03c6\u03ae \u03c3\u03c4\u03bf \u03a0\u03c1\u03cc\u03c7\u03b5\u03b9\u03c1\u03bf"
+    },
+    "general_done": {
+        "message": "\u039f\u03bb\u03bf\u03ba\u03bb\u03b7\u03c1\u03ce\u03b8\u03b7\u03ba\u03b5"
+    },
+    "general_more": {
+        "message": "\u03a0\u03b5\u03c1\u03b9\u03c3\u03c3\u03cc\u03c4\u03b5\u03c1\u03b1..."
+    },
+    "general_moreInfo": {
+        "message": "More Info\u2026"
+    },
+    "general_needHelp": {
+        "message": "Need help?"
+    },
+    "general_no": {
+        "message": "\u038c\u03c7\u03b9"
+    },
+    "general_pleaseWait": {
+        "message": "\u03a0\u03b1\u03c1\u03b1\u03ba\u03b1\u03bb\u03ce \u03c0\u03b5\u03c1\u03b9\u03bc\u03ad\u03bd\u03b5\u03c4\u03b5..."
+    },
+    "general_saveTo": {
+        "message": "\u0391\u03c0\u03bf\u03b8\u03ae\u03ba\u03b5\u03c5\u03c3\u03b7 \u03c3\u03b5 $1"
+    },
+    "general_tryAgain": {
+        "message": "\u039e\u03b1\u03bd\u03b1\u03c0\u03c1\u03bf\u03c3\u03c0\u03ac\u03b8\u03b7\u03c3\u03c4\u03b5"
+    },
+    "general_warning": {
+        "message": "\u03a0\u03c1\u03bf\u03b5\u03b9\u03b4\u03bf\u03c0\u03bf\u03af\u03b7\u03c3\u03b7"
+    },
+    "general_yes": {
+        "message": "\u039d\u03b1\u03b9"
+    },
+    "integration_error_clientUpgrade": {
+        "message": "\u0397 \u03c0\u03c1\u03bf\u03c3\u03b8\u03ae\u03ba\u03b7 \u03c0\u03b1\u03c1\u03b1\u03c0\u03bf\u03bc\u03c0\u03ae\u03c2 \u03bc\u03b5 \u03bc\u03bf\u03c1\u03c6\u03ae Web \u03b1\u03c0\u03b1\u03b9\u03c4\u03b5\u03af \u03ad\u03ba\u03b4\u03bf\u03c3\u03b7 $1\u03ae \u03bc\u03b5\u03c4\u03b1\u03b3\u03b5\u03bd\u03ad\u03c3\u03c4\u03b5\u03c1\u03b7."
+    },
+    "integration_error_connection": {
+        "message": "\u03a4\u03bf $1 \u03b4\u03b5\u03bd \u03bc\u03c0\u03cc\u03c1\u03b5\u03c3\u03b5 \u03bd\u03b1 \u03b5\u03c0\u03b9\u03ba\u03bf\u03b9\u03bd\u03c9\u03bd\u03ae\u03c3\u03b5\u03b9 \u03bc\u03b5 \u03c4\u03b7\u03bd \u03b5\u03c6\u03b1\u03c1\u03bc\u03bf\u03b3\u03ae \u03b3\u03c1\u03b1\u03c6\u03b5\u03af\u03bf\u03c5 $2. \u03a4\u03bf $2 \u03c0\u03c1\u03ad\u03c0\u03b5\u03b9 \u03bd\u03b1 \u03b5\u03af\u03bd\u03b1\u03b9 \u03b1\u03bd\u03bf\u03b9\u03ba\u03c4\u03cc \u03b3\u03b9\u03b1 \u03bd\u03b1 \u03c0\u03c1\u03bf\u03c3\u03c4\u03b5\u03b8\u03b5\u03af \u03c0\u03b1\u03c1\u03b1\u03c0\u03bf\u03bc\u03c0\u03ae \u03bc\u03b5 \u03bc\u03bf\u03c1\u03c6\u03ae web."
+    },
+    "integration_googleDocs_documentLocked": {
+        "message": "The document citations are being edited by another $1 user. Please try again later."
+    },
+    "integration_googleDocs_documentLocked_moreInfo": {
+        "message": "$1 locks your document to prevent multiple users from editing citations at the same time. Concurrent citation editing in the document may lead to citation or document corruption. Certain unforeseeable circumstances, such as network failures, may lead to your document becoming permanently locked. If you believe this has happened, you can override the lock.<br/><br/>Would you like to override the document lock?"
+    },
+    "integration_googleDocs_documentPermissionError": {
+        "message": "The Google account you selected does not have permission to edit this document. Please try again, and be sure to choose the account with editing access."
+    },
+    "integration_googleDocs_docxAlert": {
+        "message": "\u0397 \u03b5\u03bd\u03c3\u03c9\u03bc\u03ac\u03c4\u03c9\u03c3\u03b7 \u03c4\u03bf\u03c5 $1\u03b4\u03b5\u03bd \u03b5\u03af\u03bd\u03b1\u03b9 \u03b4\u03b9\u03b1\u03b8\u03ad\u03c3\u03b9\u03bc\u03b7 \u03cc\u03c4\u03b1\u03bd \u03b5\u03c0\u03b5\u03be\u03b5\u03c1\u03b3\u03ac\u03b6\u03b5\u03c3\u03c4\u03b5 \u03b1\u03c1\u03c7\u03b5\u03af\u03b1 .docx \u03c4\u03bf\u03c5 Microsoft Word \u03ba\u03b1\u03c4\u03b5\u03c5\u03b8\u03b5\u03af\u03b1\u03bd \u03b1\u03c0\u03cc \u03c4\u03bf Google Docs. \u0393\u03b9\u03b1 \u03bd\u03b1 \u03b5\u03bd\u03b5\u03c1\u03b3\u03bf\u03c0\u03bf\u03b9\u03ae\u03c3\u03b5\u03c4\u03b5 \u03c4\u03b7\u03bd \u03bb\u03b5\u03b9\u03c4\u03bf\u03c5\u03c1\u03b3\u03af\u03b1 \u03b1\u03c5\u03c4\u03ae \u03b5\u03c0\u03b9\u03bb\u03ad\u03be\u03c4\u03b5 \u0391\u03c1\u03c7\u03b5\u03af\u03bf\u2192\u0391\u03c0\u03bf\u03b8\u03ae\u03ba\u03b5\u03c5\u03c3\u03b7 \u03c9\u03c2 \u0388\u03b3\u03b3\u03c1\u03b1\u03c6\u03bf Google.<br/><br/>\u0391\u03bd \u03b8\u03ad\u03bb\u03b5\u03c4\u03b5 \u03bd\u03b1 \u03bc\u03b5\u03c4\u03b1\u03c6\u03ad\u03c1\u03b5\u03c4\u03b5 \u03ad\u03bd\u03b1 \u03ad\u03b3\u03b3\u03c1\u03b1\u03c6\u03bf Word \u03bc\u03b5 \u03c0\u03b1\u03c1\u03b1\u03c0\u03bf\u03bc\u03c0\u03ad\u03c2 $1\u03c3\u03c4\u03bf Google Docs, \u03b4\u03b5\u03af\u03c4\u03b5 <a href=\"https://www.zotero.org/support/kb/moving_documents_between_word_processors\">\u039c\u03b5\u03c4\u03b1\u03ba\u03af\u03bd\u03b7\u03c3\u03b7 \u0395\u03b3\u03b3\u03c1\u03ac\u03c6\u03c9\u03bd \u039c\u03b5\u03c4\u03b1\u03be\u03cd \u0395\u03c0\u03b5\u03be\u03b5\u03c1\u03b3\u03b1\u03c3\u03c4\u03ce\u03bd Word</a>."
+    },
+    "integration_googleDocs_orphanedCitations_alert": {
+        "message": "The citation you are trying to edit has become unlinked from $1."
+    },
+    "integration_googleDocs_orphanedCitations_alertButton": {
+        "message": "Relink Citation"
+    },
+    "integration_googleDocs_orphanedCitations_buttonTooltip": {
+        "message": "Show unlinked $1 citations"
+    },
+    "integration_googleDocs_orphanedCitations_disclaimer": {
+        "message": "These citations have become <a target=\"_blank\" href=\"https://www.zotero.org/support/kb/google_docs_citations_unlinked\">unlinked from $1</a>. You will need to relink them before they will update or appear in your bibliography."
+    },
+    "integration_googleDocs_unlinkBeforeSaving_downloadAnyway": {
+        "message": "\u039b\u03ae\u03c8\u03b7 \u03a3\u03c5\u03bd\u03b4\u03b5\u03b4\u03b5\u03bc\u03ad\u03bd\u03b7\u03c2 \u0388\u03ba\u03b4\u03bf\u03c3\u03b7\u03c2 \u03bf\u03c0\u03c9\u03c3\u03b4\u03ae\u03c0\u03bf\u03c4\u03b5"
+    },
+    "integration_googleDocs_unlinkBeforeSaving_instructions": {
+        "message": "\u0393\u03b9\u03b1 \u03bd\u03b1 \u03b4\u03b7\u03bc\u03b9\u03bf\u03c5\u03c1\u03b3\u03ae\u03c3\u03b5\u03c4\u03b5 \u03bc\u03b9\u03b1 \u03ad\u03ba\u03b4\u03bf\u03c3\u03b7 \u03ba\u03b1\u03c4\u03ac\u03bb\u03bb\u03b7\u03bb\u03b7 \u03b3\u03b9\u03b1 \u03ba\u03bf\u03b9\u03bd\u03ae \u03c7\u03c1\u03ae\u03c3\u03b7, \u03b5\u03c0\u03b9\u03bb\u03ad\u03be\u03c4\u03b5 <b>\u0394\u03b7\u03bc\u03b9\u03bf\u03c5\u03c1\u03b3\u03af\u03b1 \u03b1\u03bd\u03c4\u03b9\u03b3\u03c1\u03ac\u03c6\u03bf\u03c5 ...</b> \u03b1\u03c0\u03cc \u03c4\u03bf \u03bc\u03b5\u03bd\u03bf\u03cd \u0391\u03c1\u03c7\u03b5\u03af\u03bf, \u03b5\u03c0\u03b9\u03bb\u03ad\u03be\u03c4\u03b5 <b>\u0391\u03c0\u03bf\u03c3\u03cd\u03bd\u03b4\u03b5\u03c3\u03b7 \u03a0\u03b1\u03c1\u03b1\u03c0\u03bf\u03bc\u03c0\u03ce\u03bd</b> \u03b1\u03c0\u03cc \u03c4\u03bf \u03bc\u03b5\u03bd\u03bf\u03cd Jurism \u03c3\u03c4\u03bf \u03bd\u03ad\u03bf \u03ad\u03b3\u03b3\u03c1\u03b1\u03c6\u03bf \u03ba\u03b1\u03b9 \u03c3\u03c4\u03b7 \u03c3\u03c5\u03bd\u03ad\u03c7\u03b5\u03b9\u03b1 \u03ba\u03ac\u03bd\u03c4\u03b5 \u03bb\u03ae\u03c8\u03b7 \u03c4\u03b7\u03c2 \u03bc\u03b7 \u03c3\u03c5\u03bd\u03b4\u03b5\u03b4\u03b5\u03bc\u03ad\u03bd\u03b7\u03c2 \u03ad\u03ba\u03b4\u03bf\u03c3\u03b7\u03c2. \u0394\u03b9\u03b1\u03c4\u03b7\u03c1\u03ae\u03c3\u03c4\u03b5 \u03b1\u03c5\u03c4\u03cc \u03c4\u03bf \u03c0\u03c1\u03c9\u03c4\u03cc\u03c4\u03c5\u03c0\u03bf \u03c3\u03c5\u03bd\u03b4\u03b5\u03b4\u03b5\u03bc\u03ad\u03bd\u03bf \u03ad\u03b3\u03b3\u03c1\u03b1\u03c6\u03bf \u03c3\u03b5 \u03c0\u03b5\u03c1\u03af\u03c0\u03c4\u03c9\u03c3\u03b7 \u03c0\u03bf\u03c5 \u03c7\u03c1\u03b5\u03b9\u03b1\u03c3\u03c4\u03b5\u03af \u03bd\u03b1 \u03ba\u03ac\u03bd\u03b5\u03c4\u03b5 \u03c0\u03b5\u03c1\u03b1\u03b9\u03c4\u03ad\u03c1\u03c9 \u03b1\u03bb\u03bb\u03b1\u03b3\u03ad\u03c2."
+    },
+    "integration_googleDocs_unlinkBeforeSaving_warning": {
+        "message": "\u0391\u03c5\u03c4\u03cc \u03c4\u03bf \u03ad\u03b3\u03b3\u03c1\u03b1\u03c6\u03bf \u03c0\u03b5\u03c1\u03b9\u03ad\u03c7\u03b5\u03b9 \u03b5\u03bd\u03b5\u03c1\u03b3\u03ad\u03c2 \u03c0\u03b1\u03c1\u03b1\u03c0\u03bf\u03bc\u03c0\u03ad\u03c2 Jurism \u03c0\u03bf\u03c5 \u03b8\u03b1 \u03b5\u03bc\u03c6\u03b1\u03bd\u03af\u03b6\u03bf\u03bd\u03c4\u03b1\u03b9 \u03c9\u03c2 \u03c3\u03cd\u03bd\u03b4\u03b5\u03c3\u03bc\u03bf\u03b9 zotero.org \u03c3\u03b5 \u03ad\u03bd\u03b1 \u03b1\u03bd\u03c4\u03af\u03b3\u03c1\u03b1\u03c6\u03bf \u03c0\u03bf\u03c5 \u03ad\u03c7\u03b5\u03c4\u03b5 \u03bb\u03ac\u03b2\u03b5\u03b9."
+    },
+    "integration_googleDocs_updating": {
+        "message": "\u03a4\u03bf $1 \u03b5\u03bd\u03b7\u03bc\u03b5\u03c1\u03ce\u03bd\u03b5\u03b9 \u03c4\u03bf \u03ad\u03b3\u03b3\u03c1\u03b1\u03c6\u03cc \u03c3\u03b1\u03c2."
+    },
+    "progressWindow_error_fallback": {
+        "message": "\u03a0\u03b1\u03c1\u03bf\u03c5\u03c3\u03b9\u03ac\u03c3\u03c4\u03b7\u03ba\u03b5 \u03c3\u03c6\u03ac\u03bb\u03bc\u03b1 \u03ba\u03b1\u03c4\u03ac \u03c4\u03b7\u03bd \u03b1\u03c0\u03bf\u03b8\u03ae\u03ba\u03b5\u03c5\u03c3\u03b7 \u03bc\u03b5 $1. \u0391\u03bd\u03c4' \u03b1\u03c5\u03c4\u03bf\u03cd, \u03b3\u03af\u03bd\u03b5\u03c4\u03b1\u03b9 \u03c0\u03c1\u03bf\u03c3\u03c0\u03ac\u03b8\u03b5\u03b9\u03b1 \u03b1\u03c0\u03bf\u03b8\u03ae\u03ba\u03b5\u03c5\u03c3\u03b7\u03c2 \u03bc\u03b5 \u03c7\u03c1\u03ae\u03c3\u03b7 $2."
+    },
+    "progressWindow_error_siteAccessLimits": {
+        "message": "Site Access Limits"
+    },
+    "progressWindow_error_siteAccessLimitsError": {
+        "description": "The placeholders are for the failing translator label (e.g., Google Scholar) and the Site Access Limits link",
+        "message": "An error occurred while saving this item. $1 may limit the number of items you can save at once. See $2 for more information."
+    },
+    "progressWindow_error_translation": {
+        "message": "\u03a0\u03b1\u03c1\u03bf\u03c5\u03c3\u03b9\u03ac\u03c3\u03c4\u03b7\u03ba\u03b5 \u03c3\u03c6\u03ac\u03bb\u03bc\u03b1 \u03ba\u03b1\u03c4\u03ac \u03c4\u03b7\u03bd \u03b1\u03c0\u03bf\u03b8\u03ae\u03ba\u03b5\u03c5\u03c3\u03b7 \u03b1\u03c5\u03c4\u03bf\u03cd \u03c4\u03bf\u03c5 \u03c3\u03c4\u03bf\u03b9\u03c7\u03b5\u03af\u03bf\u03c5. \u0394\u03b5\u03af\u03c4\u03b5 $1 \u03b3\u03b9\u03b1 \u03c0\u03b5\u03c1\u03b9\u03c3\u03c3\u03cc\u03c4\u03b5\u03c1\u03b5\u03c2 \u03c0\u03bb\u03b7\u03c1\u03bf\u03c6\u03bf\u03c1\u03af\u03b5\u03c2."
+    },
+    "progressWindow_error_troubleshootingTranslatorIssues": {
+        "message": "\u0391\u03bd\u03c4\u03b9\u03bc\u03b5\u03c4\u03ce\u03c0\u03b9\u03c3\u03b7 \u03a0\u03c1\u03bf\u03b2\u03bb\u03b7\u03bc\u03ac\u03c4\u03c9\u03bd \u039c\u03b5\u03c4\u03b1\u03c6\u03c1\u03b1\u03c3\u03c4\u03ae"
+    },
+    "progressWindow_error_upgradeClient": {
+        "message": "\u0391\u03c5\u03c4\u03ae \u03b7 \u03bb\u03b5\u03b9\u03c4\u03bf\u03c5\u03c1\u03b3\u03af\u03b1 \u03b4\u03b5\u03bd \u03c5\u03c0\u03bf\u03c3\u03c4\u03b7\u03c1\u03af\u03b6\u03b5\u03c4\u03b1\u03b9 \u03b1\u03c0\u03cc \u03c4\u03b7\u03bd \u03ad\u03ba\u03b4\u03bf\u03c3\u03b7 $1. \u03a0\u03b1\u03c1\u03b1\u03ba\u03b1\u03bb\u03ce \u03b1\u03bd\u03b1\u03b2\u03b1\u03b8\u03bc\u03af\u03c3\u03c4\u03b5 \u03c3\u03c4\u03b7\u03bd $2."
+    },
+    "progressWindow_error_upgradeClient_latestVersion": {
+        "message": "\u03c4\u03b5\u03bb\u03b5\u03c5\u03c4\u03b1\u03af\u03b1 \u03ad\u03ba\u03b4\u03bf\u03c3\u03b7"
+    },
+    "progressWindow_savingTo": {
+        "message": "\u0391\u03c0\u03bf\u03b8\u03ae\u03ba\u03b5\u03c5\u03c3\u03b7 \u03c3\u03b5"
+    },
+    "progressWindow_tagPlaceholder": {
+        "message": "\u0395\u03c4\u03b9\u03ba\u03ad\u03c4\u03b5\u03c2 (\u03b4\u03b9\u03b1\u03c7\u03c9\u03c1\u03b9\u03c3\u03bc\u03ad\u03bd\u03b5\u03c2 \u03bc\u03b5 \u03ba\u03cc\u03bc\u03bc\u03b1)"
+    },
+    "reloadVia": {
+        "message": "Reload via $1"
+    },
+    "reloadViaProxy": {
+        "message": "Reload via Proxy"
+    },
+    "reports_debug_output_submitted": {
+        "message": "Your debug output has been submitted.\n\nThe Debug ID is $1."
+    },
+    "reports_report_submitted": {
+        "message": "Your error report has been submitted.\n\nReport ID: $1\n\nPlease post a message to the Jurism Forums with this Report ID, a description of the problem, and any steps necessary to reproduce it.\n\nError reports are not reviewed unless referred to in the forums."
+    },
+    "reports_submission_failed": {
+        "description": "$1 will be the error message sent to the Jurism servers",
+        "message": "An error occurred submitting your report.\n\n$1\n\nPlease check your internet connection. If the problem persists, post a message to the Jurism Forums."
+    },
+    "upgradeApp": {
+        "message": "\u0391\u03bd\u03b1\u03b2\u03ac\u03b8\u03bc\u03b9\u03c3\u03b7 $1"
+    }
 }

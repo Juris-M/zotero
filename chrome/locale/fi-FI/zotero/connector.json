@@ -1,164 +1,167 @@
 {
-  "general_more": {
-    "message": "Lisää..."
-  },
-  "general_moreInfo": {
-    "message": "Lisätietoja..."
-  },
-  "general_needHelp": {
-    "message": "Tarvitsetko apua?"
-  },
-  "general_done": {
-    "message": "Valmis"
-  },
-  "general_yes": {
-    "message": "Kyllä"
-  },
-  "general_no": {
-    "message": "Ei"
-  },
-  "general_tryAgain": {
-    "message": "Yritä uudelleen"
-  },
-  "general_warning": {
-    "message": "Varoitus"
-  },
-  "general_cancel": {
-    "message": "Peruuta"
-  },
-  "general_pleaseWait": {
-    "message": "Odota..."
-  },
-  "general_copyToClipboard": {
-    "message": "Kopioi leikepöydälle"
-  },
-  "progressWindow_savingTo": {
-    "message": "Tallennetaan kokoelmaan"
-  },
-  "progressWindow_tagPlaceholder": {
-    "message": "Avainsanat (pilkulla eroteltuna)"
-  },
-  "progressWindow_error_translation": {
-    "message": "Nimikkeen tallentamisessa tapahtui virhe. Katso $1, jos haluat lisätietoja."
-  },
-  "progressWindow_error_siteAccessLimitsError": {
-    "message": "Nimikettä tallennettaessa tapahtui virhe. $1 saattaa rajoittaa kerralla tallennettavien nimikkeiden määrää. Tutustu $2saadaksesi lisätietoja."
-  },
-  "progressWindow_error_troubleshootingTranslatorIssues": {
-    "message": "Sivukääntäjiin liittyvien ongelmien selvittäminen"
-  },
-  "progressWindow_error_siteAccessLimits": {
-    "message": "Sivuston pääsyrajoitukset"
-  },
-  "progressWindow_error_fallback": {
-    "message": "Tapahtui virhe tallennettaessa työkalulla $1. Yritetään tallennusta $2 avulla."
-  },
-  "progressWindow_error_upgradeClient": {
-    "message": "$1-versiosi ei tue tätä toimintoa. Päivitä versioon $2."
-  },
-  "progressWindow_error_upgradeClient_latestVersion": {
-    "message": "tuorein versio"
-  },
-  "extensionIsDisabled": {
-    "message": "$1 on kytketty pois käytöstä"
-  },
-  "extensionIsDisabled_extensionPage": {
-    "message": "$1 on kytketty pois käytöstä lisäsivuilla"
-  },
-  "appConnector": {
-    "message": "$1Connector"
-  },
-  "upgradeApp": {
-    "message": "Päivitä $1"
-  },
-  "firstRun_title": {
-    "message": "$1 Connector on nyt asennettu!"
-  },
-  "firstRun_text1": {
-    "message": "$1 Connector mahdollistaa <a href=\"$2\">nimikkeiden tallentamisen $1on</a> selaimestasi yhdellä klikkauksella."
-  },
-  "firstRun_text2": {
-    "message": "Jos et ole vielä tehnyt sitä, <a href=\"$2\">lataa</a> $1n työpöytäversio saavuttaaksesi parhaan käyttökokemuksen."
-  },
-  "firstRun_acceptButton": {
-    "message": "Selvä"
-  },
-  "error_connection_isAppRunning": {
-    "message": "Onko $1 käynnissä?"
-  },
-  "error_connection_save": {
-    "message": "$1 ei saanut yhteyttä $2-työpöytäsovellukseen. Jurism Connector pystyy tallentamaan joitain sivuja $3-tilille, mutta paras toimivuus saavutetaan, jos avaat $2n ennen kuin yrität tallentaa."
-  },
-  "error_connection_downloadOrTroubleshoot": {
-    "message": "Voit <a href=\"$1\">ladata $2</a> tai <a href=\"$3\">suorittaa tarvittaessa yhteyden vianmäärityksen</a>. "
-  },
-  "error_connection_enableSavingToOnlineLibrary": {
-    "message": "Käytä tallennusta verkkokirjastoon (Online Library)"
-  },
-  "reports_report_submitted": {
-    "message": "Virheraporttisi on lähetetty.\n\nRaportin tunniste: $1\n\nKirjoita seuraavaksi Jurismn käyttäjäfoorumille viesti, jossa mainitset raportin tunnisteen, ongelman kuvauksen sekä kuvauksen siitä, mitä käyttäjän pitää tehdä vian toistamiseksi.\n\nVirheilmoituksia ei käsitellä ellei yllämainittua käyttäjäfoorumiviestiä kirjoiteta."
-  },
-  "reports_debug_output_submitted": {
-    "message": "Virheenjäljitystallenne on lähetetty.\n\nTallenteen tunniste (Debug ID) on $1."
-  },
-  "reports_submission_failed": {
-    "message": "Raporttia lähetettäessä tapahtui virhe.\n\n$1\n\nTarkista internetyhteytesi toimivuus ja yritä uudelleen. Jos ongelma ei poistu, kirjoita aiheesta viesti käyttäjäfoorumille."
-  },
-  "integration_error_clientUpgrade": {
-    "message": "Verkkopohjainen viittaaminen vaatii $1 tai myöhemmän."
-  },
-  "integration_error_connection": {
-    "message": "$1ei saanut yhteyttä työpöytäsovellukseen $2. $2 tulee olla auki jotta verkkopohjainen viittaaminen onnistuu. "
-  },
-  "integration_googleDocs_unlinkBeforeSaving_warning": {
-    "message": "Tämä asiakirja sisältää aktiivisia Jurism-viitteitä jotka näkyvät zotero.org-linkkeinä ladatussa kopiossa."
-  },
-  "integration_googleDocs_unlinkBeforeSaving_instructions": {
-    "message": "Tehdäksesi jakamiskelpoisen version tiedostosta, valitse <b>Luo kopio</b> Tiedosto-valikosta, valitse <b>Poista linkitys viitteistä</b> uuden asiakirjan Jurism-valikosta ja lataa linkittämätön versio itsellesi. Säilytä alkuperäinen linkitetty versio asiakirjasta siltä varalta että haluat tehdä siihen muutoksia."
-  },
-  "integration_googleDocs_unlinkBeforeSaving_downloadAnyway": {
-    "message": "Lataa silti linkitetty versio"
-  },
-  "integration_googleDocs_updating": {
-    "message": "$1päivittää asiakirjaasi."
-  },
-  "integration_googleDocs_docxAlert": {
-    "message": "$1-integrointi ei ole mahdollista jos muokkaat Microsoft Wording .docx-tiedostoja suoraan Google Docsissa. Valitse Tiedosto → Tallenna Google Docs -muodossa, jotta integrointi toimii. <br/><br/> Jos haluat siirtää Google Docsiin Word-asiakirjan jossa on $1-viittauksia, tutustu artikkeliin <a href=\"https://www.zotero.org/support/kb/moving_documents_between_word_processors\">Moving Documents Between Word Processors</a> (englanniksi)."
-  },
-  "integration_googleDocs_documentLocked": {
-    "message": "Toinen $1-käyttäjä editoi juuri asiakirjan viitteitä. Yritä myöhemmin uudelleen."
-  },
-  "integration_googleDocs_documentLocked_moreInfo": {
-    "message": "$1 lukitsee asiakirjasi, jotta useampi käyttäjä ei voi vahingossa muokata viitteitä samaan aikaan. Samanaikainen viitteiden muokkaus saattaisi johtaa viitteen tai asiakirjan vaurioitumiseen. Tietyt tapahtumat, kuten verkkoyhteyden katkeaminen, voivat johtaa tilanteeseen, jossa asiakirjan lukitus jää epätarkoituksenmukaisesti päälle. Jos uskot että näin on tapahtunut nyt, voit ohittaa lukituksen. <br/><br/> Haluatko ohittaa asiakirjan lukituksen?"
-  },
-  "integration_googleDocs_documentPermissionError": {
-    "message": "Valitsemallasi Google-tilillä ei ole oikeuksia muokata tätä asiakirjaa. Yritä uudelleen ja varmista, että tilillä on muokkausoikeudet."
-  },
-  "integration_googleDocs_orphanedCitations_buttonTooltip": {
-    "message": "Näytä $1 viitettä joiden linkitys on poistettu. "
-  },
-  "integration_googleDocs_orphanedCitations_alert": {
-    "message": "Viitten, jota yrität muokata, linkitys kohteeseen $1 on poistettu.  "
-  },
-  "integration_googleDocs_orphanedCitations_alertButton": {
-    "message": "Uudelleenlinkitä viittaus."
-  },
-  "integration_googleDocs_orphanedCitations_disclaimer": {
-    "message": "Näiden viitteiden linkitys <a target=\"_blank\" href=\"https://www.zotero.org/support/kb/google_docs_citations_unlinked\">puuttuu nyt kohteesta $1</a>. Sinun täytyy linkittää ne uudelleen, jotta ne päivittyvät ja näkyvät kirjallisuusluettelossa. "
-  },
-  "copyUnproxiedLink": {
-    "message": "Kopioi välityspalvelimeton linkki"
-  },
-  "copyUnproxiedPageURL": {
-    "message": "Kopioi välityspalvelimeton sivun URL"
-  },
-  "reloadViaProxy": {
-    "message": "Lataa välityspalvelimen kautta"
-  },
-  "reloadVia": {
-    "message": "Lataa $1 välityksellä"
-  },
-  "general_saveTo": {
-    "message": "Tallenna kohteeseen $1"
-  }
+    "appConnector": {
+        "message": "$1Connector"
+    },
+    "copyUnproxiedLink": {
+        "message": "Kopioi v\u00e4lityspalvelimeton linkki"
+    },
+    "copyUnproxiedPageURL": {
+        "message": "Kopioi v\u00e4lityspalvelimeton sivun URL"
+    },
+    "error_connection_downloadOrTroubleshoot": {
+        "message": "Voit <a href=\"$1\">ladata $2</a> tai <a href=\"$3\">suorittaa tarvittaessa yhteyden vianm\u00e4\u00e4rityksen</a>. "
+    },
+    "error_connection_enableSavingToOnlineLibrary": {
+        "message": "K\u00e4yt\u00e4 tallennusta verkkokirjastoon (Online Library)"
+    },
+    "error_connection_isAppRunning": {
+        "message": "Onko $1 k\u00e4ynniss\u00e4?"
+    },
+    "error_connection_save": {
+        "message": "$1 ei saanut yhteytt\u00e4 $2-ty\u00f6p\u00f6yt\u00e4sovellukseen. Jurism Connector pystyy tallentamaan joitain sivuja $3-tilille, mutta paras toimivuus saavutetaan, jos avaat $2n ennen kuin yrit\u00e4t tallentaa."
+    },
+    "extensionIsDisabled": {
+        "message": "$1 on kytketty pois k\u00e4yt\u00f6st\u00e4"
+    },
+    "extensionIsDisabled_extensionPage": {
+        "message": "$1 on kytketty pois k\u00e4yt\u00f6st\u00e4 lis\u00e4sivuilla"
+    },
+    "firstRun_acceptButton": {
+        "message": "Selv\u00e4"
+    },
+    "firstRun_text1": {
+        "message": "$1 Connector mahdollistaa <a href=\"$2\">nimikkeiden tallentamisen $1on</a> selaimestasi yhdell\u00e4 klikkauksella."
+    },
+    "firstRun_text2": {
+        "message": "Jos et ole viel\u00e4 tehnyt sit\u00e4, <a href=\"$2\">lataa</a> $1n ty\u00f6p\u00f6yt\u00e4versio saavuttaaksesi parhaan k\u00e4ytt\u00f6kokemuksen."
+    },
+    "firstRun_text3": {
+        "message": "(You can view the $1 Privacy Policy on <a href=\"$2\">the project website</a>)."
+    },
+    "firstRun_title": {
+        "message": "$1 Connector on nyt asennettu!"
+    },
+    "general_cancel": {
+        "message": "Peruuta"
+    },
+    "general_copyToClipboard": {
+        "message": "Kopioi leikep\u00f6yd\u00e4lle"
+    },
+    "general_done": {
+        "message": "Valmis"
+    },
+    "general_more": {
+        "message": "Lis\u00e4\u00e4..."
+    },
+    "general_moreInfo": {
+        "message": "Lis\u00e4tietoja..."
+    },
+    "general_needHelp": {
+        "message": "Tarvitsetko apua?"
+    },
+    "general_no": {
+        "message": "Ei"
+    },
+    "general_pleaseWait": {
+        "message": "Odota..."
+    },
+    "general_saveTo": {
+        "message": "Tallenna kohteeseen $1"
+    },
+    "general_tryAgain": {
+        "message": "Yrit\u00e4 uudelleen"
+    },
+    "general_warning": {
+        "message": "Varoitus"
+    },
+    "general_yes": {
+        "message": "Kyll\u00e4"
+    },
+    "integration_error_clientUpgrade": {
+        "message": "Verkkopohjainen viittaaminen vaatii $1 tai my\u00f6hemm\u00e4n."
+    },
+    "integration_error_connection": {
+        "message": "$1ei saanut yhteytt\u00e4 ty\u00f6p\u00f6yt\u00e4sovellukseen $2. $2 tulee olla auki jotta verkkopohjainen viittaaminen onnistuu. "
+    },
+    "integration_googleDocs_documentLocked": {
+        "message": "Toinen $1-k\u00e4ytt\u00e4j\u00e4 editoi juuri asiakirjan viitteit\u00e4. Yrit\u00e4 my\u00f6hemmin uudelleen."
+    },
+    "integration_googleDocs_documentLocked_moreInfo": {
+        "message": "$1 lukitsee asiakirjasi, jotta useampi k\u00e4ytt\u00e4j\u00e4 ei voi vahingossa muokata viitteit\u00e4 samaan aikaan. Samanaikainen viitteiden muokkaus saattaisi johtaa viitteen tai asiakirjan vaurioitumiseen. Tietyt tapahtumat, kuten verkkoyhteyden katkeaminen, voivat johtaa tilanteeseen, jossa asiakirjan lukitus j\u00e4\u00e4 ep\u00e4tarkoituksenmukaisesti p\u00e4\u00e4lle. Jos uskot ett\u00e4 n\u00e4in on tapahtunut nyt, voit ohittaa lukituksen. <br/><br/> Haluatko ohittaa asiakirjan lukituksen?"
+    },
+    "integration_googleDocs_documentPermissionError": {
+        "message": "Valitsemallasi Google-tilill\u00e4 ei ole oikeuksia muokata t\u00e4t\u00e4 asiakirjaa. Yrit\u00e4 uudelleen ja varmista, ett\u00e4 tilill\u00e4 on muokkausoikeudet."
+    },
+    "integration_googleDocs_docxAlert": {
+        "message": "$1-integrointi ei ole mahdollista jos muokkaat Microsoft Wording .docx-tiedostoja suoraan Google Docsissa. Valitse Tiedosto \u2192 Tallenna Google Docs -muodossa, jotta integrointi toimii. <br/><br/> Jos haluat siirt\u00e4\u00e4 Google Docsiin Word-asiakirjan jossa on $1-viittauksia, tutustu artikkeliin <a href=\"https://www.zotero.org/support/kb/moving_documents_between_word_processors\">Moving Documents Between Word Processors</a> (englanniksi)."
+    },
+    "integration_googleDocs_orphanedCitations_alert": {
+        "message": "Viitten, jota yrit\u00e4t muokata, linkitys kohteeseen $1 on poistettu.  "
+    },
+    "integration_googleDocs_orphanedCitations_alertButton": {
+        "message": "Uudelleenlinkit\u00e4 viittaus."
+    },
+    "integration_googleDocs_orphanedCitations_buttonTooltip": {
+        "message": "N\u00e4yt\u00e4 $1 viitett\u00e4 joiden linkitys on poistettu. "
+    },
+    "integration_googleDocs_orphanedCitations_disclaimer": {
+        "message": "N\u00e4iden viitteiden linkitys <a target=\"_blank\" href=\"https://www.zotero.org/support/kb/google_docs_citations_unlinked\">puuttuu nyt kohteesta $1</a>. Sinun t\u00e4ytyy linkitt\u00e4\u00e4 ne uudelleen, jotta ne p\u00e4ivittyv\u00e4t ja n\u00e4kyv\u00e4t kirjallisuusluettelossa. "
+    },
+    "integration_googleDocs_unlinkBeforeSaving_downloadAnyway": {
+        "message": "Lataa silti linkitetty versio"
+    },
+    "integration_googleDocs_unlinkBeforeSaving_instructions": {
+        "message": "Tehd\u00e4ksesi jakamiskelpoisen version tiedostosta, valitse <b>Luo kopio</b> Tiedosto-valikosta, valitse <b>Poista linkitys viitteist\u00e4</b> uuden asiakirjan Jurism-valikosta ja lataa linkitt\u00e4m\u00e4t\u00f6n versio itsellesi. S\u00e4ilyt\u00e4 alkuper\u00e4inen linkitetty versio asiakirjasta silt\u00e4 varalta ett\u00e4 haluat tehd\u00e4 siihen muutoksia."
+    },
+    "integration_googleDocs_unlinkBeforeSaving_warning": {
+        "message": "T\u00e4m\u00e4 asiakirja sis\u00e4lt\u00e4\u00e4 aktiivisia Jurism-viitteit\u00e4 jotka n\u00e4kyv\u00e4t zotero.org-linkkein\u00e4 ladatussa kopiossa."
+    },
+    "integration_googleDocs_updating": {
+        "message": "$1p\u00e4ivitt\u00e4\u00e4 asiakirjaasi."
+    },
+    "progressWindow_error_fallback": {
+        "message": "Tapahtui virhe tallennettaessa ty\u00f6kalulla $1. Yritet\u00e4\u00e4n tallennusta $2 avulla."
+    },
+    "progressWindow_error_siteAccessLimits": {
+        "message": "Sivuston p\u00e4\u00e4syrajoitukset"
+    },
+    "progressWindow_error_siteAccessLimitsError": {
+        "message": "Nimikett\u00e4 tallennettaessa tapahtui virhe. $1 saattaa rajoittaa kerralla tallennettavien nimikkeiden m\u00e4\u00e4r\u00e4\u00e4. Tutustu $2saadaksesi lis\u00e4tietoja."
+    },
+    "progressWindow_error_translation": {
+        "message": "Nimikkeen tallentamisessa tapahtui virhe. Katso $1, jos haluat lis\u00e4tietoja."
+    },
+    "progressWindow_error_troubleshootingTranslatorIssues": {
+        "message": "Sivuk\u00e4\u00e4nt\u00e4jiin liittyvien ongelmien selvitt\u00e4minen"
+    },
+    "progressWindow_error_upgradeClient": {
+        "message": "$1-versiosi ei tue t\u00e4t\u00e4 toimintoa. P\u00e4ivit\u00e4 versioon $2."
+    },
+    "progressWindow_error_upgradeClient_latestVersion": {
+        "message": "tuorein versio"
+    },
+    "progressWindow_savingTo": {
+        "message": "Tallennetaan kokoelmaan"
+    },
+    "progressWindow_tagPlaceholder": {
+        "message": "Avainsanat (pilkulla eroteltuna)"
+    },
+    "reloadVia": {
+        "message": "Lataa $1 v\u00e4lityksell\u00e4"
+    },
+    "reloadViaProxy": {
+        "message": "Lataa v\u00e4lityspalvelimen kautta"
+    },
+    "reports_debug_output_submitted": {
+        "message": "Virheenj\u00e4ljitystallenne on l\u00e4hetetty.\n\nTallenteen tunniste (Debug ID) on $1."
+    },
+    "reports_report_submitted": {
+        "message": "Virheraporttisi on l\u00e4hetetty.\n\nRaportin tunniste: $1\n\nKirjoita seuraavaksi Jurismn k\u00e4ytt\u00e4j\u00e4foorumille viesti, jossa mainitset raportin tunnisteen, ongelman kuvauksen sek\u00e4 kuvauksen siit\u00e4, mit\u00e4 k\u00e4ytt\u00e4j\u00e4n pit\u00e4\u00e4 tehd\u00e4 vian toistamiseksi.\n\nVirheilmoituksia ei k\u00e4sitell\u00e4 ellei yll\u00e4mainittua k\u00e4ytt\u00e4j\u00e4foorumiviesti\u00e4 kirjoiteta."
+    },
+    "reports_submission_failed": {
+        "message": "Raporttia l\u00e4hetett\u00e4ess\u00e4 tapahtui virhe.\n\n$1\n\nTarkista internetyhteytesi toimivuus ja yrit\u00e4 uudelleen. Jos ongelma ei poistu, kirjoita aiheesta viesti k\u00e4ytt\u00e4j\u00e4foorumille."
+    },
+    "upgradeApp": {
+        "message": "P\u00e4ivit\u00e4 $1"
+    }
 }

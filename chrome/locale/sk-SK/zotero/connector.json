@@ -1,146 +1,167 @@
 {
-  "general_more": {
-    "message": "Viac..."
-  },
-  "general_moreInfo": {
-    "message": "Viac informácií..."
-  },
-  "general_needHelp": {
-    "message": "Potrebujete pomoc?"
-  },
-  "general_done": {
-    "message": "Hotovo"
-  },
-  "general_yes": {
-    "message": "Áno"
-  },
-  "general_no": {
-    "message": "Nie"
-  },
-  "general_tryAgain": {
-    "message": "Skúste znova"
-  },
-  "general_warning": {
-    "message": "Upozornenie"
-  },
-  "general_cancel": {
-    "message": "Zrušiť"
-  },
-  "general_pleaseWait": {
-    "message": "Počkajte, prosím..."
-  },
-  "general_copyToClipboard": {
-    "message": "Skopírovať do schránky"
-  },
-  "progressWindow_savingTo": {
-    "message": "Ukladá sa do"
-  },
-  "progressWindow_tagPlaceholder": {
-    "message": "Značky (oddelené čiarkami)"
-  },
-  "progressWindow_error_translation": {
-    "message": "Pri ukladaní tohto súboru došlo k chybe. Pre viac informácií si pozrite $1."
-  },
-  "progressWindow_error_siteAccessLimitsError": {
-    "message": "Pri ukladaní záznamu došlo k chybe. $1 môže obmedziť počet záznamov, ktoré môžete naraz uložiť. Pozrite na $2 pre viac informácií."
-  },
-  "progressWindow_error_troubleshootingTranslatorIssues": {
-    "message": "Riešenie problémov s translátormi"
-  },
-  "progressWindow_error_siteAccessLimits": {
-    "message": "Obmedzenia prístupu na stránku"
-  },
-  "progressWindow_error_fallback": {
-    "message": "Pri ukladaní pomocou $1 došlo k chybe. Namiesto toho prebieha pokus o ukladanie pomocou $2."
-  },
-  "progressWindow_error_upgradeClient": {
-    "message": "Túto funkciu vaša verzia $1 nepodporuje. Aktualizujte ju, prosím, na $2."
-  },
-  "progressWindow_error_upgradeClient_latestVersion": {
-    "message": "najnovšia verzia"
-  },
-  "appConnector": {
-    "message": "Konektor $1"
-  },
-  "upgradeApp": {
-    "message": "Aktualizovať $1"
-  },
-  "firstRun_title": {
-    "message": "Nainštalovali ste $1 konektor!"
-  },
-  "firstRun_text1": {
-    "message": "Konektor $1 vám umožní jedným kliknutím <a href=\"$2\">ukladať záznamy do $1</a> z vášho prehliadača."
-  },
-  "firstRun_text2": {
-    "message": "Ak ho ešte nemáte, <a href=\"$2\">stiahnite si </a> samostatnú aplikáciu $1 pre najlepší zážitok."
-  },
-  "firstRun_acceptButton": {
-    "message": "Rozumiem"
-  },
-  "error_connection_isAppRunning": {
-    "message": "Beží $1?"
-  },
-  "error_connection_save": {
-    "message": "$1 nedokázal komunikovať s počítačovým programom $2. Konektor dokáže uložiť niektoré stránky priamo na váš účet v$3, ale najlepší výsledok dosiahnete, keď sa uistíte, že $2 je otvorený, prv než začnete ukladať."
-  },
-  "error_connection_downloadOrTroubleshoot": {
-    "message": "Môžete <a href=\"$1\">stiahnuť $2</a> alebo <a href=\"$3\">riešiť poruchu spojenia</a>, ak je to potrebné."
-  },
-  "error_connection_enableSavingToOnlineLibrary": {
-    "message": "Zapnúť ukladanie do Online knižnice"
-  },
-  "reports_report_submitted": {
-    "message": "Vaše chybové hlásenie bolo odoslané.\n\nID správy: $1\n\nProsím napíšte správu do diskusného fóra Jurism obsahujúcu toto ID, popis problému a kroky, ktoré sú potrebné k jeho reprodukovaniu.\n\nChybové hlásenia sa nekontrolujú dokiaľ sa o nich nediskutuje vo fórach."
-  },
-  "reports_debug_output_submitted": {
-    "message": "Vaše ladiace informácie boli odoslané.\n\nID ladenia je $1."
-  },
-  "reports_submission_failed": {
-    "message": "Pri odosielaní vašej správy sa vyskytla chyba.\n\n$1\n\nSkontrolujte prosím svoje pripojenie na internet. Ak problémy pretrvávajú, pošlite správu na fóra Jurism."
-  },
-  "integration_error_clientUpgrade": {
-    "message": "Webové citovanie vyžaduje verziu $1 alebo vyššiu."
-  },
-  "integration_error_connection": {
-    "message": "$1 nedokázal komunikovať s počítačovým programom $2. $2 musí byť pre používanie webového citovania spustený."
-  },
-  "integration_googleDocs_unlinkBeforeSaving_warning": {
-    "message": "Tento dokument obsahuje aktívne citácie Zotera, ktoré sa objavia ako odkazy zotero.org v stiahnutej kópii."
-  },
-  "integration_googleDocs_unlinkBeforeSaving_instructions": {
-    "message": "Pre vytvorenie verzie vhodnej na zdieľaie, zvoľte <b>Vytvoriť kópiu…</b> z ponuky Súbor, zvoľte <b>Odpojiť citácie</b> z ponuky Jurism v novom dokumente a potom stiahnite neprepojenú verziu. Uschovajte tento pôvodný prepojený dokument pre prípad, že budete potrebovať urobiť ďalšie zmeny."
-  },
-  "integration_googleDocs_unlinkBeforeSaving_downloadAnyway": {
-    "message": "Každopádne stiahnuť prepojenú verziu"
-  },
-  "integration_googleDocs_updating": {
-    "message": "$1 aktualizuje váš dokument."
-  },
-  "integration_googleDocs_docxAlert": {
-    "message": "Integrácia $1 nie je dostupná pri úprave súborov .docx od Microsoft Word  priamo v Google Docs. Zvoľte Súbor → Uložiť ako Google Docs pre zapnutie tejto funkcie.<br/><br/>Ak chcete preniesť dokument Word s citáciami $1 do Google Docs, pozrite na <a href=\"https://www.zotero.org/support/kb/moving_documents_between_word_processors\">Presun dokumentov medzi textovými editormi</a>."
-  },
-  "integration_googleDocs_documentLocked": {
-    "message": "Citácie v dokumente práve edituje iný $1 užívateľ. Skúste to prosím neskôr."
-  },
-  "integration_googleDocs_documentLocked_moreInfo": {
-    "message": "$1 uzamkne váš dokument, aby zabránil viacerým používateľom upravovať citácie súčasne. Súbežné úpravy citácií v dokumente môžu viesť k poškodeniu citácie alebo dokumentu. Niektoré nepredvídateľné okolnosti, ako napríklad zlyhanie siete, môžu viesť k trvalému uzamknutiu vášho dokumentu. Ak si myslíte, že sa to stalo, môžete obísť zámok. <br/><br/>Chcete obísť zámok dokumentu?"
-  },
-  "integration_googleDocs_documentPermissionError": {
-    "message": "Účet Google, ktorý ste vybrali, nemá povolenie na úpravu tohto dokumentu. Skúste to znova a vyberte účet s prístupom na úpravy."
-  },
-  "integration_googleDocs_orphanedCitations_buttonTooltip": {
-    "message": "Zobraziť neprepojených $1 citácií"
-  },
-  "integration_googleDocs_orphanedCitations_alert": {
-    "message": "Citácia, ktorú sa pokúšate upraviť, prestala byť prepojená s $1."
-  },
-  "integration_googleDocs_orphanedCitations_alertButton": {
-    "message": "Znova prepojiť citáciu"
-  },
-  "integration_googleDocs_orphanedCitations_disclaimer": {
-    "message": "Tieto citácie prestali byť <a target=\"_blank\" href=\"https://www.zotero.org/support/kb/google_docs_citations_unlinked\">prepojené s $1</a>. Budete ich musieť znova prepojiť prv ako budú aktualizované alebo sa objavia vo vašej bibliografii."
-  },
-  "general_saveTo": {
-    "message": "Uložiť do $1"
-  }
+    "appConnector": {
+        "message": "Konektor $1"
+    },
+    "copyUnproxiedLink": {
+        "message": "Copy Unproxied Link"
+    },
+    "copyUnproxiedPageURL": {
+        "message": "Copy Unproxied Page URL"
+    },
+    "error_connection_downloadOrTroubleshoot": {
+        "message": "M\u00f4\u017eete <a href=\"$1\">stiahnu\u0165 $2</a> alebo <a href=\"$3\">rie\u0161i\u0165 poruchu spojenia</a>, ak je to potrebn\u00e9."
+    },
+    "error_connection_enableSavingToOnlineLibrary": {
+        "message": "Zapn\u00fa\u0165 ukladanie do Online kni\u017enice"
+    },
+    "error_connection_isAppRunning": {
+        "message": "Be\u017e\u00ed $1?"
+    },
+    "error_connection_save": {
+        "message": "$1 nedok\u00e1zal komunikova\u0165 s po\u010d\u00edta\u010dov\u00fdm programom $2. Konektor dok\u00e1\u017ee ulo\u017ei\u0165 niektor\u00e9 str\u00e1nky priamo na v\u00e1\u0161 \u00fa\u010det v$3, ale najlep\u0161\u00ed v\u00fdsledok dosiahnete, ke\u010f sa uist\u00edte, \u017ee $2 je otvoren\u00fd, prv ne\u017e za\u010dnete uklada\u0165."
+    },
+    "extensionIsDisabled": {
+        "message": "$1 is disabled"
+    },
+    "extensionIsDisabled_extensionPage": {
+        "message": "$1 is disabled on extension pages"
+    },
+    "firstRun_acceptButton": {
+        "message": "Rozumiem"
+    },
+    "firstRun_text1": {
+        "message": "Konektor $1 v\u00e1m umo\u017en\u00ed jedn\u00fdm kliknut\u00edm <a href=\"$2\">uklada\u0165 z\u00e1znamy do $1</a> z v\u00e1\u0161ho prehliada\u010da."
+    },
+    "firstRun_text2": {
+        "message": "Ak ho e\u0161te nem\u00e1te, <a href=\"$2\">stiahnite si </a> samostatn\u00fa aplik\u00e1ciu $1 pre najlep\u0161\u00ed z\u00e1\u017eitok."
+    },
+    "firstRun_text3": {
+        "message": "(You can view the $1 Privacy Policy on <a href=\"$2\">the project website</a>)."
+    },
+    "firstRun_title": {
+        "message": "Nain\u0161talovali ste $1 konektor!"
+    },
+    "general_cancel": {
+        "message": "Zru\u0161i\u0165"
+    },
+    "general_copyToClipboard": {
+        "message": "Skop\u00edrova\u0165 do schr\u00e1nky"
+    },
+    "general_done": {
+        "message": "Hotovo"
+    },
+    "general_more": {
+        "message": "Viac..."
+    },
+    "general_moreInfo": {
+        "message": "Viac inform\u00e1ci\u00ed..."
+    },
+    "general_needHelp": {
+        "message": "Potrebujete pomoc?"
+    },
+    "general_no": {
+        "message": "Nie"
+    },
+    "general_pleaseWait": {
+        "message": "Po\u010dkajte, pros\u00edm..."
+    },
+    "general_saveTo": {
+        "message": "Ulo\u017ei\u0165 do $1"
+    },
+    "general_tryAgain": {
+        "message": "Sk\u00faste znova"
+    },
+    "general_warning": {
+        "message": "Upozornenie"
+    },
+    "general_yes": {
+        "message": "\u00c1no"
+    },
+    "integration_error_clientUpgrade": {
+        "message": "Webov\u00e9 citovanie vy\u017eaduje verziu $1 alebo vy\u0161\u0161iu."
+    },
+    "integration_error_connection": {
+        "message": "$1 nedok\u00e1zal komunikova\u0165 s po\u010d\u00edta\u010dov\u00fdm programom $2. $2 mus\u00ed by\u0165 pre pou\u017e\u00edvanie webov\u00e9ho citovania spusten\u00fd."
+    },
+    "integration_googleDocs_documentLocked": {
+        "message": "Cit\u00e1cie v dokumente pr\u00e1ve edituje in\u00fd $1 u\u017e\u00edvate\u013e. Sk\u00faste to pros\u00edm nesk\u00f4r."
+    },
+    "integration_googleDocs_documentLocked_moreInfo": {
+        "message": "$1 uzamkne v\u00e1\u0161 dokument, aby zabr\u00e1nil viacer\u00fdm pou\u017e\u00edvate\u013eom upravova\u0165 cit\u00e1cie s\u00fa\u010dasne. S\u00fabe\u017en\u00e9 \u00fapravy cit\u00e1ci\u00ed v dokumente m\u00f4\u017eu vies\u0165 k po\u0161kodeniu cit\u00e1cie alebo dokumentu. Niektor\u00e9 nepredv\u00eddate\u013en\u00e9 okolnosti, ako napr\u00edklad zlyhanie siete, m\u00f4\u017eu vies\u0165 k trval\u00e9mu uzamknutiu v\u00e1\u0161ho dokumentu. Ak si mysl\u00edte, \u017ee sa to stalo, m\u00f4\u017eete ob\u00eds\u0165 z\u00e1mok. <br/><br/>Chcete ob\u00eds\u0165 z\u00e1mok dokumentu?"
+    },
+    "integration_googleDocs_documentPermissionError": {
+        "message": "\u00da\u010det Google, ktor\u00fd ste vybrali, nem\u00e1 povolenie na \u00fapravu tohto dokumentu. Sk\u00faste to znova a vyberte \u00fa\u010det s pr\u00edstupom na \u00fapravy."
+    },
+    "integration_googleDocs_docxAlert": {
+        "message": "Integr\u00e1cia $1 nie je dostupn\u00e1 pri \u00faprave s\u00faborov .docx od Microsoft Word  priamo v Google Docs. Zvo\u013ete S\u00fabor \u2192 Ulo\u017ei\u0165 ako Google Docs pre zapnutie tejto funkcie.<br/><br/>Ak chcete prenies\u0165 dokument Word s cit\u00e1ciami $1 do Google Docs, pozrite na <a href=\"https://www.zotero.org/support/kb/moving_documents_between_word_processors\">Presun dokumentov medzi textov\u00fdmi editormi</a>."
+    },
+    "integration_googleDocs_orphanedCitations_alert": {
+        "message": "Cit\u00e1cia, ktor\u00fa sa pok\u00fa\u0161ate upravi\u0165, prestala by\u0165 prepojen\u00e1 s $1."
+    },
+    "integration_googleDocs_orphanedCitations_alertButton": {
+        "message": "Znova prepoji\u0165 cit\u00e1ciu"
+    },
+    "integration_googleDocs_orphanedCitations_buttonTooltip": {
+        "message": "Zobrazi\u0165 neprepojen\u00fdch $1 cit\u00e1ci\u00ed"
+    },
+    "integration_googleDocs_orphanedCitations_disclaimer": {
+        "message": "Tieto cit\u00e1cie prestali by\u0165 <a target=\"_blank\" href=\"https://www.zotero.org/support/kb/google_docs_citations_unlinked\">prepojen\u00e9 s $1</a>. Budete ich musie\u0165 znova prepoji\u0165 prv ako bud\u00fa aktualizovan\u00e9 alebo sa objavia vo va\u0161ej bibliografii."
+    },
+    "integration_googleDocs_unlinkBeforeSaving_downloadAnyway": {
+        "message": "Ka\u017edop\u00e1dne stiahnu\u0165 prepojen\u00fa verziu"
+    },
+    "integration_googleDocs_unlinkBeforeSaving_instructions": {
+        "message": "Pre vytvorenie verzie vhodnej na zdie\u013eaie, zvo\u013ete <b>Vytvori\u0165 k\u00f3piu\u2026</b> z ponuky S\u00fabor, zvo\u013ete <b>Odpoji\u0165 cit\u00e1cie</b> z ponuky Jurism v novom dokumente a potom stiahnite neprepojen\u00fa verziu. Uschovajte tento p\u00f4vodn\u00fd prepojen\u00fd dokument pre pr\u00edpad, \u017ee budete potrebova\u0165 urobi\u0165 \u010fal\u0161ie zmeny."
+    },
+    "integration_googleDocs_unlinkBeforeSaving_warning": {
+        "message": "Tento dokument obsahuje akt\u00edvne cit\u00e1cie Zotera, ktor\u00e9 sa objavia ako odkazy zotero.org v stiahnutej k\u00f3pii."
+    },
+    "integration_googleDocs_updating": {
+        "message": "$1 aktualizuje v\u00e1\u0161 dokument."
+    },
+    "progressWindow_error_fallback": {
+        "message": "Pri ukladan\u00ed pomocou $1 do\u0161lo k chybe. Namiesto toho prebieha pokus o ukladanie pomocou $2."
+    },
+    "progressWindow_error_siteAccessLimits": {
+        "message": "Obmedzenia pr\u00edstupu na str\u00e1nku"
+    },
+    "progressWindow_error_siteAccessLimitsError": {
+        "message": "Pri ukladan\u00ed z\u00e1znamu do\u0161lo k chybe. $1 m\u00f4\u017ee obmedzi\u0165 po\u010det z\u00e1znamov, ktor\u00e9 m\u00f4\u017eete naraz ulo\u017ei\u0165. Pozrite na $2 pre viac inform\u00e1ci\u00ed."
+    },
+    "progressWindow_error_translation": {
+        "message": "Pri ukladan\u00ed tohto s\u00faboru do\u0161lo k chybe. Pre viac inform\u00e1ci\u00ed si pozrite $1."
+    },
+    "progressWindow_error_troubleshootingTranslatorIssues": {
+        "message": "Rie\u0161enie probl\u00e9mov s transl\u00e1tormi"
+    },
+    "progressWindow_error_upgradeClient": {
+        "message": "T\u00fato funkciu va\u0161a verzia $1 nepodporuje. Aktualizujte ju, pros\u00edm, na $2."
+    },
+    "progressWindow_error_upgradeClient_latestVersion": {
+        "message": "najnov\u0161ia verzia"
+    },
+    "progressWindow_savingTo": {
+        "message": "Uklad\u00e1 sa do"
+    },
+    "progressWindow_tagPlaceholder": {
+        "message": "Zna\u010dky (oddelen\u00e9 \u010diarkami)"
+    },
+    "reloadVia": {
+        "message": "Reload via $1"
+    },
+    "reloadViaProxy": {
+        "message": "Reload via Proxy"
+    },
+    "reports_debug_output_submitted": {
+        "message": "Va\u0161e ladiace inform\u00e1cie boli odoslan\u00e9.\n\nID ladenia je $1."
+    },
+    "reports_report_submitted": {
+        "message": "Va\u0161e chybov\u00e9 hl\u00e1senie bolo odoslan\u00e9.\n\nID spr\u00e1vy: $1\n\nPros\u00edm nap\u00ed\u0161te spr\u00e1vu do diskusn\u00e9ho f\u00f3ra Jurism obsahuj\u00facu toto ID, popis probl\u00e9mu a kroky, ktor\u00e9 s\u00fa potrebn\u00e9 k jeho reprodukovaniu.\n\nChybov\u00e9 hl\u00e1senia sa nekontroluj\u00fa dokia\u013e sa o nich nediskutuje vo f\u00f3rach."
+    },
+    "reports_submission_failed": {
+        "message": "Pri odosielan\u00ed va\u0161ej spr\u00e1vy sa vyskytla chyba.\n\n$1\n\nSkontrolujte pros\u00edm svoje pripojenie na internet. Ak probl\u00e9my pretrv\u00e1vaj\u00fa, po\u0161lite spr\u00e1vu na f\u00f3ra Jurism."
+    },
+    "upgradeApp": {
+        "message": "Aktualizova\u0165 $1"
+    }
 }

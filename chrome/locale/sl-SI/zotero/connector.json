@@ -1,146 +1,167 @@
 {
-  "general_more": {
-    "message": "Dodatno ..."
-  },
-  "general_moreInfo": {
-    "message": "Podrobnosti ..."
-  },
-  "general_needHelp": {
-    "message": "Ali potrebujete pomoč?"
-  },
-  "general_done": {
-    "message": "Opravljeno"
-  },
-  "general_yes": {
-    "message": "Da"
-  },
-  "general_no": {
-    "message": "Ne"
-  },
-  "general_tryAgain": {
-    "message": "Poskusi znova"
-  },
-  "general_warning": {
-    "message": "Opozorilo"
-  },
-  "general_cancel": {
-    "message": "Prekliči"
-  },
-  "general_pleaseWait": {
-    "message": "Počakajte trenutek ..."
-  },
-  "general_copyToClipboard": {
-    "message": "Kopiraj na odložišče"
-  },
-  "progressWindow_savingTo": {
-    "message": "Shranjevanje v"
-  },
-  "progressWindow_tagPlaceholder": {
-    "message": "Značke (ločene z vejicami)"
-  },
-  "progressWindow_error_translation": {
-    "message": "Napaka pri shranjevanju tega vnosa. Glejte $1 za več informacij."
-  },
-  "progressWindow_error_siteAccessLimitsError": {
-    "message": "Pri shranjevanju tega elementa je prišlo do napake. $1 lahko omeji število vnosov, ki jih lahko vnesete naenkrat. Glejte $2 za dodatne informacije."
-  },
-  "progressWindow_error_troubleshootingTranslatorIssues": {
-    "message": "Reševanje težav prevajalnikov"
-  },
-  "progressWindow_error_siteAccessLimits": {
-    "message": "Omejitve dostopa do spletišča"
-  },
-  "progressWindow_error_fallback": {
-    "message": "Prišlo je do napake pri shranjevanju z $1. Poskusite raje shraniti z $2."
-  },
-  "progressWindow_error_upgradeClient": {
-    "message": "Te funkcije vaša različica $1 ne podpira. Nadgradite jo na $2."
-  },
-  "progressWindow_error_upgradeClient_latestVersion": {
-    "message": "najnovejša različica"
-  },
-  "appConnector": {
-    "message": "Konektor $1"
-  },
-  "upgradeApp": {
-    "message": "Posodobi $1"
-  },
-  "firstRun_title": {
-    "message": "Namestili ste konektor $1!"
-  },
-  "firstRun_text1": {
-    "message": "Konektor $1 vam omogoča <a href=\"$2\">shranjevanje vnosov v $1</a> iz vašega brskalnika z enim samim klikom."
-  },
-  "firstRun_text2": {
-    "message": "Če tega že niste storili, <a href=\"$2\">prenesite</a> samostojni program $1, da bo vaša izkušnja še boljša."
-  },
-  "firstRun_acceptButton": {
-    "message": "Razumem"
-  },
-  "error_connection_isAppRunning": {
-    "message": "Ali je $1 zagnan?"
-  },
-  "error_connection_save": {
-    "message": "$1 ni uspel komunicirati z namiznim programom $2. Konektor lahko shrani nekatere strani neposredno v vaš račun $3, a za najboljše rezultate zagotovite, da je $2 odprt, preden poskusite shranjevati."
-  },
-  "error_connection_downloadOrTroubleshoot": {
-    "message": "<a href=\"$1\">Prenesite $2</a> ali <a href=\"$3\">odpravite težave povezave</a>."
-  },
-  "error_connection_enableSavingToOnlineLibrary": {
-    "message": "Omogoči shranjevanje v spletno knjižnico"
-  },
-  "reports_report_submitted": {
-    "message": "Vaše poročilo o napaki je oddano.\n\nID poročila: $1\n\nObjavite sporočilo na forumih Jurism z ID poročila, opisom težave in potrebnih korakih, da jo prikličete.\n\nPoročila o napaki bodo pregledana, če so omenjena na forumih."
-  },
-  "reports_debug_output_submitted": {
-    "message": "Vaš izhod razhroščevanja je bil poslan.\n\nID razhroščevanja je $1."
-  },
-  "reports_submission_failed": {
-    "message": "Pri oddaji vašega poročila je prišlo do napake.\n\n$1\n\nPreverite svojo internetno povezavo. Če se težava ponovi, objavite sporočilo na forumih Jurism."
-  },
-  "integration_error_clientUpgrade": {
-    "message": "Citiranje prek spleta zahteva $1 ali novejšega."
-  },
-  "integration_error_connection": {
-    "message": "$1 ne more komunicirati z namiznim programjem $2. $2 mora biti odprt, da lahko uporabite citiranje prek spleta."
-  },
-  "integration_googleDocs_unlinkBeforeSaving_warning": {
-    "message": "Ta dokument vsebuje aktivne citate Jurism, ki se bodo pojavili kot povezave zotero.org v preneseni kopiji."
-  },
-  "integration_googleDocs_unlinkBeforeSaving_instructions": {
-    "message": "Za tvorbo različice, primerne za skupno rabo, izberite <b>Naredi kopijo …</b> v meniju Datoteka, izberite <b>Razveži citate</b> v meniju Jurism v novem dokumentu, nato pa prenesite razvezano različico. Ohranite ta izvirni povezani dokument, če boste želeli opraviti nadaljnje spremembe."
-  },
-  "integration_googleDocs_unlinkBeforeSaving_downloadAnyway": {
-    "message": "Vseeno prenesi povezano različico"
-  },
-  "integration_googleDocs_updating": {
-    "message": "$1 posodablja vaš dokument."
-  },
-  "integration_googleDocs_docxAlert": {
-    "message": "Integracija $1 ni na voljo pri neposrednem urejanju datotek Microsoft Word .docx v Google Docs. Izberite Datoteka → Shrani kot Google Docs, da omogočite to funkcionalnost.<br/><br/>Če želite prenesti dokument Word s citati $1 v Google Docs, glejte <a href=\"https://www.zotero.org/support/kb/moving_documents_between_word_processors\">Prenašanje dokumentov med urejevalniki besedil</a>."
-  },
-  "integration_googleDocs_documentLocked": {
-    "message": "Drug uporabnik $1 ureja citate dokumenta. Poskusite znova kasneje."
-  },
-  "integration_googleDocs_documentLocked_moreInfo": {
-    "message": "$1 zaklene vaš dokument, da prepreči, da bi več uporabnikov urejalo citate naenkrat. Hkratno sourejanje citatov v dokumentu lahko pripelje do okvare citata ali dokumenta. Določene nepredvidljive okoliščine, kot je padec omrežja, lahko pripeljejo do tega, da je vaš dokument trajno zaklenjen. Če menite, da se vam je to zgodilo, lahko preglasite zaklep<br/><br/>Ali želite preglasiti zaklep dokumenta?"
-  },
-  "integration_googleDocs_documentPermissionError": {
-    "message": "Račun Google, ki ste ga izbrali, nima pravic urejanja tega dokumenta. Poskusite znova in preverite, da ste izbrali račun z dostopom za urejanje."
-  },
-  "integration_googleDocs_orphanedCitations_buttonTooltip": {
-    "message": "Pokaži nepovezane citate $1"
-  },
-  "integration_googleDocs_orphanedCitations_alert": {
-    "message": "Citat, ki ga skušate urediti, je nepovezan z $1."
-  },
-  "integration_googleDocs_orphanedCitations_alertButton": {
-    "message": "Ponovno poveži citat"
-  },
-  "integration_googleDocs_orphanedCitations_disclaimer": {
-    "message": "Ti citati so postali <a target=\"_blank\" href=\"https://www.zotero.org/support/kb/google_docs_citations_unlinked\">nepovezani z $1</a>. Morali jih boste morali znova povezati, preden se posodobijo ali pojavijo v vaši bibliografiji."
-  },
-  "general_saveTo": {
-    "message": "Shrani v $1"
-  }
+    "appConnector": {
+        "message": "Konektor $1"
+    },
+    "copyUnproxiedLink": {
+        "message": "Copy Unproxied Link"
+    },
+    "copyUnproxiedPageURL": {
+        "message": "Copy Unproxied Page URL"
+    },
+    "error_connection_downloadOrTroubleshoot": {
+        "message": "<a href=\"$1\">Prenesite $2</a> ali <a href=\"$3\">odpravite te\u017eave povezave</a>."
+    },
+    "error_connection_enableSavingToOnlineLibrary": {
+        "message": "Omogo\u010di shranjevanje v spletno knji\u017enico"
+    },
+    "error_connection_isAppRunning": {
+        "message": "Ali je $1 zagnan?"
+    },
+    "error_connection_save": {
+        "message": "$1 ni uspel komunicirati z namiznim programom $2. Konektor lahko shrani nekatere strani neposredno v va\u0161 ra\u010dun $3, a za najbolj\u0161e rezultate zagotovite, da je $2 odprt, preden poskusite shranjevati."
+    },
+    "extensionIsDisabled": {
+        "message": "$1 is disabled"
+    },
+    "extensionIsDisabled_extensionPage": {
+        "message": "$1 is disabled on extension pages"
+    },
+    "firstRun_acceptButton": {
+        "message": "Razumem"
+    },
+    "firstRun_text1": {
+        "message": "Konektor $1 vam omogo\u010da <a href=\"$2\">shranjevanje vnosov v $1</a> iz va\u0161ega brskalnika z enim samim klikom."
+    },
+    "firstRun_text2": {
+        "message": "\u010ce tega \u017ee niste storili, <a href=\"$2\">prenesite</a> samostojni program $1, da bo va\u0161a izku\u0161nja \u0161e bolj\u0161a."
+    },
+    "firstRun_text3": {
+        "message": "(You can view the $1 Privacy Policy on <a href=\"$2\">the project website</a>)."
+    },
+    "firstRun_title": {
+        "message": "Namestili ste konektor $1!"
+    },
+    "general_cancel": {
+        "message": "Prekli\u010di"
+    },
+    "general_copyToClipboard": {
+        "message": "Kopiraj na odlo\u017ei\u0161\u010de"
+    },
+    "general_done": {
+        "message": "Opravljeno"
+    },
+    "general_more": {
+        "message": "Dodatno ..."
+    },
+    "general_moreInfo": {
+        "message": "Podrobnosti ..."
+    },
+    "general_needHelp": {
+        "message": "Ali potrebujete pomo\u010d?"
+    },
+    "general_no": {
+        "message": "Ne"
+    },
+    "general_pleaseWait": {
+        "message": "Po\u010dakajte trenutek ..."
+    },
+    "general_saveTo": {
+        "message": "Shrani v $1"
+    },
+    "general_tryAgain": {
+        "message": "Poskusi znova"
+    },
+    "general_warning": {
+        "message": "Opozorilo"
+    },
+    "general_yes": {
+        "message": "Da"
+    },
+    "integration_error_clientUpgrade": {
+        "message": "Citiranje prek spleta zahteva $1 ali novej\u0161ega."
+    },
+    "integration_error_connection": {
+        "message": "$1 ne more komunicirati z namiznim programjem $2. $2 mora biti odprt, da lahko uporabite citiranje prek spleta."
+    },
+    "integration_googleDocs_documentLocked": {
+        "message": "Drug uporabnik $1 ureja citate dokumenta. Poskusite znova kasneje."
+    },
+    "integration_googleDocs_documentLocked_moreInfo": {
+        "message": "$1 zaklene va\u0161 dokument, da prepre\u010di, da bi ve\u010d uporabnikov urejalo citate naenkrat. Hkratno sourejanje citatov v dokumentu lahko pripelje do okvare citata ali dokumenta. Dolo\u010dene nepredvidljive okoli\u0161\u010dine, kot je padec omre\u017eja, lahko pripeljejo do tega, da je va\u0161 dokument trajno zaklenjen. \u010ce menite, da se vam je to zgodilo, lahko preglasite zaklep<br/><br/>Ali \u017eelite preglasiti zaklep dokumenta?"
+    },
+    "integration_googleDocs_documentPermissionError": {
+        "message": "Ra\u010dun Google, ki ste ga izbrali, nima pravic urejanja tega dokumenta. Poskusite znova in preverite, da ste izbrali ra\u010dun z dostopom za urejanje."
+    },
+    "integration_googleDocs_docxAlert": {
+        "message": "Integracija $1 ni na voljo pri neposrednem urejanju datotek Microsoft Word .docx v Google Docs. Izberite Datoteka \u2192 Shrani kot Google Docs, da omogo\u010dite to funkcionalnost.<br/><br/>\u010ce \u017eelite prenesti dokument Word s citati $1 v Google Docs, glejte <a href=\"https://www.zotero.org/support/kb/moving_documents_between_word_processors\">Prena\u0161anje dokumentov med urejevalniki besedil</a>."
+    },
+    "integration_googleDocs_orphanedCitations_alert": {
+        "message": "Citat, ki ga sku\u0161ate urediti, je nepovezan z $1."
+    },
+    "integration_googleDocs_orphanedCitations_alertButton": {
+        "message": "Ponovno pove\u017ei citat"
+    },
+    "integration_googleDocs_orphanedCitations_buttonTooltip": {
+        "message": "Poka\u017ei nepovezane citate $1"
+    },
+    "integration_googleDocs_orphanedCitations_disclaimer": {
+        "message": "Ti citati so postali <a target=\"_blank\" href=\"https://www.zotero.org/support/kb/google_docs_citations_unlinked\">nepovezani z $1</a>. Morali jih boste morali znova povezati, preden se posodobijo ali pojavijo v va\u0161i bibliografiji."
+    },
+    "integration_googleDocs_unlinkBeforeSaving_downloadAnyway": {
+        "message": "Vseeno prenesi povezano razli\u010dico"
+    },
+    "integration_googleDocs_unlinkBeforeSaving_instructions": {
+        "message": "Za tvorbo razli\u010dice, primerne za skupno rabo, izberite <b>Naredi kopijo \u2026</b> v meniju Datoteka, izberite <b>Razve\u017ei citate</b> v meniju Jurism v novem dokumentu, nato pa prenesite razvezano razli\u010dico. Ohranite ta izvirni povezani dokument, \u010de boste \u017eeleli opraviti nadaljnje spremembe."
+    },
+    "integration_googleDocs_unlinkBeforeSaving_warning": {
+        "message": "Ta dokument vsebuje aktivne citate Jurism, ki se bodo pojavili kot povezave zotero.org v preneseni kopiji."
+    },
+    "integration_googleDocs_updating": {
+        "message": "$1 posodablja va\u0161 dokument."
+    },
+    "progressWindow_error_fallback": {
+        "message": "Pri\u0161lo je do napake pri shranjevanju z $1. Poskusite raje shraniti z $2."
+    },
+    "progressWindow_error_siteAccessLimits": {
+        "message": "Omejitve dostopa do spleti\u0161\u010da"
+    },
+    "progressWindow_error_siteAccessLimitsError": {
+        "message": "Pri shranjevanju tega elementa je pri\u0161lo do napake. $1 lahko omeji \u0161tevilo vnosov, ki jih lahko vnesete naenkrat. Glejte $2 za dodatne informacije."
+    },
+    "progressWindow_error_translation": {
+        "message": "Napaka pri shranjevanju tega vnosa. Glejte $1 za ve\u010d informacij."
+    },
+    "progressWindow_error_troubleshootingTranslatorIssues": {
+        "message": "Re\u0161evanje te\u017eav prevajalnikov"
+    },
+    "progressWindow_error_upgradeClient": {
+        "message": "Te funkcije va\u0161a razli\u010dica $1 ne podpira. Nadgradite jo na $2."
+    },
+    "progressWindow_error_upgradeClient_latestVersion": {
+        "message": "najnovej\u0161a razli\u010dica"
+    },
+    "progressWindow_savingTo": {
+        "message": "Shranjevanje v"
+    },
+    "progressWindow_tagPlaceholder": {
+        "message": "Zna\u010dke (lo\u010dene z vejicami)"
+    },
+    "reloadVia": {
+        "message": "Reload via $1"
+    },
+    "reloadViaProxy": {
+        "message": "Reload via Proxy"
+    },
+    "reports_debug_output_submitted": {
+        "message": "Va\u0161 izhod razhro\u0161\u010devanja je bil poslan.\n\nID razhro\u0161\u010devanja je $1."
+    },
+    "reports_report_submitted": {
+        "message": "Va\u0161e poro\u010dilo o napaki je oddano.\n\nID poro\u010dila: $1\n\nObjavite sporo\u010dilo na forumih Jurism z ID poro\u010dila, opisom te\u017eave in potrebnih korakih, da jo prikli\u010dete.\n\nPoro\u010dila o napaki bodo pregledana, \u010de so omenjena na forumih."
+    },
+    "reports_submission_failed": {
+        "message": "Pri oddaji va\u0161ega poro\u010dila je pri\u0161lo do napake.\n\n$1\n\nPreverite svojo internetno povezavo. \u010ce se te\u017eava ponovi, objavite sporo\u010dilo na forumih Jurism."
+    },
+    "upgradeApp": {
+        "message": "Posodobi $1"
+    }
 }

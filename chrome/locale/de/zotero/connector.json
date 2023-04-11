@@ -1,146 +1,167 @@
 {
-  "general_more": {
-    "message": "Mehr..."
-  },
-  "general_moreInfo": {
-    "message": "Weitere Informationen…"
-  },
-  "general_needHelp": {
-    "message": "Brauchen Sie Hilfe?"
-  },
-  "general_done": {
-    "message": "Erledigt"
-  },
-  "general_yes": {
-    "message": "Ja"
-  },
-  "general_no": {
-    "message": "Nein"
-  },
-  "general_tryAgain": {
-    "message": "Versuchen Sie es erneut"
-  },
-  "general_warning": {
-    "message": "Warnung"
-  },
-  "general_cancel": {
-    "message": "Abbrechen"
-  },
-  "general_pleaseWait": {
-    "message": "Bitte warten Sie..."
-  },
-  "general_copyToClipboard": {
-    "message": "In die Zwischenablage kopieren"
-  },
-  "progressWindow_savingTo": {
-    "message": "Speichern nach"
-  },
-  "progressWindow_tagPlaceholder": {
-    "message": "Tags (getrennt durch Kommas)"
-  },
-  "progressWindow_error_translation": {
-    "message": "Ein Fehler ist aufgetreten beim Versuch, diesen Eintrag zu speichern. Siehe $1 für weitere Informationen."
-  },
-  "progressWindow_error_siteAccessLimitsError": {
-    "message": "Während des Speicherns dieses Eintrags ist ein Fehler aufgetreten. $1 beschränkt möglicherweise die Anzahl an Einträgen, die Sie gleichzeitig speichern können. Siehe $2 für mehr Informationen."
-  },
-  "progressWindow_error_troubleshootingTranslatorIssues": {
-    "message": "Problembehebung für Übersetzer"
-  },
-  "progressWindow_error_siteAccessLimits": {
-    "message": "Seitenzugriffsbeschränkungen"
-  },
-  "progressWindow_error_fallback": {
-    "message": "Ein Fehler ist aufgetreten beim Speichern mit $1. Es wird versucht stattdessen $2 zu nutzen."
-  },
-  "progressWindow_error_upgradeClient": {
-    "message": "Diese Funktionalität wird nicht unterstützt mit Ihrer Version von $1. Bitte aktualisieren Sie auf die $2."
-  },
-  "progressWindow_error_upgradeClient_latestVersion": {
-    "message": "neueste Version"
-  },
-  "appConnector": {
-    "message": "$1 Erweiterung"
-  },
-  "upgradeApp": {
-    "message": "Upgrade $1"
-  },
-  "firstRun_title": {
-    "message": "Sie haben den $1 Connector installiert!"
-  },
-  "firstRun_text1": {
-    "message": "Der $1 Connector ermöglicht Ihnen das <a href=\"$2\">Speichern von Einträgen in $1</a> aus Ihrem Browser mit nur einem Klick."
-  },
-  "firstRun_text2": {
-    "message": "Falls Sie es noch nicht getan haben, <a href=\"$2\">laden Sie</a> für das optimale Benutzererlebnis die eigenständige $1-Anwendung herunter."
-  },
-  "firstRun_acceptButton": {
-    "message": "Alles klar"
-  },
-  "error_connection_isAppRunning": {
-    "message": "Läuft $1?"
-  },
-  "error_connection_save": {
-    "message": "Die $1 war nicht in der Lage mit der $2 Desktop Applikation zu kommunizieren. Die Erweiterung kann einige Seiten direkt in Ihr $3 Benutzerkonto speichern, aber für optimale Resultate sollten Sie sicherstellen, dass $2 geöffnet ist vor dem Speichern."
-  },
-  "error_connection_downloadOrTroubleshoot": {
-    "message": "Sie können <a href=\"$1\">$2 herunterladen</a> oder <a href=\"$3\">Verbindungsprobleme beheben</a> falls nötig."
-  },
-  "error_connection_enableSavingToOnlineLibrary": {
-    "message": "Speichern in der Online-Bibliothek aktivieren"
-  },
-  "reports_report_submitted": {
-    "message": "Ihr Fehlerbericht wurde übermittelt.\n\nBericht-ID: $1\n\nBitte erstellen Sie einen Beitrag in den Jurism-Foren mit dieser Berichts-ID, einer Beschreibung des Problems und den Schritten, die notwendig sind, um es zu reporoduzieren.\n\nFehlerberichte werden nicht überprüft, es sei denn, sie werden in den Foren erwähnt."
-  },
-  "reports_debug_output_submitted": {
-    "message": "Ihr Debug-Output wurde übermittelt.\n\nDie Debug-ID lautet $1."
-  },
-  "reports_submission_failed": {
-    "message": "Bei der Übermittlung Ihres Berichts ist ein Fehler aufgetreten.\n\n$1\n\nBitte prüfen Sie Ihre Internetverbindung. Falls das Problem bestehen bleibt, schreiben Sie einen Beitrag im Jurism Forum."
-  },
-  "integration_error_clientUpgrade": {
-    "message": "Web-basiertes Zitieren benötigt $1 oder später."
-  },
-  "integration_error_connection": {
-    "message": "Die $1 war nicht in der Lage mit der $2 Desktop Applikation zu kommunizieren. $2 muss geöffnet sein zum web-basierten Zitieren."
-  },
-  "integration_googleDocs_unlinkBeforeSaving_warning": {
-    "message": "Dieses Dokument enthält aktive Zitationen aus Jurism, die in einer heruntergeladenen Kopie als zotero.org-Links erscheinen."
-  },
-  "integration_googleDocs_unlinkBeforeSaving_instructions": {
-    "message": "Um eine zum Teilen geeignete Version zu erzeugen, wählen Sie im Menü Datei den Befehl <b>Kopie erstellen…</b>, wählen Sie <b>Unlink Citations</b> aus dem Menü Jurism und laden Sie dann die unverknüpfte Version herunter. Bewahren Sie dieses Originaldokument mit den Verknüpfungen auf, falls Sie weitere Änderungen vornehmen müssen."
-  },
-  "integration_googleDocs_unlinkBeforeSaving_downloadAnyway": {
-    "message": "Verknüpfte Version trotzdem herunterladen"
-  },
-  "integration_googleDocs_updating": {
-    "message": "$1 aktualisiert Ihr Dokument."
-  },
-  "integration_googleDocs_docxAlert": {
-    "message": "$1 Integration ist nicht verfügbar, wenn Sie direkt eine Microsoft-Word- Datei (.docx) in Google Docs bearbeiten. Wählen Sie Datei → Speichern als Google Doc um diese Funktionalität zu aktivieren.<br/><br/>Wenn Sie ein Word Dokument mit $1 Zitationen in Google Docs überführen möchten, vgl. <a href=\"https://www.zotero.org/support/kb/moving_documents_between_word_processors\">Moving Documents Between Word Processors</a>."
-  },
-  "integration_googleDocs_documentLocked": {
-    "message": "Die Zitationen im Dokument werden aktuell von einem anderen $1 Benutzer bearbeitet. Versuchen Sie es später nochmal."
-  },
-  "integration_googleDocs_documentLocked_moreInfo": {
-    "message": "$1 sperrt Ihr Dokument, um zu verhindern, dass mehrere Nutzer gleichzeitig Zitationen bearbeiten. Das gleichzeitige gemeinsame Bearbeiten kann zu Fehlern in Zitationen oder Beschädigungen des Dokuments führen. Bestimmte unvorhersehbare Umstände wie Netzwerkprobleme können dazu führen, dass Ihr Dokument dauerhaft gesperrt ist. Wenn Sie glauben, dass das der Fall ist, können Sie die Sperre entfernen.<br/><br/>Möchten Sie die Dokumentensperre aufheben?"
-  },
-  "integration_googleDocs_documentPermissionError": {
-    "message": "Das Google-Konto, das Sie gewählt haben, ist nicht berechtigt, dieses Dokument zu bearbeiten. Versuchen Sie es noch einmal und stellen Sie sicher, dass Sie ein Konto mit Bearbeitungserlaubnis ausgewählt haben."
-  },
-  "integration_googleDocs_orphanedCitations_buttonTooltip": {
-    "message": "Getrennte $1-Zitationen anzeigen"
-  },
-  "integration_googleDocs_orphanedCitations_alert": {
-    "message": "Die Zitation, die Sie bearbeiten wollen, wurde von $1 getrennt."
-  },
-  "integration_googleDocs_orphanedCitations_alertButton": {
-    "message": "Zitation erneut verknüpfen"
-  },
-  "integration_googleDocs_orphanedCitations_disclaimer": {
-    "message": "Diese Zitationen wurden <a target=\"_blank\" href=\"https://www.zotero.org/support/kb/google_docs_citations_unlinked\">von $1 getrennt</a>. Sie müssen sie erneut verknüpfen, damit sie aktualisiert werden oder in Ihrem Literaturverzeichnis erscheinen können."
-  },
-  "general_saveTo": {
-    "message": "Speichern nach $1"
-  }
+    "appConnector": {
+        "message": "$1 Erweiterung"
+    },
+    "copyUnproxiedLink": {
+        "message": "Copy Unproxied Link"
+    },
+    "copyUnproxiedPageURL": {
+        "message": "Copy Unproxied Page URL"
+    },
+    "error_connection_downloadOrTroubleshoot": {
+        "message": "Sie k\u00f6nnen <a href=\"$1\">$2 herunterladen</a> oder <a href=\"$3\">Verbindungsprobleme beheben</a> falls n\u00f6tig."
+    },
+    "error_connection_enableSavingToOnlineLibrary": {
+        "message": "Speichern in der Online-Bibliothek aktivieren"
+    },
+    "error_connection_isAppRunning": {
+        "message": "L\u00e4uft $1?"
+    },
+    "error_connection_save": {
+        "message": "Die $1 war nicht in der Lage mit der $2 Desktop Applikation zu kommunizieren. Die Erweiterung kann einige Seiten direkt in Ihr $3 Benutzerkonto speichern, aber f\u00fcr optimale Resultate sollten Sie sicherstellen, dass $2 ge\u00f6ffnet ist vor dem Speichern."
+    },
+    "extensionIsDisabled": {
+        "message": "$1 is disabled"
+    },
+    "extensionIsDisabled_extensionPage": {
+        "message": "$1 is disabled on extension pages"
+    },
+    "firstRun_acceptButton": {
+        "message": "Alles klar"
+    },
+    "firstRun_text1": {
+        "message": "Der $1 Connector erm\u00f6glicht Ihnen das <a href=\"$2\">Speichern von Eintr\u00e4gen in $1</a> aus Ihrem Browser mit nur einem Klick."
+    },
+    "firstRun_text2": {
+        "message": "Falls Sie es noch nicht getan haben, <a href=\"$2\">laden Sie</a> f\u00fcr das optimale Benutzererlebnis die eigenst\u00e4ndige $1-Anwendung herunter."
+    },
+    "firstRun_text3": {
+        "message": "(You can view the $1 Privacy Policy on <a href=\"$2\">the project website</a>)."
+    },
+    "firstRun_title": {
+        "message": "Sie haben den $1 Connector installiert!"
+    },
+    "general_cancel": {
+        "message": "Abbrechen"
+    },
+    "general_copyToClipboard": {
+        "message": "In die Zwischenablage kopieren"
+    },
+    "general_done": {
+        "message": "Erledigt"
+    },
+    "general_more": {
+        "message": "Mehr..."
+    },
+    "general_moreInfo": {
+        "message": "Weitere Informationen\u2026"
+    },
+    "general_needHelp": {
+        "message": "Brauchen Sie Hilfe?"
+    },
+    "general_no": {
+        "message": "Nein"
+    },
+    "general_pleaseWait": {
+        "message": "Bitte warten Sie..."
+    },
+    "general_saveTo": {
+        "message": "Speichern nach $1"
+    },
+    "general_tryAgain": {
+        "message": "Versuchen Sie es erneut"
+    },
+    "general_warning": {
+        "message": "Warnung"
+    },
+    "general_yes": {
+        "message": "Ja"
+    },
+    "integration_error_clientUpgrade": {
+        "message": "Web-basiertes Zitieren ben\u00f6tigt $1 oder sp\u00e4ter."
+    },
+    "integration_error_connection": {
+        "message": "Die $1 war nicht in der Lage mit der $2 Desktop Applikation zu kommunizieren. $2 muss ge\u00f6ffnet sein zum web-basierten Zitieren."
+    },
+    "integration_googleDocs_documentLocked": {
+        "message": "Die Zitationen im Dokument werden aktuell von einem anderen $1 Benutzer bearbeitet. Versuchen Sie es sp\u00e4ter nochmal."
+    },
+    "integration_googleDocs_documentLocked_moreInfo": {
+        "message": "$1 sperrt Ihr Dokument, um zu verhindern, dass mehrere Nutzer gleichzeitig Zitationen bearbeiten. Das gleichzeitige gemeinsame Bearbeiten kann zu Fehlern in Zitationen oder Besch\u00e4digungen des Dokuments f\u00fchren. Bestimmte unvorhersehbare Umst\u00e4nde wie Netzwerkprobleme k\u00f6nnen dazu f\u00fchren, dass Ihr Dokument dauerhaft gesperrt ist. Wenn Sie glauben, dass das der Fall ist, k\u00f6nnen Sie die Sperre entfernen.<br/><br/>M\u00f6chten Sie die Dokumentensperre aufheben?"
+    },
+    "integration_googleDocs_documentPermissionError": {
+        "message": "Das Google-Konto, das Sie gew\u00e4hlt haben, ist nicht berechtigt, dieses Dokument zu bearbeiten. Versuchen Sie es noch einmal und stellen Sie sicher, dass Sie ein Konto mit Bearbeitungserlaubnis ausgew\u00e4hlt haben."
+    },
+    "integration_googleDocs_docxAlert": {
+        "message": "$1 Integration ist nicht verf\u00fcgbar, wenn Sie direkt eine Microsoft-Word- Datei (.docx) in Google Docs bearbeiten. W\u00e4hlen Sie Datei \u2192 Speichern als Google Doc um diese Funktionalit\u00e4t zu aktivieren.<br/><br/>Wenn Sie ein Word Dokument mit $1 Zitationen in Google Docs \u00fcberf\u00fchren m\u00f6chten, vgl. <a href=\"https://www.zotero.org/support/kb/moving_documents_between_word_processors\">Moving Documents Between Word Processors</a>."
+    },
+    "integration_googleDocs_orphanedCitations_alert": {
+        "message": "Die Zitation, die Sie bearbeiten wollen, wurde von $1 getrennt."
+    },
+    "integration_googleDocs_orphanedCitations_alertButton": {
+        "message": "Zitation erneut verkn\u00fcpfen"
+    },
+    "integration_googleDocs_orphanedCitations_buttonTooltip": {
+        "message": "Getrennte $1-Zitationen anzeigen"
+    },
+    "integration_googleDocs_orphanedCitations_disclaimer": {
+        "message": "Diese Zitationen wurden <a target=\"_blank\" href=\"https://www.zotero.org/support/kb/google_docs_citations_unlinked\">von $1 getrennt</a>. Sie m\u00fcssen sie erneut verkn\u00fcpfen, damit sie aktualisiert werden oder in Ihrem Literaturverzeichnis erscheinen k\u00f6nnen."
+    },
+    "integration_googleDocs_unlinkBeforeSaving_downloadAnyway": {
+        "message": "Verkn\u00fcpfte Version trotzdem herunterladen"
+    },
+    "integration_googleDocs_unlinkBeforeSaving_instructions": {
+        "message": "Um eine zum Teilen geeignete Version zu erzeugen, w\u00e4hlen Sie im Men\u00fc Datei den Befehl <b>Kopie erstellen\u2026</b>, w\u00e4hlen Sie <b>Unlink Citations</b> aus dem Men\u00fc Jurism und laden Sie dann die unverkn\u00fcpfte Version herunter. Bewahren Sie dieses Originaldokument mit den Verkn\u00fcpfungen auf, falls Sie weitere \u00c4nderungen vornehmen m\u00fcssen."
+    },
+    "integration_googleDocs_unlinkBeforeSaving_warning": {
+        "message": "Dieses Dokument enth\u00e4lt aktive Zitationen aus Jurism, die in einer heruntergeladenen Kopie als zotero.org-Links erscheinen."
+    },
+    "integration_googleDocs_updating": {
+        "message": "$1 aktualisiert Ihr Dokument."
+    },
+    "progressWindow_error_fallback": {
+        "message": "Ein Fehler ist aufgetreten beim Speichern mit $1. Es wird versucht stattdessen $2 zu nutzen."
+    },
+    "progressWindow_error_siteAccessLimits": {
+        "message": "Seitenzugriffsbeschr\u00e4nkungen"
+    },
+    "progressWindow_error_siteAccessLimitsError": {
+        "message": "W\u00e4hrend des Speicherns dieses Eintrags ist ein Fehler aufgetreten. $1 beschr\u00e4nkt m\u00f6glicherweise die Anzahl an Eintr\u00e4gen, die Sie gleichzeitig speichern k\u00f6nnen. Siehe $2 f\u00fcr mehr Informationen."
+    },
+    "progressWindow_error_translation": {
+        "message": "Ein Fehler ist aufgetreten beim Versuch, diesen Eintrag zu speichern. Siehe $1 f\u00fcr weitere Informationen."
+    },
+    "progressWindow_error_troubleshootingTranslatorIssues": {
+        "message": "Problembehebung f\u00fcr \u00dcbersetzer"
+    },
+    "progressWindow_error_upgradeClient": {
+        "message": "Diese Funktionalit\u00e4t wird nicht unterst\u00fctzt mit Ihrer Version von $1. Bitte aktualisieren Sie auf die $2."
+    },
+    "progressWindow_error_upgradeClient_latestVersion": {
+        "message": "neueste Version"
+    },
+    "progressWindow_savingTo": {
+        "message": "Speichern nach"
+    },
+    "progressWindow_tagPlaceholder": {
+        "message": "Tags (getrennt durch Kommas)"
+    },
+    "reloadVia": {
+        "message": "Reload via $1"
+    },
+    "reloadViaProxy": {
+        "message": "Reload via Proxy"
+    },
+    "reports_debug_output_submitted": {
+        "message": "Ihr Debug-Output wurde \u00fcbermittelt.\n\nDie Debug-ID lautet $1."
+    },
+    "reports_report_submitted": {
+        "message": "Ihr Fehlerbericht wurde \u00fcbermittelt.\n\nBericht-ID: $1\n\nBitte erstellen Sie einen Beitrag in den Jurism-Foren mit dieser Berichts-ID, einer Beschreibung des Problems und den Schritten, die notwendig sind, um es zu reporoduzieren.\n\nFehlerberichte werden nicht \u00fcberpr\u00fcft, es sei denn, sie werden in den Foren erw\u00e4hnt."
+    },
+    "reports_submission_failed": {
+        "message": "Bei der \u00dcbermittlung Ihres Berichts ist ein Fehler aufgetreten.\n\n$1\n\nBitte pr\u00fcfen Sie Ihre Internetverbindung. Falls das Problem bestehen bleibt, schreiben Sie einen Beitrag im Jurism Forum."
+    },
+    "upgradeApp": {
+        "message": "Upgrade $1"
+    }
 }
