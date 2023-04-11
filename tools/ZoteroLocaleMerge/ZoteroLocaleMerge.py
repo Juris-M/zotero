@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-import sys,os,re,csv,functools
+import sys,os,re,csv,functools,json
 #,pyExcelerator
 
 class ZoteroLocaleMerge:
@@ -23,7 +23,7 @@ class ZoteroLocaleMerge:
            Read updated CSV files, and merge into distribution source.
     '''
     def __init__(self):
-        self.files = ['about.dtd','preferences.dtd','searchbox.dtd','standalone.dtd','timeline.properties','zotero.dtd', 'zotero.properties', 'csledit.dtd', 'cslpreview.dtd', './mozilla/browser.dtd', './mozilla/editMenuOverlay.dtd', './mozilla/intl.properties', '../scaffold/scaffold.dtd', '../scaffold/scaffold.properties']
+        self.files = ['about.dtd','preferences.dtd','searchbox.dtd','standalone.dtd','timeline.properties','zotero.dtd', 'zotero.properties', 'csledit.dtd', 'cslpreview.dtd', './mozilla/browser.dtd', './mozilla/editMenuOverlay.dtd', './mozilla/intl.properties', '../scaffold/scaffold.dtd', '../scaffold/scaffold.properties', 'connector.json']
         self.files_csv = ['about-dtd.csv','preferences-dtd.csv','searchbox-dtd.csv','standalone-dtd.csv','timeline-properties.csv','zotero-dtd.csv', 'zotero-properties.csv', 'csledit-dtd.csv', 'cslpreview-dtd.csv', 'browser-dtd.csv', 'editMenuOverlay-dtd.csv', 'intl-properties.csv', 'scaffold-dtd.csv', 'scaffold-properties.csv']
         self.establishBasePaths()
         #self.masterData = {}
@@ -155,28 +155,37 @@ class ZoteroLocaleMerge:
         if filename.endswith('.dtd'):
             # Wildcard at start of expression to avoid a UTF8 BOM at top of file
             rex = '.*?<!\s*ENTITY\s*(.*?)\s+\"([^\"]*)\"\s*>'
+        elif filename.endswith('.json'):
+            rex = False
         else:
             rex = '(.*?)\s*=\s*(.*)\s*'
 
         data = {}
-        while 1:
-            line = ifh.readline()
-            if not line: break
-            if line.strip():
-                m = re.match(rex, line)
-                if (m):
-                    if cautious and m.group(2).lower().find("create a new item") > -1:
-                        print ("SKIPPING: %s" % m.group(2))
-                        continue
-                    if cautious and m.group(2).lower().find("create a new note") > -1:
-                        print ("SKIPPING: %s" % m.group(2))
-                        continue
-                    # For DOS line endings that can creep into the source.
-                    data[m.group(1)] = m.group(2).strip('\x0d')
+        if rex:
+            while 1:
+                line = ifh.readline()
+                if not line: break
+                if line.strip():
+                    m = re.match(rex, line)
+                    if (m):
+                        if cautious and m.group(2).lower().find("create a new item") > -1:
+                            print ("SKIPPING: %s" % m.group(2))
+                            continue
+                        if cautious and m.group(2).lower().find("create a new note") > -1:
+                            print ("SKIPPING: %s" % m.group(2))
+                            continue
+                        # For DOS line endings that can creep into the source.
+                        data[m.group(1)] = m.group(2).strip('\x0d')
+        else:
+            data = json.loads(ifh.read())
+                
         ifh.close()
         return data
 
     def output(self, locale, filename, data, export=False):
+
+        if filename.endswith('.json') and not os.path.exists('chrome/locale/%s/zotero/%s' % (locale, filename)):
+            return
         ofh = open('chrome/locale/%s/zotero/%s' % (locale, filename), 'w+')
 
         if export:
@@ -189,27 +198,30 @@ class ZoteroLocaleMerge:
 
             ws = self.wb.add_sheet(filename)
 
-        lst = []
-        for key in data:
-            lst.append([key, data[key]])
-        #lst.sort(self.sortKeys)
-        #lst.sort()
-        rows = []
-        rownum = 0
-        for item in sorted(lst, key=functools.cmp_to_key(self.sortKeys)):
-            if filename.endswith('.dtd'):
-                ofh.write('<!ENTITY %s \"%s\">\n' % (item[0], item[1]))
-            else:
-                ofh.write('%s	= %s\n' % (item[0], item[1]))
-
-            if export:
-                item.append(self.referenceData[filename][item[0]])
-                rows.append(item)
-
-                ws.write(rownum, 0, item[0].decode('utf8'))
-                ws.write(rownum, 1, item[1].decode('utf8'))
-                ws.write(rownum, 2, self.referenceData[filename][item[0]].decode('utf8'))
-                rownum += 1
+        if filename.endswith('.json'):
+            ofh.write(json.dumps(data, sort_keys=True, indent=4))
+        else:
+            lst = []
+            for key in data:
+                lst.append([key, data[key]])
+            #lst.sort(self.sortKeys)
+            #lst.sort()
+            rows = []
+            rownum = 0
+            for item in sorted(lst, key=functools.cmp_to_key(self.sortKeys)):
+                if filename.endswith('.dtd'):
+                    ofh.write('<!ENTITY %s \"%s\">\n' % (item[0], item[1]))
+                else:
+                    ofh.write('%s	= %s\n' % (item[0], item[1]))
+    
+                if export:
+                    item.append(self.referenceData[filename][item[0]])
+                    rows.append(item)
+    
+                    ws.write(rownum, 0, item[0].decode('utf8'))
+                    ws.write(rownum, 1, item[1].decode('utf8'))
+                    ws.write(rownum, 2, self.referenceData[filename][item[0]].decode('utf8'))
+                    rownum += 1
         ofh.close()
 
         if export:
