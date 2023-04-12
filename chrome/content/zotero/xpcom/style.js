@@ -825,7 +825,7 @@ Zotero.Style.prototype.getCiteProc = function(locale, format, automaticJournalAb
 			citeproc.opt.development_extensions.parse_names = false;
 			// Parse raw dates in Jurism
 			citeproc.opt.development_extensions.raw_date_parsing = true;
-		
+			citeproc.setSuppressTrailingPunctuation(Zotero.Prefs.get("export.citeSuppressTrailingPunctuation"));
 			Zotero.setCitationLanguages({}, citeproc);
 			citeproc.opt.trigraph = trigraph;
 			// See src/attributes.js for adaptive style version settings

@@ -2241,6 +2241,13 @@ Zotero.Integration.Session.prototype.restoreProcessorState = function() {
 		// and rebuilding the processor state, so we reinitialize the processor altogether
 		let style = Zotero.Styles.get(this.data.style.styleID);
 		this.style = style.getCiteProc(this.data.style.locale, this.outputFormat, this.data.prefs.automaticJournalAbbreviations);
+		this.style.setLangTagsForCslTransliteration(this.data.prefs.citationTransliteration);
+		this.style.setLangTagsForCslTranslation(this.data.prefs.citationTranslation);
+		this.style.setLangTagsForCslSort(this.data.prefs.citationSort);
+		this.style.setLangPrefsForCites(this.data.prefs, function(key){return 'citationLangPrefs'+key});
+		this.style.setLangPrefsForCiteAffixes(this.data.prefs.citationAffixes);
+		this.style.setSuppressTrailingPunctuation(this.data.prefs.suppressTrailingPunctuation);
+		this.style.setAutoVietnameseNamesOption(Zotero.Prefs.get('csl.autoVietnameseNames'));
 	}
 	this.style.rebuildProcessorState(citations, this.outputFormat, uncited);
 }
