@@ -1,169 +1,169 @@
 {
-    "appConnector": {
-        "message": "Kevreer $1"
-    },
-    "copyUnproxiedLink": {
-        "message": "Copy Unproxied Link"
-    },
-    "copyUnproxiedPageURL": {
-        "message": "Copy Unproxied Page URL"
-    },
-    "error_connection_downloadOrTroubleshoot": {
-        "message": "Gellout a rit <a href=\"$1\">pellgarga\u00f1 $2</a> pe <a href=\"$3\">Distanka\u00f1 ar c'hudenno\u00f9 kevrea\u00f1</a> ma vez ezhomm."
-    },
-    "error_connection_enableSavingToOnlineLibrary": {
-        "message": "Enaoui\u00f1 an enrolla\u00f1 e-barzh al levraoueg enlinenn"
-    },
-    "error_connection_isAppRunning": {
-        "message": "Ha digoret eo $1?"
-    },
-    "error_connection_save": {
-        "message": "$1 n'en deus ket gallet eskemm gant an arload $2. Ar c\u2019hevreer a c'hall enrolla\u00f1 pajenno\u00f9 'zo war ho kont end-eeun $3, evit kaout disoc'ho\u00f9 gwelloc'h bezit asur e vez digoret $2 a-raok klask enrolla\u00f1."
-    },
-    "extensionIsDisabled": {
-        "message": "$1 is disabled"
-    },
-    "extensionIsDisabled_extensionPage": {
-        "message": "$1 is disabled on extension pages"
-    },
-    "firstRun_acceptButton": {
-        "description": "The Accept button for the first-run dialog",
-        "message": "Got it"
-    },
-    "firstRun_text1": {
-        "message": "The $1 Connector enables you to <a href=\"$2\">save items to $1</a> from your browser in a single click."
-    },
-    "firstRun_text2": {
-        "message": "If you haven\u2019t yet, <a href=\"$2\">download</a> the standalone $1 application for the best experience."
-    },
-    "firstRun_text3": {
-        "message": "(You can view the $1 Privacy Policy on <a href=\"$2\">the project website</a>)."
-    },
-    "firstRun_title": {
-        "message": "You\u2019ve installed the $1 Connector!"
-    },
-    "general_cancel": {
-        "message": "Nulla\u00f1"
-    },
-    "general_copyToClipboard": {
-        "message": "Eila\u00f1 er golver"
-    },
-    "general_done": {
-        "message": "Graet"
-    },
-    "general_more": {
-        "message": "Muioc'h..."
-    },
-    "general_moreInfo": {
-        "message": "Muioc'h a ditouro\u00f9..."
-    },
-    "general_needHelp": {
-        "message": "Ezhomm ho peus sikour?"
-    },
-    "general_no": {
-        "message": "Ket"
-    },
-    "general_pleaseWait": {
-        "message": "Gortozit mar plij..."
-    },
-    "general_saveTo": {
-        "message": "Enrolla\u00f1 e-barzh $1"
-    },
-    "general_tryAgain": {
-        "message": "Klask en-dro"
-    },
-    "general_warning": {
-        "message": "Kemenn-diwall"
-    },
-    "general_yes": {
-        "message": "Ya"
-    },
-    "integration_error_clientUpgrade": {
-        "message": "An arroudenna\u00f1 diwar ar Web a c'houlenn $1 pe nevesoc'h."
-    },
-    "integration_error_connection": {
-        "message": "$1 n'eus ket gellet eskemm gant an arload burevek $2. $2 a rank beza\u00f1 digoret evit gellet enlakaat arroudenno\u00f9 diwar ar web."
-    },
-    "integration_googleDocs_documentLocked": {
-        "message": "The document citations are being edited by another $1 user. Please try again later."
-    },
-    "integration_googleDocs_documentLocked_moreInfo": {
-        "message": "$1 locks your document to prevent multiple users from editing citations at the same time. Concurrent citation editing in the document may lead to citation or document corruption. Certain unforeseeable circumstances, such as network failures, may lead to your document becoming permanently locked. If you believe this has happened, you can override the lock.<br/><br/>Would you like to override the document lock?"
-    },
-    "integration_googleDocs_documentPermissionError": {
-        "message": "The Google account you selected does not have permission to edit this document. Please try again, and be sure to choose the account with editing access."
-    },
-    "integration_googleDocs_docxAlert": {
-        "message": "Neket hegerz enkorfadur $1 pa vez aozet restro\u00f9 .docx Microsoft Word war-eeun e-barzh Google Docs. Dibabit Restro\u00f9 \u2192 Enrolla\u00f1 evel Google Docs evit enaoui\u00f1 an arc'hweladur-ma\u00f1. <br/><br/>M'ho peus c'hoant da dreuzkas ur restr Word gant arroudenno\u00f9 $1 e-barzh Google Docs, kit da welet <a href=\"https://www.zotero.org/support/kb/moving_documents_between_word_processors\">Fi\u00f1val teuliado\u00f9 etre treterio\u00f9 gerio\u00f9</a>."
-    },
-    "integration_googleDocs_orphanedCitations_alert": {
-        "message": "The citation you are trying to edit has become unlinked from $1."
-    },
-    "integration_googleDocs_orphanedCitations_alertButton": {
-        "message": "Relink Citation"
-    },
-    "integration_googleDocs_orphanedCitations_buttonTooltip": {
-        "message": "Show unlinked $1 citations"
-    },
-    "integration_googleDocs_orphanedCitations_disclaimer": {
-        "message": "These citations have become <a target=\"_blank\" href=\"https://www.zotero.org/support/kb/google_docs_citations_unlinked\">unlinked from $1</a>. You will need to relink them before they will update or appear in your bibliography."
-    },
-    "integration_googleDocs_unlinkBeforeSaving_downloadAnyway": {
-        "message": "Pellgarga\u00f1 ar stumm ereet forzh penaos"
-    },
-    "integration_googleDocs_unlinkBeforeSaving_instructions": {
-        "message": "Evit genel ur stumm azasaet d'ar ranna\u00f1, diuzit <b>Ober un eilenn\u2026</b> e-barzh al la\u00f1ser Restr, diuzit <b>Diliamma\u00f1 an arroudenno\u00f9</b> e-barzh la\u00f1ser Jurism an teuliad nevez, ha pellgargit a-benn neuze ar stumm nann-liammet. Mirit an teuliad orin-ma\u00f1 liammet en degouezh m'ho pefe da zegas che\u00f1chamanto\u00f9 enna\u00f1."
-    },
-    "integration_googleDocs_unlinkBeforeSaving_warning": {
-        "message": "An teuliad-ma\u00f1 a endalc'h arroudenno\u00f9 Jurism oberiant hag a zeuio war-wel dindan liammo\u00f9 zotero.org e-barzh un eilenn bellgarget."
-    },
-    "integration_googleDocs_updating": {
-        "message": "$1 a zo oc'h hizivaat ho teuliad."
-    },
-    "progressWindow_error_fallback": {
-        "message": "Fazi c'hoarvezet en ur enrolla\u00f1 gant $1. O klask enrolla\u00f1 en ur implijout $2 e plas."
-    },
-    "progressWindow_error_siteAccessLimits": {
-        "message": "Site Access Limits"
-    },
-    "progressWindow_error_siteAccessLimitsError": {
-        "message": "Ur fazi a zo c'hoarvezet en ur enrolla\u00f1 an elfenn-ma\u00f1. $1 a c'hall bevenni\u00f1 an niver a elfenno\u00f9 a c'hellit enrolla\u00f1 war ar memes tro. Sellit ouzh $2 evit kaout muioc'h a ditouro\u00f9."
-    },
-    "progressWindow_error_translation": {
-        "message": "Ur fazi a zo c'hoarvezet en ur enrolla\u00f1 an elfenn-ma\u00f1. Sellit ouzh $1 evit kaout muioc'h a ditouro\u00f9."
-    },
-    "progressWindow_error_troubleshootingTranslatorIssues": {
-        "message": "Distanka\u00f1 ar c'hudenno\u00f9 troidigezh"
-    },
-    "progressWindow_error_upgradeClient": {
-        "message": "An arc'hweladur-ma\u00f1 na vez ket hegerz gant ho stumm eus $1. Hizivait betek $2."
-    },
-    "progressWindow_error_upgradeClient_latestVersion": {
-        "message": "stumm diwezha\u00f1"
-    },
-    "progressWindow_savingTo": {
-        "message": "Enrolla\u00f1 e-barzh"
-    },
-    "progressWindow_tagPlaceholder": {
-        "message": "Balizo\u00f9 (skejet gant virgulenno\u00f9)"
-    },
-    "reloadVia": {
-        "message": "Reload via $1"
-    },
-    "reloadViaProxy": {
-        "message": "Reload via Proxy"
-    },
-    "reports_debug_output_submitted": {
-        "message": "Your debug output has been submitted.\n\nThe Debug ID is $1."
-    },
-    "reports_report_submitted": {
-        "message": "Your error report has been submitted.\n\nReport ID: $1\n\nPlease post a message to the Jurism Forums with this Report ID, a description of the problem, and any steps necessary to reproduce it.\n\nError reports are not reviewed unless referred to in the forums."
-    },
-    "reports_submission_failed": {
-        "description": "$1 will be the error message sent to the Jurism servers",
-        "message": "An error occurred submitting your report.\n\n$1\n\nPlease check your internet connection. If the problem persists, post a message to the Jurism Forums."
-    },
-    "upgradeApp": {
-        "message": "Hizivaat $1"
-    }
+  "appConnector": {
+    "message": "Kevreer $1"
+  },
+  "copyUnproxiedLink": {
+    "message": "Copy Unproxied Link"
+  },
+  "copyUnproxiedPageURL": {
+    "message": "Copy Unproxied Page URL"
+  },
+  "error_connection_downloadOrTroubleshoot": {
+    "message": "Gellout a rit <a href=\"$1\">pellgargañ $2</a> pe <a href=\"$3\">Distankañ ar c'hudennoù kevreañ</a> ma vez ezhomm."
+  },
+  "error_connection_enableSavingToOnlineLibrary": {
+    "message": "Enaouiñ an enrollañ e-barzh al levraoueg enlinenn"
+  },
+  "error_connection_isAppRunning": {
+    "message": "Ha digoret eo $1?"
+  },
+  "error_connection_save": {
+    "message": "$1 n'en deus ket gallet eskemm gant an arload $2. Ar c’hevreer a c'hall enrollañ pajennoù 'zo war ho kont end-eeun $3, evit kaout disoc'hoù gwelloc'h bezit asur e vez digoret $2 a-raok klask enrollañ."
+  },
+  "extensionIsDisabled": {
+    "message": "$1 is disabled"
+  },
+  "extensionIsDisabled_extensionPage": {
+    "message": "$1 is disabled on extension pages"
+  },
+  "firstRun_acceptButton": {
+    "description": "The Accept button for the first-run dialog",
+    "message": "Got it"
+  },
+  "firstRun_text1": {
+    "message": "The $1 Connector enables you to <a href=\"$2\">save items to $1</a> from your browser in a single click."
+  },
+  "firstRun_text2": {
+    "message": "If you haven’t yet, <a href=\"$2\">download</a> the standalone $1 application for the best experience."
+  },
+  "firstRun_text3": {
+    "message": "(You can view the $1 Privacy Policy on <a href=\"$2\">the project website</a>)."
+  },
+  "firstRun_title": {
+    "message": "You’ve installed the $1 Connector!"
+  },
+  "general_cancel": {
+    "message": "Nullañ"
+  },
+  "general_copyToClipboard": {
+    "message": "Eilañ er golver"
+  },
+  "general_done": {
+    "message": "Graet"
+  },
+  "general_more": {
+    "message": "Muioc'h..."
+  },
+  "general_moreInfo": {
+    "message": "Muioc'h a ditouroù..."
+  },
+  "general_needHelp": {
+    "message": "Ezhomm ho peus sikour?"
+  },
+  "general_no": {
+    "message": "Ket"
+  },
+  "general_pleaseWait": {
+    "message": "Gortozit mar plij..."
+  },
+  "general_saveTo": {
+    "message": "Enrollañ e-barzh $1"
+  },
+  "general_tryAgain": {
+    "message": "Klask en-dro"
+  },
+  "general_warning": {
+    "message": "Kemenn-diwall"
+  },
+  "general_yes": {
+    "message": "Ya"
+  },
+  "integration_error_clientUpgrade": {
+    "message": "An arroudennañ diwar ar Web a c'houlenn $1 pe nevesoc'h."
+  },
+  "integration_error_connection": {
+    "message": "$1 n'eus ket gellet eskemm gant an arload burevek $2. $2 a rank bezañ digoret evit gellet enlakaat arroudennoù diwar ar web."
+  },
+  "integration_googleDocs_documentLocked": {
+    "message": "The document citations are being edited by another $1 user. Please try again later."
+  },
+  "integration_googleDocs_documentLocked_moreInfo": {
+    "message": "$1 locks your document to prevent multiple users from editing citations at the same time. Concurrent citation editing in the document may lead to citation or document corruption. Certain unforeseeable circumstances, such as network failures, may lead to your document becoming permanently locked. If you believe this has happened, you can override the lock.<br/><br/>Would you like to override the document lock?"
+  },
+  "integration_googleDocs_documentPermissionError": {
+    "message": "The Google account you selected does not have permission to edit this document. Please try again, and be sure to choose the account with editing access."
+  },
+  "integration_googleDocs_docxAlert": {
+    "message": "Neket hegerz enkorfadur $1 pa vez aozet restroù .docx Microsoft Word war-eeun e-barzh Google Docs. Dibabit Restroù → Enrollañ evel Google Docs evit enaouiñ an arc'hweladur-mañ. <br/><br/>M'ho peus c'hoant da dreuzkas ur restr Word gant arroudennoù $1 e-barzh Google Docs, kit da welet <a href=\"https://www.zotero.org/support/kb/moving_documents_between_word_processors\">Fiñval teuliadoù etre treterioù gerioù</a>."
+  },
+  "integration_googleDocs_orphanedCitations_alert": {
+    "message": "The citation you are trying to edit has become unlinked from $1."
+  },
+  "integration_googleDocs_orphanedCitations_alertButton": {
+    "message": "Relink Citation"
+  },
+  "integration_googleDocs_orphanedCitations_buttonTooltip": {
+    "message": "Show unlinked $1 citations"
+  },
+  "integration_googleDocs_orphanedCitations_disclaimer": {
+    "message": "These citations have become <a target=\"_blank\" href=\"https://www.zotero.org/support/kb/google_docs_citations_unlinked\">unlinked from $1</a>. You will need to relink them before they will update or appear in your bibliography."
+  },
+  "integration_googleDocs_unlinkBeforeSaving_downloadAnyway": {
+    "message": "Pellgargañ ar stumm ereet forzh penaos"
+  },
+  "integration_googleDocs_unlinkBeforeSaving_instructions": {
+    "message": "Evit genel ur stumm azasaet d'ar rannañ, diuzit <b>Ober un eilenn…</b> e-barzh al lañser Restr, diuzit <b>Diliammañ an arroudennoù</b> e-barzh lañser Jurism an teuliad nevez, ha pellgargit a-benn neuze ar stumm nann-liammet. Mirit an teuliad orin-mañ liammet en degouezh m'ho pefe da zegas cheñchamantoù ennañ."
+  },
+  "integration_googleDocs_unlinkBeforeSaving_warning": {
+    "message": "An teuliad-mañ a endalc'h arroudennoù Jurism oberiant hag a zeuio war-wel dindan liammoù zotero.org e-barzh un eilenn bellgarget."
+  },
+  "integration_googleDocs_updating": {
+    "message": "$1 a zo oc'h hizivaat ho teuliad."
+  },
+  "progressWindow_error_fallback": {
+    "message": "Fazi c'hoarvezet en ur enrollañ gant $1. O klask enrollañ en ur implijout $2 e plas."
+  },
+  "progressWindow_error_siteAccessLimits": {
+    "message": "Site Access Limits"
+  },
+  "progressWindow_error_siteAccessLimitsError": {
+    "message": "Ur fazi a zo c'hoarvezet en ur enrollañ an elfenn-mañ. $1 a c'hall bevenniñ an niver a elfennoù a c'hellit enrollañ war ar memes tro. Sellit ouzh $2 evit kaout muioc'h a ditouroù."
+  },
+  "progressWindow_error_translation": {
+    "message": "Ur fazi a zo c'hoarvezet en ur enrollañ an elfenn-mañ. Sellit ouzh $1 evit kaout muioc'h a ditouroù."
+  },
+  "progressWindow_error_troubleshootingTranslatorIssues": {
+    "message": "Distankañ ar c'hudennoù troidigezh"
+  },
+  "progressWindow_error_upgradeClient": {
+    "message": "An arc'hweladur-mañ na vez ket hegerz gant ho stumm eus $1. Hizivait betek $2."
+  },
+  "progressWindow_error_upgradeClient_latestVersion": {
+    "message": "stumm diwezhañ"
+  },
+  "progressWindow_savingTo": {
+    "message": "Enrollañ e-barzh"
+  },
+  "progressWindow_tagPlaceholder": {
+    "message": "Balizoù (skejet gant virgulennoù)"
+  },
+  "reloadVia": {
+    "message": "Reload via $1"
+  },
+  "reloadViaProxy": {
+    "message": "Reload via Proxy"
+  },
+  "reports_debug_output_submitted": {
+    "message": "Your debug output has been submitted.\n\nThe Debug ID is $1."
+  },
+  "reports_report_submitted": {
+    "message": "Your error report has been submitted.\n\nReport ID: $1\n\nPlease post a message to the Jurism Forums with this Report ID, a description of the problem, and any steps necessary to reproduce it.\n\nError reports are not reviewed unless referred to in the forums."
+  },
+  "reports_submission_failed": {
+    "description": "$1 will be the error message sent to the Jurism servers",
+    "message": "An error occurred submitting your report.\n\n$1\n\nPlease check your internet connection. If the problem persists, post a message to the Jurism Forums."
+  },
+  "upgradeApp": {
+    "message": "Hizivaat $1"
+  }
 }

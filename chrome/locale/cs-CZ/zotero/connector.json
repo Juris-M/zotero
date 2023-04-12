@@ -1,170 +1,170 @@
 {
-    "appConnector": {
-        "message": "$1 konektor"
-    },
-    "copyUnproxiedLink": {
-        "message": "Copy Unproxied Link"
-    },
-    "copyUnproxiedPageURL": {
-        "message": "Copy Unproxied Page URL"
-    },
-    "error_connection_downloadOrTroubleshoot": {
-        "message": "M\u016f\u017eete <a href=\"$1\">st\u00e1hnout $2 </a> nebo <a href=\"$3\"> vy\u0159e\u0161it probl\u00e9my s p\u0159ipojen\u00edm</a>, pokud je to nutn\u00e9."
-    },
-    "error_connection_enableSavingToOnlineLibrary": {
-        "message": "Umo\u017enit ukl\u00e1d\u00e1n\u00ed do Online knihovny"
-    },
-    "error_connection_isAppRunning": {
-        "message": "Je $1 spu\u0161t\u011bn\u00fd?"
-    },
-    "error_connection_save": {
-        "message": "$1 nemohl komunikovat s desktopovou aplikac\u00ed $2. Konektor m\u016f\u017ee ulo\u017eit n\u011bkter\u00e9 str\u00e1nky p\u0159\u00edmo do va\u0161eho \u00fa\u010dtu $3, ale k dosa\u017een\u00ed nejlep\u0161\u00edch v\u00fdsledk\u016f byste m\u011bli p\u0159ed pokusem o ulo\u017een\u00ed zkontrolovat, \u017ee  $2  je otev\u0159en\u00fd."
-    },
-    "extensionIsDisabled": {
-        "message": "$1 is disabled"
-    },
-    "extensionIsDisabled_extensionPage": {
-        "message": "$1 is disabled on extension pages"
-    },
-    "firstRun_acceptButton": {
-        "description": "The Accept button for the first-run dialog",
-        "message": "Got it"
-    },
-    "firstRun_text1": {
-        "message": "The $1 Connector enables you to <a href=\"$2\">save items to $1</a> from your browser in a single click."
-    },
-    "firstRun_text2": {
-        "message": "If you haven\u2019t yet, <a href=\"$2\">download</a> the standalone $1 application for the best experience."
-    },
-    "firstRun_text3": {
-        "message": "(You can view the $1 Privacy Policy on <a href=\"$2\">the project website</a>)."
-    },
-    "firstRun_title": {
-        "message": "You\u2019ve installed the $1 Connector!"
-    },
-    "general_cancel": {
-        "message": "Zru\u0161it"
-    },
-    "general_copyToClipboard": {
-        "message": "Kop\u00edrovat do schr\u00e1nky"
-    },
-    "general_done": {
-        "message": "Hotovo"
-    },
-    "general_more": {
-        "message": "V\u00edce..."
-    },
-    "general_moreInfo": {
-        "message": "More Info\u2026"
-    },
-    "general_needHelp": {
-        "message": "Need help?"
-    },
-    "general_no": {
-        "message": "Ne"
-    },
-    "general_pleaseWait": {
-        "message": "Please wait\u2026"
-    },
-    "general_saveTo": {
-        "message": "Ulo\u017eit do $1"
-    },
-    "general_tryAgain": {
-        "message": "Zkusit znovu"
-    },
-    "general_warning": {
-        "message": "Varov\u00e1n\u00ed"
-    },
-    "general_yes": {
-        "message": "Ano"
-    },
-    "integration_error_clientUpgrade": {
-        "message": "Citov\u00e1n\u00ed na webu vy\u017eaduje $1 \u010di nov\u011bj\u0161\u00ed."
-    },
-    "integration_error_connection": {
-        "message": "$1 nemohl komunikovat s desktopovou aplikac\u00ed $2. P\u0159i pou\u017e\u00edv\u00e1n\u00ed webov\u00fdch citac\u00ed  mus\u00ed b\u00fdt   $2 otev\u0159en."
-    },
-    "integration_googleDocs_documentLocked": {
-        "message": "The document citations are being edited by another $1 user. Please try again later."
-    },
-    "integration_googleDocs_documentLocked_moreInfo": {
-        "message": "$1 locks your document to prevent multiple users from editing citations at the same time. Concurrent citation editing in the document may lead to citation or document corruption. Certain unforeseeable circumstances, such as network failures, may lead to your document becoming permanently locked. If you believe this has happened, you can override the lock.<br/><br/>Would you like to override the document lock?"
-    },
-    "integration_googleDocs_documentPermissionError": {
-        "message": "The Google account you selected does not have permission to edit this document. Please try again, and be sure to choose the account with editing access."
-    },
-    "integration_googleDocs_docxAlert": {
-        "message": "$1 integration is not available when editing Microsoft Word .docx files directly in Google Docs. Choose File \u2192 Save as Google Docs to enable this functionality.<br/><br/>If you want to transfer a Word document with $1 citations to Google Docs, see <a href=\"https://www.zotero.org/support/kb/moving_documents_between_word_processors\">Moving Documents Between Word Processors</a>."
-    },
-    "integration_googleDocs_orphanedCitations_alert": {
-        "message": "The citation you are trying to edit has become unlinked from $1."
-    },
-    "integration_googleDocs_orphanedCitations_alertButton": {
-        "message": "Relink Citation"
-    },
-    "integration_googleDocs_orphanedCitations_buttonTooltip": {
-        "message": "Show unlinked $1 citations"
-    },
-    "integration_googleDocs_orphanedCitations_disclaimer": {
-        "message": "These citations have become <a target=\"_blank\" href=\"https://www.zotero.org/support/kb/google_docs_citations_unlinked\">unlinked from $1</a>. You will need to relink them before they will update or appear in your bibliography."
-    },
-    "integration_googleDocs_unlinkBeforeSaving_downloadAnyway": {
-        "message": "P\u0159esto st\u00e1hnout propojenou verzi"
-    },
-    "integration_googleDocs_unlinkBeforeSaving_instructions": {
-        "message": "Pro generov\u00e1n\u00ed verze vhodn\u00e9 pro sd\u00edlen\u00ed zvolte <b> Vytvo\u0159it kopii... </b> z menu Soubor, zvolte <b> Odpojit citace </b> ze Jurism menu v nov\u00e9m dokumentu a pot\u00e9 st\u00e1hn\u011bte verzi s odpojen\u00fdmi citacemi. Origin\u00e1ln\u00ed dokument s propojen\u00fdmi citacemi uchovejte pro p\u0159\u00edpad, \u017ee byste v budoucnu pot\u0159ebovali prov\u00e9st dal\u0161\u00ed zm\u011bny."
-    },
-    "integration_googleDocs_unlinkBeforeSaving_warning": {
-        "message": "Tento dokument obsahuje aktivn\u00ed citaci Jurism, kter\u00e1 se objev\u00ed ve sta\u017een\u00e9 kopii jako odkaz zotero.org."
-    },
-    "integration_googleDocs_updating": {
-        "message": "$1 is updating your document."
-    },
-    "progressWindow_error_fallback": {
-        "message": "P\u0159i ukl\u00e1d\u00e1n\u00ed pomoc\u00ed $1 do\u0161lo k chyb\u011b.  Pokous o ulo\u017een\u00ed pomoc\u00ed $2."
-    },
-    "progressWindow_error_siteAccessLimits": {
-        "message": "Site Access Limits"
-    },
-    "progressWindow_error_siteAccessLimitsError": {
-        "description": "The placeholders are for the failing translator label (e.g., Google Scholar) and the Site Access Limits link",
-        "message": "An error occurred while saving this item. $1 may limit the number of items you can save at once. See $2 for more information."
-    },
-    "progressWindow_error_translation": {
-        "message": "P\u0159i ukl\u00e1d\u00e1n\u00ed t\u00e9to polo\u017eky do\u0161lo k chyb\u011b. Pro dal\u0161\u00ed informace otev\u0159ete  $1."
-    },
-    "progressWindow_error_troubleshootingTranslatorIssues": {
-        "message": "\u0158e\u0161en\u00ed probl\u00e9m\u016f s p\u0159ekladem"
-    },
-    "progressWindow_error_upgradeClient": {
-        "message": "Ve va\u0161\u00ed verzi $1 nen\u00ed tato funkce podporov\u00e1na. Prove\u010fte pros\u00edm aktualizaci na $2."
-    },
-    "progressWindow_error_upgradeClient_latestVersion": {
-        "message": "Posledn\u00ed verze"
-    },
-    "progressWindow_savingTo": {
-        "message": "Ukl\u00e1d\u00e1m do"
-    },
-    "progressWindow_tagPlaceholder": {
-        "message": "\u0160t\u00edtky (odd\u011blen\u00e9 mezerami)"
-    },
-    "reloadVia": {
-        "message": "Reload via $1"
-    },
-    "reloadViaProxy": {
-        "message": "Reload via Proxy"
-    },
-    "reports_debug_output_submitted": {
-        "message": "Your debug output has been submitted.\n\nThe Debug ID is $1."
-    },
-    "reports_report_submitted": {
-        "message": "Your error report has been submitted.\n\nReport ID: $1\n\nPlease post a message to the Jurism Forums with this Report ID, a description of the problem, and any steps necessary to reproduce it.\n\nError reports are not reviewed unless referred to in the forums."
-    },
-    "reports_submission_failed": {
-        "description": "$1 will be the error message sent to the Jurism servers",
-        "message": "An error occurred submitting your report.\n\n$1\n\nPlease check your internet connection. If the problem persists, post a message to the Jurism Forums."
-    },
-    "upgradeApp": {
-        "message": "Aktualizovat $1"
-    }
+  "appConnector": {
+    "message": "$1 konektor"
+  },
+  "copyUnproxiedLink": {
+    "message": "Copy Unproxied Link"
+  },
+  "copyUnproxiedPageURL": {
+    "message": "Copy Unproxied Page URL"
+  },
+  "error_connection_downloadOrTroubleshoot": {
+    "message": "Můžete <a href=\"$1\">stáhnout $2 </a> nebo <a href=\"$3\"> vyřešit problémy s připojením</a>, pokud je to nutné."
+  },
+  "error_connection_enableSavingToOnlineLibrary": {
+    "message": "Umožnit ukládání do Online knihovny"
+  },
+  "error_connection_isAppRunning": {
+    "message": "Je $1 spuštěný?"
+  },
+  "error_connection_save": {
+    "message": "$1 nemohl komunikovat s desktopovou aplikací $2. Konektor může uložit některé stránky přímo do vašeho účtu $3, ale k dosažení nejlepších výsledků byste měli před pokusem o uložení zkontrolovat, že  $2  je otevřený."
+  },
+  "extensionIsDisabled": {
+    "message": "$1 is disabled"
+  },
+  "extensionIsDisabled_extensionPage": {
+    "message": "$1 is disabled on extension pages"
+  },
+  "firstRun_acceptButton": {
+    "description": "The Accept button for the first-run dialog",
+    "message": "Got it"
+  },
+  "firstRun_text1": {
+    "message": "The $1 Connector enables you to <a href=\"$2\">save items to $1</a> from your browser in a single click."
+  },
+  "firstRun_text2": {
+    "message": "If you haven’t yet, <a href=\"$2\">download</a> the standalone $1 application for the best experience."
+  },
+  "firstRun_text3": {
+    "message": "(You can view the $1 Privacy Policy on <a href=\"$2\">the project website</a>)."
+  },
+  "firstRun_title": {
+    "message": "You’ve installed the $1 Connector!"
+  },
+  "general_cancel": {
+    "message": "Zrušit"
+  },
+  "general_copyToClipboard": {
+    "message": "Kopírovat do schránky"
+  },
+  "general_done": {
+    "message": "Hotovo"
+  },
+  "general_more": {
+    "message": "Více..."
+  },
+  "general_moreInfo": {
+    "message": "More Info…"
+  },
+  "general_needHelp": {
+    "message": "Need help?"
+  },
+  "general_no": {
+    "message": "Ne"
+  },
+  "general_pleaseWait": {
+    "message": "Please wait…"
+  },
+  "general_saveTo": {
+    "message": "Uložit do $1"
+  },
+  "general_tryAgain": {
+    "message": "Zkusit znovu"
+  },
+  "general_warning": {
+    "message": "Varování"
+  },
+  "general_yes": {
+    "message": "Ano"
+  },
+  "integration_error_clientUpgrade": {
+    "message": "Citování na webu vyžaduje $1 či novější."
+  },
+  "integration_error_connection": {
+    "message": "$1 nemohl komunikovat s desktopovou aplikací $2. Při používání webových citací  musí být   $2 otevřen."
+  },
+  "integration_googleDocs_documentLocked": {
+    "message": "The document citations are being edited by another $1 user. Please try again later."
+  },
+  "integration_googleDocs_documentLocked_moreInfo": {
+    "message": "$1 locks your document to prevent multiple users from editing citations at the same time. Concurrent citation editing in the document may lead to citation or document corruption. Certain unforeseeable circumstances, such as network failures, may lead to your document becoming permanently locked. If you believe this has happened, you can override the lock.<br/><br/>Would you like to override the document lock?"
+  },
+  "integration_googleDocs_documentPermissionError": {
+    "message": "The Google account you selected does not have permission to edit this document. Please try again, and be sure to choose the account with editing access."
+  },
+  "integration_googleDocs_docxAlert": {
+    "message": "$1 integration is not available when editing Microsoft Word .docx files directly in Google Docs. Choose File → Save as Google Docs to enable this functionality.<br/><br/>If you want to transfer a Word document with $1 citations to Google Docs, see <a href=\"https://www.zotero.org/support/kb/moving_documents_between_word_processors\">Moving Documents Between Word Processors</a>."
+  },
+  "integration_googleDocs_orphanedCitations_alert": {
+    "message": "The citation you are trying to edit has become unlinked from $1."
+  },
+  "integration_googleDocs_orphanedCitations_alertButton": {
+    "message": "Relink Citation"
+  },
+  "integration_googleDocs_orphanedCitations_buttonTooltip": {
+    "message": "Show unlinked $1 citations"
+  },
+  "integration_googleDocs_orphanedCitations_disclaimer": {
+    "message": "These citations have become <a target=\"_blank\" href=\"https://www.zotero.org/support/kb/google_docs_citations_unlinked\">unlinked from $1</a>. You will need to relink them before they will update or appear in your bibliography."
+  },
+  "integration_googleDocs_unlinkBeforeSaving_downloadAnyway": {
+    "message": "Přesto stáhnout propojenou verzi"
+  },
+  "integration_googleDocs_unlinkBeforeSaving_instructions": {
+    "message": "Pro generování verze vhodné pro sdílení zvolte <b> Vytvořit kopii... </b> z menu Soubor, zvolte <b> Odpojit citace </b> ze Jurism menu v novém dokumentu a poté stáhněte verzi s odpojenými citacemi. Originální dokument s propojenými citacemi uchovejte pro případ, že byste v budoucnu potřebovali provést další změny."
+  },
+  "integration_googleDocs_unlinkBeforeSaving_warning": {
+    "message": "Tento dokument obsahuje aktivní citaci Jurism, která se objeví ve stažené kopii jako odkaz zotero.org."
+  },
+  "integration_googleDocs_updating": {
+    "message": "$1 is updating your document."
+  },
+  "progressWindow_error_fallback": {
+    "message": "Při ukládání pomocí $1 došlo k chybě.  Pokous o uložení pomocí $2."
+  },
+  "progressWindow_error_siteAccessLimits": {
+    "message": "Site Access Limits"
+  },
+  "progressWindow_error_siteAccessLimitsError": {
+    "description": "The placeholders are for the failing translator label (e.g., Google Scholar) and the Site Access Limits link",
+    "message": "An error occurred while saving this item. $1 may limit the number of items you can save at once. See $2 for more information."
+  },
+  "progressWindow_error_translation": {
+    "message": "Při ukládání této položky došlo k chybě. Pro další informace otevřete  $1."
+  },
+  "progressWindow_error_troubleshootingTranslatorIssues": {
+    "message": "Řešení problémů s překladem"
+  },
+  "progressWindow_error_upgradeClient": {
+    "message": "Ve vaší verzi $1 není tato funkce podporována. Proveďte prosím aktualizaci na $2."
+  },
+  "progressWindow_error_upgradeClient_latestVersion": {
+    "message": "Poslední verze"
+  },
+  "progressWindow_savingTo": {
+    "message": "Ukládám do"
+  },
+  "progressWindow_tagPlaceholder": {
+    "message": "Štítky (oddělené mezerami)"
+  },
+  "reloadVia": {
+    "message": "Reload via $1"
+  },
+  "reloadViaProxy": {
+    "message": "Reload via Proxy"
+  },
+  "reports_debug_output_submitted": {
+    "message": "Your debug output has been submitted.\n\nThe Debug ID is $1."
+  },
+  "reports_report_submitted": {
+    "message": "Your error report has been submitted.\n\nReport ID: $1\n\nPlease post a message to the Jurism Forums with this Report ID, a description of the problem, and any steps necessary to reproduce it.\n\nError reports are not reviewed unless referred to in the forums."
+  },
+  "reports_submission_failed": {
+    "description": "$1 will be the error message sent to the Jurism servers",
+    "message": "An error occurred submitting your report.\n\n$1\n\nPlease check your internet connection. If the problem persists, post a message to the Jurism Forums."
+  },
+  "upgradeApp": {
+    "message": "Aktualizovat $1"
+  }
 }

@@ -1,169 +1,169 @@
 {
-    "appConnector": {
-        "message": "$1 k\u1ebft n\u1ed1i"
-    },
-    "copyUnproxiedLink": {
-        "message": "Copy Unproxied Link"
-    },
-    "copyUnproxiedPageURL": {
-        "message": "Copy Unproxied Page URL"
-    },
-    "error_connection_downloadOrTroubleshoot": {
-        "message": "B\u1ea1n c\u00f3 th\u1ec3 <a href=\"$1\">download $2</a> ho\u1eb7c <a href=\"$3\">s\u1eeda l\u1ed7i k\u1ebft n\u1ed1i </a> n\u1ebfu c\u1ea7n."
-    },
-    "error_connection_enableSavingToOnlineLibrary": {
-        "message": "Cho ph\u00e9p l\u01b0u v\u00e0o th\u01b0 vi\u1ec7n tr\u1ef1c tuy\u1ebfn"
-    },
-    "error_connection_isAppRunning": {
-        "message": "$1 c\u00f3 \u0111ang ch\u1ea1y?"
-    },
-    "error_connection_save": {
-        "message": "$1 kh\u00f4ng th\u1ec3 k\u1ebft n\u1ed1i v\u1edbi $2. Connector c\u00f3 th\u1ec3 l\u01b0u m\u1ed9t s\u1ed1 trang tr\u1ef1c ti\u1ebfp v\u00e0o t\u00e0i kho\u1ea3n $3 c\u1ee7a b\u1ea1n, nh\u01b0ng t\u1ed1t nh\u1ea5t b\u1ea1n n\u00ean ch\u1eafc ch\u1eafn $2 \u0111ang m\u1edf tr\u01b0\u1edbc khi l\u01b0u."
-    },
-    "extensionIsDisabled": {
-        "message": "$1 is disabled"
-    },
-    "extensionIsDisabled_extensionPage": {
-        "message": "$1 is disabled on extension pages"
-    },
-    "firstRun_acceptButton": {
-        "description": "The Accept button for the first-run dialog",
-        "message": "Got it"
-    },
-    "firstRun_text1": {
-        "message": "The $1 Connector enables you to <a href=\"$2\">save items to $1</a> from your browser in a single click."
-    },
-    "firstRun_text2": {
-        "message": "If you haven\u2019t yet, <a href=\"$2\">download</a> the standalone $1 application for the best experience."
-    },
-    "firstRun_text3": {
-        "message": "(You can view the $1 Privacy Policy on <a href=\"$2\">the project website</a>)."
-    },
-    "firstRun_title": {
-        "message": "You\u2019ve installed the $1 Connector!"
-    },
-    "general_cancel": {
-        "message": "H\u1ee7y"
-    },
-    "general_copyToClipboard": {
-        "message": "Sao ch\u00e9p v\u00e0o Clipboard"
-    },
-    "general_done": {
-        "message": "Ho\u00e0n th\u00e0nh"
-    },
-    "general_more": {
-        "message": "Th\u00eam..."
-    },
-    "general_moreInfo": {
-        "message": "Chi ti\u1ebft h\u01a1n..."
-    },
-    "general_needHelp": {
-        "message": "Need help?"
-    },
-    "general_no": {
-        "message": "B\u1ecf qua"
-    },
-    "general_pleaseWait": {
-        "message": "Xin ch\u1edd..."
-    },
-    "general_saveTo": {
-        "message": "L\u01b0u v\u00e0o $1"
-    },
-    "general_tryAgain": {
-        "message": "Th\u1eed l\u1ea1i"
-    },
-    "general_warning": {
-        "message": "C\u1ea3nh b\u00e1o"
-    },
-    "general_yes": {
-        "message": "\u0110\u1ed3ng \u00fd"
-    },
-    "integration_error_clientUpgrade": {
-        "message": "Tr\u00edch d\u1eabn tr\u00ean web c\u1ea7n phi\u00ean b\u1ea3n $1 ho\u1eb7c cao h\u01a1n."
-    },
-    "integration_error_connection": {
-        "message": "$1 kh\u00f4ng th\u1ec3 k\u1ebft n\u1ed1i v\u1edbi $2. $2 ph\u1ea3i ch\u1ea1y \u0111\u1ec3 c\u00f3 th\u1ec3 d\u00f9ng tr\u00edch d\u1eabn web."
-    },
-    "integration_googleDocs_documentLocked": {
-        "message": "The document citations are being edited by another $1 user. Please try again later."
-    },
-    "integration_googleDocs_documentLocked_moreInfo": {
-        "message": "$1 locks your document to prevent multiple users from editing citations at the same time. Concurrent citation editing in the document may lead to citation or document corruption. Certain unforeseeable circumstances, such as network failures, may lead to your document becoming permanently locked. If you believe this has happened, you can override the lock.<br/><br/>Would you like to override the document lock?"
-    },
-    "integration_googleDocs_documentPermissionError": {
-        "message": "The Google account you selected does not have permission to edit this document. Please try again, and be sure to choose the account with editing access."
-    },
-    "integration_googleDocs_docxAlert": {
-        "message": "$1 li\u00ean k\u1ebft kh\u00f4ng cho ph\u00e9p khi \u0111ang ch\u1ec9nh s\u1eeda t\u1ec7p Microsoft Word .docx tr\u1ef1c ti\u1ebfp trong Google Docs. Ch\u1ecdn T\u1ec7p \u2192 L\u01b0u th\u00e0nh Google Docs \u0111\u1ec3 cho ph\u00e9p ch\u1ee9c n\u0103ng n\u00e0y.<br/><br/>N\u1ebfu b\u1ea1n mu\u1ed1n chuy\u1ec3n m\u1ed9t t\u00e0i li\u1ec7u Word v\u1edbi $1 tr\u00edch d\u1eabn th\u00e0nh t\u00e0i li\u1ec7u Google Docs, xem <a href=\"https://www.zotero.org/support/kb/moving_documents_between_word_processors\">Chuy\u1ec3n T\u00e0i li\u1ec7u Gi\u1eefa C\u00e1c Tr\u00ecnh so\u1ea1n th\u1ea3o</a>."
-    },
-    "integration_googleDocs_orphanedCitations_alert": {
-        "message": "Tr\u00edch d\u1eabn b\u1ea1n \u0111ang c\u1ed1 ch\u1ec9nh s\u1eeda \u0111\u00e3 b\u1ecb m\u1ea5t li\u00ean k\u1ebft v\u1edbi $1."
-    },
-    "integration_googleDocs_orphanedCitations_alertButton": {
-        "message": "Li\u00ean k\u1ebft l\u1ea1i tr\u00edch d\u1eabn"
-    },
-    "integration_googleDocs_orphanedCitations_buttonTooltip": {
-        "message": "Hi\u1ec3n th\u1ecb $1 tr\u00edch d\u1eabn kh\u00f4ng li\u00ean k\u1ebft."
-    },
-    "integration_googleDocs_orphanedCitations_disclaimer": {
-        "message": "C\u00e1c tr\u00edch d\u1eabn n\u00e0y \u0111\u00e3 b\u1ecb <a target=\"_blank\" href=\"https://www.zotero.org/support/kb/google_docs_citations_unlinked\">m\u1ea5t li\u00ean k\u1ebft v\u1edbi $1</a>. B\u1ea1n c\u1ea7n li\u00ean k\u1ebft l\u1ea1i \u0111\u1ec3 ch\u00fang s\u1ebd c\u1eadp nh\u1eadt ho\u1eb7c xu\u1ea5t hi\u1ec7n trong th\u01b0 m\u1ee5c c\u1ee7a b\u1ea1n."
-    },
-    "integration_googleDocs_unlinkBeforeSaving_downloadAnyway": {
-        "message": "T\u1ea3i b\u1ea3n c\u00f3 li\u00ean k\u1ebft thay th\u1ebf"
-    },
-    "integration_googleDocs_unlinkBeforeSaving_instructions": {
-        "message": "\u0110\u1ec3 t\u1ea1o b\u1ea3n ph\u00f9 h\u1ee3p cho chia s\u1ebb, ch\u1ecdn <b>T\u1ea1o b\u1ea3n sao\u2026</b> t\u1eeb menu T\u1ec7p, ch\u1ecdn <b>B\u1ecf li\u00ean k\u1ebft tr\u00edch d\u1eabn</b> t\u1eeb menu Jurism trong t\u00e0i li\u1ec7u m\u1edbi v\u00e0 sau \u0111\u00f3 t\u1ea3i b\u1ea3n b\u1ecf li\u00ean k\u1ebft. Gi\u1eef b\u1ea3n ban \u0111\u1ea7u c\u00f3 li\u00ean k\u1ebft n\u00e0y \u0111\u1ec3 d\u1ef1 ph\u00f2ng b\u1ea1n c\u1ea7n thay \u0111\u1ed5i sau."
-    },
-    "integration_googleDocs_unlinkBeforeSaving_warning": {
-        "message": "T\u00e0i li\u1ec7u n\u00e0y c\u00f3 ch\u1ee9a tr\u00edch d\u1eabn Jurism m\u00e0 s\u1ebd hi\u1ec3n th\u1ecb l\u00e0 c\u00e1c li\u00ean k\u1ebft zotero.org trong b\u1ea3n sao \u0111\u00e3 t\u1ea3i xu\u1ed1ng"
-    },
-    "integration_googleDocs_updating": {
-        "message": "$1 \u0111ang c\u1eadp nh\u1eadt t\u00e0i li\u1ec7u c\u1ee7a b\u1ea1n."
-    },
-    "progressWindow_error_fallback": {
-        "message": "C\u00f3 l\u1ed7i x\u1ea3y ra khi l\u01b0u b\u1eb1ng $1. Th\u1eed l\u01b0u b\u1eb1ng $2."
-    },
-    "progressWindow_error_siteAccessLimits": {
-        "message": "Site Access Limits"
-    },
-    "progressWindow_error_siteAccessLimitsError": {
-        "description": "The placeholders are for the failing translator label (e.g., Google Scholar) and the Site Access Limits link",
-        "message": "An error occurred while saving this item. $1 may limit the number of items you can save at once. See $2 for more information."
-    },
-    "progressWindow_error_translation": {
-        "message": "C\u00f3 l\u1ed7i x\u1ea3y ra khi l\u01b0u m\u1ee5c n\u00e0y. Xem $1 \u0111\u1ec3 c\u00f3 th\u00eam th\u00f4ng tin."
-    },
-    "progressWindow_error_troubleshootingTranslatorIssues": {
-        "message": "S\u1eeda l\u1ed7i Translator"
-    },
-    "progressWindow_error_upgradeClient": {
-        "message": "Ch\u1ee9c n\u0103ng n\u00e0y kh\u00f4ng \u0111\u01b0\u1ee3c h\u1ed7 tr\u1ee3 trong phi\u00ean b\u1ea3n $1. N\u00e2ng c\u1ea5p l\u00ean $2."
-    },
-    "progressWindow_error_upgradeClient_latestVersion": {
-        "message": "Phi\u00ean b\u1ea3n m\u1edbi nh\u1ea5t"
-    },
-    "progressWindow_savingTo": {
-        "message": "L\u01b0u v\u00e0o"
-    },
-    "progressWindow_tagPlaceholder": {
-        "message": "C\u00e1c th\u1ebb (ph\u00e2n c\u00e1ch b\u1eb1ng d\u1ea5u ph\u1ea9y)"
-    },
-    "reloadVia": {
-        "message": "Reload via $1"
-    },
-    "reloadViaProxy": {
-        "message": "Reload via Proxy"
-    },
-    "reports_debug_output_submitted": {
-        "message": "Th\u00f4ng tin g\u1ed7 r\u1ed1i c\u1ee7a b\u1ea1n \u0111\u00e3 \u0111\u01b0\u1ee3c g\u1eedi \u0111i.\n\nM\u00e3 g\u1ee1 r\u1ed1i (ID) l\u00e0 $1."
-    },
-    "reports_report_submitted": {
-        "message": "B\u00e1o c\u00e1o l\u1ed7i c\u1ee7a b\u1ea1n \u0111\u00e3 \u0111\u01b0\u1ee3c g\u1eedi \u0111i.\n\nID b\u00e1o c\u00e1o: $1\n\nH\u00e3y g\u1eedi th\u00f4ng tin l\u00ean di\u1ec5n \u0111\u00e0n Jurism v\u1edbi ID b\u00e1o c\u00e1o n\u00e0y, m\u00f4 t\u1ea3 l\u1ed7i v\u00e0 c\u00e1c b\u01b0\u1edbc sinh ra l\u1ed7i.\n\nB\u00e1o c\u00e1o l\u1ed7i ch\u1ec9 \u0111\u01b0\u1ee3c xem x\u00e9t khi n\u00f3 c\u00f3 tr\u00ean di\u1ec5n \u0111\u00e0n."
-    },
-    "reports_submission_failed": {
-        "message": "C\u00f3 l\u1ed7i x\u1ea3y ra khi g\u1eedi b\u00e1o c\u00e1o c\u1ee7a b\u1ea1n.\n\n$1\n\nKi\u1ec3m tra k\u1ebft n\u1ed1i internet. N\u1ebfu v\u1eabn c\u00f3 l\u1ed7i th\u00ec g\u1eedi th\u00f4ng tin l\u00ean di\u1ec5n \u0111\u00e0n Jurism."
-    },
-    "upgradeApp": {
-        "message": "N\u00e2ng c\u1ea5p$1"
-    }
+  "appConnector": {
+    "message": "$1 kết nối"
+  },
+  "copyUnproxiedLink": {
+    "message": "Copy Unproxied Link"
+  },
+  "copyUnproxiedPageURL": {
+    "message": "Copy Unproxied Page URL"
+  },
+  "error_connection_downloadOrTroubleshoot": {
+    "message": "Bạn có thể <a href=\"$1\">download $2</a> hoặc <a href=\"$3\">sửa lỗi kết nối </a> nếu cần."
+  },
+  "error_connection_enableSavingToOnlineLibrary": {
+    "message": "Cho phép lưu vào thư viện trực tuyến"
+  },
+  "error_connection_isAppRunning": {
+    "message": "$1 có đang chạy?"
+  },
+  "error_connection_save": {
+    "message": "$1 không thể kết nối với $2. Connector có thể lưu một số trang trực tiếp vào tài khoản $3 của bạn, nhưng tốt nhất bạn nên chắc chắn $2 đang mở trước khi lưu."
+  },
+  "extensionIsDisabled": {
+    "message": "$1 is disabled"
+  },
+  "extensionIsDisabled_extensionPage": {
+    "message": "$1 is disabled on extension pages"
+  },
+  "firstRun_acceptButton": {
+    "description": "The Accept button for the first-run dialog",
+    "message": "Got it"
+  },
+  "firstRun_text1": {
+    "message": "The $1 Connector enables you to <a href=\"$2\">save items to $1</a> from your browser in a single click."
+  },
+  "firstRun_text2": {
+    "message": "If you haven’t yet, <a href=\"$2\">download</a> the standalone $1 application for the best experience."
+  },
+  "firstRun_text3": {
+    "message": "(You can view the $1 Privacy Policy on <a href=\"$2\">the project website</a>)."
+  },
+  "firstRun_title": {
+    "message": "You’ve installed the $1 Connector!"
+  },
+  "general_cancel": {
+    "message": "Hủy"
+  },
+  "general_copyToClipboard": {
+    "message": "Sao chép vào Clipboard"
+  },
+  "general_done": {
+    "message": "Hoàn thành"
+  },
+  "general_more": {
+    "message": "Thêm..."
+  },
+  "general_moreInfo": {
+    "message": "Chi tiết hơn..."
+  },
+  "general_needHelp": {
+    "message": "Need help?"
+  },
+  "general_no": {
+    "message": "Bỏ qua"
+  },
+  "general_pleaseWait": {
+    "message": "Xin chờ..."
+  },
+  "general_saveTo": {
+    "message": "Lưu vào $1"
+  },
+  "general_tryAgain": {
+    "message": "Thử lại"
+  },
+  "general_warning": {
+    "message": "Cảnh báo"
+  },
+  "general_yes": {
+    "message": "Đồng ý"
+  },
+  "integration_error_clientUpgrade": {
+    "message": "Trích dẫn trên web cần phiên bản $1 hoặc cao hơn."
+  },
+  "integration_error_connection": {
+    "message": "$1 không thể kết nối với $2. $2 phải chạy để có thể dùng trích dẫn web."
+  },
+  "integration_googleDocs_documentLocked": {
+    "message": "The document citations are being edited by another $1 user. Please try again later."
+  },
+  "integration_googleDocs_documentLocked_moreInfo": {
+    "message": "$1 locks your document to prevent multiple users from editing citations at the same time. Concurrent citation editing in the document may lead to citation or document corruption. Certain unforeseeable circumstances, such as network failures, may lead to your document becoming permanently locked. If you believe this has happened, you can override the lock.<br/><br/>Would you like to override the document lock?"
+  },
+  "integration_googleDocs_documentPermissionError": {
+    "message": "The Google account you selected does not have permission to edit this document. Please try again, and be sure to choose the account with editing access."
+  },
+  "integration_googleDocs_docxAlert": {
+    "message": "$1 liên kết không cho phép khi đang chỉnh sửa tệp Microsoft Word .docx trực tiếp trong Google Docs. Chọn Tệp → Lưu thành Google Docs để cho phép chức năng này.<br/><br/>Nếu bạn muốn chuyển một tài liệu Word với $1 trích dẫn thành tài liệu Google Docs, xem <a href=\"https://www.zotero.org/support/kb/moving_documents_between_word_processors\">Chuyển Tài liệu Giữa Các Trình soạn thảo</a>."
+  },
+  "integration_googleDocs_orphanedCitations_alert": {
+    "message": "Trích dẫn bạn đang cố chỉnh sửa đã bị mất liên kết với $1."
+  },
+  "integration_googleDocs_orphanedCitations_alertButton": {
+    "message": "Liên kết lại trích dẫn"
+  },
+  "integration_googleDocs_orphanedCitations_buttonTooltip": {
+    "message": "Hiển thị $1 trích dẫn không liên kết."
+  },
+  "integration_googleDocs_orphanedCitations_disclaimer": {
+    "message": "Các trích dẫn này đã bị <a target=\"_blank\" href=\"https://www.zotero.org/support/kb/google_docs_citations_unlinked\">mất liên kết với $1</a>. Bạn cần liên kết lại để chúng sẽ cập nhật hoặc xuất hiện trong thư mục của bạn."
+  },
+  "integration_googleDocs_unlinkBeforeSaving_downloadAnyway": {
+    "message": "Tải bản có liên kết thay thế"
+  },
+  "integration_googleDocs_unlinkBeforeSaving_instructions": {
+    "message": "Để tạo bản phù hợp cho chia sẻ, chọn <b>Tạo bản sao…</b> từ menu Tệp, chọn <b>Bỏ liên kết trích dẫn</b> từ menu Jurism trong tài liệu mới và sau đó tải bản bỏ liên kết. Giữ bản ban đầu có liên kết này để dự phòng bạn cần thay đổi sau."
+  },
+  "integration_googleDocs_unlinkBeforeSaving_warning": {
+    "message": "Tài liệu này có chứa trích dẫn Jurism mà sẽ hiển thị là các liên kết zotero.org trong bản sao đã tải xuống"
+  },
+  "integration_googleDocs_updating": {
+    "message": "$1 đang cập nhật tài liệu của bạn."
+  },
+  "progressWindow_error_fallback": {
+    "message": "Có lỗi xảy ra khi lưu bằng $1. Thử lưu bằng $2."
+  },
+  "progressWindow_error_siteAccessLimits": {
+    "message": "Site Access Limits"
+  },
+  "progressWindow_error_siteAccessLimitsError": {
+    "description": "The placeholders are for the failing translator label (e.g., Google Scholar) and the Site Access Limits link",
+    "message": "An error occurred while saving this item. $1 may limit the number of items you can save at once. See $2 for more information."
+  },
+  "progressWindow_error_translation": {
+    "message": "Có lỗi xảy ra khi lưu mục này. Xem $1 để có thêm thông tin."
+  },
+  "progressWindow_error_troubleshootingTranslatorIssues": {
+    "message": "Sửa lỗi Translator"
+  },
+  "progressWindow_error_upgradeClient": {
+    "message": "Chức năng này không được hỗ trợ trong phiên bản $1. Nâng cấp lên $2."
+  },
+  "progressWindow_error_upgradeClient_latestVersion": {
+    "message": "Phiên bản mới nhất"
+  },
+  "progressWindow_savingTo": {
+    "message": "Lưu vào"
+  },
+  "progressWindow_tagPlaceholder": {
+    "message": "Các thẻ (phân cách bằng dấu phẩy)"
+  },
+  "reloadVia": {
+    "message": "Reload via $1"
+  },
+  "reloadViaProxy": {
+    "message": "Reload via Proxy"
+  },
+  "reports_debug_output_submitted": {
+    "message": "Thông tin gỗ rối của bạn đã được gửi đi.\n\nMã gỡ rối (ID) là $1."
+  },
+  "reports_report_submitted": {
+    "message": "Báo cáo lỗi của bạn đã được gửi đi.\n\nID báo cáo: $1\n\nHãy gửi thông tin lên diễn đàn Jurism với ID báo cáo này, mô tả lỗi và các bước sinh ra lỗi.\n\nBáo cáo lỗi chỉ được xem xét khi nó có trên diễn đàn."
+  },
+  "reports_submission_failed": {
+    "message": "Có lỗi xảy ra khi gửi báo cáo của bạn.\n\n$1\n\nKiểm tra kết nối internet. Nếu vẫn có lỗi thì gửi thông tin lên diễn đàn Jurism."
+  },
+  "upgradeApp": {
+    "message": "Nâng cấp$1"
+  }
 }

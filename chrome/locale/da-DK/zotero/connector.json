@@ -1,170 +1,170 @@
 {
-    "appConnector": {
-        "message": "$1-forbindelseskomponent"
-    },
-    "copyUnproxiedLink": {
-        "message": "Copy Unproxied Link"
-    },
-    "copyUnproxiedPageURL": {
-        "message": "Copy Unproxied Page URL"
-    },
-    "error_connection_downloadOrTroubleshoot": {
-        "message": "Du kan <a href=\"$1\">downloade $2</a> eller <a href=\"$3\">fejlfinde forbindelsen</a> om n\u00f8dvendigt."
-    },
-    "error_connection_enableSavingToOnlineLibrary": {
-        "message": "Aktiv\u00e9r at der kan gemmes i onlinebiblioteket"
-    },
-    "error_connection_isAppRunning": {
-        "message": "K\u00f8rer $1?"
-    },
-    "error_connection_save": {
-        "message": "$1 kunne ikke kommunikere med skrivebordsprogrammet\u00a0$2. Forbindelseskomponenten kan gemme nogle sider direkte i din $3-konto, men du f\u00e5r det bedste resultat, hvis $2 er \u00e5ben, f\u00f8r du gemmer."
-    },
-    "extensionIsDisabled": {
-        "message": "$1 is disabled"
-    },
-    "extensionIsDisabled_extensionPage": {
-        "message": "$1 is disabled on extension pages"
-    },
-    "firstRun_acceptButton": {
-        "description": "The Accept button for the first-run dialog",
-        "message": "Got it"
-    },
-    "firstRun_text1": {
-        "message": "The $1 Connector enables you to <a href=\"$2\">save items to $1</a> from your browser in a single click."
-    },
-    "firstRun_text2": {
-        "message": "If you haven\u2019t yet, <a href=\"$2\">download</a> the standalone $1 application for the best experience."
-    },
-    "firstRun_text3": {
-        "message": "(You can view the $1 Privacy Policy on <a href=\"$2\">the project website</a>)."
-    },
-    "firstRun_title": {
-        "message": "You\u2019ve installed the $1 Connector!"
-    },
-    "general_cancel": {
-        "message": "Annull\u00e9r"
-    },
-    "general_copyToClipboard": {
-        "message": "Kopi\u00e9r til udklipsholderen"
-    },
-    "general_done": {
-        "message": "F\u00e6rdig"
-    },
-    "general_more": {
-        "message": "Mere ..."
-    },
-    "general_moreInfo": {
-        "message": "More Info\u2026"
-    },
-    "general_needHelp": {
-        "message": "Need help?"
-    },
-    "general_no": {
-        "message": "Nej"
-    },
-    "general_pleaseWait": {
-        "message": "Please wait\u2026"
-    },
-    "general_saveTo": {
-        "message": "Gem i $1"
-    },
-    "general_tryAgain": {
-        "message": "Pr\u00f8v igen"
-    },
-    "general_warning": {
-        "message": "Advarsel"
-    },
-    "general_yes": {
-        "message": "Ja"
-    },
-    "integration_error_clientUpgrade": {
-        "message": "Web-baseret henvisning kr\u00e6ver $1 eller senere."
-    },
-    "integration_error_connection": {
-        "message": "$1 kunne ikke kommunikere med skrivebordsprogrammet $2. $2 skal v\u00e6re \u00e5ben for at bruge web-baseret henvisning."
-    },
-    "integration_googleDocs_documentLocked": {
-        "message": "The document citations are being edited by another $1 user. Please try again later."
-    },
-    "integration_googleDocs_documentLocked_moreInfo": {
-        "message": "$1 locks your document to prevent multiple users from editing citations at the same time. Concurrent citation editing in the document may lead to citation or document corruption. Certain unforeseeable circumstances, such as network failures, may lead to your document becoming permanently locked. If you believe this has happened, you can override the lock.<br/><br/>Would you like to override the document lock?"
-    },
-    "integration_googleDocs_documentPermissionError": {
-        "message": "The Google account you selected does not have permission to edit this document. Please try again, and be sure to choose the account with editing access."
-    },
-    "integration_googleDocs_docxAlert": {
-        "message": "$1 integration is not available when editing Microsoft Word .docx files directly in Google Docs. Choose File \u2192 Save as Google Docs to enable this functionality.<br/><br/>If you want to transfer a Word document with $1 citations to Google Docs, see <a href=\"https://www.zotero.org/support/kb/moving_documents_between_word_processors\">Moving Documents Between Word Processors</a>."
-    },
-    "integration_googleDocs_orphanedCitations_alert": {
-        "message": "The citation you are trying to edit has become unlinked from $1."
-    },
-    "integration_googleDocs_orphanedCitations_alertButton": {
-        "message": "Relink Citation"
-    },
-    "integration_googleDocs_orphanedCitations_buttonTooltip": {
-        "message": "Show unlinked $1 citations"
-    },
-    "integration_googleDocs_orphanedCitations_disclaimer": {
-        "message": "These citations have become <a target=\"_blank\" href=\"https://www.zotero.org/support/kb/google_docs_citations_unlinked\">unlinked from $1</a>. You will need to relink them before they will update or appear in your bibliography."
-    },
-    "integration_googleDocs_unlinkBeforeSaving_downloadAnyway": {
-        "message": "Download linket version alligevel"
-    },
-    "integration_googleDocs_unlinkBeforeSaving_instructions": {
-        "message": "For at oprette en version, der er egnet til deling, skal du v\u00e6lge <b>Lav en kopi...</b> i filmenuen, v\u00e6lge <b>Frakobl referencer</b> i Jurism-menuen i det nye dokument og derefter downloade den frakoblet version."
-    },
-    "integration_googleDocs_unlinkBeforeSaving_warning": {
-        "message": "Dette dokument indeholder aktive Jurism-referencer, der vil optr\u00e6de som zotero.org-links i en downloadet kopi."
-    },
-    "integration_googleDocs_updating": {
-        "message": "$1 is updating your document."
-    },
-    "progressWindow_error_fallback": {
-        "message": "Der opstod en fejl, da der blev gemt med $1.\nPr\u00f8ver at gemme med $2 i stedet for."
-    },
-    "progressWindow_error_siteAccessLimits": {
-        "message": "Site Access Limits"
-    },
-    "progressWindow_error_siteAccessLimitsError": {
-        "description": "The placeholders are for the failing translator label (e.g., Google Scholar) and the Site Access Limits link",
-        "message": "An error occurred while saving this item. $1 may limit the number of items you can save at once. See $2 for more information."
-    },
-    "progressWindow_error_translation": {
-        "message": "Der opstod en fejl, da dette element skulle gemmes.\nSe $1 for mere information."
-    },
-    "progressWindow_error_troubleshootingTranslatorIssues": {
-        "message": "Fejlfinding af overs\u00e6ttelsesproblemer"
-    },
-    "progressWindow_error_upgradeClient": {
-        "message": "Denne funktion underst\u00f8ttes ikke af din version af $1. Opgrad\u00e9r venligst til $2."
-    },
-    "progressWindow_error_upgradeClient_latestVersion": {
-        "message": "seneste version"
-    },
-    "progressWindow_savingTo": {
-        "message": "Gemmer i"
-    },
-    "progressWindow_tagPlaceholder": {
-        "message": "M\u00e6rker (adskilt af komma)"
-    },
-    "reloadVia": {
-        "message": "Reload via $1"
-    },
-    "reloadViaProxy": {
-        "message": "Reload via Proxy"
-    },
-    "reports_debug_output_submitted": {
-        "message": "Your debug output has been submitted.\n\nThe Debug ID is $1."
-    },
-    "reports_report_submitted": {
-        "message": "Your error report has been submitted.\n\nReport ID: $1\n\nPlease post a message to the Jurism Forums with this Report ID, a description of the problem, and any steps necessary to reproduce it.\n\nError reports are not reviewed unless referred to in the forums."
-    },
-    "reports_submission_failed": {
-        "description": "$1 will be the error message sent to the Jurism servers",
-        "message": "An error occurred submitting your report.\n\n$1\n\nPlease check your internet connection. If the problem persists, post a message to the Jurism Forums."
-    },
-    "upgradeApp": {
-        "message": "Opgrad\u00e9r $1"
-    }
+  "appConnector": {
+    "message": "$1-forbindelseskomponent"
+  },
+  "copyUnproxiedLink": {
+    "message": "Copy Unproxied Link"
+  },
+  "copyUnproxiedPageURL": {
+    "message": "Copy Unproxied Page URL"
+  },
+  "error_connection_downloadOrTroubleshoot": {
+    "message": "Du kan <a href=\"$1\">downloade $2</a> eller <a href=\"$3\">fejlfinde forbindelsen</a> om nødvendigt."
+  },
+  "error_connection_enableSavingToOnlineLibrary": {
+    "message": "Aktivér at der kan gemmes i onlinebiblioteket"
+  },
+  "error_connection_isAppRunning": {
+    "message": "Kører $1?"
+  },
+  "error_connection_save": {
+    "message": "$1 kunne ikke kommunikere med skrivebordsprogrammet $2. Forbindelseskomponenten kan gemme nogle sider direkte i din $3-konto, men du får det bedste resultat, hvis $2 er åben, før du gemmer."
+  },
+  "extensionIsDisabled": {
+    "message": "$1 is disabled"
+  },
+  "extensionIsDisabled_extensionPage": {
+    "message": "$1 is disabled on extension pages"
+  },
+  "firstRun_acceptButton": {
+    "description": "The Accept button for the first-run dialog",
+    "message": "Got it"
+  },
+  "firstRun_text1": {
+    "message": "The $1 Connector enables you to <a href=\"$2\">save items to $1</a> from your browser in a single click."
+  },
+  "firstRun_text2": {
+    "message": "If you haven’t yet, <a href=\"$2\">download</a> the standalone $1 application for the best experience."
+  },
+  "firstRun_text3": {
+    "message": "(You can view the $1 Privacy Policy on <a href=\"$2\">the project website</a>)."
+  },
+  "firstRun_title": {
+    "message": "You’ve installed the $1 Connector!"
+  },
+  "general_cancel": {
+    "message": "Annullér"
+  },
+  "general_copyToClipboard": {
+    "message": "Kopiér til udklipsholderen"
+  },
+  "general_done": {
+    "message": "Færdig"
+  },
+  "general_more": {
+    "message": "Mere ..."
+  },
+  "general_moreInfo": {
+    "message": "More Info…"
+  },
+  "general_needHelp": {
+    "message": "Need help?"
+  },
+  "general_no": {
+    "message": "Nej"
+  },
+  "general_pleaseWait": {
+    "message": "Please wait…"
+  },
+  "general_saveTo": {
+    "message": "Gem i $1"
+  },
+  "general_tryAgain": {
+    "message": "Prøv igen"
+  },
+  "general_warning": {
+    "message": "Advarsel"
+  },
+  "general_yes": {
+    "message": "Ja"
+  },
+  "integration_error_clientUpgrade": {
+    "message": "Web-baseret henvisning kræver $1 eller senere."
+  },
+  "integration_error_connection": {
+    "message": "$1 kunne ikke kommunikere med skrivebordsprogrammet $2. $2 skal være åben for at bruge web-baseret henvisning."
+  },
+  "integration_googleDocs_documentLocked": {
+    "message": "The document citations are being edited by another $1 user. Please try again later."
+  },
+  "integration_googleDocs_documentLocked_moreInfo": {
+    "message": "$1 locks your document to prevent multiple users from editing citations at the same time. Concurrent citation editing in the document may lead to citation or document corruption. Certain unforeseeable circumstances, such as network failures, may lead to your document becoming permanently locked. If you believe this has happened, you can override the lock.<br/><br/>Would you like to override the document lock?"
+  },
+  "integration_googleDocs_documentPermissionError": {
+    "message": "The Google account you selected does not have permission to edit this document. Please try again, and be sure to choose the account with editing access."
+  },
+  "integration_googleDocs_docxAlert": {
+    "message": "$1 integration is not available when editing Microsoft Word .docx files directly in Google Docs. Choose File → Save as Google Docs to enable this functionality.<br/><br/>If you want to transfer a Word document with $1 citations to Google Docs, see <a href=\"https://www.zotero.org/support/kb/moving_documents_between_word_processors\">Moving Documents Between Word Processors</a>."
+  },
+  "integration_googleDocs_orphanedCitations_alert": {
+    "message": "The citation you are trying to edit has become unlinked from $1."
+  },
+  "integration_googleDocs_orphanedCitations_alertButton": {
+    "message": "Relink Citation"
+  },
+  "integration_googleDocs_orphanedCitations_buttonTooltip": {
+    "message": "Show unlinked $1 citations"
+  },
+  "integration_googleDocs_orphanedCitations_disclaimer": {
+    "message": "These citations have become <a target=\"_blank\" href=\"https://www.zotero.org/support/kb/google_docs_citations_unlinked\">unlinked from $1</a>. You will need to relink them before they will update or appear in your bibliography."
+  },
+  "integration_googleDocs_unlinkBeforeSaving_downloadAnyway": {
+    "message": "Download linket version alligevel"
+  },
+  "integration_googleDocs_unlinkBeforeSaving_instructions": {
+    "message": "For at oprette en version, der er egnet til deling, skal du vælge <b>Lav en kopi...</b> i filmenuen, vælge <b>Frakobl referencer</b> i Jurism-menuen i det nye dokument og derefter downloade den frakoblet version."
+  },
+  "integration_googleDocs_unlinkBeforeSaving_warning": {
+    "message": "Dette dokument indeholder aktive Jurism-referencer, der vil optræde som zotero.org-links i en downloadet kopi."
+  },
+  "integration_googleDocs_updating": {
+    "message": "$1 is updating your document."
+  },
+  "progressWindow_error_fallback": {
+    "message": "Der opstod en fejl, da der blev gemt med $1.\nPrøver at gemme med $2 i stedet for."
+  },
+  "progressWindow_error_siteAccessLimits": {
+    "message": "Site Access Limits"
+  },
+  "progressWindow_error_siteAccessLimitsError": {
+    "description": "The placeholders are for the failing translator label (e.g., Google Scholar) and the Site Access Limits link",
+    "message": "An error occurred while saving this item. $1 may limit the number of items you can save at once. See $2 for more information."
+  },
+  "progressWindow_error_translation": {
+    "message": "Der opstod en fejl, da dette element skulle gemmes.\nSe $1 for mere information."
+  },
+  "progressWindow_error_troubleshootingTranslatorIssues": {
+    "message": "Fejlfinding af oversættelsesproblemer"
+  },
+  "progressWindow_error_upgradeClient": {
+    "message": "Denne funktion understøttes ikke af din version af $1. Opgradér venligst til $2."
+  },
+  "progressWindow_error_upgradeClient_latestVersion": {
+    "message": "seneste version"
+  },
+  "progressWindow_savingTo": {
+    "message": "Gemmer i"
+  },
+  "progressWindow_tagPlaceholder": {
+    "message": "Mærker (adskilt af komma)"
+  },
+  "reloadVia": {
+    "message": "Reload via $1"
+  },
+  "reloadViaProxy": {
+    "message": "Reload via Proxy"
+  },
+  "reports_debug_output_submitted": {
+    "message": "Your debug output has been submitted.\n\nThe Debug ID is $1."
+  },
+  "reports_report_submitted": {
+    "message": "Your error report has been submitted.\n\nReport ID: $1\n\nPlease post a message to the Jurism Forums with this Report ID, a description of the problem, and any steps necessary to reproduce it.\n\nError reports are not reviewed unless referred to in the forums."
+  },
+  "reports_submission_failed": {
+    "description": "$1 will be the error message sent to the Jurism servers",
+    "message": "An error occurred submitting your report.\n\n$1\n\nPlease check your internet connection. If the problem persists, post a message to the Jurism Forums."
+  },
+  "upgradeApp": {
+    "message": "Opgradér $1"
+  }
 }

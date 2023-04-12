@@ -1,170 +1,170 @@
 {
-    "appConnector": {
-        "message": "$1 papildinys"
-    },
-    "copyUnproxiedLink": {
-        "message": "Copy Unproxied Link"
-    },
-    "copyUnproxiedPageURL": {
-        "message": "Copy Unproxied Page URL"
-    },
-    "error_connection_downloadOrTroubleshoot": {
-        "message": "Galite <a href=\"$1\">parsisi\u0173sti  $2</a> arba <a href=\"$3\">spr\u0119sti ry\u0161io problemas</a>, jei to reikia."
-    },
-    "error_connection_enableSavingToOnlineLibrary": {
-        "message": "\u012egalinti \u012fra\u0161ym\u0105 \u012f internetin\u0119 bibliotek\u0105"
-    },
-    "error_connection_isAppRunning": {
-        "message": "Ar paleista \u201e$1\u201c?"
-    },
-    "error_connection_save": {
-        "message": "\u201e$1\u201c nepaj\u0117gia pasiekti \u201e$2\u201c darbalaukio programos. Nar\u0161ykl\u0117s papildinys gali \u012fra\u0161yti kai kuriuos puslapius tiesiai \u012f j\u016bs\u0173 $3 paskyr\u0105, ta\u010diau geriausi rezultatai b\u016bt\u0173 pirmiau atv\u0117rus $2, o tik po to bandant \u012fra\u0161yti."
-    },
-    "extensionIsDisabled": {
-        "message": "$1 is disabled"
-    },
-    "extensionIsDisabled_extensionPage": {
-        "message": "$1 is disabled on extension pages"
-    },
-    "firstRun_acceptButton": {
-        "description": "The Accept button for the first-run dialog",
-        "message": "Got it"
-    },
-    "firstRun_text1": {
-        "message": "The $1 Connector enables you to <a href=\"$2\">save items to $1</a> from your browser in a single click."
-    },
-    "firstRun_text2": {
-        "message": "If you haven\u2019t yet, <a href=\"$2\">download</a> the standalone $1 application for the best experience."
-    },
-    "firstRun_text3": {
-        "message": "(You can view the $1 Privacy Policy on <a href=\"$2\">the project website</a>)."
-    },
-    "firstRun_title": {
-        "message": "You\u2019ve installed the $1 Connector!"
-    },
-    "general_cancel": {
-        "message": "Atsisakyti"
-    },
-    "general_copyToClipboard": {
-        "message": "Kopijuoti \u012f i\u0161karpin\u0119"
-    },
-    "general_done": {
-        "message": "Atlikta"
-    },
-    "general_more": {
-        "message": "kita..."
-    },
-    "general_moreInfo": {
-        "message": "More Info\u2026"
-    },
-    "general_needHelp": {
-        "message": "Need help?"
-    },
-    "general_no": {
-        "message": "Ne"
-    },
-    "general_pleaseWait": {
-        "message": "Palaukite..."
-    },
-    "general_saveTo": {
-        "message": "\u012era\u0161yti \u012f \u201e$1\u201c"
-    },
-    "general_tryAgain": {
-        "message": "Bandyti i\u0161 naujo"
-    },
-    "general_warning": {
-        "message": "\u012esp\u0117jimas"
-    },
-    "general_yes": {
-        "message": "Taip"
-    },
-    "integration_error_clientUpgrade": {
-        "message": "\u017diniatinklio pagrindu veikian\u010diam citavimui reikia $1 arba naujesn\u0117s versijos."
-    },
-    "integration_error_connection": {
-        "message": "\u201e$1\u201c nepaj\u0117gia pasiekti \u201e$2\u201c darbalaukio programos. Norint naudotis \u017einiatinklio pagrindu veikian\u010diu citavimu, \u201e$2\u201c vis tiek turi b\u016bti atverta."
-    },
-    "integration_googleDocs_documentLocked": {
-        "message": "The document citations are being edited by another $1 user. Please try again later."
-    },
-    "integration_googleDocs_documentLocked_moreInfo": {
-        "message": "$1 locks your document to prevent multiple users from editing citations at the same time. Concurrent citation editing in the document may lead to citation or document corruption. Certain unforeseeable circumstances, such as network failures, may lead to your document becoming permanently locked. If you believe this has happened, you can override the lock.<br/><br/>Would you like to override the document lock?"
-    },
-    "integration_googleDocs_documentPermissionError": {
-        "message": "The Google account you selected does not have permission to edit this document. Please try again, and be sure to choose the account with editing access."
-    },
-    "integration_googleDocs_docxAlert": {
-        "message": "$1 integration is not available when editing Microsoft Word .docx files directly in Google Docs. Choose File \u2192 Save as Google Docs to enable this functionality.<br/><br/>If you want to transfer a Word document with $1 citations to Google Docs, see <a href=\"https://www.zotero.org/support/kb/moving_documents_between_word_processors\">Moving Documents Between Word Processors</a>."
-    },
-    "integration_googleDocs_orphanedCitations_alert": {
-        "message": "The citation you are trying to edit has become unlinked from $1."
-    },
-    "integration_googleDocs_orphanedCitations_alertButton": {
-        "message": "Relink Citation"
-    },
-    "integration_googleDocs_orphanedCitations_buttonTooltip": {
-        "message": "Show unlinked $1 citations"
-    },
-    "integration_googleDocs_orphanedCitations_disclaimer": {
-        "message": "These citations have become <a target=\"_blank\" href=\"https://www.zotero.org/support/kb/google_docs_citations_unlinked\">unlinked from $1</a>. You will need to relink them before they will update or appear in your bibliography."
-    },
-    "integration_googleDocs_unlinkBeforeSaving_downloadAnyway": {
-        "message": "Vis tiek parsisi\u0173sti susiet\u0105 versij\u0105"
-    },
-    "integration_googleDocs_unlinkBeforeSaving_instructions": {
-        "message": "To generate a version suitable for sharing, select <b>Make a copy\u2026</b> from the File menu, select <b>Unlink Citations</b> from the Jurism menu in the new document, and then download the unlinked version. Keep this original linked document in case you need to make further changes."
-    },
-    "integration_googleDocs_unlinkBeforeSaving_warning": {
-        "message": "\u0160iame dokumente yra aktyvi\u0173 Jurism citavim\u0173, kurie parsisi\u0173stoje kopijoje atrodys tarsi nuorodos \u012f zotero.org."
-    },
-    "integration_googleDocs_updating": {
-        "message": "$1 atnaujina j\u016bs\u0173 dokument\u0105."
-    },
-    "progressWindow_error_fallback": {
-        "message": "Klaida \u012fra\u0161ant su \u201e$1\u201c. Bandoma \u012fra\u0161yti su \u201e$2\u201c."
-    },
-    "progressWindow_error_siteAccessLimits": {
-        "message": "Site Access Limits"
-    },
-    "progressWindow_error_siteAccessLimitsError": {
-        "description": "The placeholders are for the failing translator label (e.g., Google Scholar) and the Site Access Limits link",
-        "message": "An error occurred while saving this item. $1 may limit the number of items you can save at once. See $2 for more information."
-    },
-    "progressWindow_error_translation": {
-        "message": "Klaida \u012fra\u0161ant. Daugiau informacijos rasite $1."
-    },
-    "progressWindow_error_troubleshootingTranslatorIssues": {
-        "message": "Transliatoriaus problem\u0173 sprendimas"
-    },
-    "progressWindow_error_upgradeClient": {
-        "message": "\u0160i funkcija nepalaikoma j\u016bs\u0173 naudojamoje \u201e$1\u201c versijoje. Atnaujinkite iki $2."
-    },
-    "progressWindow_error_upgradeClient_latestVersion": {
-        "message": "naujausios versijos"
-    },
-    "progressWindow_savingTo": {
-        "message": "\u012era\u0161oma \u012f"
-    },
-    "progressWindow_tagPlaceholder": {
-        "message": "Gair\u0117s (atskirtos kableliais)"
-    },
-    "reloadVia": {
-        "message": "Reload via $1"
-    },
-    "reloadViaProxy": {
-        "message": "Reload via Proxy"
-    },
-    "reports_debug_output_submitted": {
-        "message": "Your debug output has been submitted.\n\nThe Debug ID is $1."
-    },
-    "reports_report_submitted": {
-        "message": "Your error report has been submitted.\n\nReport ID: $1\n\nPlease post a message to the Jurism Forums with this Report ID, a description of the problem, and any steps necessary to reproduce it.\n\nError reports are not reviewed unless referred to in the forums."
-    },
-    "reports_submission_failed": {
-        "description": "$1 will be the error message sent to the Jurism servers",
-        "message": "An error occurred submitting your report.\n\n$1\n\nPlease check your internet connection. If the problem persists, post a message to the Jurism Forums."
-    },
-    "upgradeApp": {
-        "message": "Atnaujinti $1"
-    }
+  "appConnector": {
+    "message": "$1 papildinys"
+  },
+  "copyUnproxiedLink": {
+    "message": "Copy Unproxied Link"
+  },
+  "copyUnproxiedPageURL": {
+    "message": "Copy Unproxied Page URL"
+  },
+  "error_connection_downloadOrTroubleshoot": {
+    "message": "Galite <a href=\"$1\">parsisiųsti  $2</a> arba <a href=\"$3\">spręsti ryšio problemas</a>, jei to reikia."
+  },
+  "error_connection_enableSavingToOnlineLibrary": {
+    "message": "Įgalinti įrašymą į internetinę biblioteką"
+  },
+  "error_connection_isAppRunning": {
+    "message": "Ar paleista „$1“?"
+  },
+  "error_connection_save": {
+    "message": "„$1“ nepajėgia pasiekti „$2“ darbalaukio programos. Naršyklės papildinys gali įrašyti kai kuriuos puslapius tiesiai į jūsų $3 paskyrą, tačiau geriausi rezultatai būtų pirmiau atvėrus $2, o tik po to bandant įrašyti."
+  },
+  "extensionIsDisabled": {
+    "message": "$1 is disabled"
+  },
+  "extensionIsDisabled_extensionPage": {
+    "message": "$1 is disabled on extension pages"
+  },
+  "firstRun_acceptButton": {
+    "description": "The Accept button for the first-run dialog",
+    "message": "Got it"
+  },
+  "firstRun_text1": {
+    "message": "The $1 Connector enables you to <a href=\"$2\">save items to $1</a> from your browser in a single click."
+  },
+  "firstRun_text2": {
+    "message": "If you haven’t yet, <a href=\"$2\">download</a> the standalone $1 application for the best experience."
+  },
+  "firstRun_text3": {
+    "message": "(You can view the $1 Privacy Policy on <a href=\"$2\">the project website</a>)."
+  },
+  "firstRun_title": {
+    "message": "You’ve installed the $1 Connector!"
+  },
+  "general_cancel": {
+    "message": "Atsisakyti"
+  },
+  "general_copyToClipboard": {
+    "message": "Kopijuoti į iškarpinę"
+  },
+  "general_done": {
+    "message": "Atlikta"
+  },
+  "general_more": {
+    "message": "kita..."
+  },
+  "general_moreInfo": {
+    "message": "More Info…"
+  },
+  "general_needHelp": {
+    "message": "Need help?"
+  },
+  "general_no": {
+    "message": "Ne"
+  },
+  "general_pleaseWait": {
+    "message": "Palaukite..."
+  },
+  "general_saveTo": {
+    "message": "Įrašyti į „$1“"
+  },
+  "general_tryAgain": {
+    "message": "Bandyti iš naujo"
+  },
+  "general_warning": {
+    "message": "Įspėjimas"
+  },
+  "general_yes": {
+    "message": "Taip"
+  },
+  "integration_error_clientUpgrade": {
+    "message": "Žiniatinklio pagrindu veikiančiam citavimui reikia $1 arba naujesnės versijos."
+  },
+  "integration_error_connection": {
+    "message": "„$1“ nepajėgia pasiekti „$2“ darbalaukio programos. Norint naudotis žiniatinklio pagrindu veikiančiu citavimu, „$2“ vis tiek turi būti atverta."
+  },
+  "integration_googleDocs_documentLocked": {
+    "message": "The document citations are being edited by another $1 user. Please try again later."
+  },
+  "integration_googleDocs_documentLocked_moreInfo": {
+    "message": "$1 locks your document to prevent multiple users from editing citations at the same time. Concurrent citation editing in the document may lead to citation or document corruption. Certain unforeseeable circumstances, such as network failures, may lead to your document becoming permanently locked. If you believe this has happened, you can override the lock.<br/><br/>Would you like to override the document lock?"
+  },
+  "integration_googleDocs_documentPermissionError": {
+    "message": "The Google account you selected does not have permission to edit this document. Please try again, and be sure to choose the account with editing access."
+  },
+  "integration_googleDocs_docxAlert": {
+    "message": "$1 integration is not available when editing Microsoft Word .docx files directly in Google Docs. Choose File → Save as Google Docs to enable this functionality.<br/><br/>If you want to transfer a Word document with $1 citations to Google Docs, see <a href=\"https://www.zotero.org/support/kb/moving_documents_between_word_processors\">Moving Documents Between Word Processors</a>."
+  },
+  "integration_googleDocs_orphanedCitations_alert": {
+    "message": "The citation you are trying to edit has become unlinked from $1."
+  },
+  "integration_googleDocs_orphanedCitations_alertButton": {
+    "message": "Relink Citation"
+  },
+  "integration_googleDocs_orphanedCitations_buttonTooltip": {
+    "message": "Show unlinked $1 citations"
+  },
+  "integration_googleDocs_orphanedCitations_disclaimer": {
+    "message": "These citations have become <a target=\"_blank\" href=\"https://www.zotero.org/support/kb/google_docs_citations_unlinked\">unlinked from $1</a>. You will need to relink them before they will update or appear in your bibliography."
+  },
+  "integration_googleDocs_unlinkBeforeSaving_downloadAnyway": {
+    "message": "Vis tiek parsisiųsti susietą versiją"
+  },
+  "integration_googleDocs_unlinkBeforeSaving_instructions": {
+    "message": "To generate a version suitable for sharing, select <b>Make a copy…</b> from the File menu, select <b>Unlink Citations</b> from the Jurism menu in the new document, and then download the unlinked version. Keep this original linked document in case you need to make further changes."
+  },
+  "integration_googleDocs_unlinkBeforeSaving_warning": {
+    "message": "Šiame dokumente yra aktyvių Jurism citavimų, kurie parsisiųstoje kopijoje atrodys tarsi nuorodos į zotero.org."
+  },
+  "integration_googleDocs_updating": {
+    "message": "$1 atnaujina jūsų dokumentą."
+  },
+  "progressWindow_error_fallback": {
+    "message": "Klaida įrašant su „$1“. Bandoma įrašyti su „$2“."
+  },
+  "progressWindow_error_siteAccessLimits": {
+    "message": "Site Access Limits"
+  },
+  "progressWindow_error_siteAccessLimitsError": {
+    "description": "The placeholders are for the failing translator label (e.g., Google Scholar) and the Site Access Limits link",
+    "message": "An error occurred while saving this item. $1 may limit the number of items you can save at once. See $2 for more information."
+  },
+  "progressWindow_error_translation": {
+    "message": "Klaida įrašant. Daugiau informacijos rasite $1."
+  },
+  "progressWindow_error_troubleshootingTranslatorIssues": {
+    "message": "Transliatoriaus problemų sprendimas"
+  },
+  "progressWindow_error_upgradeClient": {
+    "message": "Ši funkcija nepalaikoma jūsų naudojamoje „$1“ versijoje. Atnaujinkite iki $2."
+  },
+  "progressWindow_error_upgradeClient_latestVersion": {
+    "message": "naujausios versijos"
+  },
+  "progressWindow_savingTo": {
+    "message": "Įrašoma į"
+  },
+  "progressWindow_tagPlaceholder": {
+    "message": "Gairės (atskirtos kableliais)"
+  },
+  "reloadVia": {
+    "message": "Reload via $1"
+  },
+  "reloadViaProxy": {
+    "message": "Reload via Proxy"
+  },
+  "reports_debug_output_submitted": {
+    "message": "Your debug output has been submitted.\n\nThe Debug ID is $1."
+  },
+  "reports_report_submitted": {
+    "message": "Your error report has been submitted.\n\nReport ID: $1\n\nPlease post a message to the Jurism Forums with this Report ID, a description of the problem, and any steps necessary to reproduce it.\n\nError reports are not reviewed unless referred to in the forums."
+  },
+  "reports_submission_failed": {
+    "description": "$1 will be the error message sent to the Jurism servers",
+    "message": "An error occurred submitting your report.\n\n$1\n\nPlease check your internet connection. If the problem persists, post a message to the Jurism Forums."
+  },
+  "upgradeApp": {
+    "message": "Atnaujinti $1"
+  }
 }

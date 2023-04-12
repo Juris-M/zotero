@@ -1,167 +1,167 @@
 {
-    "appConnector": {
-        "message": "$1Connector"
-    },
-    "copyUnproxiedLink": {
-        "message": "Copy Unproxied Link"
-    },
-    "copyUnproxiedPageURL": {
-        "message": "Copy Unproxied Page URL"
-    },
-    "error_connection_downloadOrTroubleshoot": {
-        "message": "Sz\u00fcks\u00e9g eset\u00e9n <a href=\"$1\">let\u00f6ltheti $2</a> vagy <a href=\"$3\">hibaelh\u00e1r\u00edthatja a kapcsolatot</a>."
-    },
-    "error_connection_enableSavingToOnlineLibrary": {
-        "message": "Ment\u00e9s enged\u00e9lyez\u00e9se online k\u00f6nyvt\u00e1rba"
-    },
-    "error_connection_isAppRunning": {
-        "message": "A(z)$1fut?"
-    },
-    "error_connection_save": {
-        "message": "A $1 nem tudott kommunik\u00e1lni a $2 asztali alkalmaz\u00e1ssal. A Connector k\u00e9pes egyes oldalakat k\u00f6zvetlen\u00fcl a $3 fi\u00f3kj\u00e1ba menteni, de a legjobb eredm\u00e9ny \u00e9rdek\u00e9ben gy\u0151z\u0151dj\u00f6n meg r\u00f3la, hogy a $2 nyitva van, miel\u0151tt megpr\u00f3b\u00e1lja menteni."
-    },
-    "extensionIsDisabled": {
-        "message": "$1 is disabled"
-    },
-    "extensionIsDisabled_extensionPage": {
-        "message": "$1 is disabled on extension pages"
-    },
-    "firstRun_acceptButton": {
-        "message": "\u00c9rtem"
-    },
-    "firstRun_text1": {
-        "message": "A $1 Connector lehet\u0151v\u00e9 teszi, hogy egyetlen kattint\u00e1ssal <a href=\"$2\">elemeket mentsen a $1</a> b\u00f6ng\u00e9sz\u0151b\u0151l."
-    },
-    "firstRun_text2": {
-        "message": "Ha m\u00e9g nem tette meg, <a href=\"$2\">t\u00f6ltse</a> le a standalone $1 alkalmaz\u00e1st a legjobb \u00e9lm\u00e9ny\u00e9rt."
-    },
-    "firstRun_text3": {
-        "message": "(You can view the $1 Privacy Policy on <a href=\"$2\">the project website</a>)."
-    },
-    "firstRun_title": {
-        "message": "Telep\u00edtette a$1Connector-t!"
-    },
-    "general_cancel": {
-        "message": "M\u00e9gse"
-    },
-    "general_copyToClipboard": {
-        "message": "M\u00e1sol\u00e1s a v\u00e1g\u00f3lapra"
-    },
-    "general_done": {
-        "message": "Rendben"
-    },
-    "general_more": {
-        "message": "Egy\u00e9b\u2026"
-    },
-    "general_moreInfo": {
-        "message": "Tov\u00e1bbi inform\u00e1ci\u00f3\u2026"
-    },
-    "general_needHelp": {
-        "message": "Sz\u00fcks\u00e9ge van seg\u00edts\u00e9gre?"
-    },
-    "general_no": {
-        "message": "Nem"
-    },
-    "general_pleaseWait": {
-        "message": "K\u00e9rem v\u00e1rjon\u2026"
-    },
-    "general_saveTo": {
-        "message": "Ment\u00e9s $1-ba(n)"
-    },
-    "general_tryAgain": {
-        "message": "Pr\u00f3b\u00e1lja \u00fajra"
-    },
-    "general_warning": {
-        "message": "Figyelmeztet\u00e9s"
-    },
-    "general_yes": {
-        "message": "Igen"
-    },
-    "integration_error_clientUpgrade": {
-        "message": "A webalap\u00fa hivatkoz\u00e1shoz sz\u00fcks\u00e9g van $1 vagy k\u00e9s\u0151bbire."
-    },
-    "integration_error_connection": {
-        "message": "A $1 nem tudott kommunik\u00e1lni a $2 asztali alkalmaz\u00e1ssal. $2-t meg kell nyitni a webalap\u00fa id\u00e9z\u00e9s haszn\u00e1lat\u00e1hoz."
-    },
-    "integration_googleDocs_documentLocked": {
-        "message": "A dokumentum hivatkoz\u00e1sait egy m\u00e1sik $1 felhaszn\u00e1l\u00f3 szerkeszti. Pr\u00f3b\u00e1lja meg k\u00e9s\u0151bb."
-    },
-    "integration_googleDocs_documentLocked_moreInfo": {
-        "message": "$1 locks your document to prevent multiple users from editing citations at the same time. Concurrent citation editing in the document may lead to citation or document corruption. Certain unforeseeable circumstances, such as network failures, may lead to your document becoming permanently locked. If you believe this has happened, you can override the lock.<br/><br/>Would you like to override the document lock?"
-    },
-    "integration_googleDocs_documentPermissionError": {
-        "message": "A kiv\u00e1lasztott Google-fi\u00f3knak nincs jogosults\u00e1ga a dokumentum szerkeszt\u00e9s\u00e9re. K\u00e9rj\u00fck, pr\u00f3b\u00e1lja meg \u00fajra, \u00e9s gy\u0151z\u0151dj\u00f6n meg r\u00f3la, hogy a szerkeszt\u00e9si jogosults\u00e1ggal rendelkez\u0151 fi\u00f3kot v\u00e1lasztotta."
-    },
-    "integration_googleDocs_docxAlert": {
-        "message": "$1 integration is not available when editing Microsoft Word .docx files directly in Google Docs. Choose File \u2192 Save as Google Docs to enable this functionality.<br/><br/>If you want to transfer a Word document with $1 citations to Google Docs, see <a href=\"https://www.zotero.org/support/kb/moving_documents_between_word_processors\">Moving Documents Between Word Processors</a>."
-    },
-    "integration_googleDocs_orphanedCitations_alert": {
-        "message": "A szerkeszteni k\u00edv\u00e1nt id\u00e9zet nem kapcsol\u00f3dik a(z) $1."
-    },
-    "integration_googleDocs_orphanedCitations_alertButton": {
-        "message": "Hivatkoz\u00e1s \u00fajralinkel\u00e9se"
-    },
-    "integration_googleDocs_orphanedCitations_buttonTooltip": {
-        "message": "A$1jelen\u00edtse meg a nem linkelt hivatkoz\u00e1sokat"
-    },
-    "integration_googleDocs_orphanedCitations_disclaimer": {
-        "message": "These citations have become <a target=\"_blank\" href=\"https://www.zotero.org/support/kb/google_docs_citations_unlinked\">unlinked from $1</a>. You will need to relink them before they will update or appear in your bibliography."
-    },
-    "integration_googleDocs_unlinkBeforeSaving_downloadAnyway": {
-        "message": "Mindenk\u00e9ppen t\u00f6ltse le a hivatkozott verzi\u00f3t"
-    },
-    "integration_googleDocs_unlinkBeforeSaving_instructions": {
-        "message": "To generate a version suitable for sharing, select <b>Make a copy\u2026</b> from the File menu, select <b>Unlink Citations</b> from the Jurism menu in the new document, and then download the unlinked version. Keep this original linked document in case you need to make further changes."
-    },
-    "integration_googleDocs_unlinkBeforeSaving_warning": {
-        "message": "Ez a dokumentum akt\u00edv Jurism-hivatkoz\u00e1sokat tartalmaz, amelyek zotero.org linkk\u00e9nt jelennek meg egy let\u00f6lt\u00f6tt p\u00e9ld\u00e1nyban."
-    },
-    "integration_googleDocs_updating": {
-        "message": "$1 friss\u00edti az \u00f6n dokumentum\u00e1t"
-    },
-    "progressWindow_error_fallback": {
-        "message": "Hiba t\u00f6rt\u00e9nt a $1 ment\u00e9s\u00e9vel. K\u00eds\u00e9relje meg $2 helyette. "
-    },
-    "progressWindow_error_siteAccessLimits": {
-        "message": "Site Access Limits"
-    },
-    "progressWindow_error_siteAccessLimitsError": {
-        "message": "Hiba t\u00f6rt\u00e9nt az elem ment\u00e9se k\u00f6zben. $1 korl\u00e1tozhatja az egyszerre menthet\u0151 elemek sz\u00e1m\u00e1t. Tov\u00e1bbi inform\u00e1ci\u00f3k\u00e9rt l\u00e1sd $2."
-    },
-    "progressWindow_error_translation": {
-        "message": "Hiba t\u00f6rt\u00e9nt az elem ment\u00e9se k\u00f6zben. L\u00e1sd a $1 tov\u00e1bbi inform\u00e1ci\u00f3\u00e9rt"
-    },
-    "progressWindow_error_troubleshootingTranslatorIssues": {
-        "message": "Ismert konverter hib\u00e1k"
-    },
-    "progressWindow_error_upgradeClient": {
-        "message": "Ez a funkci\u00f3t nem t\u00e1mogatja az \u00f6n $1 verzi\u00f3ja. K\u00e9rem friss\u00edtse a $2 programot."
-    },
-    "progressWindow_error_upgradeClient_latestVersion": {
-        "message": "legfrissebb verzi\u00f3"
-    },
-    "progressWindow_savingTo": {
-        "message": "Ment\u00e9s"
-    },
-    "progressWindow_tagPlaceholder": {
-        "message": "C\u00edmk\u00e9k (vessz\u0151vel elv\u00e1lasztva)"
-    },
-    "reloadVia": {
-        "message": "Reload via $1"
-    },
-    "reloadViaProxy": {
-        "message": "Reload via Proxy"
-    },
-    "reports_debug_output_submitted": {
-        "message": "A hibakeres\u00e9s eredm\u00e9nye elk\u00fcldve.\n\nA hibaazonos\u00edt\u00f3$1."
-    },
-    "reports_report_submitted": {
-        "message": "Your error report has been submitted.\n\nReport ID: $1\n\nPlease post a message to the Jurism Forums with this Report ID, a description of the problem, and any steps necessary to reproduce it.\n\nError reports are not reviewed unless referred to in the forums."
-    },
-    "reports_submission_failed": {
-        "message": "Hiba t\u00f6rt\u00e9nt a jelent\u00e9s elk\u00fcld\u00e9se k\u00f6zben.\n\n$1\n\nK\u00e9rj\u00fck, ellen\u0151rizze az internetkapcsolat\u00e1t. Ha a probl\u00e9ma tov\u00e1bbra is fenn\u00e1ll, \u00edrjon \u00fczenetet a Jurism F\u00f3rum\u00e1ra."
-    },
-    "upgradeApp": {
-        "message": "$1friss\u00edt\u00e9se"
-    }
+  "appConnector": {
+    "message": "$1Connector"
+  },
+  "copyUnproxiedLink": {
+    "message": "Copy Unproxied Link"
+  },
+  "copyUnproxiedPageURL": {
+    "message": "Copy Unproxied Page URL"
+  },
+  "error_connection_downloadOrTroubleshoot": {
+    "message": "Szükség esetén <a href=\"$1\">letöltheti $2</a> vagy <a href=\"$3\">hibaelháríthatja a kapcsolatot</a>."
+  },
+  "error_connection_enableSavingToOnlineLibrary": {
+    "message": "Mentés engedélyezése online könyvtárba"
+  },
+  "error_connection_isAppRunning": {
+    "message": "A(z)$1fut?"
+  },
+  "error_connection_save": {
+    "message": "A $1 nem tudott kommunikálni a $2 asztali alkalmazással. A Connector képes egyes oldalakat közvetlenül a $3 fiókjába menteni, de a legjobb eredmény érdekében győződjön meg róla, hogy a $2 nyitva van, mielőtt megpróbálja menteni."
+  },
+  "extensionIsDisabled": {
+    "message": "$1 is disabled"
+  },
+  "extensionIsDisabled_extensionPage": {
+    "message": "$1 is disabled on extension pages"
+  },
+  "firstRun_acceptButton": {
+    "message": "Értem"
+  },
+  "firstRun_text1": {
+    "message": "A $1 Connector lehetővé teszi, hogy egyetlen kattintással <a href=\"$2\">elemeket mentsen a $1</a> böngészőből."
+  },
+  "firstRun_text2": {
+    "message": "Ha még nem tette meg, <a href=\"$2\">töltse</a> le a standalone $1 alkalmazást a legjobb élményért."
+  },
+  "firstRun_text3": {
+    "message": "(You can view the $1 Privacy Policy on <a href=\"$2\">the project website</a>)."
+  },
+  "firstRun_title": {
+    "message": "Telepítette a$1Connector-t!"
+  },
+  "general_cancel": {
+    "message": "Mégse"
+  },
+  "general_copyToClipboard": {
+    "message": "Másolás a vágólapra"
+  },
+  "general_done": {
+    "message": "Rendben"
+  },
+  "general_more": {
+    "message": "Egyéb…"
+  },
+  "general_moreInfo": {
+    "message": "További információ…"
+  },
+  "general_needHelp": {
+    "message": "Szüksége van segítségre?"
+  },
+  "general_no": {
+    "message": "Nem"
+  },
+  "general_pleaseWait": {
+    "message": "Kérem várjon…"
+  },
+  "general_saveTo": {
+    "message": "Mentés $1-ba(n)"
+  },
+  "general_tryAgain": {
+    "message": "Próbálja újra"
+  },
+  "general_warning": {
+    "message": "Figyelmeztetés"
+  },
+  "general_yes": {
+    "message": "Igen"
+  },
+  "integration_error_clientUpgrade": {
+    "message": "A webalapú hivatkozáshoz szükség van $1 vagy későbbire."
+  },
+  "integration_error_connection": {
+    "message": "A $1 nem tudott kommunikálni a $2 asztali alkalmazással. $2-t meg kell nyitni a webalapú idézés használatához."
+  },
+  "integration_googleDocs_documentLocked": {
+    "message": "A dokumentum hivatkozásait egy másik $1 felhasználó szerkeszti. Próbálja meg később."
+  },
+  "integration_googleDocs_documentLocked_moreInfo": {
+    "message": "$1 locks your document to prevent multiple users from editing citations at the same time. Concurrent citation editing in the document may lead to citation or document corruption. Certain unforeseeable circumstances, such as network failures, may lead to your document becoming permanently locked. If you believe this has happened, you can override the lock.<br/><br/>Would you like to override the document lock?"
+  },
+  "integration_googleDocs_documentPermissionError": {
+    "message": "A kiválasztott Google-fióknak nincs jogosultsága a dokumentum szerkesztésére. Kérjük, próbálja meg újra, és győződjön meg róla, hogy a szerkesztési jogosultsággal rendelkező fiókot választotta."
+  },
+  "integration_googleDocs_docxAlert": {
+    "message": "$1 integration is not available when editing Microsoft Word .docx files directly in Google Docs. Choose File → Save as Google Docs to enable this functionality.<br/><br/>If you want to transfer a Word document with $1 citations to Google Docs, see <a href=\"https://www.zotero.org/support/kb/moving_documents_between_word_processors\">Moving Documents Between Word Processors</a>."
+  },
+  "integration_googleDocs_orphanedCitations_alert": {
+    "message": "A szerkeszteni kívánt idézet nem kapcsolódik a(z) $1."
+  },
+  "integration_googleDocs_orphanedCitations_alertButton": {
+    "message": "Hivatkozás újralinkelése"
+  },
+  "integration_googleDocs_orphanedCitations_buttonTooltip": {
+    "message": "A$1jelenítse meg a nem linkelt hivatkozásokat"
+  },
+  "integration_googleDocs_orphanedCitations_disclaimer": {
+    "message": "These citations have become <a target=\"_blank\" href=\"https://www.zotero.org/support/kb/google_docs_citations_unlinked\">unlinked from $1</a>. You will need to relink them before they will update or appear in your bibliography."
+  },
+  "integration_googleDocs_unlinkBeforeSaving_downloadAnyway": {
+    "message": "Mindenképpen töltse le a hivatkozott verziót"
+  },
+  "integration_googleDocs_unlinkBeforeSaving_instructions": {
+    "message": "To generate a version suitable for sharing, select <b>Make a copy…</b> from the File menu, select <b>Unlink Citations</b> from the Jurism menu in the new document, and then download the unlinked version. Keep this original linked document in case you need to make further changes."
+  },
+  "integration_googleDocs_unlinkBeforeSaving_warning": {
+    "message": "Ez a dokumentum aktív Jurism-hivatkozásokat tartalmaz, amelyek zotero.org linkként jelennek meg egy letöltött példányban."
+  },
+  "integration_googleDocs_updating": {
+    "message": "$1 frissíti az ön dokumentumát"
+  },
+  "progressWindow_error_fallback": {
+    "message": "Hiba történt a $1 mentésével. Kísérelje meg $2 helyette. "
+  },
+  "progressWindow_error_siteAccessLimits": {
+    "message": "Site Access Limits"
+  },
+  "progressWindow_error_siteAccessLimitsError": {
+    "message": "Hiba történt az elem mentése közben. $1 korlátozhatja az egyszerre menthető elemek számát. További információkért lásd $2."
+  },
+  "progressWindow_error_translation": {
+    "message": "Hiba történt az elem mentése közben. Lásd a $1 további információért"
+  },
+  "progressWindow_error_troubleshootingTranslatorIssues": {
+    "message": "Ismert konverter hibák"
+  },
+  "progressWindow_error_upgradeClient": {
+    "message": "Ez a funkciót nem támogatja az ön $1 verziója. Kérem frissítse a $2 programot."
+  },
+  "progressWindow_error_upgradeClient_latestVersion": {
+    "message": "legfrissebb verzió"
+  },
+  "progressWindow_savingTo": {
+    "message": "Mentés"
+  },
+  "progressWindow_tagPlaceholder": {
+    "message": "Címkék (vesszővel elválasztva)"
+  },
+  "reloadVia": {
+    "message": "Reload via $1"
+  },
+  "reloadViaProxy": {
+    "message": "Reload via Proxy"
+  },
+  "reports_debug_output_submitted": {
+    "message": "A hibakeresés eredménye elküldve.\n\nA hibaazonosító$1."
+  },
+  "reports_report_submitted": {
+    "message": "Your error report has been submitted.\n\nReport ID: $1\n\nPlease post a message to the Jurism Forums with this Report ID, a description of the problem, and any steps necessary to reproduce it.\n\nError reports are not reviewed unless referred to in the forums."
+  },
+  "reports_submission_failed": {
+    "message": "Hiba történt a jelentés elküldése közben.\n\n$1\n\nKérjük, ellenőrizze az internetkapcsolatát. Ha a probléma továbbra is fennáll, írjon üzenetet a Jurism Fórumára."
+  },
+  "upgradeApp": {
+    "message": "$1frissítése"
+  }
 }

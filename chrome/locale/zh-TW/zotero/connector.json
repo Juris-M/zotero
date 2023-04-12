@@ -1,167 +1,167 @@
 {
-    "appConnector": {
-        "message": "$1 Connector"
-    },
-    "copyUnproxiedLink": {
-        "message": "\u8907\u88fd\u672a\u7d93\u4ee3\u7406\u7684\u9023\u7d50"
-    },
-    "copyUnproxiedPageURL": {
-        "message": "\u8907\u88fd\u672a\u7d93\u4ee3\u7406\u7684\u9801\u9762URL"
-    },
-    "error_connection_downloadOrTroubleshoot": {
-        "message": "\u5982\u6709\u9700\u8981\uff0c\u60a8\u53ef <a href=\"$1\">\u4e0b\u8f09 $2</a> \u6216 <a href=\"$3\">\u6aa2\u67e5\u9023\u7d50\u4e0a\u7684\u554f\u984c</a>\u3002"
-    },
-    "error_connection_enableSavingToOnlineLibrary": {
-        "message": "\u555f\u7528\u5132\u5b58\u81f3\u7dda\u4e0a\u6587\u737b\u5eab"
-    },
-    "error_connection_isAppRunning": {
-        "message": "$1 \u6b63\u5728\u57f7\u884c\uff1f"
-    },
-    "error_connection_save": {
-        "message": "$1 \u7121\u6cd5\u8207 $2 \u684c\u9762\u61c9\u7528\u7a0b\u5f0f\u6e9d\u901a\u3002Connector \u80fd\u76f4\u63a5\u5132\u5b58\u67d0\u4e9b\u9801\u9762\u5230$3 \u5e33\u6236\uff0c\u4f46\u82e5\u8981\u5f97\u5230\u6700\u4f73\u7d50\u679c\uff0c\u5728\u5617\u8a66\u5132\u5b58\u524d\uff0c\u5f97\u5148\u78ba\u8a8d $2 \u5df2\u958b\u555f\u3002"
-    },
-    "extensionIsDisabled": {
-        "message": "$1 \u8655\u65bc\u505c\u7528\u72c0\u614b"
-    },
-    "extensionIsDisabled_extensionPage": {
-        "message": "$1 \u5728\u64f4\u5145\u5957\u4ef6\u9801\u9762\u4e2d\u8655\u65bc\u505c\u7528\u72c0\u614b"
-    },
-    "firstRun_acceptButton": {
-        "message": "\u660e\u767d\u4e86"
-    },
-    "firstRun_text1": {
-        "message": "$1Connector\u80fd\u5920\u5728\u60a8\u7684\u700f\u89bd\u5668\u4e2d\u5229\u7528\u55ae\u6b21\u9ede\u64ca<a href=\"$2\">\u5132\u5b58\u9805\u76ee\u5230$1</a>\u3002"
-    },
-    "firstRun_text2": {
-        "message": "\u5982\u679c\u60a8\u5c1a\u672a\u4e0b\u8f09\uff0c\u8acb<a href=\"$2\">\u4e0b\u8f09</a>\u7368\u7acb\u7684$1\u61c9\u7528\u7a0b\u5f0f\u4f86\u7372\u5f97\u6700\u597d\u7684\u9ad4\u9a57\u3002"
-    },
-    "firstRun_text3": {
-        "message": "(You can view the $1 Privacy Policy on <a href=\"$2\">the project website</a>)."
-    },
-    "firstRun_title": {
-        "message": "\u60a8\u5df2\u7d93\u5b89\u88dd$1Connector\u4e86\uff01"
-    },
-    "general_cancel": {
-        "message": "\u53d6\u6d88"
-    },
-    "general_copyToClipboard": {
-        "message": "\u8907\u88fd\u5230\u526a\u8cbc\u7c3f"
-    },
-    "general_done": {
-        "message": "\u5b8c\u6210"
-    },
-    "general_more": {
-        "message": "\u66f4\u591a\u2026\u2026"
-    },
-    "general_moreInfo": {
-        "message": "\u66f4\u591a\u8cc7\u8a0a\u2026\u2026"
-    },
-    "general_needHelp": {
-        "message": "\u9700\u8981\u5354\u52a9\uff1f"
-    },
-    "general_no": {
-        "message": "\u4e0d\u7528"
-    },
-    "general_pleaseWait": {
-        "message": "\u8acb\u7a0d\u7b49\u2026\u2026"
-    },
-    "general_saveTo": {
-        "message": "\u5132\u5b58\u81f3 $1"
-    },
-    "general_tryAgain": {
-        "message": "\u518d\u8a66\u4e00\u6b21"
-    },
-    "general_warning": {
-        "message": "\u8b66\u544a"
-    },
-    "general_yes": {
-        "message": "\u8981"
-    },
-    "integration_error_clientUpgrade": {
-        "message": "\u5f15\u7528\u7db2\u7ad9\u8cc7\u6599\u5eab\u7684\u6587\u737b\uff0c\u9700\u8981 $1 \u6216\u66f4\u65b0\u7684\u7248\u672c\u3002"
-    },
-    "integration_error_connection": {
-        "message": "$1 \u7121\u6cd5\u8207 $2 \u684c\u9762\u61c9\u7528\u7a0b\u5f0f\u6e9d\u901a\u3002$2 \u4e00\u5b9a\u5f97\u958b\u555f\uff0c\u624d\u80fd\u5f15\u7528\u7db2\u7ad9\u8cc7\u6599\u5eab\u7684\u6587\u737b\u3002"
-    },
-    "integration_googleDocs_documentLocked": {
-        "message": "\u6b64\u6587\u4ef6\u7684\u5f15\u6587\u6b63\u88ab\u53e6\u4e00\u500b$1\u4f7f\u7528\u8005\u7de8\u8f2f\u3002\u8acb\u7a0d\u5f8c\u518d\u8a66\u3002"
-    },
-    "integration_googleDocs_documentLocked_moreInfo": {
-        "message": "$1\u9396\u5b9a\u4e86\u60a8\u7684\u6587\u4ef6\u4f86\u907f\u514d\u591a\u4f4d\u4f7f\u7528\u8005\u540c\u6642\u7de8\u8f2f\u5f15\u6587\u3002\u76ee\u524d\u6587\u4ef6\u4e2d\u7684\u5f15\u6587\u7de8\u8f2f\u53ef\u80fd\u6703\u5c0e\u81f4\u5f15\u6587\u6216\u6587\u4ef6\u640d\u58de\u3002\u4f8b\u5982\u7db2\u8def\u932f\u8aa4\u4e4b\u985e\u7121\u6cd5\u9810\u6e2c\u7684\u72c0\u6cc1\u53ef\u80fd\u6703\u8b93\u60a8\u7684\u6587\u4ef6\u6301\u7e8c\u88ab\u9396\u5b9a\u3002\u5982\u679c\u60a8\u78ba\u5b9a\u9019\u7a2e\u72c0\u6cc1\u767c\u751f\uff0c\u60a8\u53ef\u4ee5\u89e3\u9664\u9396\u5b9a\u72c0\u614b\u3002<br/><br/>\u60a8\u60f3\u8981\u89e3\u9664\u6587\u4ef6\u9396\u5b9a\u72c0\u614b\u55ce\uff1f"
-    },
-    "integration_googleDocs_documentPermissionError": {
-        "message": "\u60a8\u6240\u9078\u64c7\u7684Google\u5e33\u865f\u6c92\u6709\u7de8\u8f2f\u8a72\u6587\u4ef6\u7684\u6b0a\u9650\u3002\u8acb\u518d\u8a66\u4e00\u6b21\uff0c\u4e26\u78ba\u4fdd\u60a8\u6240\u9078\u64c7\u7684\u5e33\u865f\u6709\u7de8\u8f2f\u6b0a\u9650\u3002"
-    },
-    "integration_googleDocs_docxAlert": {
-        "message": "\u5728 Google Docs\u4e2d\u76f4\u63a5\u7de8\u8f2f Microsoft Word .docx \u6a94\u6848\u6642\uff0c\u82e5$1\u5143\u4ef6\u7121\u6cd5\u4f7f\u7528\u3002\u9078\u64c7\u6a94\u6848 \u2192 \u5132\u5b58\u70ba Google Docs \u4f86\u555f\u7528\u6b64\u529f\u80fd\u3002<br/><br/>\u5982\u679c\u4f60\u60f3\u5c07\u5177\u6709$1\u5f15\u7528\u7684 Word \u6587\u4ef6\u8f49\u63db\u70baGoogle Docs \u6642\uff0c\u8acb\u53c3\u95b1<a href=\"https://www.zotero.org/support/kb/moving_documents_between_word_processors\">\u5728\u6587\u4ef6\u7de8\u8f2f\u5668\u79fb\u52d5\u6587\u4ef6</a>\u3002"
-    },
-    "integration_googleDocs_orphanedCitations_alert": {
-        "message": "\u60a8\u6b63\u5728\u7de8\u8f2f\u7684\u5f15\u6587\u5df2\u7d93\u5f9e $1\u65b7\u958b\u9023\u7d50\u3002"
-    },
-    "integration_googleDocs_orphanedCitations_alertButton": {
-        "message": "\u91cd\u65b0\u9023\u7d50\u5f15\u6587"
-    },
-    "integration_googleDocs_orphanedCitations_buttonTooltip": {
-        "message": "\u986f\u793a\u672a\u9023\u7d50\u7684 $1 \u5f15\u6587"
-    },
-    "integration_googleDocs_orphanedCitations_disclaimer": {
-        "message": "\u9019\u4e9b\u5f15\u6587\u5df2  <a target=\"_blank\" href=\"https://www.zotero.org/support/kb/google_docs_citations_unlinked\">\u5f9e $1\u65b7\u958b\u9023\u7d50</a>\u3002\u60a8\u9700\u8981\u5148\u91cd\u65b0\u9023\u7d50\uff0c\u5f15\u6587\u624d\u80fd\u5728\u53c3\u8003\u8cc7\u6599\u4e2d\u66f4\u65b0\u6216\u51fa\u73fe\u3002"
-    },
-    "integration_googleDocs_unlinkBeforeSaving_downloadAnyway": {
-        "message": "\u7121\u8ad6\u5982\u4f55\u90fd\u4e0b\u8f09\u5df2\u9023\u7d50\u7684\u7248\u672c"
-    },
-    "integration_googleDocs_unlinkBeforeSaving_instructions": {
-        "message": "\u70ba\u4e86\u8981\u751f\u6210\u8f03\u70ba\u9069\u5408\u5206\u4eab\u7684\u7248\u672c\uff0c\u5f9e\u6a94\u6848\u9078\u55ae\u4e2d\u9078\u64c7<b>\u8907\u88fd\u2026\u2026</b>\uff0c\u5728\u65b0\u6587\u4ef6\u4e2d\u5f9eJurism\u9078\u55ae\u4e2d\u9078\u64c7<b>\u672a\u9023\u7d50\u5f15\u6587</b>\uff0c\u7136\u5f8c\u4e0b\u8f09\u672a\u9023\u7d50\u7248\u672c\u3002\u4fdd\u7559\u539f\u59cb\u9023\u7d50\u6587\u4ef6\u4ee5\u9632\u4f60\u6709\u9700\u8981\u505a\u4efb\u4f55\u5f8c\u7e8c\u7684\u8b8a\u52d5\u3002"
-    },
-    "integration_googleDocs_unlinkBeforeSaving_warning": {
-        "message": "\u6b64\u6587\u4ef6\u5305\u542b\u6709\u6548\u7684 Jurism \u5f15\u6587\uff0c\u6b64\u5f15\u6587\u5c07\u65bc\u4e0b\u8f09\u7684\u526f\u672c\u4e2d\u986f\u793a\u70ba zotero.org \u9023\u7d50"
-    },
-    "integration_googleDocs_updating": {
-        "message": "$1\u6b63\u5728\u66f4\u65b0\u60a8\u7684\u6587\u4ef6\u3002"
-    },
-    "progressWindow_error_fallback": {
-        "message": "\u4ee5 $1 \u5132\u5b58\u6642\u51fa\u932f\u3002\u6539\u5617\u8a66\u4ee5 $2 \u5132\u5b58\u3002"
-    },
-    "progressWindow_error_siteAccessLimits": {
-        "message": "\u7db2\u7ad9\u5b58\u53d6\u9650\u5236"
-    },
-    "progressWindow_error_siteAccessLimitsError": {
-        "message": "\u5132\u5b58\u6b64\u9805\u76ee\u6642\u51fa\u73fe\u932f\u8aa4\u3002$1\u53ef\u80fd\u9650\u5236\u4e86\u60a8\u55ae\u6b21\u53ef\u5132\u5b58\u9805\u76ee\u7684\u6578\u91cf\u3002\u53c3\u95b1$2\u4f86\u7372\u5f97\u66f4\u591a\u8cc7\u8a0a\u3002"
-    },
-    "progressWindow_error_translation": {
-        "message": "\u5132\u5b58\u6b64\u9805\u76ee\u6642\u51fa\u932f\u3002\u53c3\u95b1 $1 \u4ee5\u7372\u5f97\u66f4\u591a\u8cc7\u8a0a\u3002"
-    },
-    "progressWindow_error_troubleshootingTranslatorIssues": {
-        "message": "\u627e\u51fa\u7ffb\u8b6f\u5668\u554f\u984c\u6240\u5728"
-    },
-    "progressWindow_error_upgradeClient": {
-        "message": "\u60a8\u7684 $1 \u7248\u672a\u652f\u63f4\u6b64\u529f\u80fd\u3002\u8acb\u5347\u7d1a\u81f3 $2 \u7248\u3002"
-    },
-    "progressWindow_error_upgradeClient_latestVersion": {
-        "message": "\u6700\u65b0\u7248\u672c"
-    },
-    "progressWindow_savingTo": {
-        "message": "\u5132\u5b58\u81f3\u2026\u2026"
-    },
-    "progressWindow_tagPlaceholder": {
-        "message": "\u6a19\u7c64(\u53ef\u7528\u9017\u865f\u5206\u9694)"
-    },
-    "reloadVia": {
-        "message": "\u5229\u7528 $1 \u91cd\u65b0\u8f09\u5165"
-    },
-    "reloadViaProxy": {
-        "message": "\u5229\u7528\u4ee3\u7406\u91cd\u65b0\u8f09\u5165"
-    },
-    "reports_debug_output_submitted": {
-        "message": "\u60a8\u7684debug\u8f38\u51fa\u7d50\u679c\u5df2\u9001\u51fa\u3002Debug ID\u662f $1\u3002"
-    },
-    "reports_report_submitted": {
-        "message": "\u60a8\u7684\u932f\u8aa4\u5831\u544a\u5df2\u9001\u51fa\u3002\n\n\u5831\u544a ID: $1\n\n\u8acb\u5728Jurism\u8ad6\u58c7\u767c\u6587\uff0c\u6587\u7ae0\u5167\u5bb9\u8acb\u5305\u542b\u6b64\u5831\u544aID\u3001\u63cf\u8ff0\u767c\u751f\u7684\u554f\u984c\u4ee5\u53ca\u4efb\u4f55\u53ef\u91cd\u73fe\u554f\u984c\u7684\u6b65\u9a5f\u3002\n\n\u4e0d\u6703\u8655\u7406\u672a\u65bc\u8ad6\u58c7\u767c\u6587\u7684\u932f\u8aa4\u5831\u544a\u3002"
-    },
-    "reports_submission_failed": {
-        "message": "\u63d0\u4ea4\u5831\u544a\u6642\u767c\u751f\u932f\u8aa4\u3002\n\n$1\n\n\u8acb\u6aa2\u67e5\u60a8\u7684\u7db2\u8def\u9023\u7dda\u3002\u5982\u679c\u932f\u8aa4\u91cd\u8907\u51fa\u73fe\uff0c\u8acb\u5728Jurism\u8ad6\u58c7\u767c\u6587\u3002"
-    },
-    "upgradeApp": {
-        "message": "\u5347\u7d1a $1"
-    }
+  "appConnector": {
+    "message": "$1 Connector"
+  },
+  "copyUnproxiedLink": {
+    "message": "複製未經代理的連結"
+  },
+  "copyUnproxiedPageURL": {
+    "message": "複製未經代理的頁面URL"
+  },
+  "error_connection_downloadOrTroubleshoot": {
+    "message": "如有需要，您可 <a href=\"$1\">下載 $2</a> 或 <a href=\"$3\">檢查連結上的問題</a>。"
+  },
+  "error_connection_enableSavingToOnlineLibrary": {
+    "message": "啟用儲存至線上文獻庫"
+  },
+  "error_connection_isAppRunning": {
+    "message": "$1 正在執行？"
+  },
+  "error_connection_save": {
+    "message": "$1 無法與 $2 桌面應用程式溝通。Connector 能直接儲存某些頁面到$3 帳戶，但若要得到最佳結果，在嘗試儲存前，得先確認 $2 已開啟。"
+  },
+  "extensionIsDisabled": {
+    "message": "$1 處於停用狀態"
+  },
+  "extensionIsDisabled_extensionPage": {
+    "message": "$1 在擴充套件頁面中處於停用狀態"
+  },
+  "firstRun_acceptButton": {
+    "message": "明白了"
+  },
+  "firstRun_text1": {
+    "message": "$1Connector能夠在您的瀏覽器中利用單次點擊<a href=\"$2\">儲存項目到$1</a>。"
+  },
+  "firstRun_text2": {
+    "message": "如果您尚未下載，請<a href=\"$2\">下載</a>獨立的$1應用程式來獲得最好的體驗。"
+  },
+  "firstRun_text3": {
+    "message": "(You can view the $1 Privacy Policy on <a href=\"$2\">the project website</a>)."
+  },
+  "firstRun_title": {
+    "message": "您已經安裝$1Connector了！"
+  },
+  "general_cancel": {
+    "message": "取消"
+  },
+  "general_copyToClipboard": {
+    "message": "複製到剪貼簿"
+  },
+  "general_done": {
+    "message": "完成"
+  },
+  "general_more": {
+    "message": "更多……"
+  },
+  "general_moreInfo": {
+    "message": "更多資訊……"
+  },
+  "general_needHelp": {
+    "message": "需要協助？"
+  },
+  "general_no": {
+    "message": "不用"
+  },
+  "general_pleaseWait": {
+    "message": "請稍等……"
+  },
+  "general_saveTo": {
+    "message": "儲存至 $1"
+  },
+  "general_tryAgain": {
+    "message": "再試一次"
+  },
+  "general_warning": {
+    "message": "警告"
+  },
+  "general_yes": {
+    "message": "要"
+  },
+  "integration_error_clientUpgrade": {
+    "message": "引用網站資料庫的文獻，需要 $1 或更新的版本。"
+  },
+  "integration_error_connection": {
+    "message": "$1 無法與 $2 桌面應用程式溝通。$2 一定得開啟，才能引用網站資料庫的文獻。"
+  },
+  "integration_googleDocs_documentLocked": {
+    "message": "此文件的引文正被另一個$1使用者編輯。請稍後再試。"
+  },
+  "integration_googleDocs_documentLocked_moreInfo": {
+    "message": "$1鎖定了您的文件來避免多位使用者同時編輯引文。目前文件中的引文編輯可能會導致引文或文件損壞。例如網路錯誤之類無法預測的狀況可能會讓您的文件持續被鎖定。如果您確定這種狀況發生，您可以解除鎖定狀態。<br/><br/>您想要解除文件鎖定狀態嗎？"
+  },
+  "integration_googleDocs_documentPermissionError": {
+    "message": "您所選擇的Google帳號沒有編輯該文件的權限。請再試一次，並確保您所選擇的帳號有編輯權限。"
+  },
+  "integration_googleDocs_docxAlert": {
+    "message": "在 Google Docs中直接編輯 Microsoft Word .docx 檔案時，若$1元件無法使用。選擇檔案 → 儲存為 Google Docs 來啟用此功能。<br/><br/>如果你想將具有$1引用的 Word 文件轉換為Google Docs 時，請參閱<a href=\"https://www.zotero.org/support/kb/moving_documents_between_word_processors\">在文件編輯器移動文件</a>。"
+  },
+  "integration_googleDocs_orphanedCitations_alert": {
+    "message": "您正在編輯的引文已經從 $1斷開連結。"
+  },
+  "integration_googleDocs_orphanedCitations_alertButton": {
+    "message": "重新連結引文"
+  },
+  "integration_googleDocs_orphanedCitations_buttonTooltip": {
+    "message": "顯示未連結的 $1 引文"
+  },
+  "integration_googleDocs_orphanedCitations_disclaimer": {
+    "message": "這些引文已  <a target=\"_blank\" href=\"https://www.zotero.org/support/kb/google_docs_citations_unlinked\">從 $1斷開連結</a>。您需要先重新連結，引文才能在參考資料中更新或出現。"
+  },
+  "integration_googleDocs_unlinkBeforeSaving_downloadAnyway": {
+    "message": "無論如何都下載已連結的版本"
+  },
+  "integration_googleDocs_unlinkBeforeSaving_instructions": {
+    "message": "為了要生成較為適合分享的版本，從檔案選單中選擇<b>複製……</b>，在新文件中從Jurism選單中選擇<b>未連結引文</b>，然後下載未連結版本。保留原始連結文件以防你有需要做任何後續的變動。"
+  },
+  "integration_googleDocs_unlinkBeforeSaving_warning": {
+    "message": "此文件包含有效的 Jurism 引文，此引文將於下載的副本中顯示為 zotero.org 連結"
+  },
+  "integration_googleDocs_updating": {
+    "message": "$1正在更新您的文件。"
+  },
+  "progressWindow_error_fallback": {
+    "message": "以 $1 儲存時出錯。改嘗試以 $2 儲存。"
+  },
+  "progressWindow_error_siteAccessLimits": {
+    "message": "網站存取限制"
+  },
+  "progressWindow_error_siteAccessLimitsError": {
+    "message": "儲存此項目時出現錯誤。$1可能限制了您單次可儲存項目的數量。參閱$2來獲得更多資訊。"
+  },
+  "progressWindow_error_translation": {
+    "message": "儲存此項目時出錯。參閱 $1 以獲得更多資訊。"
+  },
+  "progressWindow_error_troubleshootingTranslatorIssues": {
+    "message": "找出翻譯器問題所在"
+  },
+  "progressWindow_error_upgradeClient": {
+    "message": "您的 $1 版未支援此功能。請升級至 $2 版。"
+  },
+  "progressWindow_error_upgradeClient_latestVersion": {
+    "message": "最新版本"
+  },
+  "progressWindow_savingTo": {
+    "message": "儲存至……"
+  },
+  "progressWindow_tagPlaceholder": {
+    "message": "標籤(可用逗號分隔)"
+  },
+  "reloadVia": {
+    "message": "利用 $1 重新載入"
+  },
+  "reloadViaProxy": {
+    "message": "利用代理重新載入"
+  },
+  "reports_debug_output_submitted": {
+    "message": "您的debug輸出結果已送出。Debug ID是 $1。"
+  },
+  "reports_report_submitted": {
+    "message": "您的錯誤報告已送出。\n\n報告 ID: $1\n\n請在Jurism論壇發文，文章內容請包含此報告ID、描述發生的問題以及任何可重現問題的步驟。\n\n不會處理未於論壇發文的錯誤報告。"
+  },
+  "reports_submission_failed": {
+    "message": "提交報告時發生錯誤。\n\n$1\n\n請檢查您的網路連線。如果錯誤重複出現，請在Jurism論壇發文。"
+  },
+  "upgradeApp": {
+    "message": "升級 $1"
+  }
 }

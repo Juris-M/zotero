@@ -1,169 +1,169 @@
 {
-    "appConnector": {
-        "message": "$1 \u043f\u043e\u0432\u0435\u0437\u043d\u0438\u043a"
-    },
-    "copyUnproxiedLink": {
-        "message": "Copy Unproxied Link"
-    },
-    "copyUnproxiedPageURL": {
-        "message": "Copy Unproxied Page URL"
-    },
-    "error_connection_downloadOrTroubleshoot": {
-        "message": "\u041c\u043e\u0436\u0435\u0442\u0435 <a href=\"$1\">\u043f\u0440\u0435\u0443\u0437\u0435\u0442\u0438 $2</a> \u0438\u043b\u0438 <a href=\"$3\">\u043f\u043e\u0442\u0440\u0430\u0436\u0438\u0442\u0438 \u0433\u0440\u0435\u0448\u043a\u0443 \u0443 \u0432\u0435\u0437\u0438 </a> \u0443\u043a\u043e\u043b\u0438\u043a\u043e \u0458\u0435 \u043d\u0435\u043e\u043f\u0445\u043e\u0434\u043d\u043e."
-    },
-    "error_connection_enableSavingToOnlineLibrary": {
-        "message": "\u041e\u043c\u043e\u0433\u0443\u045b\u0438 \u0447\u0443\u0432\u0430\u045a\u0435 \u0443 \u043c\u0440\u0435\u0436\u043d\u0443 \u0431\u0438\u0431\u043b\u0438\u043e\u0442\u0435\u043a\u0443"
-    },
-    "error_connection_isAppRunning": {
-        "message": "\u0414\u0430 \u043b\u0438 \u0458\u0435 $1 \u043f\u043e\u043a\u0440\u0435\u043d\u0443\u0442?"
-    },
-    "error_connection_save": {
-        "message": "$1 \u043d\u0435 \u043c\u043e\u0436\u0435 \u0434\u0430 \u0441\u0442\u0443\u043f\u0438 \u0443 \u0432\u0435\u0437\u0443 \u0441\u0430 $2 \u043f\u0440\u043e\u0433\u0440\u0430\u043c\u043e\u043c \u0437\u0430 \u0440\u0430\u0447\u0443\u043d\u0430\u0440. \u041f\u043e\u0432\u0435\u0437\u043d\u0438\u043a \u043c\u043e\u0436\u0435 \u0434\u0430 \u0441\u0430\u0447\u0443\u0432\u0430 \u043d\u0435\u043a\u0435 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435 \u043d\u0430 \u0432\u0430\u0448 $3 \u043d\u0430\u043b\u043e\u0433, \u0430\u043b\u0438 \u0458\u0435 \u043d\u0430\u0458\u0431\u043e\u0459\u0435 \u0434\u0430 \u043f\u0440\u043e\u0432\u0435\u0440\u0438\u0442\u0435 \u0434\u0430 \u043b\u0438 \u0458\u0435 $2 \u043e\u0442\u0432\u043e\u0440\u0435\u043d \u043f\u0440\u0435 \u043f\u043e\u043a\u0443\u0448\u0430\u0458\u0430 \u0447\u0443\u0432\u0430\u045a\u0430."
-    },
-    "extensionIsDisabled": {
-        "message": "$1 is disabled"
-    },
-    "extensionIsDisabled_extensionPage": {
-        "message": "$1 is disabled on extension pages"
-    },
-    "firstRun_acceptButton": {
-        "description": "The Accept button for the first-run dialog",
-        "message": "Got it"
-    },
-    "firstRun_text1": {
-        "message": "The $1 Connector enables you to <a href=\"$2\">save items to $1</a> from your browser in a single click."
-    },
-    "firstRun_text2": {
-        "message": "If you haven\u2019t yet, <a href=\"$2\">download</a> the standalone $1 application for the best experience."
-    },
-    "firstRun_text3": {
-        "message": "(You can view the $1 Privacy Policy on <a href=\"$2\">the project website</a>)."
-    },
-    "firstRun_title": {
-        "message": "You\u2019ve installed the $1 Connector!"
-    },
-    "general_cancel": {
-        "message": "\u041e\u0442\u043a\u0430\u0436\u0438"
-    },
-    "general_copyToClipboard": {
-        "message": "\u041a\u043e\u043f\u0438\u0440\u0430\u0458 \u0443 \u043e\u0441\u0442\u0430\u0432\u0443"
-    },
-    "general_done": {
-        "message": "\u0413\u043e\u0442\u043e\u0432\u043e"
-    },
-    "general_more": {
-        "message": "\u0412\u0438\u0448\u0435\u2026"
-    },
-    "general_moreInfo": {
-        "message": "\u0412\u0438\u0448\u0435 \u043f\u043e\u0434\u0430\u0442\u0430\u043a\u0430\u2026"
-    },
-    "general_needHelp": {
-        "message": "Need help?"
-    },
-    "general_no": {
-        "message": "\u041d\u0435"
-    },
-    "general_pleaseWait": {
-        "message": "\u0421\u0430\u0447\u0435\u043a\u0430\u0458\u0442\u0435\u2026"
-    },
-    "general_saveTo": {
-        "message": "\u0421\u0430\u0447\u0443\u0432\u0430\u0458 \u0443 $1"
-    },
-    "general_tryAgain": {
-        "message": "\u041f\u043e\u043a\u0443\u0448\u0430\u0458 \u043f\u043e\u043d\u043e\u0432\u043e"
-    },
-    "general_warning": {
-        "message": "\u0423\u043f\u043e\u0437\u043e\u0440\u0435\u045a\u0435"
-    },
-    "general_yes": {
-        "message": "Yes"
-    },
-    "integration_error_clientUpgrade": {
-        "message": "\u0426\u0438\u0442\u0438\u0440\u0430\u045a\u0435 \u043f\u043e\u043c\u043e\u045b\u0443 \u0432\u0435\u0431\u0430 \u0437\u0430\u0445\u0442\u0435\u0432\u0430 \u0438\u0437\u0434\u0430\u045a\u0435 $1 \u0438\u043b\u0438 \u043d\u043e\u0432\u0438\u0458\u0435."
-    },
-    "integration_error_connection": {
-        "message": "$1 \u043d\u0435 \u043c\u043e\u0436\u0435 \u0434\u0430 \u0441\u0442\u0443\u043f\u0438 \u0443 \u0432\u0435\u0437\u0443 \u0441\u0430 $2 \u043f\u0440\u043e\u0433\u0440\u0430\u043c\u043e\u043c \u0437\u0430 \u0440\u0430\u0447\u0443\u043d\u0430\u0440. $2 \u043c\u043e\u0440\u0430 \u0431\u0438\u0442\u0438 \u043e\u0442\u0432\u043e\u0440\u0435\u043d \u043a\u0430\u043a\u043e \u0431\u0438 \u043a\u043e\u0440\u0438\u0441\u0442\u0438\u043b\u0438 \u0446\u0438\u0442\u0438\u0440\u0430\u045a\u0435 \u043f\u043e\u043c\u043e\u045b\u0443 \u0432\u0435\u0431\u0430."
-    },
-    "integration_googleDocs_documentLocked": {
-        "message": "The document citations are being edited by another $1 user. Please try again later."
-    },
-    "integration_googleDocs_documentLocked_moreInfo": {
-        "message": "$1 locks your document to prevent multiple users from editing citations at the same time. Concurrent citation editing in the document may lead to citation or document corruption. Certain unforeseeable circumstances, such as network failures, may lead to your document becoming permanently locked. If you believe this has happened, you can override the lock.<br/><br/>Would you like to override the document lock?"
-    },
-    "integration_googleDocs_documentPermissionError": {
-        "message": "The Google account you selected does not have permission to edit this document. Please try again, and be sure to choose the account with editing access."
-    },
-    "integration_googleDocs_docxAlert": {
-        "message": "$1 \u0438\u043d\u0442\u0435\u0433\u0440\u0430\u0446\u0438\u0458\u0430 \u043d\u0438\u0458\u0435 \u0434\u043e\u0441\u0442\u0443\u043f\u043d\u0430 \u043a\u0430\u0434\u0430 \u0443\u0440\u0435\u0452\u0443\u0458\u0435\u0442\u0435 Microsoft Word .docx \u0434\u0430\u0442\u043e\u0442\u0435\u043a\u0435 \u0443 Google \u0414\u043e\u043a\u0443\u043c\u0435\u043d\u0442\u0438\u043c\u0430. \u0418\u0437\u0430\u0431\u0435\u0440\u0438\u0442\u0435 \u0414\u0430\u0442\u043e\u0442\u0435\u043a\u0430 \u2192 \u0421\u0430\u0447\u0443\u0432\u0430\u0458 \u043a\u0430\u043e Google \u0414\u043e\u043a\u0443\u043c\u0435\u043d\u0442 \u0434\u0430 \u043e\u043c\u043e\u0433\u0443\u045b\u0438\u0442\u0435 \u0438\u043d\u0442\u0435\u0433\u0440\u0430\u0446\u0438\u0458\u0443.<br/><br/>\u0423\u043a\u043e\u043b\u0438\u043a\u043e \u0436\u0435\u043b\u0438\u0442\u0435 \u0434\u0430 \u043f\u0440\u0435\u043d\u0435\u0441\u0435\u0442\u0435 \u0434\u043e\u043a\u0443\u043c\u0435\u043d\u0442\u0435 \u0438\u0437 Word-\u0430 \u0441\u0430 $1 \u0446\u0438\u0442\u0430\u0442\u0430 \u0443 Google \u0414\u043e\u043a\u0443\u043c\u0435\u043d\u0442\u0435, \u043f\u043e\u0433\u043b\u0435\u0434\u0430\u0458\u0442\u0435 \u0442\u0435\u043a\u0441\u0442 \u043e <a href=\"https://www.zotero.org/support/kb/moving_documents_between_word_processors\">\u0434\u0435\u0459\u0435\u045a\u0443 \u0434\u043e\u043a\u0443\u043c\u0435\u043d\u0430\u0442\u0430 \u0438\u0437\u043c\u0435\u0452\u0443 \u043f\u0440\u043e\u0433\u0440\u0430\u043c\u0430 \u0437\u0430 \u043e\u0431\u0440\u0430\u0434\u0443 \u0442\u0435\u043a\u0441\u0442\u0430</a>."
-    },
-    "integration_googleDocs_orphanedCitations_alert": {
-        "message": "\u0426\u0438\u0442\u0430\u0442\u0438 \u043a\u043e\u0458\u0435 \u043f\u043e\u043a\u0443\u0448\u0430\u0432\u0430\u0442\u0435 \u0434\u0430 \u0443\u0440\u0435\u0434\u0438\u0442\u0435 \u0441\u0443 \u043f\u043e\u0441\u0442\u0430\u043b\u0438 \u043d\u0435\u0432\u0435\u0437\u0430\u043d\u0438 \u0437\u0430 $1."
-    },
-    "integration_googleDocs_orphanedCitations_alertButton": {
-        "message": "\u041f\u043e\u043d\u043e\u0432\u043e \u043f\u043e\u0432\u0435\u0436\u0438 \u0446\u0438\u0442\u0430\u0442"
-    },
-    "integration_googleDocs_orphanedCitations_buttonTooltip": {
-        "message": "\u041f\u0440\u0438\u043a\u0430\u0436\u0438 $1 \u043d\u0435\u043f\u043e\u0432\u0435\u0437\u0430\u043d\u0438\u0445 \u0446\u0438\u0442\u0430\u0442\u0430"
-    },
-    "integration_googleDocs_orphanedCitations_disclaimer": {
-        "message": "\u041e\u0432\u0438 \u0446\u0438\u0442\u0430\u0442\u0438 \u0441\u0438 \u043f\u043e\u0441\u0442\u0430\u043b\u0438 <a target=\"_blank\" href=\"https://www.zotero.org/support/kb/google_docs_citations_unlinked\">\u043d\u0435\u0432\u0435\u0437\u0430\u043d\u0438 \u0441\u0430 $1</a>. \u041f\u043e\u0442\u0440\u0435\u0431\u043d\u043e \u0458\u0435 \u0434\u0430 \u0438\u0445 \u043f\u043e\u043d\u043e\u0432\u043e \u043f\u043e\u0432\u0435\u0436\u0435\u0442\u0435 \u043f\u0440\u0435 \u043d\u0435\u0433\u043e \u0448\u0442\u043e \u0431\u0443\u0434\u0443 \u0430\u0436\u0443\u0440\u0438\u0440\u0430\u043d\u0438 \u0438\u043b\u0438 \u043f\u0440\u0438\u043a\u0430\u0437\u0430\u043d\u0438 \u0443\u043d\u0443\u0442\u0430\u0440 \u0432\u0430\u0448\u0435 \u0431\u0438\u0431\u043b\u0438\u043e\u0433\u0440\u0430\u0444\u0438\u0458\u0435."
-    },
-    "integration_googleDocs_unlinkBeforeSaving_downloadAnyway": {
-        "message": "\u0418\u043f\u0430\u043a \u043f\u0440\u0435\u0443\u0437\u043c\u0438 \u0432\u0435\u0440\u0437\u0438\u0458\u0443 \u0441\u0430 \u0432\u0435\u0437\u0430\u043c\u0430"
-    },
-    "integration_googleDocs_unlinkBeforeSaving_instructions": {
-        "message": "\u0414\u0430 \u043d\u0430\u043f\u0440\u0430\u0432\u0438\u0442\u0435 \u0432\u0435\u0440\u0437\u0438\u0458\u0443 \u043a\u043e\u0458\u0430 \u0458\u0435 \u043f\u043e\u0433\u043e\u0434\u043d\u0430 \u0437\u0430 \u0434\u0435\u0459\u0435\u045a\u0435, \u0438\u0437\u0430\u0431\u0435\u0440\u0438\u0442\u0435 <b>\u041d\u0430\u043f\u0440\u0430\u0432\u0438 \u043a\u043e\u043f\u0438\u0458\u0443\u2026</b> \u0438\u0437 \u043c\u0435\u043d\u0438\u0458\u0430 \u0441\u0442\u0430\u0432\u043a\u0435, \u0430 \u0437\u0430\u0442\u0438\u043c <b>\u0423\u043a\u043b\u043e\u043d\u0438 \u0432\u0435\u0437\u0435 \u0434\u043e \u0446\u0438\u0442\u0430\u0442\u0430</b> \u0438\u0437 \u0417\u043e\u0442\u0435\u0440\u043e\u0432\u043e\u0433 \u043c\u0435\u043d\u0438\u0458\u0430 \u043d\u043e\u0432\u0435 \u0441\u0442\u0430\u0432\u043a\u0435 \u0438 \u043d\u0430 \u043a\u0440\u0430\u0458\u0443 \u043f\u0440\u0435\u0443\u0437\u043c\u0438\u0442\u0435 \u043a\u043e\u043f\u0438\u0458\u0443 \u0431\u0435\u0437 \u0432\u0435\u0437\u0430. \u0423\u0432\u0435\u043a \u0447\u0443\u0432\u0430\u0458\u0442\u0435 \u043e\u0440\u0438\u0433\u0438\u043d\u0430\u043b\u043d\u0435 \u0432\u0435\u0437\u0435 \u0434\u043e \u0434\u043e\u043a\u0443\u043c\u0435\u043d\u0430\u0442\u0430 \u0443 \u0441\u043b\u0443\u0447\u0430\u0458\u0443 \u0434\u0430 \u0432\u0430\u043c \u0431\u0443\u0434\u0443 \u043f\u043e\u0442\u0440\u0435\u0431\u043d\u0435 \u0434\u043e\u0434\u0430\u0442\u043d\u0435 \u0438\u0437\u043c\u0435\u043d\u0435."
-    },
-    "integration_googleDocs_unlinkBeforeSaving_warning": {
-        "message": "\u041e\u0432\u0430\u0458 \u0434\u043e\u043a\u0443\u043c\u0435\u043d\u0442 \u0441\u0430\u0434\u0440\u0436\u0438 \u0430\u043a\u0442\u0438\u0432\u043d\u0435 \u0417\u043e\u0442\u0435\u0440\u043e\u0432\u0435 \u0446\u0438\u0442\u0430\u0442\u0435 \u043a\u043e\u0458\u0438 \u045b\u0435 \u0431\u0438\u0442\u0438 \u043f\u0440\u0438\u043a\u0430\u0437\u0430\u043d\u0438 \u043a\u0430\u043e \u0432\u0435\u0437\u0435 \u043d\u0430 zotero.org \u0443 \u043f\u0440\u0435\u0443\u0437\u0435\u0442\u0438\u043c \u043a\u043e\u043f\u0438\u0458\u0430\u043c\u0430."
-    },
-    "integration_googleDocs_updating": {
-        "message": "$1 \u0430\u0436\u0443\u0440\u0438\u0440\u0430 \u0432\u0430\u0448 \u0434\u043e\u043a\u0443\u043c\u0435\u043d\u0442."
-    },
-    "progressWindow_error_fallback": {
-        "message": "\u0408\u0430\u0432\u0438\u043b\u0430 \u0441\u0435 \u0433\u0440\u0435\u0448\u043a\u0430 \u043f\u0440\u0438\u043b\u0438\u043a\u043e\u043c \u0447\u0443\u0432\u0430\u045a\u0430 \u043f\u043e\u043c\u043e\u045b\u0443 $1. \u041f\u043e\u043a\u0443\u0448\u0430\u0432\u0430\u043c \u0434\u0430 \u0441\u0430\u0447\u0443\u0432\u0430\u043c \u0441\u0430 $2."
-    },
-    "progressWindow_error_siteAccessLimits": {
-        "message": "Site Access Limits"
-    },
-    "progressWindow_error_siteAccessLimitsError": {
-        "description": "The placeholders are for the failing translator label (e.g., Google Scholar) and the Site Access Limits link",
-        "message": "An error occurred while saving this item. $1 may limit the number of items you can save at once. See $2 for more information."
-    },
-    "progressWindow_error_translation": {
-        "message": "\u0408\u0430\u0432\u0438\u043b\u0430 \u0441\u0435 \u0433\u0440\u0435\u0448\u043a\u0430 \u043f\u0440\u0438\u043b\u0438\u043a\u043e\u043c \u0447\u0443\u0432\u0430\u045a\u0430 \u043e\u0432\u0435 \u0441\u0442\u0430\u0432\u043a\u0435. \u041f\u043e\u0433\u043b\u0435\u0434\u0430\u0458\u0442\u0435 $1 \u0437\u0430 \u0432\u0438\u0448\u0435 \u043f\u043e\u0434\u0430\u0442\u0430\u043a\u0430."
-    },
-    "progressWindow_error_troubleshootingTranslatorIssues": {
-        "message": "\u0418\u0441\u043f\u0440\u0430\u0432\u0459\u0430\u045a\u0435 \u043f\u0440\u043e\u0431\u043b\u0435\u043c\u0430 \u0443 \u043f\u0440\u0435\u0432\u043e\u0434\u0443"
-    },
-    "progressWindow_error_upgradeClient": {
-        "message": "\u041e\u0432\u0430 \u043c\u043e\u0433\u0443\u045b\u043d\u043e\u0441\u0442 \u043d\u0438\u0458\u0435 \u043f\u043e\u0434\u0440\u0436\u0430\u043d\u0430 \u0443 \u0432\u0435\u0440\u0437\u0438\u0458\u0438 $1. \u041d\u0430\u0434\u043e\u0433\u0440\u0430\u0434\u0438\u0442\u0435 \u043f\u0440\u043e\u0433\u0440\u0430\u043c \u043d\u0430 $2."
-    },
-    "progressWindow_error_upgradeClient_latestVersion": {
-        "message": "\u043f\u043e\u0441\u043b\u0435\u0434\u045a\u0430 \u0432\u0435\u0440\u0437\u0438\u0458\u0430"
-    },
-    "progressWindow_savingTo": {
-        "message": "\u0427\u0443\u0432\u0430\u043c \u0443"
-    },
-    "progressWindow_tagPlaceholder": {
-        "message": "\u041e\u0437\u043d\u0430\u043a\u0435 (\u0440\u0430\u0437\u0434\u0432\u043e\u0458\u0435\u043d\u0435 \u0437\u0430\u0440\u0435\u0437\u0438\u043c\u0430)"
-    },
-    "reloadVia": {
-        "message": "Reload via $1"
-    },
-    "reloadViaProxy": {
-        "message": "Reload via Proxy"
-    },
-    "reports_debug_output_submitted": {
-        "message": "\u0412\u0430\u0448 \u0438\u0437\u0432\u0435\u0448\u0442\u0430\u0458 \u0437\u0430 \u043f\u0440\u043e\u043d\u0430\u043b\u0430\u0436\u0435\u045a\u0435 \u0433\u0440\u0435\u0448\u0430\u043a\u0430 \u0458\u0435 \u043f\u043e\u0441\u043b\u0430\u0442.\n\n\u0418\u0414 \u0431\u0440\u043e\u0458 \u0433\u0440\u0435\u0448\u043a\u0435 \u0458\u0435 $1."
-    },
-    "reports_report_submitted": {
-        "message": "\u0412\u0430\u0448 \u0438\u0437\u0432\u0435\u0448\u0442\u0430\u0458 \u043e \u0433\u0440\u0435\u0448\u0446\u0438 \u0458\u0435 \u043f\u043e\u0441\u043b\u0430\u0442.\n\n\u0418\u0414 \u0431\u0440\u043e\u0458 \u0438\u0437\u0432\u0435\u0448\u0442\u0430\u0458\u0430: $1\n\n\u041c\u043e\u0436\u0435\u0442\u0435 \u043f\u043e\u0441\u043b\u0430\u0442\u0438 \u043f\u043e\u0440\u0443\u043a\u0443 \u043d\u0430 \u0417\u043e\u0442\u0435\u0440\u043e\u0432 \u0444\u043e\u0440\u0443\u043c \u0441\u0430 \u043e\u0432\u0438\u043c \u0418\u0414 \u0431\u0440\u043e\u0458\u0435\u043c \u0443\u0437 \u0434\u043e\u0434\u0430\u0442\u043d\u0435 \u043f\u043e\u0434\u0430\u0442\u043a\u0435 \u043a\u043e\u0458\u0438 \u043e\u043f\u0438\u0441\u0443\u0458\u0443 \u043f\u0440\u043e\u0431\u043b\u0435\u043c \u0438 \u043a\u043e\u0440\u0430\u043a\u0435 \u043a\u043e\u0458\u0438 \u045b\u0435 \u043f\u043e\u043c\u043e\u045b\u0438 \u043f\u0440\u043e\u0433\u0440\u0430\u043c\u0435\u0440\u0438\u043c\u0430 \u0434\u0430 \u043f\u043e\u043d\u043e\u0432\u0435 \u0433\u0440\u0435\u0448\u043a\u0443.\n\n\u0418\u0437\u0432\u0435\u0448\u0442\u0430\u0458\u0438 \u043e \u0433\u0440\u0435\u0448\u043a\u0430\u043c\u0430 \u043d\u0435\u045b\u0435 \u0431\u0438\u0442\u0438 \u043f\u0440\u0435\u0433\u043b\u0435\u0434\u0430\u043d\u0438 \u043e\u0441\u0438\u043c \u0443\u043a\u043e\u043b\u0438\u043a\u043e \u0438\u0445 \u043d\u0435 \u043f\u043e\u0441\u0442\u0430\u0432\u0438\u0442\u0435 \u043d\u0430 \u0444\u043e\u0440\u0443\u043c."
-    },
-    "reports_submission_failed": {
-        "message": "\u0414\u043e\u0448\u043b\u043e \u0458\u0435 \u0434\u043e \u0433\u0440\u0435\u0448\u043a\u0435 \u043f\u0440\u0438\u043b\u0438\u043a\u043e\u043c \u0441\u043b\u0430\u045a\u0430 \u0432\u0430\u0448\u0435\u0433 \u0438\u0437\u0432\u0435\u0448\u0442\u0430\u0458\u0430.\n\n$1\n\n\u041f\u0440\u043e\u0432\u0435\u0440\u0438\u0442\u0435 \u0432\u0435\u0437\u0443 \u0441\u0430 \u0438\u043d\u0442\u0435\u0440\u043d\u0435\u0442\u043e\u043c, \u0430 \u0443\u043a\u043e\u043b\u0438\u043a\u043e \u0441\u0435 \u043f\u0440\u043e\u0431\u043b\u0435\u043c \u043d\u0430\u0441\u0442\u0430\u0432\u0438, \u043f\u043e\u0448\u0430\u0459\u0438\u0442\u0435 \u043f\u043e\u0440\u0443\u043a\u0443 \u043d\u0430 \u0417\u043e\u0442\u0435\u0440\u043e\u0432 \u0444\u043e\u0440\u0443\u043c."
-    },
-    "upgradeApp": {
-        "message": "\u041d\u0430\u0434\u043e\u0433\u0440\u0430\u0434\u0438 $1"
-    }
+  "appConnector": {
+    "message": "$1 повезник"
+  },
+  "copyUnproxiedLink": {
+    "message": "Copy Unproxied Link"
+  },
+  "copyUnproxiedPageURL": {
+    "message": "Copy Unproxied Page URL"
+  },
+  "error_connection_downloadOrTroubleshoot": {
+    "message": "Можете <a href=\"$1\">преузети $2</a> или <a href=\"$3\">потражити грешку у вези </a> уколико је неопходно."
+  },
+  "error_connection_enableSavingToOnlineLibrary": {
+    "message": "Омогући чување у мрежну библиотеку"
+  },
+  "error_connection_isAppRunning": {
+    "message": "Да ли је $1 покренут?"
+  },
+  "error_connection_save": {
+    "message": "$1 не може да ступи у везу са $2 програмом за рачунар. Повезник може да сачува неке странице на ваш $3 налог, али је најбоље да проверите да ли је $2 отворен пре покушаја чувања."
+  },
+  "extensionIsDisabled": {
+    "message": "$1 is disabled"
+  },
+  "extensionIsDisabled_extensionPage": {
+    "message": "$1 is disabled on extension pages"
+  },
+  "firstRun_acceptButton": {
+    "description": "The Accept button for the first-run dialog",
+    "message": "Got it"
+  },
+  "firstRun_text1": {
+    "message": "The $1 Connector enables you to <a href=\"$2\">save items to $1</a> from your browser in a single click."
+  },
+  "firstRun_text2": {
+    "message": "If you haven’t yet, <a href=\"$2\">download</a> the standalone $1 application for the best experience."
+  },
+  "firstRun_text3": {
+    "message": "(You can view the $1 Privacy Policy on <a href=\"$2\">the project website</a>)."
+  },
+  "firstRun_title": {
+    "message": "You’ve installed the $1 Connector!"
+  },
+  "general_cancel": {
+    "message": "Откажи"
+  },
+  "general_copyToClipboard": {
+    "message": "Копирај у оставу"
+  },
+  "general_done": {
+    "message": "Готово"
+  },
+  "general_more": {
+    "message": "Више…"
+  },
+  "general_moreInfo": {
+    "message": "Више података…"
+  },
+  "general_needHelp": {
+    "message": "Need help?"
+  },
+  "general_no": {
+    "message": "Не"
+  },
+  "general_pleaseWait": {
+    "message": "Сачекајте…"
+  },
+  "general_saveTo": {
+    "message": "Сачувај у $1"
+  },
+  "general_tryAgain": {
+    "message": "Покушај поново"
+  },
+  "general_warning": {
+    "message": "Упозорење"
+  },
+  "general_yes": {
+    "message": "Yes"
+  },
+  "integration_error_clientUpgrade": {
+    "message": "Цитирање помоћу веба захтева издање $1 или новије."
+  },
+  "integration_error_connection": {
+    "message": "$1 не може да ступи у везу са $2 програмом за рачунар. $2 мора бити отворен како би користили цитирање помоћу веба."
+  },
+  "integration_googleDocs_documentLocked": {
+    "message": "The document citations are being edited by another $1 user. Please try again later."
+  },
+  "integration_googleDocs_documentLocked_moreInfo": {
+    "message": "$1 locks your document to prevent multiple users from editing citations at the same time. Concurrent citation editing in the document may lead to citation or document corruption. Certain unforeseeable circumstances, such as network failures, may lead to your document becoming permanently locked. If you believe this has happened, you can override the lock.<br/><br/>Would you like to override the document lock?"
+  },
+  "integration_googleDocs_documentPermissionError": {
+    "message": "The Google account you selected does not have permission to edit this document. Please try again, and be sure to choose the account with editing access."
+  },
+  "integration_googleDocs_docxAlert": {
+    "message": "$1 интеграција није доступна када уређујете Microsoft Word .docx датотеке у Google Документима. Изаберите Датотека → Сачувај као Google Документ да омогућите интеграцију.<br/><br/>Уколико желите да пренесете документе из Word-а са $1 цитата у Google Документе, погледајте текст о <a href=\"https://www.zotero.org/support/kb/moving_documents_between_word_processors\">дељењу докумената између програма за обраду текста</a>."
+  },
+  "integration_googleDocs_orphanedCitations_alert": {
+    "message": "Цитати које покушавате да уредите су постали невезани за $1."
+  },
+  "integration_googleDocs_orphanedCitations_alertButton": {
+    "message": "Поново повежи цитат"
+  },
+  "integration_googleDocs_orphanedCitations_buttonTooltip": {
+    "message": "Прикажи $1 неповезаних цитата"
+  },
+  "integration_googleDocs_orphanedCitations_disclaimer": {
+    "message": "Ови цитати си постали <a target=\"_blank\" href=\"https://www.zotero.org/support/kb/google_docs_citations_unlinked\">невезани са $1</a>. Потребно је да их поново повежете пре него што буду ажурирани или приказани унутар ваше библиографије."
+  },
+  "integration_googleDocs_unlinkBeforeSaving_downloadAnyway": {
+    "message": "Ипак преузми верзију са везама"
+  },
+  "integration_googleDocs_unlinkBeforeSaving_instructions": {
+    "message": "Да направите верзију која је погодна за дељење, изаберите <b>Направи копију…</b> из менија ставке, а затим <b>Уклони везе до цитата</b> из Зотеровог менија нове ставке и на крају преузмите копију без веза. Увек чувајте оригиналне везе до докумената у случају да вам буду потребне додатне измене."
+  },
+  "integration_googleDocs_unlinkBeforeSaving_warning": {
+    "message": "Овај документ садржи активне Зотерове цитате који ће бити приказани као везе на zotero.org у преузетим копијама."
+  },
+  "integration_googleDocs_updating": {
+    "message": "$1 ажурира ваш документ."
+  },
+  "progressWindow_error_fallback": {
+    "message": "Јавила се грешка приликом чувања помоћу $1. Покушавам да сачувам са $2."
+  },
+  "progressWindow_error_siteAccessLimits": {
+    "message": "Site Access Limits"
+  },
+  "progressWindow_error_siteAccessLimitsError": {
+    "description": "The placeholders are for the failing translator label (e.g., Google Scholar) and the Site Access Limits link",
+    "message": "An error occurred while saving this item. $1 may limit the number of items you can save at once. See $2 for more information."
+  },
+  "progressWindow_error_translation": {
+    "message": "Јавила се грешка приликом чувања ове ставке. Погледајте $1 за више података."
+  },
+  "progressWindow_error_troubleshootingTranslatorIssues": {
+    "message": "Исправљање проблема у преводу"
+  },
+  "progressWindow_error_upgradeClient": {
+    "message": "Ова могућност није подржана у верзији $1. Надоградите програм на $2."
+  },
+  "progressWindow_error_upgradeClient_latestVersion": {
+    "message": "последња верзија"
+  },
+  "progressWindow_savingTo": {
+    "message": "Чувам у"
+  },
+  "progressWindow_tagPlaceholder": {
+    "message": "Ознаке (раздвојене зарезима)"
+  },
+  "reloadVia": {
+    "message": "Reload via $1"
+  },
+  "reloadViaProxy": {
+    "message": "Reload via Proxy"
+  },
+  "reports_debug_output_submitted": {
+    "message": "Ваш извештај за проналажење грешака је послат.\n\nИД број грешке је $1."
+  },
+  "reports_report_submitted": {
+    "message": "Ваш извештај о грешци је послат.\n\nИД број извештаја: $1\n\nМожете послати поруку на Зотеров форум са овим ИД бројем уз додатне податке који описују проблем и кораке који ће помоћи програмерима да понове грешку.\n\nИзвештаји о грешкама неће бити прегледани осим уколико их не поставите на форум."
+  },
+  "reports_submission_failed": {
+    "message": "Дошло је до грешке приликом слања вашег извештаја.\n\n$1\n\nПроверите везу са интернетом, а уколико се проблем настави, пошаљите поруку на Зотеров форум."
+  },
+  "upgradeApp": {
+    "message": "Надогради $1"
+  }
 }

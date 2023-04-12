@@ -1,167 +1,167 @@
 {
-    "appConnector": {
-        "message": "$1 Tilknytter"
-    },
-    "copyUnproxiedLink": {
-        "message": "Kopier lenke uten mellomtjener"
-    },
-    "copyUnproxiedPageURL": {
-        "message": "Kopier URL til side uten mellomtjener"
-    },
-    "error_connection_downloadOrTroubleshoot": {
-        "message": "Du kan <a href=\"$1\"> laste ned $2</a> eller <a href=\"$3\"> feils\u00f8ke forbindelsen </a> om n\u00f8dvendig."
-    },
-    "error_connection_enableSavingToOnlineLibrary": {
-        "message": "Aktiver Lagre til nettbiblioteket"
-    },
-    "error_connection_isAppRunning": {
-        "message": "Kj\u00f8rer $1?"
-    },
-    "error_connection_save": {
-        "message": "$1 var ikke i stand til \u00e5 kommunisere med $2 skrivebordsprogrammet. Tilknytteren kan lagre noen sider direkte til din $3 konto, men for best resultat b\u00f8r du forsikre deg om at $2 er \u00e5pen f\u00f8r du fors\u00f8ker \u00e5 lagre."
-    },
-    "extensionIsDisabled": {
-        "message": "$1 er deaktivert"
-    },
-    "extensionIsDisabled_extensionPage": {
-        "message": "$1 er deaktivert p\u00e5 utvidelsessider"
-    },
-    "firstRun_acceptButton": {
-        "message": "Har det"
-    },
-    "firstRun_text1": {
-        "message": "$1 Tilknytter gj\u00f8r deg i stand til \u00e5 <a href=\"$2\"> lagre elementer til $1 </a> fra nettleseren din med et enkelt klikk."
-    },
-    "firstRun_text2": {
-        "message": "Hvis du ikke har gjort det enda, <a href=\"$2\">last ned</a> den frittst\u00e5ende $1 applikasjonen for den beste opplevelsen."
-    },
-    "firstRun_text3": {
-        "message": "(You can view the $1 Privacy Policy on <a href=\"$2\">the project website</a>)."
-    },
-    "firstRun_title": {
-        "message": "Du har installert $1 Tilknytter!"
-    },
-    "general_cancel": {
-        "message": "Avbryt"
-    },
-    "general_copyToClipboard": {
-        "message": "Kopier til utklippstavle"
-    },
-    "general_done": {
-        "message": "Ferdig"
-    },
-    "general_more": {
-        "message": "Mer..."
-    },
-    "general_moreInfo": {
-        "message": "Mer info\u2026"
-    },
-    "general_needHelp": {
-        "message": "Trenger du hjelp?"
-    },
-    "general_no": {
-        "message": "Nei"
-    },
-    "general_pleaseWait": {
-        "message": "Vennligst vent\u2026"
-    },
-    "general_saveTo": {
-        "message": "Lagre til $1"
-    },
-    "general_tryAgain": {
-        "message": "Pr\u00f8v igjen"
-    },
-    "general_warning": {
-        "message": "Advarsel"
-    },
-    "general_yes": {
-        "message": "Ja"
-    },
-    "integration_error_clientUpgrade": {
-        "message": "Web-basert henvisning krever $1 eller senere."
-    },
-    "integration_error_connection": {
-        "message": "$1 var ikke i stand til \u00e5 kommunisere med $2 skrivebordsprogrammet. $2 m\u00e5 v\u00e6re \u00e5pen for \u00e5 benytte web-basert henvisning."
-    },
-    "integration_googleDocs_documentLocked": {
-        "message": "Henvisningene i dokumentet blir redigert av en annen $1 bruker. Vennligst pr\u00f8v igjen senere."
-    },
-    "integration_googleDocs_documentLocked_moreInfo": {
-        "message": "$1 l\u00e5ser dokumentet ditt for \u00e5 forhindre at flere brukere redigerer henvisningene p\u00e5 samme tid. Samtidig redigering av henvisninger i dokumentet kan f\u00f8re til at henvisninger eller dokument blir \u00f8delagt. Visse uforutsigbare omstendigheter, for eksempel nettverksfeil, kan f\u00f8re til at dokumentet ditt blir permanent l\u00e5st. Hvis du tror dette har skjedd, kan du overstyre l\u00e5singen.<br/><br/>Vil du overstyre l\u00e5singen av dokumentet?"
-    },
-    "integration_googleDocs_documentPermissionError": {
-        "message": "Googlekontoen du har valgt har ikke rettigheter til \u00e5 redigere dette dokumentet. Vennligst pr\u00f8v igjen og forsikre deg om at du har valgt en konto med redigeringstilgang."
-    },
-    "integration_googleDocs_docxAlert": {
-        "message": "$1 integrasjon er ikke tilgjengelig n\u00e5r du redigerer Microsoft Word .docx filer direkte i Google Docs. Velg Fil \u2192 Lagres som Google Docs for \u00e5 aktivere denne funksjonaliteten..<br/><br/>Hvis du \u00f8nsker \u00e5 flytte et Word dokument med $1 henvisninger til Google Docs, se <a href=\"https://www.zotero.org/support/kb/moving_documents_between_word_processors\">Flytte dokumenter mellom tekstbehandlere</a>."
-    },
-    "integration_googleDocs_orphanedCitations_alert": {
-        "message": "Henvisningen du fors\u00f8ker \u00e5 redigere har blitt frakoblet $1."
-    },
-    "integration_googleDocs_orphanedCitations_alertButton": {
-        "message": "Gjenopprett kobling til henvisning"
-    },
-    "integration_googleDocs_orphanedCitations_buttonTooltip": {
-        "message": "Vis frakoblede $1 henvisninger"
-    },
-    "integration_googleDocs_orphanedCitations_disclaimer": {
-        "message": "Disse henvisningene har blitt <a target=\"_blank\" href=\"https://www.zotero.org/support/kb/google_docs_citations_unlinked\">frakoblet $1</a>. Du m\u00e5 lage koblinger til de p\u00e5 ny f\u00f8r de vil bli oppdatert eller vises i bibliografien din."
-    },
-    "integration_googleDocs_unlinkBeforeSaving_downloadAnyway": {
-        "message": "Last uansett ned versjon med koblinger"
-    },
-    "integration_googleDocs_unlinkBeforeSaving_instructions": {
-        "message": "For \u00e5 lage en versjon som er egnet for deling, velg <b>Make a copy\u2026</b>fra File-menyen, velg deretter<b>Unlink Citations</b> fra Jurism-menyen i det nye dokumentet, og last deretter ned versjonen med koblinger fjernet. Behold det opprinnelige dokumentet med koblinger i tilfelle du trenger \u00e5 gj\u00f8re flere endringer."
-    },
-    "integration_googleDocs_unlinkBeforeSaving_warning": {
-        "message": "Dette dokumentet inneholder aktive Jurism henvisninger som vil vises som zotero.org koblinger i en nedlastet kopi."
-    },
-    "integration_googleDocs_updating": {
-        "message": "$1 oppdaterer ditt dokument."
-    },
-    "progressWindow_error_fallback": {
-        "message": "En feil oppstod under lagring med $1. Fors\u00f8ker \u00e5 lagre med $2 i stedet."
-    },
-    "progressWindow_error_siteAccessLimits": {
-        "message": "Begrensninger for nettstedtilgang"
-    },
-    "progressWindow_error_siteAccessLimitsError": {
-        "message": "Det skjedde en feil under lagring av dette elementet. $1 kan ha begrensninger p\u00e5 antall elementer du kan lagre p\u00e5 en gang. Se $2 for mer informasjon."
-    },
-    "progressWindow_error_translation": {
-        "message": "En feil oppstod under lagring av dette elementet. Se $1 for mer informasjon."
-    },
-    "progressWindow_error_troubleshootingTranslatorIssues": {
-        "message": "Feils\u00f8ker problemer med oversetteren"
-    },
-    "progressWindow_error_upgradeClient": {
-        "message": "Denne egenskapen er ikke st\u00f8ttet av din versjon av $1. Oppgrader til $2."
-    },
-    "progressWindow_error_upgradeClient_latestVersion": {
-        "message": "siste versjon"
-    },
-    "progressWindow_savingTo": {
-        "message": "Lagrer til"
-    },
-    "progressWindow_tagPlaceholder": {
-        "message": "Emneord (adskilt med komma)"
-    },
-    "reloadVia": {
-        "message": "Last p\u00e5 nytt gjennom $1"
-    },
-    "reloadViaProxy": {
-        "message": "Last p\u00e5 nytt gjennom mellomtjener"
-    },
-    "reports_debug_output_submitted": {
-        "message": "Utdata fra feils\u00f8ket ditt er levert.\n\nDebug ID er $1."
-    },
-    "reports_report_submitted": {
-        "message": "Feilrapporten din er levert.\n\nRapport ID: $1\n\nLegg igjen en melding p\u00e5 Jurism forumene med denne rapport ID-en, en beskrivelse av problemet, og n\u00f8dvendige steg for \u00e5 gjenskape problemet.\n\nFeilrapporter blir ikke gjennomf\u00e5tt hvis de f\u00f8lges av en melding p\u00e5 forumene."
-    },
-    "reports_submission_failed": {
-        "message": "En feil skjedde under levering av rapporten din.\n\n$1\n\nSjekk internettforbindelsen din. Hvis problemet vedvarer, skriv en melding p\u00e5 Jurism forumene."
-    },
-    "upgradeApp": {
-        "message": "Oppgrader $1"
-    }
+  "appConnector": {
+    "message": "$1 Tilknytter"
+  },
+  "copyUnproxiedLink": {
+    "message": "Kopier lenke uten mellomtjener"
+  },
+  "copyUnproxiedPageURL": {
+    "message": "Kopier URL til side uten mellomtjener"
+  },
+  "error_connection_downloadOrTroubleshoot": {
+    "message": "Du kan <a href=\"$1\"> laste ned $2</a> eller <a href=\"$3\"> feilsøke forbindelsen </a> om nødvendig."
+  },
+  "error_connection_enableSavingToOnlineLibrary": {
+    "message": "Aktiver Lagre til nettbiblioteket"
+  },
+  "error_connection_isAppRunning": {
+    "message": "Kjører $1?"
+  },
+  "error_connection_save": {
+    "message": "$1 var ikke i stand til å kommunisere med $2 skrivebordsprogrammet. Tilknytteren kan lagre noen sider direkte til din $3 konto, men for best resultat bør du forsikre deg om at $2 er åpen før du forsøker å lagre."
+  },
+  "extensionIsDisabled": {
+    "message": "$1 er deaktivert"
+  },
+  "extensionIsDisabled_extensionPage": {
+    "message": "$1 er deaktivert på utvidelsessider"
+  },
+  "firstRun_acceptButton": {
+    "message": "Har det"
+  },
+  "firstRun_text1": {
+    "message": "$1 Tilknytter gjør deg i stand til å <a href=\"$2\"> lagre elementer til $1 </a> fra nettleseren din med et enkelt klikk."
+  },
+  "firstRun_text2": {
+    "message": "Hvis du ikke har gjort det enda, <a href=\"$2\">last ned</a> den frittstående $1 applikasjonen for den beste opplevelsen."
+  },
+  "firstRun_text3": {
+    "message": "(You can view the $1 Privacy Policy on <a href=\"$2\">the project website</a>)."
+  },
+  "firstRun_title": {
+    "message": "Du har installert $1 Tilknytter!"
+  },
+  "general_cancel": {
+    "message": "Avbryt"
+  },
+  "general_copyToClipboard": {
+    "message": "Kopier til utklippstavle"
+  },
+  "general_done": {
+    "message": "Ferdig"
+  },
+  "general_more": {
+    "message": "Mer..."
+  },
+  "general_moreInfo": {
+    "message": "Mer info…"
+  },
+  "general_needHelp": {
+    "message": "Trenger du hjelp?"
+  },
+  "general_no": {
+    "message": "Nei"
+  },
+  "general_pleaseWait": {
+    "message": "Vennligst vent…"
+  },
+  "general_saveTo": {
+    "message": "Lagre til $1"
+  },
+  "general_tryAgain": {
+    "message": "Prøv igjen"
+  },
+  "general_warning": {
+    "message": "Advarsel"
+  },
+  "general_yes": {
+    "message": "Ja"
+  },
+  "integration_error_clientUpgrade": {
+    "message": "Web-basert henvisning krever $1 eller senere."
+  },
+  "integration_error_connection": {
+    "message": "$1 var ikke i stand til å kommunisere med $2 skrivebordsprogrammet. $2 må være åpen for å benytte web-basert henvisning."
+  },
+  "integration_googleDocs_documentLocked": {
+    "message": "Henvisningene i dokumentet blir redigert av en annen $1 bruker. Vennligst prøv igjen senere."
+  },
+  "integration_googleDocs_documentLocked_moreInfo": {
+    "message": "$1 låser dokumentet ditt for å forhindre at flere brukere redigerer henvisningene på samme tid. Samtidig redigering av henvisninger i dokumentet kan føre til at henvisninger eller dokument blir ødelagt. Visse uforutsigbare omstendigheter, for eksempel nettverksfeil, kan føre til at dokumentet ditt blir permanent låst. Hvis du tror dette har skjedd, kan du overstyre låsingen.<br/><br/>Vil du overstyre låsingen av dokumentet?"
+  },
+  "integration_googleDocs_documentPermissionError": {
+    "message": "Googlekontoen du har valgt har ikke rettigheter til å redigere dette dokumentet. Vennligst prøv igjen og forsikre deg om at du har valgt en konto med redigeringstilgang."
+  },
+  "integration_googleDocs_docxAlert": {
+    "message": "$1 integrasjon er ikke tilgjengelig når du redigerer Microsoft Word .docx filer direkte i Google Docs. Velg Fil → Lagres som Google Docs for å aktivere denne funksjonaliteten..<br/><br/>Hvis du ønsker å flytte et Word dokument med $1 henvisninger til Google Docs, se <a href=\"https://www.zotero.org/support/kb/moving_documents_between_word_processors\">Flytte dokumenter mellom tekstbehandlere</a>."
+  },
+  "integration_googleDocs_orphanedCitations_alert": {
+    "message": "Henvisningen du forsøker å redigere har blitt frakoblet $1."
+  },
+  "integration_googleDocs_orphanedCitations_alertButton": {
+    "message": "Gjenopprett kobling til henvisning"
+  },
+  "integration_googleDocs_orphanedCitations_buttonTooltip": {
+    "message": "Vis frakoblede $1 henvisninger"
+  },
+  "integration_googleDocs_orphanedCitations_disclaimer": {
+    "message": "Disse henvisningene har blitt <a target=\"_blank\" href=\"https://www.zotero.org/support/kb/google_docs_citations_unlinked\">frakoblet $1</a>. Du må lage koblinger til de på ny før de vil bli oppdatert eller vises i bibliografien din."
+  },
+  "integration_googleDocs_unlinkBeforeSaving_downloadAnyway": {
+    "message": "Last uansett ned versjon med koblinger"
+  },
+  "integration_googleDocs_unlinkBeforeSaving_instructions": {
+    "message": "For å lage en versjon som er egnet for deling, velg <b>Make a copy…</b>fra File-menyen, velg deretter<b>Unlink Citations</b> fra Jurism-menyen i det nye dokumentet, og last deretter ned versjonen med koblinger fjernet. Behold det opprinnelige dokumentet med koblinger i tilfelle du trenger å gjøre flere endringer."
+  },
+  "integration_googleDocs_unlinkBeforeSaving_warning": {
+    "message": "Dette dokumentet inneholder aktive Jurism henvisninger som vil vises som zotero.org koblinger i en nedlastet kopi."
+  },
+  "integration_googleDocs_updating": {
+    "message": "$1 oppdaterer ditt dokument."
+  },
+  "progressWindow_error_fallback": {
+    "message": "En feil oppstod under lagring med $1. Forsøker å lagre med $2 i stedet."
+  },
+  "progressWindow_error_siteAccessLimits": {
+    "message": "Begrensninger for nettstedtilgang"
+  },
+  "progressWindow_error_siteAccessLimitsError": {
+    "message": "Det skjedde en feil under lagring av dette elementet. $1 kan ha begrensninger på antall elementer du kan lagre på en gang. Se $2 for mer informasjon."
+  },
+  "progressWindow_error_translation": {
+    "message": "En feil oppstod under lagring av dette elementet. Se $1 for mer informasjon."
+  },
+  "progressWindow_error_troubleshootingTranslatorIssues": {
+    "message": "Feilsøker problemer med oversetteren"
+  },
+  "progressWindow_error_upgradeClient": {
+    "message": "Denne egenskapen er ikke støttet av din versjon av $1. Oppgrader til $2."
+  },
+  "progressWindow_error_upgradeClient_latestVersion": {
+    "message": "siste versjon"
+  },
+  "progressWindow_savingTo": {
+    "message": "Lagrer til"
+  },
+  "progressWindow_tagPlaceholder": {
+    "message": "Emneord (adskilt med komma)"
+  },
+  "reloadVia": {
+    "message": "Last på nytt gjennom $1"
+  },
+  "reloadViaProxy": {
+    "message": "Last på nytt gjennom mellomtjener"
+  },
+  "reports_debug_output_submitted": {
+    "message": "Utdata fra feilsøket ditt er levert.\n\nDebug ID er $1."
+  },
+  "reports_report_submitted": {
+    "message": "Feilrapporten din er levert.\n\nRapport ID: $1\n\nLegg igjen en melding på Jurism forumene med denne rapport ID-en, en beskrivelse av problemet, og nødvendige steg for å gjenskape problemet.\n\nFeilrapporter blir ikke gjennomfått hvis de følges av en melding på forumene."
+  },
+  "reports_submission_failed": {
+    "message": "En feil skjedde under levering av rapporten din.\n\n$1\n\nSjekk internettforbindelsen din. Hvis problemet vedvarer, skriv en melding på Jurism forumene."
+  },
+  "upgradeApp": {
+    "message": "Oppgrader $1"
+  }
 }

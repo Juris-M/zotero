@@ -1,170 +1,170 @@
 {
-    "appConnector": {
-        "message": "\u0645\u0648\u0635\u0644 $1"
-    },
-    "copyUnproxiedLink": {
-        "message": "Copy Unproxied Link"
-    },
-    "copyUnproxiedPageURL": {
-        "message": "Copy Unproxied Page URL"
-    },
-    "error_connection_downloadOrTroubleshoot": {
-        "message": "\u064a\u0645\u0643\u0646\u0643 <a href=\"$1\">\u062a\u062d\u0645\u064a\u0644$2</a> \u0623\u0648 <a href=\"$3\">\u0627\u0633\u062a\u0635\u0644\u0627\u062d \u0627\u0644\u0645\u0648\u0635\u0644</a> \u0625\u0630\u0627 \u0644\u0632\u0645 \u0627\u0644\u0623\u0645\u0631."
-    },
-    "error_connection_enableSavingToOnlineLibrary": {
-        "message": "\u062a\u0645\u0643\u064a\u0646 \u0627\u0644\u062d\u0641\u0638 \u0625\u0644\u0649 \u0645\u0643\u062a\u0628\u0629 \u0627\u0644\u0634\u0628\u0643\u0629"
-    },
-    "error_connection_isAppRunning": {
-        "message": "\u0647\u0644 $1 \u064a\u0639\u0645\u0644\u061f"
-    },
-    "error_connection_save": {
-        "message": " $1 \u063a\u064a\u0631 \u0642\u0627\u062f\u0631 \u0639\u0644\u0649 \u0627\u0644\u062a\u0648\u0627\u0635\u0644 \u0645\u0639 $2 \u062a\u0637\u0628\u064a\u0642 \u0633\u0637\u062d \u0627\u0644\u0645\u0643\u062a\u0628. \u0627\u0644\u0645\u0648\u0635\u0644 \u064a\u0645\u0643\u0646 \u0623\u0646 \u064a\u062d\u0641\u0638 \u0628\u0639\u0636 \u0627\u0644\u0635\u0641\u062d\u0627\u062a \u0645\u0628\u0627\u0634\u0631\u0629 \u0625\u0644\u0649 \u062d\u0633\u0627\u0628\u0643 \u0641\u064a $3\u060c \u0644\u0643\u0646 \u0644\u0646\u062a\u0627\u0626\u062c\u064d \u0623\u0641\u0636\u0644 \u062a\u0623\u0643\u062f \u0623\u0646 $2 \u0645\u0641\u062a\u0648\u062d  \u0642\u0628\u0644 \u0645\u062d\u0627\u0648\u0644\u0629 \u0627\u0644\u062d\u0641\u0638."
-    },
-    "extensionIsDisabled": {
-        "message": "$1 is disabled"
-    },
-    "extensionIsDisabled_extensionPage": {
-        "message": "$1 is disabled on extension pages"
-    },
-    "firstRun_acceptButton": {
-        "description": "The Accept button for the first-run dialog",
-        "message": "Got it"
-    },
-    "firstRun_text1": {
-        "message": "The $1 Connector enables you to <a href=\"$2\">save items to $1</a> from your browser in a single click."
-    },
-    "firstRun_text2": {
-        "message": "If you haven\u2019t yet, <a href=\"$2\">download</a> the standalone $1 application for the best experience."
-    },
-    "firstRun_text3": {
-        "message": "(You can view the $1 Privacy Policy on <a href=\"$2\">the project website</a>)."
-    },
-    "firstRun_title": {
-        "message": "You\u2019ve installed the $1 Connector!"
-    },
-    "general_cancel": {
-        "message": "\u0625\u0644\u063a\u0627\u0621"
-    },
-    "general_copyToClipboard": {
-        "message": "\u0627\u0646\u0633\u062e \u0625\u0644\u0649 \u0627\u0644\u062d\u0627\u0641\u0638\u0629"
-    },
-    "general_done": {
-        "message": "\u062a\u0645"
-    },
-    "general_more": {
-        "message": "\u0627\u0644\u0645\u0632\u064a\u062f..."
-    },
-    "general_moreInfo": {
-        "message": "More Info\u2026"
-    },
-    "general_needHelp": {
-        "message": "Need help?"
-    },
-    "general_no": {
-        "message": "\u0644\u0627"
-    },
-    "general_pleaseWait": {
-        "message": "Please wait\u2026"
-    },
-    "general_saveTo": {
-        "message": "\u0627\u062d\u0641\u0638 \u0641\u064a $1"
-    },
-    "general_tryAgain": {
-        "message": "\u062d\u0627\u0648\u0644 \u0645\u0631\u0629 \u0623\u062e\u0631\u0649"
-    },
-    "general_warning": {
-        "message": "\u062a\u062d\u0630\u064a\u0631"
-    },
-    "general_yes": {
-        "message": "\u0646\u0639\u0645"
-    },
-    "integration_error_clientUpgrade": {
-        "message": "\u0627\u0644\u0627\u0633\u062a\u0634\u0647\u0627\u062f \u0627\u0644\u0645\u0633\u062a\u0646\u062f \u0639\u0644\u0649 \u0627\u0644\u0634\u0628\u0643\u0629 \u064a\u062a\u0637\u0644\u0628 $1 \u0623\u0648 \u0623\u062d\u062f\u062b."
-    },
-    "integration_error_connection": {
-        "message": " $1 \u063a\u064a\u0631 \u0642\u0627\u062f\u0631 \u0639\u0644\u0649 \u0627\u0644\u062a\u0648\u0627\u0635\u0644 \u0645\u0639  $2 \u062a\u0637\u0628\u064a\u0642 \u0633\u0637\u062d \u0627\u0644\u0645\u0643\u062a\u0628. \u064a\u062c\u0628 \u0641\u062a\u062d $2 \u0644\u0627\u0633\u062a\u062e\u062f\u0627\u0645 \u0627\u0644\u0627\u0633\u062a\u0634\u0647\u0627\u062f \u0627\u0644\u0645\u0633\u062a\u0646\u062f \u0639\u0644\u0649 \u0627\u0644\u0634\u0628\u0643\u0629."
-    },
-    "integration_googleDocs_documentLocked": {
-        "message": "The document citations are being edited by another $1 user. Please try again later."
-    },
-    "integration_googleDocs_documentLocked_moreInfo": {
-        "message": "$1 locks your document to prevent multiple users from editing citations at the same time. Concurrent citation editing in the document may lead to citation or document corruption. Certain unforeseeable circumstances, such as network failures, may lead to your document becoming permanently locked. If you believe this has happened, you can override the lock.<br/><br/>Would you like to override the document lock?"
-    },
-    "integration_googleDocs_documentPermissionError": {
-        "message": "The Google account you selected does not have permission to edit this document. Please try again, and be sure to choose the account with editing access."
-    },
-    "integration_googleDocs_docxAlert": {
-        "message": "$1 integration is not available when editing Microsoft Word .docx files directly in Google Docs. Choose File \u2192 Save as Google Docs to enable this functionality.<br/><br/>If you want to transfer a Word document with $1 citations to Google Docs, see <a href=\"https://www.zotero.org/support/kb/moving_documents_between_word_processors\">Moving Documents Between Word Processors</a>."
-    },
-    "integration_googleDocs_orphanedCitations_alert": {
-        "message": "The citation you are trying to edit has become unlinked from $1."
-    },
-    "integration_googleDocs_orphanedCitations_alertButton": {
-        "message": "Relink Citation"
-    },
-    "integration_googleDocs_orphanedCitations_buttonTooltip": {
-        "message": "Show unlinked $1 citations"
-    },
-    "integration_googleDocs_orphanedCitations_disclaimer": {
-        "message": "These citations have become <a target=\"_blank\" href=\"https://www.zotero.org/support/kb/google_docs_citations_unlinked\">unlinked from $1</a>. You will need to relink them before they will update or appear in your bibliography."
-    },
-    "integration_googleDocs_unlinkBeforeSaving_downloadAnyway": {
-        "message": "\u062d\u0645\u0644 \u0627\u0644\u0646\u0633\u062e\u0629 \u0627\u0644\u0645\u0631\u062a\u0628\u0637\u0629 \u0639\u0644\u0649 \u0643\u0644 \u062d\u0627\u0644."
-    },
-    "integration_googleDocs_unlinkBeforeSaving_instructions": {
-        "message": "\u0644\u0635\u0646\u0639 \u0646\u0633\u062e\u0629 \u0645\u0646\u0627\u0633\u0628\u0629 \u0644\u0644\u0645\u0634\u0627\u0631\u0643\u0629\u060c \u0627\u062e\u062a\u0631 <b> \u0627\u0646\u0634\u0626 \u0646\u0633\u062e\u0629...</b> \u0645\u0646 \u0642\u0627\u0626\u0645\u0629 \u0645\u0644\u0641\u060c \u0627\u062e\u062a\u0631 <b>\u0625\u0644\u063a\u0627\u0621 \u0627\u0631\u062a\u0628\u0627\u0637 \u0627\u0644\u0627\u0633\u062a\u0634\u0647\u0627\u062f\u0627\u062a</b> \u0645\u0646 \u0642\u0627\u0626\u0645\u0629 \u0632\u0648\u062a\u064a\u0631\u0648 \u0641\u064a \u0627\u0644\u0645\u0633\u062a\u0646\u062f \u0627\u0644\u062c\u062f\u064a\u062f\u060c \u062b\u0645 \u062d\u0645\u0644 \u0627\u0644\u0646\u0633\u063a\u064a\u0631 \u063a\u064a\u0631 \u0627\u0644\u0645\u0631\u062a\u0628\u0637\u0629. \u0627\u062d\u0641\u0638 \u0647\u0630\u0627 \u0627\u0644\u0645\u0633\u062a\u0646\u062f \u0627\u0644\u0645\u0631\u062a\u0628\u0637 \u0641\u064a \u062d\u0627\u0644\u0629 \u0627\u062d\u062a\u062c\u062a \u0644\u0645\u0632\u064a\u062f \u0645\u0646 \u0627\u0644\u062a\u063a\u064a\u064a\u0631\u0627\u062a."
-    },
-    "integration_googleDocs_unlinkBeforeSaving_warning": {
-        "message": "\u0627\u0644\u0645\u0633\u062a\u0646\u062f \u064a\u062d\u062a\u0648\u064a \u0627\u0642\u062a\u0628\u0627\u0633\u0627\u062a \u0632\u0648\u062a\u064a\u0631\u0648 \u0646\u0634\u0637\u0629 \u0648\u0633\u062a\u0638\u0647\u0631 \u0643\u0631\u0648\u0627\u0628\u0637  zotero.org \u0641\u064a \u0627\u0644\u0646\u0633\u062e\u0629 \u0627\u0644\u0645\u062d\u0645\u0644\u0629."
-    },
-    "integration_googleDocs_updating": {
-        "message": "$1 is updating your document."
-    },
-    "progressWindow_error_fallback": {
-        "message": "\u062d\u062f\u062b \u062e\u0637\u0623 \u0627\u062b\u0646\u0627\u0621 \u0627\u0644\u062d\u0641\u0638 \u0628\u0627\u0633\u062a\u062e\u062f\u0627\u0645 $1. \u0645\u062d\u0627\u0648\u0644\u0629 \u0627\u0644\u062d\u0641\u0638 \u0628\u0627\u0633\u062a\u062e\u062f\u0627\u0645 $2 \u0628\u062f\u0644\u0627\u064b \u0645\u0646 \u0630\u0644\u0643."
-    },
-    "progressWindow_error_siteAccessLimits": {
-        "message": "Site Access Limits"
-    },
-    "progressWindow_error_siteAccessLimitsError": {
-        "description": "The placeholders are for the failing translator label (e.g., Google Scholar) and the Site Access Limits link",
-        "message": "An error occurred while saving this item. $1 may limit the number of items you can save at once. See $2 for more information."
-    },
-    "progressWindow_error_translation": {
-        "message": "\u062d\u062f\u062b \u062e\u0637\u0623 \u0623\u062b\u0646\u0627\u0621 \u062d\u0641\u0638 \u0647\u0630\u0627 \u0627\u0644\u0639\u0646\u0635\u0631. \u0631\u0627\u062c\u0639 $1 \u0644\u0645\u0632\u064a\u062f \u0645\u0646 \u0627\u0644\u0645\u0639\u0644\u0648\u0645\u0627\u062a."
-    },
-    "progressWindow_error_troubleshootingTranslatorIssues": {
-        "message": "\u0627\u0643\u062a\u0634\u0627\u0641 \u0648\u0627\u0635\u0644\u0627\u062d \u0645\u0634\u0627\u0643\u0644 \u0627\u0644\u0645\u062a\u0631\u062c\u0645\u0627\u062a"
-    },
-    "progressWindow_error_upgradeClient": {
-        "message": "\u0647\u0630\u0647 \u0627\u0644\u0645\u064a\u0632\u0629 \u0644\u064a\u0633\u062a \u0645\u062f\u0639\u0648\u0645\u0629 \u0641\u064a \u0625\u0635\u062f\u0627\u0631\u062a\u0643 \u0645\u0646 $1. \u0631\u062c\u0627\u0621\u0627\u064b \u062d\u062f\u062b  \u0625\u0644\u0649 $2"
-    },
-    "progressWindow_error_upgradeClient_latestVersion": {
-        "message": "\u0627\u0644\u0625\u0635\u062f\u0627\u0631 \u0627\u0644\u0623\u062e\u064a\u0631"
-    },
-    "progressWindow_savingTo": {
-        "message": "\u0627\u0644\u062d\u0641\u0638 \u0641\u064a"
-    },
-    "progressWindow_tagPlaceholder": {
-        "message": "\u0648\u0633\u0648\u0645 ( \u0645\u0641\u0635\u0648\u0644\u0629 \u0628\u0641\u0648\u0627\u0635\u0644)"
-    },
-    "reloadVia": {
-        "message": "Reload via $1"
-    },
-    "reloadViaProxy": {
-        "message": "Reload via Proxy"
-    },
-    "reports_debug_output_submitted": {
-        "message": "Your debug output has been submitted.\n\nThe Debug ID is $1."
-    },
-    "reports_report_submitted": {
-        "message": "Your error report has been submitted.\n\nReport ID: $1\n\nPlease post a message to the Jurism Forums with this Report ID, a description of the problem, and any steps necessary to reproduce it.\n\nError reports are not reviewed unless referred to in the forums."
-    },
-    "reports_submission_failed": {
-        "description": "$1 will be the error message sent to the Jurism servers",
-        "message": "An error occurred submitting your report.\n\n$1\n\nPlease check your internet connection. If the problem persists, post a message to the Jurism Forums."
-    },
-    "upgradeApp": {
-        "message": "\u062a\u0631\u0642\u064a\u0629 $1"
-    }
+  "appConnector": {
+    "message": "موصل $1"
+  },
+  "copyUnproxiedLink": {
+    "message": "Copy Unproxied Link"
+  },
+  "copyUnproxiedPageURL": {
+    "message": "Copy Unproxied Page URL"
+  },
+  "error_connection_downloadOrTroubleshoot": {
+    "message": "يمكنك <a href=\"$1\">تحميل$2</a> أو <a href=\"$3\">استصلاح الموصل</a> إذا لزم الأمر."
+  },
+  "error_connection_enableSavingToOnlineLibrary": {
+    "message": "تمكين الحفظ إلى مكتبة الشبكة"
+  },
+  "error_connection_isAppRunning": {
+    "message": "هل $1 يعمل؟"
+  },
+  "error_connection_save": {
+    "message": " $1 غير قادر على التواصل مع $2 تطبيق سطح المكتب. الموصل يمكن أن يحفظ بعض الصفحات مباشرة إلى حسابك في $3، لكن لنتائجٍ أفضل تأكد أن $2 مفتوح  قبل محاولة الحفظ."
+  },
+  "extensionIsDisabled": {
+    "message": "$1 is disabled"
+  },
+  "extensionIsDisabled_extensionPage": {
+    "message": "$1 is disabled on extension pages"
+  },
+  "firstRun_acceptButton": {
+    "description": "The Accept button for the first-run dialog",
+    "message": "Got it"
+  },
+  "firstRun_text1": {
+    "message": "The $1 Connector enables you to <a href=\"$2\">save items to $1</a> from your browser in a single click."
+  },
+  "firstRun_text2": {
+    "message": "If you haven’t yet, <a href=\"$2\">download</a> the standalone $1 application for the best experience."
+  },
+  "firstRun_text3": {
+    "message": "(You can view the $1 Privacy Policy on <a href=\"$2\">the project website</a>)."
+  },
+  "firstRun_title": {
+    "message": "You’ve installed the $1 Connector!"
+  },
+  "general_cancel": {
+    "message": "إلغاء"
+  },
+  "general_copyToClipboard": {
+    "message": "انسخ إلى الحافظة"
+  },
+  "general_done": {
+    "message": "تم"
+  },
+  "general_more": {
+    "message": "المزيد..."
+  },
+  "general_moreInfo": {
+    "message": "More Info…"
+  },
+  "general_needHelp": {
+    "message": "Need help?"
+  },
+  "general_no": {
+    "message": "لا"
+  },
+  "general_pleaseWait": {
+    "message": "Please wait…"
+  },
+  "general_saveTo": {
+    "message": "احفظ في $1"
+  },
+  "general_tryAgain": {
+    "message": "حاول مرة أخرى"
+  },
+  "general_warning": {
+    "message": "تحذير"
+  },
+  "general_yes": {
+    "message": "نعم"
+  },
+  "integration_error_clientUpgrade": {
+    "message": "الاستشهاد المستند على الشبكة يتطلب $1 أو أحدث."
+  },
+  "integration_error_connection": {
+    "message": " $1 غير قادر على التواصل مع  $2 تطبيق سطح المكتب. يجب فتح $2 لاستخدام الاستشهاد المستند على الشبكة."
+  },
+  "integration_googleDocs_documentLocked": {
+    "message": "The document citations are being edited by another $1 user. Please try again later."
+  },
+  "integration_googleDocs_documentLocked_moreInfo": {
+    "message": "$1 locks your document to prevent multiple users from editing citations at the same time. Concurrent citation editing in the document may lead to citation or document corruption. Certain unforeseeable circumstances, such as network failures, may lead to your document becoming permanently locked. If you believe this has happened, you can override the lock.<br/><br/>Would you like to override the document lock?"
+  },
+  "integration_googleDocs_documentPermissionError": {
+    "message": "The Google account you selected does not have permission to edit this document. Please try again, and be sure to choose the account with editing access."
+  },
+  "integration_googleDocs_docxAlert": {
+    "message": "$1 integration is not available when editing Microsoft Word .docx files directly in Google Docs. Choose File → Save as Google Docs to enable this functionality.<br/><br/>If you want to transfer a Word document with $1 citations to Google Docs, see <a href=\"https://www.zotero.org/support/kb/moving_documents_between_word_processors\">Moving Documents Between Word Processors</a>."
+  },
+  "integration_googleDocs_orphanedCitations_alert": {
+    "message": "The citation you are trying to edit has become unlinked from $1."
+  },
+  "integration_googleDocs_orphanedCitations_alertButton": {
+    "message": "Relink Citation"
+  },
+  "integration_googleDocs_orphanedCitations_buttonTooltip": {
+    "message": "Show unlinked $1 citations"
+  },
+  "integration_googleDocs_orphanedCitations_disclaimer": {
+    "message": "These citations have become <a target=\"_blank\" href=\"https://www.zotero.org/support/kb/google_docs_citations_unlinked\">unlinked from $1</a>. You will need to relink them before they will update or appear in your bibliography."
+  },
+  "integration_googleDocs_unlinkBeforeSaving_downloadAnyway": {
+    "message": "حمل النسخة المرتبطة على كل حال."
+  },
+  "integration_googleDocs_unlinkBeforeSaving_instructions": {
+    "message": "لصنع نسخة مناسبة للمشاركة، اختر <b> انشئ نسخة...</b> من قائمة ملف، اختر <b>إلغاء ارتباط الاستشهادات</b> من قائمة زوتيرو في المستند الجديد، ثم حمل النسغير غير المرتبطة. احفظ هذا المستند المرتبط في حالة احتجت لمزيد من التغييرات."
+  },
+  "integration_googleDocs_unlinkBeforeSaving_warning": {
+    "message": "المستند يحتوي اقتباسات زوتيرو نشطة وستظهر كروابط  zotero.org في النسخة المحملة."
+  },
+  "integration_googleDocs_updating": {
+    "message": "$1 is updating your document."
+  },
+  "progressWindow_error_fallback": {
+    "message": "حدث خطأ اثناء الحفظ باستخدام $1. محاولة الحفظ باستخدام $2 بدلاً من ذلك."
+  },
+  "progressWindow_error_siteAccessLimits": {
+    "message": "Site Access Limits"
+  },
+  "progressWindow_error_siteAccessLimitsError": {
+    "description": "The placeholders are for the failing translator label (e.g., Google Scholar) and the Site Access Limits link",
+    "message": "An error occurred while saving this item. $1 may limit the number of items you can save at once. See $2 for more information."
+  },
+  "progressWindow_error_translation": {
+    "message": "حدث خطأ أثناء حفظ هذا العنصر. راجع $1 لمزيد من المعلومات."
+  },
+  "progressWindow_error_troubleshootingTranslatorIssues": {
+    "message": "اكتشاف واصلاح مشاكل المترجمات"
+  },
+  "progressWindow_error_upgradeClient": {
+    "message": "هذه الميزة ليست مدعومة في إصدارتك من $1. رجاءاً حدث  إلى $2"
+  },
+  "progressWindow_error_upgradeClient_latestVersion": {
+    "message": "الإصدار الأخير"
+  },
+  "progressWindow_savingTo": {
+    "message": "الحفظ في"
+  },
+  "progressWindow_tagPlaceholder": {
+    "message": "وسوم ( مفصولة بفواصل)"
+  },
+  "reloadVia": {
+    "message": "Reload via $1"
+  },
+  "reloadViaProxy": {
+    "message": "Reload via Proxy"
+  },
+  "reports_debug_output_submitted": {
+    "message": "Your debug output has been submitted.\n\nThe Debug ID is $1."
+  },
+  "reports_report_submitted": {
+    "message": "Your error report has been submitted.\n\nReport ID: $1\n\nPlease post a message to the Jurism Forums with this Report ID, a description of the problem, and any steps necessary to reproduce it.\n\nError reports are not reviewed unless referred to in the forums."
+  },
+  "reports_submission_failed": {
+    "description": "$1 will be the error message sent to the Jurism servers",
+    "message": "An error occurred submitting your report.\n\n$1\n\nPlease check your internet connection. If the problem persists, post a message to the Jurism Forums."
+  },
+  "upgradeApp": {
+    "message": "ترقية $1"
+  }
 }

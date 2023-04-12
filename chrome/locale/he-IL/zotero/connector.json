@@ -1,167 +1,167 @@
 {
-    "appConnector": {
-        "message": "\u05de\u05d2\u05e9\u05e8 $1"
-    },
-    "copyUnproxiedLink": {
-        "message": "Copy Unproxied Link"
-    },
-    "copyUnproxiedPageURL": {
-        "message": "Copy Unproxied Page URL"
-    },
-    "error_connection_downloadOrTroubleshoot": {
-        "message": "\u05d0\u05e4\u05e9\u05e8 <a href=\"$1\">\u05dc\u05d4\u05d5\u05e8\u05d9\u05d3 \u05d0\u05ea $2</a> \u05d0\u05d5 <a href=\"$3\">\u05dc\u05d8\u05e4\u05dc \u05d1\u05d1\u05e2\u05d9\u05d5\u05ea \u05d4\u05d7\u05d9\u05d1\u05d5\u05e8</a> \u05d1\u05de\u05d9\u05d3\u05ea \u05d4\u05e6\u05d5\u05e8\u05da."
-    },
-    "error_connection_enableSavingToOnlineLibrary": {
-        "message": "\u05d4\u05e4\u05e2\u05dc\u05ea \u05e9\u05de\u05d9\u05e8\u05d4 \u05dc\u05e1\u05e4\u05e8\u05d9\u05d9\u05d4 \u05de\u05e7\u05d5\u05d5\u05e0\u05ea"
-    },
-    "error_connection_isAppRunning": {
-        "message": "\u05d4\u05d0\u05dd $1 \u05e4\u05e2\u05d9\u05dc?"
-    },
-    "error_connection_save": {
-        "message": "\u05dc\u05be$1 \u05dc\u05d0 \u05d4\u05d9\u05d9\u05ea\u05d4 \u05d0\u05e4\u05e9\u05e8\u05d5\u05ea \u05dc\u05ea\u05e7\u05e9\u05e8 \u05e2\u05dd \u05d9\u05d9\u05e9\u05d5\u05dd \u05e9\u05d5\u05dc\u05d7\u05df \u05d4\u05e2\u05d1\u05d5\u05d3\u05d4 $2. \u05d4\u05de\u05d2\u05e9\u05e8 \u05d9\u05db\u05d5\u05dc \u05dc\u05e9\u05de\u05d5\u05e8 \u05d7\u05dc\u05e7 \u05de\u05d4\u05d3\u05e4\u05d9\u05dd \u05d9\u05e9\u05d9\u05e8\u05d5\u05ea \u05d1\u05d7\u05e9\u05d1\u05d5\u05df \u05e9\u05dc\u05da \u05d0\u05e6\u05dc $3 \u05d0\u05da \u05dc\u05e7\u05d1\u05dc \u05ea\u05d5\u05e6\u05d0\u05d5\u05ea \u05de\u05d9\u05d8\u05d1\u05d9\u05d5\u05ea \u05e2\u05dc\u05d9\u05da \u05dc\u05d5\u05d5\u05d3\u05d0 \u05e9\u05be$2 \u05e4\u05ea\u05d5\u05d7 \u05d1\u05d8\u05e8\u05dd \u05e0\u05d9\u05e1\u05d9\u05d5\u05df \u05d4\u05e9\u05de\u05d9\u05e8\u05d4."
-    },
-    "extensionIsDisabled": {
-        "message": "$1 is disabled"
-    },
-    "extensionIsDisabled_extensionPage": {
-        "message": "$1 is disabled on extension pages"
-    },
-    "firstRun_acceptButton": {
-        "message": "\u05d4\u05d1\u05e0\u05ea\u05d9"
-    },
-    "firstRun_text1": {
-        "message": "\u05de\u05d2\u05e9\u05e8 $1 \u05de\u05d0\u05e4\u05e9\u05e8 \u05dc\u05da <a href=\"$2\">\u05dc\u05e9\u05de\u05d5\u05e8 \u05e4\u05e8\u05d9\u05d8\u05d9\u05dd \u05d0\u05dc $1</a> \u05de\u05d4\u05d3\u05e4\u05d3\u05e4\u05df \u05e9\u05dc\u05da \u05d1\u05dc\u05d7\u05d9\u05e6\u05d4 \u05d0\u05d7\u05ea."
-    },
-    "firstRun_text2": {
-        "message": "\u05d0\u05dd \u05d8\u05e8\u05dd \u05e2\u05e9\u05d9\u05ea \u05d6\u05d0\u05ea, \u05d9\u05e9 <a href=\"$2\">\u05dc\u05d4\u05d5\u05e8\u05d9\u05d3</a> \u05d0\u05ea \u05d4\u05d9\u05d9\u05e9\u05d5\u05dd \u05d4\u05e2\u05e6\u05de\u05d0\u05d9 $1 \u05dc\u05d7\u05d5\u05d5\u05d9\u05d4 \u05de\u05d9\u05d8\u05d1\u05d9\u05ea."
-    },
-    "firstRun_text3": {
-        "message": "(You can view the $1 Privacy Policy on <a href=\"$2\">the project website</a>)."
-    },
-    "firstRun_title": {
-        "message": "\u05d4\u05ea\u05e7\u05e0\u05ea \u05d0\u05ea \u05d4\u05de\u05d2\u05e9\u05e8 $1!"
-    },
-    "general_cancel": {
-        "message": "\u05d1\u05d9\u05d8\u05d5\u05dc"
-    },
-    "general_copyToClipboard": {
-        "message": "\u05d4\u05e2\u05ea\u05e7\u05d4 \u05dc\u05dc\u05d5\u05d7 \u05d4\u05d2\u05d6\u05d9\u05e8\u05d9\u05dd"
-    },
-    "general_done": {
-        "message": "\u05d1\u05d5\u05e6\u05e2"
-    },
-    "general_more": {
-        "message": "\u05e2\u05d5\u05d3\u2026"
-    },
-    "general_moreInfo": {
-        "message": "\u05de\u05d9\u05d3\u05e2 \u05e0\u05d5\u05e1\u05e3\u2026"
-    },
-    "general_needHelp": {
-        "message": "\u05d0\u05e4\u05e9\u05e8 \u05dc\u05d4\u05e6\u05d9\u05e2 \u05dc\u05da \u05e2\u05d6\u05e8\u05d4?"
-    },
-    "general_no": {
-        "message": "\u05dc\u05d0"
-    },
-    "general_pleaseWait": {
-        "message": "\u05e0\u05d0 \u05dc\u05d4\u05de\u05ea\u05d9\u05df\u2026"
-    },
-    "general_saveTo": {
-        "message": "\u05e9\u05de\u05d9\u05e8\u05d4 \u05d0\u05dc $1"
-    },
-    "general_tryAgain": {
-        "message": "\u05dc\u05e0\u05e1\u05d5\u05ea \u05e9\u05d5\u05d1"
-    },
-    "general_warning": {
-        "message": "\u05d0\u05d6\u05d4\u05e8\u05d4"
-    },
-    "general_yes": {
-        "message": "\u05db\u05df"
-    },
-    "integration_error_clientUpgrade": {
-        "message": "\u05e6\u05d9\u05d8\u05d5\u05d8 \u05de\u05d1\u05d5\u05e1\u05e1 \u05e8\u05e9\u05ea \u05d3\u05d5\u05e8\u05e9 $1 \u05d5\u05de\u05e2\u05dc\u05d4."
-    },
-    "integration_error_connection": {
-        "message": "\u05dc\u05be$1 \u05dc\u05d0 \u05d4\u05d9\u05d9\u05ea\u05d4 \u05d0\u05e4\u05e9\u05e8\u05d5\u05ea \u05dc\u05ea\u05e7\u05e9\u05e8 \u05e2\u05dd \u05d9\u05d9\u05e9\u05d5\u05dd \u05e9\u05d5\u05dc\u05d7\u05df \u05d4\u05e2\u05d1\u05d5\u05d3\u05d4 $2. $2 \u05d7\u05d9\u05d9\u05d1 \u05dc\u05d4\u05d9\u05d5\u05ea \u05e4\u05ea\u05d5\u05d7 \u05db\u05d3\u05d9 \u05dc\u05d4\u05e9\u05ea\u05de\u05e9 \u05d1\u05e6\u05d9\u05d8\u05d5\u05d8 \u05de\u05d1\u05d5\u05e1\u05e1 \u05e8\u05e9\u05ea."
-    },
-    "integration_googleDocs_documentLocked": {
-        "message": "\u05e6\u05d9\u05d8\u05d5\u05d8\u05d9 \u05d4\u05de\u05e1\u05de\u05da \u05e0\u05e2\u05e8\u05db\u05d9\u05dd \u05e2\u05dc \u05d9\u05d3\u05d9 \u05de\u05e9\u05ea\u05de\u05e9 \u05d0\u05d7\u05e8 \u05d1\u05be$1. \u05e0\u05d0 \u05dc\u05e0\u05e1\u05d5\u05ea \u05e9\u05d5\u05d1 \u05d1\u05d4\u05de\u05e9\u05da."
-    },
-    "integration_googleDocs_documentLocked_moreInfo": {
-        "message": "$1 \u05e0\u05d5\u05e2\u05dc \u05d0\u05ea \u05d4\u05de\u05e1\u05de\u05da \u05e9\u05dc\u05da \u05db\u05d3\u05d9 \u05dc\u05de\u05e0\u05d5\u05e2 \u05de\u05de\u05e1\u05e4\u05e8 \u05de\u05e9\u05ea\u05de\u05e9\u05d9\u05dd \u05dc\u05e2\u05e8\u05d5\u05da \u05e6\u05d9\u05d8\u05d5\u05d8\u05d9\u05dd \u05d1\u05d5\u05be\u05d6\u05de\u05e0\u05d9\u05ea. \u05e2\u05e8\u05d9\u05db\u05ea \u05e6\u05d9\u05d8\u05d5\u05d8\u05d9\u05dd \u05d1\u05de\u05e7\u05d1\u05d9\u05dc \u05d1\u05de\u05e1\u05de\u05da \u05e2\u05e9\u05d5\u05d9\u05d4 \u05dc\u05d4\u05d5\u05d1\u05d9\u05dc \u05dc\u05de\u05e1\u05de\u05da \u05d0\u05d5 \u05e6\u05d9\u05d8\u05d5\u05d8\u05d9\u05dd \u05e4\u05d2\u05d5\u05de\u05d9\u05dd. \u05e0\u05e1\u05d9\u05d1\u05d5\u05ea \u05d1\u05dc\u05ea\u05d9 \u05e0\u05e9\u05dc\u05d8\u05d5\u05ea \u05db\u05d2\u05d5\u05df \u05ea\u05e7\u05dc\u05d5\u05ea \u05ea\u05e7\u05e9\u05d5\u05e8\u05ea \u05e2\u05e9\u05d5\u05d9\u05d9\u05dd \u05dc\u05d2\u05e8\u05d5\u05dd \u05dc\u05de\u05e1\u05de\u05da \u05e9\u05dc\u05da \u05dc\u05d4\u05e4\u05d5\u05da \u05dc\u05e0\u05e2\u05d5\u05dc \u05dc\u05e6\u05de\u05d9\u05ea\u05d5\u05ea. \u05d0\u05dd \u05dc\u05d3\u05e2\u05ea\u05da \u05d6\u05d4 \u05de\u05d4 \u05e9\u05e7\u05e8\u05d4 \u05d0\u05e4\u05e9\u05e8 \u05dc\u05e2\u05e7\u05d5\u05e3 \u05d0\u05ea \u05d4\u05e0\u05e2\u05d9\u05dc\u05d4.<br/><br/>\u05dc\u05e2\u05e7\u05d5\u05e3 \u05d0\u05ea \u05e0\u05e2\u05d9\u05dc\u05ea \u05d4\u05de\u05e1\u05de\u05da?"
-    },
-    "integration_googleDocs_documentPermissionError": {
-        "message": "\u05dc\u05d7\u05e9\u05d1\u05d5\u05df \u05d4\u05beGoogle \u05e9\u05d1\u05d7\u05e8\u05ea \u05d0\u05d9\u05df \u05d4\u05e8\u05e9\u05d0\u05d4 \u05dc\u05e2\u05e8\u05d5\u05da \u05d0\u05ea \u05d4\u05de\u05e1\u05de\u05da \u05d4\u05d6\u05d4. \u05e0\u05d0 \u05dc\u05e0\u05e1\u05d5\u05ea \u05e9\u05d5\u05d1 \u05d5\u05dc\u05d5\u05d5\u05d3\u05d0 \u05e9\u05d1\u05d7\u05e8\u05ea \u05d7\u05e9\u05d1\u05d5\u05df \u05e2\u05dd \u05d2\u05d9\u05e9\u05d4 \u05dc\u05e2\u05e8\u05d9\u05db\u05d4."
-    },
-    "integration_googleDocs_docxAlert": {
-        "message": "\u05d4\u05e9\u05d9\u05dc\u05d5\u05d1 \u05de\u05d5\u05dc $1 \u05d0\u05d9\u05e0\u05d5 \u05d6\u05de\u05d9\u05df \u05db\u05e9\u05e2\u05d5\u05e8\u05db\u05d9\u05dd \u05e7\u05d5\u05d1\u05e6\u05d9 \u200e.docx \u05e9\u05dc Microsoft Word \u05d9\u05e9\u05d9\u05e8\u05d5\u05ea \u05d1\u05beGoogle Docs. \u05e0\u05d0 \u05dc\u05d2\u05e9\u05ea \u05d0\u05dc \u05e7\u05d5\u05d1\u05e5 \u2190 \u05e9\u05de\u05d9\u05e8\u05d4 \u05d1\u05ea\u05d5\u05e8 Google Docs \u05db\u05d3\u05d9 \u05dc\u05d4\u05e4\u05e2\u05d9\u05dc \u05d0\u05ea \u05d4\u05d9\u05db\u05d5\u05dc\u05ea \u05d4\u05d6\u05d0\u05ea.<br/><br/>\u05db\u05d3\u05d9 \u05dc\u05d4\u05e2\u05d1\u05d9\u05e8 \u05de\u05e1\u05de\u05da Word \u05e2\u05dd \u05e6\u05d9\u05d8\u05d5\u05d8\u05d9 $1 \u05dc\u05beGoogle Docs, \u05d9\u05e9 \u05dc\u05e2\u05d9\u05d9\u05df \u05d1<a href=\"https://www.zotero.org/support/kb/moving_documents_between_word_processors\">\u05d4\u05e2\u05d1\u05e8\u05ea \u05de\u05e1\u05de\u05db\u05d9\u05dd \u05d1\u05d9\u05df \u05de\u05e2\u05d1\u05d3\u05d9 \u05ea\u05de\u05dc\u05d9\u05dc\u05d9\u05dd</a>."
-    },
-    "integration_googleDocs_orphanedCitations_alert": {
-        "message": "\u05d4\u05e6\u05d9\u05d8\u05d5\u05d8 \u05d4\u05de\u05d9\u05d5\u05e2\u05d3 \u05dc\u05e2\u05e8\u05d9\u05db\u05d4 \u05e0\u05d5\u05ea\u05e7 \u05de\u05be$1."
-    },
-    "integration_googleDocs_orphanedCitations_alertButton": {
-        "message": "\u05e7\u05d9\u05e9\u05d5\u05e8 \u05e6\u05d9\u05d8\u05d5\u05d8 \u05de\u05d7\u05d3\u05e9"
-    },
-    "integration_googleDocs_orphanedCitations_buttonTooltip": {
-        "message": "\u05d4\u05e6\u05d2\u05ea $1 \u05e6\u05d9\u05d8\u05d5\u05d8\u05d9\u05dd \u05dc\u05d0 \u05de\u05e7\u05d5\u05e9\u05e8\u05d9\u05dd"
-    },
-    "integration_googleDocs_orphanedCitations_disclaimer": {
-        "message": "\u05d4\u05e6\u05d9\u05d8\u05d5\u05d8\u05d9\u05dd \u05d4\u05d0\u05dc\u05d5 <a target=\"_blank\" href=\"https://www.zotero.org/support/kb/google_docs_citations_unlinked\">\u05e0\u05d5\u05ea\u05e7\u05d5 \u05de\u05be$1</a>. \u05d9\u05d4\u05d9\u05d4 \u05e2\u05dc\u05d9\u05da \u05dc\u05e7\u05e9\u05e8 \u05d0\u05d5\u05ea\u05dd \u05de\u05d7\u05d3\u05e9 \u05d1\u05d8\u05e8\u05dd \u05d9\u05e2\u05d5\u05d3\u05db\u05e0\u05d5 \u05d0\u05d5 \u05d9\u05d5\u05e4\u05d9\u05e2\u05d5 \u05d1\u05d1\u05d9\u05d1\u05dc\u05d9\u05d5\u05d2\u05e8\u05e4\u05d9\u05d4 \u05e9\u05dc\u05da."
-    },
-    "integration_googleDocs_unlinkBeforeSaving_downloadAnyway": {
-        "message": "\u05dc\u05d4\u05d5\u05e8\u05d9\u05d3 \u05d0\u05ea \u05d4\u05d2\u05d9\u05e8\u05e1\u05d4 \u05d4\u05de\u05e7\u05d5\u05e9\u05e8\u05ea \u05d1\u05db\u05dc \u05de\u05e7\u05e8\u05d4"
-    },
-    "integration_googleDocs_unlinkBeforeSaving_instructions": {
-        "message": "\u05db\u05d3\u05d9 \u05dc\u05d9\u05d9\u05e6\u05e8 \u05d2\u05d9\u05e8\u05e1\u05d4 \u05e9\u05d0\u05e4\u05e9\u05e8 \u05dc\u05e9\u05ea\u05e3, \u05d9\u05e9 \u05dc\u05d1\u05d7\u05d5\u05e8 \u05d1<b>\u05d9\u05e6\u05d9\u05e8\u05ea \u05e2\u05d5\u05ea\u05e7\u2026</b> \u05de\u05ea\u05e4\u05e8\u05d9\u05d8 \u05e7\u05d5\u05d1\u05e5, \u05dc\u05d1\u05d7\u05d5\u05e8 \u05d1<b>\u05e0\u05d9\u05ea\u05d5\u05e7 \u05e6\u05d9\u05d8\u05d5\u05d8\u05d9\u05dd</b> \u05de\u05ea\u05e4\u05e8\u05d9\u05d8 Jurism \u05d1\u05de\u05e1\u05de\u05da \u05d4\u05d7\u05d3\u05e9, \u05d5\u05d0\u05d6 \u05dc\u05d4\u05d5\u05e8\u05d9\u05d3 \u05d0\u05ea \u05d4\u05d2\u05d9\u05e8\u05e1\u05d4 \u05d4\u05de\u05e0\u05d5\u05ea\u05e7\u05ea. \u05db\u05d3\u05d0\u05d9 \u05dc\u05e9\u05de\u05d5\u05e8 \u05e2\u05dc \u05d4\u05de\u05e1\u05de\u05da \u05d4\u05de\u05e7\u05d5\u05e9\u05e8 \u05d4\u05de\u05e7\u05d5\u05e8\u05d9 \u05d4\u05d6\u05d4 \u05dc\u05de\u05e7\u05e8\u05d4 \u05e9\u05e0\u05d3\u05e8\u05e9\u05d9\u05dd \u05e9\u05d9\u05e0\u05d5\u05d9\u05d9\u05dd \u05e0\u05d5\u05e1\u05e4\u05d9\u05dd."
-    },
-    "integration_googleDocs_unlinkBeforeSaving_warning": {
-        "message": "\u05de\u05e1\u05de\u05da \u05d6\u05d4 \u05de\u05db\u05d9\u05dc \u05e6\u05d9\u05d8\u05d5\u05d8\u05d9\u05dd \u05e4\u05e2\u05d9\u05dc\u05d9\u05dd \u05e9\u05dc Jurism \u05e9\u05d9\u05d5\u05e4\u05d9\u05e2\u05d5 \u05db\u05e7\u05d9\u05e9\u05d5\u05e8\u05d9\u05dd \u05d0\u05dc zotero.org \u05d1\u05e2\u05d5\u05ea\u05e7 \u05e9\u05de\u05d5\u05e8\u05d9\u05d3\u05d9\u05dd."
-    },
-    "integration_googleDocs_updating": {
-        "message": "$1 \u05de\u05e2\u05d3\u05db\u05df \u05d0\u05ea \u05d4\u05de\u05e1\u05de\u05da \u05e9\u05dc\u05da."
-    },
-    "progressWindow_error_fallback": {
-        "message": "\u05e7\u05e8\u05ea\u05d4 \u05ea\u05e7\u05dc\u05d4 \u05d1\u05e2\u05ea \u05e9\u05de\u05d9\u05e8\u05d4 \u05d1\u05d0\u05de\u05e6\u05e2\u05d5\u05ea $1. \u05de\u05ea\u05d1\u05e6\u05e2 \u05e0\u05d9\u05e1\u05d9\u05d5\u05df \u05dc\u05e9\u05de\u05d5\u05e8 \u05d1\u05d0\u05de\u05e6\u05e2\u05d5\u05ea $2\u05d1\u05de\u05e7\u05d5\u05dd \u05d6\u05d0\u05ea."
-    },
-    "progressWindow_error_siteAccessLimits": {
-        "message": "\u05de\u05d2\u05d1\u05dc\u05ea \u05d2\u05d9\u05e9\u05d4 \u05dc\u05d0\u05ea\u05e8"
-    },
-    "progressWindow_error_siteAccessLimitsError": {
-        "message": "\u05d0\u05d9\u05e8\u05e2\u05d4 \u05e9\u05d2\u05d9\u05d0\u05d4 \u05d1\u05e9\u05de\u05d9\u05e8\u05ea \u05d4\u05e4\u05e8\u05d9\u05d8 \u05d4\u05d6\u05d4. $1 \u05e2\u05e9\u05d5\u05d9 \u05dc\u05d4\u05d2\u05d1\u05d9\u05dc \u05d0\u05ea \u05de\u05e1\u05e4\u05e8 \u05d4\u05e4\u05e8\u05d9\u05d8\u05d9\u05dd \u05e9\u05e0\u05d9\u05ea\u05df \u05dc\u05e9\u05de\u05d5\u05e8 \u05d1\u05d5\u05be\u05d6\u05de\u05e0\u05d9\u05ea. \u05dc\u05de\u05d9\u05d3\u05e2 \u05e0\u05d5\u05e1\u05e3: $2."
-    },
-    "progressWindow_error_translation": {
-        "message": "\u05e7\u05e8\u05ea\u05d4 \u05e9\u05d2\u05d9\u05d0\u05d4 \u05d1\u05e9\u05de\u05d9\u05e8\u05ea \u05d4\u05e4\u05e8\u05d9\u05d8. \u05dc\u05de\u05d9\u05d3\u05e2 \u05e0\u05d5\u05e1\u05e3: $1."
-    },
-    "progressWindow_error_troubleshootingTranslatorIssues": {
-        "message": "\u05e4\u05ea\u05e8\u05d5\u05df \u05d1\u05e2\u05d9\u05d5\u05ea \u05de\u05ea\u05e8\u05d2\u05dd"
-    },
-    "progressWindow_error_upgradeClient": {
-        "message": "\u05d9\u05db\u05d5\u05dc\u05ea \u05d6\u05d5 \u05dc\u05d0 \u05e0\u05ea\u05de\u05db\u05ea \u05e2\u05dc \u05d9\u05d3\u05d9 \u05d2\u05d9\u05e8\u05e1\u05ea \u05d4\u05be$1 \u05e9\u05dc\u05da. \u05e0\u05d0 \u05dc\u05e9\u05d3\u05e8\u05d2 \u05dc\u05d2\u05d9\u05e8\u05e1\u05d4 $2."
-    },
-    "progressWindow_error_upgradeClient_latestVersion": {
-        "message": "\u05d2\u05d9\u05e8\u05e1\u05d4 \u05d0\u05d7\u05e8\u05d5\u05e0\u05d4"
-    },
-    "progressWindow_savingTo": {
-        "message": "\u05e9\u05de\u05d9\u05e8\u05d4 \u05d1\u05e9\u05dd"
-    },
-    "progressWindow_tagPlaceholder": {
-        "message": "\u05ea\u05d2\u05d9\u05d5\u05ea (\u05de\u05d5\u05e4\u05e8\u05d3\u05d5\u05ea \u05d1\u05e4\u05e1\u05d9\u05e7\u05d9\u05dd)"
-    },
-    "reloadVia": {
-        "message": "Reload via $1"
-    },
-    "reloadViaProxy": {
-        "message": "Reload via Proxy"
-    },
-    "reports_debug_output_submitted": {
-        "message": "\u05d3\u05d5\u05d7 \u05e0\u05d9\u05e4\u05d5\u05d9 \u05d4\u05e9\u05d2\u05d9\u05d0\u05d5\u05ea \u05e9\u05dc\u05da \u05d4\u05d5\u05d2\u05e9.\n\n\u05de\u05e1\u05f3 \u05d3\u05d5\u05d7 \u05e0\u05d9\u05e4\u05d5\u05d9 \u05d4\u05e9\u05d2\u05d9\u05d0\u05d5\u05ea \u05d4\u05d5\u05d0 $1."
-    },
-    "reports_report_submitted": {
-        "message": "\u05d3\u05d5\u05d7 \u05d4\u05e9\u05d2\u05d9\u05d0\u05d4 \u05e9\u05dc\u05da \u05d4\u05d5\u05d2\u05e9.\n\n\u05de\u05e1\u05f3 \u05d4\u05d3\u05d5\u05d7: $1\n\n\u05e0\u05d0 \u05dc\u05e4\u05e8\u05e1\u05dd \u05d4\u05d5\u05d3\u05e2\u05d4 \u05d1\u05e4\u05d5\u05e8\u05d5\u05de\u05d9\u05dd \u05e9\u05dc Jurism \u05e2\u05dd \u05de\u05e1\u05f3 \u05d4\u05d3\u05d5\u05d7 \u05d4\u05d6\u05d4, \u05ea\u05d9\u05d0\u05d5\u05e8 \u05d4\u05ea\u05e7\u05dc\u05d4 \u05d5\u05d4\u05e6\u05e2\u05d3\u05d9\u05dd \u05d4\u05e0\u05d7\u05d5\u05e6\u05d9\u05dd \u05dc\u05e9\u05d7\u05d6\u05d5\u05e8\u05d4.\n\n\u05d3\u05d5\u05d7\u05d5\u05ea \u05e9\u05d2\u05d9\u05d0\u05d4 \u05d0\u05d9\u05e0\u05dd \u05e0\u05e1\u05e7\u05e8\u05d9\u05dd \u05d0\u05dc\u05de\u05dc\u05d0 \u05e0\u05d3\u05d5\u05e0\u05d5 \u05d1\u05e4\u05d5\u05e8\u05d5\u05de\u05d9\u05dd."
-    },
-    "reports_submission_failed": {
-        "message": "\u05d0\u05d9\u05e8\u05e2\u05d4 \u05e9\u05d2\u05d9\u05d0\u05d4 \u05d1\u05d4\u05d2\u05e9\u05ea \u05d4\u05d3\u05d5\u05d7 \u05e9\u05dc\u05da.\n\n$1\n\n\u05e0\u05d0 \u05dc\u05d5\u05d5\u05d3\u05d0 \u05e9\u05d4\u05d7\u05d9\u05d1\u05d5\u05e8 \u05e9\u05dc\u05da \u05dc\u05d0\u05d9\u05e0\u05d8\u05e8\u05e0\u05d8 \u05ea\u05e7\u05d9\u05df. \u05d0\u05dd \u05e2\u05d3\u05d9\u05d9\u05df \u05d9\u05e9 \u05ea\u05e7\u05dc\u05d4, \u05d9\u05e9 \u05dc\u05e4\u05e8\u05e1\u05dd \u05d4\u05d5\u05d3\u05e2\u05d4 \u05d1\u05e4\u05d5\u05e8\u05d5\u05de\u05d9\u05dd \u05e9\u05dc Jurism."
-    },
-    "upgradeApp": {
-        "message": "\u05e9\u05d3\u05e8\u05d5\u05d2 $1"
-    }
+  "appConnector": {
+    "message": "מגשר $1"
+  },
+  "copyUnproxiedLink": {
+    "message": "Copy Unproxied Link"
+  },
+  "copyUnproxiedPageURL": {
+    "message": "Copy Unproxied Page URL"
+  },
+  "error_connection_downloadOrTroubleshoot": {
+    "message": "אפשר <a href=\"$1\">להוריד את $2</a> או <a href=\"$3\">לטפל בבעיות החיבור</a> במידת הצורך."
+  },
+  "error_connection_enableSavingToOnlineLibrary": {
+    "message": "הפעלת שמירה לספרייה מקוונת"
+  },
+  "error_connection_isAppRunning": {
+    "message": "האם $1 פעיל?"
+  },
+  "error_connection_save": {
+    "message": "ל־$1 לא הייתה אפשרות לתקשר עם יישום שולחן העבודה $2. המגשר יכול לשמור חלק מהדפים ישירות בחשבון שלך אצל $3 אך לקבל תוצאות מיטביות עליך לוודא ש־$2 פתוח בטרם ניסיון השמירה."
+  },
+  "extensionIsDisabled": {
+    "message": "$1 is disabled"
+  },
+  "extensionIsDisabled_extensionPage": {
+    "message": "$1 is disabled on extension pages"
+  },
+  "firstRun_acceptButton": {
+    "message": "הבנתי"
+  },
+  "firstRun_text1": {
+    "message": "מגשר $1 מאפשר לך <a href=\"$2\">לשמור פריטים אל $1</a> מהדפדפן שלך בלחיצה אחת."
+  },
+  "firstRun_text2": {
+    "message": "אם טרם עשית זאת, יש <a href=\"$2\">להוריד</a> את היישום העצמאי $1 לחוויה מיטבית."
+  },
+  "firstRun_text3": {
+    "message": "(You can view the $1 Privacy Policy on <a href=\"$2\">the project website</a>)."
+  },
+  "firstRun_title": {
+    "message": "התקנת את המגשר $1!"
+  },
+  "general_cancel": {
+    "message": "ביטול"
+  },
+  "general_copyToClipboard": {
+    "message": "העתקה ללוח הגזירים"
+  },
+  "general_done": {
+    "message": "בוצע"
+  },
+  "general_more": {
+    "message": "עוד…"
+  },
+  "general_moreInfo": {
+    "message": "מידע נוסף…"
+  },
+  "general_needHelp": {
+    "message": "אפשר להציע לך עזרה?"
+  },
+  "general_no": {
+    "message": "לא"
+  },
+  "general_pleaseWait": {
+    "message": "נא להמתין…"
+  },
+  "general_saveTo": {
+    "message": "שמירה אל $1"
+  },
+  "general_tryAgain": {
+    "message": "לנסות שוב"
+  },
+  "general_warning": {
+    "message": "אזהרה"
+  },
+  "general_yes": {
+    "message": "כן"
+  },
+  "integration_error_clientUpgrade": {
+    "message": "ציטוט מבוסס רשת דורש $1 ומעלה."
+  },
+  "integration_error_connection": {
+    "message": "ל־$1 לא הייתה אפשרות לתקשר עם יישום שולחן העבודה $2. $2 חייב להיות פתוח כדי להשתמש בציטוט מבוסס רשת."
+  },
+  "integration_googleDocs_documentLocked": {
+    "message": "ציטוטי המסמך נערכים על ידי משתמש אחר ב־$1. נא לנסות שוב בהמשך."
+  },
+  "integration_googleDocs_documentLocked_moreInfo": {
+    "message": "$1 נועל את המסמך שלך כדי למנוע ממספר משתמשים לערוך ציטוטים בו־זמנית. עריכת ציטוטים במקביל במסמך עשויה להוביל למסמך או ציטוטים פגומים. נסיבות בלתי נשלטות כגון תקלות תקשורת עשויים לגרום למסמך שלך להפוך לנעול לצמיתות. אם לדעתך זה מה שקרה אפשר לעקוף את הנעילה.<br/><br/>לעקוף את נעילת המסמך?"
+  },
+  "integration_googleDocs_documentPermissionError": {
+    "message": "לחשבון ה־Google שבחרת אין הרשאה לערוך את המסמך הזה. נא לנסות שוב ולוודא שבחרת חשבון עם גישה לעריכה."
+  },
+  "integration_googleDocs_docxAlert": {
+    "message": "השילוב מול $1 אינו זמין כשעורכים קובצי ‎.docx של Microsoft Word ישירות ב־Google Docs. נא לגשת אל קובץ ← שמירה בתור Google Docs כדי להפעיל את היכולת הזאת.<br/><br/>כדי להעביר מסמך Word עם ציטוטי $1 ל־Google Docs, יש לעיין ב<a href=\"https://www.zotero.org/support/kb/moving_documents_between_word_processors\">העברת מסמכים בין מעבדי תמלילים</a>."
+  },
+  "integration_googleDocs_orphanedCitations_alert": {
+    "message": "הציטוט המיועד לעריכה נותק מ־$1."
+  },
+  "integration_googleDocs_orphanedCitations_alertButton": {
+    "message": "קישור ציטוט מחדש"
+  },
+  "integration_googleDocs_orphanedCitations_buttonTooltip": {
+    "message": "הצגת $1 ציטוטים לא מקושרים"
+  },
+  "integration_googleDocs_orphanedCitations_disclaimer": {
+    "message": "הציטוטים האלו <a target=\"_blank\" href=\"https://www.zotero.org/support/kb/google_docs_citations_unlinked\">נותקו מ־$1</a>. יהיה עליך לקשר אותם מחדש בטרם יעודכנו או יופיעו בביבליוגרפיה שלך."
+  },
+  "integration_googleDocs_unlinkBeforeSaving_downloadAnyway": {
+    "message": "להוריד את הגירסה המקושרת בכל מקרה"
+  },
+  "integration_googleDocs_unlinkBeforeSaving_instructions": {
+    "message": "כדי לייצר גירסה שאפשר לשתף, יש לבחור ב<b>יצירת עותק…</b> מתפריט קובץ, לבחור ב<b>ניתוק ציטוטים</b> מתפריט Jurism במסמך החדש, ואז להוריד את הגירסה המנותקת. כדאי לשמור על המסמך המקושר המקורי הזה למקרה שנדרשים שינויים נוספים."
+  },
+  "integration_googleDocs_unlinkBeforeSaving_warning": {
+    "message": "מסמך זה מכיל ציטוטים פעילים של Jurism שיופיעו כקישורים אל zotero.org בעותק שמורידים."
+  },
+  "integration_googleDocs_updating": {
+    "message": "$1 מעדכן את המסמך שלך."
+  },
+  "progressWindow_error_fallback": {
+    "message": "קרתה תקלה בעת שמירה באמצעות $1. מתבצע ניסיון לשמור באמצעות $2במקום זאת."
+  },
+  "progressWindow_error_siteAccessLimits": {
+    "message": "מגבלת גישה לאתר"
+  },
+  "progressWindow_error_siteAccessLimitsError": {
+    "message": "אירעה שגיאה בשמירת הפריט הזה. $1 עשוי להגביל את מספר הפריטים שניתן לשמור בו־זמנית. למידע נוסף: $2."
+  },
+  "progressWindow_error_translation": {
+    "message": "קרתה שגיאה בשמירת הפריט. למידע נוסף: $1."
+  },
+  "progressWindow_error_troubleshootingTranslatorIssues": {
+    "message": "פתרון בעיות מתרגם"
+  },
+  "progressWindow_error_upgradeClient": {
+    "message": "יכולת זו לא נתמכת על ידי גירסת ה־$1 שלך. נא לשדרג לגירסה $2."
+  },
+  "progressWindow_error_upgradeClient_latestVersion": {
+    "message": "גירסה אחרונה"
+  },
+  "progressWindow_savingTo": {
+    "message": "שמירה בשם"
+  },
+  "progressWindow_tagPlaceholder": {
+    "message": "תגיות (מופרדות בפסיקים)"
+  },
+  "reloadVia": {
+    "message": "Reload via $1"
+  },
+  "reloadViaProxy": {
+    "message": "Reload via Proxy"
+  },
+  "reports_debug_output_submitted": {
+    "message": "דוח ניפוי השגיאות שלך הוגש.\n\nמס׳ דוח ניפוי השגיאות הוא $1."
+  },
+  "reports_report_submitted": {
+    "message": "דוח השגיאה שלך הוגש.\n\nמס׳ הדוח: $1\n\nנא לפרסם הודעה בפורומים של Jurism עם מס׳ הדוח הזה, תיאור התקלה והצעדים הנחוצים לשחזורה.\n\nדוחות שגיאה אינם נסקרים אלמלא נדונו בפורומים."
+  },
+  "reports_submission_failed": {
+    "message": "אירעה שגיאה בהגשת הדוח שלך.\n\n$1\n\nנא לוודא שהחיבור שלך לאינטרנט תקין. אם עדיין יש תקלה, יש לפרסם הודעה בפורומים של Jurism."
+  },
+  "upgradeApp": {
+    "message": "שדרוג $1"
+  }
 }
