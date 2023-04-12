@@ -75,11 +75,27 @@
       "words": [
         "Jurism"
       ]
+    },
+    "zotero.preferences.sync.reset.restoreFromOnlineLibrary.desc": {
+      "words": [
+        "Jurism"
+      ]
+    },
+    "zotero.preferences.sync.reset.restoreToOnlineLibrary.desc": {
+      "words": [
+        "Jurism"
+      ]
     }
   },
   "publications.dtd": {},
   "searchbox.dtd": {},
-  "standalone.dtd": {},
+  "standalone.dtd": {
+    "quitApplicationCmdMac.label": {
+      "words": [
+        "Jurism"
+      ]
+    }
+  },
   "timeline.properties": {
     "general.title": {
       "words": [
@@ -563,7 +579,7 @@
     "sync.error.corruptedLoginManager": {
       "words": [
         "Jurism",
-        "Jurism"
+        "Juris-M"
       ]
     },
     "sync.error.invalidCharsFilename": {
