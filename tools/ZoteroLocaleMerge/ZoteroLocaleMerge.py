@@ -23,12 +23,13 @@ class ZoteroLocaleMerge:
            Read updated CSV files, and merge into distribution source.
     '''
     def __init__(self):
-        self.files = ['about.dtd','preferences.dtd','searchbox.dtd','standalone.dtd','timeline.properties','zotero.dtd', 'zotero.properties', 'csledit.dtd', 'cslpreview.dtd', './mozilla/browser.dtd', './mozilla/editMenuOverlay.dtd', './mozilla/intl.properties', '../scaffold/scaffold.dtd', '../scaffold/scaffold.properties', 'connector.json']
+        self.files = ['about.dtd','preferences.dtd','searchbox.dtd','standalone.dtd','zotero.dtd', 'csledit.dtd', 'cslpreview.dtd', './mozilla/browser.dtd', './mozilla/editMenuOverlay.dtd', '../scaffold/scaffold.dtd', 'zotero.properties', 'timeline.properties', './mozilla/intl.properties', '../scaffold/scaffold.properties', 'connector.json']
         self.files_csv = ['about-dtd.csv','preferences-dtd.csv','searchbox-dtd.csv','standalone-dtd.csv','timeline-properties.csv','zotero-dtd.csv', 'zotero-properties.csv', 'csledit-dtd.csv', 'cslpreview-dtd.csv', 'browser-dtd.csv', 'editMenuOverlay-dtd.csv', 'intl-properties.csv', 'scaffold-dtd.csv', 'scaffold-properties.csv']
         self.establishBasePaths()
         #self.masterData = {}
         self.referenceData = {}
         self.masterData = {}
+        self.dtdKeys = {}
         for filename in self.files:
             # For use in writing to other locales (overwritten during processing)
             self.masterData[filename] = self.extract('en-US', filename)
@@ -176,6 +177,8 @@ class ZoteroLocaleMerge:
                             continue
                         # For DOS line endings that can creep into the source.
                         data[m.group(1)] = m.group(2).strip('\x0d')
+                        if filename.endswith('.dtd'):
+                            self.dtdKeys[m.group(1)] = True
         else:
             data = json.loads(ifh.read())
                 
@@ -186,7 +189,8 @@ class ZoteroLocaleMerge:
 
         if filename.endswith('.json') and not os.path.exists('chrome/locale/%s/zotero/%s' % (locale, filename)):
             return
-        ofh = open('chrome/locale/%s/zotero/%s' % (locale, filename), 'w+')
+        filepath = 'chrome/locale/%s/zotero/%s' % (locale, filename)
+        ofh = open(filepath, 'w+')
 
         if export:
             if not os.path.exists('locale-csv-out/%s' % locale):
@@ -199,7 +203,7 @@ class ZoteroLocaleMerge:
             ws = self.wb.add_sheet(filename)
 
         if filename.endswith('.json'):
-            ofh.write(json.dumps(data, sort_keys=True, indent=4))
+            ofh.write(json.dumps(data, sort_keys=True, indent=2, ensure_ascii=False))
         else:
             lst = []
             for key in data:
@@ -212,6 +216,9 @@ class ZoteroLocaleMerge:
                 if filename.endswith('.dtd'):
                     ofh.write('<!ENTITY %s \"%s\">\n' % (item[0], item[1]))
                 else:
+                    if item[0] in self.dtdKeys:
+                        print("Skipping duplicate in %s (%s)" % (filepath, item[0]))
+                        continue
                     ofh.write('%s	= %s\n' % (item[0], item[1]))
     
                 if export:
