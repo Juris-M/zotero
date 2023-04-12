@@ -145,6 +145,7 @@
 <!ENTITY zotero.preferences.openurl.server "Rezolvator:">
 <!ENTITY zotero.preferences.openurl.version "Versiune:">
 <!ENTITY zotero.preferences.parseRISRefer "Folosește Jurism pentru fișierele descărcate de tip BibTeX/RIS/Refer">
+<!ENTITY zotero.preferences.pdfReader "PDF Reader">
 <!ENTITY zotero.preferences.period ".">
 <!ENTITY zotero.preferences.prefpane.advanced "Avansate">
 <!ENTITY zotero.preferences.prefpane.cite "Citează">
@@ -193,6 +194,10 @@
 <!ENTITY zotero.preferences.quickCopy.siteEditor.locale "Limbă">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.outputFormat "Stil de formatare">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.setings "Setări specifice site:">
+<!ENTITY zotero.preferences.reader.tabsTitle.creatorYearTitle "Creator - Year - Title">
+<!ENTITY zotero.preferences.reader.tabsTitle.filename "Filename">
+<!ENTITY zotero.preferences.reader.tabsTitle.label "Show tabs as">
+<!ENTITY zotero.preferences.reader.tabsTitle.titleCreatorYear "Title - Creator - Year">
 <!ENTITY zotero.preferences.reportTranslationFailure "Raportează site-uri cu legături rupte (la translatare)">
 <!ENTITY zotero.preferences.search.fulltextCache "Căutare text complet">
 <!ENTITY zotero.preferences.search.indexStats "Statistici index">
@@ -237,8 +242,12 @@
 <!ENTITY zotero.preferences.sync.reset.resetDataSyncHistory.desc "Unește datele locale cu datele la distanță, ignorând istoria sincronizărilor">
 <!ENTITY zotero.preferences.sync.reset.resetFileSyncHistory "Resetează istoria sincronizării fișierelor">
 <!ENTITY zotero.preferences.sync.reset.resetFileSyncHistory.desc "Compară toate fișierele anexate cu serviciul de stocare">
+<!ENTITY zotero.preferences.sync.reset.restoreFromOnlineLibrary "Restore from Online Library">
+<!ENTITY zotero.preferences.sync.reset.restoreFromOnlineLibrary.desc "Overwrite local Zotero data with data from the online library.">
 <!ENTITY zotero.preferences.sync.reset.restoreFromServer "Restaurează din biblioteca online">
 <!ENTITY zotero.preferences.sync.reset.restoreFromServer.desc "Suprascrie datele locale din Jurism cu datele din biblioteca online.">
+<!ENTITY zotero.preferences.sync.reset.restoreToOnlineLibrary "Replace Online Library">
+<!ENTITY zotero.preferences.sync.reset.restoreToOnlineLibrary.desc "Overwrite online library with local Zotero data">
 <!ENTITY zotero.preferences.sync.reset.restoreToServer "Înlocuiește biblioteca online">
 <!ENTITY zotero.preferences.sync.reset.restoreToServer.desc "Suprascrie datele din biblioteca online cu datele locale din Jurism">
 <!ENTITY zotero.preferences.sync.reset.warning1 "Următoarele operații sunt pentru a fi folosite în situații rare și specifice și nu ar trebui folosite pentru probleme generale. În multe cazuri, resetarea va cauza probleme în plus. Vezi ">

@@ -145,6 +145,7 @@
 <!ENTITY zotero.preferences.openurl.server "رابط المقرر:">
 <!ENTITY zotero.preferences.openurl.version "الإصدار:">
 <!ENTITY zotero.preferences.parseRISRefer "استخدم زوتيرو لتحميل انواع ملفات  BibTeX/RIS/Refer">
+<!ENTITY zotero.preferences.pdfReader "PDF Reader">
 <!ENTITY zotero.preferences.period ".">
 <!ENTITY zotero.preferences.prefpane.advanced "متقدم">
 <!ENTITY zotero.preferences.prefpane.cite "استشهاد">
@@ -193,6 +194,10 @@
 <!ENTITY zotero.preferences.quickCopy.siteEditor.locale "اللغة">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.outputFormat "صياغة المخرجات">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.setings "إعدادات خاصة حسب الموقع:">
+<!ENTITY zotero.preferences.reader.tabsTitle.creatorYearTitle "Creator - Year - Title">
+<!ENTITY zotero.preferences.reader.tabsTitle.filename "Filename">
+<!ENTITY zotero.preferences.reader.tabsTitle.label "Show tabs as">
+<!ENTITY zotero.preferences.reader.tabsTitle.titleCreatorYear "Title - Creator - Year">
 <!ENTITY zotero.preferences.reportTranslationFailure "الإبلاغ عن مترجمات مواقع معطلة">
 <!ENTITY zotero.preferences.search.fulltextCache "الذاكرة المخبأة للنص الكامل">
 <!ENTITY zotero.preferences.search.indexStats "احصائيات التكشيف">
@@ -237,8 +242,12 @@
 <!ENTITY zotero.preferences.sync.reset.resetDataSyncHistory.desc "دمج البيانات المحلية مع البيانات البعيدة، متجاهلاً سجل المزامنة">
 <!ENTITY zotero.preferences.sync.reset.resetFileSyncHistory "إعادة تعيين ملف سجل المزامنة">
 <!ENTITY zotero.preferences.sync.reset.resetFileSyncHistory.desc "مقارنة جميع الملفات المرفقة مع خدمة التخزين">
+<!ENTITY zotero.preferences.sync.reset.restoreFromOnlineLibrary "Restore from Online Library">
+<!ENTITY zotero.preferences.sync.reset.restoreFromOnlineLibrary.desc "Overwrite local Zotero data with data from the online library.">
 <!ENTITY zotero.preferences.sync.reset.restoreFromServer "الاستعاد من مكتبة الشبكة">
 <!ENTITY zotero.preferences.sync.reset.restoreFromServer.desc "استبدل بيانات زوتيرو المحلية ببيانات مكتبة الشبكة.">
+<!ENTITY zotero.preferences.sync.reset.restoreToOnlineLibrary "Replace Online Library">
+<!ENTITY zotero.preferences.sync.reset.restoreToOnlineLibrary.desc "Overwrite online library with local Zotero data">
 <!ENTITY zotero.preferences.sync.reset.restoreToServer "استبدال مكتبة الشبكة">
 <!ENTITY zotero.preferences.sync.reset.restoreToServer.desc "استبدل مكتبة الشبكة ببيانات زوتيرو المحلية">
 <!ENTITY zotero.preferences.sync.reset.warning1 "العمليات التالية تستخدم في حالات نادة و  محددة و لا يجب أن تستخدم في لاستصلاح المشاكل العامة . في حالات عديدة، إعادة الضبط ستنتج مشاكل إضافية. انظر">

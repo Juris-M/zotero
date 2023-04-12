@@ -145,6 +145,7 @@
 <!ENTITY zotero.preferences.openurl.server "ตัวแก้ปัญหา: ">
 <!ENTITY zotero.preferences.openurl.version "รุ่น:">
 <!ENTITY zotero.preferences.parseRISRefer "Use Jurism for downloaded BibTeX/RIS/Refer files">
+<!ENTITY zotero.preferences.pdfReader "PDF Reader">
 <!ENTITY zotero.preferences.period ".">
 <!ENTITY zotero.preferences.prefpane.advanced "ขั้นสูง">
 <!ENTITY zotero.preferences.prefpane.cite "อ้างอิง">
@@ -193,6 +194,10 @@
 <!ENTITY zotero.preferences.quickCopy.siteEditor.locale "Language">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.outputFormat "รูปแบบส่งออก">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.setings "ตั้งค่าที่ตั้งเฉพาะ:">
+<!ENTITY zotero.preferences.reader.tabsTitle.creatorYearTitle "Creator - Year - Title">
+<!ENTITY zotero.preferences.reader.tabsTitle.filename "Filename">
+<!ENTITY zotero.preferences.reader.tabsTitle.label "Show tabs as">
+<!ENTITY zotero.preferences.reader.tabsTitle.titleCreatorYear "Title - Creator - Year">
 <!ENTITY zotero.preferences.reportTranslationFailure "รายงานตัวช่วยแปลเว็บไซต์ใช้งานไม่ได้">
 <!ENTITY zotero.preferences.search.fulltextCache "แคชข้อความทั้งหมด">
 <!ENTITY zotero.preferences.search.indexStats "สถิติดัชนี">
@@ -237,8 +242,12 @@
 <!ENTITY zotero.preferences.sync.reset.resetDataSyncHistory.desc "Merge local data with remote data, ignoring sync history">
 <!ENTITY zotero.preferences.sync.reset.resetFileSyncHistory "ตั้งค่าประวัติการประสานข้อมูลแฟ้มใหม่">
 <!ENTITY zotero.preferences.sync.reset.resetFileSyncHistory.desc "Compare all attachment files with the storage service">
+<!ENTITY zotero.preferences.sync.reset.restoreFromOnlineLibrary "Restore from Online Library">
+<!ENTITY zotero.preferences.sync.reset.restoreFromOnlineLibrary.desc "Overwrite local Zotero data with data from the online library.">
 <!ENTITY zotero.preferences.sync.reset.restoreFromServer "Restore from Online Library">
 <!ENTITY zotero.preferences.sync.reset.restoreFromServer.desc "Overwrite local Jurism data with data from the online library.">
+<!ENTITY zotero.preferences.sync.reset.restoreToOnlineLibrary "Replace Online Library">
+<!ENTITY zotero.preferences.sync.reset.restoreToOnlineLibrary.desc "Overwrite online library with local Zotero data">
 <!ENTITY zotero.preferences.sync.reset.restoreToServer "Replace Online Library">
 <!ENTITY zotero.preferences.sync.reset.restoreToServer.desc "Overwrite online library with local Jurism data">
 <!ENTITY zotero.preferences.sync.reset.warning1 "การดำเนินการต่อไปนี้ใช้ในบางกรณีเท่านั้น สถานการณ์เฉพาะและไม่ควรใช้สำหรับแก้ปัญหาทั่วไป ในหลายกรณีการเริ่มต้นใหม่จะก่อให้เกิดปัญหามากขึ้น ดูที่">

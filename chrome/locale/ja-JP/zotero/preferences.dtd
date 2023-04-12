@@ -145,6 +145,7 @@
 <!ENTITY zotero.preferences.openurl.server "リンク・リゾルバ:">
 <!ENTITY zotero.preferences.openurl.version "バージョン:">
 <!ENTITY zotero.preferences.parseRISRefer "ダウンロード済みの BibTeX/RIS/Refer ファイルに対して Jurism を使用する">
+<!ENTITY zotero.preferences.pdfReader "PDF Reader">
 <!ENTITY zotero.preferences.period ".">
 <!ENTITY zotero.preferences.prefpane.advanced "詳細">
 <!ENTITY zotero.preferences.prefpane.cite "引用">
@@ -193,6 +194,10 @@
 <!ENTITY zotero.preferences.quickCopy.siteEditor.locale "言語">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.outputFormat "出力形式">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.setings "サイト固有の設定:">
+<!ENTITY zotero.preferences.reader.tabsTitle.creatorYearTitle "Creator - Year - Title">
+<!ENTITY zotero.preferences.reader.tabsTitle.filename "Filename">
+<!ENTITY zotero.preferences.reader.tabsTitle.label "Show tabs as">
+<!ENTITY zotero.preferences.reader.tabsTitle.titleCreatorYear "Title - Creator - Year">
 <!ENTITY zotero.preferences.reportTranslationFailure "壊れたサイト・トランスレータを報告する">
 <!ENTITY zotero.preferences.search.fulltextCache "フルテキストのキャッシュ">
 <!ENTITY zotero.preferences.search.indexStats "索引統計">
@@ -237,8 +242,12 @@
 <!ENTITY zotero.preferences.sync.reset.resetDataSyncHistory.desc "ローカルのデータをリモートのデータと統合し、同期の履歴は無視する">
 <!ENTITY zotero.preferences.sync.reset.resetFileSyncHistory "ファイル同期の履歴を削除する">
 <!ENTITY zotero.preferences.sync.reset.resetFileSyncHistory.desc "すべての添付ファイルをストレージ・サービスと比較する">
+<!ENTITY zotero.preferences.sync.reset.restoreFromOnlineLibrary "Restore from Online Library">
+<!ENTITY zotero.preferences.sync.reset.restoreFromOnlineLibrary.desc "Overwrite local Zotero data with data from the online library.">
 <!ENTITY zotero.preferences.sync.reset.restoreFromServer "オンライン・ライブラリから復元する">
 <!ENTITY zotero.preferences.sync.reset.restoreFromServer.desc "オンライン・ライブラリを使ってローカルのJurismデータを上書きする">
+<!ENTITY zotero.preferences.sync.reset.restoreToOnlineLibrary "Replace Online Library">
+<!ENTITY zotero.preferences.sync.reset.restoreToOnlineLibrary.desc "Overwrite online library with local Zotero data">
 <!ENTITY zotero.preferences.sync.reset.restoreToServer "オンライン・ライブラリを置き換える">
 <!ENTITY zotero.preferences.sync.reset.restoreToServer.desc "ローカルの Jurism データを使ってオンライン・ライブラリを上書きする">
 <!ENTITY zotero.preferences.sync.reset.warning1 "次の操作は、稀に起こる特別な状況のためだけのもので、一般的な問題解決に用いられるべきではありません。多くの場合、リセットすることで更なる問題を引き起こします。以下をご参照ください。">

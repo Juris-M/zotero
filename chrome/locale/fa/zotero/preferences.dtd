@@ -145,6 +145,7 @@
 <!ENTITY zotero.preferences.openurl.server "تشخیص‌دهنده (resolver):">
 <!ENTITY zotero.preferences.openurl.version "نگارش:">
 <!ENTITY zotero.preferences.parseRISRefer "استفاده از زوترو برای پرونده‌های BibTeX/RIS/Refer بارگیری شده">
+<!ENTITY zotero.preferences.pdfReader "PDF Reader">
 <!ENTITY zotero.preferences.period ".">
 <!ENTITY zotero.preferences.prefpane.advanced "پیشرفته">
 <!ENTITY zotero.preferences.prefpane.cite "یادکرد">
@@ -193,6 +194,10 @@
 <!ENTITY zotero.preferences.quickCopy.siteEditor.locale "زبان">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.outputFormat "قالب خروجی">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.setings "تنظیمات اختصاصی وب‌گاه‌ها:">
+<!ENTITY zotero.preferences.reader.tabsTitle.creatorYearTitle "Creator - Year - Title">
+<!ENTITY zotero.preferences.reader.tabsTitle.filename "Filename">
+<!ENTITY zotero.preferences.reader.tabsTitle.label "Show tabs as">
+<!ENTITY zotero.preferences.reader.tabsTitle.titleCreatorYear "Title - Creator - Year">
 <!ENTITY zotero.preferences.reportTranslationFailure "گزارش مترجم‌های مشکل‌دار">
 <!ENTITY zotero.preferences.search.fulltextCache "جستجو درون متن">
 <!ENTITY zotero.preferences.search.indexStats "آمار نمایه‌سازی">
@@ -237,8 +242,12 @@
 <!ENTITY zotero.preferences.sync.reset.resetDataSyncHistory.desc "Merge local data with remote data, ignoring sync history">
 <!ENTITY zotero.preferences.sync.reset.resetFileSyncHistory "پاک کردن تاریخچه همزمان‌‌سازی پرونده‌ها">
 <!ENTITY zotero.preferences.sync.reset.resetFileSyncHistory.desc "Compare all attachment files with the storage service">
+<!ENTITY zotero.preferences.sync.reset.restoreFromOnlineLibrary "Restore from Online Library">
+<!ENTITY zotero.preferences.sync.reset.restoreFromOnlineLibrary.desc "Overwrite local Zotero data with data from the online library.">
 <!ENTITY zotero.preferences.sync.reset.restoreFromServer "Restore from Online Library">
 <!ENTITY zotero.preferences.sync.reset.restoreFromServer.desc "Overwrite local Jurism data with data from the online library.">
+<!ENTITY zotero.preferences.sync.reset.restoreToOnlineLibrary "Replace Online Library">
+<!ENTITY zotero.preferences.sync.reset.restoreToOnlineLibrary.desc "Overwrite online library with local Zotero data">
 <!ENTITY zotero.preferences.sync.reset.restoreToServer "Replace Online Library">
 <!ENTITY zotero.preferences.sync.reset.restoreToServer.desc "Overwrite online library with local Jurism data">
 <!ENTITY zotero.preferences.sync.reset.warning1 "The following operations are for use only in rare, specific situations and should not be used for general troubleshooting. In many cases, resetting will cause additional problems. See ">

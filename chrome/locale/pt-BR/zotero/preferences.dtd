@@ -145,6 +145,7 @@
 <!ENTITY zotero.preferences.openurl.server "Resolvedor:">
 <!ENTITY zotero.preferences.openurl.version "Versão:">
 <!ENTITY zotero.preferences.parseRISRefer "Usar o Jurism para arquivos BibTeX/RIS/Refer baixados">
+<!ENTITY zotero.preferences.pdfReader "PDF Reader">
 <!ENTITY zotero.preferences.period ".">
 <!ENTITY zotero.preferences.prefpane.advanced "Avançado">
 <!ENTITY zotero.preferences.prefpane.cite "Citação">
@@ -193,6 +194,10 @@
 <!ENTITY zotero.preferences.quickCopy.siteEditor.locale "Idioma">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.outputFormat "Formato de saída">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.setings "Configurações específicas do site:">
+<!ENTITY zotero.preferences.reader.tabsTitle.creatorYearTitle "Creator - Year - Title">
+<!ENTITY zotero.preferences.reader.tabsTitle.filename "Filename">
+<!ENTITY zotero.preferences.reader.tabsTitle.label "Show tabs as">
+<!ENTITY zotero.preferences.reader.tabsTitle.titleCreatorYear "Title - Creator - Year">
 <!ENTITY zotero.preferences.reportTranslationFailure "Informar problemas com tradutores de sites">
 <!ENTITY zotero.preferences.search.fulltextCache "Cache de texto completo">
 <!ENTITY zotero.preferences.search.indexStats "Estatísticas de indexação">
@@ -237,8 +242,12 @@
 <!ENTITY zotero.preferences.sync.reset.resetDataSyncHistory.desc "Mesclar os dados locais e remotos, ignorando o histórico de sincronização">
 <!ENTITY zotero.preferences.sync.reset.resetFileSyncHistory "Reconfigurar o histórico de sincronização de arquivo">
 <!ENTITY zotero.preferences.sync.reset.resetFileSyncHistory.desc "Comparar todos os arquivos de anexo com o serviço de armazenamento">
+<!ENTITY zotero.preferences.sync.reset.restoreFromOnlineLibrary "Restore from Online Library">
+<!ENTITY zotero.preferences.sync.reset.restoreFromOnlineLibrary.desc "Overwrite local Zotero data with data from the online library.">
 <!ENTITY zotero.preferences.sync.reset.restoreFromServer "Restaurar da Biblioteca Online">
 <!ENTITY zotero.preferences.sync.reset.restoreFromServer.desc "Sobrescrever dados locais a partir das informações da biblioteca online.">
+<!ENTITY zotero.preferences.sync.reset.restoreToOnlineLibrary "Replace Online Library">
+<!ENTITY zotero.preferences.sync.reset.restoreToOnlineLibrary.desc "Overwrite online library with local Zotero data">
 <!ENTITY zotero.preferences.sync.reset.restoreToServer "Substituir Biblioteca Online">
 <!ENTITY zotero.preferences.sync.reset.restoreToServer.desc "Sobrescrever biblioteca online a partir de informações locais de Jurism">
 <!ENTITY zotero.preferences.sync.reset.warning1 "As seguintes operações devem ser usadas em situações específicas e raras e não em resoluções de problemas rotineiros. Em muitos casos, reconfigurar causará problemas adicionais. Veja as">

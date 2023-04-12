@@ -145,6 +145,7 @@
 <!ENTITY zotero.preferences.openurl.server "Сервер">
 <!ENTITY zotero.preferences.openurl.version "Версія">
 <!ENTITY zotero.preferences.parseRISRefer "Використовувати Jurism для завантаження файлів BibTeX/RIS/Refer">
+<!ENTITY zotero.preferences.pdfReader "PDF Reader">
 <!ENTITY zotero.preferences.period ".">
 <!ENTITY zotero.preferences.prefpane.advanced "Розширені">
 <!ENTITY zotero.preferences.prefpane.cite "Цитування">
@@ -193,6 +194,10 @@
 <!ENTITY zotero.preferences.quickCopy.siteEditor.locale "Мова">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.outputFormat "Формат виводу">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.setings "Установки для сайту:">
+<!ENTITY zotero.preferences.reader.tabsTitle.creatorYearTitle "Creator - Year - Title">
+<!ENTITY zotero.preferences.reader.tabsTitle.filename "Filename">
+<!ENTITY zotero.preferences.reader.tabsTitle.label "Show tabs as">
+<!ENTITY zotero.preferences.reader.tabsTitle.titleCreatorYear "Title - Creator - Year">
 <!ENTITY zotero.preferences.reportTranslationFailure "Повідомити про транслтори сатів, що не працюють">
 <!ENTITY zotero.preferences.search.fulltextCache "Повнотекстовий кеш">
 <!ENTITY zotero.preferences.search.indexStats "Статистика індексації">
@@ -237,8 +242,12 @@
 <!ENTITY zotero.preferences.sync.reset.resetDataSyncHistory.desc "Об'єднати локальні дані з віддаленими даними, не звертаючи уваги на історію синхронізації.">
 <!ENTITY zotero.preferences.sync.reset.resetFileSyncHistory "Скинути історію синхронізації файлів">
 <!ENTITY zotero.preferences.sync.reset.resetFileSyncHistory.desc "Compare all attachment files with the storage service">
+<!ENTITY zotero.preferences.sync.reset.restoreFromOnlineLibrary "Restore from Online Library">
+<!ENTITY zotero.preferences.sync.reset.restoreFromOnlineLibrary.desc "Overwrite local Zotero data with data from the online library.">
 <!ENTITY zotero.preferences.sync.reset.restoreFromServer "Restore from Online Library">
 <!ENTITY zotero.preferences.sync.reset.restoreFromServer.desc "Overwrite local Jurism data with data from the online library.">
+<!ENTITY zotero.preferences.sync.reset.restoreToOnlineLibrary "Replace Online Library">
+<!ENTITY zotero.preferences.sync.reset.restoreToOnlineLibrary.desc "Overwrite online library with local Zotero data">
 <!ENTITY zotero.preferences.sync.reset.restoreToServer "Replace Online Library">
 <!ENTITY zotero.preferences.sync.reset.restoreToServer.desc "Overwrite online library with local Jurism data">
 <!ENTITY zotero.preferences.sync.reset.warning1 "Наступні операції призначені для використання тільки в рідкісних, специфічних ситуаціях і не повинні використовуватися для загального пошуку та усунення несправностей. У багатьох випадках скидання буде викликати додаткові проблеми. Подивитися">

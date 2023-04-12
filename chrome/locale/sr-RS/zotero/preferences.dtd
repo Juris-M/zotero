@@ -145,6 +145,7 @@
 <!ENTITY zotero.preferences.openurl.server "Разрешивач:">
 <!ENTITY zotero.preferences.openurl.version "Верзија:">
 <!ENTITY zotero.preferences.parseRISRefer "Користи Зотеро за преузимање BibTeX/RIS/Refer датотека">
+<!ENTITY zotero.preferences.pdfReader "PDF Reader">
 <!ENTITY zotero.preferences.period ".">
 <!ENTITY zotero.preferences.prefpane.advanced "Напредно">
 <!ENTITY zotero.preferences.prefpane.cite "Цитат">
@@ -193,6 +194,10 @@
 <!ENTITY zotero.preferences.quickCopy.siteEditor.locale "Језик">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.outputFormat "Излазни формат">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.setings "Поставке нарочите за веб место:">
+<!ENTITY zotero.preferences.reader.tabsTitle.creatorYearTitle "Creator - Year - Title">
+<!ENTITY zotero.preferences.reader.tabsTitle.filename "Filename">
+<!ENTITY zotero.preferences.reader.tabsTitle.label "Show tabs as">
+<!ENTITY zotero.preferences.reader.tabsTitle.titleCreatorYear "Title - Creator - Year">
 <!ENTITY zotero.preferences.reportTranslationFailure "Извести о грешкама у „преводиоцу странице“">
 <!ENTITY zotero.preferences.search.fulltextCache "Текст кеш">
 <!ENTITY zotero.preferences.search.indexStats "Статистика индекса">
@@ -237,8 +242,12 @@
 <!ENTITY zotero.preferences.sync.reset.resetDataSyncHistory.desc "Споји локалне податке са подацима на серверу, занемарујући историју усклађивања.">
 <!ENTITY zotero.preferences.sync.reset.resetFileSyncHistory "Поништи историју усклађивања">
 <!ENTITY zotero.preferences.sync.reset.resetFileSyncHistory.desc "Упореди све приложене датотеке са онима на остави">
+<!ENTITY zotero.preferences.sync.reset.restoreFromOnlineLibrary "Restore from Online Library">
+<!ENTITY zotero.preferences.sync.reset.restoreFromOnlineLibrary.desc "Overwrite local Zotero data with data from the online library.">
 <!ENTITY zotero.preferences.sync.reset.restoreFromServer "Врати податке из библиотеке на мрежи">
 <!ENTITY zotero.preferences.sync.reset.restoreFromServer.desc "Преписује Зотерове локалне податке онима који се налазе у билиотеци на интернету.">
+<!ENTITY zotero.preferences.sync.reset.restoreToOnlineLibrary "Replace Online Library">
+<!ENTITY zotero.preferences.sync.reset.restoreToOnlineLibrary.desc "Overwrite online library with local Zotero data">
 <!ENTITY zotero.preferences.sync.reset.restoreToServer "Замени мрежну библиотеку овом">
 <!ENTITY zotero.preferences.sync.reset.restoreToServer.desc "Преписује податке који се налазе у билиотеци на интернету Зотеровим локалним подацима са овог рачунара.">
 <!ENTITY zotero.preferences.sync.reset.warning1 "Следеће радње служе само у ретким, спецфичним околностима и не треба их користити за свакодневно тражење грешака у програму. Оне ће у многим случајевима само изазвати додатне проблеме. Погледајте страницу">

@@ -145,6 +145,7 @@
 <!ENTITY zotero.preferences.openurl.server "Διακομιστή resolver:">
 <!ENTITY zotero.preferences.openurl.version "Έκδοσης:">
 <!ENTITY zotero.preferences.parseRISRefer "Χρήση του Jurism για λήψη αρχείων BibTex/RIS/Refer">
+<!ENTITY zotero.preferences.pdfReader "PDF Reader">
 <!ENTITY zotero.preferences.period ".">
 <!ENTITY zotero.preferences.prefpane.advanced "Προχωρημένα">
 <!ENTITY zotero.preferences.prefpane.cite "Παράθεση/Παραπομπή">
@@ -193,6 +194,10 @@
 <!ENTITY zotero.preferences.quickCopy.siteEditor.locale "Γλώσσα">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.outputFormat "Μορφή παραγόμενου αρχείου">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.setings "Ρυθμίσεις εκάστου ιστοτόπου:">
+<!ENTITY zotero.preferences.reader.tabsTitle.creatorYearTitle "Creator - Year - Title">
+<!ENTITY zotero.preferences.reader.tabsTitle.filename "Filename">
+<!ENTITY zotero.preferences.reader.tabsTitle.label "Show tabs as">
+<!ENTITY zotero.preferences.reader.tabsTitle.titleCreatorYear "Title - Creator - Year">
 <!ENTITY zotero.preferences.reportTranslationFailure "Αναφέρετε προβληματικούς μεταφραστές ιστοτόπου">
 <!ENTITY zotero.preferences.search.fulltextCache "Προσωρινή μνήμη πλήρους κειμένου">
 <!ENTITY zotero.preferences.search.indexStats "Καταλογοποίηση στατιστικών">
@@ -237,8 +242,12 @@
 <!ENTITY zotero.preferences.sync.reset.resetDataSyncHistory.desc "Συγχώνευση τοπικών δεδομένων με απομακρυσμένα δεδομένα, αγνοώντας το ιστορικό συγχρονισμού">
 <!ENTITY zotero.preferences.sync.reset.resetFileSyncHistory "Μηδενισμός του ιστορικού συγχρονισμού αρχείων">
 <!ENTITY zotero.preferences.sync.reset.resetFileSyncHistory.desc "Σύγκριση όλων των συνημμένων αρχείων με την υπηρεσία αποθήκευσης">
+<!ENTITY zotero.preferences.sync.reset.restoreFromOnlineLibrary "Restore from Online Library">
+<!ENTITY zotero.preferences.sync.reset.restoreFromOnlineLibrary.desc "Overwrite local Zotero data with data from the online library.">
 <!ENTITY zotero.preferences.sync.reset.restoreFromServer "Επαναφορά από την Online Βιβλιοθήκη">
 <!ENTITY zotero.preferences.sync.reset.restoreFromServer.desc "Αντικατάσταση των τοπικών δεδομένων Jurism με δεδομένα από την Online Ββλιοθήκη.">
+<!ENTITY zotero.preferences.sync.reset.restoreToOnlineLibrary "Replace Online Library">
+<!ENTITY zotero.preferences.sync.reset.restoreToOnlineLibrary.desc "Overwrite online library with local Zotero data">
 <!ENTITY zotero.preferences.sync.reset.restoreToServer "Αντικατάσταση Online Βιβλιοθήκης">
 <!ENTITY zotero.preferences.sync.reset.restoreToServer.desc "Αντικαταστήστε την online βιβλιοθήκη με τα τοπικά δεδομένα Jurism">
 <!ENTITY zotero.preferences.sync.reset.warning1 "Οι λειτουργίες που ακολουθούν προορίζονται για χρήση μόνον σε σπάνιες, ειδικές συνθήκες και δεν θα πρέπει να αναφέρονται σε γενικές επιλύσεις προβλημάτων. Σε πολλές περιπτώσεις η επαναφορά των ρυθμίσεων προκαλεί επιπρόσθετα προβλήματα. Δείτε">

@@ -145,6 +145,7 @@
 <!ENTITY zotero.preferences.openurl.server "Diskoulmer:">
 <!ENTITY zotero.preferences.openurl.version "Stumm:">
 <!ENTITY zotero.preferences.parseRISRefer "Implijout Jurism evit ar restroù BibTex/RIS/Refer pellgarget">
+<!ENTITY zotero.preferences.pdfReader "PDF Reader">
 <!ENTITY zotero.preferences.period ".">
 <!ENTITY zotero.preferences.prefpane.advanced "Araokaet">
 <!ENTITY zotero.preferences.prefpane.cite "Arroudennañ">
@@ -193,6 +194,10 @@
 <!ENTITY zotero.preferences.quickCopy.siteEditor.locale "Yezh">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.outputFormat "Output Format">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.setings "Arventennoù ispisial al lec'hienn:">
+<!ENTITY zotero.preferences.reader.tabsTitle.creatorYearTitle "Creator - Year - Title">
+<!ENTITY zotero.preferences.reader.tabsTitle.filename "Filename">
+<!ENTITY zotero.preferences.reader.tabsTitle.label "Show tabs as">
+<!ENTITY zotero.preferences.reader.tabsTitle.titleCreatorYear "Title - Creator - Year">
 <!ENTITY zotero.preferences.reportTranslationFailure "Kemenniñ lec'hiennoù troerioù torret">
 <!ENTITY zotero.preferences.search.fulltextCache "Indeks an destenn a-bezh">
 <!ENTITY zotero.preferences.search.indexStats "Statistikoù indeksiñ">
@@ -237,8 +242,12 @@
 <!ENTITY zotero.preferences.sync.reset.resetDataSyncHistory.desc "Kendeuziñ ar roadennoù lec'hel gant ar roadennoù a-bell, ober fae ouzh ar roll-istor sinkro">
 <!ENTITY zotero.preferences.sync.reset.resetFileSyncHistory "Adloc'hañ roll-istor sinkro ar restroù">
 <!ENTITY zotero.preferences.sync.reset.resetFileSyncHistory.desc "Keñveriañ an holl restroù kenstag gant ar servijer stokañ">
+<!ENTITY zotero.preferences.sync.reset.restoreFromOnlineLibrary "Restore from Online Library">
+<!ENTITY zotero.preferences.sync.reset.restoreFromOnlineLibrary.desc "Overwrite local Zotero data with data from the online library.">
 <!ENTITY zotero.preferences.sync.reset.restoreFromServer "Adsevel adalek al levraoueg enlinenn">
 <!ENTITY zotero.preferences.sync.reset.restoreFromServer.desc "Flastrañ ar roadennoù Jurism lec'hel gant roadennoù o tont eus al levraoueg enlinenn">
+<!ENTITY zotero.preferences.sync.reset.restoreToOnlineLibrary "Replace Online Library">
+<!ENTITY zotero.preferences.sync.reset.restoreToOnlineLibrary.desc "Overwrite online library with local Zotero data">
 <!ENTITY zotero.preferences.sync.reset.restoreToServer "Erlec'hiañ al levraoueg enlinenn">
 <!ENTITY zotero.preferences.sync.reset.restoreToServer.desc "Flastrañ roadennoù al levraoueg enlinenn gant roadennoù lec'hel Jurism">
 <!ENTITY zotero.preferences.sync.reset.warning1 "An oberiadurioù da-heul a zo da vezañ implijet e plegoù ral hag ispisial ha ne rankont ket bezañ implijet evit un distankañ hollek. E-barzh kalz a zegouezhioù, adloc'hañ a zegaso kudennoù ouzhpenn. Sellit ouzh">

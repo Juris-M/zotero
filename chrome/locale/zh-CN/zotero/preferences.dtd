@@ -145,6 +145,7 @@
 <!ENTITY zotero.preferences.openurl.server "解析器:">
 <!ENTITY zotero.preferences.openurl.version "版本:">
 <!ENTITY zotero.preferences.parseRISRefer "使用 Jurism 来处理下载的 RIS/Refer 文件">
+<!ENTITY zotero.preferences.pdfReader "PDF Reader">
 <!ENTITY zotero.preferences.period ".">
 <!ENTITY zotero.preferences.prefpane.advanced "高级">
 <!ENTITY zotero.preferences.prefpane.cite "引用">
@@ -193,6 +194,10 @@
 <!ENTITY zotero.preferences.quickCopy.siteEditor.locale "语言">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.outputFormat "输出格式">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.setings "网站专属性设置:">
+<!ENTITY zotero.preferences.reader.tabsTitle.creatorYearTitle "Creator - Year - Title">
+<!ENTITY zotero.preferences.reader.tabsTitle.filename "Filename">
+<!ENTITY zotero.preferences.reader.tabsTitle.label "Show tabs as">
+<!ENTITY zotero.preferences.reader.tabsTitle.titleCreatorYear "Title - Creator - Year">
 <!ENTITY zotero.preferences.reportTranslationFailure "报告失效的网站转换器">
 <!ENTITY zotero.preferences.search.fulltextCache "全文缓存">
 <!ENTITY zotero.preferences.search.indexStats "索引统计">
@@ -237,8 +242,12 @@
 <!ENTITY zotero.preferences.sync.reset.resetDataSyncHistory.desc "将本地数据与远程数据合并，忽略同步历史">
 <!ENTITY zotero.preferences.sync.reset.resetFileSyncHistory "重置文件同步历史">
 <!ENTITY zotero.preferences.sync.reset.resetFileSyncHistory.desc "将所有附件文件与存储服务中的进行比较">
+<!ENTITY zotero.preferences.sync.reset.restoreFromOnlineLibrary "Restore from Online Library">
+<!ENTITY zotero.preferences.sync.reset.restoreFromOnlineLibrary.desc "Overwrite local Zotero data with data from the online library.">
 <!ENTITY zotero.preferences.sync.reset.restoreFromServer "从在线文献库恢复">
 <!ENTITY zotero.preferences.sync.reset.restoreFromServer.desc "用在线文献库中的数据覆盖本地 Jurism 数据。">
+<!ENTITY zotero.preferences.sync.reset.restoreToOnlineLibrary "Replace Online Library">
+<!ENTITY zotero.preferences.sync.reset.restoreToOnlineLibrary.desc "Overwrite online library with local Zotero data">
 <!ENTITY zotero.preferences.sync.reset.restoreToServer "替换在线文库">
 <!ENTITY zotero.preferences.sync.reset.restoreToServer.desc "使用本地 Jurism 数据覆盖在线文献库">
 <!ENTITY zotero.preferences.sync.reset.warning1 "下列操作仅限于一些极少出现的, 特定的情况, 请不要在常见问题中使用. 多数情况下, 重置会引发一系列其它问题. 浏览">

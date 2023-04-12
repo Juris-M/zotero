@@ -145,6 +145,7 @@
 <!ENTITY zotero.preferences.openurl.server "解析器：">
 <!ENTITY zotero.preferences.openurl.version "版本：">
 <!ENTITY zotero.preferences.parseRISRefer "用 Jurism 處理下載的 BibTeX/RIS/Refer 檔">
+<!ENTITY zotero.preferences.pdfReader "PDF Reader">
 <!ENTITY zotero.preferences.period "。">
 <!ENTITY zotero.preferences.prefpane.advanced "進階">
 <!ENTITY zotero.preferences.prefpane.cite "引用">
@@ -193,6 +194,10 @@
 <!ENTITY zotero.preferences.quickCopy.siteEditor.locale "語言">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.outputFormat "輸出格式">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.setings "針對特定網站的設定：">
+<!ENTITY zotero.preferences.reader.tabsTitle.creatorYearTitle "Creator - Year - Title">
+<!ENTITY zotero.preferences.reader.tabsTitle.filename "Filename">
+<!ENTITY zotero.preferences.reader.tabsTitle.label "Show tabs as">
+<!ENTITY zotero.preferences.reader.tabsTitle.titleCreatorYear "Title - Creator - Year">
 <!ENTITY zotero.preferences.reportTranslationFailure "回報有問題的網站轉譯器">
 <!ENTITY zotero.preferences.search.fulltextCache "全文快取">
 <!ENTITY zotero.preferences.search.indexStats "索引之統計">
@@ -237,8 +242,12 @@
 <!ENTITY zotero.preferences.sync.reset.resetDataSyncHistory.desc "將本機的資料與遠端的資料合併，忽略同步歷史">
 <!ENTITY zotero.preferences.sync.reset.resetFileSyncHistory "重設檔案同步歷史">
 <!ENTITY zotero.preferences.sync.reset.resetFileSyncHistory.desc "Compare all attachment files with the storage service">
+<!ENTITY zotero.preferences.sync.reset.restoreFromOnlineLibrary "Restore from Online Library">
+<!ENTITY zotero.preferences.sync.reset.restoreFromOnlineLibrary.desc "Overwrite local Zotero data with data from the online library.">
 <!ENTITY zotero.preferences.sync.reset.restoreFromServer "從線上文獻庫還原">
 <!ENTITY zotero.preferences.sync.reset.restoreFromServer.desc "以線上文獻庫的資料覆蓋本地端 Jurism 資料。">
+<!ENTITY zotero.preferences.sync.reset.restoreToOnlineLibrary "Replace Online Library">
+<!ENTITY zotero.preferences.sync.reset.restoreToOnlineLibrary.desc "Overwrite online library with local Zotero data">
 <!ENTITY zotero.preferences.sync.reset.restoreToServer "取代線上文獻庫">
 <!ENTITY zotero.preferences.sync.reset.restoreToServer.desc "以本地端 Jurism 資料覆蓋線上文獻庫的資料。">
 <!ENTITY zotero.preferences.sync.reset.warning1 "後面操作只在極少與特定情況可用，不該作為解決問題的一般方法。於許多情況，回復預設值會導致更多問題。請參見 ">

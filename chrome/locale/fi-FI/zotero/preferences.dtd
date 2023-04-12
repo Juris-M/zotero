@@ -145,6 +145,7 @@
 <!ENTITY zotero.preferences.openurl.server "Palvelin:">
 <!ENTITY zotero.preferences.openurl.version "Versio:">
 <!ENTITY zotero.preferences.parseRISRefer "Käytä Jurisma ladattujen BibTeX/Refer-tiedostojen avaamiseen">
+<!ENTITY zotero.preferences.pdfReader "PDF Reader">
 <!ENTITY zotero.preferences.period ".">
 <!ENTITY zotero.preferences.prefpane.advanced "Lisäasetukset">
 <!ENTITY zotero.preferences.prefpane.cite "Viitteet">
@@ -193,6 +194,10 @@
 <!ENTITY zotero.preferences.quickCopy.siteEditor.locale "Kieli">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.outputFormat "Kohdemuoto">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.setings "Sivustokohtaiset asetukset:">
+<!ENTITY zotero.preferences.reader.tabsTitle.creatorYearTitle "Creator - Year - Title">
+<!ENTITY zotero.preferences.reader.tabsTitle.filename "Filename">
+<!ENTITY zotero.preferences.reader.tabsTitle.label "Show tabs as">
+<!ENTITY zotero.preferences.reader.tabsTitle.titleCreatorYear "Title - Creator - Year">
 <!ENTITY zotero.preferences.reportTranslationFailure "Ilmoita toimimattomista sivutulkeista">
 <!ENTITY zotero.preferences.search.fulltextCache "Kokotekstihaun välimuisti">
 <!ENTITY zotero.preferences.search.indexStats "Indeksointitilastot">
@@ -237,8 +242,12 @@
 <!ENTITY zotero.preferences.sync.reset.resetDataSyncHistory.desc "Merge local data with remote data, ignoring sync history">
 <!ENTITY zotero.preferences.sync.reset.resetFileSyncHistory "Poista tiedostojen synkronointihistoria">
 <!ENTITY zotero.preferences.sync.reset.resetFileSyncHistory.desc "Vertaa kaikkia liitetiedostoja tallennuspalvelun kanssa">
+<!ENTITY zotero.preferences.sync.reset.restoreFromOnlineLibrary "Restore from Online Library">
+<!ENTITY zotero.preferences.sync.reset.restoreFromOnlineLibrary.desc "Overwrite local Zotero data with data from the online library.">
 <!ENTITY zotero.preferences.sync.reset.restoreFromServer "Restore from Online Library">
 <!ENTITY zotero.preferences.sync.reset.restoreFromServer.desc "Overwrite local Jurism data with data from the online library.">
+<!ENTITY zotero.preferences.sync.reset.restoreToOnlineLibrary "Replace Online Library">
+<!ENTITY zotero.preferences.sync.reset.restoreToOnlineLibrary.desc "Overwrite online library with local Zotero data">
 <!ENTITY zotero.preferences.sync.reset.restoreToServer "Replace Online Library">
 <!ENTITY zotero.preferences.sync.reset.restoreToServer.desc "Overwrite online library with local Jurism data">
 <!ENTITY zotero.preferences.sync.reset.warning1 "Seuraavat toiminnot ovat tarpeen vain äärimmäisen harvinaisissa tilanteissa, eikä niitä tulisi käyttää tavalliseen virheenetsintään. Monissa tapauksissa asetusten nollaus voi aiheuttaa lisää ongelmia. Katso ">

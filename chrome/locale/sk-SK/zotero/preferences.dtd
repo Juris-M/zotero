@@ -145,6 +145,7 @@
 <!ENTITY zotero.preferences.openurl.server "Resolver:">
 <!ENTITY zotero.preferences.openurl.version "Verzia:">
 <!ENTITY zotero.preferences.parseRISRefer "Použiť Jurism ako predvolený program pre prevzaté BibTeX/RIS/Refer súbory">
+<!ENTITY zotero.preferences.pdfReader "PDF Reader">
 <!ENTITY zotero.preferences.period ".">
 <!ENTITY zotero.preferences.prefpane.advanced "Pokročilé">
 <!ENTITY zotero.preferences.prefpane.cite "Citovanie">
@@ -193,6 +194,10 @@
 <!ENTITY zotero.preferences.quickCopy.siteEditor.locale "Jazyk">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.outputFormat "výstupný formát">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.setings "Nastavenia pre jednotlivé sídla:">
+<!ENTITY zotero.preferences.reader.tabsTitle.creatorYearTitle "Creator - Year - Title">
+<!ENTITY zotero.preferences.reader.tabsTitle.filename "Filename">
+<!ENTITY zotero.preferences.reader.tabsTitle.label "Show tabs as">
+<!ENTITY zotero.preferences.reader.tabsTitle.titleCreatorYear "Title - Creator - Year">
 <!ENTITY zotero.preferences.reportTranslationFailure "Nahlásiť chybné konvertory">
 <!ENTITY zotero.preferences.search.fulltextCache "Index pre plnotextové vyhľadávanie">
 <!ENTITY zotero.preferences.search.indexStats "Štatistiky indexu pre plnotextové vyhľadávanie">
@@ -237,8 +242,12 @@
 <!ENTITY zotero.preferences.sync.reset.resetDataSyncHistory.desc "Zlúčiť lokálne dáta so vzdialenými dátami bez ohľadu na predchádzajúce synchronizácie">
 <!ENTITY zotero.preferences.sync.reset.resetFileSyncHistory "Obnoviť históriu synchronizácie súborov">
 <!ENTITY zotero.preferences.sync.reset.resetFileSyncHistory.desc "Porovnať všetky priložené súbory so službou úschovne">
+<!ENTITY zotero.preferences.sync.reset.restoreFromOnlineLibrary "Restore from Online Library">
+<!ENTITY zotero.preferences.sync.reset.restoreFromOnlineLibrary.desc "Overwrite local Zotero data with data from the online library.">
 <!ENTITY zotero.preferences.sync.reset.restoreFromServer "Obnoviť z online knižnice">
 <!ENTITY zotero.preferences.sync.reset.restoreFromServer.desc "Prepísať lokálne dáta Zotera s dátami z online knižnice.">
+<!ENTITY zotero.preferences.sync.reset.restoreToOnlineLibrary "Replace Online Library">
+<!ENTITY zotero.preferences.sync.reset.restoreToOnlineLibrary.desc "Overwrite online library with local Zotero data">
 <!ENTITY zotero.preferences.sync.reset.restoreToServer "Nahradiť online knižnicu">
 <!ENTITY zotero.preferences.sync.reset.restoreToServer.desc "Prepísať online knižnicu s lokálnymi dátami Zotera">
 <!ENTITY zotero.preferences.sync.reset.warning1 "Nasledujúce operácie treba použiť iba v zriedkavých, špecifických situáciách a nie pre všeobecné odstraňovanie chýb. V mnohých prípadoch obnova zapríčiní dodatočné problémy. Pozri ">

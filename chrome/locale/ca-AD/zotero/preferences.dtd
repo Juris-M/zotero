@@ -145,6 +145,7 @@
 <!ENTITY zotero.preferences.openurl.server "Resolutor:">
 <!ENTITY zotero.preferences.openurl.version "Versió:">
 <!ENTITY zotero.preferences.parseRISRefer "utilitza Jurism per als fitxers descarregats BibTeX/RIS/Refer">
+<!ENTITY zotero.preferences.pdfReader "PDF Reader">
 <!ENTITY zotero.preferences.period ".">
 <!ENTITY zotero.preferences.prefpane.advanced "Avançat">
 <!ENTITY zotero.preferences.prefpane.cite "Cita">
@@ -193,6 +194,10 @@
 <!ENTITY zotero.preferences.quickCopy.siteEditor.locale "Llengua">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.outputFormat "Format de sortida">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.setings "Configuració específica per a llocs web:">
+<!ENTITY zotero.preferences.reader.tabsTitle.creatorYearTitle "Creator - Year - Title">
+<!ENTITY zotero.preferences.reader.tabsTitle.filename "Filename">
+<!ENTITY zotero.preferences.reader.tabsTitle.label "Show tabs as">
+<!ENTITY zotero.preferences.reader.tabsTitle.titleCreatorYear "Title - Creator - Year">
 <!ENTITY zotero.preferences.reportTranslationFailure "Envia un informe dels transcriptors trencats">
 <!ENTITY zotero.preferences.search.fulltextCache "Memòria cau de text complet">
 <!ENTITY zotero.preferences.search.indexStats "Estadístiques de l'índex">
@@ -237,8 +242,12 @@
 <!ENTITY zotero.preferences.sync.reset.resetDataSyncHistory.desc "Fusiona les dades locals amb les remotes, ignorant l'historial de sincronització">
 <!ENTITY zotero.preferences.sync.reset.resetFileSyncHistory "Reinicia l'historial de sincronització dels fitxers">
 <!ENTITY zotero.preferences.sync.reset.resetFileSyncHistory.desc "Compara tots els fitxers adjunts amb el servei d'emmagatzematge">
+<!ENTITY zotero.preferences.sync.reset.restoreFromOnlineLibrary "Restore from Online Library">
+<!ENTITY zotero.preferences.sync.reset.restoreFromOnlineLibrary.desc "Overwrite local Zotero data with data from the online library.">
 <!ENTITY zotero.preferences.sync.reset.restoreFromServer "Restaura de la biblioteca en línia">
 <!ENTITY zotero.preferences.sync.reset.restoreFromServer.desc "Sobreescriu les dades locals de Jurism amb les dades de la biblioteca en línia">
+<!ENTITY zotero.preferences.sync.reset.restoreToOnlineLibrary "Replace Online Library">
+<!ENTITY zotero.preferences.sync.reset.restoreToOnlineLibrary.desc "Overwrite online library with local Zotero data">
 <!ENTITY zotero.preferences.sync.reset.restoreToServer "Reemplaça la biblioteca en línia">
 <!ENTITY zotero.preferences.sync.reset.restoreToServer.desc "Sobreescriu la biblioteca en línia amb les dades locals de Jurism">
 <!ENTITY zotero.preferences.sync.reset.warning1 "Les operacions següents només s'utilitzen en situacions molt rares i específiques i no s'haurien d'emprar per a la resolució general dels problemes. En molts casos, el reinici causarà problemes addicionals. Consulteu">

@@ -145,6 +145,7 @@
 <!ENTITY zotero.preferences.openurl.server "Resolver:">
 <!ENTITY zotero.preferences.openurl.version "Versjon:">
 <!ENTITY zotero.preferences.parseRISRefer "Bruk Jurism for nedlastede BibTeX/RIS/Refer filer">
+<!ENTITY zotero.preferences.pdfReader "PDF Reader">
 <!ENTITY zotero.preferences.period ".">
 <!ENTITY zotero.preferences.prefpane.advanced "Avansert">
 <!ENTITY zotero.preferences.prefpane.cite "Henvis">
@@ -193,6 +194,10 @@
 <!ENTITY zotero.preferences.quickCopy.siteEditor.locale "Språk">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.outputFormat "Utdata-format">
 <!ENTITY zotero.preferences.quickCopy.siteEditor.setings "Innstillinger">
+<!ENTITY zotero.preferences.reader.tabsTitle.creatorYearTitle "Creator - Year - Title">
+<!ENTITY zotero.preferences.reader.tabsTitle.filename "Filename">
+<!ENTITY zotero.preferences.reader.tabsTitle.label "Show tabs as">
+<!ENTITY zotero.preferences.reader.tabsTitle.titleCreatorYear "Title - Creator - Year">
 <!ENTITY zotero.preferences.reportTranslationFailure "Rapporter ødelagte oversettere for nettsteder">
 <!ENTITY zotero.preferences.search.fulltextCache "Fulltekst hurtigminne">
 <!ENTITY zotero.preferences.search.indexStats "Statistikk for indeks">
@@ -237,8 +242,12 @@
 <!ENTITY zotero.preferences.sync.reset.resetDataSyncHistory.desc "Slå sammen lokale data med eksterne data og ignorer synkroniseringshistorikk">
 <!ENTITY zotero.preferences.sync.reset.resetFileSyncHistory "Tilbakestill filsynkroniseringshistorikk">
 <!ENTITY zotero.preferences.sync.reset.resetFileSyncHistory.desc "Sammenlign alle vedlegg med lagringstjeneste">
+<!ENTITY zotero.preferences.sync.reset.restoreFromOnlineLibrary "Restore from Online Library">
+<!ENTITY zotero.preferences.sync.reset.restoreFromOnlineLibrary.desc "Overwrite local Zotero data with data from the online library.">
 <!ENTITY zotero.preferences.sync.reset.restoreFromServer "Gjenopprett fra nettbiblioteket">
 <!ENTITY zotero.preferences.sync.reset.restoreFromServer.desc "Skriv over lokale Jurism data med data fra nettbiblioteket">
+<!ENTITY zotero.preferences.sync.reset.restoreToOnlineLibrary "Replace Online Library">
+<!ENTITY zotero.preferences.sync.reset.restoreToOnlineLibrary.desc "Overwrite online library with local Zotero data">
 <!ENTITY zotero.preferences.sync.reset.restoreToServer "Erstatt nettbiblioteket">
 <!ENTITY zotero.preferences.sync.reset.restoreToServer.desc "Overskriv nettbiblioteket med lokale Jurism data">
 <!ENTITY zotero.preferences.sync.reset.warning1 "Følgende innstillinger er kun for bruk i sjeldne tilfeller og skal ikke brukes for generell feilsøking. I mange tilfeller vil tilbakestilling skape flere problemer. Se ">
