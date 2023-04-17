@@ -41,6 +41,7 @@
 Zotero.Translate.ItemSaver = function(options) {
 	// initialize constants
 	this._IDMap = {};
+	this._seeAlsoMap = {};
 	
 	// determine library ID
 	if(!options.libraryID) {
@@ -96,7 +97,7 @@ Zotero.Translate.ItemSaver.prototype = {
 		var jsonByItem = new Map();
 		
 		await Zotero.DB.executeTransaction(async function () {
-			let itemsWithSeeAlso = [];
+			let seeAlsoCandidates = [];
 			for (let jsonItem of jsonItems) {
 				jsonItem = Object.assign({}, jsonItem);
 				
@@ -187,12 +188,10 @@ Zotero.Translate.ItemSaver.prototype = {
 				
 				// Add to list if using seeAlso
 				if(this._handleMappedId(jsonItem, item)) {
-					if (jsonItem.seeAlso && jsonItem.seeAlso.length) {
-						itemsWithSeeAlso.push(item);
-					}
+					seeAlsoCandidates.push(item);
 				}
 			}
-			for (let item of itemsWithSeeAlso) {
+			for (let item of seeAlsoCandidates) {
 				let jsonItem = jsonByItem.get(item);
 				await this._handleRelated(jsonItem, item);
 			}
@@ -1009,22 +1008,31 @@ Zotero.Translate.ItemSaver.prototype = {
 	},
 	
 	"_handleRelated": async function(jsonItem, item) {
-		if(jsonItem.seeAlso) {
-			for(let i=0; i<jsonItem.seeAlso.length; i++) {
-				let seeAlso = jsonItem.seeAlso[i];
-				if (seeAlso == (jsonItem.itemID || jsonItem.id)) continue;
-				if(this._IDMap[seeAlso]) {
-					let otherItem = Zotero.Items.get(this._IDMap[seeAlso]);
-					if (otherItem) {
-						item.addRelatedItem(otherItem);
-						otherItem.addRelatedItem(item);
-						await otherItem.save();
-					} else {
-						Zotero.debug(`seeAlso: partner item not found`);
-					}
-				}
+		let jsonItemID = (jsonItem.itemID || jsonItem.id);
+		if (!jsonItem.seeAlso) jsonItem.seeAlso = [];
+		if (this._seeAlsoMap[jsonItemID]) {
+			for (var postponedID of this._seeAlsoMap[jsonItemID]) {
+				jsonItem.seeAlso.push(postponedID);
 			}
-			await item.save();
+		}
+		for(let i=0; i<jsonItem.seeAlso.length; i++) {
+			let seeAlso = jsonItem.seeAlso[i];
+			if (seeAlso == jsonItemID) continue;
+			if(this._IDMap[seeAlso]) {
+				let otherItem = Zotero.Items.get(this._IDMap[seeAlso]);
+				if (otherItem) {
+					item.addRelatedItem(otherItem);
+					otherItem.addRelatedItem(item);
+					await item.save();
+					await otherItem.save();
+				} else {
+					Zotero.debug(`seeAlso partner is invalid`);
+				}
+			} else {
+				Zotero.debug(`seeAlso partner not (yet) seen, postponing`);
+				if (!this._seeAlsoMap[seeAlso]) this._seeAlsoMap[seeAlso] = [];
+				this._seeAlsoMap[seeAlso].push(jsonItemID);
+			}
 		}
 	}
 }
