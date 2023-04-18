@@ -2,15 +2,16 @@ body {
 	font-family: Helvetica, sans-serif;
 	margin: 0;
 	height: 100%;
+    font-size: 100%;
 }
 
 nav {
 	padding: 8px 5px 5px;
-	height: 25px;
+	height: 1.6em;
 }
 
 button {
-	font-size: 15px;
+	font-size: 0.95em;
 }
 
 #help-button {
@@ -44,11 +45,11 @@ main {
 }
 
 .textbox-label {
-	font-size: 15px;
+	font-size: 0.95em;
 }
 
 #run-as-async-label {
-	font-size: 13px;
+	font-size: 0.8em;
 }
 
 label {
@@ -68,7 +69,7 @@ iframe, textarea {
 	flex-grow: 1;
 	margin: 5px 0;
 	font-family: Monaco, Consolas, Inconsolata, monospace;
-	font-size: 12px;
+	font-size: 0.75em;
 	resize: none;
 }
 
