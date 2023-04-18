@@ -1,3 +1,5 @@
+var sizes = ["normal", "larger", "largest"];
+
 function update() {
 	var isAsync = document.getElementById('run-as-async').checked;
 	var resultLabel = document.getElementById('result-label');
@@ -62,15 +64,52 @@ window.addEventListener('keypress', function (event) {
 	}
 	
 	if (event.shiftKey || event.altKey) {
-		return;
+		if (!event.shiftKey || event.key !== "+") {
+			return;
+		}
 	}
-	
 	if (event.key == 'r') {
 		run();
 		event.stopPropagation();
 	}
 	else if (event.key == 'w') {
 		window.close();
+	} else if (event.key == "+") {
+		let body = document.getElementsByTagName("body")[0];
+		let result = document.getElementById("result");
+		for (let elem of [body, result]) {
+			elem.classList.replace("larger", "largest");
+			elem.classList.replace("normal", "larger");
+		}
+		let codeWin = document.getElementById("editor-code").contentWindow;
+		let editor = codeWin.editor;
+		let pixel_size = editor.getFontSize();
+		switch (pixel_size) {
+		case 12:
+			editor.setFontSize(18);
+			break;
+		case 18:
+			editor.setFontSize(24);
+			break;
+		}
+	} else if (event.key == "-") {
+		let body = document.getElementsByTagName("body")[0];
+		let result = document.getElementById("result");
+		for (let elem of [body, result]) {
+			elem.classList.replace("larger", "normal");
+			elem.classList.replace("largest", "larger");
+		}
+		let codeWin = document.getElementById("editor-code").contentWindow;
+		let editor = codeWin.editor;
+		let pixel_size = editor.getFontSize();
+		switch (pixel_size) {
+		case 24:
+			editor.setFontSize(18);
+			break;
+		case 18:
+			editor.setFontSize(12);
+			break;
+		}
 	}
 });
 

@@ -4,28 +4,40 @@ body {
 	height: 100%;
 }
 
+body.normal {
+	font-size: 100%;
+}
+
+body.larger {
+	font-size: 120%;
+}
+
+body.largest {
+	font-size: 150%;
+}
+
 nav {
-	padding: 8px 5px 5px;
-	height: 25px;
+	padding: 0.5em 0.3em 0.3em;
+	height: 1.6em;
 }
 
 button {
-	font-size: 15px;
+	font-size: 0.95em;
 }
 
 #help-button {
-	margin-left: 15px;
+	margin-left: 1em;
 }
 
 #run-label {
-	margin-left: 2px;
-	font-size: 12px;
+	margin-left: 0.15em;
+	font-size: 0.75em;
 }
 
 main {
 	display: flex;
 	justify-content: stretch;
-	height: calc(100% - 38px);
+	height: calc(96% - 1.4em);
 }
 
 .textbox-container {
@@ -33,7 +45,7 @@ main {
 	flex-direction: column;
 	align-items: stretch;
 	flex-grow: 1;
-	padding: 10px;
+	padding: 0.5em;
 }
 
 .textbox-header {
@@ -44,11 +56,11 @@ main {
 }
 
 .textbox-label {
-	font-size: 15px;
+	font-size: 0.95em;
 }
 
 #run-as-async-label {
-	font-size: 13px;
+	font-size: 0.8em;
 }
 
 label {
@@ -66,10 +78,21 @@ iframe {
 
 iframe, textarea {
 	flex-grow: 1;
-	margin: 5px 0;
+	margin: 0.3em 0;
 	font-family: Monaco, Consolas, Inconsolata, monospace;
+	resize: horizontal;
+}
+
+textarea.normal {
 	font-size: 12px;
-	resize: none;
+}
+
+textarea.larger {
+	font-size: 18px;
+}
+
+textarea.largest {
+	font-size: 24px;
 }
 
 textarea.error {
