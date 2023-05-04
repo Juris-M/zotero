@@ -3829,43 +3829,57 @@ e.preventDefault();
 						jurisdictionID = this.item.getField('jurisdiction', true);
 						var newComment = Zotero.CachedJurisdictionData.courtIdFromName(jurisdictionID, newValue, true);
 						result = {val:newValue,comment:newComment};
+Zotero.debug(`XXZZ No result found in SAYT search for court. Setting ${JSON.stringify(result)} as result`);
 						if (false === result.comment) {
 							result.comment = result.val;
 							valueElement.classList.add('yellow');
 						}
 					} else {
+Zotero.debug(`XXZZ Result of SAYT court search selected. Will possibly adjust jurisdiction.`);
 						// Adjusts values in jurisdiction and court fields when SAYT result from a subjurisdiction is selected.
 						// This is horribly convoluted for what it does, but it seems to work. Would be much simpler if
 						// the result of DB selection could be captured directly.
 						var m = result.val.match(/^([^:]+):\s+(.*)$/);
+Zotero.debug(`XXZZ Applying regexp to result.val (${result.val}).`);
 						if (m) {
+Zotero.debug(`XXZZ Regexp matched, attempting adjustment`);
 							if (this.saveOnEdit) {
 								this.ignoreBlur = true;
 							}
 							// Get the subjurisdiction element to add to the current jurisdiction
 							var jurisdictionStub = m[1];
+Zotero.debug(`XXZZ Capturing jurisdictionStub as "${jurisdictionStub}"`);
 							result.val = m[2];
+Zotero.debug(`XXZZ Resetting result.val to "${result.val}"`);
 							var xpath = '*[local-name()="row"]/'
 								+ '*[local-name()="label" and @fieldname="jurisdiction"]/'
 								+ 'following-sibling::*[local-name()="hbox"]/'
 								+ '*[local-name()="menulist"]';
 							var jurisdictionNodes = document.evaluate(xpath, this._dynamicFields, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null);
+Zotero.debug(`XXZZ Attempting to find the jurisdiction node in the UI`);
 							if (jurisdictionNodes.snapshotLength) {
+Zotero.debug(`XXZZ Found a jurisdiction node`);
 								// Get the currently displayed name value
 								var jurisdictionNode = jurisdictionNodes.snapshotItem(0);
 								var jurisdictionName = jurisdictionNode.getAttribute('label');
+Zotero.debug(`XXZZ Jurisdiction name, set as "label" attribute on jurisdiction node, is ${jurisdictionName}`);
 								// Get the canonical long-form country name (awkward b/c I didn't plan for this)
 								var countryID = jurisdictionNode.getAttribute('value').split(":").slice(0,1)[0];
+Zotero.debug(`XXZZ countryID as extracted from "value" attribute of jurisdiction node is ${countryID}`);
 								await Zotero.CachedJurisdictionData.setJurisdictionByIdOrName(countryID);
 								var countryName = Zotero.CachedJurisdictionData.jurisdictionNameFromId(countryID).split("|")[0];
+Zotero.debug(`XXZZ countryName as retrieved from cached jurisdiction data using extracted countryID is ${countryName}`);
 								// Splice the name together.
 								if (jurisdictionName.match(/^[A-Z][A-Z]\|/)) {
+Zotero.debug(`XXZZ Building jurisdiction name using the first method`);
 									jurisdictionName = countryName + "|" + jurisdictionName + "|" + jurisdictionStub;
 								} else {
+Zotero.debug(`XXZZ Building jurisdiction name using the second method`);
 									jurisdictionName = jurisdictionName + "|" + jurisdictionStub;
 								}
 								// Get the ID from the full (searchable) jurisdiction name
 								jurisdictionID = await Zotero.CachedJurisdictionData.setJurisdictionByIdOrName(jurisdictionName);
+Zotero.debug(`XXZZ Retrieve the jurisdictionID from cached data using the constructed jurisdiction name, to wit: ${jurisdictionID}`);
 								// Set the ID in the record, and update the UI
 								this.setJurisdictionKey(jurisdictionID);
 								await Zotero.CachedJurisdictionData.load(this.item);
