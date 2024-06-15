@@ -574,9 +574,10 @@
 						if (fieldName == 'itemType') {
 							val = this.item.itemTypeID;
 						}
-						else if (fieldValue) {
-							val = fieldValue;
-						}
+						// XXX JURISM: these lines do not exist on Zotero-side
+						//else if (fieldValue) {
+						//	val = fieldValue;
+						//}
 						else {
 							val = this.item.getField(fieldName);
 						}
@@ -590,10 +591,11 @@
 						var fieldIsClickable = this._fieldIsClickable(fieldName);
 						
 						// Start tabindex at 10001 after creators
+						// XXX Jurism: tabindexValue is provided as an explicit argument
+						// XXX to this addFieldRow() function.
 						var tabindex = fieldIsClickable ? tabindexValue : 0;
 						this._tabIndexMaxFields = Math.max(this._tabIndexMaxFields, tabindex);
 						
-						// TEMP - NSF
 						if (fieldIsClickable
 								&& !Zotero.Items.isPrimaryField(fieldName)
 								&& (Zotero.ItemFields.isDate(fieldName)
@@ -606,10 +608,14 @@
 					let label = document.createElement("label");
 					label.setAttribute('fieldname', fieldName);
 					
+					// XXX Jurism: the parentNode flag is provided
+					// as an explicit argument to this addFieldRow() function
 					let valueElement = this.createValueElement(
 						val, fieldName, tabindex, !!parentNode
 					);
 					
+					// XXX Jurism: this code block for multilingual support
+					// is specific to Jurism
 					if (Zotero.CachedMultiFields.isMultiFieldName(fieldName)) {
 						var fieldLang = langTag;
 						if (!fieldLang) {
@@ -686,11 +692,13 @@
 							if (this.nextSibling.inputField) {
 								this.nextSibling.inputField.blur();
 							}
-							else {
-								document.getBindingParent(this).toggleAbstractExpand(
-									this, this.nextSibling
-								);
-							}
+							// XXX Jurism: this code block does not appear in
+							// upstream Zotero.
+							//else {
+							//	document.getBindingParent(this).toggleAbstractExpand(
+							//		this, this.nextSibling
+							//	);
+							//}
 						});
 					}
 					else {

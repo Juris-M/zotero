@@ -50,7 +50,7 @@
 
 
 
-Zotero.Schema = new function(){
+Zotero.Schema = new function () {
 	this.dbInitialized = false;
 	this.goToChangeLog = false;
 	
@@ -3694,6 +3694,18 @@ Zotero.Schema = new function(){
 					await Zotero.DB.queryAsync("CREATE INDEX itemAnnotations_parentItemID ON itemAnnotations(parentItemID)");
 				}
 			}
+			
+			else if (i == 121) {
+				let datasetItemTypeID = await Zotero.DB.valueQueryAsync("SELECT itemTypeID FROM itemTypes WHERE typeName='dataset'");
+				let numberFieldID = await Zotero.DB.valueQueryAsync("SELECT fieldID FROM fields WHERE fieldName='number'");
+				if (datasetItemTypeID && numberFieldID) {
+					await Zotero.DB.queryAsync("DELETE FROM itemData WHERE fieldID=? AND itemID IN (SELECT itemID FROM items WHERE itemTypeID=?)", [numberFieldID, datasetItemTypeID]);
+					await Zotero.DB.queryAsync("DELETE FROM itemTypeFields WHERE itemTypeID=? AND fieldID=?", [datasetItemTypeID, numberFieldID]);
+				}
+			}
+			
+			// TEMP: When adding 122, check whether IA.authorName fix in items.js::_loadAnnotations()
+			// can be updated due to update steps being indempodent
 			
 			// If breaking compatibility or doing anything dangerous, clear minorUpdateFrom
 		}

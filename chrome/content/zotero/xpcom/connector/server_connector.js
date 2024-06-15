@@ -1142,7 +1142,7 @@ Zotero.Server.Connector.SaveSnapshot.prototype = {
 		}
 		
 		try {
-			let item = await this.saveSnapshot(targetID, requestData);
+			var item = await this.saveSnapshot(targetID, requestData);
 			await session.addItem(item);
 		}
 		catch (e) {
@@ -1150,9 +1150,15 @@ Zotero.Server.Connector.SaveSnapshot.prototype = {
 			return 500;
 		}
 		
+		let attachments = [];
+		let hasAttachments = !item.isAttachment() && item.getAttachments().length;
+		if (hasAttachments) {
+			attachments = [{mimeType: "text/html", title: data.title, url: data.url}];
+		}
+		
 		return [201,
 			"application/json",
-			JSON.stringify({ saveSingleFile: !data.skipSnapshot && !data.pdf })];
+			JSON.stringify({ saveSingleFile: !data.skipSnapshot && !data.pdf && data.singleFile, attachments })];
 	},
 	
 	/*
@@ -1182,6 +1188,7 @@ Zotero.Server.Connector.SaveSnapshot.prototype = {
 			let item = await Zotero.Attachments.importFromURL({
 				libraryID,
 				url: data.url,
+				referrer: data.referrer,
 				collections: collection ? [collection.id] : undefined,
 				contentType: "application/pdf",
 				cookieSandbox
@@ -1241,6 +1248,7 @@ Zotero.Server.Connector.SaveSnapshot.prototype = {
 				await Zotero.Attachments.importFromURL({
 					libraryID,
 					url: data.url,
+					referrer: data.referrer,
 					title,
 					parentItemID: itemID,
 					contentType: "text/html",

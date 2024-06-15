@@ -126,6 +126,7 @@
 		"abstractNote": "Abstract note",
 		"accessDate": "1997-06-13T23:59:58Z",
 		"archiveLocation": "Archive location",
+		"authority": "Authority",
 		"code": "Code",
 		"creators": [
 			{
@@ -175,7 +176,6 @@
 		"itemType": "bill",
 		"jurisdiction": "Jurisdiction",
 		"language": "en-US",
-		"legislativeBody": "Legislative body",
 		"number": 3,
 		"pages": "1-10",
 		"publicationTitle": "Publication title",  
@@ -539,7 +539,7 @@
 		"archive": "Archive",
 		"archiveLocation": "Archive location",
 		"callNumber": "Call number",
-		"court": "Court",
+		"authority": "Authority",
 		"creators": [
 			{
 				"creatorType": "author",
@@ -754,6 +754,47 @@
 			"main": {},
 			"_keys": {}
 		}
+	},
+	"dataset": {
+		"DOI": "10.1234/example.doi",
+		"abstractNote": "Abstract note",
+		"accessDate": "1997-06-13T23:59:58Z",
+		"archive": "Archive",
+		"archiveLocation": "Archive location",
+		"callNumber": "Call number",
+		"citationKey": "Citation key",
+		"creators": [
+			{
+				"creatorType": "author",
+				"firstName": "authorFirst",
+				"lastName": "authorLast"
+			},
+			{
+				"creatorType": "contributor",
+				"firstName": "contributorFirst",
+				"lastName": "contributorLast"
+			},
+			{
+				"creatorType": "author",
+				"fieldMode": 1,
+				"lastName": "Institutional Author"
+			}
+		],
+		"date": "1999-12-31",
+		"extra": "Extra",
+		"itemType": "dataset",
+		"language": "en-US",
+		"libraryCatalog": "Library catalog",
+		"medium": "Medium",
+		"number": 3,
+		"place": "Place",
+		"publisher": "Publisher",
+		"rights": "Rights",
+		"shortTitle": "Short title",
+		"title": "Title",
+		"type": "Type",
+		"url": "http://www.example.com",
+		"versionNumber": "Version number"
 	},
 	"dictionaryEntry": {
 		"ISBN": "978-1-234-56789-7",
@@ -1152,6 +1193,7 @@
 		"accessDate": "1997-06-13T23:59:58Z",
 		"archiveLocation": "Archive location",
 		"assemblyNumber": "Assembly number",
+		"authority": "Authority",
 		"committee": "Committee",
 		"creators": [
 			{
@@ -1193,10 +1235,10 @@
 		"itemType": "hearing",
 		"jurisdiction": "Jurisdiction",
 		"language": "en-US",
-		"legislativeBody": "Legislative body",
 		"meetingNumber": "Meeting number",
 		"meetingName": "Meeting name",
 		"documentNumber": "Document number",
+		"number": 3,
 		"numberOfVolumes": 7,
 		"pages": "1-10",
 		"place": "Place",
@@ -1731,6 +1773,7 @@
 		"accessDate": "1997-06-13T23:59:58Z",
 		"applicationNumber": "Application number",
 		"assignee": "Assignee",
+		"authority": "Authority",
 		"country": "Country",
 		"creators": [
 			{
@@ -1778,11 +1821,9 @@
 		"extra": "Extra",
 		"filingDate": "2000-01-02",
 		"genre": "Genre",
-		"issuingAuthority": "Issuing authority",
 		"itemType": "patent",
 		"jurisdiction": "Jurisdiction",
 		"language": "en-US",
-		"legalStatus": "Legal status",
 		"number": 3,
 		"pages": "1-10",
 		"place": "Place",
@@ -1793,6 +1834,7 @@
 		"references": "References",
 		"rights": "Rights",
 		"shortTitle": "Short title",
+		"status": "Status",
 		"title": "Title",
 		"url": "http://www.example.com",
 		"multi": {
@@ -2139,6 +2181,50 @@
 			"main": {},
 			"_keys": {}
 		}
+	},
+	"standard": {
+		"DOI": "10.1234/example.doi",
+		"abstractNote": "Abstract note",
+		"accessDate": "1997-06-13T23:59:58Z",
+		"archive": "Archive",
+		"archiveLocation": "Archive location",
+		"authority": "Authority",
+		"callNumber": "Call number",
+		"citationKey": "Citation key",
+		"committee": "Committee",
+		"creators": [
+			{
+				"creatorType": "author",
+				"firstName": "authorFirst",
+				"lastName": "authorLast"
+			},
+			{
+				"creatorType": "contributor",
+				"firstName": "contributorFirst",
+				"lastName": "contributorLast"
+			},
+			{
+				"creatorType": "author",
+				"fieldMode": 1,
+				"lastName": "Institutional Author"
+			}
+		],
+		"date": "1999-12-31",
+		"extra": "Extra",
+		"itemType": "standard",
+		"language": "en-US",
+		"libraryCatalog": "Library catalog",
+		"numPages": 4,
+		"number": 3,
+		"place": "Place",
+		"publisher": "Publisher",
+		"rights": "Rights",
+		"shortTitle": "Short title",
+		"status": "Status",
+		"title": "Title",
+		"type": "Type",
+		"url": "http://www.example.com",
+		"versionNumber": "Version number"
 	},
 	"statute": {
 		"abstractNote": "Abstract note",

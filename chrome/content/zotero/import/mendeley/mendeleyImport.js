@@ -636,7 +636,12 @@ Zotero_Import_Mendeley.prototype._getDocumentCreatorsAPI = async function (docum
 		const authors = (doc.authors || []).map(c => this._makeCreator('author', c.first_name, c.last_name));
 		const editors = (doc.editors || []).map(c => this._makeCreator('editor', c.first_name, c.last_name));
 		const translators = (doc.translators || []).map(c => this._makeCreator('translator', c.first_name, c.last_name));
-		map.set(doc.id, [...authors, ...editors, ...translators]);
+		const creators = [...authors, ...editors, ...translators];
+		const validCreators = creators.filter(c => c.name || c.firstName || c.lastName);
+		if (creators.length !== validCreators.length) {
+			Zotero.debug(`Discarding ${creators.length - validCreators.length} invalid creators for document ${doc.id}`);
+		}
+		map.set(doc.id, validCreators);
 	}
 	return map;
 };
@@ -675,7 +680,10 @@ Zotero_Import_Mendeley.prototype._getDocumentTagsDB = async function (groupID) {
 Zotero_Import_Mendeley.prototype._getDocumentTagsAPI = async function (documents) {
 	var map = new Map();
 	for (let doc of documents) {
-		const tags = [...(doc.tags || []).map(tag => ({ tag, type: 0 })), ...(doc.keywords || []).map(tag => ({ tag, type: 1 }))];
+		const tags = [
+			...(doc.tags || []).map(tag => ({ tag, type: 0 })),
+			...(doc.keywords || []).map(tag => ({ tag, type: 1 }))
+		].filter(t => t.tag && t.tag.trim());
 		map.set(doc.id, tags);
 	}
 	return map;

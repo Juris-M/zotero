@@ -40,7 +40,7 @@ var Zotero_Lookup = new function () {
 	 * @param textBox {HTMLElement} - Textbox containing identifiers
 	 * @param childItem {Zotero.Item|false} - Child item (optional)
 	 * @param toggleProgress {function} - Callback to toggle progress on/off
-	 * @returns {Promise<boolean>}
+	 * @returns {Promise<Zotero.Item[]>}
 	 */
 	this.addItemsFromIdentifier = async function (textBox, childItem, toggleProgress) {
 		var identifiers = Zotero.Utilities.extractIdentifiers(textBox.value);
@@ -79,11 +79,28 @@ var Zotero_Lookup = new function () {
 			}
 		}
 
-		let newItems = false;
 		toggleProgress(true);
 
-		await Zotero.Promise.all(identifiers.map(async (identifier) => {
-			var translate = new Zotero.Translate.Search();
+		// Group PubMed IDs into batches of 200
+		//
+		// Up to 10,000 ids can apparently be passed in a single request, but 200 is the recommended
+		// limit for GET, which we currently use, and passing batches of 200 seems...fine.
+		//
+		// https://www.ncbi.nlm.nih.gov/books/NBK25499/#chapter4.id
+		if (identifiers.length && identifiers[0].PMID) {
+			let chunkSize = 200;
+			let newIdentifiers = [];
+			for (let i = 0; i < identifiers.length; i += chunkSize) {
+				newIdentifiers.push({
+					PMID: identifiers.slice(i, i + chunkSize).map(x => x.PMID)
+				});
+			}
+			identifiers = newIdentifiers;
+		}
+		
+		let newItems = [];
+		for (let identifier of identifiers) {
+			let translate = new Zotero.Translate.Search();
 			translate.setIdentifier(identifier);
 
 			// be lenient about translators
@@ -91,20 +108,20 @@ var Zotero_Lookup = new function () {
 			translate.setTranslator(translators);
 
 			try {
-				newItems = await translate.translate({
+				newItems.push(...await translate.translate({
 					libraryID,
 					collections,
 					saveAttachments: !childItem
-				});
+				}));
 			}
 			// Continue with other ids on failure
 			catch (e) {
 				Zotero.logError(e);
 			}
-		}));
+		}
 
 		toggleProgress(false);
-		if (!newItems) {
+		if (!newItems.length) {
 			Zotero.alert(
 				window,
 				Zotero.getString("lookup.failure.title"),
@@ -126,7 +143,7 @@ var Zotero_Lookup = new function () {
 			on => Zotero_Lookup.toggleProgress(on)
 		);
 
-		if (newItems) {
+		if (newItems.length) {
 			document.getElementById("zotero-lookup-panel").hidePopup();
 		}
 		return false;

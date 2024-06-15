@@ -117,10 +117,10 @@ for (let name of ['deleted']) {
 				val = !!val;
 				var oldVal = this._getLatestField(name);
 				if (oldVal == val) {
-					Zotero.debug(Zotero.Utilities.capitalize(name)
-						+ ` state hasn't changed for ${this._objectType} ${this.id}`);
+					Zotero.debug(`Field '${name}' hasn't changed`);
 					return;
 				}
+				Zotero.debug(`Field '${name}' has changed from '${oldVal}' to '${val}'`, 4);
 				this._markFieldChange(name, val);
 			}
 	});
@@ -985,6 +985,11 @@ Zotero.DataObject.prototype._initSave = Zotero.Promise.coroutine(function* (env)
 	
 	env.isNew = !this.id;
 	
+	if (!this.hasChanged()) {
+		Zotero.debug(this._ObjectType + ' ' + this.id + ' has not changed', 4);
+		return false;
+	}
+	
 	if (!env.options.skipEditCheck) {
 		if (!this.isEditable()) {
 			throw new Error("Cannot edit " + this._objectType + " in library "
@@ -995,11 +1000,6 @@ Zotero.DataObject.prototype._initSave = Zotero.Promise.coroutine(function* (env)
 	let targetLib = Zotero.Libraries.get(this.libraryID);
 	if (!targetLib.isChildObjectAllowed(this._objectType)) {
 		throw new Error("Cannot add " + this._objectType + " to a " + targetLib.libraryType + " library");
-	}
-	
-	if (!this.hasChanged()) {
-		Zotero.debug(this._ObjectType + ' ' + this.id + ' has not changed', 4);
-		return false;
 	}
 	
 	// Undo registerObject() on failure

@@ -5,14 +5,14 @@ jobs:
     name: Build, Upload, Test
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           submodules: recursive
       
       - name: Install Node
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
-          node-version: 14
+          node-version: 18
           #cache: npm
       
       # On GitHub
@@ -27,7 +27,7 @@ jobs:
       
       - name: Cache Firefox
         id: firefox-cache
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: firefox-x86_64
           key: firefox-60.9.0esr
@@ -42,7 +42,7 @@ jobs:
       
       - name: Cache Node modules
         id: node-cache
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: node_modules
           key: node-modules-${{ hashFiles('package-lock.json') }}
@@ -53,13 +53,16 @@ jobs:
         
       - name: Build Zotero
         run: npm run build
+        # Currently necessary for pdf-worker Webpack: https://stackoverflow.com/a/69746937
+        env:
+          NODE_OPTIONS: --openssl-legacy-provider
       
       - name: Upload deployment ZIP
         if: |
           env.ACT != 'true'
           && github.repository == 'zotero/zotero'
           && github.event_name == 'push'
-          && (github.ref == 'refs/heads/master' || endsWith(github.ref, '-hotfix') || github.ref == 'refs/heads/gh-actions-ci-test')
+          && (github.ref == 'refs/heads/6.0' || endsWith(github.ref, '-hotfix') || github.ref == 'refs/heads/gh-actions-ci-test')
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -76,7 +79,7 @@ jobs:
 
       - name: Cache utilities Node modules
         id: utilities-node-cache
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: chrome/content/zotero/xpcom/utilities/node_modules
           key: utilities-node-modules-${{ hashFiles('chrome/content/zotero/xpcom/utilities/package-lock.json') }}

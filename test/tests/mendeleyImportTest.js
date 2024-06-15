@@ -176,6 +176,11 @@ describe('Zotero_Import_Mendeley', function () {
 				.filter(item => item.libraryID == Zotero.Libraries.userLibraryID && !item.deleted)
 				.shift();
 
+			const withTags = (await Zotero.Relations
+				.getByPredicateAndObject('item', 'mendeleyDB:documentUUID', '4308d8ec-e8ea-43fb-9d38-4e6628f7c10a'))
+				.filter(item => item.libraryID == Zotero.Libraries.userLibraryID && !item.deleted)
+				.shift();
+
 			
 			assert.equal(journal.getRelations()['mendeleyDB:remoteDocumentUUID'], '7fea3cb3-f97d-3f16-8fad-f59caaa71688');
 			assert.equal(journal.getField('title'), 'Foo Bar');
@@ -196,6 +201,17 @@ describe('Zotero_Import_Mendeley', function () {
 			// identifiers
 			assert.equal(journal.getField('DOI'), '10.1111');
 			assert.sameMembers(journal.getField('extra').split('\n'), ['PMID: 11111111', 'arXiv: 1111.2222']);
+
+			// tags
+			assert.equal(withTags.getTags().length, 4);
+			assert.sameMembers(
+				withTags.getTags().filter(t => t.type === 1).map(t => t.tag),
+				['keyword1', 'keyword2']
+			);
+			assert.sameMembers(
+				withTags.getTags().filter(t => !t.type).map(t => t.tag),
+				['tag1', 'tag2']
+			);
 
 			// attachment & annotations
 			assert.lengthOf(withpdf.getAttachments(), 1);
@@ -451,7 +467,49 @@ describe('Zotero_Import_Mendeley', function () {
 
 			const noNewItemHere = await Zotero.Relations.getByPredicateAndObject('item', 'mendeleyDB:documentUUID', '86e56a00-5ae5-4fe8-a977-9298a03b16d6');
 			assert.lengthOf(noNewItemHere, 0);
+		});
 
+		it("should handle empty creators and tags", async () => {
+			setHTTPResponse(server, 'https://api.mendeley.com/', {
+				method: 'GET',
+				url: `documents?view=all&limit=500`,
+				status: 200,
+				headers: {},
+				json: JSON.parse(
+					await Zotero.File.getContentsFromURLAsync('resource://zotero-unit-tests/data/mendeleyMock/items-bad-data.json')
+				)
+			});
+
+			const importer = getImporter();
+			await importer.translate({
+				libraryID: Zotero.Libraries.userLibraryID,
+				collections: null,
+				linkFiles: false,
+			});
+			
+			const journalNoAuthors = (await Zotero.Relations
+				.getByPredicateAndObject('item', 'mendeleyDB:documentUUID', '9c03fca4-ee5b-435e-abdd-fb6d7d11cd02'))
+				.filter(item => item.libraryID == Zotero.Libraries.userLibraryID && !item.deleted)
+				.shift();
+			
+			assert.equal(journalNoAuthors.getField('title'), 'This one has no authors');
+			assert.equal(journalNoAuthors.getCreators().length, 0);
+
+			const journalEmptyAuthors = (await Zotero.Relations
+				.getByPredicateAndObject('item', 'mendeleyDB:documentUUID', 'fd86e48e-1931-4282-b72d-78c535b0398c'))
+				.filter(item => item.libraryID == Zotero.Libraries.userLibraryID && !item.deleted)
+				.shift();
+
+			assert.equal(journalEmptyAuthors.getField('title'), 'This one has empty authors');
+			assert.equal(journalEmptyAuthors.getCreators().length, 0);
+
+			const journalEmptyTags = (await Zotero.Relations
+				.getByPredicateAndObject('item', 'mendeleyDB:documentUUID', 'c7ec2737-044a-493b-9d94-d7f67be68765'))
+				.filter(item => item.libraryID == Zotero.Libraries.userLibraryID && !item.deleted)
+				.shift();
+
+			assert.equal(journalEmptyTags.getField('title'), 'This one has empty tags and keywords');
+			assert.equal(journalEmptyTags.getTags().length, 0);
 		});
 	});
 });

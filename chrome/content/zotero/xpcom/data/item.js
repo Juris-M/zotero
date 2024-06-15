@@ -2460,7 +2460,7 @@ Zotero.Item.prototype._saveData = Zotero.Promise.coroutine(function* (env) {
 			throw new Error("Annotation parent must be a file attachment");
 		}
 		if (parentItem.attachmentContentType != 'application/pdf') {
-			throw new Error("Annotation parent must be a PDF");
+			//throw new Error("Annotation parent must be a PDF");
 		}
 		let type = this._getLatestField('annotationType');
 		let typeID = Zotero.Annotations[`ANNOTATION_TYPE_${type.toUpperCase()}`];
@@ -2489,7 +2489,7 @@ Zotero.Item.prototype._saveData = Zotero.Promise.coroutine(function* (env) {
 				authorName || null,
 				text || null,
 				comment || null,
-				color || null,
+				color || Zotero.Annotations.DEFAULT_COLOR,
 				pageLabel || null,
 				sortIndex,
 				position,
@@ -3962,7 +3962,7 @@ Zotero.Item.prototype.getAttachmentLastPageIndex = function () {
 	
 	var id = this._getLastPageIndexSettingKey();
 	var val = Zotero.SyncedSettings.get(Zotero.Libraries.userLibraryID, id);
-	if (val !== null && (typeof val != 'number' || val != parseInt(val))) {
+	if (this.isPDFAttachment() && val !== null && (typeof val != 'number' || val != parseInt(val))) {
 		Zotero.logError(`Setting contains an invalid attachment page index ('${val}') -- discarding`);
 		return null;
 	}
@@ -3974,7 +3974,7 @@ Zotero.Item.prototype.setAttachmentLastPageIndex = async function (val) {
 		throw new Error("setAttachmentLastPageIndex() can only be called on file attachments");
 	}
 	
-	if (typeof val != 'number' || val != parseInt(val)) {
+	if (this.isPDFAttachment() && (typeof val != 'number' || val != parseInt(val))) {
 		Zotero.debug(val, 2);
 		throw new Error(`setAttachmentLastPageIndex() must be passed an integer`);
 	}
@@ -4368,7 +4368,7 @@ for (let name of ['type', 'authorName', 'text', 'comment', 'color', 'pageLabel',
 					if (currentType && currentType != value) {
 						throw new Error("Cannot change annotation type");
 					}
-					if (!['highlight', 'note', 'image', 'ink'].includes(value)) {
+					if (!['highlight', 'underline', 'note', 'text', 'image', 'ink'].includes(value)) {
 						let e = new Error(`Unknown annotation type '${value}'`);
 						e.name = "ZoteroInvalidDataError";
 						throw e;
@@ -4376,8 +4376,8 @@ for (let name of ['type', 'authorName', 'text', 'comment', 'color', 'pageLabel',
 					break;
 				}
 				case 'text':
-					if (this._getLatestField('annotationType') != 'highlight') {
-						throw new Error("'annotationText' can only be set for highlight annotations");
+					if (!['highlight', 'underline'].includes(this._getLatestField('annotationType'))) {
+						throw new Error("'annotationText' can only be set for highlight and underline annotations");
 					}
 					break;
 				
@@ -4391,7 +4391,7 @@ for (let name of ['type', 'authorName', 'text', 'comment', 'color', 'pageLabel',
 					break;
 				
 				case 'sortIndex':
-					if (!/^\d{5}\|\d{6}\|\d{5}$/.test(value)) {
+					if (!/^(\d{5}\|\d{6}\|\d{5}|\d{5}\|\d{8}|\d{8})$/.test(value)) {
 						throw new Error(`Invalid sortIndex '${value}'`);
 					}
 					break;
@@ -4517,7 +4517,9 @@ Zotero.Item.prototype.getAnnotations = function (includeTrashed) {
 	}
 	var ids = rows.map(row => row.itemID);
 	this._annotations[cacheKey] = ids;
-	return Zotero.Items.get(ids);
+	return Zotero.Items.get(ids)
+		// Filter out underline and text annotations in Zotero 6
+		.filter(x => !['underline', 'text'].includes(x.annotationType));
 };
 
 
@@ -5631,7 +5633,6 @@ Zotero.Item.prototype.isCollection = function() {
 		// Annotation fields
 		//
 		case 'annotationType':
-		case 'annotationType':
 		case 'annotationAuthorName':
 		case 'annotationText':
 		case 'annotationComment':
@@ -5949,7 +5950,7 @@ Zotero.Item.prototype.toJSON = function (options = {}) {
 			let type = this.annotationType;
 			obj.annotationType = type;
 			obj.annotationAuthorName = this.annotationAuthorName || '';
-			if (type == 'highlight') {
+			if (['highlight', 'underline'].includes(type)) {
 				obj.annotationText = this.annotationText || '';
 			}
 			obj.annotationComment = this.annotationComment || '';
@@ -6073,7 +6074,16 @@ Zotero.Item.prototype.migrateExtraFields = function () {
 	
 	try {
 		var { itemType, fields, creators, extra } = Zotero.Utilities.Internal.extractExtraFields(
-			originalExtra, this
+			originalExtra,
+			this,
+			[
+				// Skip 'publisher-place' and 'event-place' for now, since the mappings will be changed
+				// https://github.com/citation-style-language/zotero-bits/issues/6
+				'place',
+				// Skip 'issued' for now, since we don't support date ranges in Date
+				// https://github.com/zotero/zotero/issues/3030
+				'date'
+			]
 		);
 		if (itemType) {
 			let originalType = this.itemTypeID;
