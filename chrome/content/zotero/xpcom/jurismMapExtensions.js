@@ -167,19 +167,19 @@ Zotero.Jurism.MapTools = {
 	},
 
 	getEncodeField: function(zField, cslMap) {
-		for (var cField in cslMap) {
-			if ("string" === typeof cslMap[cField]) {
-				if (cslMap[cField] === zField) {
-					return cField;
+		for (var mapField in cslMap) {
+			if ("string" === typeof cslMap[mapField]) {
+				if (cslMap[mapField] === zField) {
+					return mapField;
 				}
 			} else {
-				if (cField === "shortTitle") {
+				if (mapField === "shortTitle") {
 					continue;
 				}
-				for (var i=0,ilen=cslMap[cField].length; i<ilen; i++) {
-					var val = cslMap[cField][i];
+				for (var i=0,ilen=cslMap[mapField].length; i<ilen; i++) {
+					var val = cslMap[mapField][i];
 					if (val === zField) {
-						return cField;
+						return mapField;
 					}
 				}
 			}
