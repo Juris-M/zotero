@@ -722,9 +722,6 @@ Zotero.Schema = new function () {
 			for (let zoteroType of data.csl.types[cslType]) {
 				Zotero.Schema.CSL_TYPE_MAPPINGS[zoteroType] = cslType;
 			}
-			for (let zoteroType in Zotero.Jurism.PATCH.TYPES.override) {
-				Zotero.Schema.CSL_TYPE_MAPPINGS[zoteroType] = Zotero.Jurism.PATCH.TYPES.override[zoteroType];
-			}
 			// Add the first mapped Zotero type
 			Zotero.Schema.CSL_TYPE_MAPPINGS_REVERSE[cslType] = [...data.csl.types[cslType]];
 		}
