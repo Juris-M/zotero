@@ -718,11 +718,12 @@ function generateAllTypesAndFieldsData() {
 		let fields = Zotero.ItemFields.getItemTypeFields(itemTypes[i].id);
 		for (let j = 0; j < fields.length; j++) {
 			let field = fields[j];
-			field = Zotero.ItemFields.getBaseIDFromTypeAndField(itemTypes[i].id, field) || field;
+
+           field = Zotero.ItemFields.getBaseIDFromTypeAndField(itemTypes[i].id, field) || field;
 			
 			let name = Zotero.ItemFields.getName(field),
 				value;
-			
+
 			// Use field name as field value
 			if (specialValues[name]) {
 				value = specialValues[name];

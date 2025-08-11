@@ -126,7 +126,7 @@
 		"abstractNote": "Abstract note",
 		"accessDate": "1997-06-13T23:59:58Z",
 		"archiveLocation": "Archive location",
-		"authority": "Authority",
+		"legislativeBody": "Legislative body",
 		"code": "Code",
 		"creators": [
 			{
@@ -539,7 +539,8 @@
 		"archive": "Archive",
 		"archiveLocation": "Archive location",
 		"callNumber": "Call number",
-		"authority": "Authority",
+		"title": "Title",
+        "court": "Court",
 		"creators": [
 			{
 				"creatorType": "author",
@@ -593,7 +594,8 @@
 		"date": "1999-12-31",
 		"division": "Division",
 		"documentName": "Document name",
-		"documentNumber": "Document number",
+		"docketNumber": "Docket number",
+        "documentNumber": "Document number",
 		"extra": "Extra",
 		"filingDate": "2000-01-02",
 		"history": "History",
@@ -601,16 +603,14 @@
 		"itemType": "case",
 		"jurisdiction": "Jurisdiction",
 		"language": "en-US",
-		"number": 3,
 		"pages": "1-10",
 		"place": "Place",
 		"publicationDate": "Publication date",
-		"publicationTitle": "Publication title",
+		"reporter": "Reporter",
 		"publisher": "Publisher",
 		"rights": "Rights",
 		"shortTitle": "Short title",
 		"supplementName": "Supplement name",
-		"title": "Title",
 		"reign": "Reign",
 		"url": "http://www.example.com",
 		"DOI": "10.1234/example.doi",
@@ -767,17 +767,26 @@
 			{
 				"creatorType": "author",
 				"firstName": "authorFirst",
-				"lastName": "authorLast"
+				"lastName": "authorLast",
+				"multi": {
+					"_key": {}
+				}
 			},
 			{
 				"creatorType": "contributor",
 				"firstName": "contributorFirst",
-				"lastName": "contributorLast"
+				"lastName": "contributorLast",
+				"multi": {
+					"_key": {}
+				}
 			},
 			{
 				"creatorType": "author",
 				"fieldMode": 1,
-				"lastName": "Institutional Author"
+				"lastName": "Institutional Author",
+				"multi": {
+					"_key": {}
+				}
 			}
 		],
 		"date": "1999-12-31",
@@ -794,7 +803,11 @@
 		"title": "Title",
 		"type": "Type",
 		"url": "http://www.example.com",
-		"versionNumber": "Version number"
+		"versionNumber": "Version number",
+		"multi": {
+			"main": {},
+			"_keys": {}
+		}
 	},
 	"dictionaryEntry": {
 		"ISBN": "978-1-234-56789-7",
@@ -1193,7 +1206,7 @@
 		"accessDate": "1997-06-13T23:59:58Z",
 		"archiveLocation": "Archive location",
 		"assemblyNumber": "Assembly number",
-		"authority": "Authority",
+		"legislativeBody": "Legislative body",
 		"committee": "Committee",
 		"creators": [
 			{
@@ -1238,7 +1251,6 @@
 		"meetingNumber": "Meeting number",
 		"meetingName": "Meeting name",
 		"documentNumber": "Document number",
-		"number": 3,
 		"numberOfVolumes": 7,
 		"pages": "1-10",
 		"place": "Place",
@@ -1773,7 +1785,7 @@
 		"accessDate": "1997-06-13T23:59:58Z",
 		"applicationNumber": "Application number",
 		"assignee": "Assignee",
-		"authority": "Authority",
+		"issuingAuthority": "Issuing authority",
 		"country": "Country",
 		"creators": [
 			{
@@ -2183,48 +2195,86 @@
 		}
 	},
 	"standard": {
-		"DOI": "10.1234/example.doi",
+		"itemType": "standard",
+		"title": "Title",
 		"abstractNote": "Abstract note",
+		"number": 3,
+		"publisher": "Publisher",
+		"versionNumber": "Version number",
+		"date": "1999-12-31",
+        "jurisdiction": "Jurisdiction",
+		"language": "en-US",
+		"shortTitle": "Short title",
+		"url": "http://www.example.com",
 		"accessDate": "1997-06-13T23:59:58Z",
 		"archive": "Archive",
 		"archiveLocation": "Archive location",
-		"authority": "Authority",
+		"libraryCatalog": "Library catalog",
 		"callNumber": "Call number",
-		"citationKey": "Citation key",
-		"committee": "Committee",
+		"rights": "Rights",
+		"extra": "Extra",
 		"creators": [
 			{
 				"creatorType": "author",
 				"firstName": "authorFirst",
-				"lastName": "authorLast"
+				"lastName": "authorLast",
+				"multi": {
+					"_key": {}
+				}
 			},
 			{
 				"creatorType": "contributor",
 				"firstName": "contributorFirst",
-				"lastName": "contributorLast"
+				"lastName": "contributorLast",
+				"multi": {
+					"_key": {}
+				}
+			},
+			{
+				"creatorType": "editor",
+				"firstName": "editorFirst",
+				"lastName": "editorLast",
+				"multi": {
+					"_key": {}
+				} 
+			},
+			{
+				"creatorType": "reviewedAuthor",
+				"firstName": "reviewedAuthorFirst",
+				"lastName": "reviewedAuthorLast",
+				"multi": {
+					"_key": {}
+				} 
+			},
+			{
+				"creatorType": "translator",
+				"firstName": "translatorFirst",
+				"lastName": "translatorLast",
+				"multi": {
+					"_key": {}
+				} 
 			},
 			{
 				"creatorType": "author",
 				"fieldMode": 1,
-				"lastName": "Institutional Author"
+				"lastName": "Institutional Author",
+				"multi": {
+					"_key": {}
+				}
 			}
 		],
-		"date": "1999-12-31",
-		"extra": "Extra",
-		"itemType": "standard",
-		"language": "en-US",
-		"libraryCatalog": "Library catalog",
+		"DOI": "10.1234/example.doi",
+		"authority": "Authority",
+		"citationKey": "Citation key",
+		"committee": "Committee",
 		"numPages": 4,
-		"number": 3,
 		"place": "Place",
-		"publisher": "Publisher",
-		"rights": "Rights",
-		"shortTitle": "Short title",
 		"status": "Status",
-		"title": "Title",
 		"type": "Type",
-		"url": "http://www.example.com",
-		"versionNumber": "Version number"
+		"multi": {
+			"main": {},
+			"_keys": {}
+		}
 	},
 	"statute": {
 		"abstractNote": "Abstract note",
@@ -2664,7 +2714,7 @@
 		"itemType": "regulation",
 		"jurisdiction": "Jurisdiction",
 		"language": "en-US",
-		"legislativeBody": "Legislative body",
+		"regulatoryBody": "Regulatory body",
 		"number": 3,
 		"pages": "1-10",
 		"publicationDate": "Publication date",
@@ -2820,80 +2870,5 @@
 			"main": {},
 			"_keys": {}
 		}
-	},
-	"standard": { 
-		"itemType": "standard",
-		"title": "Title",
-		"abstractNote": "Abstract note",
-		"number": 3,
-		"publisher": "Publisher",
-		"versionNumber": "Version number",
-		"date": "1999-12-31",
-		"jurisdiction": "Jurisdiction",
-		"language": "en-US",
-		"shortTitle": "Short title",
-		"url": "http://www.example.com",
-		"accessDate": "1997-06-13T23:59:58Z",
-		"archive": "Archive",
-		"archiveLocation": "Archive location",
-		"libraryCatalog": "Library catalog",
-		"callNumber": "Call number",
-		"rights": "Rights",
-		"extra": "Extra",
-		"creators": 
-		[ 
-			{ 
-				"creatorType": "author",
-				"firstName": "authorFirst",
-				"lastName": "authorLast",
-				"multi": {
-					"_key": {}
-				} 
-			},
-			{
-				"creatorType": "contributor",
-				"firstName": "contributorFirst",
-				"lastName": "contributorLast",
-				"multi": {
-					"_key": {}
-				} 
-			},
-			{
-				"creatorType": "editor",
-				"firstName": "editorFirst",
-				"lastName": "editorLast",
-				"multi": {
-					"_key": {}
-				} 
-			},
-			{
-				"creatorType": "reviewedAuthor",
-				"firstName": "reviewedAuthorFirst",
-				"lastName": "reviewedAuthorLast",
-				"multi": {
-					"_key": {}
-				} 
-			},
-			{
-				"creatorType": "translator",
-				"firstName": "translatorFirst",
-				"lastName": "translatorLast",
-				"multi": {
-					"_key": {}
-				} 
-			},
-			{
-				"creatorType": "author",
-				"lastName": "Institutional Author",
-				"fieldMode": 1,
-				"multi": {
-					"_key": {}
-				}
-			} 
-		],
-		"multi": {
-			"main": {},
-			"_keys": {}
-		}
-	} 
+	}
 }

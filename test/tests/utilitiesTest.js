@@ -470,7 +470,7 @@ describe("Zotero.Utilities", function() {
 					var cVal = canonicalJSON[key];
 					var nVal = newJSON[key];
 					if ("string" === typeof canonicalJSON[key] || "number" === typeof canonicalJSON[key]) {
-						assert.equal(cVal, nVal);
+						assert.equal(cVal, nVal, "in type " + canonicalJSON.type);
 					} else {
 						assert.equal(JSON.stringify(cVal), JSON.stringify(nVal), "in type " + canonicalJSON.type);
 					}				}

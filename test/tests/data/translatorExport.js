@@ -197,7 +197,7 @@
 		"history": "History",
 		"itemType": "bill",
 		"language": "en-US",
-		"legislativeBody": "Authority",
+		"legislativeBody": "Legislative body",
 		"notes": [],
 		"relations": {},
 		"rights": "Rights",
@@ -493,7 +493,7 @@
 		"attachments": [],
 		"caseName": "Title",
 		"collections": [],
-		"court": "Authority",
+		"court": "Court",
 		"creators": [
 			{
 				"creatorType": "author",
@@ -546,7 +546,7 @@
 		"dateAdded": "2015-04-12T05:45:15Z",
 		"dateDecided": "1999-12-31",
 		"dateModified": "2015-04-12T05:45:15Z",
-		"docketNumber": "3",
+		"docketNumber": "Docket number",
 		"extra": "Extra",
 		"firstPage": "1-10",
 		"history": "History",
@@ -554,7 +554,7 @@
 		"language": "en-US",
 		"notes": [],
 		"relations": {},
-		"reporter": "Publication title",
+		"reporter": "Reporter",
 		"reporterVolume": "6",
 		"rights": "Rights",
 		"shortTitle": "Short title",
@@ -751,16 +751,25 @@
 			{
 				"creatorType": "author",
 				"firstName": "authorFirst",
-				"lastName": "authorLast"
+				"lastName": "authorLast",
+				"multi": {
+					"_key": {}
+				}
 			},
 			{
 				"creatorType": "contributor",
 				"firstName": "contributorFirst",
-				"lastName": "contributorLast"
+				"lastName": "contributorLast",
+				"multi": {
+					"_key": {}
+				}
 			},
 			{
 				"creatorType": "author",
-				"name": "Institutional Author"
+				"name": "Institutional Author",
+				"multi": {
+					"_key": {}
+				}
 			}
 		],
 		"date": "1999-12-31",
@@ -784,7 +793,12 @@
 		"uri": "http://zotero.org/users/local/35kRWXym/items/Y7VY3S4B",
 		"url": "http://www.example.com",
 		"version": 0,
-		"versionNumber": "Version number"
+		"versionNumber": "Version number",
+		"multi": {
+			"main": {},
+			"_keys": {}
+		},
+		"seeAlso": []
 	},
 	"dictionaryEntry": {
 		"ISBN": "978-1-234-56789-7",
@@ -1279,7 +1293,7 @@
 		"history": "History",
 		"itemType": "hearing",
 		"language": "en-US",
-		"legislativeBody": "Authority",
+		"legislativeBody": "Legislative body",
 		"notes": [],
 		"numberOfVolumes": "7",
 		"pages": "1-10",
@@ -1946,7 +1960,7 @@
 		"extra": "Extra",
 		"filingDate": "2000-01-02",
 		"issueDate": "1999-12-31",
-		"issuingAuthority": "Authority",
+		"issuingAuthority": "Issuing authority",
 		"itemType": "patent",
 		"language": "en-US",
 		"legalStatus": "Status",
@@ -2362,56 +2376,95 @@
 		"seeAlso": []
 	},
 	"standard": {
-		"DOI": "10.1234/example.doi",
+		"collections": [],
+		"relations": {},
+		"tags": [],
+		"attachments": [],
+		"notes": [],
+        "seeAlso": [],
+		"version": 0,
+		"dateAdded": "2023-03-23T05:19:51Z",
+		"dateModified": "2023-03-23T05:19:51Z",
+		"uri": "http://zotero.org/users/local/35kRWXym/items/B5FEI3EJ",
+		"itemType": "standard",
+		"title": "Title",
 		"abstractNote": "Abstract note",
+		"number": "3",
+		"publisher": "Publisher",
+		"versionNumber": "Version number",
+		"date": "1999-12-31",
+        "jurisdiction": "Jurisdiction",
+		"language": "en-US",
+		"shortTitle": "Short title",
+		"url": "http://www.example.com",
 		"accessDate": "1997-06-13T23:59:58Z",
 		"archive": "Archive",
 		"archiveLocation": "Archive location",
-		"attachments": [],
+		"libraryCatalog": "Library catalog",
 		"callNumber": "Call number",
-		"citationKey": "Citation key",
-		"collections": [],
-		"committee": "Committee",
+		"rights": "Rights",
+		"extra": "Extra",
 		"creators": [
 			{
 				"creatorType": "author",
 				"firstName": "authorFirst",
-				"lastName": "authorLast"
+				"lastName": "authorLast",
+				"multi": {
+					"_key": {}
+				} 
 			},
 			{
 				"creatorType": "contributor",
 				"firstName": "contributorFirst",
-				"lastName": "contributorLast"
+				"lastName": "contributorLast",
+				"multi": {
+					"_key": {}
+				} 
+			},
+			{
+				"creatorType": "editor",
+				"firstName": "editorFirst",
+				"lastName": "editorLast",
+				"multi": {
+					"_key": {}
+				} 
+			},
+			{
+				"creatorType": "reviewedAuthor",
+				"firstName": "reviewedAuthorFirst",
+				"lastName": "reviewedAuthorLast",
+				"multi": {
+					"_key": {}
+				} 
+			},
+			{
+				"creatorType": "translator",
+				"firstName": "translatorFirst",
+				"lastName": "translatorLast",
+				"multi": {
+					"_key": {}
+				} 
 			},
 			{
 				"creatorType": "author",
-				"name": "Institutional Author"
+				"name": "Institutional Author",
+				"multi": {
+					"_key": {}
+				} 
 			}
 		],
-		"date": "1999-12-31",
-		"dateAdded": "2023-03-23T05:19:51Z",
-		"dateModified": "2023-03-23T05:19:51Z",
-		"extra": "Extra",
-		"itemType": "standard",
-		"language": "en-US",
-		"libraryCatalog": "Library catalog",
-		"notes": [],
+		"DOI": "10.1234/example.doi",
+		"citationKey": "Citation key",
+		"committee": "Committee",
 		"numPages": "4",
-		"number": "3",
 		"organization": "Authority",
 		"place": "Place",
-		"publisher": "Publisher",
-		"relations": {},
-		"rights": "Rights",
-		"shortTitle": "Short title",
 		"status": "Status",
-		"tags": [],
-		"title": "Title",
 		"type": "Type",
-		"uri": "http://zotero.org/users/local/35kRWXym/items/B5FEI3EJ",
-		"url": "http://www.example.com",
-		"version": 0,
-		"versionNumber": "Version number"
+		"multi": {
+			"main": {},
+			"_keys": {}
+		}
 	},
 	"statute": {
 		"abstractNote": "Abstract note",
@@ -3022,7 +3075,7 @@
 		"itemType": "regulation",
 		"jurisdiction": "Jurisdiction",
 		"language": "en-US",
-		"regulatoryBody": "Legislative body",
+		"regulatoryBody": "Regulatory body",
 		"publicLawNumber": "3",
 		"pages": "1-10",
 		"publicationDate": "Publication date",
@@ -3192,90 +3245,6 @@
 		"url": "http://www.example.com",
 		"versionNumber": "Version number",
 		"volume": "6",
-		"multi": {
-			"main": {},
-			"_keys": {}
-		}
-	},
-	"standard": { 
-		"collections": [],
-		"relations": {},
-		"tags": [],
-		"attachments": [],
-		"notes": [],
-		"seeAlso": [],
-		"version": 0,
-		"dateAdded": "2015-04-12T09:00:22Z",
-		"dateModified": "2015-04-12T09:00:22Z",
-		"uri": "http://zotero.org/users/local/riiZoBgm/items/M7X5Q2MA",
-		"itemType": "standard",
-		"title": "Title",
-		"abstractNote": "Abstract note",
-		"number": "3",
-		"publisher": "Publisher",
-		"versionNumber": "Version number",
-		"date": "1999-12-31",
-		"jurisdiction": "Jurisdiction",
-		"language": "en-US",
-		"shortTitle": "Short title",
-		"url": "http://www.example.com",
-		"accessDate": "1997-06-13T23:59:58Z",
-		"archive": "Archive",
-		"archiveLocation": "Archive location",
-		"libraryCatalog": "Library catalog",
-		"callNumber": "Call number",
-		"rights": "Rights",
-		"extra": "Extra",
-		"creators": 
-		[ 
-			{ 
-				"creatorType": "author",
-				"firstName": "authorFirst",
-				"lastName": "authorLast",
-				"multi": {
-					"_key": {}
-				} 
-			},
-			{
-				"creatorType": "contributor",
-				"firstName": "contributorFirst",
-				"lastName": "contributorLast",
-				"multi": {
-					"_key": {}
-				} 
-			},
-			{
-				"creatorType": "editor",
-				"firstName": "editorFirst",
-				"lastName": "editorLast",
-				"multi": {
-					"_key": {}
-				} 
-			},
-			{
-				"creatorType": "reviewedAuthor",
-				"firstName": "reviewedAuthorFirst",
-				"lastName": "reviewedAuthorLast",
-				"multi": {
-					"_key": {}
-				} 
-			},
-			{
-				"creatorType": "translator",
-				"firstName": "translatorFirst",
-				"lastName": "translatorLast",
-				"multi": {
-					"_key": {}
-				} 
-			},
-			{
-				"creatorType": "author",
-				"name": "Institutional Author",
-				"multi": {
-					"_key": {}
-				}
-			} 
-		],
 		"multi": {
 			"main": {},
 			"_keys": {}

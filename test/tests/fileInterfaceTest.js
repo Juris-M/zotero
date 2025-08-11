@@ -30,6 +30,7 @@ describe("Zotero_File_Interface", function() {
             delete savedItem.dateModified;
             delete savedItem.key;
             delete savedItem.collections;
+            delete savedItem.version;
             savedItems[Zotero.ItemTypes.getName(childItems[i].itemTypeID)] = savedItem;
         }
         let trueItems = loadSampleData('itemJSON');
@@ -39,9 +40,11 @@ describe("Zotero_File_Interface", function() {
             delete trueItem.dateModified;
             delete trueItem.key;
             delete trueItem.collections;
+            delete trueItem.version;
         }
-        // Zotero.debug("savedItems\n"+JSON.stringify(savedItems, null, 2), 1);
-        // Zotero.debug("trueItems\n"+JSON.stringify(trueItems, null, 2), 1);
+        //Zotero.debug("savedItems\n"+JSON.stringify(savedItems, null, 2), 1);
+        //Zotero.debug("trueItems\n"+JSON.stringify(trueItems, null, 2), 1);
+        //assert.equal(1, 0);
         assert.deepEqual(savedItems, trueItems, "saved items match inputs");
     });
     

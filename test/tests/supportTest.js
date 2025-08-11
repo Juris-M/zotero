@@ -90,6 +90,7 @@ describe("Support Functions for Unit Testing", function() {
 		it("all types and fields sample data should be up to date", function() {
 			var fileData = loadSampleData('allTypesAndFields');
 			var generatedData = generateAllTypesAndFieldsData();
+            
 			for (var key in fileData) {
 				assert.isTrue(!!generatedData[key], "generated data has all keys in sample");
 			}
