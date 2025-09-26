@@ -98,7 +98,7 @@ const browserifyConfigs = [
 const ignoreMask = [
 	'**/#*',
 	'resource/schema/global/README.md',
-	'resource/schema/global/schema.json.gz',
+	'resource/schema/global/schema-jurism.json.gz',
 	'resource/schema/global/scripts/*',
 	'chrome/content/zotero/xpcom/translate/example/**/*',
 	'chrome/content/zotero/xpcom/translate/README.md',
