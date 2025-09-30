@@ -41,8 +41,12 @@ function doImport() {
     for(var itemType in parsedData) {
         var item = new Z.Item(itemType);
         for (var field in parsedData[itemType]) {
-            item[field] = parsedData[itemType][field];
+            if (field == "multi") {
+                item[field] = JSON.parse(JSON.stringify(parsedData[itemType][field]));
+            } else {
+                item[field] = parsedData[itemType][field];
+            }
         }
         item.complete();
-    }
+     }
 }
