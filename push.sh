@@ -17,7 +17,7 @@ BRANCH="$1"
 
 # Check node version
 VERSION=$(node --version)
-if [ "$VERSION" != "v16.20.0" ]; then
+if [ "$VERSION" != "v18.20.4" ]; then
     echo Node $VERSION detected, but the Jurism 6 build chain wants node v16.20.0.
     echo \(To juggle multiple node version nvm is your friend.\)
    exit 0
