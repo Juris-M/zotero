@@ -17,8 +17,8 @@ BRANCH="$1"
 
 # Check node version
 VERSION=$(node --version)
-if [ "$VERSION" != "v18.20.4" ]; then
-    echo Node $VERSION detected, but the Jurism 6 build chain wants node v16.20.0.
+if [ "$VERSION" != "v14.21.3" ]; then
+    echo Node $VERSION detected, but the Jurism 6 build chain wants node v14.21.3.
     echo \(To juggle multiple node version nvm is your friend.\)
    exit 0
 fi
@@ -68,7 +68,7 @@ if [ $REBUILD -eq 1 ]; then
     echo Rebuilding from scratch. This will take some time.
     sleep 2
     rm -fR build
-    rm .signatures.json
+    rm -f .signatures.json
     node ./scripts/build.js
 else
     echo Trusting the current build. Pushing to remote repo.
