@@ -78,16 +78,18 @@ Zotero.TagSelector = class TagSelectorContainer extends React.PureComponent {
 		// Async operations might attempt to update the react components
 		// after window close in tests, which will cause unnecessary crashing.
 		if (this._uninitialized) return;
-		Zotero.debug("TagSelectorContainer: React threw an error");
+		Zotero.debug("XXZXX TagSelectorContainer: React threw an error", 1);
 		Zotero.logError(error);
-		Zotero.debug(info);
+		Zotero.debug("XXZXX " + info, 1);
 		Zotero.crash();
 	}
 	
 	componentDidUpdate(_prevProps, _prevState) {
-		Zotero.debug("Tag selector updated");
+		Zotero.debug("XXZXX Tag selector updated", 1);
+		if (this._uninitialized) return;
 		
 		// If we changed collections, scroll to top
+        
 		if (this.collectionTreeRow && this.collectionTreeRow.id != this.prevTreeViewID) {
 			this.tagListRef.current.scrollToTop();
 			this.prevTreeViewID = this.collectionTreeRow.id;
@@ -96,7 +98,8 @@ Zotero.TagSelector = class TagSelectorContainer extends React.PureComponent {
 	
 	// Update trigger #1 (triggered by ZoteroPane)
 	async onItemViewChanged({ collectionTreeRow, libraryID }) {
-		Zotero.debug('Updating tag selector from current view');
+		Zotero.debug('XXZXX Updating tag selector from current view', 1);
+		if (this._uninitialized) return;
 		
 		var prevLibraryID = this.libraryID;
 		this.collectionTreeRow = collectionTreeRow;
