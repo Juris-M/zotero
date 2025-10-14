@@ -11,6 +11,7 @@
 <!ENTITY closeCmd.key "W">
 <!ENTITY closeCmd.label "Cerrar">
 <!ENTITY collectionsPane.label "Panel de colecciones">
+<!ENTITY columns.label "Columns">
 <!ENTITY convertToStored.label "Convertir archivos enlazados a archivos guardados...">
 <!ENTITY copyBibliographyCmd.label "Copiar bibliografía">
 <!ENTITY copyCitationCmd.label "Copiar cita">
@@ -63,6 +64,7 @@
 <!ENTITY fullZoomResetCmd.label "Reset">
 <!ENTITY fullZoomToggleCmd.accesskey "T">
 <!ENTITY fullZoomToggleCmd.label "Zoom Text Only">
+<!ENTITY goMenu.accesskey "G">
 <!ENTITY goMenu.label "Go">
 <!ENTITY helpCheckForUpdates.accesskey "U">
 <!ENTITY helpCheckForUpdates.label "Comprobar actualizaciones...">
@@ -126,6 +128,7 @@
 <!ENTITY selectAllCmd.label "Seleccionar todo">
 <!ENTITY servicesMenuMac.label "Servicios">
 <!ENTITY showAllAppsCmdMac.label "Mostrar todo">
+<!ENTITY sortBy.label "Sort By">
 <!ENTITY stackedView.label "Vista apilada">
 <!ENTITY standardView.label "Vista estándar">
 <!ENTITY tagSelector.label "Selector de etiquetas">

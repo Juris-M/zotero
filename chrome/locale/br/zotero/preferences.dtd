@@ -78,6 +78,8 @@
 <!ENTITY zotero.preferences.groups.childNotes "notennoù bugel">
 <!ENTITY zotero.preferences.groups.tags "balizoù">
 <!ENTITY zotero.preferences.groups.whenCopyingInclude "Pa eiler elfennoù kenetre levraouegoù, enklozañ:">
+<!ENTITY zotero.preferences.helpButton.label "Help">
+<!ENTITY zotero.preferences.interface "Interface">
 <!ENTITY zotero.preferences.items "elfennoù">
 <!ENTITY zotero.preferences.keys.changesTakeEffect "Kemeret e vo e kont ar cheñchamantoù goude un adloc'hañ">
 <!ENTITY zotero.preferences.keys.copySelectedItemCitationsToClipboard "Eilañ er golver an arroudenniñ elfennoù diuzet">
@@ -250,6 +252,7 @@
 <!ENTITY zotero.preferences.sync.reset.restoreToOnlineLibrary.desc "Overwrite online library with local Jurism data">
 <!ENTITY zotero.preferences.sync.reset.restoreToServer "Erlec'hiañ al levraoueg enlinenn">
 <!ENTITY zotero.preferences.sync.reset.restoreToServer.desc "Flastrañ roadennoù al levraoueg enlinenn gant roadennoù lec'hel Jurism">
+<!ENTITY zotero.preferences.sync.reset.showResetOptions "Show Reset Options…">
 <!ENTITY zotero.preferences.sync.reset.warning1 "An oberiadurioù da-heul a zo da vezañ implijet e plegoù ral hag ispisial ha ne rankont ket bezañ implijet evit un distankañ hollek. E-barzh kalz a zegouezhioù, adloc'hañ a zegaso kudennoù ouzhpenn. Sellit ouzh">
 <!ENTITY zotero.preferences.sync.reset.warning2 "Dibarzhioù adloc'hañ sinkro">
 <!ENTITY zotero.preferences.sync.reset.warning3 "evit muioc'h a ditouroù.">

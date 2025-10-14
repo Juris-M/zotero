@@ -107,8 +107,10 @@
 <!ENTITY zotero.import.lastModified "Τελευταία Τροποποίηση">
 <!ENTITY zotero.import.online.newItemsOnly "Download new items only; don’t update previously imported items">
 <!ENTITY zotero.import.online.relinkOnly "Relink Mendeley Desktop citations">
+<!ENTITY zotero.import.onlineImport "online import">
 <!ENTITY zotero.import.size "Μέγεθος">
 <!ENTITY zotero.import.source.file "Ένα αρχείο (BibTeX, RIS, Jurism RDF, κλπ.)">
+<!ENTITY zotero.import.source.folder "A folder of PDFs or other files">
 <!ENTITY zotero.import.whereToImportFrom "Από πού θέλετε να εισαγάγετε;">
 <!ENTITY zotero.integration.addEditCitation.title "Προσθήκη/Επεξεργασία Παραπομπής">
 <!ENTITY zotero.integration.classicView.label "Κλασική προβολή">
@@ -155,6 +157,7 @@
 <!ENTITY zotero.item.attachment.file.show "Εμφάνιση αρχείου">
 <!ENTITY zotero.item.copyAsURL "Αντιγραφή ως URL">
 <!ENTITY zotero.item.creatorTransform "Transform Name Form">
+<!ENTITY zotero.item.creatorTransform.fixCase "Fix Case">
 <!ENTITY zotero.item.creatorTransform.nameParticles "Adjust Name Particles">
 <!ENTITY zotero.item.creatorTransform.nameSwap "Εναλλαγή πρώτου ονόματος/επιθέτου">
 <!ENTITY zotero.item.deletePermanently "Μόνιμη διαγραφή...;">
@@ -230,9 +233,11 @@
 <!ENTITY zotero.pdfReader.lastPage "Last Page">
 <!ENTITY zotero.pdfReader.noSpreads "No Spreads">
 <!ENTITY zotero.pdfReader.oddSpreads "Odd Spreads">
+<!ENTITY zotero.pdfReader.paginated "Paginated">
 <!ENTITY zotero.pdfReader.rotatePage180 "Rotate Page 180°">
 <!ENTITY zotero.pdfReader.rotatePageLeft "Rotate Page Left">
 <!ENTITY zotero.pdfReader.rotatePageRight "Rotate Page Right">
+<!ENTITY zotero.pdfReader.scrolled "Scrolled">
 <!ENTITY zotero.pdfReader.splitHorizontally "Split Horizontally">
 <!ENTITY zotero.pdfReader.splitVertically "Split Vertically">
 <!ENTITY zotero.pdfReader.transferFromPDF "Import Annotations…">
@@ -243,6 +248,7 @@
 <!ENTITY zotero.pdfReader.zoomOut "Zoom Out">
 <!ENTITY zotero.pdfReader.zoomPageHeight "Zoom to Page Height">
 <!ENTITY zotero.pdfReader.zoomPageWidth "Zoom to Page Width">
+<!ENTITY zotero.pdfReader.zoomReset "Reset Zoom">
 <!ENTITY zotero.progress.title "Πρόοδος">
 <!ENTITY zotero.proxy.recognized.disable.label "Να μην γίνεται αυτόματη ανακατεύθυνση των αιτήσεων μέσω προηγουμένως αναγνωρισμένων διαμεσολαβητών.">
 <!ENTITY zotero.proxy.recognized.ignore.label "Αγνόηση">
@@ -321,6 +327,7 @@
 <!ENTITY zotero.tagSelector.renameTag "Μετονομασία ετικέτας...">
 <!ENTITY zotero.tagSelector.selectVisible "Επιλογή ορατών">
 <!ENTITY zotero.tagSelector.showAutomatic "Αυτόματη προβολή">
+<!ENTITY zotero.tagSelector.splitTag "Split…">
 <!ENTITY zotero.toolbar.about.label "Σχετικά με το Jurism">
 <!ENTITY zotero.toolbar.actions.label "Ενέργειες">
 <!ENTITY zotero.toolbar.addChildNote.label "Add Child Note">

@@ -11,6 +11,7 @@
 <!ENTITY closeCmd.key "W">
 <!ENTITY closeCmd.label "閉じる">
 <!ENTITY collectionsPane.label "コレクションパネル">
+<!ENTITY columns.label "Columns">
 <!ENTITY convertToStored.label "Convert Linked Files to Stored Files…">
 <!ENTITY copyBibliographyCmd.label "参考文献目録をコピー">
 <!ENTITY copyCitationCmd.label "出典表記をコピー">
@@ -63,6 +64,7 @@
 <!ENTITY fullZoomResetCmd.label "Reset">
 <!ENTITY fullZoomToggleCmd.accesskey "T">
 <!ENTITY fullZoomToggleCmd.label "Zoom Text Only">
+<!ENTITY goMenu.accesskey "G">
 <!ENTITY goMenu.label "Go">
 <!ENTITY helpCheckForUpdates.accesskey "U">
 <!ENTITY helpCheckForUpdates.label "更新を確認...">
@@ -126,6 +128,7 @@
 <!ENTITY selectAllCmd.label "すべてを選択">
 <!ENTITY servicesMenuMac.label "サービス">
 <!ENTITY showAllAppsCmdMac.label "すべてを表示">
+<!ENTITY sortBy.label "Sort By">
 <!ENTITY stackedView.label "積み上げビュー">
 <!ENTITY standardView.label "標準ビュー">
 <!ENTITY tagSelector.label "タグ選択ボックス">

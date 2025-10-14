@@ -11,6 +11,7 @@
 <!ENTITY closeCmd.key "W">
 <!ENTITY closeCmd.label "Zapri">
 <!ENTITY collectionsPane.label "Podokno zbirk">
+<!ENTITY columns.label "Columns">
 <!ENTITY convertToStored.label "Pretvori povezane datoteke v shranjene datoteke ...">
 <!ENTITY copyBibliographyCmd.label "Kopiraj bibliografijo">
 <!ENTITY copyCitationCmd.label "Kopiraj citat">
@@ -63,6 +64,7 @@
 <!ENTITY fullZoomResetCmd.label "Reset">
 <!ENTITY fullZoomToggleCmd.accesskey "T">
 <!ENTITY fullZoomToggleCmd.label "Zoom Text Only">
+<!ENTITY goMenu.accesskey "G">
 <!ENTITY goMenu.label "Go">
 <!ENTITY helpCheckForUpdates.accesskey "s">
 <!ENTITY helpCheckForUpdates.label "Poišči posodobitve ...">
@@ -126,6 +128,7 @@
 <!ENTITY selectAllCmd.label "Izberi vse">
 <!ENTITY servicesMenuMac.label "Storitve">
 <!ENTITY showAllAppsCmdMac.label "Pokaži vse">
+<!ENTITY sortBy.label "Sort By">
 <!ENTITY stackedView.label "Naloženi pogled">
 <!ENTITY standardView.label "Navadni pogled">
 <!ENTITY tagSelector.label "Izbirnik značk">

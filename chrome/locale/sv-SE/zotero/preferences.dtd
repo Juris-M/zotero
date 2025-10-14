@@ -78,6 +78,8 @@
 <!ENTITY zotero.preferences.groups.childNotes "tillhörande anteckningar">
 <!ENTITY zotero.preferences.groups.tags "etiketter">
 <!ENTITY zotero.preferences.groups.whenCopyingInclude "När källor kopieras mellan bibliotek, ta med:">
+<!ENTITY zotero.preferences.helpButton.label "Help">
+<!ENTITY zotero.preferences.interface "Interface">
 <!ENTITY zotero.preferences.items "källor">
 <!ENTITY zotero.preferences.keys.changesTakeEffect "Ändringarna börjar gälla efter omstart">
 <!ENTITY zotero.preferences.keys.copySelectedItemCitationsToClipboard "Kopiera markerade källor som noter till urklipp">
@@ -250,6 +252,7 @@
 <!ENTITY zotero.preferences.sync.reset.restoreToOnlineLibrary.desc "Overwrite online library with local Jurism data">
 <!ENTITY zotero.preferences.sync.reset.restoreToServer "Ersätt onlinebibliotek">
 <!ENTITY zotero.preferences.sync.reset.restoreToServer.desc "Skriv över onlinebiblioteket med lokala Jurism-data">
+<!ENTITY zotero.preferences.sync.reset.showResetOptions "Show Reset Options…">
 <!ENTITY zotero.preferences.sync.reset.warning1 "Följande åtgärder är endast till för sällsynta, särskilda situationer och ska inte användas för vanlig felsökning. I många fall kan en återställning istället orsaka nya problem. Se">
 <!ENTITY zotero.preferences.sync.reset.warning2 "Återställningsalternativ för synkronisering">
 <!ENTITY zotero.preferences.sync.reset.warning3 "för mer information.">

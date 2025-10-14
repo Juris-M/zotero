@@ -78,6 +78,8 @@
 <!ENTITY zotero.preferences.groups.childNotes "bijbehorende aantekeningen">
 <!ENTITY zotero.preferences.groups.tags "labels">
 <!ENTITY zotero.preferences.groups.whenCopyingInclude "Bij het kopiëren van items tussen bibliotheken, kopieer ook:">
+<!ENTITY zotero.preferences.helpButton.label "Help">
+<!ENTITY zotero.preferences.interface "Interface">
 <!ENTITY zotero.preferences.items "items">
 <!ENTITY zotero.preferences.keys.changesTakeEffect "Aanpassingen worden pas zichtbaar na herstarten">
 <!ENTITY zotero.preferences.keys.copySelectedItemCitationsToClipboard "Verwijzingen van geselecteerde items naar klembord kopiëren">
@@ -250,6 +252,7 @@
 <!ENTITY zotero.preferences.sync.reset.restoreToOnlineLibrary.desc "Overwrite online library with local Jurism data">
 <!ENTITY zotero.preferences.sync.reset.restoreToServer "Online Bibliotheek Vervangen">
 <!ENTITY zotero.preferences.sync.reset.restoreToServer.desc "Alle gegevens op de server wissen en vervangen door de lokale Jurism-gegevens.">
+<!ENTITY zotero.preferences.sync.reset.showResetOptions "Show Reset Options…">
 <!ENTITY zotero.preferences.sync.reset.warning1 "De volgende handelingen moeten alleen uitgevoerd worden in uitzonderlijke, specifieke situaties en zijn niet geschikt voor het oplossen van algemene problemen. In veel gevallen zal herstellen leiden tot aanvullende problemen. Bekijk">
 <!ENTITY zotero.preferences.sync.reset.warning2 "Synchronisatie-herstelopties">
 <!ENTITY zotero.preferences.sync.reset.warning3 "voor meer informatie.">

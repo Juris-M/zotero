@@ -78,6 +78,8 @@
 <!ENTITY zotero.preferences.groups.childNotes "niiden alaiset muistiinpanot">
 <!ENTITY zotero.preferences.groups.tags "avainsanat">
 <!ENTITY zotero.preferences.groups.whenCopyingInclude "Nimikkeitä kirjastojen välillä kopioitaessa sisällytä:">
+<!ENTITY zotero.preferences.helpButton.label "Help">
+<!ENTITY zotero.preferences.interface "Interface">
 <!ENTITY zotero.preferences.items "nimikkeet">
 <!ENTITY zotero.preferences.keys.changesTakeEffect "Muutokset tulevat voimaan uudelleenkäynnistyksen jälkeen">
 <!ENTITY zotero.preferences.keys.copySelectedItemCitationsToClipboard "Kopioi valittujen nimikkeiden sitaatit leikepöydälle">
@@ -250,6 +252,7 @@
 <!ENTITY zotero.preferences.sync.reset.restoreToOnlineLibrary.desc "Overwrite online library with local Jurism data">
 <!ENTITY zotero.preferences.sync.reset.restoreToServer "Replace Online Library">
 <!ENTITY zotero.preferences.sync.reset.restoreToServer.desc "Overwrite online library with local Jurism data">
+<!ENTITY zotero.preferences.sync.reset.showResetOptions "Show Reset Options…">
 <!ENTITY zotero.preferences.sync.reset.warning1 "Seuraavat toiminnot ovat tarpeen vain äärimmäisen harvinaisissa tilanteissa, eikä niitä tulisi käyttää tavalliseen virheenetsintään. Monissa tapauksissa asetusten nollaus voi aiheuttaa lisää ongelmia. Katso ">
 <!ENTITY zotero.preferences.sync.reset.warning2 "Synkroinnin nollauksen asetukset">
 <!ENTITY zotero.preferences.sync.reset.warning3 "saadaksesi lisätietoja.">

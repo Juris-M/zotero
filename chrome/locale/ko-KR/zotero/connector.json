@@ -26,6 +26,9 @@
   "extensionIsDisabled_extensionPage": {
     "message": "$1 is disabled on extension pages"
   },
+  "extensionIsDisabled_fileURL": {
+    "message": "$1 Connector is not available on file URLs"
+  },
   "firstRun_acceptButton": {
     "description": "The Accept button for the first-run dialog",
     "message": "Got it"
@@ -48,6 +51,9 @@
   "general_copyToClipboard": {
     "message": "클립보드로 복사"
   },
+  "general_deselectAll": {
+    "message": "Deselect All"
+  },
   "general_done": {
     "message": "완료"
   },
@@ -63,11 +69,17 @@
   "general_no": {
     "message": "아니오"
   },
+  "general_ok": {
+    "message": "OK"
+  },
   "general_pleaseWait": {
     "message": "Please wait…"
   },
   "general_saveTo": {
     "message": "저장: $1"
+  },
+  "general_selectAll": {
+    "message": "Select All"
   },
   "general_tryAgain": {
     "message": "다시 시도"
@@ -83,6 +95,9 @@
   },
   "integration_error_connection": {
     "message": "$1 중계기가 $2 데스크톱 애플리케이션과 통신하지 못했습니다. 웹 기반 인용 기능을 사용하려면 반드시 $2 애플리케이션을 열어두세요."
+  },
+  "integration_googleDocs_authScopeError": {
+    "message": "$1 needs permission to edit your Google Docs documents in order to insert citations. Please try again, and be sure to allow $1 to see, edit, create, and delete your Google Docs documents."
   },
   "integration_googleDocs_documentLocked": {
     "message": "The document citations are being edited by another $1 user. Please try again later."
@@ -120,6 +135,54 @@
   "integration_googleDocs_updating": {
     "message": "$1 is updating your document."
   },
+  "itemSelector_title": {
+    "message": "Select which items you’d like to add to your library:"
+  },
+  "itemType_attachment": {
+    "message": "Attachment"
+  },
+  "itemType_epub": {
+    "message": "EPUB attachment"
+  },
+  "itemType_link": {
+    "message": "Web link"
+  },
+  "itemType_note": {
+    "message": "Note"
+  },
+  "itemType_pdf": {
+    "message": "PDF attachment"
+  },
+  "itemType_snapshot": {
+    "message": "Snapshot"
+  },
+  "progressWindow_allDone": {
+    "message": "Saving is complete. The dialog will close now."
+  },
+  "progressWindow_alreadySaved": {
+    "message": "Items from this webpage have already been saved."
+  },
+  "progressWindow_collectionSelector": {
+    "message": "Target collection selector"
+  },
+  "progressWindow_detailsBtnHide": {
+    "message": "Hide details"
+  },
+  "progressWindow_detailsBtnView": {
+    "message": "View details"
+  },
+  "progressWindow_downloadComplete": {
+    "message": "Saved $1"
+  },
+  "progressWindow_downloadCompletePlural": {
+    "message": "Saved $1 for item $2"
+  },
+  "progressWindow_downloadFailed": {
+    "message": "Failed download of $1"
+  },
+  "progressWindow_downloadFailedPlural": {
+    "message": "Failed download of $1 for item $2"
+  },
   "progressWindow_error_fallback": {
     "message": "$1 중계기를 이용하여 저장 중 오류가 발생했습니다. 대신 $2 중계기를 이용하여 저장을 시도합니다."
   },
@@ -141,6 +204,18 @@
   },
   "progressWindow_error_upgradeClient_latestVersion": {
     "message": "최신 버전"
+  },
+  "progressWindow_filterPlaceholder": {
+    "message": "Filter Collections"
+  },
+  "progressWindow_saveItem": {
+    "message": "Item $1: $2"
+  },
+  "progressWindow_savingItem": {
+    "message": "Saving item $1"
+  },
+  "progressWindow_savingItems": {
+    "message": "Saving $1 items. $2"
   },
   "progressWindow_savingTo": {
     "message": "저장 위치"

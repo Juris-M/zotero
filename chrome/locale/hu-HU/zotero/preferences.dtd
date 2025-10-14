@@ -78,6 +78,8 @@
 <!ENTITY zotero.preferences.groups.childNotes "kapcsolódó jegyzetek">
 <!ENTITY zotero.preferences.groups.tags "címkék">
 <!ENTITY zotero.preferences.groups.whenCopyingInclude "Amikor könyvtárak között másol elemeket, az alábbiakat másolja:">
+<!ENTITY zotero.preferences.helpButton.label "Help">
+<!ENTITY zotero.preferences.interface "Interface">
 <!ENTITY zotero.preferences.items "elemek">
 <!ENTITY zotero.preferences.keys.changesTakeEffect "A változások csak az újraindítás után érvényesülnek">
 <!ENTITY zotero.preferences.keys.copySelectedItemCitationsToClipboard "Kiválasztott hivatkozás másolása a vágólapra">
@@ -250,6 +252,7 @@
 <!ENTITY zotero.preferences.sync.reset.restoreToOnlineLibrary.desc "Overwrite online library with local Jurism data">
 <!ENTITY zotero.preferences.sync.reset.restoreToServer "Az Online Könyvtár cseréje">
 <!ENTITY zotero.preferences.sync.reset.restoreToServer.desc "Az online könyvtár felülírása a helyi Jurism adatokkal">
+<!ENTITY zotero.preferences.sync.reset.showResetOptions "Show Reset Options…">
 <!ENTITY zotero.preferences.sync.reset.warning1 "Az alábbi műveletek kizárólag ritka, egyedi esetekre valók, alkalmazásuk nem javasolt általános hibaelhárításra. A visszaállítás sok esetben további problémákat okoz. Lásd ">
 <!ENTITY zotero.preferences.sync.reset.warning2 "Sync Reset Options">
 <!ENTITY zotero.preferences.sync.reset.warning3 " további információért.">

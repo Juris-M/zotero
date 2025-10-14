@@ -11,6 +11,7 @@
 <!ENTITY closeCmd.key "W">
 <!ENTITY closeCmd.label "Tutup">
 <!ENTITY collectionsPane.label "Collections Pane">
+<!ENTITY columns.label "Columns">
 <!ENTITY convertToStored.label "Convert Linked Files to Stored Files…">
 <!ENTITY copyBibliographyCmd.label "Kopi Bibliografi">
 <!ENTITY copyCitationCmd.label "Kopi Sitasi">
@@ -63,6 +64,7 @@
 <!ENTITY fullZoomResetCmd.label "Reset">
 <!ENTITY fullZoomToggleCmd.accesskey "T">
 <!ENTITY fullZoomToggleCmd.label "Zoom Text Only">
+<!ENTITY goMenu.accesskey "G">
 <!ENTITY goMenu.label "Go">
 <!ENTITY helpCheckForUpdates.accesskey "U">
 <!ENTITY helpCheckForUpdates.label "Periksa Pemutakhiran">
@@ -126,6 +128,7 @@
 <!ENTITY selectAllCmd.label "Pilih Semua">
 <!ENTITY servicesMenuMac.label "Layanan">
 <!ENTITY showAllAppsCmdMac.label "Tunjukkan Semua">
+<!ENTITY sortBy.label "Sort By">
 <!ENTITY stackedView.label "Stacked View">
 <!ENTITY standardView.label "Standard View">
 <!ENTITY tagSelector.label "Tag Selector">

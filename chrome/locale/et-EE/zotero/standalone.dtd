@@ -11,6 +11,7 @@
 <!ENTITY closeCmd.key "W">
 <!ENTITY closeCmd.label "Sulgeda">
 <!ENTITY collectionsPane.label "Collections Pane">
+<!ENTITY columns.label "Columns">
 <!ENTITY convertToStored.label "Convert Linked Files to Stored Files…">
 <!ENTITY copyBibliographyCmd.label "Bibliograafia kopeerimine">
 <!ENTITY copyCitationCmd.label "Viite kopeerimine">
@@ -63,6 +64,7 @@
 <!ENTITY fullZoomResetCmd.label "Alglaadida">
 <!ENTITY fullZoomToggleCmd.accesskey "T">
 <!ENTITY fullZoomToggleCmd.label "Suurendada vaid teksti">
+<!ENTITY goMenu.accesskey "G">
 <!ENTITY goMenu.label "Go">
 <!ENTITY helpCheckForUpdates.accesskey "U">
 <!ENTITY helpCheckForUpdates.label "Uuenduste kontrollimine">
@@ -126,6 +128,7 @@
 <!ENTITY selectAllCmd.label "Valida kõik">
 <!ENTITY servicesMenuMac.label "Teenused">
 <!ENTITY showAllAppsCmdMac.label "Näidata kõiki">
+<!ENTITY sortBy.label "Sort By">
 <!ENTITY stackedView.label "Stacked View">
 <!ENTITY standardView.label "Standard View">
 <!ENTITY tagSelector.label "Tag Selector">

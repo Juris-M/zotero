@@ -78,6 +78,8 @@
 <!ENTITY zotero.preferences.groups.childNotes "θυγατρικές σημειώσεις">
 <!ENTITY zotero.preferences.groups.tags "ετικέτες">
 <!ENTITY zotero.preferences.groups.whenCopyingInclude "Όταν αντιγράφονται στοιχεία μεταξύ βιβλιοθηκών, να συμπεριλαμβάνονται:">
+<!ENTITY zotero.preferences.helpButton.label "Help">
+<!ENTITY zotero.preferences.interface "Interface">
 <!ENTITY zotero.preferences.items "στοιχεία">
 <!ENTITY zotero.preferences.keys.changesTakeEffect "Ενεργοποίηση μετά από επανεκκίνηση">
 <!ENTITY zotero.preferences.keys.copySelectedItemCitationsToClipboard "Αντιγραφή των επιλεγμένων παραπομπών στοιχείου στην προσωρινή μνήμη">
@@ -250,6 +252,7 @@
 <!ENTITY zotero.preferences.sync.reset.restoreToOnlineLibrary.desc "Overwrite online library with local Jurism data">
 <!ENTITY zotero.preferences.sync.reset.restoreToServer "Αντικατάσταση Online Βιβλιοθήκης">
 <!ENTITY zotero.preferences.sync.reset.restoreToServer.desc "Αντικαταστήστε την online βιβλιοθήκη με τα τοπικά δεδομένα Jurism">
+<!ENTITY zotero.preferences.sync.reset.showResetOptions "Show Reset Options…">
 <!ENTITY zotero.preferences.sync.reset.warning1 "Οι λειτουργίες που ακολουθούν προορίζονται για χρήση μόνον σε σπάνιες, ειδικές συνθήκες και δεν θα πρέπει να αναφέρονται σε γενικές επιλύσεις προβλημάτων. Σε πολλές περιπτώσεις η επαναφορά των ρυθμίσεων προκαλεί επιπρόσθετα προβλήματα. Δείτε">
 <!ENTITY zotero.preferences.sync.reset.warning2 "Επιλογές επαναφοράς ρυθμίσεων συγχρονισμού">
 <!ENTITY zotero.preferences.sync.reset.warning3 "για περισσότερες πληροφορίες.">

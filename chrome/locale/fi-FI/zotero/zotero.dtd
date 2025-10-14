@@ -107,8 +107,10 @@
 <!ENTITY zotero.import.lastModified "Viimeksi muokattu">
 <!ENTITY zotero.import.online.newItemsOnly "Download new items only; don’t update previously imported items">
 <!ENTITY zotero.import.online.relinkOnly "Relink Mendeley Desktop citations">
+<!ENTITY zotero.import.onlineImport "online import">
 <!ENTITY zotero.import.size "Koko">
 <!ENTITY zotero.import.source.file "Tiedosto (BibTeX, RIS, Jurism RDF, jne.)">
+<!ENTITY zotero.import.source.folder "A folder of PDFs or other files">
 <!ENTITY zotero.import.whereToImportFrom "Where do you want to import from?">
 <!ENTITY zotero.integration.addEditCitation.title "Lisää/muokkaa viitettä">
 <!ENTITY zotero.integration.classicView.label "Perinteinen näkymä">
@@ -155,6 +157,7 @@
 <!ENTITY zotero.item.attachment.file.show "Näytä tiedosto">
 <!ENTITY zotero.item.copyAsURL "Kopioi URL-osoitteena">
 <!ENTITY zotero.item.creatorTransform "Transform Name Form">
+<!ENTITY zotero.item.creatorTransform.fixCase "Fix Case">
 <!ENTITY zotero.item.creatorTransform.nameParticles "Adjust Name Particles">
 <!ENTITY zotero.item.creatorTransform.nameSwap "Vaihda etu- ja sukunimien järjestys">
 <!ENTITY zotero.item.deletePermanently "Poista lopullisesti...">
@@ -230,9 +233,11 @@
 <!ENTITY zotero.pdfReader.lastPage "Last Page">
 <!ENTITY zotero.pdfReader.noSpreads "No Spreads">
 <!ENTITY zotero.pdfReader.oddSpreads "Odd Spreads">
+<!ENTITY zotero.pdfReader.paginated "Paginated">
 <!ENTITY zotero.pdfReader.rotatePage180 "Rotate Page 180°">
 <!ENTITY zotero.pdfReader.rotatePageLeft "Rotate Page Left">
 <!ENTITY zotero.pdfReader.rotatePageRight "Rotate Page Right">
+<!ENTITY zotero.pdfReader.scrolled "Scrolled">
 <!ENTITY zotero.pdfReader.splitHorizontally "Split Horizontally">
 <!ENTITY zotero.pdfReader.splitVertically "Split Vertically">
 <!ENTITY zotero.pdfReader.transferFromPDF "Import Annotations…">
@@ -243,6 +248,7 @@
 <!ENTITY zotero.pdfReader.zoomOut "Zoom Out">
 <!ENTITY zotero.pdfReader.zoomPageHeight "Zoom to Page Height">
 <!ENTITY zotero.pdfReader.zoomPageWidth "Zoom to Page Width">
+<!ENTITY zotero.pdfReader.zoomReset "Reset Zoom">
 <!ENTITY zotero.progress.title "Tilanne">
 <!ENTITY zotero.proxy.recognized.disable.label "Älä automaattisesti uudelleenohjaa pyyntöjä aiemmin tunnistettujen välitystyspalvelinten kautta">
 <!ENTITY zotero.proxy.recognized.ignore.label "Ohita">
@@ -321,6 +327,7 @@
 <!ENTITY zotero.tagSelector.renameTag "Nimeä avainsana uudelleen...">
 <!ENTITY zotero.tagSelector.selectVisible "Valitse näkyvät">
 <!ENTITY zotero.tagSelector.showAutomatic "Show automatic">
+<!ENTITY zotero.tagSelector.splitTag "Split…">
 <!ENTITY zotero.toolbar.about.label "Tietoja Jurismsta">
 <!ENTITY zotero.toolbar.actions.label "Toiminnot">
 <!ENTITY zotero.toolbar.addChildNote.label "Add Child Note">

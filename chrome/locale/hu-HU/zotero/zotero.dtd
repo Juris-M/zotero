@@ -107,8 +107,10 @@
 <!ENTITY zotero.import.lastModified "Utolsó módosítás">
 <!ENTITY zotero.import.online.newItemsOnly "Download new items only; don’t update previously imported items">
 <!ENTITY zotero.import.online.relinkOnly "Relink Mendeley Desktop citations">
+<!ENTITY zotero.import.onlineImport "online import">
 <!ENTITY zotero.import.size "Méret">
 <!ENTITY zotero.import.source.file "Egy fájl (BibTeX, RIS, Jurism RDF, stb.)">
+<!ENTITY zotero.import.source.folder "A folder of PDFs or other files">
 <!ENTITY zotero.import.whereToImportFrom "Honnét szeretné importálni?">
 <!ENTITY zotero.integration.addEditCitation.title "Hivatkozás hozzáadása/szerkesztése">
 <!ENTITY zotero.integration.classicView.label "Klasszikus nézet">
@@ -155,6 +157,7 @@
 <!ENTITY zotero.item.attachment.file.show "Fájl mutatása">
 <!ENTITY zotero.item.copyAsURL "Másolás URL-ként">
 <!ENTITY zotero.item.creatorTransform "Transform Name Form">
+<!ENTITY zotero.item.creatorTransform.fixCase "Fix Case">
 <!ENTITY zotero.item.creatorTransform.nameParticles "Adjust Name Particles">
 <!ENTITY zotero.item.creatorTransform.nameSwap "Keresztnév/Vezetéknév felcserélése">
 <!ENTITY zotero.item.deletePermanently "Végleges törlés…">
@@ -230,9 +233,11 @@
 <!ENTITY zotero.pdfReader.lastPage "Last Page">
 <!ENTITY zotero.pdfReader.noSpreads "No Spreads">
 <!ENTITY zotero.pdfReader.oddSpreads "Odd Spreads">
+<!ENTITY zotero.pdfReader.paginated "Paginated">
 <!ENTITY zotero.pdfReader.rotatePage180 "Rotate Page 180°">
 <!ENTITY zotero.pdfReader.rotatePageLeft "Rotate Page Left">
 <!ENTITY zotero.pdfReader.rotatePageRight "Rotate Page Right">
+<!ENTITY zotero.pdfReader.scrolled "Scrolled">
 <!ENTITY zotero.pdfReader.splitHorizontally "Split Horizontally">
 <!ENTITY zotero.pdfReader.splitVertically "Split Vertically">
 <!ENTITY zotero.pdfReader.transferFromPDF "Import Annotations…">
@@ -243,6 +248,7 @@
 <!ENTITY zotero.pdfReader.zoomOut "Zoom Out">
 <!ENTITY zotero.pdfReader.zoomPageHeight "Zoom to Page Height">
 <!ENTITY zotero.pdfReader.zoomPageWidth "Zoom to Page Width">
+<!ENTITY zotero.pdfReader.zoomReset "Reset Zoom">
 <!ENTITY zotero.progress.title "Folyamatban">
 <!ENTITY zotero.proxy.recognized.disable.label "Ne irányítsa át automatikusan a kéréseket az előzőleg felismert proxyikra.">
 <!ENTITY zotero.proxy.recognized.ignore.label "Elutasít">
@@ -321,6 +327,7 @@
 <!ENTITY zotero.tagSelector.renameTag "Címke átnevezése...">
 <!ENTITY zotero.tagSelector.selectVisible "Látható címkék kiválasztása">
 <!ENTITY zotero.tagSelector.showAutomatic "Automatikus címkék megjelenítése">
+<!ENTITY zotero.tagSelector.splitTag "Split…">
 <!ENTITY zotero.toolbar.about.label "Névjegy">
 <!ENTITY zotero.toolbar.actions.label "Műveletek">
 <!ENTITY zotero.toolbar.addChildNote.label "Add Child Note">

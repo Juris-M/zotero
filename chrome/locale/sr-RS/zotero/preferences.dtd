@@ -78,6 +78,8 @@
 <!ENTITY zotero.preferences.groups.childNotes "подбелешке">
 <!ENTITY zotero.preferences.groups.tags "ознаке">
 <!ENTITY zotero.preferences.groups.whenCopyingInclude "Приликом копирања ставке у другу библиотеку задржи:">
+<!ENTITY zotero.preferences.helpButton.label "Help">
+<!ENTITY zotero.preferences.interface "Interface">
 <!ENTITY zotero.preferences.items "ставке">
 <!ENTITY zotero.preferences.keys.changesTakeEffect "Измене се прихватају након поновног покретања програма">
 <!ENTITY zotero.preferences.keys.copySelectedItemCitationsToClipboard "Копирај цитат изабране ставке у списак исечака">
@@ -250,6 +252,7 @@
 <!ENTITY zotero.preferences.sync.reset.restoreToOnlineLibrary.desc "Overwrite online library with local Jurism data">
 <!ENTITY zotero.preferences.sync.reset.restoreToServer "Замени мрежну библиотеку овом">
 <!ENTITY zotero.preferences.sync.reset.restoreToServer.desc "Преписује податке који се налазе у билиотеци на интернету Зотеровим локалним подацима са овог рачунара.">
+<!ENTITY zotero.preferences.sync.reset.showResetOptions "Show Reset Options…">
 <!ENTITY zotero.preferences.sync.reset.warning1 "Следеће радње служе само у ретким, спецфичним околностима и не треба их користити за свакодневно тражење грешака у програму. Оне ће у многим случајевима само изазвати додатне проблеме. Погледајте страницу">
 <!ENTITY zotero.preferences.sync.reset.warning2 "о поновном постављању усклађивања">
 <!ENTITY zotero.preferences.sync.reset.warning3 "за више података.">

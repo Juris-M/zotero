@@ -78,6 +78,8 @@
 <!ENTITY zotero.preferences.groups.childNotes "potomne notatki">
 <!ENTITY zotero.preferences.groups.tags "znaczniki">
 <!ENTITY zotero.preferences.groups.whenCopyingInclude "Podczas kopiowania elementów między bibliotekami dołączaj:">
+<!ENTITY zotero.preferences.helpButton.label "Help">
+<!ENTITY zotero.preferences.interface "Interface">
 <!ENTITY zotero.preferences.items "elementów">
 <!ENTITY zotero.preferences.keys.changesTakeEffect "Zmiany zostaną zastosowane po ponownym uruchomieniu">
 <!ENTITY zotero.preferences.keys.copySelectedItemCitationsToClipboard "Kopiuj wybrane odnośniki bibliograficzne do schowka">
@@ -250,6 +252,7 @@
 <!ENTITY zotero.preferences.sync.reset.restoreToOnlineLibrary.desc "Overwrite online library with local Jurism data">
 <!ENTITY zotero.preferences.sync.reset.restoreToServer "Zamień zdalną bibliotekę">
 <!ENTITY zotero.preferences.sync.reset.restoreToServer.desc "Nadpisz dane w zdalnej bibliotece (na serwerze synchronizacji) lokalnymi danymi Jurism.">
+<!ENTITY zotero.preferences.sync.reset.showResetOptions "Show Reset Options…">
 <!ENTITY zotero.preferences.sync.reset.warning1 "Poniższe operacje są używane tylko w rzadkich i określonych sytuacjach i nie powinny być używane do rozwiązywania ogólnych problemów z synchronizacją. W wielu przypadkach przywracanie może spowodować dodatkowe problemy. Zobacz">
 <!ENTITY zotero.preferences.sync.reset.warning2 "Opcje przywracania synchronizacji">
 <!ENTITY zotero.preferences.sync.reset.warning3 ", aby uzyskać więcej informacji.">

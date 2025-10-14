@@ -1,11 +1,31 @@
-<!-- This Source Code Form is subject to the terms of the Mozilla Public
-   - License, v. 2.0. If a copy of the MPL was not distributed with this
-   - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
-
-<!ENTITY findCmd.label             "கண்டுபிடி">
-<!ENTITY findCmd.key               "F">
-<!ENTITY findCmd.accesskey         "F">
-<!ENTITY findAgainCmd.label        "மீண்டும் கண்டுபிடி">
-<!ENTITY findAgainCmd.key          "G">
-<!ENTITY findAgainCmd.key2         "VK_F3">
-<!ENTITY findAgainCmd.accesskey    "g">
+<!ENTITY copyCmd.accesskey "c">
+<!ENTITY copyCmd.key "C">
+<!ENTITY copyCmd.label "Copy">
+<!ENTITY cutCmd.accesskey "t">
+<!ENTITY cutCmd.key "X">
+<!ENTITY cutCmd.label "Cut">
+<!ENTITY deleteCmd.accesskey "d">
+<!ENTITY deleteCmd.label "Delete">
+<!ENTITY editMenu.accesskey "e">
+<!ENTITY editMenu.label "Edit">
+<!ENTITY findAgainCmd.accesskey "g">
+<!ENTITY findAgainCmd.key "G">
+<!ENTITY findAgainCmd.key2 "VK_F3">
+<!ENTITY findAgainCmd.label "மீண்டும் கண்டுபிடி">
+<!ENTITY findCmd.accesskey "F">
+<!ENTITY findCmd.key "F">
+<!ENTITY findCmd.label "கண்டுபிடி">
+<!ENTITY findPreviousCmd.accesskey "v">
+<!ENTITY findPreviousCmd.label "Find Previous">
+<!ENTITY pasteCmd.accesskey "p">
+<!ENTITY pasteCmd.key "V">
+<!ENTITY pasteCmd.label "Paste">
+<!ENTITY redoCmd.accesskey "r">
+<!ENTITY redoCmd.key "Y">
+<!ENTITY redoCmd.label "Redo">
+<!ENTITY selectAllCmd.accesskey "a">
+<!ENTITY selectAllCmd.key "A">
+<!ENTITY selectAllCmd.label "Select All">
+<!ENTITY undoCmd.accesskey "u">
+<!ENTITY undoCmd.key "Z">
+<!ENTITY undoCmd.label "Undo">

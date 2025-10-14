@@ -78,6 +78,8 @@
 <!ENTITY zotero.preferences.groups.childNotes "子筆記">
 <!ENTITY zotero.preferences.groups.tags "標籤">
 <!ENTITY zotero.preferences.groups.whenCopyingInclude "在各文獻庫之間複製項目時，需包括：">
+<!ENTITY zotero.preferences.helpButton.label "Help">
+<!ENTITY zotero.preferences.interface "Interface">
 <!ENTITY zotero.preferences.items "項目">
 <!ENTITY zotero.preferences.keys.changesTakeEffect "重新啟動後改變才會生效">
 <!ENTITY zotero.preferences.keys.copySelectedItemCitationsToClipboard "複製選擇項目的引用文獻到剪貼簿">
@@ -250,6 +252,7 @@
 <!ENTITY zotero.preferences.sync.reset.restoreToOnlineLibrary.desc "Overwrite online library with local Jurism data">
 <!ENTITY zotero.preferences.sync.reset.restoreToServer "取代線上文獻庫">
 <!ENTITY zotero.preferences.sync.reset.restoreToServer.desc "以本地端 Jurism 資料覆蓋線上文獻庫的資料。">
+<!ENTITY zotero.preferences.sync.reset.showResetOptions "Show Reset Options…">
 <!ENTITY zotero.preferences.sync.reset.warning1 "後面操作只在極少與特定情況可用，不該作為解決問題的一般方法。於許多情況，回復預設值會導致更多問題。請參見 ">
 <!ENTITY zotero.preferences.sync.reset.warning2 "同步回復預設值選項">
 <!ENTITY zotero.preferences.sync.reset.warning3 " 以得更多資訊。">

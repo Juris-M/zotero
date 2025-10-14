@@ -78,6 +78,8 @@
 <!ENTITY zotero.preferences.groups.childNotes "vložené poznámky">
 <!ENTITY zotero.preferences.groups.tags "značky">
 <!ENTITY zotero.preferences.groups.whenCopyingInclude "Pri kopírovaní záznamov medzi knižnicami, zahrnúť:">
+<!ENTITY zotero.preferences.helpButton.label "Help">
+<!ENTITY zotero.preferences.interface "Interface">
 <!ENTITY zotero.preferences.items "záznamov">
 <!ENTITY zotero.preferences.keys.changesTakeEffect "Zmeny sa prejavia po reštarte">
 <!ENTITY zotero.preferences.keys.copySelectedItemCitationsToClipboard "Kopírovať vybrané citácie do schránky">
@@ -250,6 +252,7 @@
 <!ENTITY zotero.preferences.sync.reset.restoreToOnlineLibrary.desc "Overwrite online library with local Jurism data">
 <!ENTITY zotero.preferences.sync.reset.restoreToServer "Nahradiť online knižnicu">
 <!ENTITY zotero.preferences.sync.reset.restoreToServer.desc "Prepísať online knižnicu s lokálnymi dátami Zotera">
+<!ENTITY zotero.preferences.sync.reset.showResetOptions "Show Reset Options…">
 <!ENTITY zotero.preferences.sync.reset.warning1 "Nasledujúce operácie treba použiť iba v zriedkavých, špecifických situáciách a nie pre všeobecné odstraňovanie chýb. V mnohých prípadoch obnova zapríčiní dodatočné problémy. Pozri ">
 <!ENTITY zotero.preferences.sync.reset.warning2 "Možnosti obnovy synchronizácie">
 <!ENTITY zotero.preferences.sync.reset.warning3 "pre viac informácií.">

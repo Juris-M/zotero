@@ -11,6 +11,7 @@
 <!ENTITY closeCmd.key "W">
 <!ENTITY closeCmd.label "Stäng">
 <!ENTITY collectionsPane.label "Samlingspanel">
+<!ENTITY columns.label "Columns">
 <!ENTITY convertToStored.label "Konvertera Länkade filer till Lagrade filer…">
 <!ENTITY copyBibliographyCmd.label "Kopiera källförteckning">
 <!ENTITY copyCitationCmd.label "Kopiera referens">
@@ -63,6 +64,7 @@
 <!ENTITY fullZoomResetCmd.label "Återställ">
 <!ENTITY fullZoomToggleCmd.accesskey "T">
 <!ENTITY fullZoomToggleCmd.label "Zooma endast text">
+<!ENTITY goMenu.accesskey "G">
 <!ENTITY goMenu.label "Go">
 <!ENTITY helpCheckForUpdates.accesskey "U">
 <!ENTITY helpCheckForUpdates.label "Sök efter uppdateringar...">
@@ -126,6 +128,7 @@
 <!ENTITY selectAllCmd.label "Markera allt">
 <!ENTITY servicesMenuMac.label "Tjänster">
 <!ENTITY showAllAppsCmdMac.label "Visa alla">
+<!ENTITY sortBy.label "Sort By">
 <!ENTITY stackedView.label "Staplad vy">
 <!ENTITY standardView.label "Standardvy">
 <!ENTITY tagSelector.label "Etikett-väljare">

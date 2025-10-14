@@ -107,8 +107,10 @@
 <!ENTITY zotero.import.lastModified "Ultima modificare">
 <!ENTITY zotero.import.online.newItemsOnly "Download new items only; don’t update previously imported items">
 <!ENTITY zotero.import.online.relinkOnly "Relink Mendeley Desktop citations">
+<!ENTITY zotero.import.onlineImport "online import">
 <!ENTITY zotero.import.size "Mărime">
 <!ENTITY zotero.import.source.file "Un fișier (BibTeX, RIS, Jurism RDF etc.)">
+<!ENTITY zotero.import.source.folder "A folder of PDFs or other files">
 <!ENTITY zotero.import.whereToImportFrom "De unde vrei să imporți?">
 <!ENTITY zotero.integration.addEditCitation.title "Adaugă/Editează citarea">
 <!ENTITY zotero.integration.classicView.label "Vizualizare clasică">
@@ -155,6 +157,7 @@
 <!ENTITY zotero.item.attachment.file.show "Arată fișier">
 <!ENTITY zotero.item.copyAsURL "Copiază ca URL">
 <!ENTITY zotero.item.creatorTransform "Transform Name Form">
+<!ENTITY zotero.item.creatorTransform.fixCase "Fix Case">
 <!ENTITY zotero.item.creatorTransform.nameParticles "Adjust Name Particles">
 <!ENTITY zotero.item.creatorTransform.nameSwap "Schimbă Prenume/Nume">
 <!ENTITY zotero.item.deletePermanently "Șterge permanent...">
@@ -230,9 +233,11 @@
 <!ENTITY zotero.pdfReader.lastPage "Last Page">
 <!ENTITY zotero.pdfReader.noSpreads "No Spreads">
 <!ENTITY zotero.pdfReader.oddSpreads "Odd Spreads">
+<!ENTITY zotero.pdfReader.paginated "Paginated">
 <!ENTITY zotero.pdfReader.rotatePage180 "Rotate Page 180°">
 <!ENTITY zotero.pdfReader.rotatePageLeft "Rotate Page Left">
 <!ENTITY zotero.pdfReader.rotatePageRight "Rotate Page Right">
+<!ENTITY zotero.pdfReader.scrolled "Scrolled">
 <!ENTITY zotero.pdfReader.splitHorizontally "Split Horizontally">
 <!ENTITY zotero.pdfReader.splitVertically "Split Vertically">
 <!ENTITY zotero.pdfReader.transferFromPDF "Import Annotations…">
@@ -243,6 +248,7 @@
 <!ENTITY zotero.pdfReader.zoomOut "Zoom Out">
 <!ENTITY zotero.pdfReader.zoomPageHeight "Zoom to Page Height">
 <!ENTITY zotero.pdfReader.zoomPageWidth "Zoom to Page Width">
+<!ENTITY zotero.pdfReader.zoomReset "Reset Zoom">
 <!ENTITY zotero.progress.title "Progres">
 <!ENTITY zotero.proxy.recognized.disable.label "Nu redirecționa automat cererile prin serverele proxy recunoscute anterior">
 <!ENTITY zotero.proxy.recognized.ignore.label "Ignoră">
@@ -321,6 +327,7 @@
 <!ENTITY zotero.tagSelector.renameTag "Redenumește eticheta...">
 <!ENTITY zotero.tagSelector.selectVisible "Selectează vedere">
 <!ENTITY zotero.tagSelector.showAutomatic "Arată automat">
+<!ENTITY zotero.tagSelector.splitTag "Split…">
 <!ENTITY zotero.toolbar.about.label "Despre Jurism">
 <!ENTITY zotero.toolbar.actions.label "Acțiuni">
 <!ENTITY zotero.toolbar.addChildNote.label "Add Child Note">

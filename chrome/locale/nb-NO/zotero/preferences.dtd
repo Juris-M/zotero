@@ -78,6 +78,8 @@
 <!ENTITY zotero.preferences.groups.childNotes "Underordnede notater">
 <!ENTITY zotero.preferences.groups.tags "Emneord">
 <!ENTITY zotero.preferences.groups.whenCopyingInclude "Når elementer kopieres mellom biblioteker, inkluder:">
+<!ENTITY zotero.preferences.helpButton.label "Help">
+<!ENTITY zotero.preferences.interface "Interface">
 <!ENTITY zotero.preferences.items "elementer">
 <!ENTITY zotero.preferences.keys.changesTakeEffect "Endringer trer i kraft etter omstart">
 <!ENTITY zotero.preferences.keys.copySelectedItemCitationsToClipboard "Kopier de valgte henvisningene til utklippstavla">
@@ -250,6 +252,7 @@
 <!ENTITY zotero.preferences.sync.reset.restoreToOnlineLibrary.desc "Overwrite online library with local Jurism data">
 <!ENTITY zotero.preferences.sync.reset.restoreToServer "Erstatt nettbiblioteket">
 <!ENTITY zotero.preferences.sync.reset.restoreToServer.desc "Overskriv nettbiblioteket med lokale Jurism data">
+<!ENTITY zotero.preferences.sync.reset.showResetOptions "Show Reset Options…">
 <!ENTITY zotero.preferences.sync.reset.warning1 "Følgende innstillinger er kun for bruk i sjeldne tilfeller og skal ikke brukes for generell feilsøking. I mange tilfeller vil tilbakestilling skape flere problemer. Se ">
 <!ENTITY zotero.preferences.sync.reset.warning2 "Alternativer for tilbakestilling av synkronisering">
 <!ENTITY zotero.preferences.sync.reset.warning3 " for mer informasjon.">

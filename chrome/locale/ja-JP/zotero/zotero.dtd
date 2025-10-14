@@ -107,8 +107,10 @@
 <!ENTITY zotero.import.lastModified "最後の更新">
 <!ENTITY zotero.import.online.newItemsOnly "Download new items only; don’t update previously imported items">
 <!ENTITY zotero.import.online.relinkOnly "Relink Mendeley Desktop citations">
+<!ENTITY zotero.import.onlineImport "online import">
 <!ENTITY zotero.import.size "サイズ">
 <!ENTITY zotero.import.source.file "単一ファイル (BibTeX, RIS, Jurism RDF, など.)">
+<!ENTITY zotero.import.source.folder "A folder of PDFs or other files">
 <!ENTITY zotero.import.whereToImportFrom "どこからインポートしますか？">
 <!ENTITY zotero.integration.addEditCitation.title "出典表記を追加・編集">
 <!ENTITY zotero.integration.classicView.label "クラシック表示">
@@ -155,6 +157,7 @@
 <!ENTITY zotero.item.attachment.file.show "ファイルを表示">
 <!ENTITY zotero.item.copyAsURL "URLとしてコピーする">
 <!ENTITY zotero.item.creatorTransform "Transform Name Form">
+<!ENTITY zotero.item.creatorTransform.fixCase "Fix Case">
 <!ENTITY zotero.item.creatorTransform.nameParticles "Adjust Name Particles">
 <!ENTITY zotero.item.creatorTransform.nameSwap "姓と名を入れ替える">
 <!ENTITY zotero.item.deletePermanently "永久に削除する...">
@@ -230,9 +233,11 @@
 <!ENTITY zotero.pdfReader.lastPage "Last Page">
 <!ENTITY zotero.pdfReader.noSpreads "No Spreads">
 <!ENTITY zotero.pdfReader.oddSpreads "Odd Spreads">
+<!ENTITY zotero.pdfReader.paginated "Paginated">
 <!ENTITY zotero.pdfReader.rotatePage180 "Rotate Page 180°">
 <!ENTITY zotero.pdfReader.rotatePageLeft "Rotate Page Left">
 <!ENTITY zotero.pdfReader.rotatePageRight "Rotate Page Right">
+<!ENTITY zotero.pdfReader.scrolled "Scrolled">
 <!ENTITY zotero.pdfReader.splitHorizontally "Split Horizontally">
 <!ENTITY zotero.pdfReader.splitVertically "Split Vertically">
 <!ENTITY zotero.pdfReader.transferFromPDF "Import Annotations…">
@@ -243,6 +248,7 @@
 <!ENTITY zotero.pdfReader.zoomOut "Zoom Out">
 <!ENTITY zotero.pdfReader.zoomPageHeight "Zoom to Page Height">
 <!ENTITY zotero.pdfReader.zoomPageWidth "Zoom to Page Width">
+<!ENTITY zotero.pdfReader.zoomReset "Reset Zoom">
 <!ENTITY zotero.progress.title "進捗">
 <!ENTITY zotero.proxy.recognized.disable.label "以前に認識されたプロキシを通じて、要求を自動転送しないでください。">
 <!ENTITY zotero.proxy.recognized.ignore.label "無視する">
@@ -321,6 +327,7 @@
 <!ENTITY zotero.tagSelector.renameTag "タグ名の変更...">
 <!ENTITY zotero.tagSelector.selectVisible "可視タグを選択">
 <!ENTITY zotero.tagSelector.showAutomatic "自動生成タグも表示">
+<!ENTITY zotero.tagSelector.splitTag "Split…">
 <!ENTITY zotero.toolbar.about.label "Jurism について">
 <!ENTITY zotero.toolbar.actions.label "アクション">
 <!ENTITY zotero.toolbar.addChildNote.label "Add Child Note">

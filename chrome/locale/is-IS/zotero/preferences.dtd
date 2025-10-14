@@ -78,6 +78,8 @@
 <!ENTITY zotero.preferences.groups.childNotes "undirathugasemdir">
 <!ENTITY zotero.preferences.groups.tags "merki">
 <!ENTITY zotero.preferences.groups.whenCopyingInclude "Þegar færslur eru afritaðar frá einu safni til annars, þá skal einnig afrita:">
+<!ENTITY zotero.preferences.helpButton.label "Help">
+<!ENTITY zotero.preferences.interface "Interface">
 <!ENTITY zotero.preferences.items "færslur">
 <!ENTITY zotero.preferences.keys.changesTakeEffect "Breytingar taka gildi eftir endurræsingu">
 <!ENTITY zotero.preferences.keys.copySelectedItemCitationsToClipboard "Afrita valdar tilvísunarfærslur á klippispjald">
@@ -250,6 +252,7 @@
 <!ENTITY zotero.preferences.sync.reset.restoreToOnlineLibrary.desc "Overwrite online library with local Jurism data">
 <!ENTITY zotero.preferences.sync.reset.restoreToServer "Replace Online Library">
 <!ENTITY zotero.preferences.sync.reset.restoreToServer.desc "Overwrite online library with local Jurism data">
+<!ENTITY zotero.preferences.sync.reset.showResetOptions "Show Reset Options…">
 <!ENTITY zotero.preferences.sync.reset.warning1 "Aðgerðir hér fyrir neðan eru einungis notaðar í sjaldgæfum og sérhæfðum tilvikum og ætti ekki að beita almennt. Í mörgum tilvikum mun endurræsing valda viðbótar vandræðum. Sjá ">
 <!ENTITY zotero.preferences.sync.reset.warning2 "Stillingar vegna endurræsingar á samhæfingu">
 <!ENTITY zotero.preferences.sync.reset.warning3 "til frekari upplýsinga">

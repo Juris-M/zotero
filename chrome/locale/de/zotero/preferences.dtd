@@ -78,6 +78,8 @@
 <!ENTITY zotero.preferences.groups.childNotes "zugehörige Notizen">
 <!ENTITY zotero.preferences.groups.tags "Tags">
 <!ENTITY zotero.preferences.groups.whenCopyingInclude "Beim Kopieren von Einträgen zwischen Bibliotheken, übernehmen:">
+<!ENTITY zotero.preferences.helpButton.label "Help">
+<!ENTITY zotero.preferences.interface "Interface">
 <!ENTITY zotero.preferences.items "Einträge">
 <!ENTITY zotero.preferences.keys.changesTakeEffect "Änderungen werden nach Neustart wirksam">
 <!ENTITY zotero.preferences.keys.copySelectedItemCitationsToClipboard "Ausgewählte Einträge als In-Text-Zitationen in die Zwischenablage kopieren">
@@ -250,6 +252,7 @@
 <!ENTITY zotero.preferences.sync.reset.restoreToOnlineLibrary.desc "Overwrite online library with local Jurism data">
 <!ENTITY zotero.preferences.sync.reset.restoreToServer "Ersetze Online-Bibliothek">
 <!ENTITY zotero.preferences.sync.reset.restoreToServer.desc "Überschreiben der Online-Bibliothek mit lokalen Jurism-Daten">
+<!ENTITY zotero.preferences.sync.reset.showResetOptions "Show Reset Options…">
 <!ENTITY zotero.preferences.sync.reset.warning1 "Diese Optionen sind nur für spezifische und sehr seltene Probleme geeignet und  sollten nicht als normale Methode zur Problemlösung dienen. Die Reset Option kann oft sogar zusätzliche Probleme verursachen. Siehe ">
 <!ENTITY zotero.preferences.sync.reset.warning2 "Sync Reset Optionen">
 <!ENTITY zotero.preferences.sync.reset.warning3 "für weitere Informationen.">

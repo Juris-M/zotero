@@ -78,6 +78,8 @@
 <!ENTITY zotero.preferences.groups.childNotes "note copil">
 <!ENTITY zotero.preferences.groups.tags "etichete">
 <!ENTITY zotero.preferences.groups.whenCopyingInclude "Când se copiază înregistrările între biblioteci se vor include:">
+<!ENTITY zotero.preferences.helpButton.label "Help">
+<!ENTITY zotero.preferences.interface "Interface">
 <!ENTITY zotero.preferences.items "înregistrări">
 <!ENTITY zotero.preferences.keys.changesTakeEffect "Schimbările vor fi efectuate după repornire">
 <!ENTITY zotero.preferences.keys.copySelectedItemCitationsToClipboard "Copiază citările înregistrărilor selectate în memoria Clipboard">
@@ -250,6 +252,7 @@
 <!ENTITY zotero.preferences.sync.reset.restoreToOnlineLibrary.desc "Overwrite online library with local Jurism data">
 <!ENTITY zotero.preferences.sync.reset.restoreToServer "Înlocuiește biblioteca online">
 <!ENTITY zotero.preferences.sync.reset.restoreToServer.desc "Suprascrie datele din biblioteca online cu datele locale din Jurism">
+<!ENTITY zotero.preferences.sync.reset.showResetOptions "Show Reset Options…">
 <!ENTITY zotero.preferences.sync.reset.warning1 "Următoarele operații sunt pentru a fi folosite în situații rare și specifice și nu ar trebui folosite pentru probleme generale. În multe cazuri, resetarea va cauza probleme în plus. Vezi ">
 <!ENTITY zotero.preferences.sync.reset.warning2 "Opțiuni de resetare sincronizare">
 <!ENTITY zotero.preferences.sync.reset.warning3 "pentru mai multe informații.">

@@ -107,8 +107,10 @@
 <!ENTITY zotero.import.lastModified "Última modificación">
 <!ENTITY zotero.import.online.newItemsOnly "Download new items only; don’t update previously imported items">
 <!ENTITY zotero.import.online.relinkOnly "Relink Mendeley Desktop citations">
+<!ENTITY zotero.import.onlineImport "online import">
 <!ENTITY zotero.import.size "Tamaño">
 <!ENTITY zotero.import.source.file "Un ficheiro (BibTeX, RIS, Jurism RDF, etc.)">
+<!ENTITY zotero.import.source.folder "A folder of PDFs or other files">
 <!ENTITY zotero.import.whereToImportFrom "De onde queres importar?">
 <!ENTITY zotero.integration.addEditCitation.title "Engadir/Editar a cita">
 <!ENTITY zotero.integration.classicView.label "Vista clásica">
@@ -155,6 +157,7 @@
 <!ENTITY zotero.item.attachment.file.show "Mostrar o ficheiro">
 <!ENTITY zotero.item.copyAsURL "Gardar como URL">
 <!ENTITY zotero.item.creatorTransform "Transform Name Form">
+<!ENTITY zotero.item.creatorTransform.fixCase "Fix Case">
 <!ENTITY zotero.item.creatorTransform.nameParticles "Adjust Name Particles">
 <!ENTITY zotero.item.creatorTransform.nameSwap "Intercambiar Nome/Apelidos">
 <!ENTITY zotero.item.deletePermanently "Eliminar ao completo...">
@@ -230,9 +233,11 @@
 <!ENTITY zotero.pdfReader.lastPage "Last Page">
 <!ENTITY zotero.pdfReader.noSpreads "No Spreads">
 <!ENTITY zotero.pdfReader.oddSpreads "Odd Spreads">
+<!ENTITY zotero.pdfReader.paginated "Paginated">
 <!ENTITY zotero.pdfReader.rotatePage180 "Rotate Page 180°">
 <!ENTITY zotero.pdfReader.rotatePageLeft "Rotate Page Left">
 <!ENTITY zotero.pdfReader.rotatePageRight "Rotate Page Right">
+<!ENTITY zotero.pdfReader.scrolled "Scrolled">
 <!ENTITY zotero.pdfReader.splitHorizontally "Split Horizontally">
 <!ENTITY zotero.pdfReader.splitVertically "Split Vertically">
 <!ENTITY zotero.pdfReader.transferFromPDF "Import Annotations…">
@@ -243,6 +248,7 @@
 <!ENTITY zotero.pdfReader.zoomOut "Zoom Out">
 <!ENTITY zotero.pdfReader.zoomPageHeight "Zoom to Page Height">
 <!ENTITY zotero.pdfReader.zoomPageWidth "Zoom to Page Width">
+<!ENTITY zotero.pdfReader.zoomReset "Reset Zoom">
 <!ENTITY zotero.progress.title "Progreso">
 <!ENTITY zotero.proxy.recognized.disable.label "Bloquear as solicitude de redireccións automáticas a través de proxies previamente recoñecidos">
 <!ENTITY zotero.proxy.recognized.ignore.label "Ignorar">
@@ -321,6 +327,7 @@
 <!ENTITY zotero.tagSelector.renameTag "Renomear a etiqueta...">
 <!ENTITY zotero.tagSelector.selectVisible "Seleccionar o visible">
 <!ENTITY zotero.tagSelector.showAutomatic "Mostrar automaticamente">
+<!ENTITY zotero.tagSelector.splitTag "Split…">
 <!ENTITY zotero.toolbar.about.label "Acerca de Jurism">
 <!ENTITY zotero.toolbar.actions.label "Accións">
 <!ENTITY zotero.toolbar.addChildNote.label "Add Child Note">

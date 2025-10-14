@@ -107,8 +107,10 @@
 <!ENTITY zotero.import.lastModified "마지막 수정 시간">
 <!ENTITY zotero.import.online.newItemsOnly "Download new items only; don’t update previously imported items">
 <!ENTITY zotero.import.online.relinkOnly "Relink Mendeley Desktop citations">
+<!ENTITY zotero.import.onlineImport "online import">
 <!ENTITY zotero.import.size "크기">
 <!ENTITY zotero.import.source.file "파일 (BiBTeX, RIS, Jurism RDF 등)">
+<!ENTITY zotero.import.source.folder "A folder of PDFs or other files">
 <!ENTITY zotero.import.whereToImportFrom "어디서 불러올까요?">
 <!ENTITY zotero.integration.addEditCitation.title "인용 추가/편집">
 <!ENTITY zotero.integration.classicView.label "클래식 뷰">
@@ -155,6 +157,7 @@
 <!ENTITY zotero.item.attachment.file.show "파일 보이기">
 <!ENTITY zotero.item.copyAsURL "URL로 복사">
 <!ENTITY zotero.item.creatorTransform "Transform Name Form">
+<!ENTITY zotero.item.creatorTransform.fixCase "Fix Case">
 <!ENTITY zotero.item.creatorTransform.nameParticles "Adjust Name Particles">
 <!ENTITY zotero.item.creatorTransform.nameSwap "성/이름 맞바꾸기">
 <!ENTITY zotero.item.deletePermanently "완전히 삭제...">
@@ -230,9 +233,11 @@
 <!ENTITY zotero.pdfReader.lastPage "Last Page">
 <!ENTITY zotero.pdfReader.noSpreads "No Spreads">
 <!ENTITY zotero.pdfReader.oddSpreads "Odd Spreads">
+<!ENTITY zotero.pdfReader.paginated "Paginated">
 <!ENTITY zotero.pdfReader.rotatePage180 "Rotate Page 180°">
 <!ENTITY zotero.pdfReader.rotatePageLeft "Rotate Page Left">
 <!ENTITY zotero.pdfReader.rotatePageRight "Rotate Page Right">
+<!ENTITY zotero.pdfReader.scrolled "Scrolled">
 <!ENTITY zotero.pdfReader.splitHorizontally "Split Horizontally">
 <!ENTITY zotero.pdfReader.splitVertically "Split Vertically">
 <!ENTITY zotero.pdfReader.transferFromPDF "Import Annotations…">
@@ -243,6 +248,7 @@
 <!ENTITY zotero.pdfReader.zoomOut "Zoom Out">
 <!ENTITY zotero.pdfReader.zoomPageHeight "Zoom to Page Height">
 <!ENTITY zotero.pdfReader.zoomPageWidth "Zoom to Page Width">
+<!ENTITY zotero.pdfReader.zoomReset "Reset Zoom">
 <!ENTITY zotero.progress.title "진행">
 <!ENTITY zotero.proxy.recognized.disable.label "이전에 인식된 프록시를 통해 요청을 자동으로 재송신하지 마십시오.">
 <!ENTITY zotero.proxy.recognized.ignore.label "무시">
@@ -321,6 +327,7 @@
 <!ENTITY zotero.tagSelector.renameTag "태그 이름 변경...">
 <!ENTITY zotero.tagSelector.selectVisible "보이는 것들 선택">
 <!ENTITY zotero.tagSelector.showAutomatic "자동 표시">
+<!ENTITY zotero.tagSelector.splitTag "Split…">
 <!ENTITY zotero.toolbar.about.label "Jurism 정보">
 <!ENTITY zotero.toolbar.actions.label "동작">
 <!ENTITY zotero.toolbar.addChildNote.label "Add Child Note">

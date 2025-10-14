@@ -11,6 +11,7 @@
 <!ENTITY closeCmd.key "W">
 <!ENTITY closeCmd.label "Serriñ">
 <!ENTITY collectionsPane.label "Panell an dastumadegoù">
+<!ENTITY columns.label "Columns">
 <!ENTITY convertToStored.label "Emdreiñ ar restroù liammet e restroù stoket...">
 <!ENTITY copyBibliographyCmd.label "Eilañ al levrlennadur">
 <!ENTITY copyCitationCmd.label "Eilañ an arroudenn">
@@ -63,6 +64,7 @@
 <!ENTITY fullZoomResetCmd.label "Reset">
 <!ENTITY fullZoomToggleCmd.accesskey "T">
 <!ENTITY fullZoomToggleCmd.label "Zoom Text Only">
+<!ENTITY goMenu.accesskey "G">
 <!ENTITY goMenu.label "Go">
 <!ENTITY helpCheckForUpdates.accesskey "U">
 <!ENTITY helpCheckForUpdates.label "Gwiriañ an hizivadurioù...">
@@ -126,6 +128,7 @@
 <!ENTITY selectAllCmd.label "Select All">
 <!ENTITY servicesMenuMac.label "Servijoù">
 <!ENTITY showAllAppsCmdMac.label "Diskouez pep-tra">
+<!ENTITY sortBy.label "Sort By">
 <!ENTITY stackedView.label "Mod-gwelet berniet">
 <!ENTITY standardView.label "Mod-gwelet standard">
 <!ENTITY tagSelector.label "Diuzer balizoù">

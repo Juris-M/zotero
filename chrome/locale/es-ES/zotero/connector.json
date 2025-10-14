@@ -26,6 +26,9 @@
   "extensionIsDisabled_extensionPage": {
     "message": "$1está desactivado en las páginas de extensión"
   },
+  "extensionIsDisabled_fileURL": {
+    "message": "$1 Connector is not available on file URLs"
+  },
   "firstRun_acceptButton": {
     "message": "Entendido"
   },
@@ -47,6 +50,9 @@
   "general_copyToClipboard": {
     "message": "Copiar al portapapeles"
   },
+  "general_deselectAll": {
+    "message": "Deselect All"
+  },
   "general_done": {
     "message": "Hecho"
   },
@@ -62,11 +68,17 @@
   "general_no": {
     "message": "No"
   },
+  "general_ok": {
+    "message": "OK"
+  },
   "general_pleaseWait": {
     "message": "Por favor, espere..."
   },
   "general_saveTo": {
     "message": "Guardar a $1"
+  },
+  "general_selectAll": {
+    "message": "Select All"
   },
   "general_tryAgain": {
     "message": "Pruebe de nuevo"
@@ -82,6 +94,9 @@
   },
   "integration_error_connection": {
     "message": "El $1 fue habilitado para comunicar con la aplicación de escritorio de $2. $2 debe estar abierto para usar la citación basada en web."
+  },
+  "integration_googleDocs_authScopeError": {
+    "message": "$1 needs permission to edit your Google Docs documents in order to insert citations. Please try again, and be sure to allow $1 to see, edit, create, and delete your Google Docs documents."
   },
   "integration_googleDocs_documentLocked": {
     "message": "Las citas del documento están siendo editadas por otro usuario $1. Por favor, inténtelo más tarde."
@@ -119,6 +134,54 @@
   "integration_googleDocs_updating": {
     "message": "$1 está actualizando su documento."
   },
+  "itemSelector_title": {
+    "message": "Select which items you’d like to add to your library:"
+  },
+  "itemType_attachment": {
+    "message": "Attachment"
+  },
+  "itemType_epub": {
+    "message": "EPUB attachment"
+  },
+  "itemType_link": {
+    "message": "Web link"
+  },
+  "itemType_note": {
+    "message": "Note"
+  },
+  "itemType_pdf": {
+    "message": "PDF attachment"
+  },
+  "itemType_snapshot": {
+    "message": "Snapshot"
+  },
+  "progressWindow_allDone": {
+    "message": "Saving is complete. The dialog will close now."
+  },
+  "progressWindow_alreadySaved": {
+    "message": "Items from this webpage have already been saved."
+  },
+  "progressWindow_collectionSelector": {
+    "message": "Target collection selector"
+  },
+  "progressWindow_detailsBtnHide": {
+    "message": "Hide details"
+  },
+  "progressWindow_detailsBtnView": {
+    "message": "View details"
+  },
+  "progressWindow_downloadComplete": {
+    "message": "Saved $1"
+  },
+  "progressWindow_downloadCompletePlural": {
+    "message": "Saved $1 for item $2"
+  },
+  "progressWindow_downloadFailed": {
+    "message": "Failed download of $1"
+  },
+  "progressWindow_downloadFailedPlural": {
+    "message": "Failed download of $1 for item $2"
+  },
   "progressWindow_error_fallback": {
     "message": "Ocurrió un error al guardar con $1. Intentando guardar usando $2 en su lugar."
   },
@@ -139,6 +202,18 @@
   },
   "progressWindow_error_upgradeClient_latestVersion": {
     "message": "última versión"
+  },
+  "progressWindow_filterPlaceholder": {
+    "message": "Filter Collections"
+  },
+  "progressWindow_saveItem": {
+    "message": "Item $1: $2"
+  },
+  "progressWindow_savingItem": {
+    "message": "Saving item $1"
+  },
+  "progressWindow_savingItems": {
+    "message": "Saving $1 items. $2"
   },
   "progressWindow_savingTo": {
     "message": "Guardando a"

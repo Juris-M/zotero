@@ -78,6 +78,8 @@
 <!ENTITY zotero.preferences.groups.childNotes "하위 노트들">
 <!ENTITY zotero.preferences.groups.tags "태그">
 <!ENTITY zotero.preferences.groups.whenCopyingInclude "라이브러리 간 항목 복사시 포함 대상 :">
+<!ENTITY zotero.preferences.helpButton.label "Help">
+<!ENTITY zotero.preferences.interface "Interface">
 <!ENTITY zotero.preferences.items "항목">
 <!ENTITY zotero.preferences.keys.changesTakeEffect "재시작 후 변경 사항 적용">
 <!ENTITY zotero.preferences.keys.copySelectedItemCitationsToClipboard "선택된 항목 인용을 클립보드에 복사">
@@ -250,6 +252,7 @@
 <!ENTITY zotero.preferences.sync.reset.restoreToOnlineLibrary.desc "Overwrite online library with local Jurism data">
 <!ENTITY zotero.preferences.sync.reset.restoreToServer "온라인 라이브러리 교체">
 <!ENTITY zotero.preferences.sync.reset.restoreToServer.desc "온라인 라이브러리 데이터를 로컬 Jurism 데이터로 덮어씁니다">
+<!ENTITY zotero.preferences.sync.reset.showResetOptions "Show Reset Options…">
 <!ENTITY zotero.preferences.sync.reset.warning1 "다음 작업은 특이하고 특수한 상황에만 제한적으로 적용되어야 합니다. 일반적인 문제 해결에는 사용하지 마십시오. 많은 경우, 재설정이 또 다른 문제를 일으킬 수 있습니다. ">
 <!ENTITY zotero.preferences.sync.reset.warning2 "동기화 초기화 옵션">
 <!ENTITY zotero.preferences.sync.reset.warning3 "추가정보.">

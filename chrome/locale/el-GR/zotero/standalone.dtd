@@ -11,6 +11,7 @@
 <!ENTITY closeCmd.key "W">
 <!ENTITY closeCmd.label "Κλείσιμο">
 <!ENTITY collectionsPane.label "Παράθυρο Συλλογών">
+<!ENTITY columns.label "Columns">
 <!ENTITY convertToStored.label "Μετατροπή Συνδεδεμένων Αρχείων σε Αποθηκευμένα Αρχεία ...">
 <!ENTITY copyBibliographyCmd.label "Αντιγραφή βιβλιογραφίας">
 <!ENTITY copyCitationCmd.label "Αντιγραφή παραπομπής/παράθεσης">
@@ -63,6 +64,7 @@
 <!ENTITY fullZoomResetCmd.label "Reset">
 <!ENTITY fullZoomToggleCmd.accesskey "T">
 <!ENTITY fullZoomToggleCmd.label "Zoom Text Only">
+<!ENTITY goMenu.accesskey "G">
 <!ENTITY goMenu.label "Go">
 <!ENTITY helpCheckForUpdates.accesskey "U">
 <!ENTITY helpCheckForUpdates.label "Έλεγχος για ενημερώσεις...">
@@ -126,6 +128,7 @@
 <!ENTITY selectAllCmd.label "Επιλογή όλων">
 <!ENTITY servicesMenuMac.label "Υπηρεσίες">
 <!ENTITY showAllAppsCmdMac.label "Εμφάνιση όλων">
+<!ENTITY sortBy.label "Sort By">
 <!ENTITY stackedView.label "Προβολή Στοιβασμένων">
 <!ENTITY standardView.label "Τυπική Προβολή">
 <!ENTITY tagSelector.label "Επιλογέας Ετικέτας">

@@ -78,6 +78,8 @@
 <!ENTITY zotero.preferences.groups.childNotes "ข้อความรายการลูก">
 <!ENTITY zotero.preferences.groups.tags "แท็ก">
 <!ENTITY zotero.preferences.groups.whenCopyingInclude "เมื่อสำเนารายการระหว่างไลบรารี ให้รวมถึง:">
+<!ENTITY zotero.preferences.helpButton.label "Help">
+<!ENTITY zotero.preferences.interface "Interface">
 <!ENTITY zotero.preferences.items "รายการ">
 <!ENTITY zotero.preferences.keys.changesTakeEffect "Changes take effect after restart">
 <!ENTITY zotero.preferences.keys.copySelectedItemCitationsToClipboard "ทำสำเนารายการอ้างอิงที่เลือกไว้ไปยังคลิปบอร์ด">
@@ -250,6 +252,7 @@
 <!ENTITY zotero.preferences.sync.reset.restoreToOnlineLibrary.desc "Overwrite online library with local Jurism data">
 <!ENTITY zotero.preferences.sync.reset.restoreToServer "Replace Online Library">
 <!ENTITY zotero.preferences.sync.reset.restoreToServer.desc "Overwrite online library with local Jurism data">
+<!ENTITY zotero.preferences.sync.reset.showResetOptions "Show Reset Options…">
 <!ENTITY zotero.preferences.sync.reset.warning1 "การดำเนินการต่อไปนี้ใช้ในบางกรณีเท่านั้น สถานการณ์เฉพาะและไม่ควรใช้สำหรับแก้ปัญหาทั่วไป ในหลายกรณีการเริ่มต้นใหม่จะก่อให้เกิดปัญหามากขึ้น ดูที่">
 <!ENTITY zotero.preferences.sync.reset.warning2 "ตัวเลือกตั้งค่าประสานข้อมูลใหม่">
 <!ENTITY zotero.preferences.sync.reset.warning3 "สำหรับข้อมูลเพิ่มเติม">

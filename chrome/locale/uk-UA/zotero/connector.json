@@ -27,6 +27,9 @@
   "extensionIsDisabled_extensionPage": {
     "message": "$1 is disabled on extension pages"
   },
+  "extensionIsDisabled_fileURL": {
+    "message": "$1 Connector is not available on file URLs"
+  },
   "firstRun_acceptButton": {
     "description": "The Accept button for the first-run dialog",
     "message": "Got it"
@@ -49,6 +52,9 @@
   "general_copyToClipboard": {
     "message": "Скопіювати в буфер обміну"
   },
+  "general_deselectAll": {
+    "message": "Deselect All"
+  },
   "general_done": {
     "message": "Готово"
   },
@@ -64,11 +70,17 @@
   "general_no": {
     "message": "Ні"
   },
+  "general_ok": {
+    "message": "OK"
+  },
   "general_pleaseWait": {
     "message": "Please wait…"
   },
   "general_saveTo": {
     "message": "Зберегти в $1"
+  },
+  "general_selectAll": {
+    "message": "Select All"
   },
   "general_tryAgain": {
     "message": "Спробувати знову"
@@ -85,6 +97,9 @@
   "integration_error_connection": {
     "description": "$1 will be the localized string for the extension (e.g., Jurism Connector). $2 will be the app name (e.g., Jurism).",
     "message": "The $1 was unable to communicate with the $2 desktop application. $2 must be open to use web-based citing."
+  },
+  "integration_googleDocs_authScopeError": {
+    "message": "$1 needs permission to edit your Google Docs documents in order to insert citations. Please try again, and be sure to allow $1 to see, edit, create, and delete your Google Docs documents."
   },
   "integration_googleDocs_documentLocked": {
     "message": "The document citations are being edited by another $1 user. Please try again later."
@@ -122,6 +137,54 @@
   "integration_googleDocs_updating": {
     "message": "$1 is updating your document."
   },
+  "itemSelector_title": {
+    "message": "Select which items you’d like to add to your library:"
+  },
+  "itemType_attachment": {
+    "message": "Attachment"
+  },
+  "itemType_epub": {
+    "message": "EPUB attachment"
+  },
+  "itemType_link": {
+    "message": "Web link"
+  },
+  "itemType_note": {
+    "message": "Note"
+  },
+  "itemType_pdf": {
+    "message": "PDF attachment"
+  },
+  "itemType_snapshot": {
+    "message": "Snapshot"
+  },
+  "progressWindow_allDone": {
+    "message": "Saving is complete. The dialog will close now."
+  },
+  "progressWindow_alreadySaved": {
+    "message": "Items from this webpage have already been saved."
+  },
+  "progressWindow_collectionSelector": {
+    "message": "Target collection selector"
+  },
+  "progressWindow_detailsBtnHide": {
+    "message": "Hide details"
+  },
+  "progressWindow_detailsBtnView": {
+    "message": "View details"
+  },
+  "progressWindow_downloadComplete": {
+    "message": "Saved $1"
+  },
+  "progressWindow_downloadCompletePlural": {
+    "message": "Saved $1 for item $2"
+  },
+  "progressWindow_downloadFailed": {
+    "message": "Failed download of $1"
+  },
+  "progressWindow_downloadFailedPlural": {
+    "message": "Failed download of $1 for item $2"
+  },
   "progressWindow_error_fallback": {
     "description": "The placeholders will contain the names of Jurism translators (e.g., JSTOR or Embedded Metadata).",
     "message": "An error occurred saving with $1. Attempting to save using $2 instead."
@@ -145,6 +208,18 @@
   },
   "progressWindow_error_upgradeClient_latestVersion": {
     "message": "остання версія"
+  },
+  "progressWindow_filterPlaceholder": {
+    "message": "Filter Collections"
+  },
+  "progressWindow_saveItem": {
+    "message": "Item $1: $2"
+  },
+  "progressWindow_savingItem": {
+    "message": "Saving item $1"
+  },
+  "progressWindow_savingItems": {
+    "message": "Saving $1 items. $2"
   },
   "progressWindow_savingTo": {
     "message": "Збереження в"

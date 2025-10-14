@@ -11,6 +11,7 @@
 <!ENTITY closeCmd.key "W">
 <!ENTITY closeCmd.label "بستن">
 <!ENTITY collectionsPane.label "Collections Pane">
+<!ENTITY columns.label "Columns">
 <!ENTITY convertToStored.label "Convert Linked Files to Stored Files…">
 <!ENTITY copyBibliographyCmd.label "Copy Bibliography">
 <!ENTITY copyCitationCmd.label "Copy Citation">
@@ -63,6 +64,7 @@
 <!ENTITY fullZoomResetCmd.label "Reset">
 <!ENTITY fullZoomToggleCmd.accesskey "T">
 <!ENTITY fullZoomToggleCmd.label "Zoom Text Only">
+<!ENTITY goMenu.accesskey "G">
 <!ENTITY goMenu.label "Go">
 <!ENTITY helpCheckForUpdates.accesskey "U">
 <!ENTITY helpCheckForUpdates.label "بررسی بروزرسانی...">
@@ -126,6 +128,7 @@
 <!ENTITY selectAllCmd.label "انتخاب همه">
 <!ENTITY servicesMenuMac.label "Services">
 <!ENTITY showAllAppsCmdMac.label "نمایش همه">
+<!ENTITY sortBy.label "Sort By">
 <!ENTITY stackedView.label "Stacked View">
 <!ENTITY standardView.label "Standard View">
 <!ENTITY tagSelector.label "Tag Selector">

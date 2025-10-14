@@ -11,6 +11,7 @@
 <!ENTITY closeCmd.key "W">
 <!ENTITY closeCmd.label "Užverti">
 <!ENTITY collectionsPane.label "Rinkinių skydelis">
+<!ENTITY columns.label "Columns">
 <!ENTITY convertToStored.label "Nuorodas pakeisti tikromis rinkmenomis...">
 <!ENTITY copyBibliographyCmd.label "Kopijuoti bibliografiją">
 <!ENTITY copyCitationCmd.label "Kopijuoti citatą">
@@ -63,6 +64,7 @@
 <!ENTITY fullZoomResetCmd.label "Reset">
 <!ENTITY fullZoomToggleCmd.accesskey "T">
 <!ENTITY fullZoomToggleCmd.label "Zoom Text Only">
+<!ENTITY goMenu.accesskey "G">
 <!ENTITY goMenu.label "Go">
 <!ENTITY helpCheckForUpdates.accesskey "T">
 <!ENTITY helpCheckForUpdates.label "Tikrinti, ar yra atnaujinimų...">
@@ -126,6 +128,7 @@
 <!ENTITY selectAllCmd.label "Pažymėti viską">
 <!ENTITY servicesMenuMac.label "Paslaugos">
 <!ENTITY showAllAppsCmdMac.label "Rodyti visus">
+<!ENTITY sortBy.label "Sort By">
 <!ENTITY stackedView.label "Straipsnio informacija apačioje">
 <!ENTITY standardView.label "Įprastas rodymas">
 <!ENTITY tagSelector.label "Gairių parinkiklis">

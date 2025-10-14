@@ -11,6 +11,7 @@
 <!ENTITY closeCmd.key "W">
 <!ENTITY closeCmd.label "Zatvoriť">
 <!ENTITY collectionsPane.label "Tabla zbierok">
+<!ENTITY columns.label "Columns">
 <!ENTITY convertToStored.label "Konvertovať prelinkované súbory na uložené súbory...">
 <!ENTITY copyBibliographyCmd.label "Kopírovať bibliografiu">
 <!ENTITY copyCitationCmd.label "Kopírovať citáciu">
@@ -63,6 +64,7 @@
 <!ENTITY fullZoomResetCmd.label "Reset">
 <!ENTITY fullZoomToggleCmd.accesskey "T">
 <!ENTITY fullZoomToggleCmd.label "Zoom Text Only">
+<!ENTITY goMenu.accesskey "G">
 <!ENTITY goMenu.label "Go">
 <!ENTITY helpCheckForUpdates.accesskey "U">
 <!ENTITY helpCheckForUpdates.label "Hľadať aktualizácie...">
@@ -126,6 +128,7 @@
 <!ENTITY selectAllCmd.label "Vybrať všetko">
 <!ENTITY servicesMenuMac.label "Služby">
 <!ENTITY showAllAppsCmdMac.label "Zobraziť všetko">
+<!ENTITY sortBy.label "Sort By">
 <!ENTITY stackedView.label "Poskladané zobrazenie">
 <!ENTITY standardView.label "Štandardné zobrazenie">
 <!ENTITY tagSelector.label "Výber značiek">

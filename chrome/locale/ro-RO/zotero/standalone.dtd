@@ -11,6 +11,7 @@
 <!ENTITY closeCmd.key "W">
 <!ENTITY closeCmd.label "Închide">
 <!ENTITY collectionsPane.label "Panou pentru colecții">
+<!ENTITY columns.label "Columns">
 <!ENTITY convertToStored.label "Convertește fișierele legate la fișiere depozitate...">
 <!ENTITY copyBibliographyCmd.label "Copiază bibliografie">
 <!ENTITY copyCitationCmd.label "Copiază citare">
@@ -63,6 +64,7 @@
 <!ENTITY fullZoomResetCmd.label "Reset">
 <!ENTITY fullZoomToggleCmd.accesskey "T">
 <!ENTITY fullZoomToggleCmd.label "Zoom Text Only">
+<!ENTITY goMenu.accesskey "G">
 <!ENTITY goMenu.label "Go">
 <!ENTITY helpCheckForUpdates.accesskey "U">
 <!ENTITY helpCheckForUpdates.label "Caută actualizări...">
@@ -126,6 +128,7 @@
 <!ENTITY selectAllCmd.label "Selectează tot">
 <!ENTITY servicesMenuMac.label "Servicii">
 <!ENTITY showAllAppsCmdMac.label "Afișează tot">
+<!ENTITY sortBy.label "Sort By">
 <!ENTITY stackedView.label "Vizualizare în stivă">
 <!ENTITY standardView.label "Vizualizare standard">
 <!ENTITY tagSelector.label "Selector etichetă">

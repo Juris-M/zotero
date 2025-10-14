@@ -107,8 +107,10 @@
 <!ENTITY zotero.import.lastModified "Nazadnje spremenjeno">
 <!ENTITY zotero.import.online.newItemsOnly "Download new items only; don’t update previously imported items">
 <!ENTITY zotero.import.online.relinkOnly "Relink Mendeley Desktop citations">
+<!ENTITY zotero.import.onlineImport "online import">
 <!ENTITY zotero.import.size "Velikost">
 <!ENTITY zotero.import.source.file "Datoteka (BibTeX, RIS, Jurism RDF itn.)">
+<!ENTITY zotero.import.source.folder "A folder of PDFs or other files">
 <!ENTITY zotero.import.whereToImportFrom "Od kod želite uvoziti?">
 <!ENTITY zotero.integration.addEditCitation.title "Dodaj/uredi citat">
 <!ENTITY zotero.integration.classicView.label "Klasični pogled">
@@ -155,6 +157,7 @@
 <!ENTITY zotero.item.attachment.file.show "Pokaži datoteko">
 <!ENTITY zotero.item.copyAsURL "Kopiraj kot URL">
 <!ENTITY zotero.item.creatorTransform "Transform Name Form">
+<!ENTITY zotero.item.creatorTransform.fixCase "Fix Case">
 <!ENTITY zotero.item.creatorTransform.nameParticles "Adjust Name Particles">
 <!ENTITY zotero.item.creatorTransform.nameSwap "Zamenjaj ime/priimek">
 <!ENTITY zotero.item.deletePermanently "Izbriši trajno ...">
@@ -230,9 +233,11 @@
 <!ENTITY zotero.pdfReader.lastPage "Last Page">
 <!ENTITY zotero.pdfReader.noSpreads "No Spreads">
 <!ENTITY zotero.pdfReader.oddSpreads "Odd Spreads">
+<!ENTITY zotero.pdfReader.paginated "Paginated">
 <!ENTITY zotero.pdfReader.rotatePage180 "Rotate Page 180°">
 <!ENTITY zotero.pdfReader.rotatePageLeft "Rotate Page Left">
 <!ENTITY zotero.pdfReader.rotatePageRight "Rotate Page Right">
+<!ENTITY zotero.pdfReader.scrolled "Scrolled">
 <!ENTITY zotero.pdfReader.splitHorizontally "Split Horizontally">
 <!ENTITY zotero.pdfReader.splitVertically "Split Vertically">
 <!ENTITY zotero.pdfReader.transferFromPDF "Import Annotations…">
@@ -243,6 +248,7 @@
 <!ENTITY zotero.pdfReader.zoomOut "Zoom Out">
 <!ENTITY zotero.pdfReader.zoomPageHeight "Zoom to Page Height">
 <!ENTITY zotero.pdfReader.zoomPageWidth "Zoom to Page Width">
+<!ENTITY zotero.pdfReader.zoomReset "Reset Zoom">
 <!ENTITY zotero.progress.title "Napredek">
 <!ENTITY zotero.proxy.recognized.disable.label "Samodejno ne preusmeri zahtev po poprej prepoznanih posredovalnih strežnikih">
 <!ENTITY zotero.proxy.recognized.ignore.label "Prezri">
@@ -321,6 +327,7 @@
 <!ENTITY zotero.tagSelector.renameTag "Preimenuj značko ...">
 <!ENTITY zotero.tagSelector.selectVisible "Izberi vidno">
 <!ENTITY zotero.tagSelector.showAutomatic "Pokaži samodejno">
+<!ENTITY zotero.tagSelector.splitTag "Split…">
 <!ENTITY zotero.toolbar.about.label "O Zoteru">
 <!ENTITY zotero.toolbar.actions.label "Dejanja">
 <!ENTITY zotero.toolbar.addChildNote.label "Add Child Note">

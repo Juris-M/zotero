@@ -11,6 +11,7 @@
 <!ENTITY closeCmd.key "W">
 <!ENTITY closeCmd.label "Kapat">
 <!ENTITY collectionsPane.label "Dermeler Bölmesi">
+<!ENTITY columns.label "Columns">
 <!ENTITY convertToStored.label "Bağlantılanmış Dosyaları Depolanmış Dosyalara Dönüştür">
 <!ENTITY copyBibliographyCmd.label "Kaynakça Kopyala">
 <!ENTITY copyCitationCmd.label "Alıntı Kopyala">
@@ -63,6 +64,7 @@
 <!ENTITY fullZoomResetCmd.label "Reset">
 <!ENTITY fullZoomToggleCmd.accesskey "T">
 <!ENTITY fullZoomToggleCmd.label "Zoom Text Only">
+<!ENTITY goMenu.accesskey "G">
 <!ENTITY goMenu.label "Go">
 <!ENTITY helpCheckForUpdates.accesskey "U">
 <!ENTITY helpCheckForUpdates.label "Güncellemeleri Denetle">
@@ -126,6 +128,7 @@
 <!ENTITY selectAllCmd.label "Tümünü Seç">
 <!ENTITY servicesMenuMac.label "Hizmetler">
 <!ENTITY showAllAppsCmdMac.label "Hepsini Göster">
+<!ENTITY sortBy.label "Sort By">
 <!ENTITY stackedView.label "Yığılmış Görünüm">
 <!ENTITY standardView.label "Normal Görünüm">
 <!ENTITY tagSelector.label "Etiket Seçici">

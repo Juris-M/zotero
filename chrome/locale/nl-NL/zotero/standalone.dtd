@@ -11,6 +11,7 @@
 <!ENTITY closeCmd.key "W">
 <!ENTITY closeCmd.label "Sluiten">
 <!ENTITY collectionsPane.label "Verzamelingvenster">
+<!ENTITY columns.label "Columns">
 <!ENTITY convertToStored.label "Gekoppelde bijlagen opslaan">
 <!ENTITY copyBibliographyCmd.label "Bibliografie kopiëren">
 <!ENTITY copyCitationCmd.label "Verwijzing kopiëren">
@@ -63,6 +64,7 @@
 <!ENTITY fullZoomResetCmd.label "Reset">
 <!ENTITY fullZoomToggleCmd.accesskey "T">
 <!ENTITY fullZoomToggleCmd.label "Zoom Text Only">
+<!ENTITY goMenu.accesskey "G">
 <!ENTITY goMenu.label "Go">
 <!ENTITY helpCheckForUpdates.accesskey "u">
 <!ENTITY helpCheckForUpdates.label "Controleren op updates…">
@@ -126,6 +128,7 @@
 <!ENTITY selectAllCmd.label "Alles selecteren">
 <!ENTITY servicesMenuMac.label "Voorzieningen">
 <!ENTITY showAllAppsCmdMac.label "Alles tonen">
+<!ENTITY sortBy.label "Sort By">
 <!ENTITY stackedView.label "Gestapeld">
 <!ENTITY standardView.label "Standaard">
 <!ENTITY tagSelector.label "Labelkiezer">

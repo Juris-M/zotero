@@ -78,6 +78,8 @@
 <!ENTITY zotero.preferences.groups.childNotes "子メモ">
 <!ENTITY zotero.preferences.groups.tags "タグ">
 <!ENTITY zotero.preferences.groups.whenCopyingInclude "アイテムをライブラリ間でコピーするときは次を含む:">
+<!ENTITY zotero.preferences.helpButton.label "Help">
+<!ENTITY zotero.preferences.interface "Interface">
 <!ENTITY zotero.preferences.items "アイテム">
 <!ENTITY zotero.preferences.keys.changesTakeEffect "変更は再起動後に有効となります">
 <!ENTITY zotero.preferences.keys.copySelectedItemCitationsToClipboard "選択されたアイテムの出典表記をクリップボードにコピー">
@@ -250,6 +252,7 @@
 <!ENTITY zotero.preferences.sync.reset.restoreToOnlineLibrary.desc "Overwrite online library with local Jurism data">
 <!ENTITY zotero.preferences.sync.reset.restoreToServer "オンライン・ライブラリを置き換える">
 <!ENTITY zotero.preferences.sync.reset.restoreToServer.desc "ローカルの Jurism データを使ってオンライン・ライブラリを上書きする">
+<!ENTITY zotero.preferences.sync.reset.showResetOptions "Show Reset Options…">
 <!ENTITY zotero.preferences.sync.reset.warning1 "次の操作は、稀に起こる特別な状況のためだけのもので、一般的な問題解決に用いられるべきではありません。多くの場合、リセットすることで更なる問題を引き起こします。以下をご参照ください。">
 <!ENTITY zotero.preferences.sync.reset.warning2 "同期リセットの設定">
 <!ENTITY zotero.preferences.sync.reset.warning3 "により詳しい情報があります。">

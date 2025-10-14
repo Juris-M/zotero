@@ -11,6 +11,7 @@
 <!ENTITY closeCmd.key "W">
 <!ENTITY closeCmd.label "إغلاق">
 <!ENTITY collectionsPane.label "جزء مجموعة العناصر">
+<!ENTITY columns.label "Columns">
 <!ENTITY convertToStored.label "تحويل الملفات المرتبطة إلى ملفات مخزنة...">
 <!ENTITY copyBibliographyCmd.label "نسخ قائمة المراجع">
 <!ENTITY copyCitationCmd.label "نسخ الاقتباس">
@@ -63,6 +64,7 @@
 <!ENTITY fullZoomResetCmd.label "اعادة تعيين التكبير">
 <!ENTITY fullZoomToggleCmd.accesskey "ط">
 <!ENTITY fullZoomToggleCmd.label "تكبير النص فقط">
+<!ENTITY goMenu.accesskey "G">
 <!ENTITY goMenu.label "Go">
 <!ENTITY helpCheckForUpdates.accesskey "U">
 <!ENTITY helpCheckForUpdates.label "تحقق من التحديثات">
@@ -126,6 +128,7 @@
 <!ENTITY selectAllCmd.label "تحديد الكل">
 <!ENTITY servicesMenuMac.label "خدمات">
 <!ENTITY showAllAppsCmdMac.label "عرض الكل">
+<!ENTITY sortBy.label "Sort By">
 <!ENTITY stackedView.label "عرض مرصوص">
 <!ENTITY standardView.label "عرض قياسي">
 <!ENTITY tagSelector.label "مختار الوسوم">

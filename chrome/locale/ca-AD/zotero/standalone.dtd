@@ -11,6 +11,7 @@
 <!ENTITY closeCmd.key "W">
 <!ENTITY closeCmd.label "Tanca">
 <!ENTITY collectionsPane.label "Subfinestra de col·leccions">
+<!ENTITY columns.label "Columns">
 <!ENTITY convertToStored.label "Converteix els fitxers enllaçats a fitxers emmagatzemats…">
 <!ENTITY copyBibliographyCmd.label "Copia la bibliografia">
 <!ENTITY copyCitationCmd.label "Copia la cita">
@@ -63,6 +64,7 @@
 <!ENTITY fullZoomResetCmd.label "Reset">
 <!ENTITY fullZoomToggleCmd.accesskey "T">
 <!ENTITY fullZoomToggleCmd.label "Zoom Text Only">
+<!ENTITY goMenu.accesskey "G">
 <!ENTITY goMenu.label "Go">
 <!ENTITY helpCheckForUpdates.accesskey "U">
 <!ENTITY helpCheckForUpdates.label "Comprova si hi ha actualitzacions...">
@@ -126,6 +128,7 @@
 <!ENTITY selectAllCmd.label "Selecciona-ho tot">
 <!ENTITY servicesMenuMac.label "Serveis">
 <!ENTITY showAllAppsCmdMac.label "Mostra-ho tot">
+<!ENTITY sortBy.label "Sort By">
 <!ENTITY stackedView.label "Vista apilada">
 <!ENTITY standardView.label "Vista estàndard">
 <!ENTITY tagSelector.label "Selector d'etiquetes">

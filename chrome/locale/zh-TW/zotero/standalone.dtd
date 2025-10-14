@@ -11,6 +11,7 @@
 <!ENTITY closeCmd.key "W">
 <!ENTITY closeCmd.label "關閉 (C)">
 <!ENTITY collectionsPane.label "文獻庫窗格">
+<!ENTITY columns.label "Columns">
 <!ENTITY convertToStored.label "將連結檔轉成儲存檔…">
 <!ENTITY copyBibliographyCmd.label "複製參考文獻表">
 <!ENTITY copyCitationCmd.label "複製成引用文獻條">
@@ -63,6 +64,7 @@
 <!ENTITY fullZoomResetCmd.label "Reset">
 <!ENTITY fullZoomToggleCmd.accesskey "T">
 <!ENTITY fullZoomToggleCmd.label "Zoom Text Only">
+<!ENTITY goMenu.accesskey "G">
 <!ENTITY goMenu.label "Go">
 <!ENTITY helpCheckForUpdates.accesskey "U">
 <!ENTITY helpCheckForUpdates.label "檢查更新 (U)…">
@@ -126,6 +128,7 @@
 <!ENTITY selectAllCmd.label "全選">
 <!ENTITY servicesMenuMac.label "服務">
 <!ENTITY showAllAppsCmdMac.label "顯示全部">
+<!ENTITY sortBy.label "Sort By">
 <!ENTITY stackedView.label "堆放檢視">
 <!ENTITY standardView.label "標準檢視">
 <!ENTITY tagSelector.label "標籤選擇器">

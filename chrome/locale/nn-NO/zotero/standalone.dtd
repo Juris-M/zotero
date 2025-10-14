@@ -11,6 +11,7 @@
 <!ENTITY closeCmd.key "W">
 <!ENTITY closeCmd.label "Lukk">
 <!ENTITY collectionsPane.label "Collections Pane">
+<!ENTITY columns.label "Columns">
 <!ENTITY convertToStored.label "Convert Linked Files to Stored Files…">
 <!ENTITY copyBibliographyCmd.label "Kopier bibliografi">
 <!ENTITY copyCitationCmd.label "Kopier sitering">
@@ -63,6 +64,7 @@
 <!ENTITY fullZoomResetCmd.label "Reset">
 <!ENTITY fullZoomToggleCmd.accesskey "T">
 <!ENTITY fullZoomToggleCmd.label "Zoom Text Only">
+<!ENTITY goMenu.accesskey "G">
 <!ENTITY goMenu.label "Go">
 <!ENTITY helpCheckForUpdates.accesskey "O">
 <!ENTITY helpCheckForUpdates.label "Sjå etter oppdateringar …">
@@ -126,6 +128,7 @@
 <!ENTITY selectAllCmd.label "Merk alt">
 <!ENTITY servicesMenuMac.label "Tenestar">
 <!ENTITY showAllAppsCmdMac.label "Vis alle">
+<!ENTITY sortBy.label "Sort By">
 <!ENTITY stackedView.label "Stacked View">
 <!ENTITY standardView.label "Standard View">
 <!ENTITY tagSelector.label "Tag Selector">

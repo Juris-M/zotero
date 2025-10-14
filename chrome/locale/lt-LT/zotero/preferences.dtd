@@ -78,6 +78,8 @@
 <!ENTITY zotero.preferences.groups.childNotes "įrašams priklausančias pastabas">
 <!ENTITY zotero.preferences.groups.tags "gaires">
 <!ENTITY zotero.preferences.groups.whenCopyingInclude "Kopijuojant elementus tarp bibliotekų, įtraukti:">
+<!ENTITY zotero.preferences.helpButton.label "Help">
+<!ENTITY zotero.preferences.interface "Interface">
 <!ENTITY zotero.preferences.items "įrašai">
 <!ENTITY zotero.preferences.keys.changesTakeEffect "Pakeitimai įsigalios iš naujo paleidus programą">
 <!ENTITY zotero.preferences.keys.copySelectedItemCitationsToClipboard "Kopijuoti pasirinktų įrašų citavimą į iškarpinę">
@@ -250,6 +252,7 @@
 <!ENTITY zotero.preferences.sync.reset.restoreToOnlineLibrary.desc "Overwrite online library with local Jurism data">
 <!ENTITY zotero.preferences.sync.reset.restoreToServer "Pakeisti nuotolinėje saugykloje">
 <!ENTITY zotero.preferences.sync.reset.restoreToServer.desc "Nuotolinės saugyklos duomenis pakeisti vietinės saugyklos duomenimis.">
+<!ENTITY zotero.preferences.sync.reset.showResetOptions "Show Reset Options…">
 <!ENTITY zotero.preferences.sync.reset.warning1 "Tolaiu pateiktos funkcijos skirtos retiems specifiniams atvejams - jų nereikėtų naudoti įprastų nesklandumų sprendimui. Dažniausiai atkūrimas sukelia dar daugiau problemų. Daugiau informacijos rasite ">
 <!ENTITY zotero.preferences.sync.reset.warning2 "atkūrimo sinchronizuojant parinkčių">
 <!ENTITY zotero.preferences.sync.reset.warning3 " puslapyje.">

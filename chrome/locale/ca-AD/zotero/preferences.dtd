@@ -78,6 +78,8 @@
 <!ENTITY zotero.preferences.groups.childNotes "notes descendents">
 <!ENTITY zotero.preferences.groups.tags "etiquetes">
 <!ENTITY zotero.preferences.groups.whenCopyingInclude "Quan copiïs elements entre les biblioteques, inclou-hi:">
+<!ENTITY zotero.preferences.helpButton.label "Help">
+<!ENTITY zotero.preferences.interface "Interface">
 <!ENTITY zotero.preferences.items "elements">
 <!ENTITY zotero.preferences.keys.changesTakeEffect "Els canvis tindran efecte després del reinici">
 <!ENTITY zotero.preferences.keys.copySelectedItemCitationsToClipboard "Copia les cites dels elements seleccionats al porta-retalls">
@@ -250,6 +252,7 @@
 <!ENTITY zotero.preferences.sync.reset.restoreToOnlineLibrary.desc "Overwrite online library with local Jurism data">
 <!ENTITY zotero.preferences.sync.reset.restoreToServer "Reemplaça la biblioteca en línia">
 <!ENTITY zotero.preferences.sync.reset.restoreToServer.desc "Sobreescriu la biblioteca en línia amb les dades locals de Jurism">
+<!ENTITY zotero.preferences.sync.reset.showResetOptions "Show Reset Options…">
 <!ENTITY zotero.preferences.sync.reset.warning1 "Les operacions següents només s'utilitzen en situacions molt rares i específiques i no s'haurien d'emprar per a la resolució general dels problemes. En molts casos, el reinici causarà problemes addicionals. Consulteu">
 <!ENTITY zotero.preferences.sync.reset.warning2 "Sincronitza les opcions de reinicialització">
 <!ENTITY zotero.preferences.sync.reset.warning3 "per obtenir més informació.">

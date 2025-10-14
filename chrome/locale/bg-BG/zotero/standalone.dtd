@@ -11,6 +11,7 @@
 <!ENTITY closeCmd.key "W">
 <!ENTITY closeCmd.label "Затвори">
 <!ENTITY collectionsPane.label "Collections Pane">
+<!ENTITY columns.label "Columns">
 <!ENTITY convertToStored.label "Convert Linked Files to Stored Files…">
 <!ENTITY copyBibliographyCmd.label "Копирай библиографията">
 <!ENTITY copyCitationCmd.label "Копирай цитата">
@@ -63,6 +64,7 @@
 <!ENTITY fullZoomResetCmd.label "Reset">
 <!ENTITY fullZoomToggleCmd.accesskey "T">
 <!ENTITY fullZoomToggleCmd.label "Zoom Text Only">
+<!ENTITY goMenu.accesskey "G">
 <!ENTITY goMenu.label "Go">
 <!ENTITY helpCheckForUpdates.accesskey "U">
 <!ENTITY helpCheckForUpdates.label "Провери за актуализации...">
@@ -126,6 +128,7 @@
 <!ENTITY selectAllCmd.label "Select All">
 <!ENTITY servicesMenuMac.label "Програмно обслужване">
 <!ENTITY showAllAppsCmdMac.label "Покажи всички">
+<!ENTITY sortBy.label "Sort By">
 <!ENTITY stackedView.label "Stacked View">
 <!ENTITY standardView.label "Standard View">
 <!ENTITY tagSelector.label "Tag Selector">

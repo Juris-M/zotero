@@ -11,6 +11,7 @@
 <!ENTITY closeCmd.key "W">
 <!ENTITY closeCmd.label "닫기">
 <!ENTITY collectionsPane.label "컬렉션 창">
+<!ENTITY columns.label "Columns">
 <!ENTITY convertToStored.label "링크한 파일을 보관한 파일로 변환...">
 <!ENTITY copyBibliographyCmd.label "서지 복사">
 <!ENTITY copyCitationCmd.label "인용 복사">
@@ -63,6 +64,7 @@
 <!ENTITY fullZoomResetCmd.label "Reset">
 <!ENTITY fullZoomToggleCmd.accesskey "T">
 <!ENTITY fullZoomToggleCmd.label "Zoom Text Only">
+<!ENTITY goMenu.accesskey "G">
 <!ENTITY goMenu.label "Go">
 <!ENTITY helpCheckForUpdates.accesskey "U">
 <!ENTITY helpCheckForUpdates.label "업데이트 확인...">
@@ -126,6 +128,7 @@
 <!ENTITY selectAllCmd.label "모두 선택">
 <!ENTITY servicesMenuMac.label "서비스">
 <!ENTITY showAllAppsCmdMac.label "모두 보이기">
+<!ENTITY sortBy.label "Sort By">
 <!ENTITY stackedView.label "포개어 보기">
 <!ENTITY standardView.label "표준 보기">
 <!ENTITY tagSelector.label "태그 선택기">

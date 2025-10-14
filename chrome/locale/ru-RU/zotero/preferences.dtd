@@ -78,6 +78,8 @@
 <!ENTITY zotero.preferences.groups.childNotes "дочерние заметки">
 <!ENTITY zotero.preferences.groups.tags "теги">
 <!ENTITY zotero.preferences.groups.whenCopyingInclude "При копировании записей между библиотеками, включать:">
+<!ENTITY zotero.preferences.helpButton.label "Help">
+<!ENTITY zotero.preferences.interface "Interface">
 <!ENTITY zotero.preferences.items "записи(-ей)">
 <!ENTITY zotero.preferences.keys.changesTakeEffect "Изменения вступят в силу после перезапуска">
 <!ENTITY zotero.preferences.keys.copySelectedItemCitationsToClipboard "Скопировать цитаты из выбранной записи в буфер обмена">
@@ -250,6 +252,7 @@
 <!ENTITY zotero.preferences.sync.reset.restoreToOnlineLibrary.desc "Overwrite online library with local Jurism data">
 <!ENTITY zotero.preferences.sync.reset.restoreToServer "Заменить данные в онлайн-библиотеке">
 <!ENTITY zotero.preferences.sync.reset.restoreToServer.desc "Перезаписать онлайн-библиотеку локальным данными Jurism">
+<!ENTITY zotero.preferences.sync.reset.showResetOptions "Show Reset Options…">
 <!ENTITY zotero.preferences.sync.reset.warning1 "Следующие операции используются только в редких особых случаях и не должны использоваться при решении проблем общего характера. Во многих случаях сброс настроек приводит к возникновению дополнительных проблем. См. ">
 <!ENTITY zotero.preferences.sync.reset.warning2 "Параметры сброса настроек синхронизации">
 <!ENTITY zotero.preferences.sync.reset.warning3 " для дополнительных сведений.">

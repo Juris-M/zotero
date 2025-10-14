@@ -78,6 +78,8 @@
 <!ENTITY zotero.preferences.groups.childNotes "notas subordinadas">
 <!ENTITY zotero.preferences.groups.tags "etiquetas">
 <!ENTITY zotero.preferences.groups.whenCopyingInclude "Al copiar elementos entre bibliotecas, incluir:">
+<!ENTITY zotero.preferences.helpButton.label "Help">
+<!ENTITY zotero.preferences.interface "Interface">
 <!ENTITY zotero.preferences.items "elementos">
 <!ENTITY zotero.preferences.keys.changesTakeEffect "Los cambios tendrán efecto después de reiniciar">
 <!ENTITY zotero.preferences.keys.copySelectedItemCitationsToClipboard "Copiar las citas de los elementos seleccionados al portapapeles">
@@ -250,6 +252,7 @@
 <!ENTITY zotero.preferences.sync.reset.restoreToOnlineLibrary.desc "Overwrite online library with local Jurism data">
 <!ENTITY zotero.preferences.sync.reset.restoreToServer "Reemplazar biblioteca en línea">
 <!ENTITY zotero.preferences.sync.reset.restoreToServer.desc "Sobrescribir la biblioteca en línea con los datos locales de Jurism">
+<!ENTITY zotero.preferences.sync.reset.showResetOptions "Show Reset Options…">
 <!ENTITY zotero.preferences.sync.reset.warning1 "Las siguientes operaciones son para uso solo en situaciones raras y específicas y no deben usarse para la solución de problemas generales. En muchos casos, el reinicio causará problemas adicionales. Véase">
 <!ENTITY zotero.preferences.sync.reset.warning2 "Opciones de reinicio de sincronización">
 <!ENTITY zotero.preferences.sync.reset.warning3 "para más información.">
