@@ -55,7 +55,7 @@ Zotero.Duplicates.prototype.getSearchObject = async function () {
 	// unload listener that drops the table when the ItemTreeView is unregistered
 	var sql = `CREATE TEMPORARY TABLE ${table} (id INTEGER PRIMARY KEY)`;
 	await Zotero.DB.queryAsync(sql);
-	
+
 	if (ids.length) {
 		Zotero.debug("Inserting rows into temp table");
 		sql = `INSERT INTO ${table} VALUES `;

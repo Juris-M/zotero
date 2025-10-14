@@ -85,7 +85,6 @@ Zotero.CachedTypes = function() {
 			idOrName = idOrName + '';
 			idOrName = idOrName.toLowerCase();
 		}
-		
 		if (!this._types['_' + idOrName]) {
 			Zotero.debug(`Unknown ${this._typeDesc} '${idOrName}'`, 1);
 			return '';
@@ -108,7 +107,11 @@ Zotero.CachedTypes = function() {
 		}
 		
 		if (!this._types['_' + idOrName]) {
-			Zotero.debug(`Unknown ${this._typeDesc} '${idOrName}'`, 1);
+            // Jurism: where am I calling cachedTypes.getID() on this value?
+            // (triggered by seeAlso translate tests)
+            if (this._typeDesc != 'relation predicate') {
+			    Zotero.debug(`Unknown ${this._typeDesc} '${idOrName}'`, 1);
+            }
 			return false;
 		}
 		

@@ -1383,7 +1383,6 @@ describe("Zotero.CollectionTree", function() {
 			});
 		})
 
-
 		describe("with feed items", function () {
 			var { HttpServer } = ChromeUtils.import("chrome://remote/content/server/HTTPD.jsm");;
 			
@@ -1415,6 +1414,8 @@ describe("Zotero.CollectionTree", function() {
 				var feedItem = yield createDataObject('feedItem', {libraryID: feed.libraryID}, { skipSelect: true });
 				feedItem.setField('url', url);
 				yield feedItem.saveTx();
+                Zotero.debug(`XXZXX feedItem: ${JSON.stringify(feedItem)}`, 1);
+                Zotero.debug(`XXZXX feedItem: ${!!feedItem.translate}`, 1);
 				var translateFn = sinon.spy(feedItem, 'translate');
 				
 				// Add observer to wait for collection add
@@ -1422,6 +1423,8 @@ describe("Zotero.CollectionTree", function() {
 				var itemIds;
 
 				var ids = (yield onDrop('item', 'C' + collection.id, [feedItem.id])).ids;
+
+                Zotero.debug(`XXZXX ids: ${JSON.stringify(ids)}`, 1);
 				
 				// Check that the translated item was the one that was created after drag
 				var item;

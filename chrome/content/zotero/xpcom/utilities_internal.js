@@ -1038,6 +1038,14 @@ Zotero.Utilities.Internal = {
 			return item;
 		}
 
+		function addRelations(item, zoteroItem) {
+			item.seeAlso = zoteroItem.relatedItems.map(function(key){
+				let id = Zotero.Items.getIDFromLibraryAndKey(zoteroItem.libraryID, key);
+				let otherZoteroItem = Zotero.Items.get(id);
+				return Zotero.URI.getItemURI(otherZoteroItem);
+			});
+		}
+		
 		var item = zoteroItem.toJSON();
 
 		item.uri = Zotero.URI.getItemURI(zoteroItem);
@@ -1071,11 +1079,7 @@ Zotero.Utilities.Internal = {
 
 		if (legacy) addCompatibilityMappings(item, zoteroItem);
 
-		item.seeAlso = zoteroItem.relatedItems.map(function(key){
-			let id = Zotero.Items.getIDFromLibraryAndKey(zoteroItem.libraryID, key);
-			let otherZoteroItem = Zotero.Items.get(id);
-			return Zotero.URI.getItemURI(otherZoteroItem);
-		});
+        addRelations(item, zoteroItem);
         
 		return item;
 	},

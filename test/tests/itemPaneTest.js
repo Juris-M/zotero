@@ -359,68 +359,77 @@ describe("Item pane", function () {
 		});
 		
 		
-		it("should write the title main language to an empty language field", function* () {
+		it("should write the title main language to an empty language field", async function () {
 			
 			var evt = new MouseEvent('contextmenu', {
 				bubbles: true,
 				cancelable: true,
-				view: window,
-				buttons: 2
+				view: window
 			});
-			yield Zotero.CachedLanguages.addTag("ja", "Japanese");
+			var cmd = new MouseEvent('command', {
+				bubbles: true,
+				cancelable: true,
+				view: window
+			});
+			await Zotero.CachedLanguages.addTag("ja", "Japanese");
 			var res = Zotero.CachedLanguages.hasTag("ja");
 			assert.equal(res, true);
 			
 			var item = new Zotero.Item('book');
 			item.setField('title', 'Test');
-			var id = yield item.saveTx();
+			var id = await item.saveTx();
 			
-			var itemBox = doc.getElementById('zotero-editpane-item-box');
-			var label = doc.getAnonymousNodes(itemBox)[0].getElementsByAttribute('fieldname', 'title')[0];
-			assert.isTrue(!!label.oncontextmenu);
-			
-			var menupopup = doc.getAnonymousNodes(itemBox)[0]
-				.getElementsByAttribute('id', 'mlz-language-menu')[0];
-			label.dispatchEvent(evt);
-			yield waitForDOMEvent(menupopup, "popupshown");
+			var itemBox = doc.getElementById('zotero-editpane-info-box');
+            assert.exists(itemBox);
+            
+            var menupopup = itemBox._id("field-lang-menu");;
+			var label = itemBox.querySelector('[fieldname="title"]');
+            label.dispatchEvent(evt);
+			await waitForDOMEvent(menupopup, "popupshown");
+            assert.isTrue(!!menupopup);
+
+            var menuItems = menupopup.getElementsByTagName('menuitem');
 			var menuitem = menupopup.getElementsByTagName('menuitem')[0];
-			menuitem.click();
-			menupopup.hidePopup();
-			yield waitForItemEvent('modify');
-			yield item.saveTx();
+			menuitem.dispatchEvent(cmd);
+			await waitForItemEvent('modify');
 			var languageFieldVal = item.getField("language");
 			assert.equal(languageFieldVal, 'ja');
 		});
 		
-		it("should not write the title main language to field with existing content", function* () {
+		it("should not write the title main language to field with existing content", async function () {
 
 			var evt = new MouseEvent('contextmenu', {
 				bubbles: true,
 				cancelable: true,
-				view: window,
-				buttons: 2
+				view: window
 			});
-			yield Zotero.CachedLanguages.addTag("ja", "Japanese");
+			var cmd = new MouseEvent('command', {
+				bubbles: true,
+				cancelable: true,
+				view: window
+			});
+			await Zotero.CachedLanguages.addTag("ja", "Japanese");
 			var res = Zotero.CachedLanguages.hasTag("ja");
 			assert.equal(res, true);
-
+			
 			var item = new Zotero.Item('book');
 			item.setField('title', 'Test');
 			item.setField('language', 'en');
-			var id = yield item.saveTx();
+			var id = await item.saveTx();
+			
+			var itemBox = doc.getElementById('zotero-editpane-info-box');
+            assert.exists(itemBox);
+            
+            var menupopup = itemBox._id("field-lang-menu");;
+			var label = itemBox.querySelector('[fieldname="title"]');
+            label.dispatchEvent(evt);
+			await waitForDOMEvent(menupopup, "popupshown");
+            assert.isTrue(!!menupopup);
 
-			var itemBox = doc.getElementById('zotero-editpane-item-box');
-			var label = doc.getAnonymousNodes(itemBox)[0].getElementsByAttribute('fieldname', 'title')[0];
-			assert.isTrue(!!label.oncontextmenu);
-
-			var menupopup = doc.getElementById('mlz-language-menu');
-			label.dispatchEvent(evt);
-			yield waitForDOMEvent(menupopup, "popupshown");
+            var menuItems = menupopup.getElementsByTagName('menuitem');
 			var menuitem = menupopup.getElementsByTagName('menuitem')[0];
-			menuitem.click();
-			menupopup.hidePopup();
-			yield waitForItemEvent('modify');
-			yield item.saveTx();
+			menuitem.dispatchEvent(cmd);
+			await waitForItemEvent('modify');
 			var languageFieldVal = item.getField("language");
 			assert.equal(languageFieldVal, 'en');
 		});

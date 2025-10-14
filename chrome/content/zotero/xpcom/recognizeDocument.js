@@ -186,7 +186,7 @@ Zotero.RecognizeDocument = new function () {
 		
 		// Notes must have been modified within one second of the item
 		var notes = Zotero.Items.get(item.getNotes());
-		if (notes.some(note => note.dateModified > dateModified + NOTE_EDIT_THRESHOLD)) {
+		if (notes.some(note => Date.parse(note.dateModified) > Date.parse(dateModified) + NOTE_EDIT_THRESHOLD)) {
 			_newItems.delete(item);
 			return false;
 		}

@@ -28,7 +28,6 @@
  * @namespace
  */
 var Zotero_Lookup = new function () {
-	this._button = null;
 	/**
 	 * Performs a lookup by DOI, PMID, or ISBN on the given textBox value
 	 * and adds any items it can.
@@ -107,7 +106,6 @@ var Zotero_Lookup = new function () {
 			// be lenient about translators
 			let translators = await translate.getTranslators();
 			translate.setTranslator(translators);
-
 			try {
 				newItems.push(...await translate.translate({
 					libraryID,
@@ -120,7 +118,6 @@ var Zotero_Lookup = new function () {
 				Zotero.logError(e);
 			}
 		}
-
 		toggleProgress(false);
 		if (!newItems.length) {
 			Zotero.alert(

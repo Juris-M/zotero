@@ -130,17 +130,20 @@ Zotero.Translate.ItemSaver.prototype = {
 				}
 				// Add to new item list
 				items.push(item);
+				this._itemToJSONItem.set(item, jsonItem);
 				jsonByItem.set(item, jsonItem);
+				
 				
 				// Add to list if using seeAlso
 				if(this._handleMappedId(jsonItem, item)) {
-					seeAlsoCandidates.push(item);
+					if (jsonItem.seeAlso && jsonItem.seeAlso.length) {
+						seeAlsoCandidates.push(item);
+					}
 				}
 			}
 			for (let item of seeAlsoCandidates) {
 				let jsonItem = jsonByItem.get(item);
 				await this._handleRelated(jsonItem, item);
-				this._itemToJSONItem.set(item, jsonItem);
 			}
 		}.bind(this));
 
@@ -1025,7 +1028,7 @@ Zotero.Translate.ItemSaver.prototype = {
 		if (typeof note == "object") {
 			this._handleMappedId(note, myNote);
 			this._handleRelated(note, myNote);
-		}
+ 		}
 		return myNote;
 	}),
 	

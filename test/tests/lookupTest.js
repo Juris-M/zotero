@@ -26,7 +26,7 @@ describe("Add Item by Identifier", function() {
 	// TODO: mock external services: https://github.com/zotero/zotero/issues/699
 	
 	it("should add an ISBN-10", function() {
-		this.timeout(40000);
+		this.timeout(20000);
 		return lookupIdentifier(win, "0838985890").then(function(ids) {
 			var item = Zotero.Items.get(ids[0]);
 			assert.match(item.getField("title"), /^Zotero: a guide for librarians, researchers/);

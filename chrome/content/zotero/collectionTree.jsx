@@ -1049,11 +1049,6 @@ var CollectionTree = class CollectionTree extends LibraryTree {
 			// the row might be removed
 			await this.reload();
 		}
-		else if (action == 'refresh' && type == 'trash') {
-			// We need to update the trash's status (full or empty), and if empty,
-			// the row might be removed
-			await this.reload();
-		}
 
 		this.forceUpdate();
 		// Only wait for select if we didn't already do that above

@@ -93,6 +93,7 @@
 									<menuitem id="zotero-link-menu-view-online" data-l10n-id="item-menu-option-view-online"/>
 									<menuitem id="zotero-link-menu-copy" label="&zotero.item.copyAsURL;"/>
 								</menupopup>
+								<menupopup id="field-lang-menu" position="after_start"/>
 								<guidance-panel id="zotero-author-guidance" about="authorMenu" position="after_end" x="-25"/>
 							</popupset>
 							<div id="retraction-box" hidden="hidden">
@@ -143,6 +144,25 @@
 					await this.item.saveTx();
 				}
 			});
+
+			// Jurism
+            /*
+			this._fieldLangMenu.addEventListener('command', async (event) => {
+				// This should perform the operation selected by user in the popup
+				var menuitem = event.target;
+				var label = this._popupNode;
+				var fieldname = label.getAttribute("fieldname");
+				var val = this.item.getField(fieldname);
+				var lang = menuitem.getAttribute("id");
+
+				this.item.setField(fieldname, val, null, lang, true);
+				this.item.setField("language", lang);
+				
+				if (this.saveOnEdit) {
+					await this.item.saveTx();
+				}
+			    });
+                */
 
 			this._id('zotero-creator-transform-menu').addEventListener('popupshowing', (_event) => {
 				var row = this._popupNode.closest('.meta-row');
@@ -462,7 +482,7 @@
 		get _creatorTypeMenu() {
 			return this._id('creator-type-menu');
 		}
-		
+
 		get _defaultFirstName() {
 			return '(' + Zotero.getString('pane.item.defaultFirstName') + ')';
 		}
@@ -677,6 +697,38 @@
 						this.handlePopupOpening(event, menupopup);
 					};
 				}
+
+				// Jurism (contextmenu to open field language menu).
+				if (Zotero.CachedMultiFields.isMultiFieldName(fieldName)) {
+			        let triggerPopup = (e) => {
+				        let menupopup = this._id('field-lang-menu');
+						while (menupopup.hasChildNodes()) {
+							menupopup.removeChild(menupopup.firstChild);
+						}
+						var langArr = Zotero.CachedLanguages.getLanguageList(this.item, fieldName, Zotero.CachedMultiFields.isMultiFieldName(fieldName));
+						for (var lang of langArr) {
+							var menuitem = document.createXULElement("menuitem");
+							menuitem.setAttribute("id", lang.tag);
+							menuitem.setAttribute("label", lang.nickname);
+			                menuitem.addEventListener('command', async () => {
+				                var val = this.item.getField(fieldName);
+				                this.item.setField(fieldName, val, null, lang.tag, true);
+                                if (!this.item.getField("language")) {
+				                    this.item.setField("language", lang.tag);
+                                }
+				
+				                if (this.saveOnEdit) {
+					                await this.item.saveTx();
+				                }
+			                });
+							menupopup.appendChild(menuitem);
+						}
+						this._popupNode = rowLabel;
+					    this._popupNode = rowLabel;
+					    menupopup.openPopup(rowLabel);
+			        };
+			        rowLabel.oncontextmenu = triggerPopup;
+				}
 				
 				// Add options button for title fields
 				if (this.editable && fieldID && (fieldName == 'seriesTitle' || fieldName == 'shortTitle'
@@ -747,7 +799,7 @@
 					rowData.appendChild(button);
 				}
 			}
-			
+
 			//
 			// Creators
 			//
@@ -2358,6 +2410,7 @@
 			var fields = {
 				lastName: label1.value.trim(),
 				firstName: label2.value.trim(),
+				multi: {_key:{}},
 				fieldMode: fieldMode ? parseInt(fieldMode) : 0,
 				creatorTypeID: parseInt(typeID),
 				position: position,

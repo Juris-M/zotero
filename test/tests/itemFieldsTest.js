@@ -27,8 +27,8 @@ describe("Zotero.ItemFields", function () {
 		
 		it("should return the base field id for an item type and base field when type has a base-mapped field", function () {
 			assert.equal(
-				Zotero.ItemFields.getBaseIDFromTypeAndField('hearing', 'number'),
-				Zotero.ItemFields.getID('number')
+				Zotero.ItemFields.getBaseIDFromTypeAndField('hearing', 'authority'),
+				Zotero.ItemFields.getID('authority')
 			);
 		});
 		

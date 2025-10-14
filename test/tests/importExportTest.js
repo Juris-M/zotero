@@ -39,7 +39,7 @@ describe("Import/Export", function () {
 			translation.setTranslator(translator);
 			translation.setDisplayOptions(displayOptions);
 			await translation.translate();
-			
+
 			// Parse exported file and look for dc:relation elements
 			var dp = new DOMParser();
 			var doc = dp.parseFromString(Zotero.File.getContents(file), 'text/xml');
@@ -307,7 +307,7 @@ describe("Import/Export", function () {
 			item2.addRelatedItem(item1);
 			await item1.saveTx();
 			await item2.saveTx();
-			
+
 			// Export
 			var file = OS.Path.join(await getTempDirectory(), 'export.json');
 			var translator = Zotero.Translators.get('bc03b4fe-436d-4a1f-ba59-de4d2d7a63f7');

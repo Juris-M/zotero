@@ -211,7 +211,7 @@ Zotero.FeedItem.prototype.translate = async function (libraryID, collectionID) {
 	const { RemoteTranslate } = ChromeUtils.import("chrome://zotero/content/RemoteTranslate.jsm");
 	const { HiddenBrowser } = ChromeUtils.import("chrome://zotero/content/HiddenBrowser.jsm");
 
-	Zotero.debug("Translating feed item " + this.id + " with URL " + this.getField('url'), 2);
+	Zotero.debug("Translating feed item " + this.id + " with URL " + this.getField('url'));
 	if (Zotero.locked) {
 		Zotero.debug('Zotero locked, skipping feed item translation');
 		return;
@@ -243,7 +243,7 @@ Zotero.FeedItem.prototype.translate = async function (libraryID, collectionID) {
 		let translators = await translate.detect();
 		if (!translators || !translators.length) {
 			Zotero.debug("No translators detected for feed item " + this.id + " with URL " + this.getField('url') + 
-				' -- cloning item instead', 2);
+				' -- cloning item instead', 1);
 			let item = await this.clone(libraryID, collectionID, browser);
 			progressWindow.Translation.itemDoneHandler()(null, null, item);
 			progressWindow.Translation.doneHandler(null, true);

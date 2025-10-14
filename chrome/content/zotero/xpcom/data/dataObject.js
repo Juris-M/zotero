@@ -1086,7 +1086,7 @@ Zotero.DataObject.prototype._finalizeSave = Zotero.Promise.coroutine(function* (
 		}
 		
 		if (toAdd.length) {
-			let sql = "INSERT INTO " + this._objectType + "Relations "
+			let sql = "INSERT OR IGNORE INTO " + this._objectType + "Relations "
 				+ "(" + this._ObjectsClass.idColumn + ", predicateID, object) VALUES ";
 			// Convert predicates to ids
 			for (let i = 0; i < toAdd.length; i++) {
