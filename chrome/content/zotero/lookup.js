@@ -40,8 +40,9 @@ var Zotero_Lookup = new function () {
 	 * @param textBox {HTMLElement} - Textbox containing identifiers
 	 * @param childItem {Zotero.Item|false} - Child item (optional)
 	 * @param toggleProgress {function} - Callback to toggle progress on/off
-	 * @returns {Promise<boolean>}
+	 * @returns {Promise<Zotero.Item[]>}
 	 */
+	this._button = null;
 	this.addItemsFromIdentifier = async function (textBox, childItem, toggleProgress) {
 		var identifiers = Zotero.Utilities.extractIdentifiers(textBox.value);
 		if (!identifiers.length) {
@@ -79,11 +80,28 @@ var Zotero_Lookup = new function () {
 			}
 		}
 
-		let newItems = false;
 		toggleProgress(true);
 
-		await Zotero.Promise.all(identifiers.map(async (identifier) => {
-			var translate = new Zotero.Translate.Search();
+		// Group PubMed IDs into batches of 200
+		//
+		// Up to 10,000 ids can apparently be passed in a single request, but 200 is the recommended
+		// limit for GET, which we currently use, and passing batches of 200 seems...fine.
+		//
+		// https://www.ncbi.nlm.nih.gov/books/NBK25499/#chapter4.id
+		if (identifiers.length && identifiers[0].PMID) {
+			let chunkSize = 200;
+			let newIdentifiers = [];
+			for (let i = 0; i < identifiers.length; i += chunkSize) {
+				newIdentifiers.push({
+					PMID: identifiers.slice(i, i + chunkSize).map(x => x.PMID)
+				});
+			}
+			identifiers = newIdentifiers;
+		}
+		
+		let newItems = [];
+		for (let identifier of identifiers) {
+			let translate = new Zotero.Translate.Search();
 			translate.setIdentifier(identifier);
 
 			// be lenient about translators
@@ -91,20 +109,20 @@ var Zotero_Lookup = new function () {
 			translate.setTranslator(translators);
 
 			try {
-				newItems = await translate.translate({
+				newItems.push(...await translate.translate({
 					libraryID,
 					collections,
 					saveAttachments: !childItem
-				});
+				}));
 			}
 			// Continue with other ids on failure
 			catch (e) {
 				Zotero.logError(e);
 			}
-		}));
+		}
 
 		toggleProgress(false);
-		if (!newItems) {
+		if (!newItems.length) {
 			Zotero.alert(
 				window,
 				Zotero.getString("lookup.failure.title"),
@@ -123,11 +141,14 @@ var Zotero_Lookup = new function () {
 		let newItems = await Zotero_Lookup.addItemsFromIdentifier(
 			textBox,
 			false,
-			on => Zotero_Lookup.toggleProgress(on)
+			on => Zotero_Lookup.setShowProgress(on)
 		);
 
-		if (newItems) {
+		if (newItems.length) {
+			// Send the focus to the item tree after the popup closes
+			ZoteroPane.lastFocusedElement = null;
 			document.getElementById("zotero-lookup-panel").hidePopup();
+			document.getElementById("item-tree-main-default").focus();
 		}
 		return false;
 	};
@@ -139,27 +160,38 @@ var Zotero_Lookup = new function () {
 		if (!button) {
 			button = document.getElementById("zotero-tb-lookup");
 		}
-		panel.openPopup(button, "after_start", 16, -2, false, false);
-	}
+		panel.openPopup(button, "after_start", 0, 0, false, false);
+	};
+	
+	this.onFocusOut = function (event) {
+		// If the lookup popup was triggered by the lookup button,
+		// we want to return there on focus out. So we check
+		// (1) that we came from a button and (2) that
+		// event.relatedTarget === null, i.e. that the user hasn't used
+		// the mouse or keyboard to select something, and focus is leaving
+		// the popup because the popup was hidden/dismissed.
+
+		if (this._button && event.relatedTarget === null) {
+			event.preventDefault();
+			event.stopPropagation();
+			this._button.focus();
+			this._button = null;
+		}
+		else {
+			this._button = null;
+		}
+	};
 	
 	
 	/**
 	 * Focuses the field
 	 */
-	this.onShowing = function (event) {
+	this.onShown = function (event) {
 		// Ignore context menu
 		if (event.originalTarget.id != 'zotero-lookup-panel') return;
 		
-		document.getElementById("zotero-lookup-panel").style.padding = "10px";
-		this.getActivePanel().getElementsByTagName('textbox')[0].focus();
-		
-		// Resize arrow box to fit content
-		if (Zotero.isMac) {
-			let panel = document.getElementById("zotero-lookup-panel");
-			let box = panel.firstChild;
-			panel.sizeTo(box.scrollWidth, box.scrollHeight);
-		}
-	}
+		this.getActivePanel().querySelector('textarea').focus();
+	};
 	
 	
 	/**
@@ -170,128 +202,102 @@ var Zotero_Lookup = new function () {
 		if (event.originalTarget.id != 'zotero-lookup-panel') return;
 		
 		document.getElementById("zotero-lookup-textbox").value = "";
-		document.getElementById("zotero-lookup-multiline-textbox").value = "";
-		Zotero_Lookup.toggleProgress(false);
+		Zotero_Lookup.setShowProgress(false);
 		
 		// Revert to single-line when closing
-		this.toggleMultiline(false);
-	}
+		this.setMultiline(false);
+	};
 	
 	
 	this.getActivePanel = function() {
-		var mlPanel = document.getElementById("zotero-lookup-multiline");
-		if (mlPanel.collapsed) return document.getElementById("zotero-lookup-singleLine");
-		return mlPanel;
-	}
+		return document.getElementById("zotero-lookup-multiline");
+	};
+	
+	
+	this.handleToolbarButtonMouseDown = function (event) {
+		var button = event.target;
+		if (button.disabled) {
+			event.preventDefault();
+			return;
+		}
+		this.showPanel(button);
+	};
 	
 	
 	/**
 	 * Handles a key press
 	 */
-	this.onKeyPress = function(event, textBox) {
+	this.onKeyPress = function (event, textBox) {
 		var keyCode = event.keyCode;
 		//use enter to start search, shift+enter to insert a new line. Flipped in multiline mode
-		var multiline = textBox.getAttribute('multiline');
+		var multiline = textBox.rows > 1;
 		var search = multiline ? event.shiftKey : !event.shiftKey;
-		if(keyCode === 13 || keyCode === 14) {
-			if(search) {
+		if (keyCode === 13 || keyCode === 14) {
+			if (search) {
 				Zotero_Lookup.accept(textBox);
-				event.stopImmediatePropagation();
-			} else if(!multiline) {	//switch to multiline
-				var mlTextbox = Zotero_Lookup.toggleMultiline(true);
-				mlTextbox.value = mlTextbox.value.trim() !== '' ? mlTextbox.value + '\n' : '';
+				event.preventDefault();
 			}
-		} else if(keyCode == event.DOM_VK_ESCAPE) {
+			else if (!multiline) {	// switch to multiline
+				Zotero_Lookup.setMultiline(true);
+			}
+		}
+		else if (keyCode == event.DOM_VK_ESCAPE) {
 			document.getElementById("zotero-lookup-panel").hidePopup();
 		}
-		return true;
-	}
-
-	this.onFocusOut = function(event) {
-		/*
-			if the lookup popup was triggered by the lookup button,
-			we want to return there on focus out. So we check 
-			(1) that we came from a button and (2) that
-			event.relatedTarget === null, i.e. that the user hasn't used
-			the mouse or keyboard to select something, and focus is leaving
-			the popup because the popup was hidden/dismissed.
-		*/
-		if (this._button && event.relatedTarget === null) {
-			event.preventDefault();
-			event.stopPropagation();
-			this._button.focus();
-			this._button = null;
-		} else {
-			this._button = null;
-		}
-	}
-	
-	
-	this.onInput = function (event, textbox) {
-		this.adjustTextbox(textbox);
 	};
 	
 	
-	/**
-	 * Converts the textbox to multiline if newlines are detected
-	 */
-	this.adjustTextbox = function (textbox) {
-		if (textbox.value.trim().match(/[\r\n]/)) {
-			Zotero_Lookup.toggleMultiline(true);
+	this.onInput = function (event, textBox) {
+		if (/[\r\n]/.test(textBox.value)) {
+			this.setMultiline(true);
 		}
-		// Since we ignore trailing and leading newlines, we should also trim them for display
-		// can't use trim, because then we cannot add leading/trailing spaces to the single line textbox
-		else {
-			textbox.value = textbox.value.replace(/^([ \t]*[\r\n]+[ \t]*)+|([ \t]*[\r\n]+[ \t]*)+$/g,"");
-		}
-	}
+	};
+	
+	this.onContextMenu = function (event, textBox) {
+		event.preventDefault();
+		let menu = goBuildEditContextMenu().cloneNode(true);
+		goUpdateGlobalEditMenuItems(true);
+		let pasteMenuitem = menu.querySelector("menuitem[data-action='paste']");
+		let pasteCommand = document.getElementById("cmd_paste");
+
+		let pasteAndSearchMenuitem = document.createXULElement("menuitem");
+		document.l10n.setAttributes(pasteAndSearchMenuitem, "text-action-paste-and-search");
+		pasteAndSearchMenuitem.disabled = pasteCommand.hasAttribute("disabled"); // no 'disabled' property
+		pasteAndSearchMenuitem.addEventListener("command", () => {
+			pasteCommand.doCommand();
+			this.accept(textBox);
+		});
+		pasteMenuitem.after(pasteAndSearchMenuitem);
+
+		document.querySelector("popupset").append(menu);
+		menu.addEventListener("popuphiding", () => menu.remove(),
+			{ once: true });
+		menu.openPopupAtScreen(event.screenX, event.screenY, true);
+	};
 	
 	
-	/**
-	 * Performs the switch to multiline textbox and returns that textbox
-	 */
-	this.toggleMultiline = function(on) {
-		var mlPanel = document.getElementById("zotero-lookup-multiline");
-		var mlTxtBox = document.getElementById("zotero-lookup-multiline-textbox");
-		var slPanel = document.getElementById("zotero-lookup-singleLine");
-		var slTxtBox = document.getElementById("zotero-lookup-textbox");
-		var source = on ? slTxtBox : mlTxtBox;
-		var dest = on ? mlTxtBox : slTxtBox;
+	this.setMultiline = function (on) {
+		var mlTxtBox = document.getElementById("zotero-lookup-textbox");
+		var mlButtons = document.getElementById('zotero-lookup-buttons');
 
-		//copy over the value
-		dest.value = source.value;
+		mlTxtBox.rows = on ? 5 : 1;
+		mlButtons.hidden = !on;
 
-		//switch textboxes
-		mlPanel.setAttribute("collapsed", !on);
-		slPanel.setAttribute("collapsed", !!on);
+		return mlTxtBox;
+	};
 
-		// Resize arrow box to fit content -- also done in onShowing()
-		if(Zotero.isMac) {
-			var panel = document.getElementById("zotero-lookup-panel");
-			var box = panel.firstChild;
-			panel.sizeTo(box.scrollWidth, box.scrollHeight);
-		}
-		
-		dest.focus();
-		return dest;
-	}
-
-	this.toggleProgress = function(on) {
+	this.setShowProgress = function (on) {
 		// In Firefox 52.6.0, progressmeters burn CPU at idle on Linux when undetermined, even
 		// if they're hidden. (Being hidden is enough on macOS.)
-		var mode = on ? 'undetermined' : 'determined';
 		
-		//single line
-		var txtBox = document.getElementById("zotero-lookup-textbox");
-		txtBox.style.opacity = on ? 0.5 : 1;
-		txtBox.disabled = !!on;
-		var p1 = document.getElementById("zotero-lookup-progress");
-		p1.mode = mode;
-
-		//multiline
-		document.getElementById("zotero-lookup-multiline-textbox").disabled = !!on;
-		var p2 = document.getElementById("zotero-lookup-multiline-progress");
-		p2.mode = mode;
-		p2.hidden = !on;
-	}
-}
+		document.getElementById("zotero-lookup-textbox").disabled = !!on;
+		var p = document.getElementById("zotero-lookup-multiline-progress");
+		if (on) {
+			p.removeAttribute('value');
+		}
+		else {
+			p.setAttribute('value', 0);
+		}
+		p.hidden = !on;
+	};
+};

@@ -18,8 +18,8 @@ describe("Zotero.File", function () {
 				OS.Path.join(getTestDataDirectory().path, "charsets", "windows1252.txt"),
 				"windows-1252"
 			);
-			assert.lengthOf(contents, 1);
-			assert.equal(contents, "\u00E9");
+			assert.lengthOf(contents, 3);
+			assert.equal(contents, "\u201C\u00E9\u201D");
 		})
 		
 		it("should handle a GBK character", function* () {
@@ -27,8 +27,8 @@ describe("Zotero.File", function () {
 				OS.Path.join(getTestDataDirectory().path, "charsets", "gbk.txt"),
 				"gbk"
 			);
-			assert.lengthOf(contents, 1);
-			assert.equal(contents, "\u4e02");
+			assert.lengthOf(contents, 9);
+			assert.equal(contents, "这是一个测试文件。");
 		})
 		
 		it("should handle an invalid character", function* () {
@@ -36,7 +36,7 @@ describe("Zotero.File", function () {
 				OS.Path.join(getTestDataDirectory().path, "charsets", "invalid.txt")
 			);
 			assert.lengthOf(contents, 3);
-			assert.equal(contents, "A\uFFFDB");
+			assert.equal(contents, "A" + Zotero.File.REPLACEMENT_CHARACTER + "B");
 		})
 		
 		it("should respect maxLength", function* () {
@@ -64,6 +64,17 @@ describe("Zotero.File", function () {
 			var contents = yield Zotero.File.getBinaryContentsAsync(
 				OS.Path.join(getTestDataDirectory().path, "test.png")
 			);
+			assert.isAbove(contents.length, magicPNG.length);
+			for (let i = 0; i < magicPNG.length; i++) {
+				assert.equal(magicPNG[i], contents.charCodeAt(i));
+			}
+		});
+		
+		it("should take a file:// URI", async function () {
+			var file = OS.Path.join(getTestDataDirectory().path, "test.png");
+			var uri = PathUtils.toFileURI(file);
+			
+			var contents = await Zotero.File.getBinaryContentsAsync(uri);
 			assert.isAbove(contents.length, magicPNG.length);
 			for (let i = 0; i < magicPNG.length; i++) {
 				assert.equal(magicPNG[i], contents.charCodeAt(i));
@@ -459,7 +470,7 @@ describe("Zotero.File", function () {
 
 		before(async function () {
 			// Real HTTP server
-			Components.utils.import("resource://zotero-unit/httpd.js");
+			var { HttpServer } = ChromeUtils.import("chrome://remote/content/server/HTTPD.jsm");;
 			port = 16213;
 			httpd = new HttpServer();
 			baseURL = `http://127.0.0.1:${port}`;
@@ -494,7 +505,8 @@ describe("Zotero.File", function () {
 
 		it("should concurrently download three large files", async function () {
 			const url = `${baseURL}/file1.txt`;
-
+			
+			var { ConcurrentCaller } = ChromeUtils.import("resource://zotero/concurrentCaller.js");
 			var caller = new ConcurrentCaller({
 				numConcurrent: 3,
 				Promise: Zotero.Promise,

@@ -76,12 +76,12 @@ Zotero.Sync.EventListeners.ChangeListener = new function () {
 					});
 				
 				if (storageSets.length) {
-					return Zotero.DB.executeTransaction(function* () {
-						yield Zotero.DB.queryAsync(
+					return Zotero.DB.executeTransaction(async function () {
+						await Zotero.DB.queryAsync(
 							syncSQL + Array(syncSets.length / 3).fill('(?, ?, ?)').join(', '),
 							syncSets
 						);
-						yield Zotero.DB.queryAsync(
+						await Zotero.DB.queryAsync(
 							storageSQL + Array(storageSets.length / 2).fill('(?, ?)').join(', '),
 							storageSets
 						);
@@ -245,8 +245,8 @@ Zotero.Sync.EventListeners.IdleListener = {
 	
 	register: function () {
 		Zotero.debug("Registering auto-sync idle observer");
-		var idleService = Components.classes["@mozilla.org/widget/idleservice;1"]
-				.getService(Components.interfaces.nsIIdleService);
+		var idleService = Components.classes["@mozilla.org/widget/useridleservice;1"]
+				.getService(Components.interfaces.nsIUserIdleService);
 		idleService.addIdleObserver(this, this._idleTimeout);
 		idleService.addIdleObserver(this._backObserver, this._backTimeout);
 	},
@@ -299,8 +299,8 @@ Zotero.Sync.EventListeners.IdleListener = {
 	
 	unregister: function () {
 		Zotero.debug("Unregistering auto-sync idle observer");
-		var idleService = Components.classes["@mozilla.org/widget/idleservice;1"]
-				.getService(Components.interfaces.nsIIdleService);
+		var idleService = Components.classes["@mozilla.org/widget/useridleservice;1"]
+				.getService(Components.interfaces.nsIUserIdleService);
 		idleService.removeIdleObserver(this, this._idleTimeout);
 		idleService.removeIdleObserver(this._backObserver, this._backTimeout);
 	}

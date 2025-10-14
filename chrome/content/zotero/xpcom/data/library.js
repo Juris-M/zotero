@@ -136,7 +136,7 @@ Zotero.defineProperty(Zotero.Library.prototype, 'libraryTypeID', {
 	get: function () {
 		switch (this._libraryType) {
 		case 'user':
-			return Zotero.Users.getCurrentUserID();
+			return Zotero.Users.getCurrentUserID() || 0;
 		
 		case 'group':
 			return Zotero.Groups.getGroupIDFromLibraryID(this._libraryID);
@@ -182,13 +182,13 @@ Zotero.defineProperty(Zotero.Library.prototype, 'name', {
 
 Zotero.defineProperty(Zotero.Library.prototype, 'treeViewID', {
 	get: function () {
-		return "L" + this._libraryID
+		return "L" + this._libraryID;
 	}
 });
 
 Zotero.defineProperty(Zotero.Library.prototype, 'treeViewImage', {
 	get: function () {
-		return "chrome://zotero/skin/treesource-library" + Zotero.hiDPISuffix + ".png";
+		return "chrome://zotero/skin/16/universal/library.svg";
 	}
 });
 
@@ -291,10 +291,12 @@ Zotero.Library.prototype._set = function(prop, val) {
 			if (newVal != val) {
 				throw new Error(`${prop} must be an integer (${typeof val} '${val}' given)`);
 			}
+			// Ensure that it is never decreasing, unless it is being set to -1
+			// by Reset File Sync History
+			if (val != -1 && val < this._libraryStorageVersion) {
+				throw new Error(prop + ' cannot decrease');
+			}
 			val = newVal;
-			
-			// Ensure that it is never decreasing
-			if (val < this._libraryStorageVersion) throw new Error(prop + ' cannot decrease');
 			break;
 		
 		case '_libraryLastSync':
@@ -462,9 +464,9 @@ Zotero.Library.prototype.save = Zotero.Promise.coroutine(function* (options) {
 		
 		// Create transaction
 		if (env.options.tx) {
-			return Zotero.DB.executeTransaction(function* () {
-				yield this._saveData(env);
-				yield this._finalizeSave(env);
+			return Zotero.DB.executeTransaction(async function () {
+				await this._saveData(env);
+				await this._finalizeSave(env);
 			}.bind(this), env.transactionOptions);
 		}
 		// Use existing transaction
@@ -598,9 +600,9 @@ Zotero.Library.prototype.erase = Zotero.Promise.coroutine(function* (options) {
 		env.notifierData = {};
 		
 		if (env.options.tx) {
-			yield Zotero.DB.executeTransaction(function* () {
-				yield this._eraseData(env);
-				yield this._finalizeErase(env);
+			yield Zotero.DB.executeTransaction(async function () {
+				await this._eraseData(env);
+				await this._finalizeErase(env);
 			}.bind(this), env.transactionOptions);
 		} else {
 			Zotero.DB.requireTransaction();
@@ -677,6 +679,25 @@ Zotero.Library.prototype._finalizeErase = Zotero.Promise.coroutine(function* (en
 	
 	this._disabled = true;
 });
+
+Zotero.Library.prototype.toResponseJSON = function (options = {}) {
+	let uri = Zotero.URI.getLibraryURI(this.libraryID);
+	return {
+		type: this.libraryType,
+		id: this.libraryTypeID,
+		name: this.name,
+		links: {
+			self: {
+				href: Zotero.URI.toAPIURL(uri, options.apiURL),
+				type: 'application/json'
+			},
+			alternate: Zotero.Users.getCurrentUserID() ? {
+				href: Zotero.URI.toWebURL(uri),
+				type: 'text/html'
+			} : undefined
+		}
+	};
+};
 
 Zotero.Library.prototype.hasCollections = function () {
 	if (this._hasCollections === null) {

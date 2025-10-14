@@ -38,6 +38,7 @@ Zotero.ItemFields = new function() {
 	var _typeFieldIDsByBase = {};
 	var _typeFieldNamesByBase = {};
 	var _baseFieldIDsByTypeAndField = {};
+	var _autocompleteFields = null;
 	
 	// Privileged methods
 	this.getName = getName;
@@ -76,11 +77,9 @@ Zotero.ItemFields = new function() {
 		var baseFields = yield Zotero.DB.columnQueryAsync(sql);
 		
 		for (let field of fields) {
-			let isBaseField = baseFields.includes(field.fieldID);
 			let label = field.label || Zotero.Schema.globalSchemaLocale.fields[field.fieldName];
-			// If string not available, use the field name, except for some base fields that aren't
-			// used in the UI and therefore aren't localized
-			if (!label && !['number', 'type', 'medium'].includes(field.fieldName)) {
+			// If string not available, use the field name
+			if (!label) {
 				Zotero.logError(`Localized string not available for field '${field.fieldName}'`);
 				label = Zotero.Utilities.Internal.camelToTitleCase(field.fieldName);
 			}
@@ -156,6 +155,8 @@ Zotero.ItemFields = new function() {
 			case 'dateModified':
 			case 'itemType':
 				return Zotero.Schema.globalSchemaLocale.fields[field];
+			case 'feed':
+				return Zotero.getString('itemFields.feed');
 		}
 		
 		// Hack in alternate field labels for spoofed types
@@ -326,6 +327,7 @@ Zotero.ItemFields = new function() {
 	 * 'audioRecording' and 'label' returns publisher's fieldID
 	 * 'book' and 'publisher' returns publisher's fieldID
 	 * 'audioRecording' and 'runningTime' returns false
+	 * 'note' and 'runningTime' returns false
 	 *
 	 * Accepts names or ids
 	 */
@@ -339,12 +341,8 @@ Zotero.ItemFields = new function() {
 		
 		_fieldCheck(typeField);
 		
-		if (!this.isValidForType(typeFieldID, itemTypeID)) {
-			throw new Error("'" + typeField + "' is not a valid field for '" + itemType + "'");
-		}
-		
 		// If typeField is already a base field, just return that
-		if (this.isBaseField(typeFieldID)) {
+		if (_baseTypeFields[itemTypeID][typeFieldID]) {
 			return typeFieldID;
 		}
 		
@@ -381,50 +379,43 @@ Zotero.ItemFields = new function() {
 			return false;
 		}
 		
-		var autoCompleteFields = [
-			'journalAbbreviation',
-			'series',
-			'seriesTitle',
-			'seriesText',
-			'libraryCatalog',
-			'callNumber',
-			'archive',
-			'archiveLocation',
-			'language',
-			'programmingLanguage',
-			'rights',
-			
-			// TEMP - NSF
-			'programDirector',
-			'institution',
-			'discipline'
-		];
-		
-		// Add the type-specific versions of these base fields
-		var baseACFields = ['publisher', 'publicationTitle', 'type', 'medium', 'place'];
-		autoCompleteFields = autoCompleteFields.concat(baseACFields);
-		
-		for (var i=0; i<baseACFields.length; i++) {
-			var add = Zotero.ItemFields.getTypeFieldsFromBase(baseACFields[i], true)
-			autoCompleteFields = autoCompleteFields.concat(add);
+		if (!_autocompleteFields) {
+			_autocompleteFields = new Set([
+				'journalAbbreviation',
+				'series',
+				'seriesTitle',
+				'seriesText',
+				'libraryCatalog',
+				'callNumber',
+				'archive',
+				'archiveLocation',
+				'language',
+				'programmingLanguage',
+				'rights',
+
+				// TEMP - NSF
+				'programDirector',
+				'institution',
+				'discipline'
+			]);
+
+			// Add the type-specific versions of base fields
+			for (let baseField of ['publisher', 'publicationTitle', 'type', 'medium', 'place']) {
+				_autocompleteFields.add(baseField);
+				for (let typeField of Zotero.ItemFields.getTypeFieldsFromBase(baseField, true)) {
+					_autocompleteFields.add(typeField);
+				}
+			}
 		}
 		
-		return autoCompleteFields.includes(fieldName);
+		return _autocompleteFields.has(fieldName);
 	}
 	
 	
-	/**
-	 * A long field expands into a multiline textbox while editing; newlines are not allowed
-	 */
-	this.isLong = function (field) {
-		field = this.getName(field);
-		var fields = [
-			'title',
-			...this.getTypeFieldsFromBase('title', true),
-			'bookTitle'
-		];
-		return fields.indexOf(field) != -1;
-	}
+	this.isLong = function () {
+		Zotero.warn('Zotero.ItemFields.isLong() is deprecated -- update your code');
+		return true;
+	};
 	
 	
 	/**
@@ -443,6 +434,83 @@ Zotero.ItemFields = new function() {
 	}
 	
 	
+	/**
+	 * Guess the text direction of a field, using the item's language field if available.
+	 *
+	 * @param {number} itemTypeID
+	 * @param {string | number} field
+	 * @param {string} [itemLanguage]
+	 * @returns {'auto' | 'ltr' | 'rtl'}
+	 */
+	this.getDirection = function (itemTypeID, field, itemLanguage) {
+		// Collection in trash
+		if (!itemTypeID) {
+			return Zotero.dir;
+		}
+		// Date fields: follow app locale
+		switch (field) {
+			case 'dateAdded':
+			case 'dateModified':
+			case 'accessDate':
+				return Zotero.dir;
+		}
+		
+		var fieldName = this.getName(field);
+		if (fieldName) {
+			let baseField = this.getBaseIDFromTypeAndField(itemTypeID, fieldName);
+			if (baseField) {
+				fieldName = this.getName(baseField);
+			}
+		}
+		switch (fieldName) {
+			// Certain fields containing IDs, numbers, and data: always LTR
+			case 'ISBN':
+			case 'ISSN':
+			case 'DOI':
+			case 'url':
+			case 'callNumber':
+			case 'volume':
+			case 'numberOfVolumes':
+			case 'issue':
+			case 'runningTime':
+			case 'number':
+			case 'versionNumber':
+			case 'applicationNumber':
+			case 'priorityNumbers':
+			case 'codeNumber':
+			case 'pages':
+			case 'numPages':
+			case 'seriesNumber':
+			case 'edition':
+			case 'citationKey':
+			case 'language':
+			case 'extra':
+				return 'ltr';
+			
+			// Everything else (including false): guess based on the language if we have one;
+			// otherwise auto
+			default:
+				if (itemLanguage) {
+					let languageCode = Zotero.Utilities.Item.languageToISO6391(itemLanguage);
+					try {
+						let locale = new Intl.Locale(languageCode).maximize();
+						// https://www.w3.org/International/questions/qa-scripts#directions
+						// TODO: Remove this once Fx supports Intl.Locale#getTextInfo()
+						if (['Adlm', 'Arab', 'Aran', 'Rohg', 'Hebr', 'Mand', 'Mend', 'Nkoo', 'Hung', 'Samr', 'Syrc', 'Thaa', 'Yezi']
+								.includes(locale.script)) {
+							return 'rtl';
+						}
+					}
+					catch (e) {
+						Zotero.logError(e);
+					}
+					return 'ltr';
+				}
+				return 'auto';
+		}
+	};
+
+
 	/**
 	* Check whether a field is valid, throwing an exception if not
 	* (since it should never actually happen)

@@ -902,5 +902,36 @@ Zotero.DataObjectUtilities = {
 				throw new Error("Unexpected change operation '" + c.op + "'");
 			}
 		}
+	},
+
+	/**
+	 * Methods shared by Zotero.Item, Zotero.Search and Zotero.Collection to allow
+	 * collections and saved searches to "pretend" to be items in itemTree of the trash.
+	 * Most of these are overriden by Zotero.Item.
+	 */
+	itemTreeMockProperties: {
+		isAnnotation: () => false,
+		isNote: () => false,
+		numNotes: () => 0,
+		isAttachment: () => false,
+		numAttachments: () => false,
+		getItemsListTags: () => [],
+		isRegularItem: () => false, // Should be false to prevent items dropped into deleted searches
+		getNotes: () => [],
+		getAttachments: () => [],
+		isFileAttachment: () => false,
+		isTopLevelItem: () => false,
+		getField: function (field, _) {
+			return this['_' + field] || "";
+		},
+		getDisplayTitle: function () {
+			return this.name;
+		},
+		getBestAttachment: async function () {
+			return false;
+		},
+		getBestAttachments: async function () {
+			return false;
+		}
 	}
 };

@@ -75,7 +75,7 @@ Zotero.DBConnection = function(dbNameOrPath) {
 	
 	// Absolute path to DB
 	if (dbNameOrPath.startsWith('/') || (Zotero.isWin && dbNameOrPath.includes('\\'))) {
-		this._dbName = OS.Path.basename(dbNameOrPath).replace(/\.sqlite$/, '');
+		this._dbName = PathUtils.filename(dbNameOrPath).replace(/\.sqlite$/, '');
 		this._dbPath = dbNameOrPath;
 		this._externalDB = true;
 	}
@@ -418,12 +418,14 @@ Zotero.DBConnection.prototype.getNextName = async function (libraryID, table, fi
 /**
  * @param {Function} func - Async function containing `await Zotero.DB.queryAsync()` and similar
  * @param {Object} [options]
- * @param {Boolean} [options.disableForeignKeys] - Disable foreign key constraints before
- *    transaction and re-enable after. (`PRAGMA foreign_keys=0|1` is a no-op during a transaction.)
+ * @param {Boolean} [options.disableForeignKeys] - Disable foreign key checks before the
+ *    transaction and re-enable after, while preventing any other queries from running.
+ *    `queryAsync()` and similar within `func` must pass `ignoreDBLock: true` or they'll hang.
+ *    (`PRAGMA foreign_keys=OFF|ON` is a no-op during a transaction, so it can't just be set within
+ *    the function.)
  * @return {Promise} - Promise for result of generator function
  */
-Zotero.DBConnection.prototype.executeTransaction = async function (func, options) {
-	options = options || {};
+Zotero.DBConnection.prototype.executeTransaction = async function (func, options = {}) {
 	var resolve;
 	
 	// Set temporary options for this transaction that will be reset at the end
@@ -461,27 +463,48 @@ Zotero.DBConnection.prototype.executeTransaction = async function (func, options
 			}
 		}
 		
-		if (options.disableForeignKeys) {
-			await this.queryAsync("PRAGMA foreign_keys = 0");
+		let result;
+		let resolveDBLockPromise;
+		try {
+			let conn = this._getConnection(options) || (await this._getConnectionAsync(options));
+			
+			if (func.constructor.name == 'GeneratorFunction') {
+				throw new Error("Zotero.DB.executeTransaction() no longer takes a generator function "
+					+ "-- pass an async function instead");
+			}
+			
+			if (options.disableForeignKeys) {
+				this._dbLockPromise = new Promise(function () {
+					resolveDBLockPromise = arguments[0];
+				});
+				await this.queryAsync("PRAGMA foreign_keys=OFF", [], { ignoreDBLock: true });
+			}
+			
+			result = await conn.executeTransaction(func);
+			Zotero.debug(`Committed DB transaction ${id}`, 4);
 		}
-		
-		var conn = this._getConnection(options) || (await this._getConnectionAsync(options));
-		var result = await conn.executeTransaction(func);
-		Zotero.debug(`Committed DB transaction ${id}`, 4);
+		finally {
+			if (options.disableForeignKeys) {
+				await this.queryAsync("PRAGMA foreign_keys=ON", [], { ignoreDBLock: true });
+				if (resolveDBLockPromise) {
+					resolveDBLockPromise();
+					this._dbLockPromise = undefined;
+				}
+			}
+		}
 		
 		// Clear transaction time
 		if (this._transactionDate) {
 			this._transactionDate = null;
 		}
 		
+		this._transactionID = null;
+		
 		if (options.vacuumOnCommit) {
 			Zotero.debug('Vacuuming database');
 			await this.queryAsync('VACUUM');
 			Zotero.debug('Done vacuuming');
-			
 		}
-		
-		this._transactionID = null;
 		
 		// Function to run once transaction has been committed but before any
 		// permanent callbacks
@@ -539,10 +562,6 @@ Zotero.DBConnection.prototype.executeTransaction = async function (func, options
 		throw e;
 	}
 	finally {
-		if (options.disableForeignKeys) {
-			await this.queryAsync("PRAGMA foreign_keys = 1");
-		}
-		
 		// Reset options back to their previous values
 		if (options) {
 			for (let option in options) {
@@ -590,13 +609,19 @@ Zotero.DBConnection.prototype.requireTransaction = function () {
  *                         rows are Proxy objects that return values from the
  *                         underlying mozIStorageRows based on column names.
  */
-Zotero.DBConnection.prototype.queryAsync = async function (sql, params, options) {
+Zotero.DBConnection.prototype.queryAsync = async function (sql, params, options = {}) {
 	try {
 		let onRow = null;
 		let conn = this._getConnection(options) || (await this._getConnectionAsync(options));
 		if (!options || !options.noParseParams) {
 			[sql, params] = this.parseQueryAndParams(sql, params);
 		}
+		
+		if (this._dbLockPromise && !options.ignoreDBLock) {
+			Zotero.debug(`Waiting for DB lock to be released: ${sql}`, 2);
+			await this._dbLockPromise;
+		}
+		
 		if (Zotero.Debug.enabled) {
 			this.logQuery(sql, params, options);
 		}
@@ -712,6 +737,12 @@ Zotero.DBConnection.prototype.valueQueryAsync = async function (sql, params, opt
 	try {
 		let conn = this._getConnection(options) || (await this._getConnectionAsync(options));
 		[sql, params] = this.parseQueryAndParams(sql, params);
+		
+		if (this._dbLockPromise && !options.ignoreDBLock) {
+			Zotero.debug(`Waiting for DB lock to be released: ${sql}`, 2);
+			await this._dbLockPromise;
+		}
+		
 		if (Zotero.Debug.enabled) {
 			this.logQuery(sql, params, options);
 		}
@@ -759,6 +790,12 @@ Zotero.DBConnection.prototype.columnQueryAsync = async function (sql, params, op
 	try {
 		let conn = this._getConnection(options) || (await this._getConnectionAsync(options));
 		[sql, params] = this.parseQueryAndParams(sql, params);
+		
+		if (this._dbLockPromise && !options.ignoreDBLock) {
+			Zotero.debug(`Waiting for DB lock to be released: ${sql}`, 2);
+			await this._dbLockPromise;
+		}
+		
 		if (Zotero.Debug.enabled) {
 			this.logQuery(sql, params, options);
 		}
@@ -1037,7 +1074,7 @@ Zotero.DBConnection.prototype.backupDatabase = async function (suffix, force) {
 			}
 			catch (e) {
 				if (e.name == 'NS_ERROR_FILE_ACCESS_DENIED') {
-					alert("Cannot delete " + OS.Path.basename(tmpFile));
+					alert("Cannot delete " + PathUtils.filename(tmpFile));
 				}
 				throw (e);
 			}
@@ -1051,7 +1088,7 @@ Zotero.DBConnection.prototype.backupDatabase = async function (suffix, force) {
 			}
 			storageService.backupDatabaseFile(
 				Zotero.File.pathToFile(file),
-				OS.Path.basename(tmpFile),
+				PathUtils.filename(tmpFile),
 				Zotero.File.pathToFile(file).parent
 			);
 		}
@@ -1071,7 +1108,7 @@ Zotero.DBConnection.prototype.backupDatabase = async function (suffix, force) {
 		}
 		catch (e) {
 			Zotero.logError(e);
-			this._debug("Database file '" + OS.Path.basename(tmpFile) + "' can't be opened -- skipping backup");
+			this._debug("Database file '" + PathUtils.filename(tmpFile) + "' can't be opened -- skipping backup");
 			if (await OS.File.exists(tmpFile)) {
 				await OS.File.remove(tmpFile);
 			}
@@ -1109,8 +1146,8 @@ Zotero.DBConnection.prototype.backupDatabase = async function (suffix, force) {
 					continue;
 				}
 				
-				Zotero.debug("Moving " + OS.Path.basename(sourceFile)
-					+ " to " + OS.Path.basename(targetFile));
+				Zotero.debug("Moving " + PathUtils.filename(sourceFile)
+					+ " to " + PathUtils.filename(targetFile));
 				await OS.File.move(sourceFile, targetFile);
 			}
 		}
@@ -1123,7 +1160,7 @@ Zotero.DBConnection.prototype.backupDatabase = async function (suffix, force) {
 		}
 		
 		await OS.File.move(tmpFile, backupFile);
-		Zotero.debug("Backed up to " + OS.Path.basename(backupFile));
+		Zotero.debug("Backed up to " + PathUtils.filename(backupFile));
 		
 		return true;
 	}
@@ -1228,8 +1265,8 @@ Zotero.DBConnection.prototype._getConnectionAsync = async function (options) {
 		// Register idle observer for DB backup
 		Zotero.Schema.schemaUpdatePromise.then(() => {
 			Zotero.debug("Initializing DB backup idle observer");
-			var idleService = Components.classes["@mozilla.org/widget/idleservice;1"]
-				.getService(Components.interfaces.nsIIdleService);
+			var idleService = Components.classes["@mozilla.org/widget/useridleservice;1"]
+				.getService(Components.interfaces.nsIUserIdleService);
 			idleService.addIdleObserver(this, 300);
 		});
 	}
@@ -1245,7 +1282,7 @@ Zotero.DBConnection.prototype._checkException = async function (e) {
 	
 	const supportURL = 'https://zotero.org/support/kb/corrupted_database';
 	
-	var filename = OS.Path.basename(this._dbPath);
+	var filename = PathUtils.filename(this._dbPath);
 	// Skip backups
 	this._dbIsCorrupt = true;
 	
@@ -1304,7 +1341,7 @@ Zotero.DBConnection.prototype._checkException = async function (e) {
  */
 Zotero.DBConnection.prototype._handleCorruptionMarker = async function () {
 	var file = this._dbPath;
-	var fileName = OS.Path.basename(file);
+	var fileName = PathUtils.filename(file);
 	var backupFile = this._dbPath + '.bak';
 	var corruptMarker = this._dbPath + '.is.corrupt';
 	
@@ -1342,7 +1379,7 @@ Zotero.DBConnection.prototype._handleCorruptionMarker = async function () {
 				Zotero.getString('startupError', Zotero.appName),
 				Zotero.getString(
 					'db.dbCorruptedNoBackup',
-					[Zotero.appName, fileName, OS.Path.basename(damagedFile)]
+					[Zotero.appName, fileName, PathUtils.filename(damagedFile)]
 				)
 			);
 		}
@@ -1374,7 +1411,7 @@ Zotero.DBConnection.prototype._handleCorruptionMarker = async function () {
 			Zotero.getString('general.error'),
 			Zotero.getString(
 				'db.dbRestoreFailed',
-				[Zotero.appName, fileName, OS.Path.basename(damagedFile)]
+				[Zotero.appName, fileName, PathUtils.filename(damagedFile)]
 			)
 		);
 		
@@ -1417,7 +1454,7 @@ Zotero.DBConnection.prototype._handleCorruptionMarker = async function () {
 		Zotero.getString('general.warning'),
 		Zotero.getString(
 			'db.dbRestored',
-			[Zotero.appName, fileName, backupDate, backupTime, OS.Path.basename(damagedFile)]
+			[Zotero.appName, fileName, backupDate, backupTime, PathUtils.filename(damagedFile)]
 		) + '\n\n'
 		+ Zotero.getString('db.dbRestored.cloudStorage')
 	);

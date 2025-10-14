@@ -32,7 +32,6 @@ if (!Zotero.Sync) {
 // Initialized as Zotero.Sync.Runner in zotero.js
 Zotero.Sync.Runner_Module = function (options = {}) {
 	const stopOnError = false;
-	const HTML_NS = 'http://www.w3.org/1999/xhtml';
 	
 	Zotero.defineProperty(this, 'enabled', {
 		get: () => {
@@ -186,9 +185,6 @@ Zotero.Sync.Runner_Module = function (options = {}) {
 			
 			this.setSyncStatus(Zotero.getString('sync.status.preparing'));
 			
-			// Purge deleted objects so they don't cause sync errors (e.g., long tags)
-			yield Zotero.purgeDataObjects(true);
-			
 			let client = this.getAPIClient({ apiKey });
 			let keyInfo = yield this.checkAccess(client, options);
 			
@@ -234,7 +230,7 @@ Zotero.Sync.Runner_Module = function (options = {}) {
 					}
 				}.bind(this),
 				background: !!options.background,
-				firstInSession: _firstInSession,
+				firstInSession: options.firstInSession,
 				resetMode: options.resetMode
 			};
 			
@@ -387,7 +383,7 @@ Zotero.Sync.Runner_Module = function (options = {}) {
 					Zotero.getString('general.warning'),
 					Zotero.getString(
 							'account.warning.emptyLibrary',
-							[Zotero.clientName, OS.Path.basename(Zotero.DB.path)]
+							[Zotero.clientName, PathUtils.filename(Zotero.DB.path)]
 						) + "\n\n"
 						+ Zotero.getString(
 							'account.warning.emptyLibrary.dataWillBeDownloaded',
@@ -545,13 +541,6 @@ Zotero.Sync.Runner_Module = function (options = {}) {
 			let removedGroups = [];
 			let keptGroups = [];
 			
-			let ps = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]
-				.getService(Components.interfaces.nsIPromptService);
-			let buttonFlags = (ps.BUTTON_POS_0) * (ps.BUTTON_TITLE_IS_STRING)
-				+ (ps.BUTTON_POS_1) * (ps.BUTTON_TITLE_IS_STRING)
-				+ (ps.BUTTON_POS_2) * (ps.BUTTON_TITLE_IS_STRING)
-				+ ps.BUTTON_DELAY_ENABLE;
-			
 			// Prompt for each group
 			//
 			// TODO: Localize
@@ -575,18 +564,16 @@ Zotero.Sync.Runner_Module = function (options = {}) {
 				msg += "\n\n" + "Would you like to remove it from this computer or keep it "
 					+ "as a read-only library?";
 				
-				let index = ps.confirmEx(
-					null,
-					"Group Not Found",
-					msg,
-					buttonFlags,
-					"Remove Group",
+				let index = Zotero.Prompt.confirm({
+					title: "Group Not Found",
+					text: msg,
+					button0: "Remove Group",
 					// TODO: Any way to have Esc trigger extra1 instead so it doesn't
 					// have to be in this order?
-					"Cancel Sync",
-					"Keep Group",
-					null, {}
-				);
+					button1: "Cancel Sync",
+					button2: "Keep Group",
+					buttonDelay: true,
+				});
 				
 				if (index == 0) {
 					removedGroups.push(group);
@@ -850,7 +837,6 @@ Zotero.Sync.Runner_Module = function (options = {}) {
 	},
 	
 	
-	// TODO: Call on API key change
 	this.resetStorageController = function (mode) {
 		delete _storageControllers[mode];
 	},
@@ -927,14 +913,25 @@ Zotero.Sync.Runner_Module = function (options = {}) {
 	}
 	
 	
-	this.end = Zotero.Promise.coroutine(function* (options) {
+	this.end = async function (options) {
 		_syncInProgress = false;
-		yield this.checkErrors(_errors, options);
+		await this.checkErrors(_errors, options);
 		if (!options.restartSync) {
 			this.updateIcons(_errors);
+			
+			// If foreground sync, trigger dialog button immediately for some errors
+			// (e.g., long tag fixer)
+			if (!options.background && _errors.length) {
+				if (_errors[0].dialogButtonImmediate) {
+					let maybePromise = _errors[0].dialogButtonCallback();
+					if (maybePromise && maybePromise.then) {
+						await maybePromise;
+					}
+				}
+			}
 		}
 		_errors = [];
-	});
+	};
 	
 	
 	/**
@@ -1159,8 +1156,7 @@ Zotero.Sync.Runner_Module = function (options = {}) {
 										.getService(Components.interfaces.nsIWindowMediator);
 							var win = wm.getMostRecentWindow("navigator:browser");
 							
-							var ps = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]
-										.getService(Components.interfaces.nsIPromptService);
+							var ps = Services.prompt;
 							var buttonFlags = (ps.BUTTON_POS_0) * (ps.BUTTON_TITLE_IS_STRING)
 												+ (ps.BUTTON_POS_1) * (ps.BUTTON_TITLE_CANCEL);
 							if (e.error == Zotero.Error.ERROR_API_KEY_NOT_SET) {
@@ -1215,67 +1211,60 @@ Zotero.Sync.Runner_Module = function (options = {}) {
 							   .getService(Components.interfaces.nsIWindowMediator);
 							var lastWin = wm.getMostRecentWindow("navigator:browser");
 							
-							// Open long tag fixer for every long tag in every editable library we're syncing
-							var editableLibraries = options.libraries
-								.filter(x => Zotero.Libraries.get(x).editable);
-							for (let libraryID of editableLibraries) {
-								let oldTagIDs = yield Zotero.Tags.getLongTagsInLibrary(libraryID);
-								for (let oldTagID of oldTagIDs) {
-									let oldTag = Zotero.Tags.getName(oldTagID);
-									let dataOut = { result: null };
-									lastWin.openDialog(
-										'chrome://zotero/content/longTagFixer.xul',
-										'',
-										'chrome,modal,centerscreen',
-										oldTag,
-										dataOut
-									);
-									// If dialog was cancelled, stop
-									if (!dataOut.result) {
-										return;
-									}
-									switch (dataOut.result.op) {
+							// Open long tag fixer for library we're syncing
+							let oldTagIDs = yield Zotero.Tags.getLongTagsInLibrary(object.libraryID);
+							
+							for (let oldTagID of oldTagIDs) {
+								let oldTag = Zotero.Tags.getName(oldTagID);
+								let dataOut = { result: null };
+								lastWin.openDialog(
+									'chrome://zotero/content/longTagFixer.xhtml',
+									'',
+									'chrome,modal,centerscreen',
+									{ oldTag, isLongTag: true },
+									dataOut
+								);
+								// If dialog was cancelled, stop
+								if (!dataOut.result) {
+									return;
+								}
+								const itemIDs = yield Zotero.Tags.getTagItems(object.libraryID, oldTagID);
+
+								switch (dataOut.result.op) {
 									case 'split':
-										for (let libraryID of editableLibraries) {
-											let itemIDs = yield Zotero.Tags.getTagItems(libraryID, oldTagID);
-											yield Zotero.DB.executeTransaction(function* () {
-												for (let itemID of itemIDs) {
-													let item = yield Zotero.Items.getAsync(itemID);
-													for (let tag of dataOut.result.tags) {
-														item.addTag(tag);
-													}
-													item.removeTag(oldTag);
-													yield item.save();
+										yield Zotero.DB.executeTransaction(async function () {
+											for (let itemID of itemIDs) {
+												let item = await Zotero.Items.getAsync(itemID);
+												let tagType = item.getTagType(oldTag);
+												for (let tag of dataOut.result.tags) {
+													item.addTag(tag, tagType);
 												}
-												yield Zotero.Tags.purge(oldTagID);
-											});
-										}
+												item.removeTag(oldTag);
+												await item.save();
+											}
+											await Zotero.Tags.purge(oldTagID);
+										});
 										break;
 									
 									case 'edit':
-										for (let libraryID of editableLibraries) {
-											let itemIDs = yield Zotero.Tags.getTagItems(libraryID, oldTagID);
-											yield Zotero.DB.executeTransaction(function* () {
-												for (let itemID of itemIDs) {
-													let item = yield Zotero.Items.getAsync(itemID);
-													item.replaceTag(oldTag, dataOut.result.tag);
-													yield item.save();
-												}
-											});
-										}
+										yield Zotero.DB.executeTransaction(async function () {
+											for (let itemID of itemIDs) {
+												let item = await Zotero.Items.getAsync(itemID);
+												item.replaceTag(oldTag, dataOut.result.tag);
+												await item.save();
+											}
+										});
 										break;
 									
 									case 'delete':
-										for (let libraryID of editableLibraries) {
-											yield Zotero.Tags.removeFromLibrary(libraryID, oldTagID);
-										}
+										yield Zotero.Tags.removeFromLibrary(object.libraryID, oldTagID);
 										break;
-									}
 								}
 							}
 							
 							options.restartSync = true;
 						});
+						e.dialogButtonImmediate = true;
 					}
 					else {
 						// Note too long
@@ -1319,14 +1308,6 @@ Zotero.Sync.Runner_Module = function (options = {}) {
 						};
 					}
 				}
-				
-				// If not a background sync, show dialog immediately
-				if (!options.background && e.dialogButtonCallback) {
-					let maybePromise = e.dialogButtonCallback();
-					if (maybePromise && maybePromise.then) {
-						yield maybePromise;
-					}
-				}
 			}
 		}
 		// Show warning for unknown data that couldn't be saved
@@ -1348,7 +1329,7 @@ Zotero.Sync.Runner_Module = function (options = {}) {
 				e.errorType = 'warning';
 				e.dialogButtonText = Zotero.getString('general.checkForUpdates');
 				e.dialogButtonCallback = () => {
-					Zotero.openCheckForUpdatesWindow();
+					Zotero.openCheckForUpdatesWindow({ modal: true });
 				};
 				e.dialogButton2Text = Zotero.getString('general.moreInformation');
 				e.dialogButton2Callback = () => {
@@ -1423,17 +1404,11 @@ Zotero.Sync.Runner_Module = function (options = {}) {
 			
 			// Update sync icon
 			var syncIcon = doc.getElementById('zotero-tb-sync');
-			var stopIcon = doc.getElementById('zotero-tb-sync-stop');
 			if (state == 'animate') {
 				syncIcon.setAttribute('status', state);
-				// Disable button while spinning
-				syncIcon.disabled = true;
-				stopIcon.hidden = false;
 			}
 			else {
 				syncIcon.removeAttribute('status');
-				syncIcon.disabled = false;
-				stopIcon.hidden = true;
 			}
 		}
 		
@@ -1502,8 +1477,8 @@ Zotero.Sync.Runner_Module = function (options = {}) {
 		}
 		
 		for (let [index, e] of errors.entries()) {
-			var box = doc.createElement('vbox');
-			var label = doc.createElement('label');
+			var box = doc.createXULElement('vbox');
+			var label = doc.createXULElement('label');
 			if (e.libraryID !== undefined) {
 				label.className = "zotero-sync-error-panel-library-name";
 				if (e.libraryID == 0) {
@@ -1515,16 +1490,17 @@ Zotero.Sync.Runner_Module = function (options = {}) {
 				}
 				label.setAttribute('value', libraryName);
 			}
-			var content = doc.createElement('vbox');
-			var buttons = doc.createElement('hbox');
+			var content = doc.createXULElement('vbox');
+			var buttons = doc.createXULElement('hbox');
 			buttons.pack = 'end';
 			box.appendChild(label);
 			box.appendChild(content);
 			box.appendChild(buttons);
 			
 			if (e.dialogHeader) {
-				let header = doc.createElement('description');
+				let header = doc.createXULElement('description');
 				header.className = 'error-header';
+				header.setAttribute("control", `zotero-sync-error-panel-button-${index}`);
 				header.textContent = e.dialogHeader;
 				header.setAttribute("control", `zotero-sync-error-panel-button-${index}`);
 				content.appendChild(header);
@@ -1543,13 +1519,14 @@ Zotero.Sync.Runner_Module = function (options = {}) {
 				msg = e.message;
 			}
 			
-			var desc = doc.createElement('description');
+			var desc = doc.createXULElement('description');
 			desc.textContent = msg;
 			desc.setAttribute("control", `zotero-sync-error-panel-button-${index}`);
 			// Make the text selectable
 			desc.setAttribute('style', '-moz-user-select: text; cursor: text');
 			content.appendChild(desc);
-			
+			desc.setAttribute("control", `zotero-sync-error-panel-button-${index}`);
+
 			/*// If not an error and there's no explicit button text, don't show
 			// button to report errors
 			if (e.errorType != 'error' && e.dialogButtonText === undefined) {
@@ -1568,6 +1545,7 @@ Zotero.Sync.Runner_Module = function (options = {}) {
 					var buttonCallback = e.dialogButtonCallback;
 				}
 
+				// eslint-disable-next-line no-inner-declarations
 				function addEventHandlers(button, cb) {
 					button.addEventListener("click", () => {
 						cb();
@@ -1580,12 +1558,10 @@ Zotero.Sync.Runner_Module = function (options = {}) {
 						panel.hidePopup();
 					});
 				}
-
-
 				
-				let button = doc.createElement('button');
-				button.setAttribute("id", `zotero-sync-error-panel-button-${index}`);
+				let button = doc.createXULElement('button');
 				button.setAttribute('label', buttonText);
+				button.setAttribute("id", `zotero-sync-error-panel-button-${index}`);
 				addEventHandlers(button, buttonCallback);
 				buttons.appendChild(button);
 				
@@ -1594,10 +1570,10 @@ Zotero.Sync.Runner_Module = function (options = {}) {
 					buttonText = e.dialogButton2Text;
 					buttonCallback = e.dialogButton2Callback;
 					
-					let button2 = doc.createElement('button');
-					button2.setAttribute('label', buttonText);
+					let button2 = doc.createXULElement('button');
 					button2.setAttribute("id", `zotero-sync-error-panel-button-${index}`);
 					button.removeAttribute("id");
+					button2.setAttribute('label', buttonText);
 					addEventHandlers(button2, buttonCallback);
 					buttons.insertBefore(button2, button);
 				}
@@ -1611,6 +1587,53 @@ Zotero.Sync.Runner_Module = function (options = {}) {
 	}
 	
 	
+	this.alert = function (e) {
+		e = Zotero.Sync.Runner.parseError(e);
+		var ps = Services.prompt;
+		var buttonText = e.dialogButtonText;
+		var buttonCallback = e.dialogButtonCallback;
+		
+		if (e.errorType == 'warning' || e.errorType == 'error') {
+			let title = Zotero.getString('general.' + e.errorType);
+			// TODO: Display header in bold
+			let msg = (e.dialogHeader ? e.dialogHeader + '\n\n' : '') + e.message;
+			
+			if (e.errorType == 'warning' || buttonText === null) {
+				ps.alert(null, title, e.message);
+				return;
+			}
+			
+			if (!buttonText) {
+				buttonText = Zotero.getString('errorReport.reportError');
+				buttonCallback = function () {
+					Zotero.getActiveZoteroPane().reportErrors();
+				};
+			}
+			
+			let buttonFlags = ps.BUTTON_POS_0 * ps.BUTTON_TITLE_OK
+				+ ps.BUTTON_POS_1 * ps.BUTTON_TITLE_IS_STRING;
+			let index = ps.confirmEx(
+				null,
+				title,
+				msg,
+				buttonFlags,
+				"",
+				buttonText,
+				"", null, {}
+			);
+			
+			if (index == 1) {
+				setTimeout(buttonCallback, 1);
+			}
+		}
+		// Upgrade message
+		else if (e.errorType == 'upgrade') {
+			ps.alert(null, "", e.message);
+			return;
+		}
+	};
+	
+	
 	/**
 	 * Register labels in sync icon tooltip to receive updates
 	 *
@@ -1620,8 +1643,8 @@ Zotero.Sync.Runner_Module = function (options = {}) {
 	 */
 	this.registerSyncStatus = function (tooltip) {
 		if (tooltip) {
-			_currentSyncStatusLabel = tooltip.firstChild.nextSibling;
-			_currentLastSyncLabel = tooltip.firstChild.nextSibling.nextSibling;
+			_currentSyncStatusLabel = tooltip.querySelector('.sync-button-tooltip-status');
+			_currentLastSyncLabel = tooltip.querySelector('.sync-button-tooltip-last-sync');
 			_currentTooltipMessages = tooltip.querySelector('.sync-button-tooltip-messages');
 		}
 		else {
@@ -1654,6 +1677,7 @@ Zotero.Sync.Runner_Module = function (options = {}) {
 
 
 	this.deleteAPIKey = Zotero.Promise.coroutine(function* (){
+		this.resetStorageController('zfs');
 		var apiKey = yield Zotero.Sync.Data.Local.getAPIKey();
 		var client = this.getAPIClient({apiKey});
 		Zotero.Sync.Data.Local.setAPIKey();
@@ -1706,7 +1730,7 @@ Zotero.Sync.Runner_Module = function (options = {}) {
 		if (_tooltipMessages.length) {
 			_currentTooltipMessages.textContent = '';
 			for (let message of _tooltipMessages) {
-				let elem = _currentTooltipMessages.ownerDocument.createElementNS(HTML_NS, 'p');
+				let elem = _currentTooltipMessages.ownerDocument.createElement('p');
 				elem.textContent = message;
 				_currentTooltipMessages.appendChild(elem);
 			}

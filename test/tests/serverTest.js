@@ -1,7 +1,8 @@
 "use strict";
 
+Components.utils.import("resource://gre/modules/NetUtil.jsm");
+
 describe("Zotero.Server", function () {
-	Components.utils.import("resource://zotero-unit/httpd.js");
 	var serverPath;
 	
 	before(function* () {
@@ -288,6 +289,112 @@ describe("Zotero.Server", function () {
 					assert.equal(req.status, 204);
 				});
 			});
+			describe("application/pdf", function () {
+				it('should provide a stream', async function () {
+					let called = false;
+					let endpoint = "/test/" + Zotero.Utilities.randomString();
+					let file = getTestDataDirectory();
+					file.append('test.pdf');
+					let contents = await Zotero.File.getBinaryContentsAsync(file);
+
+					Zotero.Server.Endpoints[endpoint] = function () {};
+					Zotero.Server.Endpoints[endpoint].prototype = {
+						supportedMethods: ["POST"],
+						supportedDataTypes: ["application/pdf"],
+
+						init: function (options) {
+							called = true;
+							assert.isObject(options);
+							assert.property(options.headers, "Content-Type");
+							assert(options.headers["Content-Type"].startsWith("application/pdf"));
+							assert.isFunction(options.data.available);
+							let data = NetUtil.readInputStreamToString(options.data, options.headers['content-length']);
+							assert.equal(data, contents);
+
+							return 204;
+						}
+					};
+
+					let pdf = await File.createFromFileName(OS.Path.join(getTestDataDirectory().path, 'test.pdf'));
+
+					let req = await Zotero.HTTP.request(
+						"POST",
+						serverPath + endpoint,
+						{
+							headers: {
+								"Content-Type": "application/pdf",
+							},
+							body: pdf
+						}
+					);
+
+					assert.ok(called);
+					assert.equal(req.status, 204);
+				});
+
+				it('should decode UTF-8 quoted-printable encoded custom headers', async function () {
+					let called = false;
+					let endpoint = "/test/" + Zotero.Utilities.randomString();
+					let file = getTestDataDirectory();
+					file.append('test.pdf');
+
+					// Create RFC 2047 Q-encoded header value
+					let originalText = "Hello 🌐";
+					
+					// Convert to UTF-8 bytes then Q-encode
+					const utf8Bytes = new TextEncoder().encode(originalText);
+					let encoded = '';
+					
+					for (let byte of utf8Bytes) {
+						// Encode spaces as underscores, other special chars as =XX
+						if (byte === 32) { // space
+							encoded += '_';
+						}
+						else if (byte >= 33 && byte <= 126 && byte !== 61 && byte !== 63 && byte !== 95) {
+							// Printable ASCII except =, ?, _
+							encoded += String.fromCharCode(byte);
+						}
+						else {
+							encoded += '=' + byte.toString(16).toUpperCase().padStart(2, '0');
+						}
+					}
+					let rfc2047Header = `=?utf-8?Q?${encoded}?=`;
+
+					Zotero.Server.Endpoints[endpoint] = function () {};
+					Zotero.Server.Endpoints[endpoint].prototype = {
+						supportedMethods: ["POST"],
+						supportedDataTypes: ["application/pdf"],
+
+						init: function (options) {
+							called = true;
+							assert.isObject(options);
+							assert.property(options.headers, "custom-header");
+							// The encoded header should decode back to the original text
+							assert.equal(options.headers["custom-header"], originalText);
+
+							return 204;
+						}
+					};
+
+					let pdf = await File.createFromFileName(OS.Path.join(getTestDataDirectory().path, 'test.pdf'));
+
+					let req = await Zotero.HTTP.request(
+						"POST",
+						serverPath + endpoint,
+						{
+							headers: {
+								"Content-Type": "application/pdf",
+								// Use the dynamically created RFC 2047 Q-encoded header
+								"Custom-Header": rfc2047Header
+							},
+							body: pdf
+						}
+					);
+
+					assert.ok(called);
+					assert.equal(req.status, 204);
+				});
+			});
 		});
-	})
+	});
 });

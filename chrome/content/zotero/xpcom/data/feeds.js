@@ -118,8 +118,7 @@ Zotero.Feeds = new function() {
 	}
 
 	this.importFromOPML = Zotero.Promise.coroutine(function* (opmlString) {
-		var parser = Components.classes["@mozilla.org/xmlextras/domparser;1"]
-			.createInstance(Components.interfaces.nsIDOMParser);
+		var parser = new DOMParser();
 		var doc = parser.parseFromString(opmlString, "application/xml");
 		// Per some random spec (https://developer.mozilla.org/en-US/docs/Web/API/DOMParser), 
 		// DOMParser returns a special type of xml document on error, so we do some magic checking here.
@@ -146,9 +145,9 @@ Zotero.Feeds = new function() {
 			newFeeds.push(feed);
 		}
 		// This could potentially be a massive list, so we save in a transaction.
-		yield Zotero.DB.executeTransaction(function* () {
+		yield Zotero.DB.executeTransaction(async function () {
 			for (let feed of newFeeds) {
-				yield feed.save({
+				await feed.save({
 					skipSelect: true
 				});
 			}
@@ -254,6 +253,10 @@ Zotero.Feeds = new function() {
 		
 		return !!Object.keys(this._cache.urlByLibraryID).length
 	}
+	
+	this.totalUnreadCount = function () {
+		return this.getAll().reduce((prev, feed) => prev + feed.unreadCount, 0);
+	};
 
 	let globalFeedCheckDelay = Zotero.Promise.resolve();
 	this.scheduleNextFeedCheck = Zotero.Promise.coroutine(function* () {

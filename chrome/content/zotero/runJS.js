@@ -3,8 +3,8 @@ var sizes = ["normal", "larger", "largest"];
 function update() {
 	var isAsync = document.getElementById('run-as-async').checked;
 	var resultLabel = document.getElementById('result-label');
-	var val = isAsync ? 'Return value' : 'Result';
-	resultLabel.textContent = val + ':';
+	var type = isAsync ? 'async' : 'none';
+	resultLabel.setAttribute('data-l10n-args', `{"type":"${type}"}`);
 }
 
 async function run() {
@@ -16,6 +16,8 @@ async function run() {
 	var isAsync = document.getElementById('run-as-async').checked;
 	var result;
 	var resultTextbox = document.getElementById('result');
+	var spinner = document.getElementById("loading-spinner");
+	spinner.setAttribute("status", "animate");
 	try {
 		if (isAsync) {
 			code = '(async function () {' + code + '})()';
@@ -28,10 +30,27 @@ async function run() {
 	catch (e) {
 		resultTextbox.classList.add('error');
 		resultTextbox.textContent = e;
+		spinner.removeAttribute("status");
 		return;
 	}
+	// Hide the spinner after a small delay so it briefly appears even
+	// if the code runs fast to indicate that everything did run
+	setTimeout(() => {
+		spinner.removeAttribute("status");
+	}, 100);
+	
 	resultTextbox.classList.remove('error');
-	resultTextbox.textContent = typeof result == 'string' ? result : Zotero.Utilities.varDump(result);
+	if (typeof result == 'string') {
+		resultTextbox.textContent = result;
+	}
+	else if (result !== undefined) {
+		resultTextbox.textContent = Zotero.Utilities.varDump(result);
+	}
+	else {
+		// when nothing is returned, log undefined as the return value but
+		// for clarity also add a note that the JS run was successful
+		resultTextbox.textContent = `===>undefined<=== (${Zotero.getString("runJS-completed")})`;
+	}
 }
 
 // eslint-disable-next-line no-unused-vars
@@ -124,6 +143,7 @@ window.addEventListener("load", function (e) {
 		return;
 	}
 
+	MozXULElement.insertFTLIfNeeded("zotero.ftl");
 	var codeWin = document.getElementById("editor-code").contentWindow;
 	codeEditor = codeWin.editor;
 	var session = codeEditor.getSession();
@@ -132,9 +152,15 @@ window.addEventListener("load", function (e) {
 		// TODO: Enable if we modify to autocomplete from the Zotero API
 		//enableLiveAutocompletion: true,
 		highlightActiveLine: false,
-		showGutter: false,
-		theme: "ace/theme/chrome",
+		showGutter: false
 	});
 	codeEditor.on('input', handleInput);
 	codeEditor.focus();
+	
+	const isDarkMQL = window.matchMedia('(prefers-color-scheme: dark)');
+	isDarkMQL.addEventListener("change", (ev) => {
+		codeEditor.setOptions({
+			theme: ev.matches ? 'ace/theme/monokai' : 'ace/theme/chrome'
+		});
+	});
 }, false);

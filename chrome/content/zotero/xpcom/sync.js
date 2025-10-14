@@ -260,22 +260,15 @@ Zotero.Sync.Server = new function () {
 							}
 						}
 						
-						var ps = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]
-												.getService(Components.interfaces.nsIPromptService);
-						var buttonFlags = (ps.BUTTON_POS_0) * (ps.BUTTON_TITLE_IS_STRING)
-										+ (ps.BUTTON_POS_1) * (ps.BUTTON_TITLE_CANCEL)
-										+ ps.BUTTON_DELAY_ENABLE;
-						var index = ps.confirmEx(
-							null,
-							Zotero.getString('general.warning'),
-							Zotero.getString('sync.error.writeAccessLost', group.name) + "\n\n"
+						var index = Zotero.Prompt.confirm({
+							title: Zotero.getString('general.warning'),
+							text: Zotero.getString('sync.error.writeAccessLost', group.name) + "\n\n"
 								+ Zotero.getString('sync.error.groupWillBeReset') + "\n\n"
 								+ Zotero.getString('sync.error.copyChangedItems'),
-							buttonFlags,
-							Zotero.getString('sync.resetGroupAndSync'),
-							null, null, null, {}
-						);
-						
+							button0: Zotero.getString('sync.resetGroupAndSync'),
+							button1: Zotero.Prompt.BUTTON_TITLE_CANCEL,
+							buttonDelay: true
+						});
 						if (index == 0) {
 							group.erase();
 							Zotero.Sync.Server.resetClient();

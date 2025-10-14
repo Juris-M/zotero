@@ -23,58 +23,73 @@
     ***** END LICENSE BLOCK *****
 */
 
-"use strict";
+/* global Zotero_Lookup: false */
 
-var io;
-let createParent;
+const ZoteroCreateParentDialog = { // eslint-disable-line no-unused-vars
+	init() {
+		this.io = window.arguments[0];
 
-function toggleAccept(enabled) {
-	document.documentElement.getButton("accept").disabled = !enabled;
-}
+		this.inputEl = document.getElementById('parent-item-identifier');
+		this.progressEl = document.getElementById('progress');
+		this.acceptBtnEl = document.querySelector('dialog').getButton("accept");
+		this.manualEntryBtnEl = document.querySelector('dialog').getButton("extra2");
 
-function doLoad() {
-	// Set font size from pref
-	let sbc = document.getElementById('zotero-create-parent-container');
-	Zotero.setFontSize(sbc);
+		// Set font size from pref
+		Zotero.UIProperties.registerRoot(
+			document.getElementById('zotero-create-parent-container')
+		);
 
-	io = window.arguments[0];
+		this.inputEl.addEventListener('input', this.handleInput.bind(this));
+		document.addEventListener('dialogaccept', this.handleAcceptClick.bind(this));
+		document.addEventListener('dialogextra2', this.handleManualEntry.bind(this));
 
-	createParent = document.getElementById('create-parent');
-	Zotero.CreateParent.render(createParent, {
-		loading: false,
-		item: io.dataIn.item,
-		toggleAccept
-	});
-}
+		document.getElementById('title').textContent = this.io.dataIn.item.attachmentFilename;
+		this.inputEl.focus();
+	},
 
-function doUnload() {
-	Zotero.CreateParent.destroy(createParent);
-}
+	async performLookup() {
+		let newItems = await Zotero_Lookup.addItemsFromIdentifier(
+			this.inputEl,
+			this.io.dataIn.item,
+			this.handleStatusChange.bind(this)
+		);
 
-async function doAccept() {
-	let textBox = document.getElementById('parent-item-identifier');
-	let childItem = io.dataIn.item;
-	let newItems = await Zotero_Lookup.addItemsFromIdentifier(
-		textBox,
-		childItem,
-		(on) => {
-			// Render react again with correct loading value
-			Zotero.CreateParent.render(createParent, {
-				loading: on,
-				item: childItem,
-				toggleAccept
-			});
+		// If we successfully created a parent, return it
+		if (newItems.length) {
+			this.io.dataOut = { parent: newItems[0] };
+			window.close();
 		}
-	);
+	},
 
-	// If we successfully created a parent, return it
-	if (newItems) {
-		io.dataOut = { parent: newItems[0] };
+	handleInput(event) {
+		const input = event.target.value.trim();
+		this.acceptBtnEl.disabled = input === '';
+	},
+
+	handleStatusChange(isLookingUp)	{
+		this.inputEl.disabled = isLookingUp;
+		this.acceptBtnEl.disabled = isLookingUp;
+		this.manualEntryBtnEl.disabled = isLookingUp;
+		if (isLookingUp) {
+			this.progressEl.setAttribute("status", "animate");
+		}
+		else {
+			this.progressEl.removeAttribute("status");
+		}
+	},
+
+	handleAcceptClick(ev) {
+		ev.preventDefault();
+
+		if (this.inputEl.value.trim() === '') {
+			return;
+		}
+
+		this.performLookup();
+	},
+
+	handleManualEntry() {
+		this.io.dataOut = { parent: false };
 		window.close();
 	}
-}
-
-function doManualEntry() {
-	io.dataOut = { parent: false };
-	window.close();
-}
+};

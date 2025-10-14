@@ -25,7 +25,7 @@
 
 "use strict";
 
-import FilePicker from 'zotero/modules/filePicker';
+var { FilePicker } = ChromeUtils.importESModule('chrome://zotero/content/modules/filePicker.mjs');
 
 var React = require('react');
 var ReactDOM = require('react-dom');
@@ -34,47 +34,35 @@ var { makeRowRenderer } = VirtualizedTable;
 
 Zotero_Preferences.Cite = {
 	styles: [],
-	wordPluginIDs: new Set([
-		'zoteroOpenOfficeIntegration@zotero.org',
-		'zoteroMacWordIntegration@zotero.org',
-		'zoteroWinWordIntegration@zotero.org'
-	]),
-
-	init: Zotero.Promise.coroutine(function* () {
-		Components.utils.import("resource://gre/modules/AddonManager.jsm");
-		this.updateWordProcessorInstructions();
-		yield this.refreshStylesList();
-	}),
-	
-	
-	/**
-	 * Determines if any word processors are disabled and if so, shows a message in the pref pane
-	 */
-	updateWordProcessorInstructions: async function () {
-		var someDisabled = false;
-		await new Promise(function(resolve) {
-			AddonManager.getAllAddons(function(addons) {
-				for (let addon of addons) {
-					if (Zotero_Preferences.Cite.wordPluginIDs.has(addon.id) && addon.userDisabled) {
-						someDisabled = true;
-					}
-				}
-				resolve();
-			});
-		});
-		if (someDisabled) {
-			document.getElementById("wordProcessors-somePluginsDisabled").hidden = undefined;
-		}
+	wordPluginResourcePaths: {
+		libreOffice: 'zotero-libreoffice-integration',
+		macWord: 'zotero-macword-integration',
+		winWord: 'zotero-winword-integration'
 	},
-	
-	enableWordPlugins: function () {
-		AddonManager.getAllAddons(function(addons) {
-			for (let addon of addons) {
-				if (Zotero_Preferences.Cite.wordPluginIDs.has(addon.id) && addon.userDisabled) {
-					addon.userDisabled = false;
-				}
+
+	init: async function () {
+		// Init word plugin sections
+		let wordPlugins = [];
+		if (Zotero.isWin) {
+			wordPlugins.push('winWord');
+		}
+		else if (Zotero.isMac) {
+			wordPlugins.push('macWord');
+		}
+		wordPlugins.push('libreOffice');
+		await Zotero.Promise.delay();
+		for (let wordPlugin of wordPlugins) {
+			// This is the weirdest indirect code, but let's not fix what's not broken
+			try {
+				var installer = Components.utils.import(`resource://${this.wordPluginResourcePaths[wordPlugin]}/installer.jsm`).Installer;
+				(new installer(true)).showPreferences(document);
+			} catch(e) {
+				Zotero.logError(e);
 			}
-			return Zotero.Utilities.Internal.quit(true);
+		}
+		await this.refreshStylesList();
+		document.querySelector('#zotero-prefpane-cite').addEventListener('showing', () => {
+			this._tree.invalidate();
 		});
 	},
 	
@@ -116,23 +104,31 @@ Zotero_Preferences.Cite = {
 					return false;
 				}
 			};
-			let elem = (
-				<VirtualizedTable
-					getRowCount={() => this.styles.length}
-					id="styleManager-table"
-					ref={ref => this._tree = ref}
-					renderItem={makeRowRenderer(index => this.styles[index])}
-					showHeader={true}
-					multiSelect={true}
-					columns={columns}
-					staticColumns={true}
-					disableFontSizeScaling={true}
-					onSelectionChange={() => document.getElementById('styleManager-delete').disabled = undefined}
-					onKeyDown={handleKeyDown}
-					getRowString={index => this.styles[index].title}
-				/>
-			);
-			await new Promise(resolve => ReactDOM.render(elem, document.getElementById("styleManager"), resolve));
+
+			await new Promise((resolve) => {
+				ReactDOM.createRoot(document.getElementById("styleManager")).render(
+					<VirtualizedTable
+						getRowCount={() => this.styles.length}
+						id="styleManager-table"
+						ref={(ref) => {
+							this._tree = ref;
+							resolve();
+						}}
+						renderItem={makeRowRenderer(index => this.styles[index])}
+						showHeader={true}
+						multiSelect={true}
+						columns={columns}
+						staticColumns={true}
+						disableFontSizeScaling={true}
+						onSelectionChange={selection => document.getElementById('styleManager-delete').disabled = !selection.count}
+						onKeyDown={handleKeyDown}
+						getRowString={index => this.styles[index].title}
+					/>
+				);
+			});
+
+			// Fix style manager showing partially blank until scrolled
+			setTimeout(() => this._tree.invalidate());
 		}
 		else {
 			this._tree.invalidate();
@@ -144,23 +140,14 @@ Zotero_Preferences.Cite = {
 				this._tree.selection.select(index);
 			}
 		}
+		else if ([...this._tree.selection.selected].some(i => i >= this.styles.length)) {
+			this._tree.selection.clearSelection();
+		}
 	},
 	
 	
 	openStylesPage: function () {
-		Zotero.openInViewer("https://www.zotero.org/styles/", function (doc) {
-			// Hide header, intro paragraph, Link, and Source
-			//
-			// (The first two aren't sent to the client normally, but hide anyway in case they are.)
-			var style = doc.createElement('style');
-			style.type = 'text/css';
-			style.innerHTML = 'h1, #intro, .style-individual-link, .style-view-source { display: none !important; }'
-				// TEMP: Default UA styles that aren't being included in Firefox 60 for some reason
-				+ 'html { background: #fff; }'
-				+ 'a { color: rgb(0, 0, 238) !important; text-decoration: underline; }'
-				+ 'a:active { color: rgb(238, 0, 0) !important; }';
-			doc.getElementsByTagName('head')[0].appendChild(style);
-		});
+		Zotero.openInViewer("https://www.zotero.org/styles/");
 	},
 	
 	
@@ -212,8 +199,7 @@ Zotero_Preferences.Cite = {
 			var text = Zotero.getString('styles.deleteStyles');
 		}
 		
-		var ps = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]
-			.getService(Components.interfaces.nsIPromptService);
+		var ps = Services.prompt;
 		if(ps.confirm(null, '', text)) {
 			// delete if requested
 			if(cslIDs.length == 1) {
@@ -225,7 +211,6 @@ Zotero_Preferences.Cite = {
 			}
 			
 			yield this.refreshStylesList();
-			document.getElementById('styleManager-delete').disabled = true;
 		}
 	}),
 	

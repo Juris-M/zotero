@@ -132,7 +132,9 @@ Zotero.Schema = new function(){
 			Zotero.debug('Database does not exist -- creating\n');
 			return _initializeSchema()
 			.then(function() {
-				(Zotero.isStandalone ? Zotero.uiReadyPromise : Zotero.initializationPromise)
+				// Don't load bundled files until after UI is ready, unless this is a test run,
+				// in which case tests can run without a window open
+				(!Zotero.test ? Zotero.uiReadyPromise : Zotero.initializationPromise)
 				.delay(1000)
 				.then(async function () {
 					await this.updateBundledFiles();
@@ -378,9 +380,8 @@ Zotero.Schema = new function(){
 		// Reset sync queue tries if new version
 		await _checkClientVersion();
 		
-		// In Standalone, don't load bundled files until after UI is ready. In Firefox, load them as
-		// soon initialization is done so that translation works before the Zotero pane is opened.
-		(Zotero.isStandalone ? Zotero.uiReadyPromise : Zotero.initializationPromise)
+		// See above
+		(!Zotero.test ? Zotero.uiReadyPromise : Zotero.initializationPromise)
 		.then(() => {
 			setTimeout(async function () {
 				try {
@@ -433,7 +434,7 @@ Zotero.Schema = new function(){
 						}, 250);
 					}
 				}
-			}.bind(this), Zotero.isStandalone ? 1000 : 0);
+			}.bind(this), 1000);
 		});
 		
 		return updated;
@@ -685,9 +686,15 @@ Zotero.Schema = new function(){
 	
 	
 	this._updateGlobalSchemaForTest = async function (schema) {
-		await Zotero.DB.executeTransaction(async function () {
-			await _updateGlobalSchema(schema);
-		}.bind(this), { disableForeignKeys: true });
+		await Zotero.DB.queryAsync("PRAGMA foreign_keys=OFF");
+		try {
+			await Zotero.DB.executeTransaction(async function () {
+				await _updateGlobalSchema(schema);
+			});
+		}
+		finally {
+			await Zotero.DB.queryAsync("PRAGMA foreign_keys=ON");
+		}
 	};
 	
 	
@@ -799,8 +806,7 @@ Zotero.Schema = new function(){
 	// This is mostly temporary
 	// TEMP - NSF
 	this.importSchema = Zotero.Promise.coroutine(function* (str, uri) {
-		var ps = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]
-								.getService(Components.interfaces.nsIPromptService);
+		var ps = Services.prompt;
 		
 		if (!uri.match(/https?:\/\/([^\.]+\.)?zotero.org\//)) {
 			Zotero.debug("Ignoring schema file from non-zotero.org domain");
@@ -823,58 +829,64 @@ Zotero.Schema = new function(){
 			
 			var itemTypeID = Zotero.ID.get('customItemTypes');
 			
-			yield Zotero.DB.executeTransaction(function* () {
-				yield Zotero.DB.queryAsync("INSERT INTO customItemTypes VALUES (?, 'nsfReviewer', 'NSF Reviewer', 1, 'chrome://zotero/skin/report_user.png')", itemTypeID);
-				
-				var fields = [
-					['name', 'Name'],
-					['institution', 'Institution'],
-					['address', 'Address'],
-					['telephone', 'Telephone'],
-					['email', 'Email'],
-					['homepage', 'Webpage'],
-					['discipline', 'Discipline'],
-					['nsfID', 'NSF ID'],
-					['dateSent', 'Date Sent'],
-					['dateDue', 'Date Due'],
-					['accepted', 'Accepted'],
-					['programDirector', 'Program Director']
-				];
-				for (var i=0; i<fields.length; i++) {
-					var fieldID = Zotero.ItemFields.getID(fields[i][0]);
-					if (!fieldID) {
-						var fieldID = Zotero.ID.get('customFields');
-						yield Zotero.DB.queryAsync("INSERT INTO customFields VALUES (?, ?, ?)", [fieldID, fields[i][0], fields[i][1]]);
-						yield Zotero.DB.queryAsync("INSERT INTO customItemTypeFields VALUES (?, NULL, ?, 1, ?)", [itemTypeID, fieldID, i+1]);
-					}
-					else {
-						yield Zotero.DB.queryAsync("INSERT INTO customItemTypeFields VALUES (?, ?, NULL, 1, ?)", [itemTypeID, fieldID, i+1]);
+			yield Zotero.DB.queryAsync("PRAGMA foreign_keys=OFF");
+			try {
+				yield Zotero.DB.executeTransaction(async function () {
+					await Zotero.DB.queryAsync("INSERT INTO customItemTypes VALUES (?, 'nsfReviewer', 'NSF Reviewer', 1, 'chrome://zotero/skin/report_user.png')", itemTypeID);
+					
+					var fields = [
+						['name', 'Name'],
+						['institution', 'Institution'],
+						['address', 'Address'],
+						['telephone', 'Telephone'],
+						['email', 'Email'],
+						['homepage', 'Webpage'],
+						['discipline', 'Discipline'],
+						['nsfID', 'NSF ID'],
+						['dateSent', 'Date Sent'],
+						['dateDue', 'Date Due'],
+						['accepted', 'Accepted'],
+						['programDirector', 'Program Director']
+					];
+					for (var i=0; i<fields.length; i++) {
+						var fieldID = Zotero.ItemFields.getID(fields[i][0]);
+						if (!fieldID) {
+							var fieldID = Zotero.ID.get('customFields');
+							await Zotero.DB.queryAsync("INSERT INTO customFields VALUES (?, ?, ?)", [fieldID, fields[i][0], fields[i][1]]);
+							await Zotero.DB.queryAsync("INSERT INTO customItemTypeFields VALUES (?, NULL, ?, 1, ?)", [itemTypeID, fieldID, i+1]);
+						}
+						else {
+							await Zotero.DB.queryAsync("INSERT INTO customItemTypeFields VALUES (?, ?, NULL, 1, ?)", [itemTypeID, fieldID, i+1]);
+						}
+						
+						switch (fields[i][0]) {
+							case 'name':
+								var baseFieldID = Zotero.ItemFields.getID('title');
+								break;
+							
+							case 'dateSent':
+								var baseFieldID = Zotero.ItemFields.getID('date');
+								break;
+							
+							case 'homepage':
+								var baseFieldID = Zotero.ItemFields.getID('url');
+								break;
+							
+							default:
+								var baseFieldID = null;
+						}
+						
+						if (baseFieldID) {
+							await Zotero.DB.queryAsync("INSERT INTO customBaseFieldMappings VALUES (?, ?, ?)", [itemTypeID, baseFieldID, fieldID]);
+						}
 					}
 					
-					switch (fields[i][0]) {
-						case 'name':
-							var baseFieldID = Zotero.ItemFields.getID('title');
-							break;
-						
-						case 'dateSent':
-							var baseFieldID = Zotero.ItemFields.getID('date');
-							break;
-						
-						case 'homepage':
-							var baseFieldID = Zotero.ItemFields.getID('url');
-							break;
-						
-						default:
-							var baseFieldID = null;
-					}
-					
-					if (baseFieldID) {
-						yield Zotero.DB.queryAsync("INSERT INTO customBaseFieldMappings VALUES (?, ?, ?)", [itemTypeID, baseFieldID, fieldID]);
-					}
-				}
-				
-				yield _reloadSchema();
-			}, { disableForeignKeys: true });
+					await _reloadSchema();
+				});
+			}
+			finally {
+				yield Zotero.DB.queryAsync("PRAGMA foreign_keys=ON");
+			}
 			
 			var s = new Zotero.Search;
 			s.name = "Overdue NSF Reviewers";
@@ -904,26 +916,32 @@ Zotero.Schema = new function(){
 			}
 			
 			Zotero.debug("Uninstalling nsfReviewer item type");
-			yield Zotero.DB.executeTransaction(function* () {
-				yield Zotero.DB.queryAsync("DELETE FROM customItemTypeFields WHERE customItemTypeID=?", itemTypeID - Zotero.ItemTypes.customIDOffset);
-				yield Zotero.DB.queryAsync("DELETE FROM customBaseFieldMappings WHERE customItemTypeID=?", itemTypeID - Zotero.ItemTypes.customIDOffset);
-				var fields = Zotero.ItemFields.getItemTypeFields(itemTypeID);
-				for (let fieldID of fields) {
-					if (Zotero.ItemFields.isCustom(fieldID)) {
-						yield Zotero.DB.queryAsync("DELETE FROM customFields WHERE customFieldID=?", fieldID - Zotero.ItemTypes.customIDOffset);
+			yield Zotero.DB.queryAsync("PRAGMA foreign_keys=OFF");
+			try {
+				yield Zotero.DB.executeTransaction(async function () {
+					await Zotero.DB.queryAsync("DELETE FROM customItemTypeFields WHERE customItemTypeID=?", itemTypeID - Zotero.ItemTypes.customIDOffset);
+					await Zotero.DB.queryAsync("DELETE FROM customBaseFieldMappings WHERE customItemTypeID=?", itemTypeID - Zotero.ItemTypes.customIDOffset);
+					var fields = Zotero.ItemFields.getItemTypeFields(itemTypeID);
+					for (let fieldID of fields) {
+						if (Zotero.ItemFields.isCustom(fieldID)) {
+							await Zotero.DB.queryAsync("DELETE FROM customFields WHERE customFieldID=?", fieldID - Zotero.ItemTypes.customIDOffset);
+						}
 					}
-				}
-				yield Zotero.DB.queryAsync("DELETE FROM customItemTypes WHERE customItemTypeID=?", itemTypeID - Zotero.ItemTypes.customIDOffset);
-				
-				var searches = Zotero.Searches.getByLibrary(Zotero.Libraries.userLibraryID);
-				for (let search of searches) {
-					if (search.name == 'Overdue NSF Reviewers') {
-						yield search.erase();
+					await Zotero.DB.queryAsync("DELETE FROM customItemTypes WHERE customItemTypeID=?", itemTypeID - Zotero.ItemTypes.customIDOffset);
+					
+					var searches = Zotero.Searches.getByLibrary(Zotero.Libraries.userLibraryID);
+					for (let search of searches) {
+						if (search.name == 'Overdue NSF Reviewers') {
+							await search.erase();
+						}
 					}
-				}
-				
-				yield _reloadSchema();
-			}.bind(this), { disableForeignKeys: true });
+					
+					await _reloadSchema();
+				});
+			}
+			finally {
+				yield Zotero.DB.queryAsync("PRAGMA foreign_keys=ON");
+			}
 			
 			ps.alert(null, "Zotero Item Type Removed", "The 'NSF Reviewer' item type has been uninstalled.");
 		}
@@ -938,11 +956,12 @@ Zotero.Schema = new function(){
 		await Zotero.SearchConditions.init();
 		
 		// Update item type menus in every open window
+		// TODO: Remove?
 		Zotero.Schema.schemaUpdatePromise.then(function () {
 			var enumerator = Services.wm.getEnumerator("navigator:browser");
 			while (enumerator.hasMoreElements()) {
 				let win = enumerator.getNext();
-				win.document.getElementById('zotero-editpane-item-box').buildItemTypeMenu();
+				//win.document.getElementById('zotero-editpane-info-box').buildItemTypeMenu();
 			}
 		});
 	}
@@ -1022,37 +1041,10 @@ Zotero.Schema = new function(){
 			
 			// Get path to add-on
 			
-			// Synchronous in Standalone
-			if (Zotero.isStandalone) {
-				var installLocation = Components.classes["@mozilla.org/file/directory_service;1"]
-					.getService(Components.interfaces.nsIProperties)
-					.get("AChrom", Components.interfaces.nsIFile).parent;
-				installLocation.append("jurism.jar");
-			}
-			// Asynchronous in Firefox
-			else {
-				let resolve, reject;
-				let promise = new Zotero.Promise(function () {
-					resolve = arguments[0];
-					reject = arguments[1];
-				});
-				Components.utils.import("resource://gre/modules/AddonManager.jsm");
-				AddonManager.getAddonByID(
-					ZOTERO_CONFIG.GUID,
-					function (addon) {
-						try {
-							installLocation = addon.getResourceURI()
-								.QueryInterface(Components.interfaces.nsIFileURL).file;
-						}
-						catch (e) {
-							reject(e);
-							return;
-						}
-						resolve();
-					}
-				);
-				await promise;
-			}
+			var installLocation = Components.classes["@mozilla.org/file/directory_service;1"]
+				.getService(Components.interfaces.nsIProperties)
+				.get("AChrom", Components.interfaces.nsIFile).parent;
+			installLocation.append("omni.ja");
 			installLocation = installLocation.path;
 			
 			let initOpts = { fromSchemaUpdate: true };
@@ -2432,8 +2424,7 @@ Zotero.Schema = new function(){
 			catch (e) {
 				Zotero.debug(e, 1);
 				Components.utils.reportError(e);
-				let ps = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]
-					.getService(Components.interfaces.nsIPromptService);
+				let ps = Services.prompt;
 				ps.alert(
 					null,
 					Zotero.getString('general.error'),
@@ -3693,6 +3684,26 @@ Zotero.Schema = new function(){
 					await Zotero.DB.queryAsync("ALTER TABLE itemAnnotationsTemp RENAME TO itemAnnotations");
 					await Zotero.DB.queryAsync("CREATE INDEX itemAnnotations_parentItemID ON itemAnnotations(parentItemID)");
 				}
+			}
+			
+			else if (i == 121) {
+				let datasetItemTypeID = await Zotero.DB.valueQueryAsync("SELECT itemTypeID FROM itemTypes WHERE typeName='dataset'");
+				let numberFieldID = await Zotero.DB.valueQueryAsync("SELECT fieldID FROM fields WHERE fieldName='number'");
+				if (datasetItemTypeID && numberFieldID) {
+					await Zotero.DB.queryAsync("DELETE FROM itemData WHERE fieldID=? AND itemID IN (SELECT itemID FROM items WHERE itemTypeID=?)", [numberFieldID, datasetItemTypeID]);
+					await Zotero.DB.queryAsync("DELETE FROM itemTypeFields WHERE itemTypeID=? AND fieldID=?", [datasetItemTypeID, numberFieldID]);
+				}
+			}
+			
+			else if (i == 122) {
+				await Zotero.DB.queryAsync("REPLACE INTO fileTypes VALUES(8, 'ebook')");
+				await Zotero.DB.queryAsync("REPLACE INTO fileTypeMIMETypes VALUES(8, 'application/epub+zip')");
+				// Incorrect, for compatibility
+				await Zotero.DB.queryAsync("REPLACE INTO fileTypeMIMETypes VALUES(8, 'application/epub')");
+			}
+			
+			else if (i == 123) {
+				await Zotero.DB.queryAsync("CREATE INDEX itemData_valueID ON itemData(valueID)");
 			}
 			
 			// If breaking compatibility or doing anything dangerous, clear minorUpdateFrom

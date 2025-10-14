@@ -27,14 +27,14 @@
 Zotero.Report = {};
 
 Zotero.Report.HTML = new function () {
-	let domParser = Components.classes["@mozilla.org/xmlextras/domparser;1"]
-		.createInstance(Components.interfaces.nsIDOMParser);
+	let domParser = new DOMParser();
 	
 	this.listGenerator = function* (items, combineChildItems, libraryID) {
 		yield '<!DOCTYPE html>\n'
 			+ '<html>\n'
 			+ '	<head>\n'
 			+ '		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />\n'
+			+ '		<meta http-equiv="Content-Security-Policy" content="default-src \'none\'; img-src data:; style-src \'unsafe-inline\' data:" />\n'
 			+ '		<title>' + Zotero.getString('report.title.default') + '</title>\n'
 			+ '		<link rel="stylesheet" type="text/css" href="' + _getCSSDataURI('detail') + '"/>\n'
 			+ '		<link rel="stylesheet" type="text/css" media="screen,projection" href="' + _getCSSDataURI('detail_screen') + '"/>\n'
@@ -199,6 +199,7 @@ Zotero.Report.HTML = new function () {
 				case 'tags':
 				case 'deleted':
 				case 'parentItem':
+				case 'inPublications':
 				
 				case 'charset':
 				case 'contentType':
@@ -334,7 +335,7 @@ Zotero.Report.HTML = new function () {
 	
 	
 	var escapeXML = function (str) {
-		str = str.replace(/[\u0000-\u0008\u000b\u000c\u000e-\u001f\ud800-\udfff\ufffe\uffff]/g, '\u2B1A');
+		str = str.replace(/[\u0000-\u0008\u000b\u000c\u000e-\u001f\ud800-\udfff\ufffe\uffff]/gu, '\u2B1A');
 		return Zotero.Utilities.htmlSpecialChars(str);
 	}
 }

@@ -64,10 +64,6 @@ function AnnotationBox({ data }) {
 
 Zotero.AnnotationBox = memo(AnnotationBox);
 
-Zotero.AnnotationBox.render = (domEl, props) => {
-	ReactDOM.render(<AnnotationBox { ...props } />, domEl);
-};
-
-Zotero.AnnotationBox.destroy = (domEl) => {
-	ReactDOM.unmountComponentAtNode(domEl);
+Zotero.AnnotationBox.render = (root, props) => {
+	root.render(<AnnotationBox { ...props } />);
 };

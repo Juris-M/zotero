@@ -1,9 +1,9 @@
 /* eslint-disable no-await-in-loop, camelcase */
-/* global mendeleyDBMaps:false, mendeleyOnlineMappings:false, mendeleyAPIUtils:false */
+/* global mendeleyDBMaps:false, mendeleyOnlineMappings:false, mendeleyAPIUtils:false, PathUtils: false */
 var EXPORTED_SYMBOLS = ["Zotero_Import_Mendeley"]; //eslint-disable-line no-unused-vars
 
 Components.utils.import("resource://gre/modules/Services.jsm");
-Components.utils.import("resource://gre/modules/osfile.jsm");
+var { OS } = ChromeUtils.importESModule("chrome://zotero/content/osfile.mjs");
 Services.scriptloader.loadSubScript("chrome://zotero/content/include.js");
 Services.scriptloader.loadSubScript("chrome://zotero/content/import/mendeley/mendeleyOnlineMappings.js");
 Services.scriptloader.loadSubScript("chrome://zotero/content/import/mendeley/mendeleyAPIUtils.js");
@@ -11,7 +11,7 @@ Services.scriptloader.loadSubScript("chrome://zotero/content/import/mendeley/men
 
 const importerVersion = 1;
 const { apiTypeToDBType, apiFieldToDBField } = mendeleyOnlineMappings;
-const { apiFetch, codeAuth, directAuth, get, getAll } = mendeleyAPIUtils;
+const { apiFetch, codeAuth, get, getAll, obtainReferenceManagerTokenWithRetry } = mendeleyAPIUtils;
 
 const colorMap = new Map();
 colorMap.set('rgb(255, 245, 173)', '#ffd400');
@@ -34,8 +34,11 @@ var Zotero_Import_Mendeley = function () {
 	this.newItemsOnly = false;
 	this.relinkOnly = false;
 	this.numRelinked = 0;
+	this.skipNotebooks = false;
 	
 	this._tokens = null;
+	this._credentials = null;
+	this._refManagerToken = null;
 	this._db = null;
 	this._file = null;
 	this._saveOptions = null;
@@ -123,7 +126,8 @@ Zotero_Import_Mendeley.prototype.translate = async function (options = {}) {
 		}
 
 		if (this.mendeleyAuth) {
-			this._tokens = this.mendeleyAuth;
+			this._tokens = this.mendeleyAuth.tokens;
+			this._credentials = { username: this.mendeleyAuth.username, password: this.mendeleyAuth.password };
 		}
 		else if (this.mendeleyCode) {
 			this._tokens = await codeAuth(this.mendeleyCode);
@@ -140,7 +144,7 @@ Zotero_Import_Mendeley.prototype.translate = async function (options = {}) {
 		this._itemDone();
 
 		let folderKeys = new Map();
-		if(!this.relinkOnly) {
+		if (!this.relinkOnly) {
 			const folders = this._tokens
 				? await this._getFoldersAPI(mendeleyGroupID)
 				: await this._getFoldersDB(mendeleyGroupID);
@@ -160,9 +164,11 @@ Zotero_Import_Mendeley.prototype.translate = async function (options = {}) {
 			: await this._getDocumentsDB(mendeleyGroupID);
 
 		// Update progress to reflect items to import and remaining meta data stages
-		// We arbitrary set progress at approx 4%. We then add 8, one "tick" for each remaining meta data download.
+		// We arbitrary set progress at approx 4%. We then add 8, one "tick" for each remaining meta data download
+		// Finally we arbitrary add 5 "ticks" to represent steps required to import notebooks. This will be adjust
+		// later to account for the number of notebooks to import
 		this._progress = Math.max(Math.floor(0.04 * documents.length), 2);
-		this._progressMax = documents.length + this._progress + 8;
+		this._progressMax = documents.length + this._progress + 8 + 5;
 		// Get various attributes mapped to document ids
 		let urls = this._tokens
 			? await this._getDocumentURLsAPI(documents)
@@ -182,12 +188,14 @@ Zotero_Import_Mendeley.prototype.translate = async function (options = {}) {
 
 		this._interruptChecker(true);
 
+		// eslint-disable-next-line multiline-ternary
 		let collections = this.relinkOnly ? new Map() : this._tokens
 			? await this._getDocumentCollectionsAPI(documents, rootCollectionKey, folderKeys)
 			: await this._getDocumentCollectionsDB(mendeleyGroupID, documents, rootCollectionKey, folderKeys);
 
 		this._interruptChecker(true);
 
+		// eslint-disable-next-line multiline-ternary
 		let files = this.relinkOnly ? new Map() : this._tokens
 			? await this._getDocumentFilesAPI(documents)
 			: await this._getDocumentFilesDB(mendeleyGroupID);
@@ -318,6 +326,56 @@ Zotero_Import_Mendeley.prototype.translate = async function (options = {}) {
 			}
 			this._interruptChecker(true);
 		}
+
+		if (this._credentials && !this.skipNotebooks) {
+			if (!this._refManagerToken) {
+				const token = await obtainReferenceManagerTokenWithRetry(this._credentials.username, this._credentials.password);
+				this._refManagerToken = {
+					kind: 'referenceManager',
+					accessToken: token,
+					username: this._credentials.username,
+					password: this._credentials.password
+				};
+			}
+			
+			this._progress += 1; // progress one arbitrary "tick" assigned to importing notebooks task, we have 4 more left
+			if (this._refManagerToken) {
+				const notebooks = await this._getNotebooksAPI();
+				const notesContent = await Promise.all(notebooks.map(notebook => this._translateNotebookToNoteContent(libraryID, notebook)));
+				this._progress += 1; // progress one arbitrary "tick" assigned to importing notebooks task, we have 1 more left
+				for (let i = 0; i < notebooks.length; i++) {
+					const notebook = notebooks[i];
+					const predicate = 'mendeleyDB:notebookUUID';
+					const uuid = notebook.id;
+					const noteContent = notesContent[i];
+					let existingItem = await this._getItemByRelation(libraryID, predicate, uuid);
+
+					if (this.newItemsOnly && existingItem) {
+						Zotero.debug(`Skipping import of notebook "${uuid}" as it already exists in Zotero as "${existingItem.key}" and newItemsOnly is set`, 5);
+						continue;
+					}
+
+					const isMappedToExisting = !!existingItem;
+					Zotero.debug(isMappedToExisting ? `Updating existing notebook "${uuid}" -> "${existingItem.key}"` : `Importing new notebook "${uuid}"`, 5);
+					let item = isMappedToExisting ? existingItem : new Zotero.Item('note');
+					item.libraryID = libraryID;
+					item.setNote(noteContent);
+					item.addRelation(predicate, uuid);
+					if (rootCollectionKey) {
+						item.addToCollection(rootCollectionKey);
+					}
+					await item.saveTx(this._saveOptions);
+					this.newItems.push(item);
+					this._progress += 1;
+				}
+				this._progress += 1; // progress one last arbitrary "tick" assigned to importing notebooks task
+			}
+		}
+		else {
+			Zotero.debug(`Skipping import of Mendeley notebooks: ${this.skipNotebooks ? `skipNotebooks = ${this.skipNotebooks}` : 'No reference manager credentials provided'}`);
+			this._progress += 5; // we've assigned 5 arbitrary "ticks" for importing notebooks task, advance progress since we cannot import notebooks
+		}
+
 		if (this.newItemsOnly && rootCollectionKey && this.newItems.length === 0) {
 			Zotero.debug(`Mendeley Import detected no new items, removing import collection containing ${this.newCollections.length} collections created during the import`);
 			const rootCollection = await Zotero.Collections.getAsync(options.collections[0]);
@@ -562,7 +620,7 @@ Zotero_Import_Mendeley.prototype._getDocumentsAPI = async function (groupID) {
 	}
 	
 
-	return (await getAll(this._tokens, 'documents', params, headers, {}, this._interruptChecker)).map(d => {
+	return (await getAll(this._tokens, 'documents', params, headers, {}, this._interruptChecker)).map((d) => {
 		const processedDocument = { ...d, remoteUuid: d.id };
 
 		try {
@@ -636,7 +694,12 @@ Zotero_Import_Mendeley.prototype._getDocumentCreatorsAPI = async function (docum
 		const authors = (doc.authors || []).map(c => this._makeCreator('author', c.first_name, c.last_name));
 		const editors = (doc.editors || []).map(c => this._makeCreator('editor', c.first_name, c.last_name));
 		const translators = (doc.translators || []).map(c => this._makeCreator('translator', c.first_name, c.last_name));
-		map.set(doc.id, [...authors, ...editors, ...translators]);
+		const creators = [...authors, ...editors, ...translators];
+		const validCreators = creators.filter(c => c.name || c.firstName || c.lastName);
+		if (creators.length !== validCreators.length) {
+			Zotero.debug(`Discarding ${creators.length - validCreators.length} invalid creators for document ${doc.id}`);
+		}
+		map.set(doc.id, validCreators);
 	}
 	return map;
 };
@@ -675,7 +738,10 @@ Zotero_Import_Mendeley.prototype._getDocumentTagsDB = async function (groupID) {
 Zotero_Import_Mendeley.prototype._getDocumentTagsAPI = async function (documents) {
 	var map = new Map();
 	for (let doc of documents) {
-		const tags = [...(doc.tags || []).map(tag => ({ tag, type: 0 })), ...(doc.keywords || []).map(tag => ({ tag, type: 1 }))];
+		const tags = [
+			...(doc.tags || []).map(tag => ({ tag, type: 0 })),
+			...(doc.keywords || []).map(tag => ({ tag, type: 1 }))
+		].filter(t => t.tag && t.tag.trim());
 		map.set(doc.id, tags);
 	}
 	return map;
@@ -756,7 +822,7 @@ Zotero_Import_Mendeley.prototype._getDocumentFilesDB = async function (groupID) 
 };
 
 Zotero_Import_Mendeley.prototype._fetchFile = async function (fileID, filePath) {
-	const fileDir = OS.Path.dirname(filePath);
+	const fileDir = PathUtils.parent(filePath);
 	await Zotero.File.createDirectoryIfMissingAsync(fileDir);
 	const xhr = await apiFetch(this._tokens, `files/${fileID}`, {}, {}, { responseType: 'blob', followRedirects: false });
 	const uri = xhr.getResponseHeader('location');
@@ -989,6 +1055,60 @@ Zotero_Import_Mendeley.prototype._getProfileDB = async function () {
 	);
 
 	return rows[0];
+};
+
+Zotero_Import_Mendeley.prototype._getNotebooksAPI = async function () {
+	let params = { };
+	let headers = { Accept: 'application/json' };
+	this._progress += 1; // progress one arbitrary "tick" assigned to importing notebooks task, we have 3 more left
+	let notebooksMeta = await getAll(this._refManagerToken, 'notes/v1', params, headers, {}, this._interruptChecker);
+	this._progress += 1; // progress one arbitrary "tick" assigned to importing notebooks task, we have 2 more left
+	this._progressMax += notebooksMeta.length * 2; // extend progress bar to account for the number of notebook we've discovered. One tick for fetching the notebook, one for processing and adding as a note
+	let notebookPromises = notebooksMeta.map(async (notebookEntryMeta) => {
+		const id = notebookEntryMeta.id;
+		const noteBookEntry = get(this._refManagerToken, `notes/v1/${id}`, params, headers);
+		this._progress += 1;
+		return noteBookEntry;
+	});
+	return Promise.all(notebookPromises);
+};
+
+Zotero_Import_Mendeley.prototype._translateNotebookToNoteContent = async function (libraryID, mendeleyNotebook) {
+	let zoteroNoteBlocks = await Promise.all(mendeleyNotebook.blocks.map(async (block) => {
+		switch (block.type) {
+			case 'freetext':
+				return block.freetext?.value?.text ? `<p>${block.freetext?.value?.text}</p>` : '';
+			case 'annotation': {
+				const idURI = block.annotation?.id;
+				if (idURI) {
+					const match = idURI.match(/https:\/\/api.mendeley.com\/annotations\/v2\/([0-9a-fA-F-]+)/);
+					if (match) {
+						const annotationUUID = match[1];
+						let annotation = await this._getItemByRelation(
+							libraryID,
+							'mendeleyDB:annotationUUID',
+							annotationUUID
+						);
+						if (annotation) {
+							let attachmentItem = Zotero.Items.get(annotation.parentID);
+							let jsonAnnotation = await Zotero.Annotations.toJSON(annotation);
+							jsonAnnotation.attachmentItemID = attachmentItem.id;
+							jsonAnnotation.id = annotation.key;
+
+							const { html } = Zotero.EditorInstanceUtilities.serializeAnnotations([jsonAnnotation]);
+							return html;
+						}
+					}
+				}
+			}
+		}
+		return '';
+	}));
+	if (mendeleyNotebook.title) {
+		zoteroNoteBlocks.unshift(`<h1>${mendeleyNotebook.title}</h1>`);
+	}
+
+	return zoteroNoteBlocks.join("\n");
 };
 
 /**
@@ -1339,7 +1459,7 @@ Zotero_Import_Mendeley.prototype._saveItems = async function (libraryID, json) {
 			}
 		}
 
-		if(this.relinkOnly && !isMappedToExisting) {
+		if (this.relinkOnly && !isMappedToExisting) {
 			continue;
 		}
 		
@@ -1567,7 +1687,7 @@ Zotero_Import_Mendeley.prototype._findExistingFile = function (parentItemID, fil
 };
 
 Zotero_Import_Mendeley.prototype._isDownloadedFile = function (path) {
-	var parentDir = OS.Path.dirname(path);
+	var parentDir = PathUtils.parent(path);
 	return parentDir.endsWith(OS.Path.join('Application Support', 'Mendeley Desktop', 'Downloaded'))
 		|| parentDir.endsWith(OS.Path.join('Local', 'Mendeley Ltd', 'Mendeley Desktop', 'Downloaded'))
 		|| parentDir.endsWith(OS.Path.join('Local', 'Mendeley Ltd.', 'Mendeley Desktop', 'Downloaded'))
@@ -1596,8 +1716,8 @@ Zotero_Import_Mendeley.prototype._getRealFilePath = async function (path) {
 	}
 	// For file paths in Downloaded folder, try relative to database if not found at the
 	// absolute location, in case this is a DB backup
-	var dataDir = OS.Path.dirname(this._file);
-	var altPath = OS.Path.join(dataDir, 'Downloaded', OS.Path.basename(path));
+	var dataDir = PathUtils.parent(this._file);
+	var altPath = OS.Path.join(dataDir, 'Downloaded', PathUtils.filename(path));
 	if (altPath != path && await OS.File.exists(altPath)) {
 		return altPath;
 	}
@@ -1616,13 +1736,24 @@ Zotero_Import_Mendeley.prototype._saveAnnotations = async function (annotations,
 			let file = await attachmentItem.getFilePathAsync();
 			if (file) {
 				// Fix blank PDF attachment MIME type from previous imports
-				if (!attachmentItem.attachmentContentType) {
-					let type = 'application/pdf';
+				let type = 'application/pdf';
+				if (!attachmentItem.attachmentContentType || attachmentItem.attachmentContentType === 'application/octet-stream') {
 					if (Zotero.MIME.sniffForMIMEType(await Zotero.File.getSample(file)) == type) {
 						attachmentItem.attachmentContentType = type;
 						await attachmentItem.saveTx(this._saveOptions);
 					}
 				}
+
+				if (attachmentItem.attachmentContentType !== type) {
+					Zotero.debug(`Skipping ${annotations.length} annotations for non-PDF (${attachmentItem.attachmentContentType}) file ${file}`);
+					// do not attempt to import annotations for non-PDF files
+					return;
+				}
+
+				// Mendeley produces empty, type-less annotations that confuse the PDF worker
+				annotations = annotations.filter(
+					annotation => ['highlight', 'note', 'image', 'ink', 'underline', 'text'].includes(annotation.type)
+				);
 				
 				let annotationMap = new Map();
 				for (let annotation of annotations) {
@@ -1645,6 +1776,7 @@ Zotero_Import_Mendeley.prototype._saveAnnotations = async function (annotations,
 				for (let annotation of annotations) {
 					// Ignore empty highlights
 					if (annotation.type == 'highlight' && !annotation.text) {
+						Zotero.debug(`Skipping empty highlight with uuid ${annotation.uuid}`, 5);
 						continue;
 					}
 					

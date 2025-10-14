@@ -76,6 +76,66 @@ describe("Zotero.Collection", function() {
 			assert.notInclude(deleted, collection2.key);
 			assert.notInclude(deleted, collection3.key);
 		});
+
+		it("should send deleted collections to trash", async function () {
+			var collection1 = await createDataObject('collection');
+			var collection2 = await createDataObject('collection', { parentID: collection1.id });
+			var collection3 = await createDataObject('collection', { parentID: collection2.id });
+			
+			collection1.deleted = true;
+			await collection1.saveTx();
+			
+			var deleted = await Zotero.Collections.getDeleted(collection1.libraryID, true);
+			
+			assert.include(deleted, collection1.id);
+			assert.include(deleted, collection2.id);
+			assert.include(deleted, collection3.id);
+		});
+
+		it("should restore deleted collection", async function () {
+			var collection1 = await createDataObject('collection');
+			var collection2 = await createDataObject('collection');
+			var item1 = await createDataObject('item', { collections: [collection1.id, collection2.id] });
+
+			assert.include(item1.getCollections(), collection1.id);
+
+			collection1.deleted = true;
+			await collection1.saveTx();
+
+			// Trashed collection does not count as one of item's containers
+			assert.notInclude(item1.getCollections(), collection1.id);
+			// But it should still return it if includeTrashed=true is passed
+			assert.include(item1.getCollections(true), collection1.id);
+
+			// Restore deleted collection
+			collection1.deleted = false;
+			await collection1.saveTx();
+
+			var deleted = await Zotero.Collections.getDeleted(collection1.libraryID, true);
+			
+			// Collection is restored from trash
+			assert.notInclude(deleted, collection1.id);
+
+			// Item belongs to the restored collection
+			assert.include(item1.getCollections(), collection1.id);
+		});
+
+		it("should permanently delete collections from trash", async function () {
+			var collection1 = await createDataObject('collection');
+			var collection2 = await createDataObject('collection', { parentID: collection1.id });
+			var collection3 = await createDataObject('collection', { parentID: collection2.id, deleted: true });
+			var item = await createDataObject('item', { collections: [collection1.id, collection2.id, collection3.id] });
+			
+			await collection1.eraseTx();
+			
+			assert.equal(await Zotero.Collections.getAsync(collection1.id), false);
+			assert.equal(await Zotero.Collections.getAsync(collection2.id), false);
+			assert.equal(await Zotero.Collections.getAsync(collection3.id), false);
+
+			// Erased collections are fully removed as item's containers
+			assert.equal(item.getCollections().length, 0);
+			assert.equal(item.getCollections(true).length, 0);
+		});
 	})
 	
 	describe("#version", function () {
@@ -233,6 +293,22 @@ describe("Zotero.Collection", function() {
 			assert.lengthOf(childCollections, 0);
 		})
 		
+		it("should not include collections in trash by default", async function () {
+			var collection1 = await createDataObject('collection');
+			var collection2 = await createDataObject('collection', { parentID: collection1.id, deleted: true });
+			
+			var childCollections = collection1.getChildCollections();
+			assert.lengthOf(childCollections, 0);
+		});
+		
+		it("should include collections in trash if includeTrashed=true", async function () {
+			var collection1 = await createDataObject('collection');
+			var collection2 = await createDataObject('collection', { parentID: collection1.id, deleted: true });
+			
+			var childCollections = collection1.getChildCollections(false, true);
+			assert.lengthOf(childCollections, 1);
+		});
+		
 		it("should not include collections that have been deleted", function* () {
 			var collection1 = yield createDataObject('collection');
 			var collection2 = yield createDataObject('collection', { parentID: collection1.id });
@@ -332,6 +408,7 @@ describe("Zotero.Collection", function() {
 			var patchBase = col2.toJSON();
 			// Clear parent collection and regenerate JSON
 			col2.parentID = false;
+			yield col2.saveTx();
 			var json = col2.toJSON({ patchBase });
 			assert.isFalse(json.parentCollection);
 		});

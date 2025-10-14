@@ -64,7 +64,7 @@ Zotero.Sync.Storage = new function () {
 	 * @param {String} libraryKey
 	 * @param {Number|NULL}
 	 */
-	this.setItemDownloadPercentage = function (libraryKey, percentage) {
+	this.setItemDownloadPercentage = Zotero.Utilities.throttle(function (libraryKey, percentage) {
 		Zotero.debug("Setting image download percentage to " + percentage
 			+ " for item " + libraryKey);
 		
@@ -93,7 +93,7 @@ Zotero.Sync.Storage = new function () {
 			}
 			Zotero.Notifier.trigger('redraw', 'item', parentItem.id, { column: "hasAttachment" });
 		}
-	}
+	}, 100);
 	
 	
 	function error(e) {
@@ -115,21 +115,14 @@ Zotero.Sync.Storage = new function () {
 			setTimeout(function () {
 				var group = Zotero.Groups.get(e.data.groupID);
 				
-				var ps = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]
-										.getService(Components.interfaces.nsIPromptService);
-				var buttonFlags = (ps.BUTTON_POS_0) * (ps.BUTTON_TITLE_IS_STRING)
-								+ (ps.BUTTON_POS_1) * (ps.BUTTON_TITLE_CANCEL)
-								+ ps.BUTTON_DELAY_ENABLE;
-				var index = ps.confirmEx(
-					null,
-					Zotero.getString('general.warning'),
-					Zotero.getString('sync.storage.error.fileEditingAccessLost', group.name) + "\n\n"
+				var index = Zotero.Prompt.confirm({
+					title: Zotero.getString('general.warning'),
+					text: Zotero.getString('sync.storage.error.fileEditingAccessLost', group.name) + "\n\n"
 						+ Zotero.getString('sync.error.groupWillBeReset') + "\n\n"
 						+ Zotero.getString('sync.error.copyChangedItems'),
-					buttonFlags,
-					Zotero.getString('sync.resetGroupAndSync'),
-					null, null, null, {}
-				);
+					button0: Zotero.getString('sync.resetGroupAndSync'),
+					buttonDelay: true,
+				});
 				
 				if (index == 0) {
 					// TODO: transaction

@@ -15,24 +15,46 @@ describe("ZoteroPane", function() {
 		win.close();
 	});
 	
+	describe("#_setHighlightedRowsCallback()", function () {
+		it("should highlight parent collection of collection in trash", async function () {
+			var collection1 = await createDataObject('collection');
+			var collection2 = await createDataObject('collection', { parentID: collection1.id, deleted: true });
+			
+			await selectTrash(win);
+			
+			var row = zp.itemsView.getRowIndexByID(collection2.treeViewID);
+			zp.itemsView.selection.select(row);
+			
+			var spy = sinon.spy(zp.collectionsView, 'setHighlightedRows');
+			await zp._setHighlightedRowsCallback();
+			
+			assert.sameMembers(spy.getCall(0).args[0], [collection1.treeViewID]);
+			var rows = win.document.querySelectorAll('.highlighted');
+			assert.lengthOf(rows, 1);
+			
+			await zp.collectionsView.setHighlightedRows();
+			
+			spy.restore();
+			// Switch back to library to avoid breaking other tests
+			await selectLibrary(win);
+		});
+	});
+	
 	describe("#newItem", function () {
 		it("should create an item and focus the title field", function* () {
 			yield zp.newItem(Zotero.ItemTypes.getID('book'), {}, null, true);
-			var itemBox = doc.getElementById('zotero-editpane-item-box');
-			var textboxes = doc.getAnonymousNodes(itemBox)[0].getElementsByTagName('textbox');
-			assert.lengthOf(textboxes, 1);
-			assert.equal(textboxes[0].getAttribute('fieldname'), 'title');
-			textboxes[0].blur();
+			assert.equal(doc.activeElement.closest("editable-text").id, "itembox-field-value-title");
+			doc.activeElement.blur();
 			yield Zotero.Promise.delay(1);
 		})
 		
 		it("should save an entered value when New Item is used", function* () {
 			var value = "Test";
 			var item = yield zp.newItem(Zotero.ItemTypes.getID('book'), {}, null, true);
-			var itemBox = doc.getElementById('zotero-editpane-item-box');
-			var textbox = doc.getAnonymousNodes(itemBox)[0].getElementsByTagName('textbox')[0];
-			textbox.value = value;
-			yield itemBox.blurOpenField();
+			let header = doc.getElementById('zotero-item-pane-header');
+			let title = header.querySelector("editable-text");
+			title.value = value;
+			yield header.save();
 			item = yield Zotero.Items.getAsync(item.id);
 			assert.equal(item.getField('title'), value);
 		})
@@ -49,6 +71,7 @@ describe("ZoteroPane", function() {
 		
 		it("should create a standalone note within a collection and select it", function* () {
 			var collection = yield createDataObject('collection');
+			yield select(win, collection);
 			var noteID = yield zp.newNote(false, false, "Test");
 			assert.equal(zp.collectionsView.getSelectedCollection(), collection);
 			var selected = zp.itemsView.getSelectedItems(true);
@@ -59,7 +82,11 @@ describe("ZoteroPane", function() {
 	
 	describe("#newCollection()", function () {
 		it("should create a collection", function* () {
-			var promise = waitForDialog();
+			var promise = waitForDialog(
+				null,
+				'accept',
+				'chrome://zotero/content/newCollectionDialog.xhtml'
+			);
 			var id = yield zp.newCollection();
 			yield promise;
 			var collection = Zotero.Collections.get(id);
@@ -73,7 +100,7 @@ describe("ZoteroPane", function() {
 				// TODO: Test changing a condition
 				function (dialog) {},
 				'accept',
-				'chrome://zotero/content/searchDialog.xul'
+				'chrome://zotero/content/searchDialog.xhtml'
 			);
 			var id = yield zp.newSearch();
 			yield promise;
@@ -86,7 +113,7 @@ describe("ZoteroPane", function() {
 			var promise = waitForDialog(
 				function (dialog) {},
 				'cancel',
-				'chrome://zotero/content/searchDialog.xul'
+				'chrome://zotero/content/searchDialog.xhtml'
 			);
 			var id = yield zp.newSearch();
 			yield promise;
@@ -104,7 +131,7 @@ describe("ZoteroPane", function() {
 			// Unselected, with no items in view
 			assert.equal(
 				doc.getElementById('zotero-item-pane-message-box').textContent,
-				Zotero.getString('pane.item.unselected.zero', 0)
+				yield doc.l10n.formatValue('item-pane-message-unselected', { count: 0 })
 			);
 			
 			// Unselected, with one item in view
@@ -115,7 +142,7 @@ describe("ZoteroPane", function() {
 			});
 			assert.equal(
 				doc.getElementById('zotero-item-pane-message-box').textContent,
-				Zotero.getString('pane.item.unselected.singular', 1)
+				yield doc.l10n.formatValue('item-pane-message-unselected', { count: 1 })
 			);
 			
 			// Unselected, with multiple items in view
@@ -126,7 +153,7 @@ describe("ZoteroPane", function() {
 			});
 			assert.equal(
 				doc.getElementById('zotero-item-pane-message-box').textContent,
-				Zotero.getString('pane.item.unselected.plural', 2)
+				yield doc.l10n.formatValue('item-pane-message-unselected', { count: 2 })
 			);
 			
 			// Multiple items selected
@@ -141,22 +168,9 @@ describe("ZoteroPane", function() {
 	})
 	
 	describe("#viewAttachment", function () {
-		Components.utils.import("resource://zotero-unit/httpd.js");
 		var apiKey = Zotero.Utilities.randomString(24);
-		var port = 16213;
-		var baseURL = `http://localhost:${port}/`;
-		var server;
-		var responses = {};
+		var baseURL;
 		var httpd;
-		
-		var setup = Zotero.Promise.coroutine(function* (options = {}) {
-			server = sinon.fakeServer.create();
-			server.autoRespond = true;
-		});
-		
-		function setResponse(response) {
-			setHTTPResponse(server, baseURL, response, responses);
-		}
 		
 		async function downloadOnDemand() {
 			var item = new Zotero.Item("attachment");
@@ -211,15 +225,15 @@ describe("ZoteroPane", function() {
 		before(function () {
 			Zotero.HTTP.mock = sinon.FakeXMLHttpRequest;
 		})
-		beforeEach(function* () {
+		beforeEach(async function () {
+			var port;
+			({ httpd, port } = await startHTTPServer());
+			baseURL = `http://localhost:${port}/`;
 			Zotero.Prefs.set("api.url", baseURL);
-			Zotero.Sync.Runner.apiKey = apiKey;
-				
-			httpd = new HttpServer();
-			httpd.start(port);
 			
-			yield Zotero.Users.setCurrentUserID(1);
-			yield Zotero.Users.setCurrentUsername("testuser");
+			Zotero.Sync.Runner.apiKey = apiKey;
+			await Zotero.Users.setCurrentUserID(1);
+			await Zotero.Users.setCurrentUsername("testuser");
 		})
 		afterEach(function* () {
 			var defer = new Zotero.Promise.defer();
@@ -231,14 +245,12 @@ describe("ZoteroPane", function() {
 		});
 		
 		it("should download an attachment on-demand in as-needed mode", function* () {
-			yield setup();
 			Zotero.Sync.Storage.Local.downloadAsNeeded(Zotero.Libraries.userLibraryID, true);
 			yield downloadOnDemand();
 		});
 		
 		// As noted in viewAttachment(), this is only necessary for files modified before 5.0.85
 		it("should re-download a remotely modified attachment in as-needed mode", async function () {
-			await setup();
 			Zotero.Sync.Storage.Local.downloadAsNeeded(Zotero.Libraries.userLibraryID, true);
 			
 			var item = await importFileAttachment('test.txt');
@@ -291,7 +303,6 @@ describe("ZoteroPane", function() {
 		});
 		
 		it("should handle a 404 when re-downloading a remotely modified attachment in as-needed mode", async function () {
-			await setup();
 			Zotero.Sync.Storage.Local.downloadAsNeeded(Zotero.Libraries.userLibraryID, true);
 			
 			var item = await importFileAttachment('test.txt');
@@ -331,9 +342,50 @@ describe("ZoteroPane", function() {
 		});
 		
 		it("should download an attachment on-demand in at-sync-time mode", function* () {
-			yield setup();
 			Zotero.Sync.Storage.Local.downloadOnSync(Zotero.Libraries.userLibraryID, true);
 			yield downloadOnDemand();
+		});
+		
+		it("should update a PDF with a blank MIME type", async function () {
+			let attachment = await importFileAttachment('test.pdf');
+			// Can't use contentType argument to importFileAttachment() because blank string is ignored
+			attachment.attachmentContentType = '';
+			await attachment.saveTx();
+			await zp.viewAttachment(attachment.id);
+			assert.equal(attachment.attachmentContentType, 'application/pdf');
+		});
+		
+		it("should update an EPUB with an 'application/epub' MIME type", async function () {
+			let attachment = await importFileAttachment('stub.epub', { contentType: 'application/epub' });
+			assert.equal(attachment.attachmentContentType, 'application/epub');
+			await zp.viewAttachment(attachment.id);
+			assert.equal(attachment.attachmentContentType, 'application/epub+zip');
+		});
+		
+		it("should update an EPUB with an 'application/octet-stream' MIME type", async function () {
+			let attachment = await importFileAttachment('stub.epub', { contentType: 'application/octet-stream' });
+			assert.equal(attachment.attachmentContentType, 'application/octet-stream');
+			await zp.viewAttachment(attachment.id);
+			assert.equal(attachment.attachmentContentType, 'application/epub+zip');
+		});
+
+		it("should handle Windows paths on macOS/Linux", async function () {
+			if (!Zotero.isMac && !Zotero.isLinux) {
+				this.skip();
+				return;
+			}
+			
+			let file = getTestDataDirectory();
+			file.append('test.pdf');
+			let attachment = await Zotero.Attachments.linkFromFile({ file });
+			attachment.attachmentPath = 'C:\\some\\windows\\path';
+			await attachment.saveTx();
+
+			let stub = sinon.stub(zp, 'showAttachmentNotFoundDialog');
+			await zp.viewAttachment(attachment.id);
+			assert.ok(stub.calledOnce);
+			assert.ok(stub.calledWith(attachment));
+			stub.restore();
 		});
 	})
 	
@@ -358,7 +410,7 @@ describe("ZoteroPane", function() {
 			var doc = dp.parseFromString(note.getNote(), 'text/html');
 			assert.sameMembers(
 				[...doc.querySelectorAll('h3')].map(x => x.textContent),
-				[attachment1.attachmentFilename, attachment2.attachmentFilename]
+				[attachment1.getField('title'), attachment2.getField('title')]
 			);
 			assert.lengthOf([...doc.querySelectorAll('h3 + p')], 2);
 			assert.lengthOf([...doc.querySelectorAll('span.highlight')], 4);
@@ -382,7 +434,7 @@ describe("ZoteroPane", function() {
 			var doc = dp.parseFromString(note.getNote(), 'text/html');
 			assert.sameMembers(
 				[...doc.querySelectorAll('h3')].map(x => x.textContent),
-				[attachment1.attachmentFilename, attachment2.attachmentFilename]
+				[attachment1.getField('title'), attachment2.getField('title')]
 			);
 			// No item titles
 			assert.lengthOf([...doc.querySelectorAll('h2 + p')], 0);
@@ -428,6 +480,7 @@ describe("ZoteroPane", function() {
 	describe("#createStandaloneNoteFromAnnotationsFromSelected()", function () {
 		it("should create a single standalone note for all child attachments of selected regular items", async function () {
 			var collection = await createDataObject('collection');
+			await select(win, collection);
 			var item1 = await createDataObject('item', { setTitle: true, collections: [collection.id] });
 			var item2 = await createDataObject('item', { setTitle: true, collections: [collection.id] });
 			var attachment1 = await importPDFAttachment(item1);
@@ -459,10 +512,10 @@ describe("ZoteroPane", function() {
 			assert.sameMembers(
 				[...doc.querySelectorAll('h3')].map(x => x.textContent),
 				[
-					attachment1.attachmentFilename,
-					attachment2.attachmentFilename,
-					attachment3.attachmentFilename,
-					attachment4.attachmentFilename
+					attachment1.getField('title'),
+					attachment2.getField('title'),
+					attachment3.getField('title'),
+					attachment4.getField('title')
 				]
 			);
 			assert.lengthOf([...doc.querySelectorAll('h3 + p')], 4);
@@ -471,6 +524,7 @@ describe("ZoteroPane", function() {
 		
 		it("should create a single standalone note for all selected attachments", async function () {
 			var collection = await createDataObject('collection');
+			await select(win, collection);
 			var item1 = await createDataObject('item', { setTitle: true, collections: [collection.id] });
 			var item2 = await createDataObject('item', { setTitle: true, collections: [collection.id] });
 			var attachment1 = await importPDFAttachment(item1);
@@ -556,7 +610,7 @@ describe("ZoteroPane", function() {
 			});
 			await zp.selectItem(attachment.id);
 			
-			await assert.eventually.isTrue(zp.renameSelectedAttachmentsFromParents());
+			await zp.renameSelectedAttachmentsFromParents();
 			assert.equal(attachment.attachmentFilename, newFilename);
 			var path = await attachment.getFilePathAsync();
 			assert.equal(OS.Path.basename(path), newFilename)
@@ -585,7 +639,7 @@ describe("ZoteroPane", function() {
 			});
 			await zp.selectItem(attachment.id);
 			
-			await assert.eventually.isTrue(zp.renameSelectedAttachmentsFromParents());
+			await zp.renameSelectedAttachmentsFromParents();
 			assert.equal(attachment.attachmentFilename, uniqueFilename);
 			var path = await attachment.getFilePathAsync();
 			assert.equal(OS.Path.basename(path), uniqueFilename)
@@ -594,8 +648,8 @@ describe("ZoteroPane", function() {
 		
 		it("should use unique name for linked file without extension if target name is taken", async function () {
 			var oldFilename = 'old';
-			var newFilename = 'Test';
-			var uniqueFilename = 'Test 2';
+			var newFilename = 'Test.png';
+			var uniqueFilename = 'Test 2.png';
 			var file = getTestDataDirectory();
 			file.append('test.png');
 			var tmpDir = await getTempDirectory();
@@ -614,11 +668,68 @@ describe("ZoteroPane", function() {
 			});
 			await zp.selectItem(attachment.id);
 			
-			await assert.eventually.isTrue(zp.renameSelectedAttachmentsFromParents());
+			await zp.renameSelectedAttachmentsFromParents();
 			assert.equal(attachment.attachmentFilename, uniqueFilename);
 			var path = await attachment.getFilePathAsync();
-			assert.equal(OS.Path.basename(path), uniqueFilename)
+			assert.equal(OS.Path.basename(path), uniqueFilename);
 			await OS.File.exists(path);
+		});
+		
+		it("shouldn't change attachment title if different from filename", async function () {
+			var item = createUnsavedDataObject('item');
+			item.setField('title', 'Title');
+			await item.saveTx();
+			
+			var attachment = await importFileAttachment('test.png', { parentItemID: item.id });
+			attachment.setField('title', 'Title');
+			await attachment.saveTx();
+			await zp.selectItem(attachment.id);
+			
+			await zp.renameSelectedAttachmentsFromParents();
+			assert.equal(attachment.attachmentFilename, 'Title.png');
+			assert.equal(attachment.getField('title'), 'Title');
+		});
+		
+		it("should change attachment title if previously set to the file basename by setAutoAttachmentTitle()", async function () {
+			var item = createUnsavedDataObject('item');
+			item.setField('title', 'Title');
+			await item.saveTx();
+			
+			var attachment = await importFileAttachment('test.png', {
+				parentItemID: item.id,
+				// Use default setAutoAttachmentTitle() behavior -- the file isn't going to be
+				// renamed because autoRenameFiles.fileTypes doesn't match image/, so the title
+				// becomes the filename minus extension, i.e., "test"
+				title: null
+			});
+			assert.equal(attachment.getField('title'), 'test');
+			await zp.selectItem(attachment.id);
+			
+			await zp.renameSelectedAttachmentsFromParents();
+			assert.equal(attachment.attachmentFilename, 'Title.png');
+			// After a manual rename, the title becomes the default for this type
+			assert.equal(attachment.getField('title'), Zotero.getString('file-type-image'));
+		});
+
+		it("should restore an extension when renaming a misnamed file", async function () {
+			let pdfFile = getTestDataDirectory();
+			pdfFile.append('test.pdf');
+			let tmpDir = await getTempDirectory();
+			let tmpFileToImport = OS.Path.join(tmpDir, 'bad name . not an extension');
+			await OS.File.copy(pdfFile.path, tmpFileToImport);
+
+			var item = createUnsavedDataObject('item');
+			item.setField('title', 'Title');
+			await item.saveTx();
+			
+			let attachment = await Zotero.Attachments.importFromFile({
+				file: tmpFileToImport,
+				parentItemID: item.id
+			});
+
+			await zp.selectItem(attachment.id);
+			await zp.renameSelectedAttachmentsFromParents();
+			assert.equal(attachment.attachmentFilename, 'Title.pdf');
 		});
 	});
 	
@@ -673,14 +784,17 @@ describe("ZoteroPane", function() {
 			bookItem.saveTx();
 
 			var bookSectionItem = await zp.duplicateAndConvertSelectedItem();
-			// assert.isEmpty(bookSectionItem.getField('abstractNote'));
-			expect(bookSectionItem.getField('abstractNote')).to.be.empty;
+			assert.isEmpty(bookSectionItem.getField('abstractNote'));
 		});
 	});
 	
 	
 	describe("#deleteSelectedItems()", function () {
 		const DELETE_KEY_CODE = 46;
+		
+		afterEach(async function () {
+			await selectLibrary(win);
+		});
 		
 		it("should remove an item from My Publications", function* () {
 			var item = createUnsavedDataObject('item');
@@ -702,18 +816,15 @@ describe("ZoteroPane", function() {
 			var promise = waitForDialog();
 			var modifyPromise = waitForItemEvent('modify');
 			
-			var event = doc.createEvent("KeyboardEvent");
-			event.initKeyEvent(
+			var event = new KeyboardEvent(
 				"keypress",
-				true,
-				true,
-				window,
-				false,
-				false,
-				false,
-				false,
-				DELETE_KEY_CODE,
-				0
+				{
+					key: 'Delete',
+					code: 'Delete',
+					keyCode: DELETE_KEY_CODE,
+					bubbles: true,
+					cancelable: true
+				}
 			);
 			tree.dispatchEvent(event);
 			yield promise;
@@ -743,18 +854,17 @@ describe("ZoteroPane", function() {
 			var promise = waitForDialog();
 			var modifyPromise = waitForItemEvent('modify');
 			
-			var event = doc.createEvent("KeyboardEvent");
-			event.initKeyEvent(
+			var event = new KeyboardEvent(
 				"keypress",
-				true,
-				true,
-				window,
-				false,
-				false,
-				!Zotero.isMac, // shift
-				Zotero.isMac, // meta
-				DELETE_KEY_CODE,
-				0
+				{
+					key: 'Delete',
+					code: 'Delete',
+					keyCode: DELETE_KEY_CODE,
+					bubbles: true,
+					cancelable: true,
+					shiftKey: !Zotero.isMac,
+					metaKey: Zotero.isMac,
+				}
 			);
 			tree.dispatchEvent(event);
 			yield promise;
@@ -770,7 +880,7 @@ describe("ZoteroPane", function() {
 				.filter(x => x.condition == 'title' && x.operator == 'contains')[0].value;
 			var item = await createDataObject('item', { title });
 			
-			await waitForItemsLoad(win);
+			await select(win, search);
 			var iv = zp.itemsView;
 			
 			var selected = iv.selectItem(item.id);
@@ -801,13 +911,13 @@ describe("ZoteroPane", function() {
 			assert.isTrue(item.deleted);
 		});
 		
-		it("should move saved search trash without prompt for modified Delete", async function () {
+		it("should move saved search item to trash without prompt for modified Delete", async function () {
 			var search = await createDataObject('search');
 			var title = [...Object.values(search.conditions)]
 				.filter(x => x.condition == 'title' && x.operator == 'contains')[0].value;
 			var item = await createDataObject('item', { title });
 			
-			await waitForItemsLoad(win);
+			await select(win, search);
 			var iv = zp.itemsView;
 			
 			var selected = iv.selectItem(item.id);
@@ -825,9 +935,9 @@ describe("ZoteroPane", function() {
 				{
 					key: 'Delete',
 					code: 'Delete',
+					keyCode: DELETE_KEY_CODE,
 					metaKey: Zotero.isMac,
 					shiftKey: !Zotero.isMac,
-					keyCode: DELETE_KEY_CODE,
 					bubbles: true,
 					cancelable: true
 				}
@@ -844,14 +954,12 @@ describe("ZoteroPane", function() {
 			let collection1 = await createDataObject('collection');
 			let collection2 = await createDataObject('collection', { parentID: collection1.id });
 			let item = await createDataObject('item', { collections: [collection2.id] });
-			assert.ok(await zp.collectionsView.selectCollection(collection1.id));
 
-			await waitForItemsLoad(win);
-
+			await select(win, collection1);
 			let iv = zp.itemsView;
 			assert.ok(await iv.selectItem(item.id));
 
-			await Zotero.Promise.delay(1);
+			await Zotero.Promise.delay(100);
 
 			let promise = waitForDialog();
 			let modifyPromise = waitForItemEvent('modify');
@@ -869,22 +977,24 @@ describe("ZoteroPane", function() {
 	});
 	
 	describe("#deleteSelectedCollection()", function () {
-		it("should delete collection but not descendant items by default", function* () {
+		it("should move collection to trash but not descendant items by default", function* () {
 			var collection = yield createDataObject('collection');
+			yield select(win, collection);
 			var item = yield createDataObject('item', { collections: [collection.id] });
 			var promise = waitForDialog();
 			yield zp.deleteSelectedCollection();
-			assert.isFalse(Zotero.Collections.exists(collection.id));
+			assert.isTrue(collection.deleted);
 			assert.isTrue(Zotero.Items.exists(item.id));
 			assert.isFalse(item.deleted);
 		});
 		
-		it("should delete collection and descendant items when deleteItems=true", function* () {
+		it("should move to trash collection and descendant items when deleteItems=true", function* () {
 			var collection = yield createDataObject('collection');
+			yield select(win, collection);
 			var item = yield createDataObject('item', { collections: [collection.id] });
 			var promise = waitForDialog();
 			yield zp.deleteSelectedCollection(true);
-			assert.isFalse(Zotero.Collections.exists(collection.id));
+			assert.isTrue(collection.deleted);
 			assert.isTrue(Zotero.Items.exists(item.id));
 			assert.isTrue(item.deleted);
 		});
@@ -1036,13 +1146,14 @@ describe("ZoteroPane", function() {
 	describe("#editSelectedCollection()", function () {
 		it("should edit a saved search", function* () {
 			var search = yield createDataObject('search');
-			var promise = waitForWindow('chrome://zotero/content/searchDialog.xul', function (win) {
+			yield select(win, search);
+			var promise = waitForWindow('chrome://zotero/content/searchDialog.xhtml', function (win) {
 				let searchBox = win.document.getElementById('search-box');
 				var c = searchBox.search.getCondition(
 					searchBox.search.addCondition("title", "contains", "foo")
 				);
 				searchBox.addCondition(c);
-				win.document.documentElement.acceptDialog();
+				win.document.querySelector('dialog').acceptDialog();
 			});
 			yield zp.editSelectedCollection();
 			yield promise;
@@ -1053,13 +1164,14 @@ describe("ZoteroPane", function() {
 		it("should edit a saved search in a group", function* () {
 			var group = yield getGroup();
 			var search = yield createDataObject('search', { libraryID: group.libraryID });
-			var promise = waitForWindow('chrome://zotero/content/searchDialog.xul', function (win) {
+			yield select(win, search);
+			var promise = waitForWindow('chrome://zotero/content/searchDialog.xhtml', function (win) {
 				let searchBox = win.document.getElementById('search-box');
 				var c = searchBox.search.getCondition(
 					searchBox.search.addCondition("title", "contains", "foo")
 				);
 				searchBox.addCondition(c);
-				win.document.documentElement.acceptDialog();
+				win.document.querySelector('dialog').acceptDialog();
 			});
 			yield zp.editSelectedCollection();
 			yield promise;
@@ -1386,19 +1498,21 @@ describe("ZoteroPane", function() {
 
 			let dialogStub = sinon.stub(zp, 'showLinkedFileFoundAutomaticallyDialog')
 				.returns('one');
-			let existsSpy = sinon.spy(OS.File, 'exists');
+			// No longer works with IOUtils
+			//let existsSpy = sinon.spy(IOUtils, 'exists');
 			await zp.checkForLinkedFilesToRelink(attachment);
 			assert.ok(dialogStub.calledOnce);
 			assert.ok(dialogStub.calledWith(attachment, sinon.match.string, 0));
-			assert.ok(existsSpy.calledWith(OS.Path.join(labdSubdir, 'test.pdf')));
-			assert.notOk(existsSpy.calledWith(OS.Path.join(labdDir, 'test.pdf'))); // Should never get there
+			//Zotero.debug(existsSpy.calledWith(OS.Path.join(labdSubdir, 'test.pdf')));
+			//assert.ok(existsSpy.calledWith(OS.Path.join(labdSubdir, 'test.pdf')));
+			//assert.notOk(existsSpy.calledWith(OS.Path.join(labdDir, 'test.pdf'))); // Should never get there
 
 			await assert.eventually.isTrue(attachment.fileExists());
 			assert.equal(attachment.getFilePath(), labdFile);
 			assert.equal(attachment.attachmentPath, 'attachments:subdir/test.pdf');
 
 			dialogStub.restore();
-			existsSpy.restore();
+			//existsSpy.restore();
 		});
 
 		it("should handle Windows paths", async function () {
@@ -1437,6 +1551,485 @@ describe("ZoteroPane", function() {
 			}
 
 			stub.restore();
+		});
+	});
+	
+	describe("#focus()", function () {
+		before(async function () {
+			var collection = new Zotero.Collection;
+			collection.name = "Focus Test";
+			await collection.saveTx();
+			// Make sure there is a tag
+			var item = new Zotero.Item('newspaperArticle');
+			item.setCollections([collection.id]);
+			await item.setTags(["Tag"]);
+			await item.saveTx({
+				skipSelect: true
+			});
+			// Make sure there is more than one tab so that the tabs menu is focusable
+			if (win.Zotero_Tabs.numTabs == 1) {
+				let attachment = await importFileAttachment('test.pdf');
+				await attachment.saveTx();
+				await zp.viewAttachment(attachment.id);
+				win.Zotero_Tabs.select('zotero-pane');
+			}
+			await waitForItemsLoad(win);
+			await zp.collectionsView.selectLibrary(userLibraryID);
+		});
+
+		var tab = new KeyboardEvent('keydown', {
+			key: 'Tab',
+			shiftKey: false,
+			bubbles: true
+		});
+
+		var shiftTab = new KeyboardEvent('keydown', {
+			key: 'Tab',
+			shiftKey: true,
+			bubbles: true
+		});
+
+		var rightArrow = new KeyboardEvent('keydown', {
+			key: 'ArrowRight',
+			bubbles: true
+		});
+		var leftArrow = new KeyboardEvent('keydown', {
+			key: 'ArrowLeft',
+			bubbles: true
+		});
+
+		// Focus sequence for Zotero Pane
+		let sequence = [
+			"zotero-tb-search-dropmarker",
+			"zotero-tb-add",
+			"tag-selector-actions",
+			"search-input",
+			"tag-selector-item",
+			"collection-tree",
+			"zotero-collections-search",
+			"zotero-tb-collection-add",
+			"zotero-tb-sync",
+			"zotero-tb-tabs-menu"
+		];
+		it("should shift-tab across the zotero pane", async function () {
+			let searchBox = doc.getElementById('zotero-tb-search-textbox');
+			searchBox.focus();
+
+			for (let id of sequence) {
+				doc.activeElement.dispatchEvent(shiftTab);
+				// Wait for collection search to be revealed
+				if (id === "zotero-collections-search") {
+					await Zotero.Promise.delay(250);
+				}
+				// Some elements don't have id, so use classes to verify they're focused
+				if (doc.activeElement.id) {
+					assert.equal(doc.activeElement.id, id);
+				}
+				else {
+					let clases = [...doc.activeElement.classList];
+					assert.include(clases, id);
+				}
+				// Wait for collection search to be hidden for subsequent tests
+				if (id === "zotero-tb-collection-add") {
+					await Zotero.Promise.delay(50);
+				}
+			}
+			doc.activeElement.dispatchEvent(shiftTab);
+			assert.equal(doc.activeElement.className, "tab selected");
+
+			doc.activeElement.dispatchEvent(shiftTab);
+			// One of tab buttons in the sidenav
+			assert.equal(doc.activeElement.getAttribute("role"), "tab");
+		});
+
+		it("should tab across the zotero pane", async function () {
+			win.Zotero_Tabs.moveFocus("current");
+			sequence.reverse();
+			for (let id of sequence) {
+				doc.activeElement.dispatchEvent(tab);
+				// Wait for collection search to be revealed
+				if (id === "zotero-collections-search") {
+					await Zotero.Promise.delay(250);
+				}
+				// Some elements don't have id, so use classes to verify they're focused
+				if (doc.activeElement.id) {
+					assert.equal(doc.activeElement.id, id);
+				}
+				else {
+					let clases = [...doc.activeElement.classList];
+					assert.include(clases, id);
+				}
+			}
+		});
+
+		it("should navigate toolbarbuttons with arrows", async function () {
+			let addItem = doc.getElementById('zotero-tb-add');
+			addItem.focus();
+			
+			doc.activeElement.dispatchEvent(rightArrow);
+			assert.equal(doc.activeElement.id, "zotero-tb-lookup");
+			doc.activeElement.dispatchEvent(rightArrow);
+			assert.equal(doc.activeElement.id, "zotero-tb-attachment-add");
+			doc.activeElement.dispatchEvent(rightArrow);
+			assert.equal(doc.activeElement.id, "zotero-tb-note-add");
+
+			doc.activeElement.dispatchEvent(leftArrow);
+			assert.equal(doc.activeElement.id, "zotero-tb-attachment-add");
+			doc.activeElement.dispatchEvent(leftArrow);
+			assert.equal(doc.activeElement.id, "zotero-tb-lookup");
+			doc.activeElement.dispatchEvent(leftArrow);
+			assert.equal(doc.activeElement.id, "zotero-tb-add");
+		});
+	});
+	
+	describe("#addAttachmentFromDialog()", function () {
+		it("should set an automatic title on the first file attachment of each supported type", async function () {
+			let parentItem = await createDataObject('item');
+			
+			// Add a link attachment, which won't affect renaming
+			await Zotero.Attachments.linkFromURL({
+				url: 'https://example.com/',
+				parentItemID: parentItem.id,
+			});
+			
+			// Add a PDF attachment, which will get a default title
+			let file = getTestDataDirectory();
+			file.append('test.pdf');
+			let [pdfAttachment1] = await zp.addAttachmentFromDialog(false, parentItem.id, [file.path]);
+			assert.equal(parentItem.getAttachments().length, 2);
+			assert.equal(pdfAttachment1.getField('title'), Zotero.getString('file-type-pdf'));
+			
+			// Add a second, which will get a title based on its filename
+			let [pdfAttachment2] = await zp.addAttachmentFromDialog(false, parentItem.id, [file.path]);
+			assert.equal(parentItem.getAttachments().length, 3);
+			assert.equal(pdfAttachment2.getField('title'), 'test');
+			
+			// Add an EPUB attachment, which will get a default title
+			file = getTestDataDirectory();
+			file.append('stub.epub');
+			let [epubAttachment] = await zp.addAttachmentFromDialog(false, parentItem.id, [file.path]);
+			assert.equal(parentItem.getAttachments().length, 4);
+			assert.equal(epubAttachment.getField('title'), Zotero.getString('file-type-ebook'));
+		});
+
+		describe("Linked file renaming", function () {
+			before(() => {
+				Zotero.Prefs.set('autoRenameFiles.linked', true);
+			});
+
+			after(() => {
+				Zotero.Prefs.clear('autoRenameFiles.linked');
+			});
+
+			it("should only rename and change the title of the first PDF attachment", async function () {
+				let testFile = getTestDataDirectory();
+				testFile.append('test.pdf');
+
+				let tempDir = await getTempDirectory();
+				let copy1 = PathUtils.join(tempDir, 'copy1.pdf');
+				let copy2 = PathUtils.join(tempDir, 'copy2.pdf');
+
+				await IOUtils.copy(testFile.path, copy1);
+				await IOUtils.copy(testFile.path, copy2);
+
+				let parentItem = await createDataObject('item', { title: 'Foo' });
+
+				let [attachment1] = await zp.addAttachmentFromDialog(false, parentItem.id, [copy1]);
+				assert.equal(attachment1.getField('title'), Zotero.getString('file-type-pdf'));
+				assert.equal(attachment1.attachmentFilename, 'Foo.pdf');
+
+				let [attachment2] = await zp.addAttachmentFromDialog(false, parentItem.id, [copy2]);
+				assert.equal(attachment2.getField('title'), 'copy2');
+				assert.equal(attachment2.attachmentFilename, 'copy2.pdf');
+			});
+		});
+	});
+
+	describe("#createParentItemsFromSelected()", function () {
+		async function createParent() {
+			let parent;
+			let dialogPromise = waitForDialog(async (win) => {
+				parent = await createDataObject('item', { title: 'Book Title' });
+				win.arguments[0].dataOut = { parent };
+				win.close();
+			}, false, 'chrome://zotero/content/createParentDialog.xhtml');
+			let createParentPromise = zp.createParentItemsFromSelected();
+			await dialogPromise;
+			await createParentPromise;
+			return parent;
+		}
+		
+		it("should rename the attachment and set an automatic title", async function () {
+			let attachment = await importPDFAttachment({
+				title: 'Attachment title',
+			});
+			assert.equal(attachment.attachmentFilename, 'test.pdf');
+			
+			let parent = await createParent();
+			assert.equal(attachment.parentItem, parent);
+			assert.equal(attachment.attachmentFilename, 'Book Title.pdf');
+			assert.equal(attachment.getField('title'), Zotero.getString('file-type-pdf'));
+		});
+
+		it("shouldn't rename or change the title of an attachment with a disabled type", async function () {
+			Zotero.Prefs.set('autoRenameFiles.fileTypes', 'x-nonexistent/type');
+
+			let file = getTestDataDirectory();
+			file.append('test.pdf');
+			let attachment = await Zotero.Attachments.linkFromFile({
+				file,
+				title: 'Attachment title'
+			});
+			assert.equal(attachment.attachmentFilename, 'test.pdf');
+
+			let parent = await createParent();
+			assert.equal(attachment.parentItem, parent);
+			assert.equal(attachment.attachmentFilename, 'test.pdf');
+			assert.equal(attachment.getField('title'), 'Attachment title');
+
+			Zotero.Prefs.clear('autoRenameFiles.fileTypes');
+		});
+
+		it("shouldn't rename a linked attachment or set an automatic title when linked file renaming disabled", async function () {
+			Zotero.Prefs.set('autoRenameFiles.linked', false);
+			
+			let file = getTestDataDirectory();
+			file.append('test.pdf');
+			let attachment = await Zotero.Attachments.linkFromFile({
+				file,
+				title: 'Attachment title'
+			});
+			assert.equal(attachment.attachmentFilename, 'test.pdf');
+
+			let parent = await createParent();
+			assert.equal(attachment.parentItem, parent);
+			assert.equal(attachment.attachmentFilename, 'test.pdf');
+			assert.equal(attachment.getField('title'), 'Attachment title');
+			
+			Zotero.Prefs.clear('autoRenameFiles.linked');
+		});
+	});
+	describe("#changeParentItem", function () {
+		it("should update the parent of selected items", async function() {
+			// One item has 2 children and the other one - none
+			let oldParent = await createDataObject('item');
+			let newParent = await createDataObject('item');
+			var attachment = await importPDFAttachment(oldParent);
+			var note = await createDataObject('item', { itemType: 'note', parentID: oldParent.id });
+			// Select child items
+			await zp.selectItems([attachment.id, note.id]);
+			// Open the dialog to select new parent and wait for it to load
+			waitForWindow('chrome://zotero/content/selectItemsDialog.xhtml', async (selectWin) => {
+				do {
+					await Zotero.Promise.delay(50);
+				}
+				while (!selectWin.loaded);
+				console.log(selectWin);
+				await selectWin.itemsView.waitForLoad();
+				// select item and accept the dialog
+				await selectWin.itemsView.selectItem(newParent.id);
+				selectWin.document.querySelector('dialog').acceptDialog();
+			});
+			zp.changeParentItem();
+
+			await waitForItemEvent('modify');
+			// Make sure the new parent now has the note and attachment
+			assert.include(newParent.getNotes(), note.id);
+			assert.include(newParent.getAttachments(), attachment.id);
+			// And the old parent does not
+			assert.notInclude(oldParent.getNotes(), note.id);
+			assert.notInclude(oldParent.getAttachments(), attachment.id);
+		});
+
+		it("should allow converting attachments to standalone when applicable", async function() {
+			let collection = await createDataObject('collection');
+			let parent = await createDataObject('item', { collections: [collection.id] });
+			var attachment = await importPDFAttachment(parent);
+			// Select child item
+			await zp.selectItems([attachment.id]);
+			// Open the dialog to select new parent and wait for it to load
+			waitForWindow('chrome://zotero/content/selectItemsDialog.xhtml', async (selectWin) => {
+				do {
+					await Zotero.Promise.delay(50);
+				}
+				while (!selectWin.loaded);
+				await selectWin.itemsView.waitForLoad();
+				// Button to make attachment standalone should be visible
+				let moveToStandaloneBtn = selectWin.document.querySelector("dialog button[dlgtype=extra1]");
+				assert.isFalse(moveToStandaloneBtn.hidden);
+				moveToStandaloneBtn.click();
+			});
+			zp.changeParentItem();
+
+			await waitForItemEvent('modify');
+
+			// The attachment should have no parent item
+			assert.isFalse(attachment.parentID);
+			// Attachment should belong to the same collection as parent item
+			assert.equal(attachment.getCollections()[0], collection.id);
+		});
+	});
+
+	describe("#copyCollection", function () {
+		it("should copy collection within the same library", async function () {
+			let collectionParent = await createDataObject('collection');
+			let collectionChild = await createDataObject('collection', { parentID: collectionParent.id });
+			let collectionDestination = await createDataObject('collection');
+
+			let itemOne = await createDataObject('item', { collections: [collectionParent.id] });
+			let itemTwo = await createDataObject('item', { collections: [collectionChild.id] });
+
+			await zp.collectionsView.selectByID("C" + collectionParent.id);
+
+			await zp.copyCollection(collectionDestination);
+			await waitForNotifierEvent("add", "collection");
+
+			// Newly created collections have the same names as the original ones
+			let collectionNames = collectionDestination.getDescendents(false, 'collection').map(col => col.name);
+			assert.sameMembers(collectionNames, [collectionParent.name, collectionChild.name]);
+
+			// Newly created collections contain the same items
+			let items = collectionDestination.getDescendents(false, 'item').map(item => item.id);
+			assert.sameMembers(items, [itemOne.id, itemTwo.id]);
+		});
+
+		it("should duplicate top-level collection", async function () {
+			let collection = await createDataObject('collection');
+			let mylibrary = Zotero.Libraries.get(collection.libraryID);
+
+			let itemOne = await createDataObject('item', { collections: [collection.id] });
+
+			await zp.collectionsView.selectByID("C" + collection.id);
+
+			await zp.copyCollection(mylibrary);
+			await waitForNotifierEvent("add", "collection");
+
+			// Find the duplicated collection and make sure it exists
+			let topLevelCollections = Zotero.Collections.getByLibrary(mylibrary.id);
+			let newCollection = topLevelCollections.find(col => col.name == collection.name && collection.id !== col.id);
+			assert.exists(newCollection);
+
+			// Newly created collection contain the same item
+			let items = newCollection.getDescendents(false, 'item').map(item => item.id);
+			assert.sameMembers(items, [itemOne.id]);
+		});
+
+		it("should copy collection between libraries", async function () {
+			let groupDestination = await createGroup();
+			let groupCollection = await createDataObject('collection', { libraryID: groupDestination.libraryID });
+
+			let collectionParent = await createDataObject('collection');
+			let collectionChild = await createDataObject('collection', { parentID: collectionParent.id });
+
+			let itemOne = await createDataObject('item', { collections: [collectionParent.id] });
+			let itemTwo = await createDataObject('item', { collections: [collectionChild.id] });
+
+			await zp.collectionsView.selectByID("C" + collectionParent.id);
+
+			await zp.copyCollection(groupCollection);
+
+			await waitForNotifierEvent("add", "collection");
+
+			// Newly created collections have the same names as the original ones
+			let collectionNames = groupCollection.getDescendents(false, 'collection').map(col => col.name);
+			assert.sameMembers(collectionNames, [collectionParent.name, collectionChild.name]);
+
+			// Newly created collections also have copies of items
+			let items = groupCollection.getDescendents(false, 'item').map(item => Zotero.Items.get(item.id).getDisplayTitle());
+			assert.sameMembers(items, [itemOne.getDisplayTitle(), itemTwo.getDisplayTitle()]);
+		});
+
+		it("should not allow copying between libraries if there is a linked collection", async function () {
+			let groupDestination = await createGroup();
+			let groupCollection = await createDataObject('collection', { libraryID: groupDestination.libraryID });
+
+			let collection = await createDataObject('collection');
+			let collectionChild = await createDataObject('collection', { parentID: collection.id });
+
+			await zp.collectionsView.selectByID("C" + collectionChild.id);
+
+			await zp.copyCollection(groupCollection);
+
+			await waitForNotifierEvent("add", "collection");
+
+			// Collection has been copies
+			let groupCollections = groupCollection.getDescendents(false, 'collection');
+			let newCollectionID = groupCollections.find(col => col.name == collectionChild.name).id;
+			let newCollection = Zotero.Collections.get(newCollectionID);
+			assert.exists(newCollection);
+
+			// Right click on the selected collection
+			await zp.collectionsView.selectByID("C" + collectionChild.id);
+			zp.buildCopyCollectionMenu({});
+
+			// Delay for menus to get disabled
+			await Zotero.Promise.delay();
+			let groupMenu = doc.querySelector(`#zotero-copy-collection-popup menu[value="L${groupDestination.libraryID}"]`);
+			// Menu of the library with linked collection should be disabled
+			assert.equal(groupMenu.disabled, true);
+
+			// Right click on the parent of the copies collection
+			await zp.collectionsView.selectByID("C" + collection.id);
+			zp.buildCopyCollectionMenu({});
+			// Delay for menus to get disabled
+			await Zotero.Promise.delay();
+			groupMenu = doc.querySelector(`#zotero-copy-collection-popup menu[value="L${groupDestination.libraryID}"]`);
+			// Menu of the library with linked sub-collection should be disabled
+			assert.equal(groupMenu.disabled, true);
+		});
+
+		it("should copy subcollection to library root", async function () {
+			let collectionParent = await createDataObject('collection');
+			let collectionChild = await createDataObject('collection', { parentID: collectionParent.id });
+			let libraryDestination = Zotero.Libraries.get(collectionChild.libraryID);
+
+			let item = await createDataObject('item', { collections: [collectionChild.id] });
+
+			await zp.collectionsView.selectByID("C" + collectionChild.id);
+
+			await zp.copyCollection(libraryDestination);
+			let data = await waitForNotifierEvent("add", "collection");
+			let collectionID = data.ids[0];
+			let newCollection = Zotero.Collections.get(collectionID);
+
+			// Copied collection has the same name as the original
+			assert.equal(newCollection.name, collectionChild.name);
+			// Copied collections contain the same item
+			let items = newCollection.getDescendents(false, 'item').map(item => item.id);
+			assert.sameMembers(items, [item.id]);
+			// Copied collection is a top-level collection
+			assert.notOk(newCollection.parentID);
+		});
+	});
+	describe("#moveCollection", function () {
+		it("should move collection into another collection of the same library", async function () {
+			let collection = await createDataObject('collection');
+			let collectionDestination = await createDataObject('collection');
+
+			await zp.collectionsView.selectByID("C" + collection.id);
+
+			let promise = waitForNotifierEvent("modify", "collection");
+			await zp.moveCollection(collectionDestination);
+			await promise;
+
+			// Collection was moved into destination collection
+			let collectionChildIDs = collectionDestination.getDescendents(false, 'collection').map(col => col.id);
+			assert.sameMembers(collectionChildIDs, [collection.id]);
+		});
+		it("should make collection a top-level collection", async function () {
+			let collectionParent = await createDataObject('collection');
+			let collectionChild = await createDataObject('collection', { parentID: collectionParent.id });
+			let library = Zotero.Libraries.get(collectionChild.libraryID);
+
+			await zp.collectionsView.selectByID("C" + collectionChild.id);
+
+			let promise = waitForNotifierEvent("modify", "collection");
+			await zp.moveCollection(library);
+			await promise;
+
+			// Child collection was pulled from under its parent to become a top-level collection
+			let topLevelCollections = Zotero.Collections.getByLibrary(library.id);
+			assert.includeMembers(topLevelCollections, [collectionChild]);
 		});
 	});
 })

@@ -25,7 +25,7 @@
 
 Components.utils.import("resource://gre/modules/InlineSpellChecker.jsm");
 
-import FilePicker from 'zotero/modules/filePicker';
+var { FilePicker } = ChromeUtils.importESModule('chrome://zotero/content/modules/filePicker.mjs');
 
 // Note: TinyMCE is automatically doing some meaningless corrections to
 // note-editor produced HTML. Which might result to more
@@ -78,6 +78,7 @@ class EditorInstance {
 			Zotero.Prefs.registerObserver('note.css', this._handleStyleChange),
 			Zotero.Prefs.registerObserver('layout.spellcheckDefault', this._handleSpellCheckChange, true)
 		];
+		this._spellChecker = null;
 		
 		// Run Cut/Copy/Paste with chrome privileges
 		this._iframeWindow.wrappedJSObject.zoteroExecCommand = function (doc, command, ui, value) {
@@ -125,12 +126,11 @@ class EditorInstance {
 				.createInstance(Components.interfaces.nsITransferable);
 			let clipboardService = Components.classes['@mozilla.org/widget/clipboard;1']
 				.getService(Components.interfaces.nsIClipboard);
-			let imgPtr = Components.classes["@mozilla.org/supports-interface-pointer;1"]
-				.createInstance(Components.interfaces.nsISupportsInterfacePointer);
-			imgPtr.data = imgTools.decodeImageFromArrayBuffer(u8arr.buffer, mime);
+			let img = imgTools.decodeImageFromArrayBuffer(u8arr.buffer, mime);
 			transferable.init(null);
-			transferable.addDataFlavor(mime);
-			transferable.setTransferData(mime, imgPtr, 0);
+			let kNativeImageMime = 'application/x-moz-nativeimage';
+			transferable.addDataFlavor(kNativeImageMime);
+			transferable.setTransferData(kNativeImageMime, img);
 			clipboardService.setData(transferable, null, Components.interfaces.nsIClipboard.kGlobalClipboard);
 		};
 
@@ -150,7 +150,7 @@ class EditorInstance {
 			let fp = new FilePicker();
 			fp.init(this._iframeWindow, Zotero.getString('noteEditor.saveImageAs'), fp.modeSave);
 			fp.appendFilters(fp.filterImages);
-			fp.defaultString = Zotero.getString('fileTypes.image').toLowerCase() + '.' + ext;
+			fp.defaultString = Zotero.getString('file-type-image').toLowerCase() + '.' + ext;
 			let rv = await fp.show();
 			if (rv === fp.returnOK || rv === fp.returnReplace) {
 				let outputPath = fp.file;
@@ -315,7 +315,6 @@ class EditorInstance {
 		let win = Zotero.getMainWindow();
 		if (win) {
 			win.ZoteroPane.selectItems(ids);
-			win.Zotero_Tabs.select('zotero-pane');
 			win.focus();
 		}
 	}
@@ -356,8 +355,7 @@ class EditorInstance {
 			else if (item.isNote()) {
 				let note = item.note;
 				
-				let parser = Components.classes['@mozilla.org/xmlextras/domparser;1']
-				.createInstance(Components.interfaces.nsIDOMParser);
+				let parser = new DOMParser();
 				let doc = parser.parseFromString(note, 'text/html');
 
 				// Get citationItems with itemData from note metadata
@@ -571,6 +569,7 @@ class EditorInstance {
 				}
 				case 'subscribe': {
 					let { subscription } = message;
+					subscription = JSON.parse(JSON.stringify(subscription));
 					this._subscriptions.push(subscription);
 					if (subscription.type === 'image') {
 						await this._feedSubscription(subscription);
@@ -585,6 +584,7 @@ class EditorInstance {
 				// Called on note editor load
 				case 'updateCitationItemsList': {
 					let { list } = message;
+					list = list.slice();
 					let newList = [];
 					for (let item of list) {
 						let existingItem = this._citationItemsList
@@ -632,6 +632,7 @@ class EditorInstance {
 					return;
 				}
 				case 'importImages': {
+					await this._ensureNoteCreated();
 					let { images } = message;
 					if (this._readOnly || this._filesReadOnly) {
 						return;
@@ -687,21 +688,27 @@ class EditorInstance {
 		let { id, type, data } = subscription;
 		if (type === 'image') {
 			let { attachmentKey } = data;
-			let item = Zotero.Items.getByLibraryAndKey(this._item.libraryID, attachmentKey);
-			
-			// Note: Images aren't visible in merge dialog because:
-			// - Attachments aren't downloaded at the time
-			// - We are checking if attachments belong to the current note
-			
-			if (item.parentID === this._item.id) {
-				if (await item.getFilePathAsync()) {
-					let src = await this._getDataURL(item);
-					this._postMessage({ action: 'notifySubscription', id, data: { src } });
+			let n = 0;
+			// For now wait up to 60 seconds, as there is no point to wait for very long sync to finish
+			while (n++ < 60) {
+				let item = Zotero.Items.getByLibraryAndKey(this._item.libraryID, attachmentKey);
+				// Attachment item (not the file) might not be synced at the time
+				if (!item && Zotero.Sync.Runner.syncInProgress) {
+					await Zotero.Promise.delay(1000);
+					continue;
 				}
-				else {
-					await Zotero.Notes.ensureEmbeddedImagesAreAvailable(this._item);
-					// this._postMessage({ action: 'notifySubscription', id, data: { src: 'error' } });
+				// Check if the attachment is actually the child
+				if (item.parentID === this._item.id) {
+					if (await item.getFilePathAsync()) {
+						let src = await this._getDataURL(item);
+						this._postMessage({ action: 'notifySubscription', id, data: { src } });
+					}
+					else {
+						await Zotero.Notes.ensureEmbeddedImagesAreAvailable(this._item);
+						// this._postMessage({ action: 'notifySubscription', id, data: { src: 'error' } });
+					}
 				}
+				break;
 			}
 		}
 	}
@@ -749,15 +756,15 @@ class EditorInstance {
 			for (let itemGroup of itemGroups) {
 				for (let item of itemGroup) {
 					if (item.groups) {
-						let menu = parentNode.ownerDocument.createElement('menu');
+						let menu = parentNode.ownerDocument.createXULElement('menu');
 						menu.setAttribute('label', item.label);
-						let menupopup = parentNode.ownerDocument.createElement('menupopup');
+						let menupopup = parentNode.ownerDocument.createXULElement('menupopup');
 						menu.append(menupopup);
 						appendItems(menupopup, item.groups);
 						parentNode.appendChild(menu);
 					}
 					else {
-						let menuitem = parentNode.ownerDocument.createElement('menuitem');
+						let menuitem = parentNode.ownerDocument.createXULElement('menuitem');
 						menuitem.setAttribute('value', item.name);
 						menuitem.setAttribute('label', item.label);
 						menuitem.setAttribute('disabled', !item.enabled);
@@ -780,7 +787,7 @@ class EditorInstance {
 				}
 
 				if (itemGroups.indexOf(itemGroup) !== itemGroups.length - 1) {
-					let separator = parentNode.ownerDocument.createElement('menuseparator');
+					let separator = parentNode.ownerDocument.createXULElement('menuseparator');
 					parentNode.appendChild(separator);
 				}
 			}
@@ -815,10 +822,10 @@ class EditorInstance {
 		}
 		
 		// Separator
-		var separator = this._popup.ownerDocument.createElement('menuseparator');
+		var separator = this._popup.ownerDocument.createXULElement('menuseparator');
 		this._popup.appendChild(separator);
 		// Check Spelling
-		var menuitem = this._popup.ownerDocument.createElement('menuitem');
+		var menuitem = this._popup.ownerDocument.createXULElement('menuitem');
 		menuitem.setAttribute('label', Zotero.getString('spellCheck.checkSpelling'));
 		menuitem.setAttribute('checked', spellChecker.enabled);
 		menuitem.setAttribute('type', 'checkbox');
@@ -830,11 +837,11 @@ class EditorInstance {
 
 		if (spellChecker.enabled) {
 			// Languages menu
-			var menu = this._popup.ownerDocument.createElement('menu');
+			var menu = this._popup.ownerDocument.createXULElement('menu');
 			menu.setAttribute('label', Zotero.getString('general.languages'));
 			this._popup.append(menu);
 			// Languages menu popup
-			var menupopup = this._popup.ownerDocument.createElement('menupopup');
+			var menupopup = this._popup.ownerDocument.createXULElement('menupopup');
 			menu.append(menupopup);
 			
 			spellChecker.addDictionaryListToMenu(menupopup, null);
@@ -851,13 +858,13 @@ class EditorInstance {
 			}
 			
 			// Separator
-			var separator = this._popup.ownerDocument.createElement('menuseparator');
+			var separator = this._popup.ownerDocument.createXULElement('menuseparator');
 			menupopup.appendChild(separator);
 			// Add Dictionaries
-			var menuitem = this._popup.ownerDocument.createElement('menuitem');
+			var menuitem = this._popup.ownerDocument.createXULElement('menuitem');
 			menuitem.setAttribute('label', Zotero.getString('spellCheck.addRemoveDictionaries'));
 			menuitem.addEventListener('command', () => {
-				Services.ww.openWindow(null, "chrome://zotero/content/dictionaryManager.xul",
+				Services.ww.openWindow(null, "chrome://zotero/content/dictionaryManager.xhtml",
 					"dictionary-manager", "chrome,centerscreen", {});
 				
 			});
@@ -872,9 +879,32 @@ class EditorInstance {
 			}
 
 			let firstElementChild = this._popup.firstElementChild;
-			let suggestionCount = spellChecker.addSuggestionsToMenu(this._popup, firstElementChild, 5);
+			let showSeparator = false;
+			let suggestionCount = spellChecker.addSuggestionsToMenuOnParent(this._popup, firstElementChild, 5);
 			if (suggestionCount) {
-				let separator = this._popup.ownerDocument.createElement('menuseparator');
+				showSeparator = true;
+			}
+			if (spellChecker.overMisspelling) {
+				let addToDictionary = this._popup.ownerDocument.createXULElement('menuitem');
+				addToDictionary.setAttribute('data-l10n-id', 'text-action-spell-add-to-dictionary');
+				addToDictionary.addEventListener('command', () => {
+					spellChecker.addToDictionary();
+				});
+				this._popup.insertBefore(addToDictionary, firstElementChild);
+				showSeparator = true;
+			}
+			if (spellChecker.canUndo()) {
+				let undo = this._popup.ownerDocument.createXULElement('menuitem');
+				undo.setAttribute('data-l10n-id', 'text-action-spell-undo-add-to-dictionary');
+				undo.addEventListener('command', () => {
+					spellChecker.undoAddToDictionary();
+				});
+				this._popup.insertBefore(undo, firstElementChild);
+				showSeparator = true;
+			}
+			
+			if (showSeparator) {
+				let separator = this._popup.ownerDocument.createXULElement('menuseparator');
 				this._popup.insertBefore(separator, firstElementChild);
 			}
 		}
@@ -883,13 +913,15 @@ class EditorInstance {
 	}
 
 	_getSpellChecker() {
-		let spellChecker = new InlineSpellChecker();
-		let editingSession = this._iframeWindow
-			.getInterface(Ci.nsIWebNavigation)
-			.QueryInterface(Ci.nsIInterfaceRequestor)
-			.getInterface(Ci.nsIEditingSession);
-		spellChecker.init(editingSession.getEditorForWindow(this._iframeWindow));
-		return spellChecker;
+		// Fix cannot access dead object error
+		if (Components.utils.isDeadWrapper(this._iframeWindow)) return null;
+		if (!this._spellChecker) {
+			let editingSession = this._iframeWindow.docShell.editingSession;
+			this._spellChecker = new InlineSpellChecker(
+				editingSession.getEditorForWindow(this._iframeWindow)
+			);
+		}
+		return this._spellChecker;
 	}
 
 	async _ensureNoteCreated() {
@@ -973,16 +1005,6 @@ class EditorInstance {
 		}
 	}
 
-	_arrayBufferToBase64(buffer) {
-		var binary = '';
-		var bytes = new Uint8Array(buffer);
-		var len = bytes.byteLength;
-		for (var i = 0; i < len; i++) {
-			binary += String.fromCharCode(bytes[i]);
-		}
-		return btoa(binary);
-	}
-
 	_dataURLtoBlob(dataurl) {
 		let parts = dataurl.split(',');
 		let mime = parts[0].match(/:(.*?);/)[1];
@@ -1003,7 +1025,17 @@ class EditorInstance {
 		let path = await item.getFilePathAsync();
 		let buf = await OS.File.read(path, {});
 		buf = new Uint8Array(buf).buffer;
-		return 'data:' + item.attachmentContentType + ';base64,' + this._arrayBufferToBase64(buf);
+		return new Promise((resolve, reject) => {
+			let blob = new Blob([buf], { type: item.attachmentContentType });
+			let reader = new FileReader();
+			reader.onloadend = function () {
+				resolve(reader.result);
+			}
+			reader.onerror = function (e) {
+				reject("FileReader error: " + e);
+			};
+			reader.readAsDataURL(blob);
+		});
 	}
 
 	// TODO: Allow only one quickFormat dialog
@@ -1015,9 +1047,8 @@ class EditorInstance {
 		/**
 		 * Citation editing functions and properties accessible to quickFormat.js and addCitationDialog.js
 		 */
-		let CI = function (citation, sortable, fieldIndexPromise, citationsByItemIDPromise, previewFn) {
+		let CI = function (citation) {
 			this.citation = citation;
-			this.sortable = sortable;
 			this.filterLibraryIDs = filterLibraryIDs;
 			this.disableClassicDialog = true;
 			
@@ -1126,8 +1157,7 @@ class EditorInstance {
 				// Zotero.debug('CI: getItems');
 				let note = that._item.note;
 
-				let parser = Components.classes['@mozilla.org/xmlextras/domparser;1']
-				.createInstance(Components.interfaces.nsIDOMParser);
+				let parser = new DOMParser();
 				let doc = parser.parseFromString(note, 'text/html');
 				
 				let metadataContainer = doc.querySelector('body > div[data-schema-version]');
@@ -1214,11 +1244,7 @@ class EditorInstance {
 		let citation = new Citation();
 		citation.citationItems = citationData.citationItems;
 		citation.properties = citationData.properties;
-		let styleID = Zotero.Prefs.get('export.lastStyle');
-		let locale = Zotero.Prefs.get('export.lastLocale');
-		let csl = Zotero.Styles.get(styleID).getCiteProc(locale);
-		var io = new CI(citation, csl.opt.sort_citations);
-
+		var io = new CI(citation);
 
 		var allOptions = 'chrome,centerscreen';
 		// without this, Firefox gets raised with our windows under Compiz
@@ -1230,7 +1256,7 @@ class EditorInstance {
 
 		win = that._quickFormatWindow = Components.classes['@mozilla.org/embedcomp/window-watcher;1']
 		.getService(Components.interfaces.nsIWindowWatcher)
-		.openWindow(null, 'chrome://zotero/content/integration/quickFormat.xul', '', mode, {
+		.openWindow(null, 'chrome://zotero/content/integration/quickFormat.xhtml', '', mode, {
 			wrappedJSObject: io
 		});
 	}
@@ -1279,7 +1305,7 @@ class EditorInstance {
 			if (annotation.annotationType === 'image'
 				&& !await Zotero.Annotations.hasCacheImage(annotation)) {
 				try {
-					await Zotero.PDFRenderer.renderAttachmentAnnotations(annotation.parentID);
+					await Zotero.PDFWorker.renderAttachmentAnnotations(annotation.parentID);
 				}
 				catch (e) {
 					Zotero.debug(e);
@@ -1370,8 +1396,13 @@ class EditorInstance {
 			}
 		}
 		citationItems = encodeURIComponent(JSON.stringify(citationItems));
-		// Note: Update schema version only if using new features
-		let schemaVersion = 8;
+		// Note: Update schema version only if using new features.
+		let schemaVersion = 9;
+		// If using underline annotations, increase schema version number
+		// TODO: Can be removed once most clients support schema version 10
+		if (schemaVersion === 9 && annotations.some(x => x.annotationType === 'underline')) {
+			schemaVersion = 10;
+		}
 		html = `<div data-citation-items="${citationItems}" data-schema-version="${schemaVersion}">${html}</div>`;
 		note.setNote(html);
 		await note.saveTx();
@@ -1470,8 +1501,8 @@ class EditorInstanceUtilities {
 			// Text
 			if (annotation.text) {
 				let text = this._transformTextToHTML(annotation.text.trim());
-				highlightHTML = `<span class="highlight" data-annotation="${encodeURIComponent(JSON.stringify(storedAnnotation))}">${text}</span>`;
-				quotedHighlightHTML = `<span class="highlight" data-annotation="${encodeURIComponent(JSON.stringify(storedAnnotation))}">${Zotero.getString('punctuation.openingQMark')}${text}${Zotero.getString('punctuation.closingQMark')}</span>`;
+				highlightHTML = `<span class="${annotation.type}" data-annotation="${encodeURIComponent(JSON.stringify(storedAnnotation))}">${text}</span>`;
+				quotedHighlightHTML = `<span class="${annotation.type}" data-annotation="${encodeURIComponent(JSON.stringify(storedAnnotation))}">${Zotero.getString('punctuation.openingQMark')}${text}${Zotero.getString('punctuation.closingQMark')}</span>`;
 			}
 
 			// Note
@@ -1480,10 +1511,10 @@ class EditorInstanceUtilities {
 			}
 
 			let template;
-			if (annotation.type === 'highlight') {
+			if (['highlight', 'underline'].includes(annotation.type)) {
 				template = Zotero.Prefs.get('annotations.noteTemplates.highlight');
 			}
-			else if (annotation.type === 'note') {
+			else if (['note', 'text'].includes(annotation.type)) {
 				template = Zotero.Prefs.get('annotations.noteTemplates.note');
 			}
 			else if (annotation.type === 'image') {
@@ -1576,8 +1607,7 @@ class EditorInstanceUtilities {
 			}
 		}
 
-		let parser = Components.classes['@mozilla.org/xmlextras/domparser;1']
-		.createInstance(Components.interfaces.nsIDOMParser);
+		let parser = new DOMParser();
 		let doc = parser.parseFromString('', 'text/html');
 
 		// innerText transforms \n into <br>
@@ -1606,7 +1636,7 @@ class EditorInstanceUtilities {
 			else if (authors.length === 2) {
 				let a = authors[0].family || authors[0].literal;
 				let b = authors[1].family || authors[1].literal;
-				str = a + ' ' + Zotero.getString('general.and') + ' ' + b;
+				str = Zotero.getString('general.andJoiner', [a, b]);
 			}
 			else if (authors.length >= 3) {
 				str = (authors[0].family || authors[0].literal) + ' ' + Zotero.getString('general.etAl');

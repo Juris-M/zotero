@@ -1,85 +1,13 @@
 describe("Advanced Preferences", function () {
-	// TODO: Debug output logging is now in the application menus, and we test in Firefox...
-	// Maybe add the debug output menu to Firefox for the purposes of testing?
-	describe.skip("General", function () {
-		var server;
-		
-		before(function () {
-			server = sinon.fakeServer.create();
-			server.autoRespond = true;
-			Zotero.HTTP.mock = sinon.FakeXMLHttpRequest;
-		});
-		
-		after(function () {
-			Zotero.HTTP.mock = null;
-		})
-		
-		describe("Debug Output", function () {
-			it("should log output and submit to server", function* () {
-				var win = yield loadWindow("chrome://zotero/content/preferences/preferences.xul", {
-					pane: 'zotero-prefpane-advanced',
-					tabIndex: 0
-				});
-				
-				// Wait for tab to load
-				var doc = win.document;
-				var prefwindow = doc.documentElement;
-				var defer = Zotero.Promise.defer();
-				var pane = doc.getElementById('zotero-prefpane-advanced');
-				if (!pane.loaded) {
-					pane.addEventListener('paneload', function () {
-						defer.resolve();
-					})
-					yield defer.promise;
-				}
-				
-				var enableButton = doc.getElementById('debug-output-enable');
-				enableButton.click();
-				yield createDataObject('item');
-				enableButton.click();
-				
-				server.respond(function (req) {
-					if (req.method == "POST") {
-						req.respond(
-							200,
-							{},
-							'<?xml version="1.0" encoding="UTF-8"?>\n'
-								+ '<xml><reported reportID="1234567890"/></xml>'
-						);
-					}
-				});
-				
-				// Make sure Debug ID is shown in dialog
-				var promise = waitForDialog(function (dialog) {
-					assert.match(dialog.document.documentElement.textContent, /D1234567890/);
-				});
-				doc.getElementById('debug-output-submit').click();
-				yield promise;
-				
-				win.close();
-			});
-		});
-	});
-	
 	describe("Files & Folders", function () {
 		describe("Linked Attachment Base Directory", function () {
 			var setBaseDirectory = Zotero.Promise.coroutine(function* (basePath) {
-				var win = yield loadWindow("chrome://zotero/content/preferences/preferences.xul", {
-					pane: 'zotero-prefpane-advanced',
-					tabIndex: 1
+				var win = yield loadWindow("chrome://zotero/content/preferences/preferences.xhtml", {
+					pane: 'zotero-prefpane-advanced'
 				});
 				
 				// Wait for tab to load
-				var doc = win.document;
-				var prefwindow = doc.documentElement;
-				var defer = Zotero.Promise.defer();
-				var pane = doc.getElementById('zotero-prefpane-advanced');
-				if (!pane.loaded) {
-					pane.addEventListener('paneload', function () {
-						defer.resolve();
-					})
-					yield defer.promise;
-				}
+				yield win.Zotero_Preferences.waitForFirstPaneLoad();
 				
 				var promise = waitForDialog();
 				yield win.Zotero_Preferences.Attachment_Base_Directory.changePath(basePath);
@@ -89,22 +17,13 @@ describe("Advanced Preferences", function () {
 			});
 			
 			var clearBaseDirectory = Zotero.Promise.coroutine(function* (basePath) {
-				var win = yield loadWindow("chrome://zotero/content/preferences/preferences.xul", {
+				var win = yield loadWindow("chrome://zotero/content/preferences/preferences.xhtml", {
 					pane: 'zotero-prefpane-advanced',
 					tabIndex: 1
 				});
 				
 				// Wait for tab to load
-				var doc = win.document;
-				var prefwindow = doc.documentElement;
-				var defer = Zotero.Promise.defer();
-				var pane = doc.getElementById('zotero-prefpane-advanced');
-				if (!pane.loaded) {
-					pane.addEventListener('paneload', function () {
-						defer.resolve();
-					})
-					yield defer.promise;
-				}
+				yield win.Zotero_Preferences.waitForFirstPaneLoad();
 				
 				var promise = waitForDialog();
 				yield win.Zotero_Preferences.Attachment_Base_Directory.clearPath();
@@ -186,7 +105,53 @@ describe("Advanced Preferences", function () {
 				assert.isFalse(Zotero.Prefs.get('saveRelativeAttachmentPath'));
 				
 				assert.equal(attachment.attachmentPath, file.path);
-			})
+			});
+			
+			it("should ignore attachment with relative path already within new base directory", async function () {
+				var file = getTestDataDirectory();
+				file.append('test.png');
+				file = file.path;
+				
+				var attachment = await Zotero.Attachments.linkFromFile({ file });
+				assert.equal(attachment.attachmentPath, file);
+				
+				var basePath = getTestDataDirectory().path;
+				await setBaseDirectory(basePath);
+				
+				var newBasePath = await getTempDirectory();
+				await IOUtils.copy(file, PathUtils.joinRelative(newBasePath, 'test.png'));
+				
+				await setBaseDirectory(newBasePath);
+				
+				assert.equal(
+					attachment.attachmentPath,
+					Zotero.Attachments.BASE_PATH_PLACEHOLDER + 'test.png'
+				);
+			});
+
+			it("should ignore attachment with invalid relative path", async function () {
+				var file = getTestDataDirectory();
+				file.append('test.pdf');
+				file = file.path;
+				
+				var attachment = createUnsavedDataObject('item', { itemType: 'attachment' });
+				attachment.attachmentLinkMode = Zotero.Attachments.LINK_MODE_LINKED_FILE;
+				attachment.attachmentPath = 'attachments:/test.pdf'; // Invalid
+				await attachment.saveTx();
+
+				var basePath = getTestDataDirectory().path;
+				await setBaseDirectory(basePath);
+
+				var newBasePath = await getTempDirectory();
+				await IOUtils.copy(file, PathUtils.joinRelative(newBasePath, 'test.pdf'));
+
+				await setBaseDirectory(newBasePath);
+
+				assert.equal(
+					attachment.attachmentPath,
+					Zotero.Attachments.BASE_PATH_PLACEHOLDER + '/test.pdf'
+				);
+			});
 		})
 	})
 })

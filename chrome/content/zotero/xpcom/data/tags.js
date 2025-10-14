@@ -75,7 +75,7 @@ Zotero.Tags = new function() {
 	/**
 	 * Returns the tagID matching given fields, or false if none
 	 *
-	 * @param {String} name - Tag data in API JSON format
+	 * @param {String} name - Tag name
 	 * @return {Integer} tagID
 	 */
 	this.getID = function (name) {
@@ -99,7 +99,7 @@ Zotero.Tags = new function() {
 	 *
 	 * Requires a wrapping transaction
 	 *
-	 * @param {String} name - Tag data in API JSON format
+	 * @param {String} name - Tag name
 	 * @return {Promise<Integer>} tagID
 	 */
 	this.create = Zotero.Promise.coroutine(function* (name) {
@@ -219,6 +219,52 @@ Zotero.Tags = new function() {
 		var rows = yield Zotero.DB.queryAsync(sql, str ? '%' + str + '%' : undefined);
 		return rows.map((row) => this.cleanData(row));
 	});
+
+
+	/**
+	 * Convert tags (a single tag or an array) in API JSON format to API response JSON format.
+	 *
+	 * @param {Number} libraryID
+	 * @param {Object[]} tags
+	 * @param {Object} [options]
+	 * @return {Promise<Object[]>}
+	 */
+	this.toResponseJSON = function (libraryID, tags, options = {}) {
+		return Promise.all(tags.map(async (tag) => {
+			tag = { ...this.cleanData(tag), type: tag.type };
+			let numItems;
+			if (tag.type == 0 || tag.type == 1) {
+				let sql = "SELECT COUNT(itemID) "
+					+ "FROM tags JOIN itemTags USING (tagID) JOIN items USING (itemID) "
+					+ `WHERE tagID = ? AND type = ? AND libraryID = ?`;
+				numItems = await Zotero.DB.valueQueryAsync(sql, [this.getID(tag.tag), tag.type, libraryID]);
+			}
+			else {
+				let sql = "SELECT COUNT(itemID) "
+					+ "FROM tags JOIN itemTags USING (tagID) JOIN items USING (itemID) "
+					+ `WHERE tagID = ? AND libraryID = ?`;
+				numItems = await Zotero.DB.valueQueryAsync(sql, [this.getID(tag.tag), libraryID]);
+			}
+			let uri = Zotero.URI.getTagURI(libraryID, tag.tag);
+			return {
+				tag: tag.tag,
+				links: {
+					self: {
+						href: Zotero.URI.toAPIURL(uri),
+						type: 'application/json'
+					},
+					alternate: Zotero.Users.getCurrentUserID() ? {
+						href: uri, // No toWebURL - match dataserver behavior
+						type: 'text/html'
+					} : undefined
+				},
+				meta: {
+					type: tag.type || 0,
+					numItems
+				}
+			};
+		}));
+	};
 	
 	
 	/**
@@ -248,11 +294,11 @@ Zotero.Tags = new function() {
 		// we can assign it to the new name
 		var oldColorData = this.getColor(libraryID, oldName);
 		
-		yield Zotero.DB.executeTransaction(function* () {
-			var oldItemIDs = yield this.getTagItems(libraryID, oldTagID);
-			var newTagID = yield this.create(newName);
+		yield Zotero.DB.executeTransaction(async function () {
+			var oldItemIDs = await this.getTagItems(libraryID, oldTagID);
+			var newTagID = await this.create(newName);
 			
-			yield Zotero.Utilities.Internal.forEachChunkAsync(
+			await Zotero.Utilities.Internal.forEachChunkAsync(
 				oldItemIDs,
 				Zotero.DB.MAX_BOUND_PARAMETERS - 2,
 				Zotero.Promise.coroutine(function* (chunk) {
@@ -292,16 +338,16 @@ Zotero.Tags = new function() {
 				notifierData
 			);
 			
-			yield this.purge(oldTagID);
+			await this.purge(oldTagID);
 		}.bind(this));
 		
 		if (oldColorData) {
-			yield Zotero.DB.executeTransaction(function* () {
+			yield Zotero.DB.executeTransaction(async function () {
 				// Remove color from old tag
-				yield this.setColor(libraryID, oldName);
+				await this.setColor(libraryID, oldName);
 				
 				// Add color to new tag
-				yield this.setColor(
+				await this.setColor(
 					libraryID,
 					newName,
 					oldColorData.color,
@@ -336,7 +382,7 @@ Zotero.Tags = new function() {
 			tagIDs,
 			100,
 			async function (chunk) {
-				await Zotero.DB.executeTransaction(function* () {
+				await Zotero.DB.executeTransaction(async function () {
 					var rowIDs = [];
 					var itemIDs = [];
 					var uniqueTags = new Set();
@@ -352,7 +398,7 @@ Zotero.Tags = new function() {
 						sql += 'AND type IN (' + types.join(', ') + ') ';
 					}
 					sql += 'ORDER BY tagID, type';
-					var rows = yield Zotero.DB.queryAsync(sql, [libraryID, ...chunk]);
+					var rows = await Zotero.DB.queryAsync(sql, [libraryID, ...chunk]);
 					for (let { rowID, tagID, itemID, type } of rows) {
 						uniqueTags.add(tagID);
 						
@@ -375,7 +421,7 @@ Zotero.Tags = new function() {
 						// If we're deleting the tag and not just a specific type, also clear any
 						// tag color
 						if (colors.has(name) && !types) {
-							yield this.setColor(libraryID, name, false);
+							await this.setColor(libraryID, name, false);
 						}
 					}
 					if (itemIDs.length) {
@@ -383,12 +429,12 @@ Zotero.Tags = new function() {
 					}
 					
 					sql = "DELETE FROM itemTags WHERE ROWID IN (" + rowIDs.join(", ") + ")";
-					yield Zotero.DB.queryAsync(sql, false, { noCache: true });
+					await Zotero.DB.queryAsync(sql, false, { noCache: true });
 					
-					yield this.purge(chunk);
+					await this.purge(chunk);
 					
 					// Update internal timestamps on all items that had these tags
-					yield Zotero.Utilities.Internal.forEachChunkAsync(
+					await Zotero.Utilities.Internal.forEachChunkAsync(
 						Zotero.Utilities.arrayUnique(itemIDs),
 						Zotero.DB.MAX_BOUND_PARAMETERS - 1,
 						async function (chunk) {
@@ -664,6 +710,10 @@ Zotero.Tags = new function() {
 			else {
 				tagColors.splice(position, 0, newObj);
 			}
+			_libraryColorsByName[libraryID].set(name, {
+				color: color,
+				position: position
+			});
 		}
 		
 		if (tagColors.length) {
@@ -827,7 +877,7 @@ Zotero.Tags = new function() {
 			.getService(Components.interfaces.nsIAppShellService)
 			.hiddenDOMWindow;
 		var doc = win.document;
-		var canvas = doc.createElementNS('http://www.w3.org/1999/xhtml', 'canvas');
+		var canvas = doc.createElement('canvas');
 		
 		var width = extraImageWidth
 			+ (retracted
@@ -945,7 +995,35 @@ Zotero.Tags = new function() {
 			ctx.fill();
 		}
 	}
-	
+
+	// Return the first sequence of emojis from a string
+	this.extractEmojiForItemsList = function (str) {
+		// Split by anything that is not an emoji, Zero Width Joiner, or Variation Selector-16
+		// And return first continuous span of emojis
+		let re = /[^\p{Extended_Pictographic}\u200D\uFE0F]+/gu;
+		return str.split(re).filter(Boolean)[0] || null;
+	};
+
+	// Used as parameter for .sort() method on an array of tags
+	// Orders colored tags first by their position
+	// Then order tags with emojis alphabetically.
+	// Then order all remaining tags alphabetically
+	this.compareTagsOrder = function (libraryID, tagA, tagB) {
+		var collation = Zotero.getLocaleCollation();
+		let tagColors = this.getColors(libraryID);
+		let colorForA = tagColors.get(tagA);
+		let colorForB = tagColors.get(tagB);
+		if (colorForA && !colorForB) return -1;
+		if (!colorForA && colorForB) return 1;
+		if (colorForA && colorForB) {
+			return colorForA.position - colorForB.position;
+		}
+		let emojiForA = Zotero.Utilities.Internal.containsEmoji(tagA);
+		let emojiForB = Zotero.Utilities.Internal.containsEmoji(tagB);
+		if (emojiForA && !emojiForB) return -1;
+		if (!emojiForA && emojiForB) return 1;
+		return collation.compareString(1, tagA, tagB);
+	};
 	
 	/**
 	 * Compare two API JSON tag objects

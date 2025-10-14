@@ -31,17 +31,11 @@ var VirtualizedTable = require('components/virtualized-table');
 var { makeRowRenderer } = VirtualizedTable;
 
 Zotero_Preferences.Export = {
-	init: Zotero.Promise.coroutine(function* () {
+	init: async function () {
 		this.updateQuickCopyInstructions();
-		yield this.populateQuickCopyList();
-		yield this.populateNoteQuickCopyList();
-		
-		var charsetMenu = document.getElementById("zotero-import-charsetMenu");
-		var charsetMap = Zotero_Charset_Menu.populate(charsetMenu, false);
-		charsetMenu.selectedItem =
-			charsetMap[Zotero.Prefs.get("import.charset")] ?
-				charsetMap[Zotero.Prefs.get("import.charset")] : charsetMap["auto"];
-	}),
+		await this.populateQuickCopyList();
+		await this.populateNoteQuickCopyList();
+	},
 	
 	
 	getQuickCopyTranslators: async function () {
@@ -70,15 +64,16 @@ Zotero_Preferences.Export = {
 		this.buildQuickCopyFormatDropDown(
 			menulist, format.contentType, format, translators
 		);
-		menulist.setAttribute('preference', "pref-quickCopy-setting");
+		menulist.setAttribute('preference', "extensions.zotero.export.quickCopy.setting");
 		
 		// Initialize locale drop-down
 		var localeMenulist = document.getElementById("zotero-quickCopy-locale-menu");
 		Zotero.Styles.populateLocaleList(localeMenulist);
-		localeMenulist.setAttribute('preference', "pref-quickCopy-locale");
-		
-		this._lastSelectedLocale = Zotero.Prefs.get("export.quickCopy.locale");
-		this.updateQuickCopyUI();
+		localeMenulist.addEventListener('syncfrompreference', () => {
+			this._lastSelectedLocale = Zotero.Prefs.get("export.quickCopy.locale");
+			this.updateQuickCopyUI();
+		});
+		localeMenulist.setAttribute('preference', "extensions.zotero.export.quickCopy.locale");
 		
 		yield this.refreshQuickCopySiteList();
 	}),
@@ -94,7 +89,7 @@ Zotero_Preferences.Export = {
 		var format = Zotero.Prefs.get("export.noteQuickCopy.setting");
 		format = Zotero.QuickCopy.unserializeSetting(format);
 		var menulist = document.getElementById("zotero-noteQuickCopy-menu");
-		menulist.setAttribute('preference', "pref-noteQuickCopy-setting");
+		menulist.setAttribute('preference', "extensions.zotero.export.noteQuickCopy.setting");
 		menulist.removeEventListener('command', this.updateNoteQuickCopyUI);
 		menulist.addEventListener('command', this.updateNoteQuickCopyUI);
 
@@ -107,7 +102,7 @@ Zotero_Preferences.Export = {
 		menulist.selectedItem = null;
 		menulist.removeAllItems();
 		
-		var popup = document.createElement('menupopup');
+		var popup = document.createXULElement('menupopup');
 		menulist.appendChild(popup);
 
 		// add export formats to list
@@ -185,7 +180,7 @@ Zotero_Preferences.Export = {
 			}
 
 			value = JSON.stringify(value);
-			var itemNode = document.createElement('menuitem');
+			var itemNode = document.createXULElement('menuitem');
 			itemNode.setAttribute('value', value);
 			itemNode.setAttribute('label', translator.label);
 			popup.appendChild(itemNode);
@@ -263,9 +258,9 @@ Zotero_Preferences.Export = {
 			}
 			item.value = JSON.stringify(format);
 		}
-		// After updating menulist item value we have to wait a bit before doing click(), to avoid anomalies
-		// like an empty row in menulist. 0 in setTimeout is not enough
-		setTimeout(() => menulist.click(), 50);
+		// After updating item's value we have to wait before dispatching event.
+		// menulist.value does not reflect changes immediately item.value is updated.
+		setTimeout(() => menulist.dispatchEvent(new Event("change", { bubbles: true })), 50);
 	},
 	
 	
@@ -282,17 +277,10 @@ Zotero_Preferences.Export = {
 		menulist.selectedItem = null;
 		menulist.removeAllItems();
 		
-		// Prevent Cmd-w from setting "Wikipedia"
-		menulist.onkeydown = function (event) {
-			if ((Zotero.isMac && event.metaKey) || event.ctrlKey) {
-				event.preventDefault();
-			}
-		}
-		
-		var popup = document.createElement('menupopup');
+		var popup = document.createXULElement('menupopup');
 		menulist.appendChild(popup);
 		
-		var itemNode = document.createElement("menuitem");
+		var itemNode = document.createXULElement("menuitem");
 		itemNode.setAttribute("label", Zotero.getString('zotero.preferences.export.quickCopy.citationStyles'));
 		itemNode.setAttribute("disabled", true);
 		popup.appendChild(itemNode);
@@ -301,7 +289,7 @@ Zotero_Preferences.Export = {
 		var styles = Zotero.Styles.getVisible();
 		styles.forEach(function (style) {
 			var val = 'bibliography' + (contentType == 'html' ? '/html' : '') + '=' + style.styleID;
-			var itemNode = document.createElement("menuitem");
+			var itemNode = document.createXULElement("menuitem");
 			itemNode.setAttribute("value", val);
 			itemNode.setAttribute("label", style.title);
 			itemNode.setAttribute("oncommand", 'Zotero_Preferences.Export.updateQuickCopyUI()');
@@ -312,7 +300,7 @@ Zotero_Preferences.Export = {
 			}
 		});
 		
-		var itemNode = document.createElement("menuitem");
+		var itemNode = document.createXULElement("menuitem");
 		itemNode.setAttribute("label", Zotero.getString('zotero.preferences.export.quickCopy.exportFormats'));
 		itemNode.setAttribute("disabled", true);
 		popup.appendChild(itemNode);
@@ -327,7 +315,7 @@ Zotero_Preferences.Export = {
 					return;
 			}
 			var val = 'export=' + translator.translatorID;
-			var itemNode = document.createElement("menuitem");
+			var itemNode = document.createXULElement("menuitem");
 			itemNode.setAttribute("value", val);
 			itemNode.setAttribute("label", translator.label);
 			itemNode.setAttribute("oncommand", 'Zotero_Preferences.Export.updateQuickCopyUI()');
@@ -383,6 +371,18 @@ Zotero_Preferences.Export = {
 		document.getElementById('quickCopy-edit').disabled = false;
 		document.getElementById('quickCopy-delete').disabled = false;
 	},
+
+	/**
+	 * Enable or disable depending on whether rows are selected
+	 */
+	updateQuickCopySiteButtons: function () {
+		if (this._tree?.selection.count) {
+			this.enableQuickCopySiteButtons();
+		}
+		else {
+			this.disableQuickCopySiteButtons();
+		}
+	},
 	
 	showQuickCopySiteEditor: async function (editExisting) {
 		var index;
@@ -411,7 +411,7 @@ Zotero_Preferences.Export = {
 		var translators = await translation.getTranslators();
 		
 		var io = { domain, format, locale, asHTML, ok: false, styles, translators };
-		window.openDialog('chrome://zotero/content/preferences/quickCopySiteEditor.xul',
+		window.openDialog('chrome://zotero/content/preferences/quickCopySiteEditor.xhtml',
 			"zotero-preferences-quickCopySiteEditor", "chrome,modal,centerscreen", io);
 		
 		if (!io.ok || !io.domain) {
@@ -481,37 +481,39 @@ Zotero_Preferences.Export = {
 					Zotero_Preferences.Export.deleteSelectedQuickCopySite();
 				}
 			};
-			var handleSelectionChange = (selection) => {
-				if (selection.count) {
-					Zotero_Preferences.Export.enableQuickCopySiteButtons()
-				}
-				else {
-					Zotero_Preferences.Export.disableQuickCopySiteButtons();
-				}
+			var handleSelectionChange = () => {
+				this.updateQuickCopySiteButtons();
 			};
 			
-			let elem = (
-			<VirtualizedTable
-				getRowCount={() => this._rows.length}
-				id="quickCopy-siteSettings-table"
-				ref={ref => this._tree = ref}
-				renderItem={makeRowRenderer(index => this._rows[index])}
-				showHeader={true}
-				columns={columns}
-				staticColumns={true}
-				disableFontSizeScaling={true}
-				onSelectionChange={handleSelectionChange}
-				onKeyDown={handleKeyDown}
-				getRowString={index => this._rows[index].domain}
-				onActivate={(event, indices) => Zotero_Preferences.Export.showQuickCopySiteEditor()}
-			/>
-			);
-			await new Promise(resolve => ReactDOM.render(elem, document.getElementById("quickCopy-siteSettings"), resolve));
+			await new Promise((resolve) => {
+				ReactDOM.createRoot(document.getElementById("quickCopy-siteSettings")).render(
+					<VirtualizedTable
+						getRowCount={() => this._rows.length}
+						id="quickCopy-siteSettings-table"
+						ref={(ref) => {
+							this._tree = ref;
+							resolve();
+						}}
+						renderItem={makeRowRenderer(index => this._rows[index])}
+						showHeader={true}
+						columns={columns}
+						staticColumns={true}
+						disableFontSizeScaling={true}
+						onSelectionChange={handleSelectionChange}
+						onKeyDown={handleKeyDown}
+						getRowString={index => this._rows[index].domain}
+						onActivate={(event, indices) => Zotero_Preferences.Export.showQuickCopySiteEditor(true)}
+					/>
+				);
+			});
 		} else {
 			this._tree.invalidate();
 		}
 
-		this.disableQuickCopySiteButtons();
+		if ([...this._tree.selection.selected].some(i => i >= this._rows.length)) {
+			this._tree.selection.clearSelection();
+		}
+		this.updateQuickCopySiteButtons();
 	},
 	
 	
@@ -520,6 +522,7 @@ Zotero_Preferences.Export = {
 		yield Zotero.DB.queryAsync("DELETE FROM settings WHERE setting='quickCopySite' AND key=?", [domainPath]);
 		yield Zotero.QuickCopy.loadSiteSettings();
 		yield this.refreshQuickCopySiteList();
+		this.updateQuickCopySiteButtons();
 	}),
 	
 	

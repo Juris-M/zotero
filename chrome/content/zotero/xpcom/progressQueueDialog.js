@@ -44,11 +44,11 @@ Zotero.ProgressQueueDialog = function (progressQueue) {
 		
 		let win = Services.wm.getMostRecentWindow("navigator:browser");
 		if (win) {
-			_progressWindow = win.openDialog("chrome://zotero/content/progressQueueDialog.xul",
+			_progressWindow = win.openDialog("chrome://zotero/content/progressQueueDialog.xhtml",
 				"", "chrome,close=yes,resizable=yes,dependent,dialog,centerscreen", _io);
 		}
 		else {
-			_progressWindow = Services.ww.openWindow(null, "chrome://zotero/content/progressQueueDialog.xul",
+			_progressWindow = Services.ww.openWindow(null, "chrome://zotero/content/progressQueueDialog.xhtml",
 				"", "chrome,close=yes,resizable=yes,dependent,dialog,centerscreen", _io);
 		}
 		
@@ -60,7 +60,12 @@ Zotero.ProgressQueueDialog = function (progressQueue) {
 		if (_progressWindow) {
 			let label = _progressWindow.document.getElementById("label");
 			if (label) {
-				label.value = msg;
+				if (typeof msg === 'object' && 'l10nId' in msg) {
+					_progressWindow.document.l10n.setAttributes(label, msg.l10nId, msg.l10nArgs);
+				}
+				else {
+					label.value = msg;
+				}
 			}
 		}
 	};
@@ -83,8 +88,8 @@ Zotero.ProgressQueueDialog = function (progressQueue) {
 	};
 	
 	function _onWindowLoaded() {
-		var rootElement = _progressWindow.document.getElementById('zotero-progress-box');
-		Zotero.setFontSize(rootElement);
+		var rootElement = _progressWindow.document.getElementById('progress-queue-root');
+		Zotero.UIProperties.registerRoot(rootElement);
 		
 		_progressIndicator = _progressWindow.document.getElementById('progress-indicator');
 		_progressWindow.document.getElementById('cancel-button')
@@ -133,7 +138,12 @@ Zotero.ProgressQueueDialog = function (progressQueue) {
 		if (!_progressWindow) return;
 		let total = _progressQueue.getTotal();
 		let processed = _progressQueue.getProcessedTotal();
-		_progressIndicator.value = processed * 100 / total;
+		if (total === 0) {
+			_progressIndicator.value = 0;
+		}
+		else {
+			_progressIndicator.value = processed * 100 / total;
+		}
 		if (processed === total) {
 			_progressWindow.document.getElementById("cancel-button").hidden = true;
 			_progressWindow.document.getElementById("minimize-button").hidden = true;

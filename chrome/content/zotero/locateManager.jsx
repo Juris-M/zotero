@@ -39,21 +39,27 @@ const columns = [
 function init() {
 	engines = Zotero.LocateManager.getEngines();
 	const domEl = document.querySelector('#locateManager-tree');
-	let elem = (
-		<VirtualizedTable
-			getRowCount={() => engines.length}
-			id="locateManager-table"
-			ref={ref => tree = ref}
-			renderItem={VirtualizedTable.makeRowRenderer(getRowData)}
-			showHeader={true}
-			multiSelect={true}
-			columns={columns}
-			disableFontSizeScaling={true}
-			getRowString={index => getRowData(index).name}
-			onActivate={handleActivate}
-		/>
-	);
-	return new Promise(resolve => ReactDOM.render(elem, domEl, resolve));
+	return new Promise((resolve) => {
+		ReactDOM.createRoot(domEl).render(
+			<VirtualizedTable
+				getRowCount={() => engines.length}
+				id="locateManager-table"
+				ref={(ref) => {
+					tree = ref;
+					resolve();
+				}}
+				renderItem={VirtualizedTable.makeRowRenderer(getRowData)}
+				showHeader={true}
+				multiSelect={true}
+				columns={columns}
+				onColumnSort={null}
+				disableFontSizeScaling={true}
+				getRowString={index => getRowData(index).name}
+				onSelectionChange={handleSelectionChange}
+				onActivate={handleActivate}
+			/>
+		);
+	});
 }
 
 function getRowData(index) {
@@ -77,6 +83,10 @@ function getRowData(index) {
 function updateTree() {
 	if (!tree) return;
 	tree.forceUpdate(tree.invalidate);
+}
+
+function handleSelectionChange(selection) {
+	document.getElementById('locateManager-delete').disabled = selection.count == 0;
 }
 
 function handleActivate(event, indices) {
@@ -118,23 +128,25 @@ function toggleLocateEngines() {
 
 /**
  * Deletes selected Locate Engines from the locate pane
+ *
+ * TODO: Limit to custom engines?
  **/
 function deleteLocateEngine() {
 	engines.forEach((engine, index) => {
 		if (tree.selection.isSelected(index)) {
-			Zotero.LocateManager.removeLocateEngine(engine);
+			Zotero.LocateManager.removeEngine(engine);
 		}
 	});
-
 	tree.selection.clearSelection();
+	engines = Zotero.LocateManager.getEngines();
 	updateTree();
 }
 
 /**
  * Restores Default Locate Engines
  **/
-function restoreDefaultLocateEngines() {
-	Zotero.LocateManager.restoreDefaultEngines();
+async function restoreDefaultLocateEngines() {
+	await Zotero.LocateManager.restoreDefaultEngines();
 	engines = Zotero.LocateManager.getEngines();
 	updateTree();
 }

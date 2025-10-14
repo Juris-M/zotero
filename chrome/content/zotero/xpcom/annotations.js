@@ -32,6 +32,10 @@ Zotero.Annotations = new function () {
 	Zotero.defineProperty(this, 'ANNOTATION_TYPE_NOTE', { value: 2 });
 	Zotero.defineProperty(this, 'ANNOTATION_TYPE_IMAGE', { value: 3 });
 	Zotero.defineProperty(this, 'ANNOTATION_TYPE_INK', { value: 4 });
+	Zotero.defineProperty(this, 'ANNOTATION_TYPE_UNDERLINE', { value: 5 });
+	Zotero.defineProperty(this, 'ANNOTATION_TYPE_TEXT', { value: 6 });
+
+	Zotero.defineProperty(this, 'DEFAULT_COLOR', { value: '#ffd400' });
 	
 	Zotero.defineProperty(this, 'PROPS', {
 		value: ['type', 'authorName', 'text', 'comment', 'color', 'pageLabel', 'sortIndex', 'position'],
@@ -135,7 +139,7 @@ Zotero.Annotations = new function () {
 			}
 		}
 		o.readOnly = o.isExternal || !isAuthor;
-		if (o.type == 'highlight') {
+		if (['highlight', 'underline'].includes(o.type)) {
 			o.text = item.annotationText;
 		}
 		else if (['image', 'ink'].includes(o.type)) {
@@ -211,7 +215,7 @@ Zotero.Annotations = new function () {
 		item._requireData('annotationDeferred');
 		item.annotationType = json.type;
 		item.annotationAuthorName = json.authorName || '';
-		if (json.type == 'highlight') {
+		if (['highlight', 'underline'].includes(json.type)) {
 			item.annotationText = json.text;
 		}
 		item.annotationIsExternal = !!json.isExternal;

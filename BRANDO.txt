@@ -1,0 +1,260 @@
+styles.editor@csledit.dtd
+    Jurism Style Editor
+styles.preview@cslpreview.dtd
+    Jurism Style Preview
+zotero.preferences.attachmentBaseDir.message@preferences.dtd
+    Jurism will use relative paths for linked file attachments within the base directory, allowing you to access files on different computers as long as the file structure within the base directory remains the same.
+zotero.preferences.export.citePaperJournalArticleURL.description@preferences.dtd
+    When this option is disabled, Jurism includes URLs when citing journal, magazine, and newspaper articles only if the article does not have a page range specified.
+zotero.preferences.keys.saveToZotero@preferences.dtd
+    Save to Jurism (address bar icon)
+zotero.preferences.locate.addDescription@preferences.dtd
+    To add a Lookup Engine that is not on the list, visit the desired search engine in your browser and select “Add” from Jurism’s Locate menu.
+zotero.preferences.parseRISRefer@preferences.dtd
+    Use Jurism for downloaded BibTeX/RIS/Refer files
+zotero.preferences.proxies.desc_before_link@preferences.dtd
+    Jurism will transparently redirect requests through saved proxies. See the
+zotero.preferences.sync.fileSyncing.groups@preferences.dtd
+    Sync attachment files in group libraries using Zotero storage
+zotero.preferences.sync.fileSyncing.tos1@preferences.dtd
+    By using Zotero storage, you agree to become bound by its
+zotero.preferences.sync.reset.restoreFromServer.desc@preferences.dtd
+    Overwrite local Jurism data with data from the online library.
+zotero.preferences.sync.reset.restoreToServer.desc@preferences.dtd
+    Overwrite online library with local Jurism data
+zotero.preferences.sync.syncFullTextContent.desc@preferences.dtd
+    Jurism can sync the full-text content of files in your Jurism libraries with zotero.org and other linked devices, allowing you to easily search for your files wherever you are. The full-text content of your files will not be shared publicly.
+zotero.preferences.title@preferences.dtd
+    Jurism Preferences
+general.title@timeline.properties
+    Jurism Timeline
+zotero.errorReport.title@zotero.dtd
+    Jurism Error Report
+zotero.import.source.file@zotero.dtd
+    A file (BibTeX, RIS, Zotero RDF, etc.)
+zotero.rtfScan.citationsPage.description@zotero.dtd
+    Please review the list of recognized citations below to ensure that Jurism has selected the corresponding items correctly. Any unmapped or ambiguous citations must be resolved before proceeding to the next step.
+zotero.rtfScan.formatPage.description@zotero.dtd
+    Jurism is processing and formatting your RTF file. Please be patient.
+zotero.rtfScan.introPage.description@zotero.dtd
+    Jurism can automatically extract and reformat citations and insert a bibliography into RTF files. The RTF Scan feature currently supports citations in variations upon the following formats:
+zotero.rtfScan.scanPage.description@zotero.dtd
+    Jurism is scanning your document for citations. Please be patient.
+zotero.sync.longTagFixer.followingTagTooLong@zotero.dtd
+    The following tag in your Jurism library is too long to sync to the server:
+zotero.toolbar.about.label@zotero.dtd
+    About Jurism
+zotero.upgrade.newVersionInstalled@zotero.dtd
+    You have installed a new version of Jurism.
+zotero.upgrade.title@zotero.dtd
+    Jurism Upgrade Wizard
+zotero.upgrade.upgradeRequired@zotero.dtd
+    Your Jurism database must be upgraded to work with the new version.
+zotero.upgrade.upgradeSucceeded@zotero.dtd
+    Your Jurism database has been successfully upgraded.
+app.firefox@zotero.properties
+    Jurism for Firefox
+app.standalone@zotero.properties
+    Jurism Standalone
+connector.error.title@zotero.properties
+    Jurism Connector Error
+dataDir.incompatibleDbVersion.text@zotero.properties
+    The selected data directory is too old to be used with this version of Jurism. Please first upgrade the data directory using Jurism 4.0 for Firefox or select a different directory.
+dataDir.migration.failure.full.firefoxOpen@zotero.properties
+    Your data directory cannot be migrated while Jurism for Firefox is open. Please close Firefox and try again.
+dataDir.moveFilesToNewLocation@zotero.properties
+    Be sure to move files from your existing Jurism data directory to the new location before reopening %1$S.
+dataDir.selectDir@zotero.properties
+    Select a Jurism data directory
+dataDir.selectedDirEmpty.text@zotero.properties
+    The directory you selected is empty. To move an existing Jurism data directory, you will need to manually move files from the existing data directory to the new location after %1$S has closed.
+dataDir.selectedDirNonEmpty.text@zotero.properties
+    The directory you selected is not empty and does not appear to be a Jurism data directory.\n\nCreate Jurism files in this directory anyway?
+db.integrityCheck.errorsFixed@zotero.properties
+    The errors in your Jurism database have been corrected.
+db.integrityCheck.errorsNotFixed@zotero.properties
+    Jurism was unable to correct all the errors in your database.
+db.integrityCheck.failed@zotero.properties
+    Errors were found in your Jurism database.
+db.integrityCheck.repairAttempt@zotero.properties
+    Jurism can attempt to correct these errors.
+errorReport.advanceMessage@zotero.properties
+    Press %S to send the report to the Jurism developers.
+firstRunGuidance.authorMenu@zotero.properties
+    Jurism lets you specify editors and translators, too. You can turn an author into an editor or translator by selecting from this menu.
+firstRunGuidance.saveButton@zotero.properties
+    Click this button to save any web page to your Jurism library. On some pages, Jurism will be able to save full details, including author and date.
+firstRunGuidance.toolbarButton.new@zotero.properties
+    Click the ‘Z’ button to open Jurism, or use the %S keyboard shortcut.
+firstRunGuidance.toolbarButton.upgrade@zotero.properties
+    The Jurism icon can now be found in the Firefox toolbar. Click the icon to open Jurism, or use the %S keyboard shortcut.
+general.operationInProgress@zotero.properties
+    A Jurism operation is currently in progress.
+ingester.scrapeErrorDescription.previousError@zotero.properties
+    The saving process failed due to a previous Jurism error.
+install.quickStartGuide@zotero.properties
+    Jurism Quick Start Guide
+install.quickStartGuide.message.thanks@zotero.properties
+    Thanks for installing Jurism.
+install.quickStartGuide.message.welcome@zotero.properties
+    Welcome to Jurism!
+integration.citationChanged@zotero.properties
+    You have modified this citation since Jurism generated it. Do you want to keep your modifications and prevent future updates?
+integration.citationChanged.description@zotero.properties
+    Clicking "Yes" will prevent Jurism from updating this citation if you add additional citations, switch styles, or modify the item to which it refers. Clicking "No" will erase your changes.
+integration.citationChanged.edit@zotero.properties
+    You have modified this citation since Jurism generated it. Editing will clear your modifications. Do you want to continue?
+integration.corruptBibliography@zotero.properties
+    The Jurism field code for your bibliography is corrupted. Should Jurism clear this field code and generate a new bibliography?
+integration.corruptField@zotero.properties
+    The Jurism field code corresponding to this citation, which tells Jurism which item in your library this citation represents, has been corrupted. Would you like to reselect the item?
+integration.delayCitationUpdates.alert.text2.tab@zotero.properties
+    You will need to click Refresh in the Jurism tab when you are done inserting citations.
+integration.delayCitationUpdates.alert.text2.toolbar@zotero.properties
+    You will need to click Refresh in the Jurism toolbar when you are done inserting citations.
+integration.delayCitationUpdates.bibliography.tab@zotero.properties
+    Automatic citation updates are disabled. To see the bibliography, click Refresh in the Jurism tab.
+integration.delayCitationUpdates.bibliography.toolbar@zotero.properties
+    Automatic citation updates are disabled. To see the bibliography, click Refresh in the Jurism toolbar.
+integration.error.cannotInsertHere@zotero.properties
+    Jurism fields cannot be inserted here.
+integration.error.deletePipe@zotero.properties
+    The pipe that Jurism uses to communicate with the word processor could not be initialized. Would you like Jurism to attempt to correct this error? You will be prompted for your password.
+integration.error.fieldTypeMismatch@zotero.properties
+    Jurism cannot update this document because it was created by a different word processing application with an incompatible field encoding. In order to make a document compatible with both Word and LibreOffice, open the document in the word processor with which it was originally created and switch the field type to Bookmarks in the Jurism Document Preferences.
+integration.error.generic@zotero.properties
+    Jurism experienced an error updating your document.
+integration.error.incompatibleVersion@zotero.properties
+    This version of the Jurism word processor plugin ($INTEGRATION_VERSION) is incompatible with the currently installed version of Jurism (%1$S). Please ensure you are using the latest versions of both components.
+integration.error.incompatibleVersion2@zotero.properties
+    Jurism %1$S requires %2$S %3$S or later. Please download the latest version of %2$S from zotero.org.
+integration.error.macWordSBPermissionsMissing@zotero.properties
+    Jurism does not have permission to control Word. To grant this permission:\n\n1) Open System Settings\n2) Select “Privacy & Security” in the left column\n3) Select “Automation”\n4) Find “Jurism” and click the arrow to expand it\n5) Make sure “Microsoft Word” is enabled under “Jurism”\n6) Restart Word
+integration.error.newerDocumentVersion@zotero.properties
+    Your document was created with a newer version of Jurism (%1$S) than the currently installed version (%2$S). Please upgrade Jurism before editing this document.
+integration.error.notInCitation@zotero.properties
+    You must place the cursor in a Jurism citation to edit it.
+integration.error.notInstalled@zotero.properties
+    Jurism could not load the component necessary to communicate with your word processor. Go to Tools → Add-ons → Extensions in Jurism and make sure that the extension for your word processor is enabled.
+integration.error.title@zotero.properties
+    Jurism Integration Error
+integration.exportDocument.description1@zotero.properties
+    Jurism will convert citations in the document to a format that can be safely transferred to another supported word processor.
+integration.importInstructions@zotero.properties
+    The Jurism citations in this document have been converted to a format that can be safely transferred between word processors. Open this document in a supported word processor and press Refresh in the Jurism plugin to continue working with the citations.
+integration.missingItem.multiple@zotero.properties
+    Item %1$S in the highlighted citation no longer exists in your Jurism database. Do you want to select a substitute item?
+integration.missingItem.single@zotero.properties
+    The highlighted citation no longer exists in your Jurism database. Do you want to select a substitute item?
+integration.removeCodesWarning@zotero.properties
+    Removing field codes will prevent Jurism from updating citations and bibliographies in this document. Are you sure you want to continue?
+integration.replace@zotero.properties
+    Replace this Jurism field?
+lookup.failure.description@zotero.properties
+    Jurism could not find a record for the specified identifier. Please verify the identifier and try again.
+lookup.failureToID.description@zotero.properties
+    Jurism could not find any identifiers in your input. Please verify your input and try again.
+pane.item.attachments.PDF.installTools.text@zotero.properties
+    To use this feature, you must first install the PDF tools in the Search pane of the Jurism preferences.
+pane.items.attach.link.uri.unrecognized@zotero.properties
+    Jurism did not recognize the URI you entered. Please check the address and try again.
+proxies.notification.associated.label@zotero.properties
+    Jurism automatically associated this site with a previously defined proxy. Future requests to %1$S will be redirected to %2$S.
+proxies.notification.recognized.label@zotero.properties
+    Jurism detected that you are accessing this website through a proxy. Would you like to automatically redirect future requests to %1$S through %2$S?
+proxies.notification.redirected.label@zotero.properties
+    Jurism automatically redirected your request to %1$S through the proxy at %2$S.
+proxies.recognized.message@zotero.properties
+    Adding this proxy will allow Jurism to recognize items from its pages and will automatically redirect future requests to %1$S through %2$S.
+report.title.default@zotero.properties
+    Jurism Report
+standalone.addonInstallationFailed.body@zotero.properties
+    The add-on "%S" could not be installed. It may be incompatible with this version of Jurism.
+standalone.corruptInstallation@zotero.properties
+    Your Jurism installation appears to be corrupted due to a failed auto-update. While Jurism may continue to function, to avoid potential bugs, please download the latest version of Jurism from https://www.zotero.org/download as soon as possible.
+standalone.rootWarning@zotero.properties
+    You appear to be running Jurism as root. This is insecure and may prevent Jurism from functioning when launched from your user account.\n\nIf you wish to install an automatic update, modify the Jurism program directory to be writable by your user account.
+standalone.updateMessage@zotero.properties
+    A recommended update is available, but you do not have permission to install it. To update automatically, modify the Jurism program directory to be writeable by your user account.
+startupError.closeFirefox@zotero.properties
+    If Firefox with the Jurism extension is open, please close it and restart Jurism Standalone.
+startupError.closeStandalone@zotero.properties
+    If Jurism Standalone is open, please close it and restart Firefox.
+startupError.databaseInUse@zotero.properties
+    Your Jurism database is currently in use. Only one instance of Jurism using the same database may be opened simultaneously at this time.
+startupError.startedFromDiskImage2@zotero.properties
+    To install %1$S properly, quit the program, open the disk image you downloaded, and drag “%1$S” to the alias of the Applications folder shown in the window. Then eject the disk image and launch Jurism by opening it from your Applications folder.
+startupError.zoteroVersionIsOlder@zotero.properties
+    This version of Jurism is older than the version last used with your database.
+styles.editor.warning.noItems@zotero.properties
+    No items selected in Jurism.
+styles.preview.instructions@zotero.properties
+    Select one or more items in Jurism and click the "Refresh" button to see how these items are rendered by the installed CSL citation styles.
+sync.conflict.autoChange.alert@zotero.properties
+    One or more locally deleted Jurism %S have been modified remotely since the last sync.
+sync.conflict.autoChange.log@zotero.properties
+    A Jurism %S has changed both locally and remotely since the last sync:
+sync.conflict.collectionItemMerge.alert@zotero.properties
+    One or more Jurism items have been added to and/or removed from the same collection on multiple computers since the last sync.
+sync.conflict.collectionItemMerge.log@zotero.properties
+    Jurism items in the collection '%S' have been added and/or removed on multiple computers since the last sync. The following items have been added to the collection:
+sync.conflict.tagItemMerge.alert@zotero.properties
+    One or more Jurism tags have been added to and/or removed from items on multiple computers since the last sync. The different sets of tags have been combined.
+sync.conflict.tagItemMerge.log@zotero.properties
+    The Jurism tag '%S' has been added to and/or removed from items on multiple computers since the last sync.
+sync.error.corruptedLoginManager@zotero.properties
+    This could also be due to a corrupted %1$S logins database. To check, close %1$S, remove cert8.db, key3.db, and logins.json from your %1$S profile directory, and re-enter your Jurism login information in the Sync pane of the Juris-M preferences.
+sync.error.invalidCharsFilename@zotero.properties
+    The filename '%S' contains invalid characters.\n\nRename the file and try again. If you rename the file via the OS, you will need to relink it in Jurism.
+sync.error.invalidClock@zotero.properties
+    The system clock is set to an invalid time. You will need to correct this to sync with the Jurism server.
+sync.error.invalidLogin.text@zotero.properties
+    The Zotero sync server did not accept your username and password.\n\nPlease check that you have entered your zotero.org login information correctly in the Jurism sync preferences.
+sync.error.loginManagerCorrupted1@zotero.properties
+    Jurism cannot access your login information, possibly due to a corrupted %S logins database.
+sync.error.loginManagerCorrupted2@zotero.properties
+    Close %1$S, remove cert9.db, key4.db, and logins.json from your %1$S profile directory, and re-enter your Zotero login information in the Sync pane of the %1$S preferences.
+sync.error.usernameNotSet.text@zotero.properties
+    You must enter your zotero.org username and password in the Jurism preferences to sync with the Zotero server.
+sync.storage.error.fileEditingAccessLost@zotero.properties
+    You no longer have file editing access to the Zotero group '%S', and files you've added or edited cannot be synced to the server.
+sync.storage.error.fileNotCreated@zotero.properties
+    The file '%S' could not be created in the Jurism 'storage' directory.
+sync.storage.error.permissionDeniedAtAddress@zotero.properties
+    You do not have permission to create a Jurism directory at the following address:
+sync.storage.error.verificationFailed@zotero.properties
+    %S verification failed. Verify your file sync settings in the Sync pane of the Jurism preferences.
+sync.storage.error.webdav.default@zotero.properties
+    A WebDAV file sync error occurred. Please try syncing again.\n\nIf you receive this message repeatedly, check your WebDAV server settings in the Sync pane of the Jurism preferences.
+sync.storage.error.webdav.defaultRestart@zotero.properties
+    A WebDAV file sync error occurred. Please restart %S and try syncing again.\n\nIf you receive this message repeatedly, check your WebDAV server settings in the Sync pane of the Jurism preferences.
+sync.storage.error.zfs.fileWouldExceedQuota@zotero.properties
+    The file '%S' would exceed your Zotero File Storage quota
+sync.storage.error.zfs.groupQuotaReached1@zotero.properties
+    The group '%S' has reached its Zotero File Storage quota. Some files were not uploaded. Other Zotero data will continue to sync to the server.
+sync.storage.error.zfs.personalQuotaReached1@zotero.properties
+    You have reached your Zotero File Storage quota. Some files were not uploaded. Other Jurism data will continue to sync to the server.
+upgrade.couldNotMigrate@zotero.properties
+    Jurism could not migrate all necessary files.\nPlease close any open attachment files and restart %S to try the upgrade again.
+upgrade.dbUpdateRequired@zotero.properties
+    The Jurism database must be updated.
+upgrade.failed@zotero.properties
+    Upgrading of the Jurism database failed:
+upgrade.integrityCheckFailed@zotero.properties
+    Your Jurism database must be repaired before the upgrade can continue.
+upgrade.nonupgradeableDB1@zotero.properties
+    Jurism found an old database that cannot be upgraded to work with this version of Jurism.
+upgrade.nonupgradeableDB2@zotero.properties
+    To continue, upgrade your database using Jurism %S first or delete your Jurism data directory to start with a new database.
+zotero.preferences.sync.purgeStorage.desc@zotero.properties
+    If you plan to use WebDAV for file syncing and you previously synced attachment files in My Library to the Zotero servers, you can purge those files from the Zotero servers to give you more storage space for groups.\n\nYou can purge files at any time from your account settings on zotero.org.
+zotero.preferences.sync.purgeStorage.title@zotero.properties
+    Purge Attachment Files on Zotero Servers?
+zotero.preferences.sync.reset.restoreFromServer@zotero.properties
+    All data in this copy of Jurism will be erased and replaced with data belonging to user '%S' on the Zotero server.
+zotero.preferences.sync.reset.restoreFromOnlineLibrary.desc@preferences.dtd
+    Overwrite local Jurism data with data from the online library.
+zotero.preferences.sync.reset.restoreToOnlineLibrary.desc@preferences.dtd
+    Overwrite online library with local Jurism data
+quitApplicationCmdMac.label@standalone.dtd
+    Quit Jurism

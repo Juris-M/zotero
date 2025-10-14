@@ -4,13 +4,9 @@ describe("Zotero.Sync.Storage.Mode.ZFS", function () {
 	//
 	// Setup
 	//
-	Components.utils.import("resource://zotero-unit/httpd.js");
-	
 	var apiKey = Zotero.Utilities.randomString(24);
-	var port = 16213;
-	var baseURL = `http://localhost:${port}/`;
 	
-	var win, server, requestCount;
+	var win, server, requestCount, httpd, baseURL;
 	var responses = {};
 	
 	function setResponse(response) {
@@ -45,22 +41,23 @@ describe("Zotero.Sync.Storage.Mode.ZFS", function () {
 	//
 	// Tests
 	//
-	beforeEach(function* () {
-		yield resetDB({
+	beforeEach(async function () {
+		await resetDB({
 			thisArg: this,
 			skipBundledFiles: true
 		});
-		win = yield loadZoteroPane();
+		win = await loadZoteroPane();
 		
 		Zotero.HTTP.mock = sinon.FakeXMLHttpRequest;
 		server = sinon.fakeServer.create();
 		server.autoRespond = true;
 		
-		this.httpd = new HttpServer();
-		this.httpd.start(port);
+		var port;
+		({ httpd, port } = await startHTTPServer());
+		baseURL = `http://localhost:${port}/`;
 		
-		yield Zotero.Users.setCurrentUserID(1);
-		yield Zotero.Users.setCurrentUsername("testuser");
+		await Zotero.Users.setCurrentUserID(1);
+		await Zotero.Users.setCurrentUsername("testuser");
 		
 		Zotero.Sync.Storage.Local.setModeForLibrary(Zotero.Libraries.userLibraryID, 'zfs');
 		
@@ -103,9 +100,10 @@ describe("Zotero.Sync.Storage.Mode.ZFS", function () {
 	
 	afterEach(function* () {
 		var defer = new Zotero.Promise.defer();
-		this.httpd.stop(() => defer.resolve());
+		httpd.stop(() => defer.resolve());
 		yield defer.promise;
 		win.close();
+		Zotero.HTTP.disableErrorRetry = false;
 	})
 	
 	after(function* () {
@@ -148,7 +146,7 @@ describe("Zotero.Sync.Storage.Mode.ZFS", function () {
 			item.attachmentSyncState = "to_download";
 			yield item.saveTx();
 			
-			this.httpd.registerPathHandler(
+			httpd.registerPathHandler(
 				`/users/1/items/${item.key}/file`,
 				{
 					handle: function (request, response) {
@@ -214,7 +212,8 @@ describe("Zotero.Sync.Storage.Mode.ZFS", function () {
 			item.attachmentSyncState = "to_download";
 			yield item.saveTx();
 			
-			this.httpd.registerPathHandler(
+			Zotero.HTTP.disableErrorRetry = true;
+			httpd.registerPathHandler(
 				`/users/1/items/${item.key}/file`,
 				{
 					handle: function (request, response) {
@@ -251,7 +250,7 @@ describe("Zotero.Sync.Storage.Mode.ZFS", function () {
 			var md5 = Zotero.Utilities.Internal.md5(text)
 			
 			var s3Path = `pretend-s3/${item.key}`;
-			this.httpd.registerPathHandler(
+			httpd.registerPathHandler(
 				`/users/1/items/${item.key}/file`,
 				{
 					handle: function (request, response) {
@@ -272,7 +271,7 @@ describe("Zotero.Sync.Storage.Mode.ZFS", function () {
 					}
 				}
 			);
-			this.httpd.registerPathHandler(
+			httpd.registerPathHandler(
 				"/" + s3Path,
 				{
 					handle: function (request, response) {
@@ -313,7 +312,7 @@ describe("Zotero.Sync.Storage.Mode.ZFS", function () {
 			var md5 = Zotero.Utilities.Internal.md5(text);
 			
 			var s3Path = `pretend-s3/${item.key}`;
-			this.httpd.registerPathHandler(
+			httpd.registerPathHandler(
 				`/users/1/items/${item.key}/file`,
 				{
 					handle: function (request, response) {
@@ -325,7 +324,7 @@ describe("Zotero.Sync.Storage.Mode.ZFS", function () {
 					}
 				}
 			);
-			this.httpd.registerPathHandler(
+			httpd.registerPathHandler(
 				"/" + s3Path,
 				{
 					handle: function (request, response) {
@@ -515,15 +514,9 @@ describe("Zotero.Sync.Storage.Mode.ZFS", function () {
 					var reader = new FileReader();
 					reader.addEventListener("loadend", Zotero.Promise.coroutine(function* () {
 						try {
-							
-							let file = yield OS.File.open(tmpZipPath, {
-								create: true
-							});
-							
-							var contents = new Uint8Array(reader.result);
+							let contents = new Uint8Array(reader.result);
 							contents = contents.slice(prefix2.length, suffix2.length * -1);
-							yield file.write(contents);
-							yield file.close();
+							yield IOUtils.write(tmpZipPath, contents);
 							
 							var zr = Components.classes["@mozilla.org/libjar/zip-reader;1"]
 								.createInstance(Components.interfaces.nsIZipReader);
@@ -686,8 +679,10 @@ describe("Zotero.Sync.Storage.Mode.ZFS", function () {
 			var mtime = (Math.floor(new Date().getTime() / 1000) * 1000) + "";
 			var md5 = Zotero.Utilities.Internal.md5(file)
 			
+			var processDownloadSpy = sinon.spy(Zotero.Sync.Storage.Local, "processDownload");
+			
 			var s3Path = `pretend-s3/${item.key}`;
-			this.httpd.registerPathHandler(
+			httpd.registerPathHandler(
 				`/users/1/items/${item.key}/file`,
 				{
 					handle: function (request, response) {
@@ -715,6 +710,9 @@ describe("Zotero.Sync.Storage.Mode.ZFS", function () {
 			assert.isTrue(result.localChanges);
 			assert.isFalse(result.remoteChanges);
 			assert.isFalse(result.syncRequired);
+			assert.isTrue(processDownloadSpy.notCalled);
+			
+			processDownloadSpy.restore();
 		})
 		
 		it("should update local info for file that already exists on the server", function* () {

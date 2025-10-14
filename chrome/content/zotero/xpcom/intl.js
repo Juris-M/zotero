@@ -28,6 +28,7 @@ Zotero.Intl = new function () {
 	let intlProps;
 	let pluralFormGet;
 	let pluralFormNumForms;
+	let ftl;
 
 	// Get settings from language pack (extracted by zotero-build/locale/merge_mozilla_files)
 	this.init = function () {
@@ -38,7 +39,7 @@ Zotero.Intl = new function () {
 			let restart = false;
 			if (prevMatchOS === false && prevLocale) {
 				try {
-					Services.locale.setRequestedLocales([prevLocale]);
+					Services.locale.requestedLocales = [prevLocale];
 					restart = true;
 				}
 				catch (e) {
@@ -53,7 +54,7 @@ Zotero.Intl = new function () {
 			}
 		}
 		
-		Components.utils.import("resource://gre/modules/PluralForm.jsm");
+		Components.utils.import("resource://zotero/PluralForm.jsm");
 
 		// Exposed for tests
 		this._bundle = bundle = Services.strings.createBundle('chrome://zotero/locale/zotero.properties');
@@ -63,8 +64,8 @@ Zotero.Intl = new function () {
 		setOrClearIntlPref('intl.accept_languages', 'string');
 
 		Zotero.locale = Zotero.Utilities.Internal.resolveLocale(
-			Services.locale.getRequestedLocale(),
-			Services.locale.getAvailableLocales()
+			Services.locale.requestedLocale,
+			Services.locale.availableLocales
 		);
 
 		// Also load the brand as appName
@@ -75,18 +76,42 @@ Zotero.Intl = new function () {
 		// Set the locale direction to Zotero.dir
 		Zotero.dir = Zotero.Locale.defaultScriptDirection(Zotero.locale);
 		Zotero.rtl = (Zotero.dir === 'rtl');
+		Zotero.arrowPreviousKey = Zotero.rtl ? 'ArrowRight' : 'ArrowLeft';
+		Zotero.arrowNextKey = Zotero.rtl ? 'ArrowLeft' : 'ArrowRight';
 		
-		this.strings = {};
+		// Provide synchronous access to Fluent strings for getString()
+		ftl = new Localization([
+			'branding/brand.ftl',
+			'zotero.ftl',
+			'reader.ftl',
+			// More FTL files can be hardcoded here, or added later with
+			// Zotero.ftl.addResourceIds(['...'])
+		], true);
+		Zotero.ftl = ftl;
+	};
+
+
+	ChromeUtils.defineLazyGetter(this, 'strings', () => {
 		const intlFiles = ['zotero.dtd', 'preferences.dtd', 'mozilla/editMenuOverlay.dtd'];
+
+		let strings = [];
+		let { documentElement: elem } = new DOMParser().parseFromString('<root></root>', 'application/xml');
 		for (let intlFile of intlFiles) {
 			let localeXML = Zotero.File.getContentsFromURL(`chrome://zotero/locale/${intlFile}`);
 			let regexp = /<!ENTITY ([^\s]+)\s+"([^"]+)/g;
 			let regexpResult;
-			while (regexpResult = regexp.exec(localeXML)) {
-				this.strings[regexpResult[1]] = regexpResult[2];
+			while ((regexpResult = regexp.exec(localeXML))) {
+				let key = regexpResult[1];
+				let value = regexpResult[2];
+				// Resolve XML entities
+				elem.innerHTML = value;
+				value = elem.textContent;
+
+				strings[key] = value;
 			}
 		}
-	};
+		return strings;
+	});
 
 
 	/**
@@ -101,7 +126,7 @@ Zotero.Intl = new function () {
 		try {
 			var l10n;
 			if (params != undefined) {
-				if (typeof params != 'object'){
+				if (typeof params != 'object') {
 					params = [params];
 				}
 				l10n = bundle.formatStringFromName(name, params, params.length);
@@ -110,7 +135,21 @@ Zotero.Intl = new function () {
 				return this.strings[name];
 			}
 			else {
-				l10n = bundle.GetStringFromName(name);
+				let ftlString = ftl.formatValueSync(name);
+				if (ftlString) {
+					return ftlString;
+				}
+				// TEMP: The this.strings check prevents "TypeError: this.strings is undefined"
+				// from an early Zotero.getString() call, but I'm not sure why. this.strings is
+				// set using defineLazyGetter, but lazy doesn't mean asynchronous...
+				//
+				// https://forums.zotero.org/discussion/117812/issue-with-installing-zotero-7
+				else if (this.strings && this.strings[name]) {
+					return this.strings[name];
+				}
+				else {
+					l10n = bundle.GetStringFromName(name);
+				}
 			}
 			if (num !== undefined) {
 				let availableForms = l10n.split(/;/);
@@ -208,39 +247,14 @@ Zotero.Intl = new function () {
 	}
 
 	function getLocaleCollation() {
+		var naturalSorting = Zotero.Prefs.get('naturalSorting');
+		
 		try {
 			// DEBUG: Is this necessary, or will Intl.Collator just default to the same locales we're
 			// passing manually?
-
-			let locales;
-			// Fx55+
-			if (Services.locale.getAppLocalesAsBCP47) {
-				locales = Services.locale.getAppLocalesAsBCP47();
-			}
-			else {
-				let locale;
-				// Fx54
-				if (Services.locale.getAppLocale) {
-					locale = Services.locale.getAppLocale();
-				}
-				// Fx <=53
-				else {
-					locale = Services.locale.getApplicationLocale();
-					locale = locale.getCategory('NSILOCALE_COLLATE');
-				}
-
-				// Extract a valid language tag
-				try {
-					locale = locale.match(/^[a-z]{2}(\-[A-Z]{2})?/)[0];
-				}
-				catch (e) {
-					throw new Error(`Error parsing locale ${locale}`);
-				}
-				locales = [locale];
-			}
-
+			let locales = Services.locale.appLocalesAsBCP47;
 			var collator = new Intl.Collator(locales, {
-				numeric: true,
+				numeric:  naturalSorting,
 				sensitivity: 'base'
 			});
 		}
@@ -251,7 +265,7 @@ Zotero.Intl = new function () {
 			try {
 				Zotero.logError("Falling back to en-US sorting");
 				collator = new Intl.Collator(['en-US'], {
-					numeric: true,
+					numeric: naturalSorting,
 					sensitivity: 'base'
 				});
 			}

@@ -47,12 +47,13 @@ describe("Zotero_File_Interface", function() {
     
     
     it("should import RIS into selected collection", async function () {
-    	var collection = await createDataObject('collection');
-    	
+		var collection = await createDataObject('collection');
+		await select(win, collection);
+		
         var testFile = OS.Path.join(getTestDataDirectory().path, 'book_and_child_note.ris');
         await win.Zotero_File_Interface.importFile({
-        	file: testFile,
-        	createNewCollection: false
+				file: testFile,
+				createNewCollection: false
         });
         
         var items = collection.getChildItems();
@@ -68,10 +69,10 @@ describe("Zotero_File_Interface", function() {
 		var rdfFile = OS.Path.join(tmpDir, 'test.rdf');
 		yield OS.File.copy(OS.Path.join(getTestDataDirectory().path, 'book_and_snapshot.rdf'), rdfFile);
 		yield OS.File.makeDir(OS.Path.join(tmpDir, 'files'));
-		yield OS.File.makeDir(OS.Path.join(tmpDir, 'files', 2));
+		yield OS.File.makeDir(OS.Path.join(tmpDir, 'files', '2'));
 		yield OS.File.copy(
 			OS.Path.join(getTestDataDirectory().path, 'test.html'),
-			OS.Path.join(tmpDir, 'files', 2, 'test.html')
+			OS.Path.join(tmpDir, 'files', '2', 'test.html')
 		);
 		
 		var promise = waitForItemEvent('add');
@@ -112,6 +113,26 @@ describe("Zotero_File_Interface", function() {
 		assert.equal(item.itemTypeID, Zotero.ItemTypes.getID('journalArticle'));
 		assert.equal(item.getField('title'), "Test");
 	});
+	
+	
+	describe("#importFromClipboard()", function () {
+		it("should import BibTeX from the clipboard", async function () {
+			var str = "@article{last_test_nodate,\n	title = {Test},\n	author = {Last, First},\n}";
+			Zotero.Utilities.Internal.copyTextToClipboard(str);
+			var promise = waitForItemEvent('add');
+			await win.Zotero_File_Interface.importFromClipboard();
+			var ids = await promise;
+			assert.lengthOf(ids, 1);
+			
+			var item = Zotero.Items.get(ids[0]);
+			assert.equal(item.itemTypeID, Zotero.ItemTypes.getID('journalArticle'));
+			assert.equal(item.getField('title'), "Test");
+			var creator = item.getCreators()[0];
+			assert.propertyVal(creator, 'firstName', "First")
+			assert.propertyVal(creator, 'lastName', "Last")
+		});
+	});
+	
 	
 	describe("#copyItemsToClipboard()", function () {
 		var clipboardService, item1, item2;
@@ -158,7 +179,7 @@ describe("Zotero_File_Interface", function() {
 			assert.equal(str, '(<i>A</i>, 2016; <i>B</i>, 2016)');
 			
 			// Plain text
-			str = getDataForFlavor('text/unicode');
+			str = getDataForFlavor('text/plain');
 			assert.equal(str, '(A, 2016; B, 2016)');
 		});
 		
@@ -175,7 +196,7 @@ describe("Zotero_File_Interface", function() {
 			assert.include(str, '<i>B</i>');
 			
 			// Plain text
-			str = getDataForFlavor('text/unicode');
+			str = getDataForFlavor('text/plain');
 			assert.equal(str, 'A. (2016).\nB. (2016).\n');
 		});
 		
@@ -195,7 +216,7 @@ describe("Zotero_File_Interface", function() {
 			assert.equal(str, '(<i>A</i>, 2016; <i>B</i>, 2016)');
 			
 			// Plain text
-			str = getDataForFlavor('text/unicode');
+			str = getDataForFlavor('text/plain');
 			assert.equal(str, '(<i>A</i>, 2016; <i>B</i>, 2016)');
 		});
 		
@@ -213,7 +234,7 @@ describe("Zotero_File_Interface", function() {
 			assert.include(str, '<i>B</i>');
 			
 			// Plain text
-			str = getDataForFlavor('text/unicode');
+			str = getDataForFlavor('text/plain');
 			assert.include(str, 'line-height');
 			assert.include(str, '<i>A</i>');
 			assert.include(str, '<i>B</i>');

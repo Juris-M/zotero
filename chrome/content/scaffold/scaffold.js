@@ -23,14 +23,20 @@
     ***** END LICENSE BLOCK *****
 */
 
-Components.utils.import("resource://gre/modules/Services.jsm");
-import FilePicker from 'zotero/modules/filePicker';
+var { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
+var { E10SUtils } = ChromeUtils.import("resource://gre/modules/E10SUtils.jsm");
+var { Subprocess } = ChromeUtils.import("resource://gre/modules/Subprocess.jsm");
+var { RemoteTranslate } = ChromeUtils.import("chrome://zotero/content/RemoteTranslate.jsm");
+var { ContentDOMReference } = ChromeUtils.import("resource://gre/modules/ContentDOMReference.jsm");
 
-var Zotero = Components.classes["@zotero.org/Zotero;1"]
-				// Currently uses only nsISupports
-				//.getService(Components.interfaces.chnmIZoteroService).
-				.getService(Components.interfaces.nsISupports)
-				.wrappedJSObject;
+var { Zotero } = ChromeUtils.importESModule("chrome://zotero/content/zotero.mjs");
+var { FilePicker } = ChromeUtils.importESModule('chrome://zotero/content/modules/filePicker.mjs');
+
+var lazy = {};
+ChromeUtils.defineLazyGetter(lazy, 'shellPathPromise', () => {
+	return Zotero.Utilities.Internal.subprocess(Services.env.get('SHELL'), ['-c', 'echo $PATH'])
+		.then(s => s.trimEnd());
+});
 
 // Fix JSON stringify 2028/2029 "bug"
 // Borrowed from http://stackoverflow.com/questions/16686687/json-stringify-and-u2028-u2029-check
@@ -53,11 +59,13 @@ function fix2028(str) {
 }
 
 var Scaffold = new function () {
-	var _browser, _frames, _document;
+	var _browser;
 	var _translatorsLoadedPromise;
 	var _translatorProvider = null;
 	var _lastModifiedTime = 0;
 	var _needRebuildTranslatorSuggestions = true;
+
+	this.browser = () => _browser;
 	
 	var _editors = {};
 
@@ -76,31 +84,43 @@ var Scaffold = new function () {
 
 	this.onLoad = async function (e) {
 		if (e.target !== document) return;
-		_document = document;
-
-		if (!Zotero.isMac) {
-			// Hack to fix Windows/Linux toolbar
-			let toolbar = document.getElementById('zotero-toolbar');
-			toolbar.className = 'toolbar-scaffold-small';
-		}
-		
 		_browser = document.getElementById('browser');
 
-		_browser.addEventListener("pageshow",
-			_updateFrames, true);
-		_updateFrames();
+		window.messageManager.addMessageListener('Scaffold:Load', ({ data }) => {
+			document.getElementById("browser-url").value = data.url;
+		});
+
+		window.messageManager.loadFrameScript('chrome://scaffold/content/content.js', true);
 		
 		let browserUrl = document.getElementById("browser-url");
-		browserUrl.addEventListener('keypress', function (e) {
-			if (e.keyCode == e.DOM_VK_RETURN) {
-				_browser.loadURIWithFlags(
-					browserUrl.value,
-					Components.interfaces.nsIWebNavigation.LOAD_FLAGS_BYPASS_CACHE
-				);
+		browserUrl.addEventListener('keydown', function (e) {
+			if (e.key == 'Enter') {
+				Zotero.debug('Scaffold: Loading URL in browser: ' + browserUrl.value);
+				_browser.loadURI(Services.io.newURI(browserUrl.value), {
+					triggeringPrincipal: Services.scriptSecurityManager.getSystemPrincipal()
+				});
 			}
 		});
 
-		this.generateTranslatorID();
+		document.getElementById('tabpanels').addEventListener('select', event => this.handleTabSelect(event));
+		document.getElementById('tabs').addEventListener('mousedown', (event) => {
+			// Record if tab selection will happen due to a mouse click vs keyboard nav.
+			if (event.clientX === 0 && event.clientY === 0) return;
+			document.getElementById('tabs').setAttribute("clicked", true);
+		}, true);
+		// Record that click has happened for better focus-ring handling in the stylesheet
+		document.addEventListener("mouseup", (_) => {
+			document.getElementById('tabs').removeAttribute("clicked");
+		});
+		
+		let lastTranslatorID = Zotero.Prefs.get('scaffold.lastTranslatorID');
+		if (lastTranslatorID) {
+			document.getElementById("textbox-translatorID").value = lastTranslatorID;
+			document.getElementById("textbox-label").value = 'Loading…';
+		}
+		else {
+			this.generateTranslatorID();
+		}
 		
 		// Add List fields help menu entries for all other item types
 		var types = Zotero.ItemTypes.getAll().map(t => t.name).sort();
@@ -108,7 +128,7 @@ var Scaffold = new function () {
 		var primaryTypes = ['book', 'bookSection', 'conferencePaper', 'journalArticle', 'magazineArticle', 'newspaperArticle'];
 		for (let type of types) {
 			if (primaryTypes.includes(type)) continue;
-			var menuitem = document.createElement('menuitem');
+			var menuitem = document.createXULElement('menuitem');
 			menuitem.setAttribute('label', type);
 			menuitem.addEventListener('command', () => {
 				Scaffold.addTemplate('templateNewItem', type);
@@ -126,20 +146,32 @@ var Scaffold = new function () {
 		var importWin = document.getElementById("editor-import").contentWindow;
 		var codeWin = document.getElementById("editor-code").contentWindow;
 		var testsWin = document.getElementById("editor-tests").contentWindow;
-		
-		_editors.import = importWin.editor;
-		_editors.importGlobal = importWin.globalEditor;
-		_editors.code = codeWin.editor;
-		_editors.codeGlobal = codeWin.globalEditor;
-		_editors.tests = testsWin.editor;
-		_editors.testsGlobal = testsWin.globalEditor;
+
+		await Promise.all([
+			importWin.loadMonaco({ language: 'plaintext' }).then(({ monaco, editor }) => {
+				_editors.importGlobal = monaco;
+				_editors.import = editor;
+			}),
+			codeWin.loadMonaco({ language: 'javascript' }).then(({ monaco, editor }) => {
+				_editors.codeGlobal = monaco;
+				_editors.code = editor;
+			}),
+			testsWin.loadMonaco({ language: 'json' }).then(({ monaco, editor }) => {
+				_editors.testsGlobal = monaco;
+				_editors.tests = editor;
+			}),
+		]);
 
 		this.initImportEditor();
 		this.initCodeEditor();
 		this.initTestsEditor();
 
+		this.addEditorKeydownHandlers(_editors.import);
+		this.addEditorKeydownHandlers(_editors.code);
+		this.addEditorKeydownHandlers(_editors.tests);
+
 		// Set font size from general pref
-		Zotero.setFontSize(document.getElementById('scaffold-pane'));
+		Zotero.UIProperties.registerRoot(document.getElementById('scaffold-pane'));
 
 		// Set font size of code editor
 		var size = Zotero.Prefs.get("scaffold.fontSize");
@@ -163,6 +195,15 @@ var Scaffold = new function () {
 		
 		_translatorsLoadedPromise = Scaffold_Translators.load();
 		_translatorProvider = Scaffold_Translators.getProvider();
+		
+		if (lastTranslatorID) {
+			this.load(lastTranslatorID).then((success) => {
+				if (!success) {
+					Zotero.Prefs.clear('scaffold.lastTranslatorID');
+					this.newTranslator(true);
+				}
+			});
+		}
 	};
 	
 	this.promptForTranslatorsDirectory = async function () {
@@ -207,7 +248,7 @@ var Scaffold = new function () {
 		if (await fp.show() != fp.returnOK) {
 			return false;
 		}
-		var path = OS.Path.normalize(fp.file);
+		var path = PathUtils.normalize(fp.file);
 		if (oldPath == path) {
 			return false;
 		}
@@ -241,38 +282,40 @@ var Scaffold = new function () {
 				null, null, {}
 			);
 			if (index == 1) {
-				this.load(translatorID);
+				await this.load(translatorID);
 			}
 			else {
 				_lastModifiedTime = modifiedTime;
 			}
 		}
+		
+		_updateTitle();
 	};
 
 	this.initImportEditor = function () {
 		let monaco = _editors.importGlobal, editor = _editors.import;
-		monaco.editor.setModelLanguage(editor.getModel(), 'plaintext');
+		// Nothing to do here
 	};
 
 	this.initCodeEditor = async function () {
 		let monaco = _editors.codeGlobal, editor = _editors.code;
-
-		editor.getModel().updateOptions({
-			insertSpaces: false
-		});
+		
+		// For some reason, even if we explicitly re-set the default model's language to JavaScript,
+		// Monaco still treats it as TypeScript. Recreating the model manually fixes the issue.
+		let model = monaco.editor.createModel('', 'javascript', monaco.Uri.parse('inmemory:///translator.js'));
+		editor.setModel(model);
 
 		editor.updateOptions({
 			lineNumbers: num => num + _linesOfMetadata - 1,
-			// clicking links doesn't actually work, so disable them (for now)
-			links: false
 		});
 
 		monaco.languages.registerCodeLensProvider('javascript', this.createRunCodeLensProvider(monaco, editor));
 		monaco.languages.registerHoverProvider('javascript', this.createHoverProvider(monaco, editor));
 		monaco.languages.registerCompletionItemProvider('javascript', this.createCompletionProvider(monaco, editor));
+		model.onDidChangeContent(() => this.updateModelMarkers());
 
 		let tsLib = await Zotero.File.getContentsAsync(
-			OS.Path.join(Scaffold_Translators.getDirectory(), 'index.d.ts'));
+			PathUtils.join(Scaffold_Translators.getDirectory(), 'index.d.ts'));
 		let tsLibPath = 'ts:filename/index.d.ts';
 		monaco.languages.typescript.javascriptDefaults.addExtraLib(tsLib, tsLibPath);
 		// this would allow peeking:
@@ -290,8 +333,6 @@ var Scaffold = new function () {
 			schemaValidation: 'error'
 		});
 
-		monaco.editor.setModelLanguage(editor.getModel(), 'json');
-
 		editor.getModel().updateOptions({
 			insertSpaces: false
 		});
@@ -301,7 +342,8 @@ var Scaffold = new function () {
 		});
 
 		editor.updateOptions({
-			links: false
+			links: false,
+			stickyScroll: { enabled: false }
 		});
 
 		monaco.languages.registerCodeLensProvider('json', this.createTestCodeLensProvider(monaco, editor));
@@ -337,7 +379,7 @@ var Scaffold = new function () {
 					});
 				}
 
-				return lenses;
+				return { lenses, dispose() {} };
 			},
 			resolveCodeLens: (_model, codeLens, _token) => codeLens
 		};
@@ -498,7 +540,7 @@ var Scaffold = new function () {
 					});
 				}
 
-				return lenses;
+				return { lenses, dispose() {} };
 			},
 			resolveCodeLens: (_model, codeLens, _token) => codeLens
 		};
@@ -541,11 +583,12 @@ var Scaffold = new function () {
 		};
 	};
 
-	this.updateModelMarkers = function (translatorPath) {
-		runESLint(translatorPath)
-			.then(eslintOutputToModelMarkers)
-			.then(markers => _editors.codeGlobal.editor.setModelMarkers(_editors.code.getModel(), 'eslint', markers));
-	};
+	this.updateModelMarkers = Zotero.Utilities.debounce(async function () {
+		let modelVersionId = _editors.code.getModel().getVersionId();
+		let output = await runESLint();
+		let markers = eslintOutputToModelMarkers(output, modelVersionId);
+		_editors.codeGlobal.editor.setModelMarkers(_editors.code.getModel(), 'eslint', markers);
+	}, 200);
 
 	this.setFontSize = function (size) {
 		var sizeWithPX = size + 'px';
@@ -553,8 +596,8 @@ var Scaffold = new function () {
 		_editors.code.updateOptions({ fontSize: size + 1 });
 		_editors.tests.updateOptions({ fontSize: size + 1 });
 		document.getElementById("scaffold-pane").style.fontSize = sizeWithPX;
-		if (size == 11) {
-			// for the default value 11, clear the prefs
+		if (size == 13) {
+			// for the default value 13, clear the prefs
 			Zotero.Prefs.clear('scaffold.fontSize');
 		}
 		else {
@@ -563,17 +606,32 @@ var Scaffold = new function () {
 	};
 
 	this.increaseFontSize = function () {
-		var currentSize = Zotero.Prefs.get("scaffold.fontSize") || 11;
+		var currentSize = Zotero.Prefs.get("scaffold.fontSize") || 13;
 		this.setFontSize(currentSize + 2);
 	};
 	this.decreaseFontSize = function () {
-		var currentSize = Zotero.Prefs.get("scaffold.fontSize") || 11;
+		var currentSize = Zotero.Prefs.get("scaffold.fontSize") || 13;
 		this.setFontSize(currentSize - 2);
 	};
 
-	this.newTranslator = async function () {
-		_logOutput('Saving translator and resetting...');
-		await this.save();
+	this.newTranslator = async function (skipSavePrompt) {
+		if (!skipSavePrompt && _editors.code.getValue()) {
+			let ps = Services.prompt;
+			let buttonFlags = ps.BUTTON_POS_0 * ps.BUTTON_TITLE_IS_STRING
+				+ ps.BUTTON_POS_1 * ps.BUTTON_TITLE_IS_STRING;
+			let label = document.getElementById('textbox-label').value;
+			let index = ps.confirmEx(null,
+				"Scaffold",
+				`Do you want to save the changes you made to ${label}?`,
+				buttonFlags,
+				Zotero.getString('general.no'),
+				Zotero.getString('general.yes'),
+				null, null, {}
+			);
+			if (index == 1 && !await this.save()) {
+				return;
+			}
+		}
 
 		this.generateTranslatorID();
 		document.getElementById('textbox-label').value = 'Untitled';
@@ -598,6 +656,7 @@ var Scaffold = new function () {
 
 		document.getElementById('textbox-label').focus();
 		_showTab('metadata');
+		_updateTitle();
 	};
 
 	/*
@@ -606,14 +665,13 @@ var Scaffold = new function () {
 	this.load = async function (translatorID) {
 		await _translatorsLoadedPromise;
 
-		var translator = false;
+		var translator;
 		if (translatorID === undefined) {
 			var io = {};
 			io.translatorProvider = _translatorProvider;
-			io.url = _getDocument()?.location.href || 'about:blank';
-			io.rootUrl = _browser.contentDocument.location.href;
-			window.openDialog("chrome://scaffold/content/load.xul",
-				"_blank", "chrome,modal", io);
+			io.url = io.rootUrl = _browser.currentURI.spec;
+			window.openDialog("chrome://scaffold/content/load.xhtml",
+				"_blank", "chrome,centerscreen,modal,resizable=no", io);
 			translator = io.dataOut;
 		}
 		else {
@@ -621,7 +679,7 @@ var Scaffold = new function () {
 		}
 
 		// No translator was selected in the dialog.
-		if (!translator) return;
+		if (!translator) return false;
 
 		for (var id in _propertyMap) {
 			document.getElementById(id).value = translator[_propertyMap[id]] || "";
@@ -654,9 +712,25 @@ var Scaffold = new function () {
 		if (testStart !== -1 && testEnd !== -1) fixedCode = fixedCode.substr(0, testStart) + fixedCode.substr(testEnd + 23);
 		
 		// Convert whitespace to tabs
-		_editors.code.setValue(normalizeWhitespace(fixedCode));
+		_editors.code.setValue(normalizeWhitespace(fixedCode.trimEnd()));
 		// Then go to line 1
 		_editors.code.setPosition({ lineNumber: 1, column: 1 });
+		
+		// Set Test Input editor language based on translator metadata
+		let language = 'plaintext';
+		if (translator.translatorType & Zotero.Translator.TRANSLATOR_TYPES.import) {
+			if (translator.target.includes('json')) {
+				language = 'json';
+			}
+			else if (translator.target.includes('xml')) {
+				language = 'xml';
+			}
+		}
+		else if (translator.translatorType & Zotero.Translator.TRANSLATOR_TYPES.search) {
+			language = 'json';
+		}
+		_editors.importGlobal.editor.setModelLanguage(_editors.import.getModel(), language);
+		_editors.import.setPosition({ lineNumber: 1, column: 1 });
 		
 		// Reset configOptions and displayOptions before loading
 		document.getElementById('textbox-configOptions').value = '';
@@ -684,8 +758,12 @@ var Scaffold = new function () {
 			if (mod) type -= mod;
 		}
 
-		this.updateModelMarkers(translator.path);
 		_lastModifiedTime = new Date().getTime();
+		
+		Zotero.Prefs.set('scaffold.lastTranslatorID', translator.translatorID);
+		
+		_updateTitle();
+		return true;
 	};
 
 	function _getMetadataObject() {
@@ -746,24 +824,28 @@ var Scaffold = new function () {
 
 		return metadata;
 	}
+	
+	function _getCode() {
+		var code = _editors.code.getValue();
+		var tests = _editors.tests.getValue().trim();
+		if (!tests || tests == '[]') tests = '[\n]'; // eslint wants a line break between the brackets
+
+		code = code.trimEnd() + '\n\n/** BEGIN TEST CASES **/\nvar testCases = ' + tests + '\n/** END TEST CASES **/';
+		return code;
+	}
 
 	/*
 	 * save translator to database
 	 */
 	this.save = async function (updateZotero) {
-		var code = _editors.code.getValue();
-		var tests = _editors.tests.getValue().trim();
-		if (!tests || tests == '[]') tests = '[\n]'; // eslint wants a line break between the brackets
-
-		code += '/** BEGIN TEST CASES **/\nvar testCases = ' + tests + '\n/** END TEST CASES **/';
-
 		var metadata = _getMetadataObject();
+		var code = _getCode();
 		if (metadata.label === "Untitled") {
 			_logOutput("Can't save an untitled translator.");
 			return;
 		}
 		
-		var path = await _translatorProvider.save(metadata, code);
+		await _translatorProvider.save(metadata, code);
 		
 		if (updateZotero) {
 			await Zotero.Translators.save(metadata, code);
@@ -772,8 +854,7 @@ var Scaffold = new function () {
 
 		_lastModifiedTime = new Date().getTime();
 
-		this.updateModelMarkers(path);
-		this.reloadTranslators();
+		await this.reloadTranslators();
 	};
 
 	/**
@@ -792,24 +873,36 @@ var Scaffold = new function () {
 	};
 
 	this.handleTabSelect = function (event) {
-		// Focus editor when switching to tab
-		var tab = event.target.selectedItem.id.match(/^tab-(.+)$/)[1];
-		switch (tab) {
-			case 'import':
-			case 'code':
-			case 'tests':
-				// the select event's default behavior is to focus the selected tab.
-				// we don't want to prevent *all* of the event's default behavior,
-				// but we do want to focus the editor instead of the tab.
-				// so this stupid hack waits 10 ms for event processing to finish
-				// before focusing the editor.
-				setTimeout(() => {
-					document.getElementById(`editor-${tab}`).focus();
-					_editors[tab].focus();
-				}, 10);
-				break;
+		if (event.target.tagName != 'tabpanels') {
+			return;
 		}
 
+		var tabs = document.getElementById('tabs');
+		var tab = tabs.selectedItem.id.match(/^tab-(.+)$/)[1];
+		let tabPanel = tabs.tabbox.selectedPanel;
+		// The select event's default behavior is to focus the selected tab.
+		// we don't want to prevent *all* of the event's default behavior,
+		// but we do want to focus an element inside of tabpanel instead of the tab
+		// (unless tabs are being navigated via keyboard)
+		// so this stupid hack focuses the desired element after skipping a tick
+		if (tabs.hasAttribute('clicked')) {
+			setTimeout(() => {
+				let toFocus = tabPanel.querySelector('[focus-on-tab-select]');
+				if (toFocus) {
+					toFocus.focus();
+					// Activate editor that is being focused, if any
+					if (toFocus.id.startsWith('editor-')) {
+						_editors[tab].focus();
+					}
+				}
+				else {
+					// If no specific element set, just tab into the panel
+					setTimeout(() => {
+						Services.focus.moveFocus(window, tabs.selectedItem, Services.focus.MOVEFOCUS_FORWARD, 0);
+					});
+				}
+			});
+		}
 		let codeTabBroadcaster = document.getElementById('code-tab-only');
 		if (tab == 'code') {
 			codeTabBroadcaster.removeAttribute('disabled');
@@ -825,7 +918,7 @@ var Scaffold = new function () {
 
 		let editImport = document.getElementById('testing_editImport');
 		let openURL = document.getElementById('testing_openURL');
-		if (selected.getUserData('test-type') == 'web') {
+		if (selected.dataset.testType == 'web') {
 			editImport.setAttribute('disabled', true);
 			openURL.removeAttribute('disabled');
 		}
@@ -834,6 +927,24 @@ var Scaffold = new function () {
 			openURL.setAttribute('disabled', true);
 		}
 	};
+
+	// Add special keydown handling for the editors
+	this.addEditorKeydownHandlers = function (editor) {
+		let doc = editor.getDomNode().ownerDocument;
+		let tabbox = document.getElementById("left-tabbox");
+		// On shift-tab from the start of the first line, tab out of the editor.
+		// Use capturing listener, since Shift-Tab keydown events do not propagate to the document.
+		doc.addEventListener("keydown", (event) => {
+			if (event.key == "Tab" && event.shiftKey) {
+				let position = editor.getPosition();
+				if (position.column == 1 && position.lineNumber == 1) {
+					Services.focus.moveFocus(window, event.target, Services.focus.MOVEFOCUS_BACKWARD, 0);
+					event.preventDefault();
+				}
+			}
+		}, true);
+	};
+
 
 	this.listFieldsForItemType = function (itemType) {
 		var outputObject = {};
@@ -848,10 +959,10 @@ var Scaffold = new function () {
 		var creatorList = Zotero.CreatorTypes.getTypesForItemType(typeID);
 		var creators = [];
 		for (let creatorType of creatorList) {
-			creators.push({ firstName: "", lastName: "", creatorType: creatorType.name, fieldMode: true });
+			creators.push({ firstName: "", lastName: "", creatorType: creatorType.name, fieldMode: 1 });
 		}
 		outputObject.creators = creators;
-		outputObject.attachments = [{ url: "", document: "", title: "", mimeType: "" }];
+		outputObject.attachments = [{ url: "", document: {}, title: "", mimeType: "", snapshot: false }];
 		outputObject.tags = [{ tag: "" }];
 		outputObject.notes = [{ note: "" }];
 		outputObject.seeAlso = [];
@@ -874,6 +985,7 @@ var Scaffold = new function () {
 				//newWeb, scrapeEM, scrapeRIS, scrapeBibTeX, scrapeMARC
 				//These names in the XUL file have to match the file names in template folder.
 				let value = Zotero.File.getContentsFromURL(`chrome://scaffold/content/templates/${template}.js`);
+				value = value.replace('$$YEAR$$', new Date().getFullYear());
 				let cursorOffset = value.indexOf('$$CURSOR$$');
 				value = value.replace('$$CURSOR$$', '');
 
@@ -905,7 +1017,7 @@ var Scaffold = new function () {
 		// Handle generic call run('detect'), run('do')
 		if (functionToRun == "detect" || functionToRun == "do") {
 			if (document.getElementById('checkbox-web').checked
-				&& _browser.contentWindow.location.href != 'about:blank') {
+				&& _browser.currentURI.spec != 'about:blank') {
 				functionToRun += 'Web';
 			}
 			else if (document.getElementById('checkbox-import').checked
@@ -928,7 +1040,7 @@ var Scaffold = new function () {
 
 		_logOutput(`Running ${functionToRun}`);
 		
-		let input = _getInput(functionToRun);
+		let input = await _getInput(functionToRun);
 
 		if (functionToRun.endsWith('Export')) {
 			let numItems = Zotero.getActiveZoteroPane().getSelectedItems().length;
@@ -943,24 +1055,20 @@ var Scaffold = new function () {
 	/*
 	 * run translator in given mode with given input
 	 */
-	function _run(functionToRun, input, selectItems, itemDone, detectHandler, done) {
+	async function _run(functionToRun, input, selectItems, itemDone, detectHandler, done) {
+		let translate;
+		let isRemoteWeb = false;
 		if (functionToRun == "detectWeb" || functionToRun == "doWeb") {
-			var translate = new Zotero.Translate.Web();
+			translate = new RemoteTranslate({ disableErrorReporting: true });
+			isRemoteWeb = true;
 			if (!_testTargetRegex(input)) {
-				_logOutput("Target did not match " + _getDocumentURL(input));
+				_logOutput("Target did not match " + _getCurrentURI(input));
 				if (done) {
 					done();
 				}
 				return;
 			}
-			translate.setDocument(input);
-			
-			// Use cookies from browser pane
-			translate.setCookieSandbox(new Zotero.CookieSandbox(
-				null,
-				_getDocumentURL(input),
-				input.cookie
-			));
+			await translate.setBrowser(input);
 		}
 		else if (functionToRun == "detectImport" || functionToRun == "doImport") {
 			translate = new Zotero.Translate.Import();
@@ -984,15 +1092,41 @@ var Scaffold = new function () {
 		// get translator
 		var translator = _getTranslatorFromPane();
 		if (functionToRun.startsWith('detect')) {
-			// don't let target prevent translator from operating
-			translator.target = null;
-			// generate sandbox
-			translate.setHandler("translators", detectHandler);
-			// internal hack to call detect on this translator
-			translate._potentialTranslators = [translator];
-			translate._foundTranslators = [];
-			translate._currentState = "detect";
-			translate._detect();
+			if (isRemoteWeb) {
+				try {
+					translate.setTranslator(translator);
+					detectHandler(translate, await translate.detect());
+				}
+				finally {
+					translate.dispose();
+				}
+			}
+			else {
+				// don't let target prevent translator from operating
+				translator.target = null;
+				// generate sandbox
+				translate.setHandler("translators", detectHandler);
+				// internal hack to call detect on this translator
+				translate._potentialTranslators = [translator];
+				translate._foundTranslators = [];
+				translate._currentState = "detect";
+				translate._detect();
+			}
+		}
+		else if (isRemoteWeb) {
+			try {
+				translate.setHandler("select", selectItems);
+				translate.setTranslator(translator);
+				let items = await translate.translate({ libraryID: false });
+				if (items) {
+					for (let item of items) {
+						itemDone(translate, item);
+					}
+				}
+			}
+			finally {
+				translate.dispose();
+			}
 		}
 		else {
 			// don't let the detectCode prevent the translator from operating
@@ -1032,15 +1166,15 @@ var Scaffold = new function () {
 	/**
 	 * Test target regular expression against document URL and log the result
 	 */
-	this.logTargetRegex = function () {
-		_logOutput(_testTargetRegex(_getDocument()));
+	this.logTargetRegex = async function () {
+		_logOutput(_testTargetRegex(_browser));
 	};
 	
 	/**
 	 * Test target regular expression against document URL and return the result
 	 */
-	function _testTargetRegex(doc) {
-		var url = _getDocumentURL(doc);
+	function _testTargetRegex(browser) {
+		var url = _getCurrentURI(browser);
 		
 		try {
 			var targetRe = new RegExp(document.getElementById('textbox-target').value, "i");
@@ -1057,7 +1191,7 @@ var Scaffold = new function () {
 	 */
 	function _selectItems(obj, itemList) {
 		var io = { dataIn: itemList, dataOut: null };
-		window.openDialog("chrome://zotero/content/ingester/selectitems.xul",
+		window.openDialog("chrome://scaffold/content/select.xhtml",
 			"_blank", "chrome,modal,centerscreen,resizable=yes", io);
 
 		return io.dataOut;
@@ -1066,9 +1200,8 @@ var Scaffold = new function () {
 	/*
 	 * called if an error occurs
 	 */
-	function _error(_obj, _error) {
-		// stub: this handler doesn't actually seem to get called by the current
-		// translation architecture when a translator throws
+	function _error(obj, error) {
+		_logOutput(String(error));
 	}
 
 	/*
@@ -1082,13 +1215,14 @@ var Scaffold = new function () {
 	 * logs item output
 	 */
 	function _myItemDone(obj, item) {
+		delete item.id;
 		if (Array.isArray(item.attachments)) {
 			for (let attachment of item.attachments) {
 				if (attachment.document) {
-					attachment.document = '[object Document]';
 					attachment.mimeType = 'text/html';
+					attachment.url = attachment.document.location?.href;
+					delete attachment.document;
 				}
-				delete attachment.url;
 				delete attachment.complete;
 			}
 		}
@@ -1138,13 +1272,19 @@ var Scaffold = new function () {
 			string = fix2028(Zotero.Utilities.varDump(string));
 		}
 
-		if (output.value) output.value += "\n";
-		output.value += Zotero.Utilities.lpad(date.getHours(), '0', 2)
+		// Put off actually building the log message and appending it to the console until the next animation frame
+		// so as not to slow down translation with repeated layout recalculations triggered by appending text
+		// and accessing scrollHeight
+		// requestAnimationFrame() callbacks are guaranteed to be called in the order they were set
+		requestAnimationFrame(() => {
+			if (output.value) output.value += "\n";
+			output.value += Zotero.Utilities.lpad(date.getHours(), '0', 2)
 				+ ":" + Zotero.Utilities.lpad(date.getMinutes(), '0', 2)
 				+ ":" + Zotero.Utilities.lpad(date.getSeconds(), '0', 2)
 				+ " " + string.replace(/\n/g, "\n         ");
-		// move to end
-		output.inputField.scrollTop = output.inputField.scrollHeight;
+			// move to end
+			output.scrollTop = output.scrollHeight;
+		});
 	}
 
 	/*
@@ -1172,10 +1312,10 @@ var Scaffold = new function () {
 	/*
 	 * gets appropriate input for the given type/method
 	 */
-	function _getInput(typeOrMethod) {
+	async function _getInput(typeOrMethod) {
 		typeOrMethod = typeOrMethod.toLowerCase();
 		if (typeOrMethod.endsWith('web')) {
-			return _getDocument();
+			return _browser;
 		}
 		else if (typeOrMethod.endsWith('import')) {
 			return _getImport();
@@ -1231,7 +1371,7 @@ var Scaffold = new function () {
 
 		metadata = JSON.stringify(metadata, null, "\t") + ";\n";
 
-		translator.code = metadata + "\n" + _editors.code.getValue();
+		translator.code = metadata + "\n" + _getCode();
 
 		// make sure translator gets run in browser in Zotero >2.1
 		if (Zotero.Translator.RUN_MODE_IN_BROWSER) {
@@ -1298,6 +1438,12 @@ var Scaffold = new function () {
 	 */
 	function _writeTestsToPane(tests) {
 		_writeToEditor(_editors.tests, _stringifyTests(tests));
+	}
+	
+	function _confirmCreateExpectedFailTest() {
+		return Services.prompt.confirm(null,
+			'Detection Failed',
+			'Add test ensuring that detection always fails on this page?');
 	}
 
 	/**
@@ -1516,7 +1662,7 @@ var Scaffold = new function () {
 						
 			if (level < 2 && value.items) {
 				// Test object. Arrange properties in set order
-				let order = ['type', 'url', 'input', 'defer', 'items'];
+				let order = ['type', 'url', 'input', 'defer', 'detectedItemType', 'items'];
 				for (let i = 0; i < order.length; i++) {
 					let val = processRow(order[i], value[order[i]]);
 					if (val === undefined) continue;
@@ -1613,25 +1759,27 @@ var Scaffold = new function () {
 			return Promise.reject(new Error(`Test of type export cannot be created`));
 		}
 
-		let input = _getInput(type);
+		let input = await _getInput(type);
 
 		if (type == "web") {
-			let tester = new Zotero_TranslatorTester(
-				_getTranslatorFromPane(),
-				type,
-				_debug,
-				_translatorProvider
-			);
-			return new Promise(
-				(resolve, reject) => tester.newTest(input, function (obj, newTest) { // "done" handler for do
-					if (newTest) {
-						resolve(_sanitizeItemsInTest(newTest));
-					}
-					else {
-						reject(new Error('Creation failed'));
-					}
-				})
-			);
+			let translate = new RemoteTranslate({ disableErrorReporting: true });
+			try {
+				await translate.setBrowser(_browser);
+				await translate.setTranslatorProvider(_translatorProvider);
+				translate.setTranslator(_getTranslatorFromPane());
+				translate.setHandler("debug", _debug);
+				translate.setHandler("error", _error);
+				translate.setHandler("newTestDetectionFailed", _confirmCreateExpectedFailTest);
+				let newTest = await translate.newTest();
+				if (!newTest) {
+					throw new Error('Creation failed');
+				}
+				newTest = _sanitizeItemsInTest(newTest);
+				return newTest;
+			}
+			finally {
+				translate.dispose();
+			}
 		}
 		else if (type == "import" || type == "search") {
 			let test = { type, input: input, items: [] };
@@ -1655,6 +1803,15 @@ var Scaffold = new function () {
 	 * populate tests pane and url options in browser pane
 	 */
 	this.populateTests = function () {
+		function wrapWithHBox(elem, { flex, pack, width } = {}) {
+			let hbox = document.createXULElement('hbox');
+			hbox.append(elem);
+			if (flex !== undefined) hbox.setAttribute('flex', flex);
+			if (pack !== undefined) hbox.setAttribute('pack', pack);
+			if (width !== undefined) hbox.style.width = width + 'px';
+			return hbox;
+		}
+
 		let tests = _loadTestsFromPane();
 		let validateTestsBroadcaster = document.getElementById('validate-tests');
 		if (tests === null) {
@@ -1667,7 +1824,7 @@ var Scaffold = new function () {
 
 		let browserURL = document.getElementById("browser-url");
 		let currentURL = browserURL.value;
-		browserURL.removeAllItems();
+		// browserURL.removeAllItems();
 		browserURL.value = currentURL;
 
 		let listBox = document.getElementById("testing-listbox");
@@ -1675,8 +1832,8 @@ var Scaffold = new function () {
 		let oldStatuses = {};
 		for (let i = 0; i < count; i++) {
 			let item = listBox.getItemAtIndex(i);
-			let [, statusCell] = item.getElementsByTagName('listcell');
-			oldStatuses[item.getUserData('test-string')] = statusCell.getAttribute('label');
+			let [, statusCell] = item.children;
+			oldStatuses[item.dataset.testString] = statusCell.textContent;
 		}
 
 		let testIndex = 0;
@@ -1686,40 +1843,40 @@ var Scaffold = new function () {
 			// try to reuse old rows
 			let item = testIndex < count
 				? listBox.getItemAtIndex(testIndex)
-				: document.createElement('listitem');
+				: document.createXULElement('richlistitem');
 
-			item.innerHTML = ''; // clear children/content if reusing
+			item.replaceChildren();
 
-			let input = document.createElement('listcell');
-			input.setAttribute('label', getTestLabel(test));
-			item.appendChild(input);
+			let input = document.createXULElement('label');
+			input.append(getTestLabel(test));
+			item.appendChild(wrapWithHBox(input, { flex: 1 }));
 
-			let status = document.createElement('listcell');
-			status.setAttribute('label', oldStatuses[testString] || 'Not run');
-			item.appendChild(status);
+			let status = document.createXULElement('label');
+			status.append(oldStatuses[testString] || 'Not run');
+			item.appendChild(wrapWithHBox(status, { width: 150 }));
 
-			let defer = document.createElement('listcell');
-			defer.setAttribute('type', 'checkbox');
-			defer.setAttribute('checked', test.defer);
-			item.appendChild(defer);
+			let defer = document.createXULElement('checkbox');
+			defer.checked = test.defer;
+			defer.disabled = true;
+			item.appendChild(wrapWithHBox(defer, { pack: 'center', width: 75 }));
 
-			item.setUserData('test-string', testString, null);
-			item.setUserData('test-type', test.type);
+			item.dataset.testString = testString;
+			item.dataset.testType = test.type;
 
 			if (testIndex >= count) {
 				listBox.appendChild(item);
 			}
 
-			if (test.type == 'web') {
-				browserURL.appendItem(test.url);
-			}
+			// if (test.type == 'web') {
+			// 	browserURL.appendItem(test.url);
+			// }
 
 			testIndex++;
 		}
 
 		// remove old rows that we didn't reuse
 		while (listBox.getItemAtIndex(testIndex)) {
-			listBox.removeItemAt(testIndex);
+			listBox.getItemAtIndex(testIndex).remove();
 		}
 	};
 
@@ -1744,7 +1901,7 @@ var Scaffold = new function () {
 	this.editImportFromTest = function () {
 		var listbox = document.getElementById("testing-listbox");
 		var item = listbox.selectedItems[0];
-		var test = JSON.parse(item.getUserData("test-string"));
+		var test = JSON.parse(item.dataset.testString);
 		if (test.input === undefined) {
 			_logOutput("Can't edit input of a non-import/search test.");
 		}
@@ -1767,8 +1924,8 @@ var Scaffold = new function () {
 	this.copyToClipboard = function () {
 		var listbox = document.getElementById("testing-listbox");
 		var item = listbox.selectedItems[0];
-		var url = item.getElementsByTagName("listcell")[0].getAttribute("label");
-		var test = JSON.parse(item.getUserData("test-string"));
+		var url = item.getElementsByTagName("label")[0].getAttribute("value");
+		var test = JSON.parse(item.dataset.testString);
 		var urlOrData = (test.input !== undefined) ? test.input : url;
 		if (typeof urlOrData !== 'string') {
 			urlOrData = JSON.stringify(urlOrData, null, '\t');
@@ -1784,15 +1941,14 @@ var Scaffold = new function () {
 	this.openURL = function (openExternally) {
 		var listbox = document.getElementById("testing-listbox");
 		var item = listbox.selectedItems[0];
-		var url = item.getElementsByTagName("listcell")[0].getAttribute("label");
+		var url = item.getElementsByTagName("label")[0].textContent;
 		if (openExternally) {
 			Zotero.launchURL(url);
 		}
 		else {
-			_browser.loadURIWithFlags(
-				url,
-				Components.interfaces.nsIWebNavigation.LOAD_FLAGS_BYPASS_CACHE
-			);
+			_browser.loadURI(Services.io.newURI(url), {
+				triggeringPrincipal: Services.scriptSecurityManager.getSystemPrincipal()
+			});
 			_showTab('browser');
 		}
 	};
@@ -1813,6 +1969,8 @@ var Scaffold = new function () {
 			testsByType[test.type].push(test);
 		}
 
+		let rememberCookies = document.getElementById('checkbox-remember-cookies').checked;
+
 		for (let [type, testsOfType] of Object.entries(testsByType)) {
 			if (testsOfType.length) {
 				let tester = new Zotero_TranslatorTester(
@@ -1821,6 +1979,9 @@ var Scaffold = new function () {
 					_debug,
 					_translatorProvider
 				);
+				if (!rememberCookies) {
+					tester.setCookieSandbox(new Zotero.CookieSandbox());
+				}
 				tester.setTests(testsOfType);
 				tester.runTests(callback);
 			}
@@ -1836,14 +1997,14 @@ var Scaffold = new function () {
 		if (!items || items.length == 0) return; // No action if nothing selected
 		var tests = [];
 		for (let item of items) {
-			item.getElementsByTagName("listcell")[1].setAttribute("label", "Running");
-			var test = JSON.parse(item.getUserData("test-string"));
-			test["ui-item"] = item;
+			item.getElementsByTagName("label")[1].textContent = "Running";
+			var test = JSON.parse(item.dataset.testString);
+			test["ui-item"] = ContentDOMReference.get(item);
 			tests.push(test);
 		}
 
 		this.runTests(tests, (obj, test, status, message) => {
-			test["ui-item"].getElementsByTagName("listcell")[1].setAttribute("label", message);
+			ContentDOMReference.resolve(test["ui-item"]).getElementsByTagName("label")[1].textContent = message;
 		});
 	};
 
@@ -1867,8 +2028,8 @@ var Scaffold = new function () {
 		var itemIndices = items.map(item => listbox.getIndexOfItem(item));
 		var tests = [];
 		for (let item of items) {
-			item.getElementsByTagName("listcell")[1].setAttribute("label", "Updating");
-			var test = JSON.parse(item.getUserData("test-string"));
+			item.getElementsByTagName("label")[1].textContent = "Updating";
+			var test = JSON.parse(item.dataset.testString);
 			tests.push(test);
 		}
 
@@ -1879,13 +2040,13 @@ var Scaffold = new function () {
 				// Assume sequential. TODO: handle this properly via test ID of some sort
 				if (newTest) {
 					message = "Test updated";
-					items[testsDone].setUserData("test-string", _stringifyTests(newTest, 1));
+					items[testsDone].dataset.testString = _stringifyTests(newTest, 1);
 					tests[testsDone] = newTest;
 				}
 				else {
 					message = "Update failed";
 				}
-				items[testsDone].getElementsByTagName("listcell")[1].setAttribute("label", message);
+				items[testsDone].getElementsByTagName("label")[1].textContent = message;
 				testsDone++;
 			});
 
@@ -1923,12 +2084,6 @@ var Scaffold = new function () {
 		this.testsToUpdate = tests.slice();
 		this.numTestsTotal = this.testsToUpdate.length;
 		this.newTests = [];
-		this.tester = new Zotero_TranslatorTester(
-			_getTranslatorFromPane(),
-			"web",
-			_debug,
-			_translatorProvider
-		);
 	};
 	
 	TestUpdater.prototype.updateTests = function (testDoneCallback, doneCallback) {
@@ -1938,7 +2093,7 @@ var Scaffold = new function () {
 		this._updateTests();
 	};
 	
-	TestUpdater.prototype._updateTests = function () {
+	TestUpdater.prototype._updateTests = async function () {
 		if (!this.testsToUpdate.length) {
 			this.doneCallback(this.newTests);
 			return;
@@ -1947,51 +2102,64 @@ var Scaffold = new function () {
 		var test = this.testsToUpdate.shift();
 		_logOutput("Updating test " + (this.numTestsTotal - this.testsToUpdate.length));
 		
-		var me = this;
-		
 		if (test.type == 'web') {
 			_logOutput("Loading web page from " + test.url);
-			var hiddenBrowser = Zotero.HTTP.loadDocuments(
-				test.url,
-				function (doc) {
-					_logOutput("Page loaded");
-					if (test.defer) {
-						_logOutput("Waiting " + (Zotero_TranslatorTester.DEFER_DELAY / 1000)
-							+ " second(s) for page content to settle"
-						);
-					}
-					Zotero.setTimeout(
-						function () {
-							doc = hiddenBrowser.contentDocument;
-							if (doc.location.href != test.url) {
-								_logOutput("Page URL differs from test. Will be updated. " + doc.location.href);
-							}
-							me.tester.newTest(doc, function (obj, newTest) {
-								Zotero.Browser.deleteHiddenBrowser(hiddenBrowser);
-								if (test.defer) {
-									newTest.defer = true;
-								}
-								newTest = _sanitizeItemsInTest(newTest);
-								me.newTests.push(newTest);
-								me.testDoneCallback(newTest);
-								me._updateTests();
-							});
-						},
-						test.defer ? Zotero_TranslatorTester.DEFER_DELAY : 0,
-						true
-					);
-				},
-				null,
-				function (e) {
-					Zotero.logError(e);
-					me.newTests.push(false);
-					me.testDoneCallback(false);
-					me._updateTests();
-				},
-				true
-			);
 			
-			hiddenBrowser.docShell.allowMetaRedirects = true;
+			const { HiddenBrowser } = ChromeUtils.import("chrome://zotero/content/HiddenBrowser.jsm");
+			let browser = new HiddenBrowser({
+				docShell: { allowMetaRedirects: true }
+			});
+			try {
+				await browser.load(test.url, {
+					requireSuccessfulStatus: true
+				});
+
+				if (test.defer) {
+					_logOutput("Waiting " + (Zotero_TranslatorTester.DEFER_DELAY / 1000)
+						+ " second(s) for page content to settle");
+					await Zotero.Promise.delay(Zotero_TranslatorTester.DEFER_DELAY);
+				}
+				else {
+					// Wait just a bit for things to settle
+					await Zotero.Promise.delay(1000);
+				}
+
+				if (browser.currentURI.spec != test.url) {
+					_logOutput("Page URL differs from test. Will be updated. " + browser.currentURI.spec);
+				}
+
+				let translate = new RemoteTranslate({ disableErrorReporting: true });
+				try {
+					await translate.setBrowser(browser);
+					await translate.setTranslatorProvider(_translatorProvider);
+					translate.setTranslator(_getTranslatorFromPane());
+					translate.setHandler("debug", _debug);
+					translate.setHandler("error", _error);
+					translate.setHandler("newTestDetectionFailed", _confirmCreateExpectedFailTest);
+					
+					let newTest = await translate.newTest();
+					newTest = _sanitizeItemsInTest(newTest);
+					if (test.defer) {
+						newTest.defer = true;
+					}
+					
+					this.newTests.push(newTest);
+					this.testDoneCallback(newTest);
+					this._updateTests();
+				}
+				finally {
+					translate.dispose();
+				}
+			}
+			catch (e) {
+				Zotero.logError(e);
+				this.newTests.push(false);
+				this.testDoneCallback(false);
+				this._updateTests();
+			}
+			finally {
+				if (browser) browser.destroy();
+			}
 		}
 		else {
 			test.items = [];
@@ -2004,15 +2172,15 @@ var Scaffold = new function () {
 
 			// Re-runs the test.
 			// TranslatorTester doesn't handle these correctly, so we do it manually
-			_run(methods[test.type], test.input, null, function (obj, item) {
+			_run(methods[test.type], test.input, null, (obj, item) => {
 				if (item) {
 					test.items.push(Zotero_TranslatorTester._sanitizeItem(item));
 				}
-			}, null, function () {
+			}, null, () => {
 				if (!test.items.length) test = false;
-				me.newTests.push(test);
-				me.testDoneCallback(test);
-				me._updateTests();
+				this.newTests.push(test);
+				this.testDoneCallback(test);
+				this._updateTests();
 			});
 		}
 	};
@@ -2055,81 +2223,8 @@ var Scaffold = new function () {
 		return guid;
 	}
 
-	/*
-	 * updates list of available frames and show URL of active tab
-	 */
-	function _updateFrames() {
-		var doc = _browser.contentDocument;
-		
-		// Show URL of active tab
-		document.getElementById("browser-url").value = doc.location.href;
-		
-		// No need to run if Scaffold isn't open
-		var menulist = _document.getElementById("menulist-testFrame");
-		if (!_document || !menulist) return;
-
-		menulist.removeAllItems();
-		var popup = _document.createElement("menupopup");
-		menulist.appendChild(popup);
-
-		_frames = [];
-
-		var frames = doc.getElementsByTagName("frame");
-		if (frames.length) {
-			_getFrames(frames, popup);
-		}
-		else {
-			var item = _document.createElement("menuitem");
-			item.setAttribute("label", "Default");
-			popup.appendChild(item);
-
-			_frames = [doc];
-		}
-
-		menulist.selectedIndex = 0;
-	}
-
-	/*
-	 * recursively searches for frames
-	 */
-	function _getFrames(frames, popup) {
-		for (var i = 0; i < frames.length; i++) {
-			var frame = frames[i];
-			if (frame.contentDocument) {
-				// get a good name
-				var frameName;
-				if (frame.title) {
-					frameName = frame.title;
-				}
-				else if (frame.name) {
-					frameName = frame.name;
-				}
-				else {
-					frameName = frame.contentDocument.location.href;
-				}
-
-				// add frame
-				var item = _document.createElement("menuitem");
-				item.setAttribute("label", frameName);
-				popup.appendChild(item);
-				_frames.push(frame.contentDocument);
-
-				// see if frame has its own frames
-				var subframes = frame.contentDocument.getElementsByTagName("frame");
-				if (subframes.length) _getFrames(subframes, popup);
-			}
-		}
-	}
-
-	/*
-	 * gets selected frame/document
-	 */
-	function _getDocument() {
-		return _frames[_document.getElementById("menulist-testFrame").selectedIndex];
-	}
-	
-	function _getDocumentURL(doc) {
-		return Zotero.Proxies.proxyToProper(doc.location.href);
+	function _getCurrentURI(browser) {
+		return Zotero.Proxies.proxyToProper(browser.currentURI.spec);
 	}
 
 	function _findTestObjectTops(monaco, model) {
@@ -2178,7 +2273,7 @@ var Scaffold = new function () {
 	}
 
 	function getDefaultESLintPath() {
-		return OS.Path.join(Scaffold_Translators.getDirectory(), 'node_modules', '.bin', 'teslint');
+		return PathUtils.join(Scaffold_Translators.getDirectory(), 'node_modules', '.bin', 'eslint');
 	}
 
 	async function getESLintPath() {
@@ -2188,7 +2283,7 @@ var Scaffold = new function () {
 
 		let eslintPath = getDefaultESLintPath();
 
-		while (!await OS.File.exists(eslintPath)) {
+		while (!await IOUtils.exists(eslintPath)) {
 			let ps = Services.prompt;
 			let buttonFlags = ps.BUTTON_POS_0 * ps.BUTTON_TITLE_IS_STRING
 				+ ps.BUTTON_POS_1 * ps.BUTTON_TITLE_IS_STRING
@@ -2199,7 +2294,7 @@ var Scaffold = new function () {
 				"Zotero uses ESLint to enable code suggestions and error checking, "
 					+ "but it wasn't found in the selected translators directory.\n\n"
 					+ "You can install it from the command line:\n\n"
-					+ `  cd ${Scaffold_Translators.getDirectory()}\n`
+					+ `  cd '${Scaffold_Translators.getDirectory()}'\n`
 					+ "  npm install\n\n",
 				buttonFlags,
 				"Try Again",
@@ -2217,31 +2312,59 @@ var Scaffold = new function () {
 		return eslintPath;
 	}
 
-	async function runESLint(translatorPath) {
-		if (!translatorPath) return [];
-
+	let eslintSubprocess = null;
+	async function runESLint() {
 		let eslintPath = await getESLintPath();
 		if (!eslintPath) return [];
 
-		let outputFile = OS.Path.join(
-			Zotero.getTempDirectory().path,
-			`lint_output_${Zotero.Utilities.randomString()}.json`
-		);
-
-		Zotero.debug(`Running ESLint`);
 		try {
-			await Zotero.Utilities.Internal.exec(eslintPath, ['-o', outputFile, '--', translatorPath]);
+			let metadata = _getMetadataObject();
+			let code = _getCode();
+			let translatorString = _translatorProvider.stringify(metadata, code);
+			
+			let subprocessOptions = {
+				command: eslintPath,
+				arguments: [
+					'--format',
+					'json',
+					'--stdin',
+					'--stdin-filename',
+					_translatorProvider.getSavePath(metadata)
+				],
+			};
+			
+			// ESLint needs to find node on the PATH, but macOS doesn't forward
+			// the login shell's PATH to GUI processes by default. There's a
+			// launchctl command that fixes it, but we can't expect people
+			// to do that. Pass the login shell's PATH as a workaround.
+			if (Zotero.isMac) {
+				subprocessOptions.environment = { PATH: await lazy.shellPathPromise };
+				subprocessOptions.environmentAppend = true;
+			}
+			
+			let proc = await Subprocess.call(subprocessOptions);
+			if (eslintSubprocess) {
+				eslintSubprocess.kill(0);
+			}
+			eslintSubprocess = proc;
+			
+			await proc.stdin.write(translatorString);
+			await proc.stdin.close();
+			let lintOutput = '';
+			let chunk;
+			while ((chunk = await proc.stdout.readString())) {
+				lintOutput += chunk;
+			}
+			proc.kill(); // Shouldn't be necessary, but make sure we don't leak
+			return JSON.parse(lintOutput);
 		}
 		catch (e) {
-			// ignore non-zero exit code (which just means that there were lint errors in the translator)
+			Zotero.logError(e);
 		}
-
-		let lintOutput = await Zotero.File.getContentsAsync(outputFile);
-		Zotero.File.removeIfExists(outputFile);
-		return JSON.parse(lintOutput);
+		return [];
 	}
 
-	function eslintOutputToModelMarkers(output) {
+	function eslintOutputToModelMarkers(output, modelVersionId) {
 		let result = output[0];
 		if (!result) return [];
 
@@ -2253,9 +2376,8 @@ var Scaffold = new function () {
 			message: message.message,
 			severity: message.severity * 4,
 			source: 'ESLint',
-			tags: [
-				message.ruleId
-			]
+			code: message.ruleId,
+			modelVersionId,
 		}));
 	}
 
@@ -2282,6 +2404,47 @@ var Scaffold = new function () {
 			return activeElement.id.substring(7);
 		}
 		return null;
+	}
+	
+	async function _getGitBranchName() {
+		let gitPath = await Subprocess.pathSearch('git');
+		if (!gitPath) return null;
+		
+		let dir = Scaffold_Translators.getDirectory();
+		if (!dir) return null;
+		
+		let proc = await Subprocess.call({
+			command: gitPath,
+			arguments: ['rev-parse', '--abbrev-ref', 'HEAD'],
+			workdir: dir,
+		});
+		let output = '';
+		let chunk;
+		while ((chunk = await proc.stdout.readString())) {
+			output += chunk;
+		}
+		return output.trim();
+	}
+	
+	async function _updateTitle() {
+		let title = 'Scaffold';
+
+		let label = document.getElementById('textbox-label').value;
+		if (label) {
+			title += ' - ' + label;
+		}
+		
+		try {
+			let branch = await _getGitBranchName();
+			if (branch) {
+				title += ' (' + branch + ')';
+			}
+		}
+		catch (e) {
+			Zotero.logError(e);
+		}
+		
+		document.title = title;
 	}
 };
 

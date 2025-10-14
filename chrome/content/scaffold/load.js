@@ -23,66 +23,78 @@
     ***** END LICENSE BLOCK *****
 */
 
-var Scaffold_Load = new function() {
-	this.onLoad = Zotero.Promise.coroutine(function* () {
+var { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
+Services.scriptloader.loadSubScript("chrome://zotero/content/include.js", this);
+Services.scriptloader.loadSubScript("chrome://zotero/content/customElements.js", this);
+
+var Scaffold_Load = new function () {
+	this.onLoad = async function () {
+		document.addEventListener('dialogaccept', () => this.accept());
+
 		var listitem, translator, listcell, set;
 		var listbox = document.getElementById("listbox");
 		
 		listbox.addEventListener('dblclick', () => {
-			var translatorID = document.getElementById("listbox").selectedItem.getUserData("zotero-id");
+			var translatorID = document.getElementById("listbox").selectedItem.dataset.zoteroID;
 			if (!translatorID) return;
 			this.accept();
 			window.close();
 		});
 		
-		var translators = {};		
+		listbox.addEventListener('keypress', (e) => {
+			if (e.key == ' ' && e.target == listbox) {
+				e.preventDefault();
+			}
+		});
+		
+		var translators = {};
 
-		// Get the matching translators		
+		// Get the matching translators
 		var translatorProvider = window.arguments[0].translatorProvider;
 		var url = window.arguments[0].url;
-		var rootUrl = window.arguments[0].rootUrl
+		var rootUrl = window.arguments[0].rootUrl;
 		url = Zotero.Proxies.proxyToProper(url);
-		translators["Matching Translators"] = (yield translatorProvider.getWebTranslatorsForLocation(url, rootUrl))[0];
-		translators["Web Translators"] = (yield translatorProvider.getAllForType("web"))
+		translators["Matching Translators"] = (await translatorProvider.getWebTranslatorsForLocation(url, rootUrl))[0];
+		translators["Web Translators"] = (await translatorProvider.getAllForType("web"))
 			.sort((a, b) => a.label.localeCompare(b.label));
-		translators["Import Translators"] = (yield translatorProvider.getAllForType("import"))
+		translators["Import Translators"] = (await translatorProvider.getAllForType("import"))
 			.sort((a, b) => a.label.localeCompare(b.label));
-		translators["Export Translators"] = (yield translatorProvider.getAllForType("export"))
+		translators["Export Translators"] = (await translatorProvider.getAllForType("export"))
 			.sort((a, b) => a.label.localeCompare(b.label));
-		translators["Search Translators"] = (yield translatorProvider.getAllForType("search"))
+		translators["Search Translators"] = (await translatorProvider.getAllForType("search"))
 			.sort((a, b) => a.label.localeCompare(b.label));
 
 		for (set in translators) {
 			// Make a separator
-			listitem = document.createElement("listitem");
+			listitem = document.createXULElement("richlistitem");
 			listitem.setAttribute("disabled", true);
-			listitem.setAttribute("label", set);
+			// Need to set this to disable up/down keys selecting:
+			listitem.style.MozUserInput = 'none';
+			listitem.append(set);
 			listbox.appendChild(listitem);
-			for (var j=0; j<translators[set].length; j++) {
-				var translator = translators[set][j];
-				listitem = document.createElement("listitem");
-				// set label for type-to-find functionality. This is not displayed.
-				listitem.setAttribute("label", translator.label);
+			for (var j = 0; j < translators[set].length; j++) {
+				translator = translators[set][j];
+				listitem = document.createXULElement("richlistitem");
+				// set search label for type-to-find functionality. This is not displayed.
+				listitem.searchLabel = translator.label;
 				// And the ID goes in DOM user data
-				listitem.setUserData("zotero-id", translator.translatorID, null);
+				listitem.dataset.zoteroID = translator.translatorID;
 
-				listcell = document.createElement("listcell");
-				listcell.setAttribute("label", translator.label);
-				listitem.appendChild(listcell);
-				listcell = document.createElement("listcell");
-				listcell.setAttribute("label", translator.creator);
+				listcell = document.createXULElement("hbox");
+				listcell.setAttribute('flex', '1');
+				listcell.append(translator.label);
 				listitem.appendChild(listcell);
 
 				listbox.appendChild(listitem);
 			}
 		}
-	});
+	};
 	
 	this.accept = function () {
-		var translatorID = document.getElementById("listbox").selectedItem.getUserData("zotero-id");
+		var translatorID = document.getElementById("listbox").selectedItem.dataset.zoteroID;
 		var translator = window.arguments[0].translatorProvider.get(translatorID);
 		
 		Zotero.debug(translatorID);
 		window.arguments[0].dataOut = translator;
-	}
-}
+	};
+};

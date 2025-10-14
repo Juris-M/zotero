@@ -63,10 +63,19 @@ const EXPORTED_DOCUMENT_MARKER = "ZOTERO_TRANSFER_DOCUMENT";
 
 const NOTE_CITATION_PLACEHOLDER_LINK = 'https://www.zotero.org/?';
 
-const TEMPLATE_VERSION = 1;
+const TEMPLATE_VERSIONS = {
+	MacWord16: 2,
+	WinWord: 1,
+	OpenOffice: 1
+};
 
 const MENDELEY_URI_RE = /^http:\/\/www\.mendeley\.com\/documents\/\?uuid=(.*)/;
 
+const PLUGIN_PATHS = {
+	LibreOffice: 'chrome://zotero-libreoffice-integration-components/content/zoteroLibreOfficeIntegration.mjs',
+	WinWord: 'chrome://zotero-winword-integration/content/zoteroWinWordIntegration.mjs',
+	MacWord: 'chrome://zotero-macword-integration/content/zoteroMacWordIntegration.mjs'
+};
 
 Zotero.Integration = new function() {
 	Components.utils.import("resource://gre/modules/Services.jsm");
@@ -75,6 +84,29 @@ Zotero.Integration = new function() {
 	this.currentWindow = false;
 	this.sessions = {};
 	var upgradeTemplateNotNowTime = 0;
+
+	/**
+	 * Initialize LibreOffice, Word for Mac and Word for Windows plugin components.
+	 */
+	this.init = function () {
+		if (Zotero.test) return;
+		let entryPoints = [PLUGIN_PATHS.LibreOffice];
+		if (Zotero.isMac) {
+			entryPoints.push(PLUGIN_PATHS.MacWord);
+		}
+		else if (Zotero.isWin) {
+			entryPoints.push(PLUGIN_PATHS.WinWord);
+		}
+		for (let entryPoint of entryPoints) {
+			try {
+				const { init } = ChromeUtils.importESModule(entryPoint);
+				init();
+			}
+			catch (e) {
+				Zotero.logError(e);
+			}
+		}
+	}
 	
 	/**
 	 * Begin listening for integration commands on the given pipe
@@ -121,8 +153,7 @@ Zotero.Integration = new function() {
 			
 			// can attempt to delete on OS X
 			try {
-				var promptService = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]
-					.getService(Components.interfaces.nsIPromptService);
+				let promptService = Services.prompt;
 				var deletePipe = promptService.confirm(null, Zotero.getString("integration.error.title"), Zotero.getString("integration.error.deletePipe"));
 				if(!deletePipe) return false;
 				let escapedFifoFile = pipe.path.replace("'", "'\\''");
@@ -141,8 +172,8 @@ Zotero.Integration = new function() {
 	 * @returns {Boolean} true if integration operation should be cancelled
 	 */
 	this.warnOutdatedTemplate = function (agent, templateVersion) {
-		const validAgents = new Set(['OpenOffice', 'MacWord2016', 'MacWord16', 'WinWord']);
-		if (!validAgents.has(agent) || templateVersion >= TEMPLATE_VERSION) return false;
+		const expectedTemplateVersion = TEMPLATE_VERSIONS[agent];
+		if (typeof expectedTemplateVersion == 'undefined' || templateVersion >= expectedTemplateVersion) return false;
 		const daysToIgnore = 30;
 		const now = Math.floor(Date.now() / 1000);
 		const updateTemplateDelayedOn = Zotero.Prefs.get('integration.updateTemplateDelayedOn');
@@ -175,7 +206,9 @@ Zotero.Integration = new function() {
 		);
 
 		if (index == 0) {
-			Zotero.Utilities.Internal.openPreferences('zotero-prefpane-cite', { tab: 'wordProcessors-tab' });
+			Zotero.Utilities.Internal.openPreferences('zotero-prefpane-cite', {
+				scrollTo: '#wordProcessors'
+			});
 			return true;
 		}
 
@@ -193,26 +226,23 @@ Zotero.Integration = new function() {
 		}
 	});
 	
-	this.getApplication = function(agent, command, docId) {
+	this.getApplication = function (agent, command, docId) {
 		if (agent == 'http') {
 			return new Zotero.HTTPIntegrationClient.Application();
 		}
 		// Try to load the appropriate Zotero component; otherwise display an error
-		var component
 		try {
-			var componentClass = "@zotero.org/Zotero/integration/application?agent="+agent+";1";
-			Zotero.debug("Integration: Instantiating "+componentClass+" for command "+command+(docId ? " with doc "+docId : ""));
-			try {
-				return Components.classes[componentClass]
-					.getService(Components.interfaces.zoteroIntegrationApplication);
-			} catch (e) {
-				return Components.classes[componentClass]
-					.getService(Components.interfaces.nsISupports).wrappedJSObject;
-			}
-		} catch(e) {
+			// Replace MacWord2016 and MacWord16 with just MacWord.
+			agent = agent.startsWith('MacWord') ? 'MacWord' : agent;
+			var entryPoint = PLUGIN_PATHS[agent];
+			Zotero.debug("Integration: Instantiating "+agent+" plugin handler for command "+command+(docId ? " with doc "+docId : ""));
+			const { Application } = ChromeUtils.importESModule(entryPoint);
+			return new Application();
+		}
+		catch (e) {
 			throw new Zotero.Exception.Alert("integration.error.notInstalled",
 				[], "integration.error.title");
-		}	
+		}
 	};
 	
 	/**
@@ -273,7 +303,7 @@ Zotero.Integration = new function() {
 						await document.setDocumentData(session.data.serialize());
 						// And any citations marked for processing (like retraction warning ignore flag changes)
 						if (Object.keys(session.processIndices).length) {
-							session.updateDocument(FORCE_CITATIONS_FALSE, false, false);
+							await session.updateDocument(FORCE_CITATIONS_FALSE, false, false);
 						}
 					// Since user cancelled we can ignore if processor fails here.
 					} catch(e) {}
@@ -283,15 +313,27 @@ Zotero.Integration = new function() {
 		finally {
 			var diff = ((new Date()).getTime() - startTime)/1000;
 			Zotero.debug(`Integration: ${agent}-${command}${docId ? `:'${docId}'` : ''} complete in ${diff}s`)
+		
+			if (Zotero.Integration.currentWindow && !Zotero.Integration.currentWindow.closed) {
+				var oldWindow = Zotero.Integration.currentWindow;
+				oldWindow.close();
+				await Zotero.Promise.delay(50);
+			}
+
+			if (Zotero.Integration.currentSession && Zotero.Integration.currentSession.progressBar) {
+				Zotero.Integration.currentSession.progressBar.hide();
+				await Zotero.Promise.delay(50);
+			}
+			
 			if (document) {
 				try {
 					await document.cleanup();
-					await document.activate();
+					if (!Zotero.Integration.currentSession?._dontActivateDocument) {
+						await document.activate();
+					}
 					
 					// Call complete function if one exists
-					if (document.wrappedJSObject && document.wrappedJSObject.complete) {
-						document.wrappedJSObject.complete();
-					} else if (document.complete) {
+					if (document.complete) {
 						await document.complete();
 					}
 				} catch(e) {
@@ -299,18 +341,6 @@ Zotero.Integration = new function() {
 				}
 			}
 			
-			if(Zotero.Integration.currentWindow && !Zotero.Integration.currentWindow.closed) {
-				var oldWindow = Zotero.Integration.currentWindow;
-				Zotero.Promise.delay(100).then(function() {
-					oldWindow.close();
-				});
-			}
-
-			if (Zotero.Integration.currentSession && Zotero.Integration.currentSession.progressBar) {
-				Zotero.Promise.delay(5).then(function() {
-					Zotero.Integration.currentSession.progressBar.hide();
-				});
-			}
 			// This technically shouldn't be necessary since we call document.activate(),
 			// but http integration plugins may not have OS level access to windows to be
 			// able to activate themselves. E.g. Google Docs on Safari.
@@ -324,13 +354,18 @@ Zotero.Integration = new function() {
 	
 	this._handleCommandError = async function (document, session, e) {
 		try {
-			const supportURL = "https://www.zotero.org/support/kb/debugging_broken_documents";
+			let supportURL = "https://www.zotero.org/support/kb/debugging_broken_documents";
 			var displayError;
 			if (e instanceof Zotero.Exception.Alert) {
 				displayError = e.message;
 			}
 			else {
-				if (e.toString().indexOf("ExceptionAlreadyDisplayed") === -1) {
+				if (e.toString().includes("Could not find a running Word instance.")) {
+					displayError = Zotero.getString('integration-error-unable-to-find-winword')
+						+ "\n\n" + Zotero.getString("integration.error.viewTroubleshootingInfo");
+					supportURL = "https://www.zotero.org/support/kb/could_not_find_a_running_word_instance";
+				}
+				else if (e.toString().indexOf("ExceptionAlreadyDisplayed") === -1) {
 					displayError = Zotero.getString("integration.error.generic")
 						+ "\n\n" + Zotero.getString("integration.error.viewTroubleshootingInfo");
 				}
@@ -403,7 +438,16 @@ Zotero.Integration = new function() {
 	 */
 	this.displayDialog = async function displayDialog(url, options, io) {
 		Zotero.debug(`Integration: Displaying dialog ${url}`);
-		await Zotero.Integration.currentDoc.cleanup();
+		// On macOS (and potentially in the future with Word JS)
+		// we can only run request sequentially (native async field fetching was dropped
+		// with fx102 due to ctypes crashing when passing a callback function) which means
+		// that the webWorker thread is blocked while fetching fields.
+		// We are technically fetching them asynchronously and open the citation dialog
+		// while they are being fetched. However, if we await this cleanup call here
+		// the display of the dialog is blocked until fields are fetched and it is able to run.
+		// So we make sure cleanup is finished before the dialog is closed, but otherwise
+		// we should not delay the dialog display
+		let cleanupPromise = Zotero.Integration.currentDoc.cleanup();
 		Zotero.Integration.currentSession && await Zotero.Integration.currentSession.progressBar.hide(true);
 		
 		var allOptions = 'chrome,centerscreen';
@@ -434,6 +478,7 @@ Zotero.Integration = new function() {
 		window.addEventListener("unload", listener, false);
 
 		await deferred.promise;
+		await cleanupPromise;
 		// We do not want to redisplay the progress bar if this window close
 		// was the final close of the integration command
 		await Zotero.Promise.delay(10);
@@ -675,7 +720,7 @@ Zotero.Integration.Interface.prototype.addEditCitation = async function (docFiel
 };
 
 /**
- * Edits the citation at the cursor position if one exists, or else adds a new one.
+ * Adds a note to the current document.
  * @return {Promise}
  */
 Zotero.Integration.Interface.prototype.addNote = async function () {
@@ -852,7 +897,8 @@ Zotero.Integration.Interface.prototype.setDocPrefs = Zotero.Promise.coroutine(fu
 
 	// Perform noteType or fieldType conversion
 	let fields = yield this._session.getFields();
-	
+
+	const styleHasChanged = oldData.style.styleID != this._session.data.style.styleID;
 	var convertBibliographies = oldData.prefs.fieldType != this._session.data.prefs.fieldType;
 	var convertItems = convertBibliographies
 		|| oldData.prefs.noteType != this._session.data.prefs.noteType;
@@ -885,7 +931,7 @@ Zotero.Integration.Interface.prototype.setDocPrefs = Zotero.Promise.coroutine(fu
 	this._session._fields = null;
 	this._session.ignoreEmptyBibliography = true;
 
-	if (this._session.data.prefs.delayCitationUpdates && !fieldsToConvert.length) return;
+	if (this._session.data.prefs.delayCitationUpdates && !fieldsToConvert.length && !styleHasChanged) return;
 	
 	yield this._session.updateFromDocument(FORCE_CITATIONS_RESET_TEXT);
 	return this._session.updateDocument(FORCE_CITATIONS_RESET_TEXT, true, true);
@@ -928,6 +974,7 @@ Zotero.Integration.Session = function(doc, app) {
 	this.primaryFieldType = app.primaryFieldType;
 	this.secondaryFieldType = app.secondaryFieldType;
 	this.outputFormat = app.outputFormat || 'rtf';
+	this._dontActivateDocument = false;
 	this._sessionUpToDate = false;
 	this._app = app;
 
@@ -1324,7 +1371,8 @@ Zotero.Integration.Session.prototype._updateDocument = async function(forceCitat
 					bibliographyText = bib[0].bibstart+bib[1].join("")+bib[0].bibend;
 				}
 				
-				// if bibliography style not set, set it
+				// Only set the bibliography style once so that customizations
+				// to Bibliography style in word processors are maintained
 				if(!this.data.style.bibliographyStyleHasBeenSet) {
 					var bibStyle = Zotero.Cite.getBibliographyFormatParameters(bib);
 					
@@ -1460,15 +1508,15 @@ Zotero.Integration.Session.prototype.cite = async function (field, addNote=false
 	var mode = (!Zotero.isMac && Zotero.Prefs.get('integration.keepAddCitationDialogRaised')
 		? 'popup' : 'alwaysRaised')+',resizable=false';
 	if (addNote) {
-		Zotero.Integration.displayDialog('chrome://zotero/content/integration/insertNoteDialog.xul',
+		Zotero.Integration.displayDialog('chrome://zotero/content/integration/insertNoteDialog.xhtml',
 			mode, io);
 	}
 	else if (Zotero.Prefs.get("integration.useClassicAddCitationDialog")) {
-		Zotero.Integration.displayDialog('chrome://zotero/content/integration/addCitationDialog.xul',
+		Zotero.Integration.displayDialog('chrome://zotero/content/integration/addCitationDialog.xhtml',
 			'alwaysRaised,resizable', io);
 	}
 	else {
-		Zotero.Integration.displayDialog('chrome://zotero/content/integration/quickFormat.xul',
+		Zotero.Integration.displayDialog('chrome://zotero/content/integration/quickFormat.xhtml',
 			mode, io);
 	}
 
@@ -1545,8 +1593,7 @@ Zotero.Integration.Session.prototype._insertCitingResult = async function (field
  */
 Zotero.Integration.Session.prototype._processNote = async function (item) {
 	let text = await Zotero.Notes.getExportableNote(item);
-	let parser = Components.classes["@mozilla.org/xmlextras/domparser;1"]
-		.createInstance(Components.interfaces.nsIDOMParser);
+	let parser = new DOMParser();
 	let doc = parser.parseFromString(text, "text/html");
 	let citationsElems = doc.querySelectorAll('.citation[data-citation]');
 	let citations = [];
@@ -1875,13 +1922,14 @@ Zotero.Integration.Session.prototype.setDocPrefs = async function (showImportExp
 	// Make sure styles are initialized for new docs
 	await Zotero.Styles.init();
 	await Zotero.StyleModules.init();
-	await Zotero.Integration.displayDialog('chrome://zotero/content/integration/integrationDocPrefs.xul', '', io);
+	await Zotero.Integration.displayDialog('chrome://zotero/content/integration/integrationDocPrefs.xhtml', '', io);
 
 	if (io.exportDocument) {
 		return this.exportDocument();
 	}
 	
 	if (!io.style || !io.fieldType) {
+		this._dontActivateDocument = io.dontActivateDocument;
 		throw new Zotero.Exception.UserCancelled("document preferences window");
 	}
 	
@@ -2237,17 +2285,13 @@ Zotero.Integration.Session.prototype.restoreProcessorState = function() {
 		}
 	}
 	if (!Zotero.Prefs.get('cite.useCiteprocRs')) {
-		// Due to a bug in citeproc-js there are disambiguation issues after changing items in Zotero library
-		// and rebuilding the processor state, so we reinitialize the processor altogether
-		let style = Zotero.Styles.get(this.data.style.styleID);
-		this.style = style.getCiteProc(this.data.style.locale, this.outputFormat, this.data.prefs.automaticJournalAbbreviations);
-		this.style.setLangTagsForCslTransliteration(this.data.prefs.citationTransliteration);
-		this.style.setLangTagsForCslTranslation(this.data.prefs.citationTranslation);
-		this.style.setLangTagsForCslSort(this.data.prefs.citationSort);
-		this.style.setLangPrefsForCites(this.data.prefs, function(key){return 'citationLangPrefs'+key});
-		this.style.setLangPrefsForCiteAffixes(this.data.prefs.citationAffixes);
-		this.style.setSuppressTrailingPunctuation(this.data.prefs.suppressTrailingPunctuation);
-		this.style.setAutoVietnameseNamesOption(Zotero.Prefs.get('csl.autoVietnameseNames'));
+		// Due to a bug in citeproc-js there are disambiguation issues after
+		// modifying items in Zotero, even after calling rebuildProcessorState(),
+		// because rebuildProcessorState() doesn't reset three properties of the
+		// processor (registry, tmp, and disambiguate) used for disambiguation.
+		// Call the deprecated restoreProcessorState(), which resets everything.
+		// Revisit if restoreProcessorState() is removed.
+		this.style.restoreProcessorState();
 	}
 	this.style.rebuildProcessorState(citations, this.outputFormat, uncited);
 }
@@ -2385,20 +2429,23 @@ Zotero.Integration.Session.prototype.promptForRetraction = function (citedItem, 
  * Edits integration bibliography
  * @param {Zotero.Integration.Bibliography} bibliography
  */
-Zotero.Integration.Session.prototype.editBibliography = Zotero.Promise.coroutine(function *(bibliography) {
+Zotero.Integration.Session.prototype.editBibliography = async function (bibliography) {
 	if (!Object.keys(this.citationsByIndex).length) {
 		throw new Error('Integration.Session.editBibliography: called without loaded citations');	
 	}
-	yield bibliography.loadItemData();
+	// Update citeproc with citations in the doc
+	await this._updateCitations();
+	await bibliography.loadItemData();
+	await bibliography.getCiteprocBibliography(this.style);
 	
 	var bibliographyEditor = new Zotero.Integration.BibliographyEditInterface(bibliography, this.citationsByItemID, this.style);
 	
-	yield Zotero.Integration.displayDialog('chrome://zotero/content/integration/editBibliographyDialog.xul', 'resizable', bibliographyEditor);
+	await Zotero.Integration.displayDialog('chrome://zotero/content/integration/editBibliographyDialog.xhtml', 'resizable', bibliographyEditor);
 	if (bibliographyEditor.cancelled) throw new Zotero.Exception.UserCancelled("bibliography editing");
 	
 	this.bibliographyDataHasChanged = this.bibliographyHasChanged = true;
 	this.bibliography = bibliographyEditor.bibliography;
-});
+};
 
 /**
  * @class Interface for bibliography editor to alter document bibliography
@@ -2414,9 +2461,10 @@ Zotero.Integration.BibliographyEditInterface = function(bibliography, citationsB
 	this._update();
 }
 
-Zotero.Integration.BibliographyEditInterface.prototype._update = Zotero.Promise.coroutine(function* () {
+
+Zotero.Integration.BibliographyEditInterface.prototype._update = function () {
 	this.bib = this.bibliography.getCiteprocBibliography(this.citeproc);
-});
+};
 
 /**
  * Reverts the text of an individual bibliography entry
@@ -2429,12 +2477,12 @@ Zotero.Integration.BibliographyEditInterface.prototype.revert = function(itemID)
 /**
  * Reverts bibliography to condition in which no edits have been made
  */
-Zotero.Integration.BibliographyEditInterface.prototype.revertAll = Zotero.Promise.coroutine(function* () {
+Zotero.Integration.BibliographyEditInterface.prototype.revertAll = function () {
 	this.bibliography.customEntryText = {};
 	this.bibliography.uncitedItemIDs.clear();
 	this.bibliography.omittedItemIDs.clear();
 	return this._update();
-});
+};
 
 /**
  * Reverts bibliography to condition before BibliographyEditInterface was opened
@@ -2580,8 +2628,7 @@ Zotero.Integration.DocumentData.prototype.serialize = function() {
  * Unserializes document-specific XML
  */
 Zotero.Integration.DocumentData.prototype.unserializeXML = function(xmlData) {
-	var parser = Components.classes["@mozilla.org/xmlextras/domparser;1"]
-			.createInstance(Components.interfaces.nsIDOMParser),
+	var parser = new DOMParser(),
 		doc = parser.parseFromString(xmlData, "application/xml");
 	
 	this.sessionID = Zotero.Utilities.xpathText(doc, '/data/session[1]/@id');
@@ -2758,7 +2805,6 @@ Zotero.Integration.URIMap.prototype.getZoteroItemForURIs = async function (uris)
 					text: Zotero.getString('integration.mendeleyImport.description', [Zotero.appName]),
 					button0: Zotero.getString('integration.mendeleyImport.openImporter'),
 					button1: Zotero.getString('general.skip'),
-					button2: Zotero.getString('general.moreInformation'),
 					checkLabel: Zotero.getString('general.dontAskAgain'),
 					checkbox
 				});
@@ -2766,18 +2812,15 @@ Zotero.Integration.URIMap.prototype.getZoteroItemForURIs = async function (uris)
 					setTimeout(
 						() => Zotero.getMainWindow().Zotero_File_Interface.showImportWizard(
 							{
-								pageID: 'mendeley-online-explanation',
+								pageID: 'page-mendeley-online-intro',
 								relinkOnly: true
 							}
 						)
 					);
 					throw new Zotero.Exception.UserCancelled("Importing mendeley citations");
 				}
-				else if (result == 1) {
-					this.session.dontPromptForMendeley = true;
-				}
 				else {
-					Zotero.launchURL("https://www.zotero.org/support/kb/mendeley_import#using_mendeley_citations");
+					this.session.dontPromptForMendeley = true;
 				}
 				if (checkbox.value) {
 					Zotero.Prefs.set('integration.dontPromptMendeleyImport', true);
@@ -2983,10 +3026,10 @@ Zotero.Integration.CitationField = class extends Zotero.Integration.Field {
 				// for update from Zotero 2.1 or earlier
 				if (citationItem.uri) {
 					if (Array.isArray(citationItem.uris)) {
-						citationItem.uris.push(citationItem.uri);
+						citationItem.uris = Array.from(new Set(citationItem.uris.concat(citationItem.uri)));
 					}
 					else {
-						citationItem.uris = [citationItem.uri];
+						citationItem.uris = citationItem.uri;
 					}
 					delete citationItem.uri;
 				}
@@ -3113,6 +3156,23 @@ Zotero.Integration.Citation = class {
 		this._field = citationField;
 		this._extractingLibraryID = extractingLibraryID;
 		this._extractedItems = extractedItems;
+	}
+
+	/**
+	 * Merge citation items and remove duplicates, unless the items have different
+	 * @param citation {Citation}
+	 */
+	mergeCitation(citation) {
+		let items = this.citationItems.concat(citation.citationItems);
+		let addedItems = new Set();
+		this.citationItems = []
+		for (let item of items) {
+			if (addedItems.has(item.id)) {
+				continue;
+			}
+			addedItems.add(item.id);
+			this.citationItems.push(item);
+		}
 	}
 
 	/**
@@ -3290,8 +3350,9 @@ Zotero.Integration.Citation = class {
 		
 		io.addBorder = Zotero.isWin;
 		io.singleSelection = true;
+		io.itemTreeID = "handle-missing-item-select-item-dialog";
 		
-		await Zotero.Integration.displayDialog('chrome://zotero/content/selectItemsDialog.xul', 'resizable', io);
+		await Zotero.Integration.displayDialog('chrome://zotero/content/selectItemsDialog.xhtml', 'resizable', io);
 			
 		if (io.dataOut && io.dataOut.length) {
 			return Zotero.Items.get(io.dataOut[0]);
@@ -3612,7 +3673,7 @@ Zotero.Integration.Progress = class {
 		io.isNote = this.isNote;
 		this.window = Components.classes["@mozilla.org/embedcomp/window-watcher;1"]
 			.getService(Components.interfaces.nsIWindowWatcher)
-			.openWindow(null, 'chrome://zotero/content/integration/progressBar.xul', '', options, io);
+			.openWindow(null, 'chrome://zotero/content/integration/progressBar.xhtml', '', options, io);
 		Zotero.Utilities.Internal.activate(this.window);
 	}
 	async hide(fast=false) {
@@ -3719,7 +3780,7 @@ Zotero.Integration.LegacyPluginWrapper.wrapDocument = function wrapDocument(doc)
 					deferred.reject(data);
 					deferred = null;
 				}
-			}, QueryInterface:XPCOMUtils.generateQI([Components.interfaces.nsIObserver, Components.interfaces.nsISupports])});
+			}, QueryInterface:ChromeUtils.generateQI([Components.interfaces.nsIObserver])});
 			return promise;
 		} else {
 			var result = doc.getFields.apply(doc, arguments);

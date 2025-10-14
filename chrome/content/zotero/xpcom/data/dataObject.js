@@ -117,10 +117,10 @@ for (let name of ['deleted']) {
 				val = !!val;
 				var oldVal = this._getLatestField(name);
 				if (oldVal == val) {
-					Zotero.debug(Zotero.Utilities.capitalize(name)
-						+ ` state hasn't changed for ${this._objectType} ${this.id}`);
+					Zotero.debug(`Field '${name}' hasn't changed`);
 					return;
 				}
+				Zotero.debug(`Field '${name}' has changed from '${oldVal}' to '${val}'`, 4);
 				this._markFieldChange(name, val);
 			}
 	});
@@ -934,10 +934,10 @@ Zotero.DataObject.prototype.save = Zotero.Promise.coroutine(function* (options =
 		// Create transaction
 		let result
 		if (env.options.tx) {
-			result = yield Zotero.DB.executeTransaction(function* () {
+			result = yield Zotero.DB.executeTransaction(async function () {
 				Zotero.DataObject.prototype._saveData.call(this, env);
-				yield this._saveData(env);
-				yield Zotero.DataObject.prototype._finalizeSave.call(this, env);
+				await this._saveData(env);
+				await Zotero.DataObject.prototype._finalizeSave.call(this, env);
 				return this._finalizeSave(env);
 			}.bind(this), env.transactionOptions);
 		}
@@ -985,6 +985,11 @@ Zotero.DataObject.prototype._initSave = Zotero.Promise.coroutine(function* (env)
 	
 	env.isNew = !this.id;
 	
+	if (!this.hasChanged()) {
+		Zotero.debug(this._ObjectType + ' ' + this.id + ' has not changed', 4);
+		return false;
+	}
+	
 	if (!env.options.skipEditCheck) {
 		if (!this.isEditable()) {
 			throw new Error("Cannot edit " + this._objectType + " in library "
@@ -995,11 +1000,6 @@ Zotero.DataObject.prototype._initSave = Zotero.Promise.coroutine(function* (env)
 	let targetLib = Zotero.Libraries.get(this.libraryID);
 	if (!targetLib.isChildObjectAllowed(this._objectType)) {
 		throw new Error("Cannot add " + this._objectType + " to a " + targetLib.libraryType + " library");
-	}
-	
-	if (!this.hasChanged()) {
-		Zotero.debug(this._ObjectType + ' ' + this.id + ' has not changed', 4);
-		return false;
 	}
 	
 	// Undo registerObject() on failure
@@ -1259,9 +1259,9 @@ Zotero.DataObject.prototype.erase = Zotero.Promise.coroutine(function* (options 
 	Zotero.debug('Deleting ' + this.objectType + ' ' + this.id);
 	
 	if (env.options.tx) {
-		return Zotero.DB.executeTransaction(function* () {
-			yield this._eraseData(env);
-			yield this._finalizeErase(env);
+		return Zotero.DB.executeTransaction(async function () {
+			await this._eraseData(env);
+			await this._finalizeErase(env);
 		}.bind(this))
 	}
 	else {
@@ -1323,19 +1323,46 @@ Zotero.DataObject.prototype._finalizeErase = Zotero.Promise.coroutine(function* 
 
 
 Zotero.DataObject.prototype.toResponseJSON = function (options = {}) {
-	// TODO: library block?
-	
+	let uri = Zotero.URI.getObjectURI(this);
 	var json = {
 		key: this.key,
 		version: this.version,
+		library: this.library.toResponseJSON({ ...options, includeGroupDetails: false }),
+		links: {
+			self: {
+				href: Zotero.URI.toAPIURL(uri, options.apiURL),
+				type: 'application/json'
+			},
+			alternate: Zotero.Users.getCurrentUserID() ? {
+				href: Zotero.URI.toWebURL(uri),
+				type: 'text/html'
+			} : undefined
+		},
 		meta: {},
 		data: this.toJSON(options)
 	};
 	if (options.version) {
 		json.version = json.data.version = options.version;
 	}
+	if (this.parentID) {
+		json.links.up = {
+			href: Zotero.URI.toAPIURL(Zotero.URI.getObjectURI(this.ObjectsClass.get(this.parentID)), options.apiURL),
+			type: 'application/json'
+		};
+	}
 	return json;
-}
+};
+
+
+/**
+ * Subclasses can override to provide more information that requires awaiting promises.
+ * Delegates to {@link Zotero.DataObject#toResponseJSON} by default.
+ *
+ * @returns {Promise<Object>}
+ */
+Zotero.DataObject.prototype.toResponseJSONAsync = async function (options = {}) {
+	return this.toResponseJSON(options);
+};
 
 
 Zotero.DataObject.prototype._preToJSON = function (options) {

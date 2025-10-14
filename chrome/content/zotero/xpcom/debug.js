@@ -70,16 +70,14 @@ Zotero.Debug = new function () {
 		this.storing = _store;
 		this.updateEnabled();
 		
-		if (Zotero.isStandalone) {
-			// Enable dump() from window (non-XPCOM) scopes when terminal or viewer logging is enabled.
-			// (These will always go to the terminal, even in viewer mode.)
-			Zotero.Prefs.set('browser.dom.window.dump.enabled', _console || _consoleViewer, true);
-			
-			if (_consoleViewer) {
-				setTimeout(function () {
-					Zotero.openInViewer("chrome://zotero/content/debugViewer.html");
-				}, 1000);
-			}
+		// Enable dump() from window (non-XPCOM) scopes when terminal or viewer logging is enabled.
+		// (These will always go to the terminal, even in viewer mode.)
+		Zotero.Prefs.set('browser.dom.window.dump.enabled', _console || _consoleViewer || Zotero.test, true);
+		
+		if (_consoleViewer) {
+			setTimeout(function () {
+				Zotero.openInViewer("chrome://zotero/content/debugViewer.html");
+			}, 1000);
 		}
 	}
 	
@@ -221,20 +219,10 @@ Zotero.Debug = new function () {
 		}
 
 		return Zotero.getSystemInfo().then(function(sysInfo) {
-			if (Zotero.isConnector) {
-				return Zotero.Errors.getErrors().then(function(errors) {
-					return errors.join('\n\n') +
-						"\n\n" + sysInfo + "\n\n" +
-						"=========================================================\n\n" +
-						output;	
-				});
-			}
-			else {
-				return Zotero.getErrors(true).join('\n\n') +
-					"\n\n" + sysInfo + "\n\n" +
-					"=========================================================\n\n" +
-					output;
-			}
+			return Zotero.getErrors(true).join('\n\n') +
+				"\n\n" + sysInfo + "\n\n" +
+				"=========================================================\n\n" +
+				output;
 		});
 	});
 	

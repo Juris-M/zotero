@@ -35,6 +35,56 @@ describe("Zotero.Item", function () {
 			]);
 			assert.equal(item.getField('firstCreator'), "B");
 		});
+
+		it("should return a multi-author firstCreator for an unsaved item", async function () {
+			var item = createUnsavedDataObject('item');
+			item.setCreators([
+				{
+					firstName: "A",
+					lastName: "B",
+					creatorType: "author"
+				},
+				{
+					firstName: "C",
+					lastName: "D",
+					creatorType: "author"
+				}
+			]);
+			assert.equal(
+				item.getField('firstCreator'),
+				Zotero.getString('general.andJoiner', ['\u2068B\u2069', '\u2068D\u2069'])
+			);
+		});
+
+		it("should strip bidi isolates from firstCreator when unformatted = true", async function () {
+			var item = createUnsavedDataObject('item');
+			item.setCreators([
+				{
+					firstName: "A",
+					lastName: "B",
+					creatorType: "author"
+				},
+				{
+					firstName: "C",
+					lastName: "D",
+					creatorType: "author"
+				}
+			]);
+			
+			// Test unsaved - uses getFirstCreatorFromData()'s omitBidiIsolates option
+			assert.equal(
+				item.getField('firstCreator', /* unformatted */ true),
+				Zotero.getString('general.andJoiner', ['B', 'D'])
+			);
+			
+			await item.saveTx();
+
+			// Test saved - implemented in getField()
+			assert.equal(
+				item.getField('firstCreator', /* unformatted */ true),
+				Zotero.getString('general.andJoiner', ['B', 'D'])
+			);
+		});
 	});
 	
 	describe("#setField", function () {
@@ -811,6 +861,46 @@ describe("Zotero.Item", function () {
 	})
 	
 	
+	describe("#getCollections()", function () {
+		it("shouldn't include collections in the trash", async function () {
+			var collection1 = await createDataObject('collection');
+			var collection2 = await createDataObject('collection');
+			var item = await createDataObject('item', { collections: [collection1.id, collection2.id] });
+			
+			assert.sameMembers(item.getCollections(), [collection1.id, collection2.id]);
+			
+			collection1.deleted = true;
+			await collection1.saveTx();
+			
+			assert.sameMembers(item.getCollections(), [collection2.id]);
+			
+			// Simulate a restart
+			await Zotero.Items.get(item.id).reload(null, true);
+			
+			// Make sure the deleted collection is not back in item's cache
+			assert.sameMembers(item.getCollections(), [collection2.id]);
+		});
+		
+		it("should include collections in the trash if includeTrashed=true", async function () {
+			var collection1 = await createDataObject('collection');
+			var collection2 = await createDataObject('collection');
+			var item = await createDataObject('item', { collections: [collection1.id, collection2.id] });
+			
+			assert.sameMembers(item.getCollections(true), [collection1.id, collection2.id]);
+			
+			collection1.deleted = true;
+			await collection1.saveTx();
+			
+			assert.sameMembers(item.getCollections(true), [collection1.id, collection2.id]);
+			
+			// Simulate a restart
+			await Zotero.Items.get(item.id).reload(null, true);
+			
+			assert.sameMembers(item.getCollections(true), [collection1.id, collection2.id]);
+		});
+	});
+	
+	
 	describe("#setCollections()", function () {
 		it("should add a collection with an all-numeric key", async function () {
 			var col = new Zotero.Collection();
@@ -1184,6 +1274,20 @@ describe("Zotero.Item", function () {
 			assert.equal(item.getFilePath(), file.path);
 		});
 		
+		it("should handle line and paragraph separators in filenames", async function () {
+			var filename = "Line 1\u2028Line 2\u2029Line 3.txt";
+			
+			var item = await createDataObject('item');
+			
+			var attachment = new Zotero.Item("attachment");
+			attachment.attachmentLinkMode = Zotero.Attachments.LINK_MODE_IMPORTED_FILE;
+			attachment.parentID = item.id;
+			attachment.attachmentFilename = filename;
+			await attachment.saveTx();
+			
+			assert.equal(attachment.attachmentFilename, filename);
+		});
+		
 		it("should get a filename for a base-dir-relative file", function () {
 			var dir = getTestDataDirectory().path;
 			Zotero.Prefs.set('saveRelativeAttachmentPath', true)
@@ -1334,9 +1438,9 @@ describe("Zotero.Item", function () {
 			yield parentItem.getBestAttachmentState();
 			assert.deepEqual(
 				parentItem.getBestAttachmentStateCached(),
-				{ type: 'other', exists: true }
+				{ type: 'image', exists: true, key: childItem.key }
 			);
-		})
+		});
 		
 		it("should cache state for a missing file", function* () {
 			var parentItem = yield createDataObject('item');
@@ -1351,19 +1455,72 @@ describe("Zotero.Item", function () {
 			yield parentItem.getBestAttachmentState();
 			assert.deepEqual(
 				parentItem.getBestAttachmentStateCached(),
-				{ type: 'other', exists: false }
+				{ type: 'image', exists: false, key: childItem.key }
 			);
-		})
+		});
 
 		it("should cache state for a standalone attachment", async function () {
 			var standaloneAttachment = await importPDFAttachment();
 			await standaloneAttachment.getBestAttachmentState();
 			assert.deepEqual(
 				standaloneAttachment.getBestAttachmentStateCached(),
-				{ type: 'pdf', exists: true }
+				{ type: 'pdf', exists: true, key: standaloneAttachment.key }
 			);
 		});
-	})
+
+		it("should update best attachment state without clearing it for as long as item key matches", async function () {
+			var parentItem = await createDataObject('item');
+			var file = getTestDataDirectory();
+			file.append('test.png');
+			var childItem = await Zotero.Attachments.importFromFile({
+				file,
+				parentItemID: parentItem.id
+			});
+			let path = await childItem.getFilePathAsync();
+			await OS.File.remove(path);
+			await parentItem.getBestAttachment();
+			assert.deepEqual(
+				parentItem.getBestAttachmentStateCached(),
+				{ key: childItem.key }
+			);
+			await childItem._updateAttachmentStates(false);
+			assert.deepEqual(
+				parentItem.getBestAttachmentStateCached(),
+				{ exists: false, key: childItem.key }
+			);
+			await parentItem.getBestAttachmentState();
+			assert.deepEqual(
+				parentItem.getBestAttachmentStateCached(),
+				{ type: 'image', exists: false, key: childItem.key }
+			);
+			await childItem._updateAttachmentStates(true);
+			assert.deepEqual(
+				parentItem.getBestAttachmentStateCached(),
+				{ type: 'image', exists: true, key: childItem.key }
+			);
+		});
+
+		it("should update best attachment state when attachment is trashed", async function () {
+			var parentItem = await createDataObject('item');
+			var file = getTestDataDirectory();
+			file.append('test.png');
+			var childItem = await Zotero.Attachments.importFromFile({
+				file,
+				parentItemID: parentItem.id
+			});
+
+			await parentItem.getBestAttachmentState();
+			childItem._updateAttachmentStates(true);
+			assert.deepEqual(
+				parentItem.getBestAttachmentStateCached(),
+				{ type: 'image', exists: true, key: childItem.key }
+			);
+
+			await Zotero.Items.trashTx([childItem.id]);
+			childItem._updateAttachmentStates(true);
+			assert.deepEqual(parentItem.getBestAttachmentStateCached(), { type: null });
+		});
+	});
 	
 	
 	describe("#fileExists()", function () {
@@ -1513,6 +1670,7 @@ describe("Zotero.Item", function () {
 				var a = new Zotero.Item('annotation');
 				a.annotationType = 'highlight';
 				assert.doesNotThrow(() => a.annotationType = 'highlight');
+				assert.doesNotThrow(() => a.annotationType = 'underline');
 				assert.throws(() => a.annotationType = 'note');
 			});
 		});
@@ -1563,6 +1721,22 @@ describe("Zotero.Item", function () {
 				});
 				await annotation.saveTx();
 				assert.isFalse(annotation.hasChanged());
+			});
+			
+			it("should assign a default color", async function () {
+				var annotation = new Zotero.Item('annotation');
+				annotation.parentID = attachment.id;
+				annotation.annotationType = 'highlight';
+				annotation.annotationText = "This is highlighted text.";
+				annotation.annotationSortIndex = '00015|002431|00000';
+				annotation.annotationPosition = JSON.stringify({
+					pageIndex: 123,
+					rects: [
+						[314.4, 412.8, 556.2, 609.6]
+					]
+				});
+				await annotation.saveTx();
+				assert.equal(annotation.annotationColor, '#ffd400');
 			});
 			
 			it("should save a note annotation", async function () {
@@ -1672,7 +1846,7 @@ describe("Zotero.Item", function () {
 			});
 
 			it("should recognize a strikeout annotation", async function () {
-				let attachment = await importFileAttachment('duplicatesMerge_annotated_2.pdf');
+				let attachment = await importFileAttachment('duplicatesMerge_annotated_3.pdf');
 				assert.isTrue(await attachment.hasEmbeddedAnnotations());
 			});
 
@@ -1841,6 +2015,49 @@ describe("Zotero.Item", function () {
 			assert.sameDeepMembers(tags, [{ tag: 'a' }, { tag: 'b' }]);
 		})
 	})
+
+	describe("#getItemsListTags", function() {
+		it("should return tags with emojis after colored tags", async function () {
+			var tags = [
+				{
+					tag: "BBB ⭐️⭐️"
+				},
+				{
+					tag: "ZZZ 👲"
+				},
+				{
+					tag: "colored tag two"
+				},
+				{
+					tag: "AAA 😀"
+				},
+				{
+					tag: "colored tag one"
+				},
+				{
+					tag: "not included"
+				}
+			];
+			await Zotero.Tags.setColor(Zotero.Libraries.userLibraryID, "colored tag one", "#990000");
+			await Zotero.Tags.setColor(Zotero.Libraries.userLibraryID, "colored tag two", "#FF6666");
+
+			var item = new Zotero.Item('journalArticle');
+			item.setTags(tags);
+			await item.saveTx();
+
+			var itemListTags = item.getItemsListTags();
+			var expected = [
+				{ tag: "colored tag one", color: "#990000" },
+				{ tag: "colored tag two", color: "#FF6666" },
+				{ tag: "AAA 😀", color: null },
+				{ tag: "BBB ⭐️⭐️", color: null },
+				{ tag: "ZZZ 👲", color: null },
+			];
+			for (let i = 0; i < 5; i++) {
+				assert.deepEqual(itemListTags[i], expected[i]);
+			}
+		});
+	});
 	
 	//
 	// Relations and related items
@@ -2509,13 +2726,13 @@ describe("Zotero.Item", function () {
 				var item4 = yield createDataObject('item');
 				
 				var relateItems = Zotero.Promise.coroutine(function* (i1, i2) {
-					yield Zotero.DB.executeTransaction(function* () {
+					yield Zotero.DB.executeTransaction(async function () {
 						i1.addRelatedItem(i2);
-						yield i1.save({
+						await i1.save({
 							skipDateModifiedUpdate: true
 						});
 						i2.addRelatedItem(i1);
-						yield i2.save({
+						await i2.save({
 							skipDateModifiedUpdate: true
 						});
 					});
@@ -2740,7 +2957,7 @@ describe("Zotero.Item", function () {
 		});
 		
 		describe("not-strict mode", function () {
-			it("should handle Extra in non-strict mode", function () {
+			it("should preserve Extra", function () {
 				var json = {
 					itemType: "journalArticle",
 					title: "Test",
@@ -2841,6 +3058,45 @@ describe("Zotero.Item", function () {
 				var item = new Zotero.Item;
 				item.fromJSON(json);
 				assert.equal(item.getField('extra'), '');
+			});
+			
+			it("should use a Zotero item type stored in Extra", async function () {
+				var json = {
+					itemType: "document",
+					title: "Test",
+					extra: "Type: dataset\nCitation Key: abc123\nFoo: Bar"
+				};
+				var item = new Zotero.Item;
+				item.fromJSON(json);
+				assert.equal(Zotero.ItemTypes.getName(item.itemTypeID), 'dataset');
+				// Move a valid field out of Extra
+				assert.equal(item.getField('citationKey'), 'abc123');
+				assert.equal(item.getField('extra'), 'Foo: Bar');
+			});
+			
+			it("should use a CSL item type stored in Extra", async function () {
+				var json = {
+					itemType: "journalArticle",
+					title: "Test",
+					extra: "Type: song"
+				};
+				var item = new Zotero.Item;
+				item.fromJSON(json);
+				assert.equal(item.itemTypeID, Zotero.ItemTypes.getID('audioRecording'));
+			});
+			
+			it("should move a now-invalid existing field to Extra when using Type from Extra", async function () {
+				var json = {
+					itemType: "journalArticle",
+					title: "Test",
+					pages: "123",
+					extra: "Type: audioRecording"
+				};
+				var item = new Zotero.Item;
+				item.fromJSON(json);
+				assert.equal(item.itemTypeID, Zotero.ItemTypes.getID('audioRecording'));
+				// 'pages' should've been moved to Extra, since it's not valid for the new type
+				assert.equal(item.getField('extra'), 'Pages: 123');
 			});
 			
 			it("should ignore some redundant fields from RDF translator (temporary)", function () {
@@ -2949,6 +3205,28 @@ describe("Zotero.Item", function () {
 					item.fromJSON(json, { strict: true });
 				};
 				assert.throws(f, /^Invalid creator type/);
+			});
+			
+			it("should ignore item type in Extra", function () {
+				var json = {
+					itemType: "document",
+					title: "",
+					extra: "Type: preprint"
+				};
+				var item = new Zotero.Item;
+				item.fromJSON(json, { strict: true });
+				assert.equal(item.getField('extra'), "Type: preprint");
+			});
+			
+			it("should ignore valid field in Extra", function () {
+				var json = {
+					itemType: "journalArticle",
+					title: "",
+					extra: "DOI: 10.1234/abcd"
+				};
+				var item = new Zotero.Item;
+				item.fromJSON(json, { strict: true });
+				assert.equal(item.getField('extra'), "DOI: 10.1234/abcd");
 			});
 		});
 		

@@ -22,7 +22,7 @@
 	
 	***** END LICENSE BLOCK *****
 */
-Zotero.Prefs = new function(){
+Zotero.Prefs = new function() {
 	// Privileged methods
 	this.get = get;
 	this.set = set;
@@ -34,8 +34,6 @@ Zotero.Prefs = new function(){
 	this.rootBranch = Services.prefs.getBranch("");
 	
 	this.init = async function init() {
-		await loadExtensionDefaults();
-		
 		// Register observer to handle pref changes
 		this.register();
 
@@ -43,14 +41,16 @@ Zotero.Prefs = new function(){
 		if (Zotero.addShutdownListener) {
 			Zotero.addShutdownListener(this.unregister.bind(this));
 		}
+		
+		this._checkUserJS();
 
 		// Process pref version updates
 		var fromVersion = this.get('prefVersion');
+		var toVersion = 13;
 		if (!fromVersion) {
-			fromVersion = 0;
+			this.set('prefVersion', toVersion);
 		}
-		var toVersion = 6;
-		if (fromVersion < toVersion) {
+		else if (fromVersion < toVersion) {
 			for (var i = fromVersion + 1; i <= toVersion; i++) {
 				switch (i) {
 					case 1:
@@ -103,6 +103,53 @@ Zotero.Prefs = new function(){
 							this.clear('export.noteQuickCopy.setting');
 						}
 						break;
+					
+					// Re-enable hardware acceleration in Zotero 7 for all the people who turned it
+					// off to fix PDF rendering problems
+					case 7:
+						this.clear('layers.acceleration.disabled', true);
+						break;
+					
+					// Convert "attachment rename format string" from old format (e.g. {%c - }{%y - }{%t{50}})
+					// to a new format that uses the template engine
+					case 9:
+						if (this.prefHasUserValue('attachmentRenameFormatString')) {
+							let oldVal = this.get('attachmentRenameFormatString');
+							let newVal;
+							if (oldVal) {
+								if (oldVal.includes('{%')) {
+									newVal = this.convertLegacyAttachmentRenameFormatString(oldVal);
+								}
+								// User already modified new template from the Z7 beta before we
+								// renamed this pref, so just transfer over
+								else {
+									newVal = oldVal;
+								}
+							}
+							if (newVal) {
+								this.set('attachmentRenameTemplate', newVal);
+							}
+							this.clear('attachmentRenameFormatString');
+						}
+						break;
+					
+					case 10:
+						// Used internally
+						break;
+					
+					case 11:
+						await Zotero.LocateManager.migrateEngines();
+						break;
+					
+					case 12:
+						Zotero.Prefs.set('firstRunGuidanceShown.z7Banner', false);
+						break;
+					
+					// Reset popup pref if changed by plugins
+					// https://github.com/windingwind/zotero-plugin-toolkit/commit/47fc9ddea
+					case 13:
+						Zotero.Prefs.clear('ui.popup.disable_autohide', true);
+						break;
 				}
 			}
 			this.set('prefVersion', toVersion);
@@ -113,7 +160,7 @@ Zotero.Prefs = new function(){
 	/**
 	* Retrieve a preference
 	**/
-	function get(pref, global){
+	function get(pref, global) {
 		try {
 			pref = global ? pref : ZOTERO_CONFIG.PREF_BRANCH + pref;
 			let branch = this.rootBranch;
@@ -164,13 +211,6 @@ Zotero.Prefs = new function(){
 				case branch.PREF_BOOL:
 					return branch.setBoolPref(pref, value);
 				case branch.PREF_STRING:
-					// Pre-Fx59
-					if (!branch.setStringPref) {
-						let str = Cc["@mozilla.org/supports-string;1"]
-							.createInstance(Ci.nsISupportsString);
-						str.data = value;
-						return branch.setComplexValue(pref, Ci.nsISupportsString, str);
-					}
 					return branch.setStringPref(pref, value);
 				case branch.PREF_INT:
 					return branch.setIntPref(pref, value);
@@ -183,13 +223,6 @@ Zotero.Prefs = new function(){
 					}
 					if (typeof value == 'string') {
 						Zotero.debug("Creating string pref '" + pref + "'");
-						// Pre-Fx59
-						if (!branch.setStringPref) {
-							let str = Cc["@mozilla.org/supports-string;1"]
-								.createInstance(Ci.nsISupportsString);
-							str.data = value;
-							return branch.setComplexValue(pref, Ci.nsISupportsString, str);
-						}
 						return branch.setStringPref(pref, value);
 					}
 					if (parseInt(value) == value) {
@@ -214,6 +247,12 @@ Zotero.Prefs = new function(){
 		pref = global ? pref : ZOTERO_CONFIG.PREF_BRANCH + pref;
 		this.rootBranch.clearUserPref(pref);
 	}
+	
+	
+	this.prefHasUserValue = function (pref, global) {
+		pref = global ? pref : ZOTERO_CONFIG.PREF_BRANCH + pref;
+		return this.rootBranch.prefHasUserValue(pref);
+	};
 	
 	
 	/**
@@ -244,13 +283,11 @@ Zotero.Prefs = new function(){
 				Zotero.Schema.stopRepositoryTimer();
 			}
 		}],
-		["fontSize", function (val) {
-			Zotero.setFontSize(
-				Zotero.getActiveZoteroPane().document.getElementById('zotero-pane')
-			);
-			Zotero.setFontSize(Zotero.getActiveZoteroPane().document.getElementById('zotero-context-pane'));
-			Zotero.getActiveZoteroPane().collectionsView && Zotero.getActiveZoteroPane().collectionsView.updateFontSize();
-			Zotero.getActiveZoteroPane().itemsView && Zotero.getActiveZoteroPane().itemsView.updateFontSize();
+		["fontSize", function () {
+			Zotero.UIProperties.setAll();
+		}],
+		["uiDensity", function () {
+			Zotero.UIProperties.setAll();
 		}],
 		["recursiveCollections", function() {
 			Zotero.getActiveZoteroPane().itemsView.refreshAndMaintainSelection();
@@ -387,126 +424,6 @@ Zotero.Prefs = new function(){
 	}
 	
 	
-	/**
-	 * Firefox 60 no longer loads default preferences for extensions, so do it manually
-	 */
-	async function loadExtensionDefaults() {
-		var defaultBranch = Services.prefs.getDefaultBranch("");
-		
-		return new Zotero.Promise(function (resolve) {
-			Cu.import("resource://gre/modules/AddonManager.jsm");
-			
-			// Lines are in format `pref("[key]", [val]);`, so define a function to be called that
-			// sets the defaults
-			function pref(key, value) {
-				switch (typeof value) {
-					case "boolean":
-						defaultBranch.setBoolPref(key, value);
-						break;
-					case "number":
-						defaultBranch.setIntPref(key, value);
-						break;
-					case "string":
-						defaultBranch.setStringPref(key, value);
-						break;
-				}
-			}
-			
-			function readDefaults(contents) {
-				let re = /^\s*pref\s*\(\s*['"]([a-zA-Z0-9_\-.]+)['"]\s*,\s*["']?.*["']?\s*\)\s*;\s*$/;
-				let lines = contents.split(/\n/g).filter(line => re.test(line));
-				for (let line of lines) {
-					try {
-						eval(line);
-					}
-					catch (e) {
-						dump(e + "\n\n");
-						Components.utils.reportError(e);
-					}
-				}
-			}
-			
-			AddonManager.getAllAddons(async function(addons) {
-				var reusableStreamInstance = Cc['@mozilla.org/scriptableinputstream;1']
-					.createInstance(Ci.nsIScriptableInputStream);
-				
-				for (let addon of addons) {
-					if (!addon.isActive) {
-						continue;
-					}
-					
-					try {
-						let path = OS.Path.fromFileURI(addon.getResourceURI().spec);
-						
-						// Hack to delete extensions.json for Mac users who first ran Zotero from the
-						// disk image and ended up with invalid integration plugin paths in
-						// extensions.json
-						try {
-							if (Zotero.isMac && path.includes('AppTranslocation')) {
-								await OS.File.remove(
-									OS.Path.join(Zotero.Profile.dir, 'extensions.json'),
-									{
-										ignoreAbsent: true
-									}
-								);
-							}
-						}
-						catch (e) {
-							Zotero.logError(e);
-						}
-						
-						// Directory
-						if ((await OS.File.stat(path)).isDir) {
-							let dir = OS.Path.join(path, 'defaults', 'preferences');
-							if (await OS.File.exists(dir)) {
-								await Zotero.File.iterateDirectory(dir, async function (entry) {
-									if (!entry.name.endsWith('.js')) return;
-									readDefaults(Zotero.File.getContents(entry.path));
-								});
-							}
-						}
-						// XPI
-						else {
-							let file = Zotero.File.pathToFile(path);
-							let zipReader = Components.classes["@mozilla.org/libjar/zip-reader;1"].
-								createInstance(Components.interfaces.nsIZipReader);
-							try {
-								try {
-									zipReader.open(file);
-									zipReader.test(null);
-								}
-								catch (e) {
-									Zotero.logError(path + " is not a valid ZIP file");
-									continue;
-								}
-								
-								let entries = zipReader.findEntries('defaults/preferences/*.js');
-								while (entries.hasMore()) {
-									let entryName = entries.getNext();
-									let entry = zipReader.getEntry(entryName);
-									
-									if (!entry.isDirectory) {
-										let inputStream = zipReader.getInputStream(entryName);
-										reusableStreamInstance.init(inputStream);
-										readDefaults(reusableStreamInstance.read(entry.realSize));
-									}
-								}
-							}
-							finally {
-								zipReader.close();
-							}
-						}
-					}
-					catch (e) {
-						Zotero.logError(e);
-					}
-				}
-				
-				resolve();
-			});
-		});
-	}
-	
 	this.getVirtualCollectionState = function (type) {
 		const prefKeys = {
 			duplicates: 'duplicateLibraries',
@@ -561,4 +478,87 @@ Zotero.Prefs = new function(){
 		}
 		Zotero.Prefs.set(prefKey, JSON.stringify(libraries));
 	};
-}
+
+	/**
+	 * Converts a value of a `attachmentRenameFormatString` pref from a legacy format string
+	 * with % markers to a new format that uses the template engine
+	 *
+	 * @param {string} formatString - The legacy format string to convert.
+	 * @returns {string} The new format string.
+	 */
+	this.convertLegacyAttachmentRenameFormatString = function (formatString) {
+		const markers = {
+			c: 'firstCreator',
+			y: 'year',
+			t: 'title'
+		};
+
+		// Regexp contains 4 capture groups all wrapped in {}:
+		// 		* Prefix before the wildcard, can be empty string
+		// 		* Any recognized marker. % sign marks a wildcard and is required for a match but is
+		// 		  not part of the capture group. Recognized markers are specified in a `markers`
+		// 		  lookup.
+		// 		* Optionally a maximum number of characters to truncate the value to
+		// 		* Suffix after the wildcard, can be empty string
+		const re = new RegExp(`{([^%{}]*)%(${Object.keys(markers).join('|')})({[0-9]+})?([^%{}]*)}`, 'ig');
+
+		return formatString.replace(re, (match, prefix, marker, truncate, suffix) => {
+			const field = markers[marker];
+			truncate = truncate ? truncate.replace(/[^0-9]+/g, '') : false;
+			prefix = prefix ? `prefix="${prefix}"` : null;
+			suffix = suffix ? `suffix="${suffix}"` : null;
+			truncate = truncate ? `truncate="${truncate}"` : null;
+
+			return `{{ ${[field, truncate, prefix, suffix].filter(f => f !== null).join(' ')} }}`;
+		});
+	};
+
+	/**
+	 * Preferences set in <profile>/user.js override prefs.js, so they can't
+	 * be changed via the UI and may be hard to locate and remove. Warn if
+	 * user.js contains user_pref() directives.
+	 */
+	this._checkUserJS = async function () {
+		let userJSPath = PathUtils.join(Zotero.Profile.dir, 'user.js');
+		let userJS;
+		try {
+			userJS = await Zotero.File.getContentsAsync(userJSPath);
+		}
+		catch {
+			return;
+		}
+		
+		const DISALLOWED_PREF_RE = /^\s*user_pref\s*\(\s*['"]extensions\.zotero\.fileHandler\..+$/g;
+		
+		let updatedUserJS = userJS
+			.split('\n')
+			.filter((prefLine) => {
+				if (DISALLOWED_PREF_RE.test(prefLine)) {
+					Zotero.debug('user.js contains disallowed pref: ' + prefLine);
+					return false;
+				}
+				return true;
+			})
+			.join('\n');
+		
+		if (updatedUserJS === userJS) {
+			return;
+		}
+		
+		try {
+			await Zotero.File.putContentsAsync(userJSPath, updatedUserJS);
+
+			Zotero.alert(null,
+				Zotero.getString('general-error'),
+				Zotero.getString('userjs-pref-warning')
+			);
+			Services.startup.quit(
+				Components.interfaces.nsIAppStartup.eAttemptQuit
+				| Components.interfaces.nsIAppStartup.eRestart
+			);
+		}
+		catch (e) {
+			Zotero.logError(e);
+		}
+	};
+};

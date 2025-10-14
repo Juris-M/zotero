@@ -3,8 +3,11 @@
  * @namespace
  */
 Zotero.HTTP = new function() {
+	this.disableErrorRetry = false;
 	var _errorDelayIntervals = [2500, 5000, 10000, 20000, 40000, 60000, 120000, 240000, 300000];
 	var _errorDelayMax = 60 * 60 * 1000; // 1 hour
+
+	var { SecurityInfo } = ChromeUtils.importESModule("resource://gre/modules/SecurityInfo.sys.mjs");
 	
 	/**
 	 * Exception returned for unexpected status when promise* is used
@@ -117,7 +120,7 @@ Zotero.HTTP = new function() {
 	 * @param {nsIURI|String} url - URL to request
 	 * @param {Object} [options] Options for HTTP request:
 	 * @param {String} [options.body] - The body of a POST request
-	 * @param {Object} [options.headers] - Object of HTTP headers to send with the request
+	 * @param {Object | Headers} [options.headers] - HTTP headers to send with the request
 	 * @param {Boolean} [options.followRedirects = true] - Object of HTTP headers to send with the
 	 *     request
 	 * @param {Zotero.CookieSandbox} [options.cookieSandbox] - The sandbox from which cookies should
@@ -167,7 +170,7 @@ Zotero.HTTP = new function() {
 							continue;
 						}
 						// Don't retry if errorDelayMax is 0
-						if (options.errorDelayMax === 0) {
+						if (options.errorDelayMax === 0 || Zotero.HTTP.disableErrorRetry) {
 							throw e;
 						}
 						// Automatically retry other 5xx errors by default
@@ -267,7 +270,10 @@ Zotero.HTTP = new function() {
 		
 		var deferred = Zotero.Promise.defer();
 		
-		if (!this.mock || url.startsWith('resource://') || url.startsWith('chrome://')) {
+		if (!this.mock
+				|| options.noMock
+				|| url.startsWith('resource://')
+				|| url.startsWith('chrome://')) {
 			var xmlhttp = new XMLHttpRequest();
 		}
 		else {
@@ -322,11 +328,13 @@ Zotero.HTTP = new function() {
 				channel.loadFlags |= Components.interfaces.nsIRequest.LOAD_BYPASS_CACHE;
 			}
 			
-			// Don't follow redirects
+			let notificationCallbacks = options.notificationCallbacks || {};
 			if (options.followRedirects === false) {
-				channel.notificationCallbacks = {
-					QueryInterface: XPCOMUtils.generateQI([Ci.nsIInterfaceRequestor, Ci.nsIChannelEventSync]),
-					getInterface: XPCOMUtils.generateQI([Ci.nsIChannelEventSink]),
+				if (notificationCallbacks.asyncOnChannelRedirect) {
+					throw new Error("Can't set asyncOnChannelRedirect and followRedirects = false");
+				}
+				notificationCallbacks = {
+					...notificationCallbacks,
 					asyncOnChannelRedirect: function (oldChannel, newChannel, flags, callback) {
 						redirectStatus = (flags & Ci.nsIChannelEventSink.REDIRECT_PERMANENT) ? 301 : 302;
 						redirectLocation = newChannel.URI.spec;
@@ -334,6 +342,9 @@ Zotero.HTTP = new function() {
 						callback.onRedirectVerifyCallback(Cr.NS_BINDING_ABORTED);
 					}
 				};
+			}
+			if (notificationCallbacks) {
+				channel.notificationCallbacks = wrapNotificationCallbacks(notificationCallbacks);
 			}
 		}
 		
@@ -343,22 +354,19 @@ Zotero.HTTP = new function() {
 		}
 		
 		// Send headers
-		var headers = {};
-		if (options && options.headers) {
-			Object.assign(headers, options.headers);
-		}
+		var headers = new Zotero.HTTP.CasePreservingHeaders(options?.headers || {});
 		var compressedBody = false;
 		if (options.body) {
-			if (!headers["Content-Type"]) {
-				headers["Content-Type"] = "application/x-www-form-urlencoded";
+			if (!headers.get("Content-Type")) {
+				headers.set("Content-Type", "application/x-www-form-urlencoded");
 			}
-			else if (headers["Content-Type"] == 'multipart/form-data') {
+			else if (headers.get("Content-Type") == 'multipart/form-data') {
 				// Allow XHR to set Content-Type with boundary for multipart/form-data
-				delete headers["Content-Type"];
+				headers.delete("Content-Type");
 			}
 			
 			if (options.compressBody && this.isWriteMethod(method)) {
-				headers['Content-Encoding'] = 'gzip';
+				headers.set('Content-Encoding', 'gzip');
 				compressedBody = await Zotero.Utilities.Internal.gzip(options.body);
 				
 				let oldLen = options.body.length;
@@ -368,34 +376,67 @@ Zotero.HTTP = new function() {
 			}
 		}
 		if (options.debug) {
-			if (headers["Zotero-API-Key"]) {
-				let dispHeaders = {};
-				Object.assign(dispHeaders, headers);
-				if (dispHeaders["Zotero-API-Key"]) {
-					dispHeaders["Zotero-API-Key"] = "[Not shown]";
-				}
-				Zotero.debug(dispHeaders);
+			if (headers.has("Zotero-API-Key")) {
+				let dispHeaders = new Zotero.HTTP.CasePreservingHeaders(headers);
+				dispHeaders.set("Zotero-API-Key", "[Not shown]");
+				Zotero.debug(Object.fromEntries(dispHeaders.entries()));
 			}
 			else {
-				Zotero.debug(headers);
+				Zotero.debug(Object.fromEntries(headers.entries()));
 			}
 		}
-		for (var header in headers) {
+		for (var [header, value] of headers) {
 			// Convert numbers to string to make Sinon happy
-			let value = typeof headers[header] == 'number'
-				? headers[header].toString()
-				: headers[header]
 			xmlhttp.setRequestHeader(header, value);
 		}
-
-		// Set timeout
+		
+		const defaultTimeout = 30000;
+		let requestTimeout;
+		let connectTimeout;
+		let inactivityTimeout;
 		if (options.timeout !== 0) {
-			xmlhttp.timeout = options.timeout || 30000;
+			// For downloads, manually implement connect and inactivity timeouts, since the XHR
+			// `timeout` property applies to the whole request, even if data is being downloaded
+			if (options.isDownload) {
+				// TODO: Try a lower default connect timeout and take a separate option?
+				connectTimeout = options.timeout || defaultTimeout;
+				inactivityTimeout = options.timeout || defaultTimeout;
+			}
+			else {
+				requestTimeout = options.timeout || defaultTimeout;
+			}
 		}
-
-		xmlhttp.ontimeout = function() {
-			deferred.reject(new Zotero.HTTP.TimeoutException(options.timeout));
-		};
+		let connectTimerID = null;
+		let inactivityTimerID = null;
+		let timedOutAfter;
+		
+		function clearConnectTimer() {
+			if (connectTimerID) {
+				clearTimeout(connectTimerID);
+				connectTimerID = null;
+			}
+		}
+		
+		function resetInactivityTimer() {
+			clearTimeout(inactivityTimerID);
+			inactivityTimerID = setTimeout(() => {
+				Zotero.warn(`Inactivity timeout for ${method} ${dispURL} -- aborting request`);
+				timedOutAfter = inactivityTimeout;
+				xmlhttp.abort();
+			}, inactivityTimeout);
+		}
+		
+		if (requestTimeout) {
+			xmlhttp.timeout = requestTimeout;
+			xmlhttp.ontimeout = function() {
+				deferred.reject(new Zotero.HTTP.TimeoutException(requestTimeout));
+			};
+		}
+		else if (inactivityTimeout) {
+			xmlhttp.onprogress = function () {
+				resetInactivityTimer();
+			};
+		}
 		
 		// Provide caller with a callback to cancel a request in progress
 		if (options.cancellerReceiver) {
@@ -409,15 +450,26 @@ Zotero.HTTP = new function() {
 			});
 		}
 		
+		if (connectTimeout || inactivityTimeout) {
+			xmlhttp.onloadstart = () => {
+				clearConnectTimer();
+				resetInactivityTimer();
+			};
+		}
+		
 		xmlhttp.onloadend = async function() {
+			clearConnectTimer();
+			clearTimeout(inactivityTimerID);
+			
 			var status = redirectStatus || xmlhttp.status;
+			var success;
 			
 			try {
 				if (!status) {
 					let responseStatus = xmlhttp.channel.responseStatus;
 					// If we cancelled a redirect, get the 3xx status from the channel
 					if (responseStatus >= 300 && responseStatus < 400) {
-						status = responseStatus;
+						status = redirectStatus = responseStatus;
 					}
 					// If an invalid HTTP response includes a 4xx or 5xx HTTP response code, swap it
 					// in, since it might be enough info to do what we need (e.g., verify a 404 from
@@ -437,17 +489,27 @@ Zotero.HTTP = new function() {
 			catch (e) {}
 			
 			if (options.successCodes) {
-				var success = options.successCodes.indexOf(status) != -1;
+				success = options.successCodes.indexOf(status) != -1;
 			}
 			// Explicit FALSE means allow any status code
 			else if (options.successCodes === false) {
-				var success = true;
+				success = true;
+			}
+			// If we got a redirect and didn't follow it, consider that a success
+			else if (options.followRedirects === false && redirectStatus) {
+				success = true;
 			}
 			else if(isFile) {
-				var success = status == 200 || status == 0;
+				success = status == 200 || status == 0;
 			}
-			else if (redirectStatus) {
-				var success = true;
+			else {
+				success = status >= 200 && status < 300;
+			}
+			
+			// Create a fake XMLHttpRequest object for an unfollowed or canceled redirect, since
+			// the real one won't be accurate. Only `status` and `getResponseHeader('Location')`
+			// are available.
+			if (redirectStatus) {
 				let channel = xmlhttp.channel;
 				xmlhttp = {
 					status,
@@ -460,9 +522,6 @@ Zotero.HTTP = new function() {
 						return null;
 					}
 				};
-			}
-			else {
-				var success = status >= 200 && status < 300;
 			}
 			
 			if(success) {
@@ -511,6 +570,11 @@ Zotero.HTTP = new function() {
 				}
 				Zotero.debug(msg, 1);
 				
+				if (timedOutAfter) {
+					deferred.reject(new Zotero.HTTP.TimeoutException(timedOutAfter));
+					return;
+				}
+				
 				if (xmlhttp.status == 0) {
 					try {
 						this.checkSecurity(channel, { isProxyAuthRequest: options.isProxyAuthRequest });
@@ -536,21 +600,96 @@ Zotero.HTTP = new function() {
 		}
 		
 		// Send binary data
+		let body;
 		if (compressedBody) {
 			let numBytes = compressedBody.length;
 			let ui8Data = new Uint8Array(numBytes);
 			for (let i = 0; i < numBytes; i++) {
 				ui8Data[i] = compressedBody.charCodeAt(i) & 0xff;
 			}
-			xmlhttp.send(ui8Data);
+			body = ui8Data;
 		}
 		// Send regular request
 		else {
-			xmlhttp.send(options.body || null);
+			body = options.body || null;
 		}
+		
+		if (connectTimeout) {
+			connectTimerID = setTimeout(() => {
+				Zotero.warn(`Connect timeout for ${method} ${dispURL} -- aborting request`);
+				timedOutAfter = connectTimeout;
+				xmlhttp.abort();
+			}, connectTimeout);
+		}
+		
+		xmlhttp.send(body);
 		
 		return deferred.promise;
 	};
+	
+	
+	/**
+	 * Create an nsIInterfaceRequestor object based on the callbacks provided
+	 */
+	function wrapNotificationCallbacks(callbacks) {
+		return {
+			QueryInterface: ChromeUtils.generateQI(["nsIInterfaceRequestor"]),
+			
+			getInterface(aIID) {
+				// Handle nsIProgressEventSink (for onProgress, onStatus)
+				if (aIID.equals(Ci.nsIProgressEventSink) && (callbacks.onProgress || callbacks.onStatus)) {
+					return {
+						onProgress: callbacks.onProgress || function () {},
+						onStatus: callbacks.onStatus || function () {},
+					};
+				}
+				
+				// Handle nsIChannelEventSink (for asyncOnChannelRedirect)
+				if (aIID.equals(Ci.nsIChannelEventSink) && callbacks.asyncOnChannelRedirect) {
+					return {
+						asyncOnChannelRedirect: callbacks.asyncOnChannelRedirect,
+					};
+				}
+				
+				throw Components.Exception("No interface available", Cr.NS_ERROR_NO_INTERFACE);
+			}
+		};
+	}
+	
+	
+	/**
+	 * Download a file
+	 *
+	 * @param {nsIURI|String} url - URL to request
+	 * @param {String} path - Path to save file to
+	 * @param {Object} [options] - See `Zotero.HTTP.request()`
+	 */
+	this.download = async function(uri, path, options = {}) {
+		// TODO: Convert request() to fetch() and use ReadableStream
+		var req = await this.request(
+			'GET',
+			uri,
+			{
+				...options,
+				isDownload: true,
+				responseType: 'blob',
+				// Downloads can have channel notification callbacks, etc., so always do them for real
+				noMock: true
+			}
+		);
+		if (req.status >= 200 && req.status < 300) {
+			let bytes = new Uint8Array(await req.response.arrayBuffer());
+			await IOUtils.write(path, bytes);
+			let byteLength = bytes.byteLength;
+			Zotero.debug(`Saved file to ${path} (${byteLength} byte${byteLength != 1 ? 's' : ''})`);
+		}
+		// Only relevant if status is in successCodes
+		else {
+			Zotero.debug("Not saving file for non-2xx response code");
+		}
+		return req;
+	};
+	
 	
 	/**
 	 * Send an HTTP GET request via XMLHTTPRequest
@@ -958,8 +1097,7 @@ Zotero.HTTP = new function() {
 	 * to wait for proxy authentication can wait for that promise.
 	 */
 	this.triggerProxyAuth = function () {
-		if (!Zotero.isStandalone
-				|| !Zotero.Prefs.get("triggerProxyAuthentication")
+		if (!Zotero.Prefs.get("triggerProxyAuthentication")
 				|| Zotero.HTTP.browserIsOffline()) {
 			Zotero.proxyAuthComplete = Zotero.Promise.resolve();
 			return false;
@@ -1094,9 +1232,19 @@ Zotero.HTTP = new function() {
 	};
 	
 	
-	this.getDisplayURI = function (uri) {
+	this.getDisplayURI = function (uri, noCredentials) {
+		if (typeof uri == 'string') {
+			uri = NetUtil.newURI(uri);
+		}
 		if (!uri.password) return uri;
-		return uri.mutate().setPassword('********').finalize();
+		uri = uri.mutate();
+		if (noCredentials) {
+			uri.setUserPass('');
+		}
+		else {
+			uri.setPassword('********');
+		}
+		return uri.finalize();
 	}
 	
 	
@@ -1207,162 +1355,6 @@ Zotero.HTTP = new function() {
 		return results;
 	};
 	
-	
-	/**
-	 * Load one or more documents in a hidden browser
-	 *
-	 * @param {String|String[]} urls URL(s) of documents to load
-	 * @param {Function} processor - Callback to be executed for each document loaded; if function returns
-	 *     a promise, it's waited for before continuing
-	 * @param {Function} onDone - Callback to be executed after all documents have been loaded
-	 * @param {Function} onError - Callback to be executed if an error occurs
-	 * @param {Boolean} dontDelete Don't delete the hidden browser upon completion; calling function
-	 *                             must call deleteHiddenBrowser itself.
-	 * @param {Zotero.CookieSandbox} [cookieSandbox] Cookie sandbox object
-	 * @param {Object} [docShellPrefs] See Zotero.Browser.createHiddenBrowser
-	 * @return {browser} Hidden browser used for loading
-	 */
-	this.loadDocuments = function (urls, processor, onDone, onError, dontDelete, cookieSandbox, docShellPrefs={}) {
-		// (Approximately) how many seconds to wait if the document is left in the loading state and
-		// pageshow is called before we call pageshow with an incomplete document
-		const LOADING_STATE_TIMEOUT = 120;
-		var firedLoadEvent = 0;
-		
-		/**
-		 * Loads the next page
-		 * @inner
-		 */
-		var doLoad = function() {
-			if(currentURL < urls.length) {
-				var url = urls[currentURL],
-					hiddenBrowser = hiddenBrowsers[currentURL];
-				firedLoadEvent = 0;
-				currentURL++;
-				try {
-					Zotero.debug("Zotero.HTTP.loadDocuments: Loading " + url);
-					hiddenBrowser.loadURI(url);
-				} catch(e) {
-					if (onError) {
-						onError(e);
-						return;
-					} else {
-						if(!dontDelete) Zotero.Browser.deleteHiddenBrowser(hiddenBrowsers);
-						throw(e);
-					}
-				}
-			} else {
-				if(!dontDelete) Zotero.Browser.deleteHiddenBrowser(hiddenBrowsers);
-				if (onDone) onDone();
-			}
-		};
-		
-		/**
-		 * Callback to be executed when a page load completes
-		 * @inner
-		 */
-		var onLoad = function(e) {
-			var hiddenBrowser = e.currentTarget,
-				doc = hiddenBrowser.contentDocument;
-			if(hiddenBrowser.zotero_loaded) return;
-			if(!doc) return;
-			var url = doc.documentURI;
-			if(url === "about:blank") return;
-			if(doc.readyState === "loading" && (firedLoadEvent++) < 120) {
-				// Try again in a second
-				Zotero.setTimeout(onLoad.bind(this, {"currentTarget":hiddenBrowser}), 1000);
-				return;
-			}
-			
-			hiddenBrowser.removeEventListener("load", onLoad, true);
-			hiddenBrowser.zotero_loaded = true;
-
-			let channel = hiddenBrowser.docShell.currentDocumentChannel;
-			if (channel && (channel instanceof Components.interfaces.nsIHttpChannel)) {
-				if (channel.responseStatus < 200 || channel.responseStatus >= 400) {
-					let response = `${channel.responseStatus} ${channel.responseStatusText}`;
-					Zotero.debug(`Zotero.HTTP.loadDocuments: ${url} failed with ${response}`, 2);
-					let e = new Zotero.HTTP.UnexpectedStatusException(
-						{
-							status: channel.responseStatus,
-							channel
-						},
-						url,
-						`Invalid response ${response} for ${url}`
-					);
-					if (onError) {
-						onError(e);
-					}
-					else {
-						throw e;
-					}
-					return;
-				}
-			}
-			
-			Zotero.debug("Zotero.HTTP.loadDocuments: " + url + " loaded");
-			
-			var maybePromise;
-			var error;
-			try {
-				maybePromise = processor(doc);
-			}
-			catch (e) {
-				error = e;
-			}
-			
-			// If processor returns a promise, wait for it
-			if (maybePromise && maybePromise.then) {
-				maybePromise.then(() => doLoad())
-				.catch(e => {
-					if (onError) {
-						onError(e);
-					}
-					else {
-						throw e;
-					}
-				});
-				return;
-			}
-			
-			try {
-				if (error) {
-					if (onError) {
-						onError(error);
-					}
-					else {
-						throw error;
-					}
-				}
-			}
-			finally {
-				doLoad();
-			}
-		};
-		
-		if(typeof(urls) == "string") urls = [urls];
-		
-		var hiddenBrowsers = [],
-			currentURL = 0;
-		for(var i=0; i<urls.length; i++) {
-			let hiddenBrowser = Zotero.Browser.createHiddenBrowser();
-			for (let pref in docShellPrefs) {
-				hiddenBrowser.docShell[pref] = docShellPrefs[pref];
-			}
-			if (cookieSandbox) {
-				cookieSandbox.attachToBrowser(hiddenBrowser);
-			}
-			else {
-				new Zotero.CookieSandbox(hiddenBrowser, urls[i], "", "");
-			}
-			hiddenBrowser.addEventListener("load", onLoad, true);
-			hiddenBrowsers[i] = hiddenBrowser;
-		}
-		
-		doLoad();
-		
-		return hiddenBrowsers.length === 1 ? hiddenBrowsers[0] : hiddenBrowsers.slice();
-	}
-	
 	/**
 	 * Handler for XMLHttpRequest state change
 	 *
@@ -1426,52 +1418,39 @@ Zotero.HTTP = new function() {
 			return;
 		}
 		
-		let secInfo = channel.securityInfo;
-		let msg;
+		let { state, errorMessage } = SecurityInfo.getSecurityInfo(channel);
+		if (state != 'broken') {
+			return;
+		}
+		
 		let dialogButtonText;
 		let dialogButtonCallback;
-		if (secInfo instanceof Ci.nsITransportSecurityInfo) {
-			secInfo.QueryInterface(Ci.nsITransportSecurityInfo);
-			if ((secInfo.securityState & Ci.nsIWebProgressListener.STATE_IS_INSECURE)
-					== Ci.nsIWebProgressListener.STATE_IS_INSECURE) {
-				// Show actual error from the networking stack, with the hyperlink around the
-				// error code removed
-				msg = Zotero.Utilities.unescapeHTML(secInfo.errorMessage);
-				if (msg.includes('.' + ZOTERO_CONFIG.DOMAIN_NAME + ' ')
-						|| msg.includes(ZOTERO_CONFIG.PROXY_AUTH_URL.match(/^https:\/\/([^\/]+)\//)[1] + ' ')) {
-					msg = Zotero.getString('networkError.connectionMonitored', Zotero.appName)
-						+ "\n\n"
-						+ (isProxyAuthRequest
-							? Zotero.getString('startupError.internetFunctionalityMayNotWork') + "\n\n"
-							: "")
-						+ Zotero.getString('general.error') + ": " + msg.split(/\n/)[0];
-				}
-				dialogButtonText = Zotero.getString('general.moreInformation');
-				dialogButtonCallback = function () {
-					Zotero.launchURL('https://www.zotero.org/support/kb/ssl_certificate_error');
-				};
-			}
-			else if ((secInfo.securityState & Ci.nsIWebProgressListener.STATE_IS_BROKEN)
-					== Ci.nsIWebProgressListener.STATE_IS_BROKEN) {
-				msg = Zotero.getString('networkError.connectionNotSecure')
-					+ Zotero.Utilities.unescapeHTML(secInfo.errorMessage);
-			}
-			if (msg) {
-				throw new Zotero.HTTP.SecurityException(
-					msg,
-					{
-						dialogHeader: Zotero.getString(
-							'networkError.connectionNotSecure',
-							Zotero.clientName
-						),
-						dialogButtonText,
-						dialogButtonCallback
-					}
-				);
-			}
+		let domain = channel.originalURI?.host ?? '';
+		let msg = Zotero.getString('networkError.insecureConnectionTo', [Zotero.appName, domain])
+			 + "\n\n";
+		if (channel.originalURI?.spec.includes(ZOTERO_CONFIG.DOMAIN_NAME)
+				|| channel.originalURI?.spec.includes(ZOTERO_CONFIG.PROXY_AUTH_URL.match(/^https:\/\/([^\/]+)\//)[1])) {
+			msg += Zotero.getString('networkError.connectionMonitored', Zotero.appName)
+				+ "\n\n"
+				+ (isProxyAuthRequest
+					? Zotero.getString('startupError.internetFunctionalityMayNotWork') + "\n\n"
+					: "");
 		}
-	}
-	
+		msg += errorMessage ?? channel.securityInfo?.errorCodeString ?? '';
+		msg = msg.trim();
+		dialogButtonText = Zotero.getString('general.moreInformation');
+		dialogButtonCallback = function () {
+			Zotero.launchURL('https://www.zotero.org/support/kb/ssl_certificate_error');
+		};
+		throw new Zotero.HTTP.SecurityException(
+			msg,
+			{
+				dialogHeader: Zotero.getString('networkError.connectionNotSecure'),
+				dialogButtonText,
+				dialogButtonCallback
+			}
+		);
+	};
 	
 	async function _checkRetry(req) {
 		var retryAfter = req.getResponseHeader("Retry-After");
@@ -1540,9 +1519,9 @@ Zotero.HTTP = new function() {
 	 * @param {HTMLDocument} doc Document returned by 
 	 * @param {nsIURL|String} url
 	 */
-	 this.wrapDocument = function(doc, url) {
-	 	if(typeof url !== "object") {
-	 		url = Services.io.newURI(url, null, null).QueryInterface(Components.interfaces.nsIURL);
+	this.wrapDocument = function(doc, url) {
+		if(typeof url !== "object") {
+			url = Services.io.newURI(url, null, null).QueryInterface(Components.interfaces.nsIURL);
 		}
 		return Zotero.Translate.DOMWrapper.wrap(doc, {
 			"documentURI":url.spec,
@@ -1550,5 +1529,68 @@ Zotero.HTTP = new function() {
 			"location":new Zotero.HTTP.Location(url),
 			"defaultView":new Zotero.HTTP.Window(url)
 		});
-	 }
+	};
+
+	/**
+	 * Extends Headers to preserve the original capitalization in header names. Header names are still compared
+	 * case-insensitively, but iterating through the keys or entries will return keys with original capitalization.
+	 *
+	 * @example
+	 * let headers = new Headers({ 'Header-Name': 'Header value' });
+	 * Array.from(headers)  // -> [['header-name', 'Header value']]
+	 *
+	 * headers = new Zotero.HTTP.CasePreservingHeaders({ 'Header-Name': 'Header value' });
+	 * Array.from(headers)  // -> [['Header-Name', 'Header value']]
+	 */
+	this.CasePreservingHeaders = class extends Headers {
+		_originalNames = new Map();
+		
+		constructor(init) {
+			super();
+			if (init) {
+				let iter;
+				if (Array.isArray(init) || init instanceof Headers) {
+					iter = init;
+				}
+				else {
+					iter = Object.entries(init);
+				}
+				for (let [name, value] of iter) {
+					this.append(name, value);
+				}
+			}
+		}
+		
+		append(name, value) {
+			super.append(name, value);
+			this._originalNames.set(name.toLowerCase(), name);
+		}
+
+		set(name, value) {
+			super.set(name, value);
+			this._originalNames.set(name.toLowerCase(), name);
+		}
+
+		[Symbol.iterator]() {
+			return this.entries();
+		}
+
+		entries() {
+			return Array.from(super.entries())
+				.map(([name, value]) => [this._originalNames.get(name) || name, value])
+				.values();
+		}
+
+		keys() {
+			return Array.from(super.keys())
+				.map(name => this._originalNames.get(name) || name)
+				.values();
+		}
+
+		forEach(callbackfn, thisArg) {
+			for (let [name, value] of this.entries()) {
+				callbackfn.call(thisArg, value, name, this);
+			}
+		}
+	};
 }

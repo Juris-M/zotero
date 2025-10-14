@@ -439,6 +439,8 @@ Zotero.ItemTypes = new function() {
 	}
 	
 	this.getImageSrc = function (itemType) {
+		Zotero.debug('WARNING: getImageSrc() is deprecated -- use CSS icons');
+		
 		var suffix = Zotero.hiDPISuffix;
 		
 		if (this.isCustom(itemType)) {
@@ -448,19 +450,23 @@ Zotero.ItemTypes = new function() {
 			}
 			return _customImages[id];
 		}
+
+		let isDark = Zotero.getMainWindow()?.matchMedia('(prefers-color-scheme: dark)').matches;
 		
 		switch (itemType) {
 			// Use treeitem.png
-			case 'attachment-file':
+			case 'attachmentFile':
 			case 'document':
 				break;
 			
 			// HiDPI images available
-			case 'attachment-link':
-			case 'attachment-pdf':
-			case 'attachment-pdf-link':
-			case 'attachment-snapshot':
-			case 'attachment-web-link':
+			case 'attachmentLink':
+			case 'attachmentPDF':
+			case 'attachmentPDFLink':
+			case 'attachmentEPUB':
+			case 'attachmentEPUBLink':
+			case 'attachmentSnapshot':
+			case 'attachmentWebLink':
 			case 'artwork':
 			case 'audioRecording':
 			case 'bill':
@@ -470,6 +476,7 @@ Zotero.ItemTypes = new function() {
 			case 'case':
 			case 'computerProgram':
 			case 'conferencePaper':
+			case 'dataset':
 			case 'dictionaryEntry':
 			case 'email':
 			case 'encyclopediaArticle':
@@ -482,29 +489,27 @@ Zotero.ItemTypes = new function() {
 			case 'letter':
 			case 'magazineArticle':
 			case 'manuscript':
+			case 'map':
 			case 'newspaperArticle':
 			case 'note':
 			case 'patent':
+			case 'podcast':
 			case 'preprint':
 			case 'presentation':
+			case 'radioBroadcast':
 			case 'report':
+			case 'standard':
 			case 'statute':
 			case 'thesis':
-			case 'webpage':
-				return "chrome://zotero/skin/treeitem-" + itemType + suffix + ".png";
-			
-			// No HiDPI images available
-			case 'map':
-			case 'podcast':
-			case 'radioBroadcast':
 			case 'regulation':
-			case 'statute':
 			case 'tvBroadcast':
 			case 'videoRecording':
-				return "chrome://zotero/skin/treeitem-" + itemType + ".png";
+			case 'webpage':
+				itemType = itemType.replace(/(?<=^|[^A-Z])([A-Z])/g, '-$1').toLowerCase();
+				return "chrome://zotero/skin/item-type/16/" + (isDark ? 'dark' : 'light') + "/" + itemType + suffix + ".svg";
 		}
-		
-		return "chrome://zotero/skin/treeitem" + suffix + ".png";
+
+		return "chrome://zotero/skin/item-type/16/" + (isDark ? 'dark' : 'light') + "/document" + suffix + ".svg";
 	}
 }
 
@@ -522,9 +527,8 @@ Zotero.FileTypes = new function() {
 	/**
 	 * @return {Promise<Integer>} fileTypeID
 	 */
-	this.getIDFromMIMEType = function (mimeType) {
-		var sql = "SELECT fileTypeID FROM fileTypeMIMETypes "
-			+ "WHERE ? LIKE mimeType || '%'";
+	this.getIDFromMIMEType = async function (mimeType) {
+		var sql = "SELECT fileTypeID FROM fileTypeMIMETypes WHERE mimeType = ?";
 		return Zotero.DB.valueQueryAsync(sql, [mimeType]);
 	};
 }

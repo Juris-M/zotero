@@ -75,31 +75,25 @@ Zotero.FeedReader = function (url) {
 		
 		// TODO: image as icon
 		
-		let publicationTitle = Zotero.FeedReader._getFeedField(feed, 'publicationName', 'prism')
-			|| Zotero.FeedReader._getFeedField(feed, 'pubTitle');
+		let publicationTitle = feed.pubTitle;
 		if (publicationTitle) info.publicationTitle = publicationTitle;
 		
-		let publisher = Zotero.FeedReader._getFeedField(feed, 'publisher', 'dc');
+		let publisher = feed.publisher;
 		if (publisher) info.publisher = publisher;
 		
-		let rights = (feed.rights && feed.rights.plainText())
-			|| Zotero.FeedReader._getFeedField(feed, 'copyright', 'prism')
-			|| Zotero.FeedReader._getFeedField(feed, 'rights', 'dc')
-			|| Zotero.FeedReader._getFeedField(feed, 'copyright');
-		if (rights) info.rights = rights;
+		let rights = feed.rights;
+		if (rights) info.rights = rights.plainText();
 		
-		let issn = Zotero.FeedReader._getFeedField(feed, 'issn', 'prism');
+		let issn = feed.issn;
 		if (issn) info.ISSN = issn;
 		
-		let isbn = Zotero.FeedReader._getFeedField(feed, 'isbn', 'prism')
-			|| Zotero.FeedReader._getFeedField(feed, 'isbn');
+		let isbn = feed.isbn;
 		if (isbn) info.ISBN = isbn;
 		
-		let language = Zotero.FeedReader._getFeedField(feed, 'language', 'dc')
-			|| Zotero.FeedReader._getFeedField(feed, 'language');
+		let language = feed.language;
 		if (language) info.language = language;
 		
-		let ttl = Zotero.FeedReader._getFeedField(feed, 'ttl');
+		let ttl = feed.ttl;
 		if (ttl) info.ttl = ttl;
 		
 		this._feedProperties = info;
@@ -416,22 +410,29 @@ Zotero.FeedReader._getFeedItem = function (feedEntry, feedInfo) {
 			
 	if (feedEntry.title) item.title = Zotero.FeedReader._getRichText(feedEntry.title, 'title');
 	
-	if (feedEntry.summary) {
-		item.abstractNote = Zotero.FeedReader._getRichText(feedEntry.summary, 'abstractNote');
-		
-		if (!item.title) {
-			// We will probably have to trim this, so let's use plain text to
-			// avoid splitting inside some markup
-			let title = Zotero.Utilities.trimInternal(feedEntry.summary.plainText());
-			let splitAt = title.lastIndexOf(' ', 50);
-			if (splitAt == -1) splitAt = 50;
-			
-			item.title = title.substr(0, splitAt);
-			if (splitAt <= title.length) item.title += '...';
+	if (feedEntry.content || feedEntry.summary) {
+		let abstractFragment = (feedEntry.content || feedEntry.summary).createDocumentFragment();
+		if (abstractFragment) {
+			if (abstractFragment.querySelectorAll('body').length === 1) {
+				abstractFragment.replaceChildren(...abstractFragment.querySelector('body').childNodes);
+			}
+			item.abstractNote = new XMLSerializer().serializeToString(abstractFragment);
 		}
 	}
+
+	if (feedEntry.summary && !item.title) {
+		// We will probably have to trim this, so let's use plain text to
+		// avoid splitting inside some markup
+		let title = Zotero.Utilities.trimInternal(feedEntry.summary.plainText());
+		let splitAt = title.lastIndexOf(' ', 50);
+		if (splitAt == -1) splitAt = 50;
+
+		item.title = title.substr(0, splitAt);
+		if (splitAt <= title.length) item.title += '...';
+	}
 	
-	if (feedEntry.link) item.url = feedEntry.link.href;
+	let url = feedEntry.link?.href || feedEntry.url?.plainText();
+	if (url) item.url = url;
 	
 	if (feedEntry.rights) item.rights = Zotero.FeedReader._getRichText(feedEntry.rights, 'rights');
 	
@@ -449,40 +450,34 @@ Zotero.FeedReader._getFeedItem = function (feedEntry, feedInfo) {
 	
 	/** Done with basic metadata, now look for better data **/
 	
-	let date = Zotero.FeedReader._getFeedField(feedEntry, 'publicationDate', 'prism')
-		|| Zotero.FeedReader._getFeedField(feedEntry, 'date', 'dc')
-		// DEBUG: Why not get these from the feedEntry?
-		|| Zotero.FeedReader._getFeedField(feedEntry, 'pubDate') // RSS
-		|| Zotero.FeedReader._getFeedField(feedEntry, 'updated', 'atom') // Atom
-		|| Zotero.FeedReader._getFeedField(feedEntry, 'published', 'atom'); // Atom
-		
-	
+	let date = feedEntry.updated || feedEntry.published;
 	if (date) item.date = date;
 	
-	let publicationTitle = Zotero.FeedReader._getFeedField(feedEntry, 'publicationName', 'prism')
-		|| Zotero.FeedReader._getFeedField(feedEntry, 'source', 'dc')
-		|| Zotero.FeedReader._getFeedField(feedEntry, 'pubTitle');
+	let publicationTitle = feedEntry.pubTitle;
 	if (publicationTitle) item.publicationTitle = publicationTitle;
 	
-	let publicationType = Zotero.FeedReader._getFeedField(feedEntry, 'pubType');
+	let publicationType = feedEntry.pubType;
 	if (publicationType) item.publicationType = publicationType;
 	
-	let startPage = Zotero.FeedReader._getFeedField(feedEntry, 'startPage');
-	let endPage = Zotero.FeedReader._getFeedField(feedEntry, 'endPage');
+	let startPage = feedEntry.startPage;
+	let endPage = feedEntry.endPage;
 	if (startPage || endPage) {
 		item.pages = (startPage || '')
 			+ (endPage && startPage ? '–' : '')
 			+ (endPage || '');
 	}
+	else {
+		let pageRange = feedEntry.pageRange;
+		if (pageRange) item.pages = pageRange;
+	}
 	
-	let issn = Zotero.FeedReader._getFeedField(feedEntry, 'issn', 'prism');
+	let issn = feedEntry.issn;
 	if (issn) item.ISSN = issn;
 	
-	let isbn = Zotero.FeedReader._getFeedField(feedEntry, 'isbn', 'prism')
-		|| Zotero.FeedReader._getFeedField(feedEntry, 'isbn');
+	let isbn = feedEntry.isbn;
 	if (isbn) item.ISBN = isbn;
 	
-	let identifier = Zotero.FeedReader._getFeedField(feedEntry, 'identifier', 'dc');
+	let identifier = feedEntry.identifier;
 	if (identifier) {
 		for (let type of ['DOI', 'ISBN', 'ISSN']) {
 			let cleanId = Zotero.Utilities[`clean${type}`](identifier);
@@ -493,17 +488,20 @@ Zotero.FeedReader._getFeedItem = function (feedEntry, feedInfo) {
 		}
 	}
 	
-	let publisher = Zotero.FeedReader._getFeedField(feedEntry, 'publisher', 'dc');
+	let publisher = feedEntry.publisher;
 	if (publisher) item.publisher = publisher;
 	
-	let rights = Zotero.FeedReader._getFeedField(feedEntry, 'copyright', 'prism')
-		|| Zotero.FeedReader._getFeedField(feedEntry, 'rights', 'dc')
-		|| Zotero.FeedReader._getFeedField(feedEntry, 'copyright');
-	if (rights) item.rights = rights;
-	
-	let language = Zotero.FeedReader._getFeedField(feedEntry, 'language', 'dc')
-		|| Zotero.FeedReader._getFeedField(feedEntry, 'language');
+	let language = feedEntry.language;
 	if (language) item.language = language;
+	
+	let volume = feedEntry.volume;
+	if (volume) item.volume = volume;
+	
+	let issue = feedEntry.issue;
+	if (issue) item.issue = issue;
+	
+	let section = feedEntry.section;
+	if (section) item.section = section;
 	
 	/** Incorporate missing values from feed metadata **/
 	
@@ -529,8 +527,15 @@ Zotero.FeedReader._getFeedItem = function (feedEntry, feedInfo) {
  * Convert HTML-formatted text to Zotero-compatible formatting
  */
 Zotero.FeedReader._getRichText = function (feedText, field) {
-	let domDiv = Zotero.Utilities.Internal.getDOMDocument().createElement("div");
-	let domFragment = feedText.createDocumentFragment(domDiv);
+	if (typeof feedText === 'string') {
+		// FIXME: Don't expose TextConstructs on Feed/Entry objects so this bug can't happen
+		Zotero.debug(`FeedReader: Field ${field} was a string instead of a TextConstruct. Update the _textConstructs map.`);
+		return feedText;
+	}
+	let domFragment = feedText.createDocumentFragment();
+	if (!domFragment) {
+		return '';
+	}
 	return Zotero.Utilities.trimInternal(domFragment.textContent);
 };
 

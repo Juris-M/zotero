@@ -24,11 +24,9 @@
 */
 
 Components.utils.import("resource://gre/modules/Services.jsm");
-import FilePicker from 'zotero/modules/filePicker';
+var { FilePicker } = ChromeUtils.importESModule('chrome://zotero/content/modules/filePicker.mjs');
 
-Zotero_Preferences.Advanced = {
-	DEFAULT_OPENURL_RESOLVER: 'https://www.worldcat.org/registry/gateway',
-	
+Zotero_Preferences.Advanced = {	
 	init: function () {
 		Zotero_Preferences.Keys.init();
 		
@@ -49,16 +47,23 @@ Zotero_Preferences.Advanced = {
 			input.value = Zotero.Prefs.get(preferenceName);
 		}
 		
-		// Set OpenURL resolver drop-down to last-known name
-		if (Zotero.Prefs.get('openURL.resolver')) {
-			let name = Zotero.Prefs.get('openURL.name');
-			if (name) {
-				document.getElementById('openurl-primary-popup').firstChild.setAttribute('label', name);
-			}
-		}
+		document.getElementById('baseAttachmentPath').addEventListener('syncfrompreference',
+			() => Zotero_Preferences.Attachment_Base_Directory.updateUI());
 		
 		this.onDataDirLoad();
-		this.refreshLocale();
+
+		document.getElementById('fulltext-rebuildIndex').setAttribute('label',
+			Zotero.getString('zotero.preferences.search.rebuildIndex')
+				+ Zotero.getString('punctuation.ellipsis'));
+		document.getElementById('fulltext-clearIndex').setAttribute('label',
+			Zotero.getString('zotero.preferences.search.clearIndex')
+				+ Zotero.getString('punctuation.ellipsis'));
+		
+		this.updateIndexStats();
+		this.updateLocalAPIUI();
+		document.getElementById('zotero-prefpane-advanced-enable-local-api').addEventListener('synctopreference', () => {
+			this.updateLocalAPIUI();
+		});
 	},
 	
 	
@@ -93,24 +98,23 @@ Zotero_Preferences.Advanced = {
 		}
 		
 		Components.utils.import("resource://zotero/config.js")
-		var ps = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]
-			.getService(Components.interfaces.nsIPromptService);
+		var ps = Services.prompt;
 		
 		// If there's a migration marker, point data directory back to the current location and remove
 		// it to trigger the migration again
-		var marker = OS.Path.join(defaultDir, Zotero.DataDirectory.MIGRATION_MARKER);
-		if (yield OS.File.exists(marker)) {
+		var marker = PathUtils.join(defaultDir, Zotero.DataDirectory.MIGRATION_MARKER);
+		if (yield IOUtils.exists(marker)) {
 			Zotero.Prefs.clear('dataDir');
 			Zotero.Prefs.clear('useDataDir');
-			yield OS.File.remove(marker);
+			yield IOUtils.remove(marker);
 			try {
-				yield OS.File.remove(OS.Path.join(defaultDir, '.DS_Store'));
+				yield IOUtils.remove(PathUtils.join(defaultDir, '.DS_Store'));
 			}
 			catch (e) {}
 		}
 		
 		// ~/Zotero exists and is non-empty
-		if ((yield OS.File.exists(defaultDir)) && !(yield Zotero.File.directoryIsEmpty(defaultDir))) {
+		if ((yield IOUtils.exists(defaultDir)) && !(yield Zotero.File.directoryIsEmpty(defaultDir))) {
 			let buttonFlags = (ps.BUTTON_POS_0) * (ps.BUTTON_TITLE_IS_STRING)
 				+ (ps.BUTTON_POS_1) * (ps.BUTTON_TITLE_CANCEL);
 			let index = ps.confirmEx(
@@ -126,7 +130,7 @@ Zotero_Preferences.Advanced = {
 			if (index == 0) {
 				yield Zotero.File.reveal(
 					// Windows opens the directory, which might be confusing here, so open parent instead
-					Zotero.isWin ? OS.Path.dirname(defaultDir) : defaultDir
+					Zotero.isWin ? PathUtils.parent(defaultDir) : defaultDir
 				);
 			}
 			return;
@@ -256,8 +260,7 @@ Zotero_Preferences.Advanced = {
 	
 	
 	resetTranslatorsAndStyles: function () {
-		var ps = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]
-			.getService(Components.interfaces.nsIPromptService);
+		var ps = Services.prompt;
 		
 		var buttonFlags = (ps.BUTTON_POS_0) * (ps.BUTTON_TITLE_IS_STRING)
 			+ (ps.BUTTON_POS_1) * (ps.BUTTON_TITLE_CANCEL);
@@ -281,8 +284,7 @@ Zotero_Preferences.Advanced = {
 	
 	
 	resetTranslators: async function () {
-		var ps = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]
-			.getService(Components.interfaces.nsIPromptService);
+		var ps = Services.prompt;
 		
 		var buttonFlags = (ps.BUTTON_POS_0) * (ps.BUTTON_TITLE_IS_STRING)
 			+ (ps.BUTTON_POS_1) * (ps.BUTTON_TITLE_CANCEL);
@@ -311,8 +313,7 @@ Zotero_Preferences.Advanced = {
 	
 	
 	resetStyles: async function () {
-		var ps = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]
-			.getService(Components.interfaces.nsIPromptService);
+		var ps = Services.prompt;
 		
 		var buttonFlags = (ps.BUTTON_POS_0) * (ps.BUTTON_TITLE_IS_STRING)
 			+ (ps.BUTTON_POS_1) * (ps.BUTTON_TITLE_CANCEL);
@@ -341,60 +342,55 @@ Zotero_Preferences.Advanced = {
 	
 	
 	onDataDirLoad: function () {
-		var useDataDir = Zotero.Prefs.get('useDataDir');
-		var dataDir = Zotero.Prefs.get('lastDataDir') || Zotero.Prefs.get('dataDir');
 		var currentDir = Zotero.DataDirectory.dir;
-		var defaultDataDir = Zotero.DataDirectory.defaultDir;
 		
 		if (Zotero.forceDataDir) {
 			document.getElementById('command-line-data-dir-path').textContent = currentDir;
 			document.getElementById('command-line-data-dir').hidden = false;
-			document.getElementById('data-dir').hidden = true;
 		}
 		
-		// Change "Use profile directory" label to home directory location unless using profile dir
-		if (useDataDir || currentDir == defaultDataDir) {
-			document.getElementById('default-data-dir').setAttribute(
-				'label', Zotero.getString('dataDir.default', Zotero.DataDirectory.defaultDir)
-			);
-		}
-		
-		// Don't show custom data dir as in-use if set to the default
-		if (dataDir == defaultDataDir) {
-			useDataDir = false;
-		}
-		
-		document.getElementById('data-dir-path').setAttribute('disabled', !useDataDir);
 		document.getElementById('migrate-data-dir').setAttribute(
 			'hidden', !Zotero.DataDirectory.canMigrate()
 		);
-		
-		return useDataDir;
+
+		let changeDataDir = document.getElementById("change-data-dir");
+		changeDataDir.hidden = this._usingDefaultDataDir();
+
+		let customDataDir = document.getElementById("custom-data-dir");
+		customDataDir.hidden = !this._usingDefaultDataDir();
+
+		let revertToDefaultDir = document.getElementById("reset-data-dir");
+		let revertToDefaultDirLabel = document.getElementById("default-data-dir");
+		revertToDefaultDir.hidden = this._usingDefaultDataDir();
+		revertToDefaultDirLabel.hidden = this._usingDefaultDataDir();
+		document.l10n.setArgs(revertToDefaultDirLabel, { directory: Zotero.DataDirectory.defaultDir });
+		this.setDataDirInput();
 	},
 	
 	
-	onDataDirUpdate: Zotero.Promise.coroutine(function* (event, forceNew) {
-		var radiogroup = document.getElementById('data-dir');
-		var newUseDataDir = radiogroup.selectedIndex == 1;
-		
-		if (!forceNew && newUseDataDir && !this._usingDefaultDataDir()) {
-			return;
-		}
+	dataDirUpdate: Zotero.Promise.coroutine(function* (isCustomSelection) {
+		if (!isCustomSelection && this._usingDefaultDataDir()) return;
 		
 		// This call shows a filepicker if needed, forces a restart if required, and does nothing if
 		// cancel was pressed or value hasn't changed
 		yield Zotero.DataDirectory.choose(
 			true,
-			!newUseDataDir,
-			() => Zotero_Preferences.openURL('https://www.zotero.org/support/zotero_data')
+			!isCustomSelection,
+			() => Zotero.launchURL('https://www.zotero.org/support/zotero_data')
 		);
-		radiogroup.selectedIndex = this._usingDefaultDataDir() ? 0 : 1;
 	}),
 	
 	
-	chooseDataDir: function(event) {
-		document.getElementById('data-dir').selectedIndex = 1;
-		this.onDataDirUpdate(event, true);
+	setDataDirInput: async function () {
+		var filefield = document.getElementById('data-dir-path');
+		var path = Zotero.Prefs.get('dataDir');
+		if (path && await IOUtils.exists(path)) {
+			filefield.style.backgroundImage = 'url(moz-icon://' + Zotero.File.pathToFileURI(path) + '?size=16)';
+			filefield.value = path;
+		}
+		else {
+			filefield.value = '';
+		}
 	},
 	
 	
@@ -427,221 +423,127 @@ Zotero_Preferences.Advanced = {
 		return false;
 	},
 	
-	
-	handleOpenURLPopupShowing: async function (event) {
-		if (event.target.id != 'openurl-primary-popup') {
-			return;
-		}
-		if (!this._openURLResolvers) {
-			let menupopup = document.getElementById('openurl-primary-popup');
-			menupopup.firstChild.setAttribute('label', Zotero.getString('general.loading'));
-			try {
-				this._openURLResolvers = await Zotero.Utilities.Internal.OpenURL.getResolvers();
-			}
-			catch (e) {
-				Zotero.logError(e);
-				menupopup.firstChild.setAttribute('label', "Error loading resolvers");
-				return;
-			}
-		}
-		this.updateOpenURLResolversMenu();
-	},
+	updateIndexStats: Zotero.Promise.coroutine(function* () {
+		var stats = yield Zotero.Fulltext.getIndexStats();
+		document.getElementById('fulltext-stats-indexed')
+			.setAttribute('value', stats.indexed);
+		document.getElementById('fulltext-stats-partial')
+			.setAttribute('value', stats.partial);
+		document.getElementById('fulltext-stats-unindexed')
+			.setAttribute('value', stats.unindexed);
+		document.getElementById('fulltext-stats-words')
+			.setAttribute('value', stats.words);
+	}),
 	
 	
-	updateOpenURLResolversMenu: function () {
-		if (!this._openURLResolvers) {
-			Zotero.debug("Resolvers not loaded -- not updating menu");
-			return;
-		}
-		
-		var currentResolver = Zotero.Prefs.get('openURL.resolver');
-		
-		var openURLMenu = document.getElementById('openurl-menu');
-		var menupopup = openURLMenu.firstChild;
-		menupopup.innerHTML = '';
-		
-		var customMenuItem = document.createElement('menuitem');
-		customMenuItem.setAttribute('label', Zotero.getString('general.custom'));
-		customMenuItem.setAttribute('value', 'custom');
-		customMenuItem.setAttribute('type', 'checkbox');
-		menupopup.appendChild(customMenuItem);
-		
-		menupopup.appendChild(document.createElement('menuseparator'));
-		
-		var selectedName;
-		var lastContinent;
-		var lastCountry;
-		var currentContinentPopup;
-		var currentMenuPopup;
-		for (let r of this._openURLResolvers) {
-			// Create submenus for continents
-			if (r.continent != lastContinent) {
-				let menu = document.createElement('menu');
-				menu.setAttribute('label', r.continent);
-				openURLMenu.firstChild.appendChild(menu);
-				
-				currentContinentPopup = currentMenuPopup = document.createElement('menupopup');
-				menu.appendChild(currentContinentPopup);
-				lastContinent = r.continent;
-			}
-			if (r.country != lastCountry) {
-				// If there's a country, create a submenu for it
-				if (r.country) {
-					let menu = document.createElement('menu');
-					menu.setAttribute('label', r.country);
-					currentContinentPopup.appendChild(menu);
-					
-					let menupopup = document.createElement('menupopup');
-					menu.appendChild(menupopup);
-					currentMenuPopup = menupopup;
-				}
-				// Otherwise use the continent popup
-				else {
-					currentMenuPopup = currentContinentPopup;
-				}
-				lastCountry = r.country;
-			}
-			let menuitem = document.createElement('menuitem');
-			menuitem.setAttribute('label', r.name);
-			menuitem.setAttribute('value', r.url);
-			menuitem.setAttribute('type', 'checkbox');
-			currentMenuPopup.appendChild(menuitem);
-			var checked = r.url == Zotero.Prefs.get('openURL.resolver');
-			menuitem.setAttribute('checked', checked);
-			if (checked) {
-				selectedName = r.name;
-			}
-		}
-		
-		// From directory
-		if (selectedName) {
-			openURLMenu.setAttribute('label', selectedName);
-			// If we found a match, update stored name
-			Zotero.Prefs.set('openURL.name', selectedName);
-		}
-		// Custom
-		else {
-			openURLMenu.setAttribute('label', Zotero.getString('general.custom'));
-			customMenuItem.setAttribute('checked', true);
-			Zotero.Prefs.clear('openURL.name');
-		}
-	},
-	
-	
-	handleOpenURLSelected: function (event) {
-		event.stopPropagation();
-		event.preventDefault();
-		
-		if (event.target.localName != 'menuitem') {
-			Zotero.debug("Ignoring click on " + event.target.localName);
-			return;
-		}
-		
-		var openURLMenu = document.getElementById('openurl-menu');
-		
-		var openURLServerField = document.getElementById('openURLServerField');
-		var openURLVersionMenu = document.getElementById('openURLVersionMenu');
-		
-		// If "Custom" selected, clear URL field
-		if (event.target.value == "custom") {
-			Zotero.Prefs.clear('openURL.name');
-			Zotero.Prefs.set('openURL.resolver', '');
-			Zotero.Prefs.clear('openURL.version');
-			openURLServerField.value = '';
-			openURLServerField.focus();
-		}
-		else {
-			Zotero.Prefs.set('openURL.name', openURLServerField.value = event.target.label);
-			Zotero.Prefs.set('openURL.resolver', openURLServerField.value = event.target.value);
-			Zotero.Prefs.set('openURL.version', openURLVersionMenu.value = "1.0");
-		}
-		
-		openURLMenu.firstChild.hidePopup();
-		
-		setTimeout(() => {
-			this.updateOpenURLResolversMenu();
-		});
-	},
-	
-	onOpenURLCustomized: function () {
-		setTimeout(() => {
-			this.updateOpenURLResolversMenu();
-		});
-	},
-	
-	
-	_getAutomaticLocaleMenuLabel: function () {
-		return Zotero.getString(
-			'zotero.preferences.locale.automaticWithLocale',
-			Zotero.Locale.availableLocales[Zotero.locale] || Zotero.locale
-		);
-	},
-	
-	
-	refreshLocale: function () {
-		var autoLocaleName, currentValue;
-		
-		// If matching OS, get the name of the current locale
-		if (Zotero.Prefs.get('intl.locale.requested', true) === '') {
-			autoLocaleName = this._getAutomaticLocaleMenuLabel();
-			currentValue = 'automatic';
-		}
-		// Otherwise get the name of the locale specified in the pref
-		else {
-			autoLocaleName = Zotero.getString('zotero.preferences.locale.automatic');
-			currentValue = Zotero.locale;
-		}
-		
-		// Populate menu
-		var menu = document.getElementById('locale-menu');
-		var menupopup = menu.firstChild;
-		menupopup.textContent = '';
-		// Show "Automatic (English)", "Automatic (Français)", etc.
-		menu.appendItem(autoLocaleName, 'automatic');
-		menu.menupopup.appendChild(document.createElement('menuseparator'));
-		// Add all available locales
-		for (let locale in Zotero.Locale.availableLocales) {
-			menu.appendItem(Zotero.Locale.availableLocales[locale], locale);
-		}
-		menu.value = currentValue;
-	},
-	
-	onLocaleChange: function () {
-		var requestedLocale = Services.locale.getRequestedLocale();
-		var menu = document.getElementById('locale-menu');
-		
-		if (menu.value == 'automatic') {
-			// Changed if not already set to automatic (unless we have the automatic locale name,
-			// meaning we just switched away to the same manual locale and back to automatic)
-			var changed = requestedLocale
-				&& requestedLocale == Zotero.locale
-				&& menu.label != this._getAutomaticLocaleMenuLabel();
-			Services.locale.setRequestedLocales(null);
-		}
-		else {
-			// Changed if moving to a locale other than the current one
-			var changed = requestedLocale != menu.value
-			Services.locale.setRequestedLocales([menu.value]);
-		}
-		
-		if (!changed) {
-			return;
-		}
+	rebuildIndexPrompt: async function () {
+		var buttons = [
+			document.getElementById('fulltext-rebuildIndex'),
+			document.getElementById('fulltext-clearIndex')
+		];
+		buttons.forEach(b => b.disabled = true);
 		
 		var ps = Services.prompt;
 		var buttonFlags = ps.BUTTON_POS_0 * ps.BUTTON_TITLE_IS_STRING
-			+ ps.BUTTON_POS_1 * ps.BUTTON_TITLE_IS_STRING;
-		var index = ps.confirmEx(null,
-			Zotero.getString('general.restartRequired'),
-			Zotero.getString('general.restartRequiredForChange', Zotero.appName),
-			buttonFlags,
-			Zotero.getString('general.restartNow'),
-			Zotero.getString('general.restartLater'),
-			null, null, {});
+			+ ps.BUTTON_POS_1 * ps.BUTTON_TITLE_CANCEL
+			+ ps.BUTTON_POS_2 * ps.BUTTON_TITLE_IS_STRING;
 		
-		if (index == 0) {
-			Zotero.Utilities.Internal.quitZotero(true);
+		var index = ps.confirmEx(null,
+			Zotero.getString('zotero.preferences.search.rebuildIndex'),
+			Zotero.getString('zotero.preferences.search.rebuildWarning',
+				Zotero.getString('zotero.preferences.search.indexUnindexed')),
+			buttonFlags,
+			Zotero.getString('zotero.preferences.search.rebuildIndex'),
+			null,
+			// Position 2 because of https://bugzilla.mozilla.org/show_bug.cgi?id=345067
+			Zotero.getString('zotero.preferences.search.indexUnindexed'),
+			null, {});
+		
+		try {
+			if (index == 0) {
+				await Zotero.Fulltext.rebuildIndex();
+			}
+			else if (index == 2) {
+				await Zotero.Fulltext.rebuildIndex(true)
+			}
+			
+			await this.updateIndexStats();
 		}
+		catch (e) {
+			Zotero.alert(null, Zotero.getString('general.error'), e);
+		}
+		finally {
+			buttons.forEach(b => b.disabled = false);
+		}
+	},
+
+	clearIndexPrompt: async function () {
+		var buttons = [
+			document.getElementById('fulltext-rebuildIndex'),
+			document.getElementById('fulltext-clearIndex')
+		];
+		buttons.forEach(b => b.disabled = true);
+		
+		var ps = Services.prompt;
+		var buttonFlags = ps.BUTTON_POS_0 * ps.BUTTON_TITLE_IS_STRING
+			+ ps.BUTTON_POS_1 * ps.BUTTON_TITLE_CANCEL
+			+ ps.BUTTON_POS_2 * ps.BUTTON_TITLE_IS_STRING;
+		
+		var index = ps.confirmEx(null,
+			Zotero.getString('zotero.preferences.search.clearIndex'),
+			Zotero.getString('zotero.preferences.search.clearWarning',
+				Zotero.getString('zotero.preferences.search.clearNonLinkedURLs')),
+			buttonFlags,
+			Zotero.getString('zotero.preferences.search.clearIndex'),
+			null,
+			// Position 2 because of https://bugzilla.mozilla.org/show_bug.cgi?id=345067
+			Zotero.getString('zotero.preferences.search.clearNonLinkedURLs'), null, {});
+		
+		try {
+			if (index == 0) {
+				await Zotero.Fulltext.clearIndex();
+			}
+			else if (index == 2) {
+				await Zotero.Fulltext.clearIndex(true);
+			}
+			
+			await this.updateIndexStats();
+		}
+		catch (e) {
+			Zotero.alert(null, Zotero.getString('general.error'), e);
+		}
+		finally {
+			buttons.forEach(b => b.disabled = false);
+		}
+	},
+
+	updateLocalAPIUI() {
+		let serverEnabled = Zotero.Prefs.get('httpServer.enabled');
+		let localAPIEnabled = Zotero.Prefs.get('httpServer.localAPI.enabled');
+		
+		let checkbox = document.getElementById('zotero-prefpane-advanced-enable-local-api');
+		let availableMessage = document.getElementById('zotero-prefpane-advanced-local-api-available');
+		let serverDisabledSection = document.getElementById('zotero-prefpane-advanced-server-disabled');
+		
+		if (!serverEnabled) {
+			checkbox.disabled = true;
+			availableMessage.hidden = true;
+			serverDisabledSection.hidden = false;
+			return;
+		}
+		
+		checkbox.disabled = false;
+		availableMessage.hidden = !localAPIEnabled;
+		serverDisabledSection.hidden = true;
+		
+		document.l10n.setArgs(availableMessage, {
+			url: `http://localhost:${Zotero.Prefs.get('httpServer.port')}/api/`
+		});
+	},
+	
+	enableServerForLocalAPI() {
+		Zotero.Prefs.set('httpServer.enabled', true);
+		Zotero.Utilities.Internal.quit(true);
 	}
 };
 
@@ -651,7 +553,7 @@ Zotero_Preferences.Attachment_Base_Directory = {
 		var oldPath = Zotero.Prefs.get('baseAttachmentPath');
 		if (oldPath) {
 			try {
-				return OS.Path.normalize(oldPath);
+				return PathUtils.normalize(oldPath);
 			}
 			catch (e) {
 				Zotero.logError(e);
@@ -674,7 +576,7 @@ Zotero_Preferences.Attachment_Base_Directory = {
 		if (await fp.show() != fp.returnOK) {
 			return false;
 		}
-		var newPath = fp.file;
+		var newPath = PathUtils.normalize(fp.file);
 		
 		if (oldPath && oldPath == newPath) {
 			Zotero.debug("Base directory hasn't changed");
@@ -691,7 +593,7 @@ Zotero_Preferences.Attachment_Base_Directory = {
 	},
 	
 	
-	changePath: Zotero.Promise.coroutine(function* (basePath) {
+	changePath: async function (basePath) {
 		Zotero.debug(`New base directory is ${basePath}`);
 		
 		if (Zotero.File.directoryContains(Zotero.DataDirectory.dir, basePath)) {
@@ -703,50 +605,42 @@ Zotero_Preferences.Attachment_Base_Directory = {
 			);
 		}
 		
-		// Find all current attachments with relative attachment paths
-		var sql = "SELECT itemID FROM itemAttachments WHERE linkMode=? AND path LIKE ?";
-		var params = [
-			Zotero.Attachments.LINK_MODE_LINKED_FILE,
-			Zotero.Attachments.BASE_PATH_PLACEHOLDER + "%"
-		];
-		var oldRelativeAttachmentIDs = yield Zotero.DB.columnQueryAsync(sql, params);
-		
-		//Find all attachments on the new base path
+		// Find all attachments on the new base path
 		var sql = "SELECT itemID FROM itemAttachments WHERE linkMode=?";
 		var params = [Zotero.Attachments.LINK_MODE_LINKED_FILE];
-		var allAttachments = yield Zotero.DB.columnQueryAsync(sql, params);
+		var allAttachments = await Zotero.DB.columnQueryAsync(sql, params);
 		var newAttachmentPaths = {};
 		var numNewAttachments = 0;
 		var numOldAttachments = 0;
-		for (let i=0; i<allAttachments.length; i++) {
-			let attachmentID = allAttachments[i];
+		for (let attachmentID of allAttachments) {
 			let attachmentPath;
-			let relPath = false
+			let relPath;
 			
 			try {
-				let attachment = yield Zotero.Items.getAsync(attachmentID);
+				let attachment = await Zotero.Items.getAsync(attachmentID);
 				// This will return FALSE for relative paths if base directory
 				// isn't currently set
 				attachmentPath = attachment.getFilePath();
 				// Get existing relative path
 				let storedPath = attachment.attachmentPath;
 				if (storedPath.startsWith(Zotero.Attachments.BASE_PATH_PLACEHOLDER)) {
-					relPath = storedPath.substr(Zotero.Attachments.BASE_PATH_PLACEHOLDER.length);
+					relPath = storedPath.substring(Zotero.Attachments.BASE_PATH_PLACEHOLDER.length);
+					// Use platform-specific slashes, which PathUtils.joinRelative() requires below
+					relPath = Zotero.Attachments.fixPathSlashes(relPath);
+				}
+
+				// If a file with the same relative path exists within the new base directory,
+				// don't touch the attachment, since it will continue to work
+				if (await IOUtils.exists(PathUtils.joinRelative(basePath, relPath))) {
+					Zotero.debug(`${relPath} found within new base path -- skipping`);
+					numNewAttachments++;
+					continue;
 				}
 			}
 			catch (e) {
 				// Don't deal with bad attachment paths. Just skip them.
 				Zotero.debug(e, 2);
 				continue;
-			}
-			
-			// If a file with the same relative path exists within the new base directory,
-			// don't touch the attachment, since it will continue to work
-			if (relPath) {
-				if (yield OS.File.exists(OS.Path.join(basePath, relPath))) {
-					numNewAttachments++;
-					continue;
-				}
 			}
 			
 			// Files within the new base directory need to be updated to use
@@ -759,7 +653,7 @@ Zotero_Preferences.Attachment_Base_Directory = {
 			}
 			// Existing relative attachments not within the new base directory
 			// will be converted to absolute paths
-			else if (relPath && this.getPath()) {
+			else if (relPath && Zotero.Prefs.get('baseAttachmentPath')) {
 				Zotero.debug(`Converting ${relPath} to absolute path`);
 				newAttachmentPaths[attachmentID] = attachmentPath;
 				numOldAttachments++;
@@ -769,9 +663,8 @@ Zotero_Preferences.Attachment_Base_Directory = {
 			}
 		}
 		
-		//Confirm change of the base path
-		var ps = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]
-			.getService(Components.interfaces.nsIPromptService);
+		// Confirm change of the base path
+		var ps = Services.prompt;
 		
 		var chooseStrPrefix = 'attachmentBasePath.chooseNewPath.';
 		var clearStrPrefix = 'attachmentBasePath.clearBasePath.';
@@ -826,11 +719,11 @@ Zotero_Preferences.Attachment_Base_Directory = {
 		Zotero.Prefs.set('saveRelativeAttachmentPath', true);
 		// Resave all attachments on base path (so that their paths become relative)
 		// and all other relative attachments (so that their paths become absolute)
-		yield Zotero.Utilities.Internal.forEachChunkAsync(
+		await Zotero.Utilities.Internal.forEachChunkAsync(
 			Object.keys(newAttachmentPaths),
 			100,
 			function (chunk) {
-				return Zotero.DB.executeTransaction(function* () {
+				return Zotero.DB.executeTransaction(async function () {
 					for (let id of chunk) {
 						let attachment = Zotero.Items.get(id);
 						if (newAttachmentPaths[id]) {
@@ -839,16 +732,16 @@ Zotero_Preferences.Attachment_Base_Directory = {
 						else {
 							attachment.attachmentPath = attachment.getFilePath();
 						}
-						yield attachment.save({
+						await attachment.save({
 							skipDateModifiedUpdate: true
 						});
 					}
-				})
+				});
 			}
 		);
 		
 		return true;
-	}),
+	},
 	
 	
 	clearPath: Zotero.Promise.coroutine(function* () {
@@ -861,8 +754,7 @@ Zotero_Preferences.Attachment_Base_Directory = {
 		var relativeAttachmentIDs = yield Zotero.DB.columnQueryAsync(sql, params);
 		
 		// Prompt for confirmation
-		var ps = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]
-			.getService(Components.interfaces.nsIPromptService);
+		var ps = Services.prompt;
 		
 		var strPrefix = 'attachmentBasePath.clearBasePath.';
 		var title = Zotero.getString(strPrefix + 'title');
@@ -907,11 +799,11 @@ Zotero_Preferences.Attachment_Base_Directory = {
 			relativeAttachmentIDs,
 			100,
 			function (chunk) {
-				return Zotero.DB.executeTransaction(function* () {
+				return Zotero.DB.executeTransaction(async function () {
 					for (let id of chunk) {
-						let attachment = yield Zotero.Items.getAsync(id);
+						let attachment = await Zotero.Items.getAsync(id);
 						attachment.attachmentPath = attachment.getFilePath();
-						yield attachment.save({
+						await attachment.save({
 							skipDateModifiedUpdate: true
 						});
 					}
@@ -923,50 +815,46 @@ Zotero_Preferences.Attachment_Base_Directory = {
 	}),
 	
 	
-	updateUI: Zotero.Promise.coroutine(function* () {
+	updateUI: async function () {
 		var filefield = document.getElementById('baseAttachmentPath');
 		var path = Zotero.Prefs.get('baseAttachmentPath');
-		Components.utils.import("resource://gre/modules/osfile.jsm");
-		if (yield OS.File.exists(path)) {
-			filefield.file = Zotero.File.pathToFile(path);
-			filefield.label = path;
+		if (path && await IOUtils.exists(path)) {
+			filefield.style.backgroundImage = 'url(moz-icon://' + Zotero.File.pathToFileURI(path) + '?size=16)';
+			filefield.value = path;
 		}
 		else {
-			filefield.label = '';
+			filefield.value = '';
 		}
 		document.getElementById('resetBasePath').disabled = !path;
-	})
+	}
 };
 
 
 Zotero_Preferences.Keys = {
 	init: function () {
-		var rows = document.getElementById('zotero-prefpane-advanced-keys-tab').getElementsByTagName('row');
-		for (var i=0; i<rows.length; i++) {
+		for (let label of document.querySelectorAll('#zotero-keys-grid .modifier')) {
 			// Display the appropriate modifier keys for the platform
-			let label = rows[i].firstChild.nextSibling;
-			if (label.className == 'modifier') {
-				label.value = Zotero.isMac ? Zotero.getString('general.keys.cmdShift') : Zotero.getString('general.keys.ctrlShift');
-			}
+			label.textContent = Zotero.isMac ? Zotero.getString('general.keys.cmdShift') : Zotero.getString('general.keys.ctrlShift');
 		}
 		
-		var textboxes = document.getElementById('zotero-keys-rows').getElementsByTagName('textbox');
+		var textboxes = document.querySelectorAll('#zotero-keys-grid input');
 		for (let i=0; i<textboxes.length; i++) {
 			let textbox = textboxes[i];
 			textbox.value = textbox.value.toUpperCase();
 			// .value takes care of the initial value, and this takes care of direct pref changes
 			// while the window is open
-			textbox.setAttribute('onsyncfrompreference', 'return Zotero_Preferences.Keys.capitalizePref(this.id)');
-			textbox.setAttribute('oninput', 'this.value = this.value.toUpperCase()');
+			textbox.addEventListener('syncfrompreference', () => {
+				textbox.value = Zotero_Preferences.Keys.capitalizePref(textbox.id) || '';
+			});
+			textbox.addEventListener('input', () => {
+				textbox.value = textbox.value.toUpperCase();
+			});
 		}
 	},
 	
 	
 	capitalizePref: function (id) {
 		var elem = document.getElementById(id);
-		var pref = document.getElementById(elem.getAttribute('preference'));
-		if (pref.value) {
-			return pref.value.toUpperCase();
-		}
+		return Zotero.Prefs.get(elem.getAttribute('preference'), true).toUpperCase();
 	}
 };

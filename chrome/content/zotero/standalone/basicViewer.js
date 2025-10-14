@@ -23,28 +23,40 @@
     ***** END LICENSE BLOCK *****
 */
 
-var browser;
-function loadURI() {
-	browser.loadURI.apply(browser, arguments);
-}
+/*const { E10SUtils } = ChromeUtils.import(
+	"resource://gre/modules/E10SUtils.jsm"
+);*/
 
-window.addEventListener("load", function() {
-	browser = document.getElementById('my-browser');
+const SANDBOXED_SCRIPTS = 0x80;
+
+var browser;
+
+window.addEventListener("load", /*async */function () {
+	browser = document.querySelector('browser');
 	
-	// align page title with title of shown document
-	browser.addEventListener("pageshow", function() {
-		document.title = (browser.contentDocument.title
-			? browser.contentDocument.title
-			: browser.contentDocument.location.href);
-	}, false);
+	browser.addEventListener('pagetitlechanged', () => {
+		document.title = browser.contentTitle || browser.currentURI.spec;
+	});
 	
-	// show document
-	browser.loadURI.apply(browser, window.arguments);
+	/*
+	browser.setAttribute("remote", "true");
+	//browser.setAttribute("remoteType", E10SUtils.EXTENSION_REMOTE_TYPE);
 	
-	// XXX Why is this necessary to make the scroll bars appear?
-	window.setTimeout(function() {
-		document.getElementById("my-browser").style.overflow = "auto";
-	}, 0);
+	await new Promise((resolve) => {
+		browser.addEventListener("XULFrameLoaderCreated", () => resolve());
+	});
+	*/
+	
+	/*browser.messageManager.loadFrameScript(
+		'chrome://zotero/content/standalone/basicViewerContent.js',
+		false
+	);*/
+	//browser.docShellIsActive = false;
+
+	// Get URI and options passed in via openWindow()
+	let { uri, options } = window.arguments[0].wrappedJSObject;
+	window.viewerOriginalURI = uri;
+	loadURI(Services.io.newURI(uri), options);
 }, false);
 
 window.addEventListener("keypress", function (event) {
@@ -56,10 +68,27 @@ window.addEventListener("keypress", function (event) {
 	}
 });
 
-// Handle <label class="text-link />
-window.addEventListener("click", function (event) {
-	if (event.originalTarget.localName == 'label'
-			&& event.originalTarget.classList.contains('text-link')) {
-		Zotero.launchURL(event.originalTarget.getAttribute('href'));
-	}
+window.addEventListener('dragover', (e) => {
+	// Prevent default to allow drop (e.g. to allow dropping an XPI on the Add-ons window)
+	e.preventDefault();
 });
+
+function loadURI(uri, options = {}) {
+	// browser.browsingContext.allowJavascript (sic) would seem to do what we want here,
+	// but it has no effect. So we use sandboxFlags instead:
+	if (options.allowJavaScript !== false) {
+		browser.browsingContext.sandboxFlags &= ~SANDBOXED_SCRIPTS;
+	}
+	else {
+		browser.browsingContext.sandboxFlags |= SANDBOXED_SCRIPTS;
+	}
+	if (options.cookieSandbox) {
+		options.cookieSandbox.attachToBrowser(browser);
+	}
+	browser.loadURI(
+		uri,
+		{
+			triggeringPrincipal: Services.scriptSecurityManager.getSystemPrincipal(),
+		}
+	);
+}

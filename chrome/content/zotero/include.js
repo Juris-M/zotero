@@ -1,11 +1,4 @@
-/* global Components:false */
-/* eslint-disable no-unused-vars */
-
-var Zotero = Components.classes['@zotero.org/Zotero;1']
-	// Currently uses only nsISupports
-	//.getService(Components.interfaces.chnmIZoteroService).
-	.getService(Components.interfaces.nsISupports)
-	.wrappedJSObject;
+var { Zotero } = ChromeUtils.importESModule("chrome://zotero/content/zotero.mjs");
 
 // Components.utils.import('resource://zotero/require.js');
 // Not using Cu.import here since we don't want the require module to be cached
@@ -24,5 +17,5 @@ if (typeof require == "undefined") {
 }
 
 if (winName) {
-	window.name = winName;
+	 window.name = winName;
 }

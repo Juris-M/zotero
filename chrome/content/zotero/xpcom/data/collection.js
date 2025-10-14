@@ -85,17 +85,14 @@ Zotero.defineProperty(Zotero.Collection.prototype, 'parent', {
 
 Zotero.defineProperty(Zotero.Collection.prototype, 'treeViewID', {
 	get: function () {
-		return "C" + this.id
+		return "C" + this.id;
 	}
 });
 
 Zotero.defineProperty(Zotero.Collection.prototype, 'treeViewImage', {
 	get: function () {
 		// Keep in sync with collectionTreeView::getImageSrc()
-		if (Zotero.isMac) {
-			return `chrome://zotero-platform/content/treesource-collection${Zotero.hiDPISuffix}.png`;
-		}
-		return "chrome://zotero/skin/treesource-collection" + Zotero.hiDPISuffix + ".png";
+		return "chrome://zotero/skin/16/universal/folder.svg";
 	}
 });
 
@@ -109,6 +106,8 @@ Zotero.Collection.prototype.getName = function() {
 	return this.name;
 }
 
+// Properties for a collection to "pretend" to be an item for trash itemTree
+Object.assign(Zotero.Collection.prototype, Zotero.DataObjectUtilities.itemTreeMockProperties);
 
 /*
  * Populate collection data from a database row
@@ -195,18 +194,24 @@ Zotero.Collection.prototype.hasChildItems = function() {
  * Returns subcollections of this collection
  *
  * @param {Boolean} [asIDs=false] Return as collectionIDs
+ * @param {Boolean} [includeTrashed=false] - Include collections in the trash
  * @return {Zotero.Collection[]|Integer[]}
  */
-Zotero.Collection.prototype.getChildCollections = function (asIDs) {
+Zotero.Collection.prototype.getChildCollections = function (asIDs, includeTrashed) {
 	this._requireData('childCollections');
+	
+	var collections = [...this._childCollections].map(id => this.ObjectsClass.get(id));
+	if (!includeTrashed) {
+		collections = collections.filter(c => !c.deleted);
+	}
 	
 	// Return collectionIDs
 	if (asIDs) {
-		return [...this._childCollections.values()];
+		return collections.map(c => c.id);
 	}
 	
 	// Return Zotero.Collection objects
-	return Array.from(this._childCollections).map(id => this.ObjectsClass.get(id));
+	return collections;
 }
 
 
@@ -217,7 +222,7 @@ Zotero.Collection.prototype.getChildCollections = function (asIDs) {
  * @param	{Boolean}	includeDeleted	Include items in Trash
  * @return {Zotero.Item[]|Integer[]} - Array of Zotero.Item instances or itemIDs
  */
-Zotero.Collection.prototype.getChildItems = function (asIDs, includeDeleted) {
+Zotero.Collection.prototype.getChildItems = function (asIDs, includeTrashed) {
 	this._requireData('childItems');
 	
 	if (this._childItems.size == 0) {
@@ -228,7 +233,7 @@ Zotero.Collection.prototype.getChildItems = function (asIDs, includeDeleted) {
 	var childItems = [];
 	for (let itemID of this._childItems) {
 		let item = this.ChildObjects.get(itemID);
-		if (includeDeleted || !item.deleted) {
+		if (includeTrashed || !item.deleted) {
 			childItems.push(item);
 		}
 	}
@@ -337,12 +342,13 @@ Zotero.Collection.prototype._saveData = Zotero.Promise.coroutine(function* (env)
 	
 	if (this._changedData.deleted !== undefined) {
 		if (this._changedData.deleted) {
-			sql = "REPLACE INTO deletedCollections (collectionID) VALUES (?)";
+			yield this.trash({ ...env, isNew: isNew });
 		}
 		else {
-			sql = "DELETE FROM deletedCollections WHERE collectionID=?";
+			let sql = "DELETE FROM deletedCollections WHERE collectionID=?";
+
+			yield Zotero.DB.queryAsync(sql, collectionID);
 		}
-		yield Zotero.DB.queryAsync(sql, collectionID);
 		
 		this._clearChanged('deleted');
 		this._markForReload('primaryData');
@@ -584,19 +590,17 @@ Zotero.Collection.prototype.clone = function (libraryID) {
 
 
 /**
-* Deletes collection and all descendent collections (and optionally items)
+* Moves the collection and all descendent collections (and optionally items) to trash
 **/
-Zotero.Collection.prototype._eraseData = Zotero.Promise.coroutine(function* (env) {
+Zotero.Collection.prototype.trash = Zotero.Promise.coroutine(function* (env) {
 	Zotero.DB.requireTransaction();
 	
 	var collections = [this.id];
 	
-	var descendents = this.getDescendents(false, null, true);
-	var items = [];
+	var descendents = env.isNew ? [] : this.getDescendents(false, null, false);
 	var libraryHasTrash = Zotero.Libraries.hasTrash(this.libraryID);
 	
 	var del = [];
-	var itemsToUpdate = [];
 	for(var i=0, len=descendents.length; i<len; i++) {
 		// Descendent collections
 		if (descendents[i].type == 'collection') {
@@ -621,10 +625,6 @@ Zotero.Collection.prototype._eraseData = Zotero.Promise.coroutine(function* (env
 				del.push(descendents[i].id);
 			}
 			
-			// If item isn't being removed or is just moving to the trash, mark for update
-			if (!env.options.deleteItems || libraryHasTrash) {
-				itemsToUpdate.push(descendents[i].id);
-			}
 		}
 	}
 	if (del.length) {
@@ -644,7 +644,68 @@ Zotero.Collection.prototype._eraseData = Zotero.Promise.coroutine(function* (env
 			}
 		}
 	}
+
+	yield Zotero.Utilities.Internal.forEachChunkAsync(
+		collections,
+		Zotero.DB.MAX_BOUND_PARAMETERS,
+		async function (chunk) {
+			// Send collection to trash
+			var placeholders = chunk.map(() => '(?)').join(',');
+			await Zotero.DB.queryAsync('INSERT OR IGNORE INTO deletedCollections (collectionID) VALUES ' + placeholders, chunk);
+		}
+	);
+
+	if (env.isNew) {
+		return;
+	}
 	
+	// Reload collection data to show/restore deleted collections from trash
+	for (let collectionID of collections) {
+		let collection = Zotero.Collections.get(collectionID);
+		yield collection.loadDataType('primaryData', true);
+		yield collection.loadDataType('childCollections', true);
+	}
+});
+
+/**
+* Completely erase the collection and its descendants.
+**/
+Zotero.Collection.prototype._eraseData = Zotero.Promise.coroutine(function* (env) {
+	Zotero.DB.requireTransaction();
+
+	if (!this.deleted) {
+		yield this.trash(env);
+	}
+	
+	var collections = [this.id];
+	var descendents = this.getDescendents(false, null, true);
+	collections = descendents
+		.filter(d => d.type == 'collection')
+		.map(c => c.id).concat(collections);
+
+	// Make sure all descendant collections will be unloaded in this._finalizeErase()
+	env.deletedObjectIDs = collections;
+
+	yield Zotero.Utilities.Internal.forEachChunkAsync(
+		collections,
+		Zotero.DB.MAX_BOUND_PARAMETERS,
+		async function (chunk) {
+			var placeholders = chunk.map(() => '?').join(',');
+
+			// Remove item associations for all descendent collections
+			await Zotero.DB.queryAsync('DELETE FROM collectionItems WHERE collectionID IN '
+				+ '(' + placeholders + ')', chunk);
+			
+			// Remove parent definitions first for FK check
+			await Zotero.DB.queryAsync('UPDATE collections SET parentCollectionID=NULL '
+				+ 'WHERE parentCollectionID IN (' + placeholders + ')', chunk);
+
+			// And delete all descendent collections
+			await Zotero.DB.queryAsync('DELETE FROM collections WHERE collectionID IN '
+			+ '(' + placeholders + ')', chunk);
+		}
+	);
+
 	// Update child collection cache of parent collection
 	if (this.parentKey) {
 		let parentCollectionID = this.ObjectsClass.getIDFromLibraryAndKey(
@@ -655,40 +716,13 @@ Zotero.Collection.prototype._eraseData = Zotero.Promise.coroutine(function* (env
 		}.bind(this));
 	}
 	
-	yield Zotero.Utilities.Internal.forEachChunkAsync(
-		collections,
-		Zotero.DB.MAX_BOUND_PARAMETERS,
-		async function (chunk) {
-			var placeholders = chunk.map(() => '?').join();
-			
-			// Remove item associations for all descendent collections
-			await Zotero.DB.queryAsync('DELETE FROM collectionItems WHERE collectionID IN '
-				+ '(' + placeholders + ')', chunk);
-			
-			// Remove parent definitions first for FK check
-			await Zotero.DB.queryAsync('UPDATE collections SET parentCollectionID=NULL '
-				+ 'WHERE parentCollectionID IN (' + placeholders + ')', chunk);
-			
-			// And delete all descendent collections
-			await Zotero.DB.queryAsync('DELETE FROM collections WHERE collectionID IN '
-				+ '(' + placeholders + ')', chunk);
-		}
-	);
-	
-	env.deletedObjectIDs = collections;
-	
-	// Update collection cache for descendant items
-	if (itemsToUpdate.length) {
-		let deletedCollections = new Set(env.deletedObjectIDs);
-		itemsToUpdate.forEach(itemID => {
-			let item = Zotero.Items.get(itemID);
-			// XXX Condition protects against crash when collection is removed
-			// XXX while empty-trash operation is in progress.
-			if (item._collections) {
-				item._collections = item._collections.filter(c => !deletedCollections.has(c));
-			}
-		});
-	}
+	// Remove erased collection from collection cache of descendant items
+	var itemsToUpdate = descendents.filter(d => d.type == 'item').map(c => c.id);
+	let deletedCollections = new Set(collections);
+	itemsToUpdate.forEach((itemID) => {
+		let item = Zotero.Items.get(itemID);
+		item._collections = item._collections.filter(c => !deletedCollections.has(c));
+	});
 });
 
 Zotero.Collection.prototype._finalizeErase = Zotero.Promise.coroutine(function* (env) {
@@ -696,10 +730,6 @@ Zotero.Collection.prototype._finalizeErase = Zotero.Promise.coroutine(function* 
 	
 	yield Zotero.Libraries.get(this.libraryID).updateCollections();
 });
-
-Zotero.Collection.prototype.isCollection = function() {
-	return true;
-}
 
 
 Zotero.Collection.prototype.serialize = function(nested) {
@@ -721,6 +751,20 @@ Zotero.Collection.prototype.serialize = function(nested) {
 	};
 	return obj;
 }
+
+
+Zotero.Collection.prototype.toResponseJSON = function (options = {}) {
+	let json = this.constructor._super.prototype.toResponseJSON.call(this, options);
+	json.meta.numCollections = this.getChildCollections(true).length;
+	json.meta.numItems = this.getChildItems(true).length;
+	if (this.parentID) {
+		json.links.up = {
+			href: Zotero.URI.toAPIURL(Zotero.URI.getCollectionURI(Zotero.Collections.get(this.parentID)), options.apiURL),
+			type: 'application/json'
+		};
+	}
+	return json;
+};
 
 
 /**
@@ -784,11 +828,11 @@ Zotero.Collection.prototype.toJSON = function (options = {}) {
  * @param	{Boolean}	[nested=false]		Return multidimensional array with 'children'
  *											nodes instead of flat array
  * @param	{String}	[type]				'item', 'collection', or NULL for both
- * @param	{Boolean}	[includeDeletedItems=false]		Include items in Trash
+ * @param	{Boolean}	[includeTrashed=false]		Include collections and items in Trash
  * @return	{Object[]} - An array of objects with 'id', 'key', 'type' ('item' or 'collection'),
  *     'parent', and, if collection, 'name' and the nesting 'level'
  */
-Zotero.Collection.prototype.getDescendents = function (nested, type, includeDeletedItems, level) {
+Zotero.Collection.prototype.getDescendents = function (nested, type, includeTrashed, level) {
 	if (!this.id) {
 		throw new Error('Cannot be called on an unsaved item');
 	}
@@ -807,7 +851,7 @@ Zotero.Collection.prototype.getDescendents = function (nested, type, includeDele
 		}
 	}
 	
-	var collections = Zotero.Collections.getByParent(this.id);
+	var collections = Zotero.Collections.getByParent(this.id, false, includeTrashed);
 	var children = collections.map(c => ({
 		id: c.id,
 		name: c.name,
@@ -815,7 +859,7 @@ Zotero.Collection.prototype.getDescendents = function (nested, type, includeDele
 		key: c.key
 	}));
 	if (!type || type == 'item') {
-		let items = this.getChildItems(false, includeDeletedItems);
+		let items = this.getChildItems(false, includeTrashed);
 		children = children.concat(items.map(i => ({
 			id: i.id,
 			name: null,
@@ -846,7 +890,7 @@ Zotero.Collection.prototype.getDescendents = function (nested, type, includeDele
 				
 				let child = this.ObjectsClass.get(children[i].id);
 				let descendents = child.getDescendents(
-					nested, type, includeDeletedItems, level + 1
+					nested, type, includeTrashed, level + 1
 				);
 				
 				if (nested) {

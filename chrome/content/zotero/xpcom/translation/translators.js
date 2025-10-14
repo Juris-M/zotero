@@ -37,6 +37,10 @@ Zotero.Translators = new function() {
 	this.TRANSLATOR_ID_MARKDOWN_AND_RICH_TEXT = 'a45eca67-1ee8-45e5-b4c6-23fb8a852873';
 	this.TRANSLATOR_ID_NOTE_MARKDOWN = '1412e9e2-51e1-42ec-aa35-e036a895534b';
 	this.TRANSLATOR_ID_NOTE_HTML = '897a81c2-9f60-4bec-ae6b-85a5030b8be5';
+	this.TRANSLATOR_ID_RDF = '5e3ad958-ac79-463d-812b-a86a9235c28f';
+	
+	this._translatorsHash = null;
+	this._sortedTranslatorHash = null;
 	
 	/**
 	 * Initializes translator cache, loading all translator metadata into memory
@@ -265,6 +269,8 @@ Zotero.Translators = new function() {
 	
 	this.reinit = async function (options = {}) {
 		await this.init(Object.assign({}, options, { reinit: true }));
+		this._translatorsHash = null;
+		this._sortedTranslatorHash = null;
 		await Zotero.QuickCopy.init();
 	};
 	
@@ -322,9 +328,28 @@ Zotero.Translators = new function() {
 			return this.load(infoRe.exec(source)[0], path, source);
 		}
 		catch (e) {
-			throw new Error("Invalid or missing translator metadata JSON object in " + OS.Path.basename(path));
+			throw new Error("Invalid or missing translator metadata JSON object in " + PathUtils.filename(path));
 		}
 	}
+
+	/**
+	 * Gets a hash of all translators (to check whether Connector needs an update)
+	 */
+	this.getTranslatorsHash = async function (sorted) {
+		let prop = sorted ? "_sortedTranslatorHash" : "_translatorsHash";
+		if (this[prop]) return this[prop];
+		await this.init();
+		let translators = await this.getAll();
+		if (sorted) {
+			translators.sort((a, b) => a.translatorID.localeCompare(b.translatorID));
+		}
+		let hashString = "";
+		for (let translator of translators) {
+			hashString += `${translator.translatorID}:${translator.lastUpdated},`;
+		}
+		this[prop] = Zotero.Utilities.Internal.md5(hashString);
+		return this[prop];
+	};
 	
 	/**
 	 * Gets the translator that corresponds to a given ID
@@ -497,14 +522,25 @@ Zotero.Translators = new function() {
 			fileName = alternative + ".js";
 		}
 		return fileName;
-	}
+	};
+
+	/**
+	 * @param {Object} metadata
+	 * @return {String}
+	 */
+	this.getSavePath = function (metadata) {
+		return PathUtils.join(
+			this.getTranslatorsDirectory(),
+			this.getFileNameFromLabel(metadata.label, metadata.translatorID)
+		);
+	};
 	
 	this.getTranslatorsDirectory = function () {
 		return Zotero.getTranslatorsDirectory().path;
 	};
 	
 	/**
-	 * @param	{String}		metadata
+	 * @param	{Object}		metadata
 	 * @param	{String}		metadata.translatorID		Translator GUID
 	 * @param	{Integer}		metadata.translatorType		See TRANSLATOR_TYPES in translate.js
 	 * @param	{String}		metadata.label				Translator title
@@ -519,15 +555,16 @@ Zotero.Translators = new function() {
 	 * @param	{Boolean}		metadata.inRepository
 	 * @param	{String}		metadata.lastUpdated		SQL date
 	 * @param	{String}		code
-	 * @return	{Promise<nsIFile>}
+	 * @return	{String}
 	 */
-	this.save = Zotero.Promise.coroutine(function* (metadata, code) {
+	this.stringify = function (metadata, code) {
 		if (!metadata.translatorID) {
-			throw ("metadata.translatorID not provided in Zotero.Translators.save()");
+			throw new Error("metadata.translatorID not provided in Zotero.Translators.save()");
 		}
 		
 		if (!metadata.translatorType) {
 			var found = false;
+			// FIXME: This seems to be a no-op
 			for (let type in TRANSLATOR_TYPES) {
 				if (metadata.translatorType & TRANSLATOR_TYPES[type]) {
 					found = true;
@@ -535,7 +572,7 @@ Zotero.Translators = new function() {
 				}
 			}
 			if (!found) {
-				throw ("Invalid translatorType '" + metadata.translatorType + "' in Zotero.Translators.save()");
+				throw new Error("Invalid translatorType '" + metadata.translatorType + "' in Zotero.Translators.save()");
 			}
 		}
 		
@@ -555,11 +592,6 @@ Zotero.Translators = new function() {
 			throw new Error("code not provided");
 		}
 		
-		var fileName = this.getFileNameFromLabel(
-			metadata.label, metadata.translatorID
-		);
-		var destFile = OS.Path.join(this.getTranslatorsDirectory(), fileName);
-		
 		// JSON.stringify has the benefit of indenting JSON
 		var metadataJSON = JSON.stringify(metadata, null, "\t");
 		
@@ -570,13 +602,37 @@ Zotero.Translators = new function() {
 			str += '\n';
 		}
 		
-		var translator = this.get(metadata.translatorID);
-		var sameFile = translator && destFile == translator.path;
+		return str;
+	};
+	
+	/**
+	 * @param	{Object}		metadata
+	 * @param	{String}		metadata.translatorID		Translator GUID
+	 * @param	{Integer}		metadata.translatorType		See TRANSLATOR_TYPES in translate.js
+	 * @param	{String}		metadata.label				Translator title
+	 * @param	{String}		metadata.creator			Translator author
+	 * @param	{String|Null}	metadata.target				Target regexp
+	 * @param	{String|Null}	metadata.minVersion
+	 * @param	{String}		metadata.maxVersion
+	 * @param	{String|undefined}	metadata.configOptions
+	 * @param	{String|undefined}	metadata.displayOptions
+	 * @param	{Integer}		metadata.priority
+	 * @param	{String}		metadata.browserSupport
+	 * @param	{Boolean}		metadata.inRepository
+	 * @param	{String}		metadata.lastUpdated		SQL date
+	 * @param	{String}		code
+	 * @return	{Promise<String>}
+	 */
+	this.save = Zotero.Promise.coroutine(function* (metadata, code) {
+		var str = this.stringify(metadata, code);
+		var destFile = this.getSavePath(metadata);
+		
+		var existingTranslator = this.get(metadata.translatorID);
+		var sameFile = existingTranslator && destFile == existingTranslator.path;
 		
 		var exists = yield OS.File.exists(destFile);
 		if (!sameFile && exists) {
-			var msg = "Overwriting translator with same filename '"
-				+ fileName + "'";
+			var msg = `Overwriting translator with same filename '${PathUtils.filename(destFile)}'`;
 			Zotero.debug(msg, 1);
 			Zotero.debug(metadata, 1);
 			Components.utils.reportError(msg);

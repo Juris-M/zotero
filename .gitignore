@@ -6,9 +6,10 @@ locale-xls-out
 .dir-locals.el
 .DS_Store
 node_modules
-build
+build/
 .signatures.json
 *~
 *.pyc
 attic
 tmp
+app/win/codesign

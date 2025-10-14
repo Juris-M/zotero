@@ -1,9 +1,9 @@
 /*
 	***** BEGIN LICENSE BLOCK *****
 	
-	Copyright © 2019 Center for History and New Media
-					George Mason University, Fairfax, Virginia, USA
-					http://zotero.org
+	Copyright © 2020 Corporation for Digital Scholarship
+					 Vienna, Virginia, USA
+					 https://digitalscholar.org
 	
 	This file is part of Zotero.
 	
@@ -16,16 +16,15 @@
 	but WITHOUT ANY WARRANTY; without even the implied warranty of
 	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 	GNU Affero General Public License for more details.
-
+	
 	You should have received a copy of the GNU Affero General Public License
 	along with Zotero.  If not, see <http://www.gnu.org/licenses/>.
 	
 	***** END LICENSE BLOCK *****
 */
 
-'use strict';
-
 const noop = () => {};
+
 
 function getDragTargetOrient(event, target) {
 	const elem = target || event.target;
@@ -72,9 +71,74 @@ function createDragHandler({ handleDrag, handleDragStop }) {
 	return {
 		start: onDragStart,
 		stop: onDragStop
-	}
+	};
 }
 
+var _htmlID = 1;
+
+const nextHTMLID = (prefix = 'id-') => prefix + _htmlID++;
+
+const scrollIntoViewIfNeeded = (element, container, opts = {}) => {
+	const containerTop = container.scrollTop;
+	const containerBottom = containerTop + container.clientHeight;
+	const elementTop = element.offsetTop;
+	const elementBottom = elementTop + element.clientHeight;
+
+	if (elementTop < containerTop || elementBottom > containerBottom) {
+		const before = container.scrollTop;
+		element.scrollIntoView(opts);
+		const after = container.scrollTop;
+		return after - before;
+	}
+	return 0;
+};
+
+const stopPropagation = ev => ev.stopPropagation();
+
+// pick and omit from https://github.com/zotero/web-common/blob/master/utils/immutable.js
+const omit = (object, deleteKeys) => {
+	if (typeof (deleteKeys) !== 'function') {
+		if (!Array.isArray(deleteKeys)) {
+			deleteKeys = [deleteKeys];
+		}
+		deleteKeys = deleteKeys.map(dk => (typeof (dk) !== 'string' ? dk.toString() : dk));
+	}
+
+	return Object.entries(object)
+		.reduce((aggr, [key, value]) => {
+			if (typeof (deleteKeys) === 'function') {
+				if (!deleteKeys(key, value)) { aggr[key] = value; }
+			} else if (!deleteKeys.includes(key)) {
+				aggr[key] = value;
+			}
+			return aggr;
+		}, {});
+};
+
+const pick = (object, pickKeys) => {
+	if (typeof (pickKeys) === 'function') {
+		return Object.entries(object)
+			.reduce((aggr, [key, value]) => {
+				if (pickKeys(key)) {
+					aggr[key] = value;
+				}
+				return aggr;
+			}, {});
+	}
+	if (!Array.isArray(pickKeys)) {
+		pickKeys = [pickKeys];
+	}
+
+	return Object.entries(object)
+		.reduce((aggr, [key, value]) => {
+			if (pickKeys.includes(key)) {
+				aggr[key] = value;
+			}
+			return aggr;
+		}, {});
+};
+
+
 export {
-	noop, getDragTargetOrient, createDragHandler
+	nextHTMLID, noop, getDragTargetOrient, createDragHandler, scrollIntoViewIfNeeded, stopPropagation, pick, omit
 };

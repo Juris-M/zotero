@@ -46,8 +46,8 @@
 	path = resource/SingleFile
 	url = https://github.com/gildas-lormeau/SingleFile.git
 [submodule "pdf-reader"]
-	path = pdf-reader
-	url = https://github.com/zotero/pdf-reader.git
+	path = reader
+	url = https://github.com/zotero/reader.git
 	branch = master
 [submodule "pdf-worker"]
 	path = pdf-worker
@@ -63,3 +63,12 @@
 [submodule "chrome/content/zotero/xpcom/translate"]
 	path = chrome/content/zotero/xpcom/translate
 	url = https://github.com/Juris-M/translate.git
+[submodule "app/modules/zotero-word-for-mac-integration"]
+	path = app/modules/zotero-word-for-mac-integration
+	url = https://github.com/zotero/zotero-word-for-mac-integration.git
+[submodule "app/modules/zotero-word-for-windows-integration"]
+	path = app/modules/zotero-word-for-windows-integration
+	url = https://github.com/zotero/zotero-word-for-windows-integration.git
+[submodule "app/modules/zotero-libreoffice-integration"]
+	path = app/modules/zotero-libreoffice-integration
+	url = https://github.com/zotero/zotero-libreoffice-integration.git

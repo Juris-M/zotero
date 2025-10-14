@@ -23,10 +23,14 @@
     ***** END LICENSE BLOCK *****
 */
 
-Components.utils.import("resource://gre/modules/osfile.jsm");
 Components.utils.import("resource://gre/modules/Services.jsm");
-import FilePicker from 'zotero/modules/filePicker';
+var { FilePicker } = ChromeUtils.importESModule('chrome://zotero/content/modules/filePicker.mjs');
 import { ImportCitaviAnnotatons } from 'zotero/import/citavi';
+
+var { XPCOMUtils } = ChromeUtils.import("resource://gre/modules/XPCOMUtils.jsm");
+XPCOMUtils.defineLazyModuleGetters(globalThis, {
+	HiddenBrowser: 'chrome://zotero/content/HiddenBrowser.jsm',
+});
 
 /****Zotero_File_Exporter****
  **
@@ -93,15 +97,16 @@ Zotero_File_Exporter.prototype.save = async function () {
 				}
 			}
 		}
-		// Otherwise exclude note export translators
-		else {
-			translators = translators.filter(t => !t.configOptions || !t.configOptions.noteTranslator);
-		}
+	}
+
+	// Exclude note translators if not exporting notes
+	if (!exportingNotes) {
+		translators = translators.filter(t => !t.configOptions || !t.configOptions.noteTranslator);
 	}
 	
 	// present options dialog
 	var io = { translators, exportingNotes };
-	window.openDialog("chrome://zotero/content/exportOptions.xul",
+	window.openDialog("chrome://zotero/content/exportOptions.xhtml",
 		"_blank", "chrome,modal,centerscreen,resizable=no", io);
 	if(!io.selectedTranslator) {
 		return false;
@@ -279,8 +284,8 @@ var Zotero_File_Interface = new function() {
 					let str = Components.classes['@mozilla.org/supports-string;1']
 						.createInstance(Components.interfaces.nsISupportsString);
 					str.data = text;
-					transferable.addDataFlavor('text/unicode');
-					transferable.setTransferData('text/unicode', str, text.length * 2);
+					transferable.addDataFlavor('text/plain');
+					transferable.setTransferData('text/plain', str, text.length * 2);
 
 					// Add HTML
 					str = Components.classes['@mozilla.org/supports-string;1']
@@ -304,8 +309,7 @@ var Zotero_File_Interface = new function() {
 				let text = obj.string;
 				// For Note HTML translator use body content only
 				if (format.id == Zotero.Translators.TRANSLATOR_ID_NOTE_HTML) {
-					let parser = Components.classes['@mozilla.org/xmlextras/domparser;1']
-						.createInstance(Components.interfaces.nsIDOMParser);
+					let parser = new DOMParser();
 					let doc = parser.parseFromString(text, 'text/html');
 					text = doc.body.innerHTML;
 				}
@@ -321,15 +325,15 @@ var Zotero_File_Interface = new function() {
 		Components.classes["@mozilla.org/net/osfileconstantsservice;1"]
 			.getService(Components.interfaces.nsIOSFileConstantsService)
 			.init();
-		var path = OS.Constants.Path.homeDir;
+		var path = FileUtils.getDir('Home', []).path;
 		if (Zotero.isMac) {
-			path = OS.Path.join(path, 'Library', 'Application Support', 'Mendeley Desktop');
+			path = PathUtils.join(path, ['Library', 'Application Support', 'Mendeley Desktop']);
 		}
 		else if (Zotero.isWin) {
-			path = OS.Path.join(path, 'AppData', 'Local', 'Mendeley Ltd', 'Mendeley Desktop');
+			path = PathUtils.join(path, ['AppData', 'Local', 'Mendeley Ltd', 'Mendeley Desktop']);
 		}
 		else if (Zotero.isLinux) {
-			path = OS.Path.join(path, '.local', 'share', 'data', 'Mendeley Ltd.', 'Mendeley Desktop');
+			path = PathUtils.join(path, ['.local', 'share', 'data', 'Mendeley Ltd.', 'Mendeley Desktop']);
 		}
 		else {
 			throw new Error("Invalid platform");
@@ -390,8 +394,8 @@ var Zotero_File_Interface = new function() {
 		};
 		args.wrappedJSObject = args;
 		
-		Services.ww.openWindow(null, "chrome://zotero/content/import/importWizard.xul",
-			"importFile", "chrome,dialog=yes,centerscreen,width=600,height=400,modal", args);
+		Services.ww.openWindow(null, "chrome://zotero/content/import/importWizard.xhtml",
+			"importFile", "chrome,dialog=yes,centerscreen,modal", args);
 	};
 	
 	
@@ -400,7 +404,7 @@ var Zotero_File_Interface = new function() {
 	 *
 	 * @param {Object} options
 	 * @param {nsIFile|string|null} [options.file=null] - File to import, or none to show a filepicker
-	 * @param {Boolean} [options.addToLibraryRoot=false]
+	 * @param {Boolean} [options.addToLibraryRoot=false] - Use root library instead of a selected collection
 	 * @param {Boolean} [options.createNewCollection=true] - Put items in a new collection
 	 * @param {Boolean} [options.linkFiles=false] - Link to files instead of storing them
 	 * @param {Function} [options.onBeforeImport] - Callback to receive translation object, useful
@@ -452,6 +456,15 @@ var Zotero_File_Interface = new function() {
 			translation.newItemsOnly = options.newItemsOnly;
 			translation.relinkOnly = options.relinkOnly;
 		}
+		else if (options.folder) {
+			Components.utils.import("chrome://zotero/content/import/folderImport.js");
+			translation = new Zotero_Import_Folder({
+				folder: options.folder,
+				recreateStructure: options.recreateStructure,
+				fileTypes: options.fileTypes,
+				mimeTypes: options.mimeTypes,
+			});
+		}
 		else {
 			// Check if the file is an SQLite database
 			var sample = yield Zotero.File.getSample(file.path);
@@ -494,10 +507,9 @@ var Zotero_File_Interface = new function() {
 	 * Imports from clipboard
 	 */
 	this.importFromClipboard = Zotero.Promise.coroutine(function* () {
-		var str = Zotero.Utilities.Internal.getClipboard("text/unicode");
+		var str = Zotero.Utilities.Internal.getClipboard("text/plain");
 		if(!str) {
-			var ps = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]
-									.getService(Components.interfaces.nsIPromptService);
+			var ps = Services.prompt;
 			ps.alert(
 				null,
 				Zotero.getString('general.error'),
@@ -555,8 +567,7 @@ var Zotero_File_Interface = new function() {
 				yield onBeforeImport(false);
 			}
 			
-			let ps = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]
-				.getService(Components.interfaces.nsIPromptService);
+			let ps = Services.prompt;
 			let buttonFlags = ps.BUTTON_POS_0 * ps.BUTTON_TITLE_OK
 				+ ps.BUTTON_POS_1 * ps.BUTTON_TITLE_IS_STRING;
 			let index = ps.confirmEx(
@@ -624,10 +635,10 @@ var Zotero_File_Interface = new function() {
 				closeOnClick: false
 			});
 			progressWin.changeHeadline(Zotero.getString('fileInterface.importing'));
-			let icon = 'chrome://zotero/skin/treesource-unfiled' + (Zotero.hiDPI ? "@2x" : "") + '.png';
 			progress = new progressWin.ItemProgress(
-				icon, translation.path ? OS.Path.basename(translation.path) : translators[0].label
+				null, translation.path ? PathUtils.filename(translation.path) : translators[0].label
 			);
+			progress.setItemTypeAndIcon(null, 'unfiled');
 			progressWin.show();
 			
 			translation.setHandler("itemDone",  function () {
@@ -677,15 +688,13 @@ var Zotero_File_Interface = new function() {
 		// Show popup on completion
 		if (showProgressWindow) {
 			progressWin.changeHeadline(Zotero.getString('fileInterface.importComplete'));
-			let icon;
 			if (numItems == 1) {
-				icon = translation.newItems[0].getImageSrc();
+				progress.setItemTypeAndIcon(translation.newItems[0].getItemTypeIconName());
 			}
 			else {
-				icon = 'chrome://zotero/skin/treesource-unfiled' + (Zotero.hiDPI ? "@2x" : "") + '.png';
+				progress.setItemTypeAndIcon(null, 'unfiled');
 			}
 			let text = Zotero.getString(`fileInterface.itemsWereImported`, numItems, numItems);
-			progress.setIcon(icon);
 			progress.setText(text);
 			// For synchronous translators, which don't update progress
 			progress.setProgress(100);
@@ -781,7 +790,7 @@ var Zotero_File_Interface = new function() {
 	 * @param {Boolean} [asHTML=false] - Use HTML source for plain-text data
 	 * @param {Boolean} [asCitations=false] - Copy citation cluster instead of bibliography
 	 */
-	this.copyItemsToClipboard = Zotero.Promise.coroutine(function* (items, style, locale, asHTML, asCitations) {
+	this.copyItemsToClipboard = async function(items, style, locale, asHTML, asCitations) {
 		var d = new Date();
 		
 		// copy to clipboard
@@ -797,10 +806,10 @@ var Zotero_File_Interface = new function() {
 			properties: {}
 		};
 		if (Zotero.CiteProc.CSL.preloadAbbreviations) {
-			yield Zotero.CiteProc.CSL.preloadAbbreviations(cslEngine, citation);
+			await Zotero.CiteProc.CSL.preloadAbbreviations(cslEngine, citation);
 		}
 		if (Zotero.CiteProc.CSL.setSuppressedJurisdictions) {
-			yield Zotero.CiteProc.CSL.setSuppressedJurisdictions(cslEngine.opt.styleID, cslEngine.opt.suppressedJurisdictions);
+			await Zotero.CiteProc.CSL.setSuppressedJurisdictions(cslEngine.opt.styleID, cslEngine.opt.suppressedJurisdictions);
 		}
 		
 		if (asCitations) {
@@ -830,10 +839,10 @@ var Zotero_File_Interface = new function() {
 				cslEngine = style.getCiteProc(locale, 'text', true);
 				// Load external abbreviations to the new processor instance
 				if (Zotero.CiteProc.CSL.preloadAbbreviations) {
-					yield Zotero.CiteProc.CSL.preloadAbbreviations(cslEngine, citation);
+					await Zotero.CiteProc.CSL.preloadAbbreviations(cslEngine, citation);
 				}
 				if (Zotero.CiteProc.CSL.setSuppressedJurisdictions) {
-					yield Zotero.CiteProc.CSL.setSuppressedJurisdictions(cslEngine.opt.styleID, cslEngine.opt.suppressedJurisdictions);
+					await Zotero.CiteProc.CSL.setSuppressedJurisdictions(cslEngine.opt.styleID, cslEngine.opt.suppressedJurisdictions);
 				}
 				output = Zotero.Cite.makeFormattedBibliographyOrCitationList(cslEngine, items, 'text');
 			}
@@ -843,18 +852,19 @@ var Zotero_File_Interface = new function() {
 		var str = Components.classes["@mozilla.org/supports-string;1"].
 				  createInstance(Components.interfaces.nsISupportsString);
 		str.data = output;
-		transferable.addDataFlavor("text/unicode");
-		transferable.setTransferData("text/unicode", str, output.length * 2);
+		transferable.addDataFlavor("text/plain");
+		transferable.setTransferData("text/plain", str, output.length * 2);
 		
 		clipboardService.setData(transferable, null, Components.interfaces.nsIClipboard.kGlobalClipboard);
-		Zotero.debug(`Copied bibliography to clipboard in ${new Date() - d} ms}`);
-	});
+		
+		Zotero.debug(`Copied bibliography to clipboard in ${new Date() - d} ms`);
+	}
 	
 	
 	/*
 	 * Shows bibliography options and creates a bibliography
 	 */
-	var _doBibliographyOptions = Zotero.Promise.coroutine(function* (name, items) {
+	async function _doBibliographyOptions(name, items) {
 		// Limit to regular items
 		items = items.filter(item => item.isRegularItem());
 		if (!items.length) {
@@ -867,7 +877,7 @@ var Zotero_File_Interface = new function() {
 		}
 		
 		var io = new Object();
-		var newDialog = window.openDialog("chrome://zotero/content/bibliography.xul",
+		var newDialog = window.openDialog("chrome://zotero/content/bibliography.xhtml",
 			"_blank","chrome,modal,centerscreen", io);
 		
 		if(!io.method) return;
@@ -884,7 +894,7 @@ var Zotero_File_Interface = new function() {
 		// generate bibliography
 		try {
 			if(io.method == 'copy-to-clipboard') {
-				yield Zotero_File_Interface.copyItemsToClipboard(items, io.style, locale, false, io.mode === "citations");
+				await Zotero_File_Interface.copyItemsToClipboard(items, io.style, locale, false, io.mode === "citations");
 			}
 			else {
 				var style = Zotero.Styles.get(io.style);
@@ -894,10 +904,10 @@ var Zotero_File_Interface = new function() {
 						citationItems: items.map(item => ({ id: item.id })),
 						properties: {}
 					};
-					yield Zotero.CiteProc.CSL.preloadAbbreviations(cslEngine, citation);
+					await Zotero.CiteProc.CSL.preloadAbbreviations(cslEngine, citation);
 				}
 				if (Zotero.CiteProc.CSL.setSuppressedJurisdictions) {
-					yield Zotero.CiteProc.CSL.setSuppressedJurisdictions(cslEngine.opt.styleID, cslEngine.opt.suppressedJurisdictions);
+					await Zotero.CiteProc.CSL.setSuppressedJurisdictions(cslEngine.opt.styleID, cslEngine.opt.suppressedJurisdictions);
 				}
 				var bibliography = Zotero.Cite.makeFormattedBibliographyOrCitationList(cslEngine,
 					items, format, io.mode === "citations");
@@ -912,44 +922,25 @@ var Zotero_File_Interface = new function() {
 		}
 		
 		if(io.method == "print") {
-			// printable bibliography, using a hidden browser
-			var browser = Zotero.Browser.createHiddenBrowser(window);
-			
-			var listener = function() {
-				if(browser.contentDocument.location.href == "about:blank") return;
-				browser.removeEventListener("pageshow", listener, false);
-				
-				// this is kinda nasty, but we have to temporarily modify the user's
-				// settings to eliminate the header and footer. the other way to do
-				// this would be to attempt to print with an embedded browser, but
-				// it's not even clear how to attempt to create one
-				var prefService = Components.classes["@mozilla.org/preferences-service;1"].
-								  getService(Components.interfaces.nsIPrefBranch);
-				var prefsToClear = ["print.print_headerleft", "print.print_headercenter", 
-									"print.print_headerright", "print.print_footerleft", 
-									"print.print_footercenter", "print.print_footerright"];
-				var oldPrefs = [];
-				for(var i in prefsToClear) {
-					oldPrefs[i] = prefService.getCharPref(prefsToClear[i]);
-					prefService.setCharPref(prefsToClear[i], "");
+			let browser = new HiddenBrowser({
+				useHiddenFrame: false
+			});
+			await browser.load(
+				"data:text/html;charset=utf-8," + encodeURIComponent(bibliography)
+			);
+			await browser.print({
+				overrideSettings: {
+					headerStrLeft: "",
+					headerStrCenter: "",
+					headerStrRight: "",
+					footerStrLeft: "",
+					footerStrCenter: "",
+					footerStrRight: "",
 				}
-				
-				// print
-				browser.contentWindow.print();
-				
-				// set the prefs back
-				for(var i in prefsToClear) {
-					prefService.setCharPref(prefsToClear[i], oldPrefs[i]);
-				}
-				
-				// TODO can't delete hidden browser object here or else print will fail...
-			}
-			
-			browser.addEventListener("pageshow", listener, false);
-			browser.loadURIWithFlags("data:text/html;charset=utf-8,"+encodeURI(bibliography),
-				Components.interfaces.nsIWebNavigation.LOAD_FLAGS_BYPASS_HISTORY, null, "utf-8", null);
+			});
+			browser.destroy();
 		} else if(io.method == "save-as-html") {
-			let fStream = yield _saveBibliography(name, "HTML");
+			let fStream = await _saveBibliography(name, "HTML");
 			
 			if(fStream !== false) {			
 				var html = "";
@@ -975,13 +966,13 @@ var Zotero_File_Interface = new function() {
 				fStream.close();
 			}
 		} else if(io.method == "save-as-rtf") {
-			let fStream = yield _saveBibliography(name, "RTF");
+			let fStream = await _saveBibliography(name, "RTF");
 			if(fStream !== false) {
 				fStream.write(bibliography, bibliography.length);
 				fStream.close();
 			}
 		}
-	});
+	};
 	
 	
 	async function _saveBibliography(name, format) {
@@ -1014,71 +1005,6 @@ var Zotero_File_Interface = new function() {
 			return false;
 		}
 	}
-
-	this.authenticateMendeleyOnlinePoll = function (win) {
-		if (win && win[0] && win[0].location) {
-			const matchResult = win[0].location.toString().match(/mendeley_oauth_redirect.html(?:.*?)(?:\?|&)code=(.*?)(?:&|$)/i);
-			if (matchResult) {
-				const mendeleyCode = matchResult[1];
-				Zotero.getMainWindow().setTimeout(() => this.showImportWizard({ mendeleyCode }), 0);
-
-				// Clear all cookies to remove access
-				//
-				// This includes unrelated cookies in the central cookie store, but that's fine for
-				// the moment, since we're not purposely using cookies for anything else.
-				//
-				// TODO: Switch to removeAllSince() once >Fx60
-				try {
-					Cc["@mozilla.org/cookiemanager;1"]
-						.getService(Ci.nsICookieManager)
-						.removeAll();
-				}
-				catch (e) {
-					Zotero.logError(e);
-				}
-
-				win.close();
-				return;
-			}
-		}
-
-		if (win && !win.closed) {
-			Zotero.getMainWindow().setTimeout(this.authenticateMendeleyOnlinePoll.bind(this, win), 200);
-		}
-	};
-
-	this.authenticateMendeleyOnline = function () {
-		const uri = `https://api.mendeley.com/oauth/authorize?client_id=5907&redirect_uri=https%3A%2F%2Fzotero-static.s3.amazonaws.com%2Fmendeley_oauth_redirect.html&response_type=code&state=&scope=all`;
-		var win = Services.wm.getMostRecentWindow("zotero:basicViewer");
-		if (win) {
-			win.loadURI(uri);
-		}
-		else {
-			const ww = Services.ww;
-			const arg = Components.classes["@mozilla.org/supports-string;1"]
-				.createInstance(Components.interfaces.nsISupportsString);
-			arg.data = uri;
-			win = ww.openWindow(null, "chrome://zotero/content/standalone/basicViewer.xul",
-				"basicViewer", "chrome,dialog=yes,resizable,centerscreen,menubar,scrollbars", arg);
-		}
-
-		let browser;
-		let func = function () {
-			win.removeEventListener("load", func);
-			browser = win.document.documentElement.getElementsByTagName('browser')[0];
-			browser.addEventListener("pageshow", innerFunc);
-		};
-		let innerFunc = function () {
-			browser.removeEventListener("pageshow", innerFunc);
-			win.outerWidth = Math.max(640, Math.min(1000, win.screen.availHeight));
-			win.outerHeight = Math.max(480, Math.min(800, win.screen.availWidth));
-		};
-
-		win.addEventListener("load", func);
-
-		// polling executed by the main window because current (wizard) window will be closed
-		Zotero.getMainWindow().setTimeout(this.authenticateMendeleyOnlinePoll.bind(this, win), 200);
-	};
 
 	/**
 	 * Generate an error string reporting a translation failure. Includes the

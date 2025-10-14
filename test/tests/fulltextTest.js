@@ -1,4 +1,4 @@
-describe("Zotero.Fulltext", function () {
+describe("Zotero.FullText", function () {
 	var win;
 	
 	before(function* () {
@@ -65,6 +65,38 @@ describe("Zotero.Fulltext", function () {
 					Zotero.Fulltext.INDEX_STATE_UNINDEXED
 				);
 			})
+
+			it("should skip indexing of an EPUB if fulltext.textMaxLength is 0", function* () {
+				Zotero.Prefs.set('fulltext.textMaxLength', 0);
+				var item = yield importFileAttachment('recognizeEPUB_test_content.epub');
+				assert.equal(
+					(yield Zotero.Fulltext.getIndexedState(item)),
+					Zotero.Fulltext.INDEX_STATE_UNINDEXED
+				);
+			});
+
+			describe("Indexing with HiddenBrowser", () => {
+				it("should index attachment as its attachmentContentType when supported", async function () {
+					// Firefox would normally load this as text/x-shellscript, but we detect text/plain
+					let item = await importFileAttachment('test.sh');
+					assert.equal(item.attachmentContentType, 'text/plain');
+					assert.equal(await Zotero.Fulltext.getIndexedState(item), Zotero.Fulltext.INDEX_STATE_INDEXED);
+				});
+
+				it("should index attachment as text/plain when its text/* attachmentContentType is unsupported", async function () {
+					// Now we force text/x-shellscript, which the HiddenBrowser would normally refuse to load
+					// It should still load, because we fall back to text/plain from an unsupported text/* content type
+					let item = await importFileAttachment('test.sh', { contentType: 'text/x-shellscript' });
+					assert.equal(item.attachmentContentType, 'text/x-shellscript');
+					assert.equal(await Zotero.Fulltext.getIndexedState(item), Zotero.Fulltext.INDEX_STATE_INDEXED);
+				});
+
+				it("should not index attachment with non-text attachmentContentType", async function () {
+					let item = await importFileAttachment('test.txt', { contentType: 'image/png' });
+					assert.equal(item.attachmentContentType, 'image/png');
+					assert.equal(await Zotero.Fulltext.getIndexedState(item), Zotero.Fulltext.INDEX_STATE_UNINDEXED);
+				});
+			});
 		});
 		
 		describe("#indexPDF()", function () {
@@ -78,7 +110,6 @@ describe("Zotero.Fulltext", function () {
 				var item = yield Zotero.Attachments.linkFromFile({ file: linkedFile });
 				var storageDir = Zotero.Attachments.getStorageDirectory(item).path;
 				assert.isTrue(yield OS.File.exists(storageDir));
-				assert.isTrue(yield OS.File.exists(OS.Path.join(storageDir, '.zotero-ft-info')));
 				assert.isTrue(yield OS.File.exists(OS.Path.join(storageDir, '.zotero-ft-cache')));
 				assert.isFalse(yield OS.File.exists(OS.Path.join(storageDir, filename)));
 			});
@@ -133,7 +164,7 @@ describe("Zotero.Fulltext", function () {
 			toSync.push({
 				item: pdfAttachment,
 				content: "Zotero [zoh-TAIR-oh] is a free, easy-to-use tool to help you collect, "
-					+ "organize, cite, and share your research sources.\n\n",
+					+ "organize, cite, and share your research sources.",
 				indexedChars: 0,
 				indexedPages: 1
 			});
@@ -143,9 +174,10 @@ describe("Zotero.Fulltext", function () {
 			var data = yield Zotero.FullText.getUnsyncedContent(Zotero.Libraries.userLibraryID);
 			assert.lengthOf(data, 3);
 			let contents = toSync.map(x => x.content);
+			
 			for (let d of data) {
+				assert.include(contents, d.content);
 				let pos = contents.indexOf(d.content);
-				assert.isAbove(pos, -1);
 				assert.equal(d.indexedChars, toSync[pos].indexedChars);
 				assert.equal(d.indexedPages, toSync[pos].indexedPages);
 			}

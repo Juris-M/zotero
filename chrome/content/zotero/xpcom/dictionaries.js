@@ -56,23 +56,18 @@ Zotero.Dictionaries = new function () {
 		if (!(await OS.File.exists(dictionariesDir))) {
 			return;
 		}
-		let iterator = new OS.File.DirectoryIterator(dictionariesDir);
-		try {
-			await iterator.forEach(async function (entry) {
-				if (entry.name.startsWith('.')) {
-					return;
-				}
-				try {
-					let dir = OS.Path.join(dictionariesDir, entry.name);
-					await _loadDirectory(dir);
-				}
-				catch (e) {
-					Zotero.logError(e);
-				}
-			});
-		}
-		finally {
-			iterator.close();
+		
+		for (let path of await IOUtils.getChildren(dictionariesDir)) {
+			let filename = PathUtils.filename(path);
+			if (filename.startsWith('.')) {
+				continue;
+			}
+			try {
+				await _loadDirectory(path);
+			}
+			catch (e) {
+				Zotero.logError(e);
+			}
 		}
 	};
 
@@ -136,18 +131,11 @@ Zotero.Dictionaries = new function () {
 			}
 
 			zipReader.close();
-			await OS.File.remove(xpiPath);
+			zipReader = null;
+			Cu.forceGC();
 			await _loadDirectory(dir);
 		}
 		catch (e) {
-			try {
-				if (await OS.File.exists(xpiPath)) {
-					await OS.File.remove(xpiPath);
-				}
-			}
-			catch (e) {
-				Zotero.logError(e);
-			}
 			try {
 				if (await OS.File.exists(dir)) {
 					await OS.File.removeDir(dir);
@@ -157,6 +145,19 @@ Zotero.Dictionaries = new function () {
 				Zotero.logError(e);
 			}
 			throw e;
+		}
+		finally {
+			// Remove the downloaded file from the temp path
+			// Note: In same cases, on Windows, it can't be removed
+			// because something is keeping it open
+			try {
+				if (await OS.File.exists(xpiPath)) {
+					await OS.File.remove(xpiPath);
+				}
+			}
+			catch (e) {
+				Zotero.logError(e);
+			}
 		}
 	};
 
@@ -180,7 +181,8 @@ Zotero.Dictionaries = new function () {
 				let dicPath = manifest.dictionaries[locale];
 				let affPath = OS.Path.join(dictionary.dir, ...dicPath.split(/\//)).slice(0, -3) + 'aff';
 				Zotero.debug(`Removing ${locale} dictionary`);
-				_spellChecker.removeDictionary(locale, Zotero.File.pathToFile(affPath));
+				let file = new FileUtils.File(affPath);
+				_spellChecker.removeDictionary(locale, Services.io.newFileURI(file));
 			}
 		}
 		catch (e) {
@@ -247,9 +249,12 @@ Zotero.Dictionaries = new function () {
 			}
 		}
 		if (!name && inlineSpellChecker) {
-			name = inlineSpellChecker.getDictionaryDisplayName(locale)
+			let names = Services.intl.getLocaleDisplayNames(undefined, [locale]);
+			if (names.length) {
+				name = names[0];
+			}
 		}
-		return name || name;
+		return name || locale;
 	};
 	
 	/**
@@ -296,8 +301,8 @@ Zotero.Dictionaries = new function () {
 			locales.push(locale);
 			let dicPath = manifest.dictionaries[locale];
 			let affPath = OS.Path.join(dir, ...dicPath.split(/\//)).slice(0, -3) + 'aff';
-			Zotero.debug(`Adding ${locale} dictionary`);
-			_spellChecker.addDictionary(locale, Zotero.File.pathToFile(affPath));
+			let file = new FileUtils.File(affPath);
+			_spellChecker.addDictionary(locale, Services.io.newFileURI(file));
 			_dictionaries.push({ id, locale, version, dir });
 		}
 	}

@@ -28,28 +28,35 @@ Zotero.MIME = new function(){
 	this.getPrimaryExtension = getPrimaryExtension;
 	this.sniffForBinary = sniffForBinary;
 	this.hasNativeHandler = hasNativeHandler;
-	this.hasInternalHandler = hasInternalHandler;
 	
-	// Magic numbers
+	// Magic numbers -- see https://en.wikipedia.org/wiki/List_of_file_signatures
 	var _snifferEntries = [
 		["%PDF-", "application/pdf"],
 		["%!PS-Adobe-", 'application/postscript', 0],
 		["%! PS-Adobe-", 'application/postscript', 0],
-		["\uFFFD\uFFFD\x11\u0871\x1A\uFFFD\x00\x00", "application/msword", 0],
 		["From", 'text/plain', 0],
 		[">From", 'text/plain', 0],
 		["#!", 'text/plain', 0],
 		["<?xml", 'text/xml', 0],
 		["<!DOCTYPE html", 'text/html', 0],
 		["<html", 'text/html', 0],
-		["\uFFFD\uFFFD\uFFFD\uFFFD", 'image/jpeg', 0],
 		["GIF8", 'image/gif', 0],
-		["\uFFFDPNG", 'image/png', 0],
-		["JFIF", 'image/jpeg'],
+		["\u0089PNG", 'image/png', 0],
+		["\u00FF\u00D8\u00FF\u00DB", "image/jpeg", 0],
+		["\u00FF\u00D8\u00FF\u00E0\u0000\u0010\u004A\u0046\u0049\u0046\u0000\u0001", "image/jpeg", 0],
+		["\u00FF\u00D8\u00FF\u00EE", "image/jpeg", 0],
+		["\u00FF\u00D8\u00FF\u00E1", "image/jpeg", 0],
+		["\u00FF\u00D8\u00FF\u00E0", "image/jpeg", 0],
 		["FLV", "video/x-flv", 0],
 		["\u0000\u0000\u0001\u0000", "image/vnd.microsoft.icon", 0],
-		["\u0053\u0051\u004C\u0069\u0074\u0065\u0020\u0066"
-			+ "\u006F\u0072\u006D\u0061\u0074\u0020\u0033\u0000", "application/x-sqlite3", 0]
+		["SQLite format 3\u0000", "application/x-sqlite3", 0],
+		["mimetypeapplication/epub+zip", "application/epub+zip", 30],
+		// MP3 without ID3 tag or with ID3v1 tag
+		["\U00FF\U00FB", "audio/mpeg", 0],
+		["\U00FF\U00F3", "audio/mpeg", 0],
+		["\U00FF\U00F2", "audio/mpeg", 0],
+		// MP3 with ID3v2 container
+		["ID3", "audio/mpeg", 0],
 	];
 	
 	var _extensions = {
@@ -84,7 +91,13 @@ Zotero.MIME = new function(){
 		// OpenOffice/LibreOffice
 		'odt': 'application/vnd.oasis.opendocument.text',
 		
-		'pdf': 'application/pdf'
+		'pdf': 'application/pdf',
+		'epub': 'application/epub+zip',
+		
+		'mp3': 'audio/mpeg',
+		'aac': 'audio/aac',
+		'mp4': 'video/mp4',
+		'mpeg': 'video/mpeg',
 	};
 	
 	var _textTypes = {
@@ -121,7 +134,7 @@ Zotero.MIME = new function(){
 	
 	
 	function isTextType(mimeType) {
-		return mimeType.substr(0, 5) == 'text/' || _textTypes[mimeType];
+		return mimeType.substr(0, 5) == 'text/' || mimeType in _textTypes;
 	}
 	
 	this.isWebPageType = function(mimeType) {
@@ -208,6 +221,9 @@ Zotero.MIME = new function(){
 			case 'audio/x-aiff':
 			case 'sound/aiff':
 				return 'aiff';
+
+			case 'application/epub+zip':
+				return 'epub';
 		}
 		
 		try {
@@ -227,22 +243,22 @@ Zotero.MIME = new function(){
 	 * Searches string for magic numbers
 	 */
 	this.sniffForMIMEType = function (str) {
-		for (let i in _snifferEntries) {
+		for (let [magic, type, offset] of _snifferEntries) {
 			let match = false;
 			// If an offset is defined, match only from there
-			if (_snifferEntries[i][2] != undefined) {
-				if (str.substr(_snifferEntries[i][2]).indexOf(_snifferEntries[i][0]) == 0) {
+			if (offset != undefined) {
+				if (str.substr(offset).indexOf(magic) == 0) {
 					match = true;
 				}
 			}
 			// Otherwise allow match anywhere in sample
 			// (200 bytes from getSample() by default)
-			else if (str.indexOf(_snifferEntries[i][0]) != -1) {
+			else if (str.indexOf(magic) != -1) {
 				match = true;
 			}
 			
 			if (match) {
-				return _snifferEntries[i][1];
+				return type;
 			}
 		}
 		
@@ -346,9 +362,7 @@ Zotero.MIME = new function(){
 			var mimeType = xmlhttp.channel.contentType;
 		}
 		
-		var nsIURL = Components.classes["@mozilla.org/network/standard-url;1"]
-			.createInstance(Components.interfaces.nsIURL);
-		nsIURL.spec = url;
+		var nsIURL = Services.io.newURI(url).QueryInterface(Ci.nsIURL);
 		
 		// Override MIME type to application/pdf if extension is .pdf --
 		// workaround for sites that respond to the HEAD request with an
@@ -386,47 +400,6 @@ Zotero.MIME = new function(){
 		}
 		return false;
 	}
-	
-	
-	/*
-	 * Determine if a MIME type can be handled internally
-	 * or if it needs to be passed off to an external helper app
-	 *
-	 * Similar to hasNativeHandler() but also includes plugins
-	 */
-	function hasInternalHandler(mimeType, ext) {
-		if (hasNativeHandler(mimeType, ext)) {
-			return true;
-		}
-		
-		if(mimeType === "application/pdf"
-				&& "@mozilla.org/streamconv;1?from=application/pdf&to=*/*" in Components.classes) {
-			// PDF can be handled internally if pdf.js is installed
-			return true;
-		}
-		
-		// Is there a better way to get to navigator?
-		var types = Components.classes["@mozilla.org/appshell/appShellService;1"]
-				.getService(Components.interfaces.nsIAppShellService)
-				.hiddenDOMWindow.navigator.mimeTypes;
-		
-		for (let type of types) {
-			if (type.type && type.type == mimeType) {
-				Zotero.debug('MIME type ' + mimeType + ' can be handled by plugins');
-				return true;
-			}
-		}
-		
-		Zotero.debug('MIME type ' + mimeType + ' cannot be handled internally');
-		return false;
-	}
-	
-	
-	this.fileHasInternalHandler = Zotero.Promise.coroutine(function* (file){
-		var mimeType = yield this.getMIMETypeFromFile(file);
-		var ext = Zotero.File.getExtension(file);
-		return hasInternalHandler(mimeType, ext);
-	});
 	
 	
 	/*

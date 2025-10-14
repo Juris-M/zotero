@@ -32,6 +32,7 @@ describe("Zotero.FeedReader", function () {
 	
 	var richTextRSSFeedURL = getTestDataUrl("feedRichText.rss");
 	var cdataRSSFeedURL = getTestDataUrl("feedCDATA.rss");
+	var articleMetadataRSSFeedURL = getTestDataUrl("feedArticleMetadata.rss");
 	var atomFeedURL = getTestDataUrl("feed.atom");
 	var mediaFeedURL = getTestDataUrl("feedMedia.xml");
 	
@@ -123,7 +124,7 @@ describe("Zotero.FeedReader", function () {
 		it('should parse items correctly for a sparse RSS feed', function* () {
 			let expected = { guid: 'http://liftoff.msfc.nasa.gov/2003/06/03.html#item573',
 				title: 'Star City',
-				abstractNote: 'How do Americans get ready to work with Russians aboard the International Space Station? They take a crash course in culture, language and protocol at Russia\'s Star City.',
+				abstractNote: 'How do Americans get ready to work with Russians aboard the International Space Station? They take a crash course in culture, language and protocol at Russia\'s <a xmlns="http://www.w3.org/1999/xhtml" href="http://howe.iki.rssi.ru/GCTC/gctc_e.htm">Star City</a>.',
 				url: 'http://liftoff.msfc.nasa.gov/news/2003/news-starcity.asp',
 				creators: [{ firstName: '', lastName: 'editor@example.com', creatorType: 'author', fieldMode: 1 }],
 				date: 'Tue, 03 Jun 2003 09:39:21 GMT',
@@ -157,6 +158,7 @@ describe("Zotero.FeedReader", function () {
 				publicationTitle: 'Publication',
 				ISSN: '0000-0000',
 				publisher: 'Publisher',
+				section: 'Article',
 				rights: '©2016 Published by Publisher',
 				language: 'en',
 				itemType: 'journalArticle',
@@ -164,6 +166,38 @@ describe("Zotero.FeedReader", function () {
 			};
 		
 			let fr = new Zotero.FeedReader(detailedRSSFeedURL);
+			yield fr.process();
+			let itemIterator = new fr.ItemIterator();
+			let item = yield itemIterator.next().value;
+			assert.deepEqual(item, expected);
+		});
+		
+		it('should parse items correctly for an RSS feed with journal article metadata', function* () {
+			let expected = {
+				guid: 'https://www.mdpi.com/2311-5521/9/6/120',
+				title: 'Environmental Hydraulics, Turbulence, and Sediment Transport, Second Edition',
+				abstractNote: 'Abstract',
+				url: 'https://www.mdpi.com/2311-5521/9/6/120',
+				creators: [
+					{ firstName: 'Jaan H.', lastName: 'Pu', creatorType: 'author' },
+					{ firstName: 'Manish', lastName: 'Pandey', creatorType: 'author' },
+					{ firstName: 'Prashanth Reddy', lastName: 'Hanmaiahgari', creatorType: 'author' }
+				],
+				date: '2024-05-22',
+				publicationTitle: 'Fluids',
+				pages: '120',
+				DOI: '10.3390/fluids9060120',
+				volume: '9',
+				issue: '6',
+				section: 'Editorial',
+				publisher: 'MDPI',
+				rights: 'Creative Commons Attribution (CC-BY)',
+				language: 'en',
+				itemType: 'journalArticle',
+				enclosedItems: []
+			};
+		
+			let fr = new Zotero.FeedReader(articleMetadataRSSFeedURL);
 			yield fr.process();
 			let itemIterator = new fr.ItemIterator();
 			let item = yield itemIterator.next().value;
@@ -178,7 +212,8 @@ describe("Zotero.FeedReader", function () {
 				url: 'http://www.example.com/item1',
 				creators: [
 					{ firstName: 'Author1 A. T.', lastName: 'Rohtua', creatorType: 'author' },
-					{ firstName: 'Author2 A.', lastName: 'Auth', creatorType: 'author' }
+					{ firstName: 'Author2 A.', lastName: 'Auth', creatorType: 'author' },
+					{ firstName: 'Author3 Z.', lastName: 'McAuthorton', creatorType: 'author' },
 				],
 				// TODO: DOI?
 				date: '2017-10-27T12:27:09Z',
@@ -203,17 +238,7 @@ describe("Zotero.FeedReader", function () {
 			assert.isNull(item);
 		});
 		
-		it('should decode entities', async () => {
-			const fr = new Zotero.FeedReader(richTextRSSFeedURL);
-			await fr.process();
-			const itemIterator = new fr.ItemIterator();
-			const item = await itemIterator.next().value;
-			
-			assert.equal(item.title, `Encoded "entity"`);
-			assert.equal(item.abstractNote, "They take a crash course in language & protocol.");
-		});
-
-		it('should remove tags', async () => {
+		it('should preserve tags in text fields', async () => {
 			const fr = new Zotero.FeedReader(richTextRSSFeedURL);
 			await fr.process();
 			const itemIterator = new fr.ItemIterator();
@@ -225,8 +250,31 @@ describe("Zotero.FeedReader", function () {
 			
 			// The entry title is text only, so tags are just more text.
 			assert.equal(item.title, "Embedded <b>tags</b>");
-			// The entry description is XHTML, so tags are removed there.
-			assert.equal(item.abstractNote, "The proposed VASIMR engine would do that.");
+		});
+
+		it('should use content as abstractNote when available', async () => {
+			const fr = new Zotero.FeedReader(richTextRSSFeedURL);
+			await fr.process();
+			const itemIterator = new fr.ItemIterator();
+			let item;
+			for (let i = 0; i < 3; i++) {
+				item = await itemIterator.next().value;
+			}
+
+			assert.include(item.abstractNote, '<blink');
+		});
+
+		it('should parse HTML fields', async () => {
+			const fr = new Zotero.FeedReader(richTextRSSFeedURL);
+			await fr.process();
+			const itemIterator = new fr.ItemIterator();
+			let item;
+			for (let i = 0; i < 2; i++) {
+				// eslint-disable-next-line no-await-in-loop
+				item = await itemIterator.next().value;
+			}
+
+			assert.equal(item.abstractNote, 'The proposed <b xmlns="http://www.w3.org/1999/xhtml">VASIMR</b> engine would do that.');
 		});
 
 		it('should parse CDATA as text', async () => {
@@ -247,6 +295,39 @@ describe("Zotero.FeedReader", function () {
 			
 			assert.equal(item.enclosedItems.length, 1);
 			assert.equal(item.enclosedItems[0].url, "https://static01.nyt.com/images/2021/06/16/world/16biden-photos1/16biden-photos1-moth.jpg");
+		});
+	});
+
+	describe("Legacy text encodings", function () {
+		var httpd;
+		var port;
+		var baseURL;
+
+		before(async function () {
+			({ httpd, port, baseURL } = await startHTTPServer());
+
+			httpd._handler._mimeMappings.rss = "text/xml; charset=ISO-8859-1";
+
+			httpd.registerPathHandler("/feedWindows1252.rss", {
+				handle(request, response) {
+					response.setStatusLine(null, 200, 'OK');
+					let file = getTestDataDirectory();
+					file.append("feedWindows1252.rss");
+					httpd._handler._writeFileResponse(request, file, response, 0, file.fileSize);
+				}
+			});
+		});
+		
+		after(async function () {
+			await new Promise(resolve => httpd.stop(resolve));
+		});
+		
+		it("should handle an ISO-8859-1 (windows-1252) feed", async function () {
+			let fr = new Zotero.FeedReader(baseURL + "feedWindows1252.rss");
+			await fr.process();
+			let itemIterator = new fr.ItemIterator();
+			let item = await itemIterator.next().value;
+			assert.equal(item.title, "Skriftlig spørsmål fra Tage Pettersen (H) til helse- og omsorgsministeren. Til behandling");
 		});
 	});
 })

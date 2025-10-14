@@ -1,7 +1,7 @@
 /*
     ***** BEGIN LICENSE BLOCK *****
 
-    Copyright © 2022 YOUR_NAME <- TODO
+    Copyright © $$YEAR$$ YOUR_NAME <- TODO
 
     This file is part of Zotero.
 
@@ -54,11 +54,9 @@ function getSearchResults(doc, checkOnly) {
 async function doWeb(doc, url) {
 	if (detectWeb(doc, url) == 'multiple') {
 		let items = await Zotero.selectItems(getSearchResults(doc, false));
-		if (items) {
-			await Promise.all(
-				Object.keys(items)
-					.map(url => requestDocument(url).then(scrape))
-			);
+		if (!items) return;
+		for (let url of Object.keys(items)) {
+			await scrape(await requestDocument(url));
 		}
 	}
 	else {

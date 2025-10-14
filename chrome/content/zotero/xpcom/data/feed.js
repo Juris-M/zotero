@@ -487,10 +487,10 @@ Zotero.Feed.prototype._updateFeed = Zotero.Promise.coroutine(function* () {
 		this._set('_feedLastCheckError', e.message || 'Error processing feed');
 	}
 	if (toSave.length) {
-		yield Zotero.DB.executeTransaction(function* () {
+		yield Zotero.DB.executeTransaction(async function () {
 			// Save in reverse order
 			for (let i=toSave.length-1; i>=0; i--) {
-				yield toSave[i].save();
+				await toSave[i].save();
 			}
 			
 		});
@@ -499,7 +499,7 @@ Zotero.Feed.prototype._updateFeed = Zotero.Promise.coroutine(function* () {
 	for (let attachment of attachmentsToAdd) {
 		if (attachment.url.indexOf('pdf') != -1 || attachment.contentType.indexOf('pdf') != -1) {
 			attachment.parentItemID = attachment.parentItem.id;
-			attachment.title = Zotero.getString('fileTypes.pdf');
+			attachment.title = Zotero.getString('file-type-pdf');
 			yield Zotero.Attachments.linkFromURL(attachment);
 		}
 	}

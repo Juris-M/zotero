@@ -15,11 +15,11 @@ function makePath {
 	eval $__assignTo="'$__path'"
 }
 
-if [ -z "$FX_EXECUTABLE" ]; then
+if [ -z "$Z_EXECUTABLE" ]; then
 	if [ "`uname`" == "Darwin" ]; then
-		FX_EXECUTABLE="$( dirname "$ROOT_DIR" )/zotero-standalone-build/xulrunner/Firefox.app/Contents/MacOS/firefox"
+		Z_EXECUTABLE="$ROOT_DIR/app/staging/Zotero.app/Contents/MacOS/zotero"
 	else
-		FX_EXECUTABLE="$( dirname "$ROOT_DIR" )/zotero-standalone-build/xulrunner/firefox-x86_64/firefox"
+		Z_EXECUTABLE="$ROOT_DIR/app/staging/Zotero_linux-x86_64/zotero"
 	fi
 fi
 
@@ -35,9 +35,9 @@ if [ -f "runtests-custom.sh" ]; then
 fi
 
 if [ -z "$DISPLAY" ]; then
-	FX_ARGS=""
+	Z_ARGS=""
 else
-	FX_ARGS="--class=ZTestFirefox"
+	Z_ARGS="--class=ZTestFirefox"
 fi
 
 function usage {
@@ -53,7 +53,7 @@ Options
  -h                  display this help
  -s TEST             start at the given test
  -t                  generate test data and quit
- -x FX_EXECUTABLE    path to Firefox executable (default: $FX_EXECUTABLE)
+ -x EXECUTABLE       path to Zotero executable (default: $Z_EXECUTABLE)
  TESTS               set of tests to run (default: all)
 DONE
 	exit 1
@@ -64,10 +64,10 @@ DEBUG_LEVEL=5
 while getopts "bcd:e:fg:hs:tx:" opt; do
 	case $opt in
         b)
-        	FX_ARGS="$FX_ARGS -ZoteroSkipBundledFiles"
+        	Z_ARGS="$Z_ARGS -ZoteroSkipBundledFiles"
         	;;
 		c)
-			FX_ARGS="$FX_ARGS -jsconsole -noquit"
+			Z_ARGS="$Z_ARGS -jsconsole -noquit"
 			;;
 		d)
 			DEBUG=true
@@ -77,10 +77,10 @@ while getopts "bcd:e:fg:hs:tx:" opt; do
 			if [[ -z "$OPTARG" ]] || [[ ${OPTARG:0:1} = "-" ]]; then
 				usage
 			fi
-			FX_ARGS="$FX_ARGS -stopAtTestFile $OPTARG"
+			Z_ARGS="$Z_ARGS -stopAtTestFile $OPTARG"
 			;;
 		f)
-			FX_ARGS="$FX_ARGS -bail"
+			Z_ARGS="$Z_ARGS -bail"
 			;;
 		g)
 			GREP="$OPTARG"
@@ -92,13 +92,13 @@ while getopts "bcd:e:fg:hs:tx:" opt; do
 			if [[ -z "$OPTARG" ]] || [[ ${OPTARG:0:1} = "-" ]]; then
 				usage
 			fi
-			FX_ARGS="$FX_ARGS -startAtTestFile $OPTARG"
+			Z_ARGS="$Z_ARGS -startAtTestFile $OPTARG"
 			;;
 		t)
-			FX_ARGS="$FX_ARGS -makeTestData"
+			Z_ARGS="$Z_ARGS -makeTestData"
 			;;
 		x)
-			FX_EXECUTABLE="$OPTARG"
+			Z_EXECUTABLE="$OPTARG"
 			;;
 		*)
 			usage
@@ -126,48 +126,17 @@ ulimit -n 4096
 # Set up profile directory
 TEMPDIR="`mktemp -d 2>/dev/null || mktemp -d -t 'zotero-unit'`"
 PROFILE="$TEMPDIR/profile"
-mkdir -p "$PROFILE/extensions"
+mkdir -p "$PROFILE"
 
 makePath ZOTERO_PATH "$ROOT_DIR/build"
-#echo "$ZOTERO_PATH" > "$PROFILE/extensions/zotero@chnm.gmu.edu"
-echo "$ZOTERO_PATH" > "$PROFILE/extensions/juris-m@juris-m.github.io"
-
-makePath ZOTERO_UNIT_PATH "$ZOTERO_PATH/test"
-echo "$ZOTERO_UNIT_PATH" > "$PROFILE/extensions/zotero-unit@zotero.org"
 
 # Create data directory
 mkdir "$TEMPDIR/Zotero"
 
-# Download PDF tools if not cached in the source directory and copy to profile directory
-PDF_TOOLS_VERSION="0.0.5"
-PDF_TOOLS_URL="https://zotero-download.s3.amazonaws.com/pdftools/pdftools-$PDF_TOOLS_VERSION.tar.gz"
-PDF_TOOLS_CACHE_DIR="$ROOT_DIR/tmp/pdftools"
-PDF_TOOLS_DIR="$PROFILE/pdftools"
-if [ ! -f "$PDF_TOOLS_CACHE_DIR/$PDF_TOOLS_VERSION" ]; then
-	echo "Fetching PDF tools version $PDF_TOOLS_VERSION"
-	echo
-	rm -rf "$PDF_TOOLS_CACHE_DIR"
-	mkdir -p "$PDF_TOOLS_CACHE_DIR"
-	curl -o "$PDF_TOOLS_CACHE_DIR/pdftools.tar.gz" $PDF_TOOLS_URL
-	tar -zxf "$PDF_TOOLS_CACHE_DIR/pdftools.tar.gz" -C $PDF_TOOLS_CACHE_DIR
-	rm "$PDF_TOOLS_CACHE_DIR/pdftools.tar.gz"
-	touch "$PDF_TOOLS_CACHE_DIR/$PDF_TOOLS_VERSION"
-	echo
-fi
-cp -R $PDF_TOOLS_CACHE_DIR $PDF_TOOLS_DIR
-
-# Add default prefs, which are apparently no longer read from extensions in Firefox 60
-cat "$ZOTERO_PATH/defaults/preferences/zotero.js" > "$PROFILE/prefs.js"
-
+touch "$PROFILE/prefs.js"
 cat <<EOF >> "$PROFILE/prefs.js"
 user_pref("app.update.enabled", false);
-user_pref("extensions.autoDisableScopes", 0);
-user_pref("browser.dom.window.dump.enabled", true);
-user_pref("browser.tabs.remote.autostart", false);
-user_pref("browser.tabs.remote.autostart.2", false);
-user_pref("browser.uitour.enabled", false);
-user_pref("browser.shell.checkDefaultBrowser", false);
-user_pref("dom.max_chrome_script_run_time", 0);
+//user_pref("dom.max_chrome_script_run_time", 0);
 // It would be better to leave this on and handle it in Sinon's FakeXMLHttpRequest
 user_pref("extensions.zotero.sync.server.compressData", false);
 user_pref("extensions.zotero.automaticScraperUpdates", false);
@@ -179,25 +148,19 @@ user_pref("extensions.zotero.firstRunGuidance", false);
 user_pref("extensions.zotero.firstRun2", false);
 user_pref("extensions.zotero.reportTranslationFailure", false);
 user_pref("extensions.zotero.httpServer.enabled", true);
+user_pref("extensions.zotero.httpServer.localAPI.enabled", true);
 user_pref("extensions.zotero.backup.numBackups", 0);
 user_pref("extensions.zotero.sync.autoSync", false);
-user_pref("extensions.legacy.enabled", true);
-user_pref("xpinstall.signatures.required", false);
-user_pref("xpinstall.whitelist.required", false);
-user_pref("datareporting.healthreport.uploadEnabled", false);
-user_pref("datareporting.healthreport.service.enabled", false);
-user_pref("datareporting.healthreport.service.firstRun", false);
-user_pref("datareporting.policy.dataSubmissionEnabled", false);
-user_pref("datareporting.policy.dataSubmissionPolicyBypassNotification", true);
+user_pref("extensions.zoteroMacWordIntegration.installed", true);
+user_pref("extensions.zoteroMacWordIntegration.skipInstallation", true);
+user_pref("extensions.zoteroWinWordIntegration.skipInstallation", true);
+user_pref("extensions.zoteroOpenOfficeIntegration.skipInstallation", true);
 EOF
 
-# -v flag on Windows makes Firefox process hang
-if [ -z $IS_CYGWIN ]; then
-	echo "`MOZ_NO_REMOTE=1 NO_EM_RESTART=1 \"$FX_EXECUTABLE\" -v`"
-fi
-
 if [ -n "$CI" ]; then
-	FX_ARGS="$FX_ARGS -ZoteroAutomatedTest -ZoteroTestTimeout 15000"
+	Z_ARGS="$Z_ARGS -ZoteroAutomatedTest -ZoteroTestTimeout 15000"
+else
+	Z_ARGS="$Z_ARGS -jsconsole"
 fi
 
 # Clean up on exit
@@ -205,18 +168,19 @@ trap "{ rm -rf \"$TEMPDIR\"; }" EXIT
 
 # Check if build watch process is running
 # If not, run now
-if [[ -z "$CI" ]] && ! ps | grep scripts/build.js | grep -v grep > /dev/null; then
+if [[ -z "$CI" ]] && ! ps | grep js-build/build.js | grep -v grep > /dev/null; then
 	echo
 	echo "Running JS build process"
 	cd "$ROOT_DIR"
-	npm run build || exit $?
+	NODE_OPTIONS=--openssl-legacy-provider npm run build || exit $?
 	echo
 fi
 
-makePath FX_PROFILE "$PROFILE"
+ZOTERO_TEST=1 "$ROOT_DIR/app/scripts/dir_build" -q
 
-MOZ_NO_REMOTE=1 NO_EM_RESTART=1 "$FX_EXECUTABLE" -profile "$FX_PROFILE" \
-    -chrome chrome://zotero-unit/content/runtests.html -test "$TESTS" -grep "$GREP" -ZoteroTest $FX_ARGS
+makePath FX_PROFILE "$PROFILE"
+MOZ_NO_REMOTE=1 NO_EM_RESTART=1 "$Z_EXECUTABLE" -profile "$FX_PROFILE" \
+    -test "$TESTS" -grep "$GREP" -ZoteroTest $Z_ARGS
 
 # Check for success
 test -e "$PROFILE/success"

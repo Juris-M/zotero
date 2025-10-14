@@ -1,4 +1,11 @@
 describe("Zotero.Search", function() {
+	describe("#name", function () {
+		it("should fail if empty", async function () {
+			var s = new Zotero.Search();
+			assert.throws(() => s.name = '');
+		});
+	});
+	
 	describe("#addCondition()", function () {
 		it("should convert old-style 'collection' condition value", function* () {
 			var col = yield createDataObject('collection');
@@ -426,8 +433,7 @@ describe("Zotero.Search", function() {
 					s.addCondition('annotationText', 'contains', str);
 					var matches = await s.search();
 					// TEMP: Match parent attachment
-					// assert.sameMembers(matches, [attachment.id]);
-					expect(matches).to.have.members([attachment.id]);
+					assert.sameMembers(matches, [attachment.id]);
 				});
 			});
 			
@@ -443,8 +449,7 @@ describe("Zotero.Search", function() {
 					s.addCondition('annotationComment', 'contains', str);
 					var matches = await s.search();
 					// TEMP: Match parent attachment
-					// assert.sameMembers(matches, [attachment.id]);
-					expect(matches).to.have.members([attachment.id]);
+					assert.sameMembers(matches, [attachment.id]);
 				});
 			});
 			
@@ -531,6 +536,55 @@ describe("Zotero.Search", function() {
 						s.addCondition('key', 'is', Zotero.DataObjectUtilities.generateKey());
 					}
 					yield s.search();
+				});
+			});
+
+			describe("anyField", function () {
+				it("should return matches for multiple 'any field' conditions with joinMode=any", async function () {
+					var itemOne = await createDataObject('item', { title: "one" });
+					var itemTwo = await createDataObject('item', { title: "two" });
+					
+					var s = new Zotero.Search();
+					s.libraryID = userLibraryID;
+					s.addCondition('joinMode', 'any');
+					s.addCondition('anyField', 'contains', "one");
+					s.addCondition('anyField', 'contains', "two");
+					var matches = await s.search();
+					assert.sameMembers(matches, [itemOne.id, itemTwo.id]);
+				});
+				it("should return matches for 'any field' and title condition with joinMode=any", async function () {
+					var itemOne = await createDataObject('item', { title: "three" });
+					var itemTwo = await createDataObject('item', { title: "four" });
+					
+					var s = new Zotero.Search();
+					s.libraryID = userLibraryID;
+					s.addCondition('joinMode', 'any');
+					s.addCondition('anyField', 'contains', "three");
+					s.addCondition('title', 'contains', "four");
+					var matches = await s.search();
+					assert.sameMembers(matches, [itemOne.id, itemTwo.id]);
+				});
+				it("should return matches for a single 'any field' condition", async function () {
+					var itemOne = await createDataObject('item', { title: "five" });
+					var itemTwo = await createDataObject('item');
+					
+					var s = new Zotero.Search();
+					s.libraryID = userLibraryID;
+					s.addCondition('anyField', 'contains', itemOne.getDisplayTitle());
+					var matches = await s.search();
+					assert.sameMembers(matches, [itemOne.id]);
+				});
+				it("should return matches for two 'any field' condition with joinMode=all", async function () {
+					var itemOne = await createDataObject('item', { title: "six-seven" });
+					var itemTwo = await createDataObject('item', { title: "seven-six" });
+					
+					var s = new Zotero.Search();
+					s.libraryID = userLibraryID;
+					s.addCondition('anyField', 'contains', "six");
+					s.addCondition('anyField', 'contains', "seven");
+					s.addCondition('joinMode', 'all');
+					var matches = await s.search();
+					assert.sameMembers(matches, [itemOne.id, itemTwo.id]);
 				});
 			});
 			
@@ -654,6 +708,111 @@ describe("Zotero.Search", function() {
 						expect(matches).to.not.include(attachment.id);
 					});
 				});
+				it("should include items belonging only to trashed collections", async function () {
+					var collection = await createDataObject('collection');
+					var item = await createDataObject('item', { collections: [collection.id] });
+					
+					var s = new Zotero.Search;
+					s.libraryID = Zotero.Libraries.userLibraryID;
+					s.addCondition('unfiled', 'true');
+
+					// item belonging to a non-trashed collection is not unfiled
+					var matches = await s.search();
+					assert.notInclude(matches, item.id);
+
+					collection.deleted = true;
+					await collection.saveTx();
+
+					// item that only belongs to a trashed collection is unfiled
+					matches = await s.search();
+					assert.include(matches, item.id);
+				});
+			});
+			
+			describe("Quick search", function () {
+				describe("All Fields & Tags", function () {
+					it("should match parent attachment for annotation tag", async function () {
+						var attachment = await importPDFAttachment();
+						var annotation = await createAnnotation('highlight', attachment);
+						var tag = Zotero.Utilities.randomString();
+						annotation.addTag(tag);
+						await annotation.saveTx();
+						
+						var s = new Zotero.Search();
+						s.libraryID = userLibraryID;
+						s.addCondition('quicksearch-fields', 'contains', tag);
+						var matches = await s.search();
+						// TEMP: Match parent attachment
+						assert.sameMembers(matches, [attachment.id]);
+					});
+				})
+				
+				describe("Everything", function () {
+					it("should match parent attachment for annotation comment", async function () {
+						var attachment = await importPDFAttachment();
+						var annotation = await createAnnotation('highlight', attachment);
+						var comment = annotation.annotationComment;
+						
+						var s = new Zotero.Search();
+						s.libraryID = userLibraryID;
+						s.addCondition('quicksearch-everything', 'contains', comment);
+						var matches = await s.search();
+						// TEMP: Match parent attachment
+						assert.sameMembers(matches, [attachment.id]);
+					});
+					
+					it("should not include items outside of scope during phrase search", async function () {
+						var col = await createDataObject('collection');
+						fooItem.addToCollection(col.id);
+						await fooItem.saveTx();
+	
+						// Quicksearch from a collection
+						let collectionScope = new Zotero.Search();
+						collectionScope.libraryID = userLibraryID;
+						collectionScope.addCondition('noChildren', 'true');
+						collectionScope.addCondition('collectionID', 'is', col.id);
+						
+						var s = new Zotero.Search();
+						s.libraryID = userLibraryID;
+						// Phrase search
+						s.addCondition('quicksearch-everything', 'contains', '"foo"');
+						s.setScope(collectionScope, true);
+						var matches = await s.search();
+						// Only the item from the collection is returned
+						assert.equal(matches.length, 1);
+						assert.equal(matches[0], fooItem.id);
+					});
+				});
+			});
+			
+			describe("deleted", function () {
+				describe("if not present", function () {
+					it("should not match regular items in trash with annotated child attachments", async function () {
+						var item = await createDataObject('item');
+						item.deleted = true;
+						await item.saveTx();
+						var attachment = await importPDFAttachment(item);
+						await createAnnotation('highlight', attachment);
+						
+						var s = new Zotero.Search();
+						s.libraryID = userLibraryID;
+						var matches = await s.search();
+						assert.notInclude(matches, attachment.id);
+					});
+					
+					it("should not match regular items with annotated child attachments in trash", async function () {
+						var item = await createDataObject('item');
+						var attachment = await importPDFAttachment(item);
+						attachment.deleted = true;
+						await attachment.saveTx();
+						await createAnnotation('highlight', attachment);
+						
+						var s = new Zotero.Search();
+						s.libraryID = userLibraryID;
+						var matches = await s.search();
+						assert.notInclude(matches, attachment.id);
+					});
+				});
 			});
 		});
 	});
@@ -668,6 +827,13 @@ describe("Zotero.Search", function() {
 			search.deleted = false;
 			await search.saveTx();
 			assert.isFalse(search.deleted);
+		});
+		it("should permanently delete", async function () {
+			var search = await createDataObject('search');
+			assert.isFalse(search.deleted);
+			await search.eraseTx();
+			search = await Zotero.Searches.getAsync(search.id);
+			assert.isFalse(search);
 		});
 	});
 	

@@ -1,0 +1,10 @@
+zotero.errorReport.postToForums@zotero.dtd
+    Please post a message to the Jurism support channels (see juris-m.github.io/mail) with this Report ID, a description of the problem, and any steps necessary to reproduce it.
+db.integrityCheck.reportInForums@zotero.properties
+    You can report this problem in the Jurism support channels (see juris-m.github.io/mail).
+sync.storage.error.default@zotero.properties
+    A file sync error occurred. Please try syncing again.\n\nIf you receive this message repeatedly, restart %S and/or your computer and try again. If you continue to receive the message, submit an error report and post the Report ID to the Jurism support channels (see juris-m.github.io/mail) for assistance.
+sync.storage.error.defaultRestart@zotero.properties
+    A file sync error occurred. Please restart %S and/or your computer and try syncing again.\n\nIf you receive this message repeatedly, submit an error report and post the Report ID to a Jurism support channel (see juris-m.github.io/mail) for assistance.
+sync.storage.error.webdav.fileMissingAfterUpload@zotero.properties
+    A potential problem was found with your WebDAV server.\n\nAn uploaded file was not immediately available for download. There may be a short delay between when you upload files and when they become available, particularly if you are using a cloud storage service.\n\nIf file syncing appears to work normally, you can ignore this message. If you have trouble, please post to a Jurism support channel (see juris-m.github.io/mail).

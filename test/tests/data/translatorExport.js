@@ -197,7 +197,7 @@
 		"history": "History",
 		"itemType": "bill",
 		"language": "en-US",
-		"legislativeBody": "Legislative body",
+		"legislativeBody": "Authority",
 		"notes": [],
 		"relations": {},
 		"rights": "Rights",
@@ -493,7 +493,7 @@
 		"attachments": [],
 		"caseName": "Title",
 		"collections": [],
-		"court": "Court",
+		"court": "Authority",
 		"creators": [
 			{
 				"creatorType": "author",
@@ -736,6 +736,55 @@
 		"institution": "Institution",
 		"conferenceDate": "Conference date",
 		"seeAlso": []
+	},
+	"dataset": {
+		"DOI": "10.1234/example.doi",
+		"abstractNote": "Abstract note",
+		"accessDate": "1997-06-13T23:59:58Z",
+		"archive": "Archive",
+		"archiveLocation": "Archive location",
+		"attachments": [],
+		"callNumber": "Call number",
+		"citationKey": "Citation key",
+		"collections": [],
+		"creators": [
+			{
+				"creatorType": "author",
+				"firstName": "authorFirst",
+				"lastName": "authorLast"
+			},
+			{
+				"creatorType": "contributor",
+				"firstName": "contributorFirst",
+				"lastName": "contributorLast"
+			},
+			{
+				"creatorType": "author",
+				"name": "Institutional Author"
+			}
+		],
+		"date": "1999-12-31",
+		"dateAdded": "2023-03-23T05:19:51Z",
+		"dateModified": "2023-03-23T05:19:51Z",
+		"extra": "Extra",
+		"format": "Medium",
+		"identifier": "3",
+		"itemType": "dataset",
+		"language": "en-US",
+		"libraryCatalog": "Library catalog",
+		"notes": [],
+		"relations": {},
+		"repository": "Publisher",
+		"repositoryLocation": "Place",
+		"rights": "Rights",
+		"shortTitle": "Short title",
+		"tags": [],
+		"title": "Title",
+		"type": "Type",
+		"uri": "http://zotero.org/users/local/35kRWXym/items/Y7VY3S4B",
+		"url": "http://www.example.com",
+		"version": 0,
+		"versionNumber": "Version number"
 	},
 	"dictionaryEntry": {
 		"ISBN": "978-1-234-56789-7",
@@ -1230,7 +1279,7 @@
 		"history": "History",
 		"itemType": "hearing",
 		"language": "en-US",
-		"legislativeBody": "Legislative body",
+		"legislativeBody": "Authority",
 		"notes": [],
 		"numberOfVolumes": "7",
 		"pages": "1-10",
@@ -1897,10 +1946,10 @@
 		"extra": "Extra",
 		"filingDate": "2000-01-02",
 		"issueDate": "1999-12-31",
-		"issuingAuthority": "Issuing authority",
+		"issuingAuthority": "Authority",
 		"itemType": "patent",
 		"language": "en-US",
-		"legalStatus": "Legal status",
+		"legalStatus": "Status",
 		"notes": [],
 		"pages": "1-10",
 		"patentNumber": "3",
@@ -1965,6 +2014,7 @@
 				}
 			}
 		],
+		"date": "1999-12-31",
 		"dateAdded": "2015-04-12T05:45:15Z",
 		"dateModified": "2015-04-12T05:45:15Z",
 		"episodeNumber": "3",
@@ -2311,6 +2361,58 @@
 		"assemblyNumber": "Assembly number",
 		"status": "Status",
 		"seeAlso": []
+	},
+	"standard": {
+		"DOI": "10.1234/example.doi",
+		"abstractNote": "Abstract note",
+		"accessDate": "1997-06-13T23:59:58Z",
+		"archive": "Archive",
+		"archiveLocation": "Archive location",
+		"attachments": [],
+		"callNumber": "Call number",
+		"citationKey": "Citation key",
+		"collections": [],
+		"committee": "Committee",
+		"creators": [
+			{
+				"creatorType": "author",
+				"firstName": "authorFirst",
+				"lastName": "authorLast"
+			},
+			{
+				"creatorType": "contributor",
+				"firstName": "contributorFirst",
+				"lastName": "contributorLast"
+			},
+			{
+				"creatorType": "author",
+				"name": "Institutional Author"
+			}
+		],
+		"date": "1999-12-31",
+		"dateAdded": "2023-03-23T05:19:51Z",
+		"dateModified": "2023-03-23T05:19:51Z",
+		"extra": "Extra",
+		"itemType": "standard",
+		"language": "en-US",
+		"libraryCatalog": "Library catalog",
+		"notes": [],
+		"numPages": "4",
+		"number": "3",
+		"organization": "Authority",
+		"place": "Place",
+		"publisher": "Publisher",
+		"relations": {},
+		"rights": "Rights",
+		"shortTitle": "Short title",
+		"status": "Status",
+		"tags": [],
+		"title": "Title",
+		"type": "Type",
+		"uri": "http://zotero.org/users/local/35kRWXym/items/B5FEI3EJ",
+		"url": "http://www.example.com",
+		"version": 0,
+		"versionNumber": "Version number"
 	},
 	"statute": {
 		"abstractNote": "Abstract note",
